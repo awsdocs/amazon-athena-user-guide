@@ -1,0 +1,151 @@
+# CREATE TABLE<a name="create-table"></a>
+
+Creates a table with the name and the parameters that you specify\.
+
+## Synopsis<a name="synopsis"></a>
+
+```
+CREATE [EXTERNAL] TABLE [IF NOT EXISTS]
+ [db_name.]table_name [(col_name data_type [COMMENT col_comment] [, ...] )]
+ [COMMENT table_comment]
+ [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]
+ [ROW FORMAT row_format]
+ [STORED AS file_format] [WITH SERDEPROPERTIES (...)] ]
+ [LOCATION 's3_loc']
+ [TBLPROPERTIES ( ['has_encrypted_data'='true | false',] ['classification'='aws_glue_classification',] property_name=property_value [, ...] ) ]
+```
+
+## Parameters<a name="parameters"></a>
+
+**\[EXTERNAL\]**  
+Specifies that the table is based on an underlying data file that exists in Amazon S3, in the `LOCATION` that you specify\. When you create an external table, the data referenced must comply with the default format or the format that you specify with the `ROW FORMAT`, `STORED AS`, and `WITH SERDEPROPERTIES` clauses\.
+
+**\[IF NOT EXISTS\]**  
+Causes the error message to be suppressed if a table named `table_name` already exists\.
+
+**\[db\_name\.\]table\_name**  
+Specifies a name for the table to be created\. The optional `db_name` parameter specifies the database where the table exists\. If omitted, the current database is assumed\. If the table name includes numbers, enclose `table_name` in quotation marks, for example `"table123"`\. If `table_name` begins with an underscore, use backticks, for example, ``_mytable``\. Special characters \(other than underscore\) are not supported\.  
+Athena table names are case\-insensitive; however, if you work with Apache Spark, Spark requires lowercase table names\.
+
+**\[ \( col\_name data\_type \[COMMENT col\_comment\] \[, \.\.\.\] \) \]**  
+Specifies the name for each column to be created, along with the column's data type\. Column names do not allow special characters other than underscore `(_)`\. If `col_name` begins with an underscore, enclose the column name in backticks, for example ``_mycolumn``\. The `data_type` value can be any of the following:  
+
++   
+**primitive\_type**  
+
+  + TINYINT
+
+  + SMALLINT
+
+  + INT
+
+  + BIGINT
+
+  + BOOLEAN
+
+  + DOUBLE
+
+  + FLOAT
+
+  + STRING
+
+  + TIMESTAMP
+
+  + DECIMAL \[ \(precision, scale\) \]
+
+  + DATE \(not supported for PARQUET file\_format\)
+
+  + CHAR\. Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
+
+  + VARCHAR\. Variable length character data, with a specified length between 1 and 65535, such as `varchar(10)`\. For more information, see [VARCHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-varchar)\. 
+
++   
+**array\_type**  
+
+  + ARRAY < data\_type >
+
++   
+**map\_type**  
+
+  + MAP < primitive\_type, data\_type >
+
++   
+**struct\_type**  
+
+  + STRUCT < col\_name : data\_type \[COMMENT col\_comment\] \[, \.\.\.\] >
+
+**\[COMMENT table\_comment\]**  
+Creates the `comment` table property and populates it with the `table_comment` you specify\.
+
+**\[PARTITIONED BY \(col\_name data\_type \[ COMMENT col\_comment \], \.\.\. \) \]**  
+Creates a partitioned table with one or more partition columns that have the `col_name`, `data_type` and `col_comment` specified\. A table can have one or more partitions, which consist of a distinct column name and value combination\. A separate data directory is created for each specified combination, which can improve query performance in some circumstances\. Partitioned columns don't exist within the table data itself\. If you use a value for `col_name` that is the same as a table column, you get an error\. For more information, see Partitioning Data\.  
+After you create a table with partitions, run a subsequent query that consists of the MSCK REPAIR TABLE clause to refresh partition metadata, for example, `MSCK REPAIR TABLE cloudfront_logs;`\.
+
+**\[ROW FORMAT row\_format\]**  
+Specifies the row format of the table and its underlying source data if applicable\. For `row_format`, you can specify one or more delimiters with the `DELIMITED` clause or, alternatively, use the `SERDE` clause as described below\. If `ROW FORMAT` is omitted or `ROW FORMAT DELIMITED` is specified, a native SerDe is used\.  
+
++ \[DELIMITED FIELDS TERMINATED BY char \[ESCAPED BY char\]\]
+
++ \[DELIMITED COLLECTION ITEMS TERMINATED BY char\]
+
++ \[MAP KEYS TERMINATED BY char\]
+
++ \[LINES TERMINATED BY char\]
+
++ \[NULL DEFINED AS char\] \-\- \(Note: Available in Hive 0\.13 and later\)
+ **\-\-OR\-\-**   
+
++ SERDE 'serde\_name' \[WITH SERDEPROPERTIES \("property\_name" = "property\_value", "property\_name" = "property\_value" \[, \.\.\.\] \)\]
+
+  The `serde_name` indicates the SerDe to use\. The `WITH SERDEPROPERTIES` clause allows you to provide one or more custom properties allowed by the SerDe\.
+
+**\[STORED AS file\_format\]**  
+Specifies the file format for table data\. If omitted, `TEXTFILE` is the default\. Options for `file_format` are:  
+
++ SEQUENCEFILE
+
++ TEXTFILE
+
++ RCFILE
+
++ ORC
+
++ PARQUET
+
++ AVRO
+
++ INPUTFORMAT input\_format\_classname OUTPUTFORMAT output\_format\_classname
+
+**\[LOCATION 'S3\_loc'\]**  
+Specifies the location of the underlying data in Amazon S3 from which the table is created, for example, ``s3://mystorage/``\. For more information about considerations such as data format and permissions, see Requirements for Tables in Athena and Data in Amazon S3\.  
+Use a trailing slash for your folder or bucket\. Do not use file names or glob characters\.  
+ **Use:** `s3://mybucket/myfolder/`   
+ **Don't use:** `s3://path_to_bucket` `s3://path_to_bucket/*` `s3://path_to-bucket/mydatafile.dat` 
+
+**\[TBLPROPERTIES \( \['has\_encrypted\_data'='true | false',\] \['classification'='aws\_glue\_classification',\] property\_name=property\_value \[, \.\.\.\] \) \]**  
+Specifies custom metadata key\-value pairs for the table definition in addition to predefined table properties, such as `"comment"`\.  
+Athena has a built\-in property, `has_encrypted_data`\. Set this property to `true` to indicate that the underlying dataset specified by `LOCATION` is encrypted\. If omitted, `false` is assumed\. If omitted or set to `false` when underlying data is encrypted, the query results in an error\. For more information, see Configuring Encryption Options\.  
+To run ETL jobs, AWS Glue requires that you create a table with the `classification` property to indicate the data type for AWS Glue as `csv`, `parquet`, `orc`, `avro`, or `json`\. For example, `'classification'='csv'`\. ETL jobs will fail if you do not specify this property\. You can subsequently specify it using the AWS Glue console, API, or CLI\. For more information, see Using AWS Glue Jobs for ETL with Athena and [Authoring Jobs in Glue](http://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+
+## Examples<a name="examples"></a>
+
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS mydatabase.cloudfront_logs (
+  Date DATE,
+  Time STRING,
+  Location STRING,
+  Bytes INT,
+  RequestIP STRING,
+  Method STRING,
+  Host STRING,
+  Uri STRING,
+  Status INT,
+  Referrer STRING,
+  os STRING,
+  Browser STRING,
+  BrowserVersion STRING
+      ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+      WITH SERDEPROPERTIES (
+      "input.regex" = "^(?!#)([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+[^\(]+[\(]([^\;]+).*\%20([^\/]+)[\/](.*)$"
+      ) LOCATION 's3://athena-examples/cloudfront/plaintext/';
+```

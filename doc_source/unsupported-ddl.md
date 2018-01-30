@@ -1,0 +1,105 @@
+# Unsupported DDL<a name="unsupported-ddl"></a>
+
+The following native Hive DDLs are not supported by Athena:
+
++ ALTER INDEX
+
++ ALTER TABLE `table_name` ARCHIVE PARTITION
+
++ ALTER TABLE `table_name` CLUSTERED BY
+
++ ALTER TABLE `table_name` EXCHANGE PARTITION
+
++ ALTER TABLE `table_name` NOT CLUSTERED
+
++ ALTER TABLE `table_name` NOT SKEWED
+
++ ALTER TABLE `table_name` NOT SORTED
+
++ ALTER TABLE `table_name` NOT STORED AS DIRECTORIES
+
++ ALTER TABLE `table_name` partitionSpec ADD COLUMNS
+
++ ALTER TABLE `table_name` partitionSpec CHANGE COLUMNS
+
++ ALTER TABLE `table_name` partitionSpec COMPACT
+
++ ALTER TABLE `table_name` partitionSpec CONCATENATE
+
++ ALTER TABLE `table_name` partitionSpec REPLACE COLUMNS
+
++ ALTER TABLE `table_name` partitionSpec SET FILEFORMAT
+
++ ALTER TABLE `table_name` RENAME TO
+
++ ALTER TABLE `table_name` SET SKEWED LOCATION
+
++ ALTER TABLE `table_name` SKEWED BY
+
++ ALTER TABLE `table_name` TOUCH
+
++ ALTER TABLE `table_name` UNARCHIVE PARTITION
+
++ COMMIT
+
++ CREATE INDEX
+
++ CREATE ROLE
+
++ CREATE TABLE `table_name` LIKE `existing_table_name` 
+
++ CREATE TEMPORARY MACRO
+
++ CREATE VIEW
+
++ DELETE FROM
+
++ DESCRIBE DATABASE
+
++ DFS
+
++ DROP INDEX
+
++ DROP ROLE
+
++ DROP TEMPORARY MACRO
+
++ EXPORT TABLE
+
++ GRANT ROLE
+
++ IMPORT TABLE
+
++ INSERT INTO
+
++ LOCK DATABASE
+
++ LOCK TABLE
+
++ REVOKE ROLE
+
++ ROLLBACK
+
++ SHOW COMPACTIONS
+
++ SHOW CURRENT ROLES
+
++ SHOW GRANT
+
++ SHOW INDEXES
+
++ SHOW LOCKS
+
++ SHOW PRINCIPALS
+
++ SHOW ROLE GRANT
+
++ SHOW ROLES
+
++ SHOW TRANSACTIONS
+
++ START TRANSACTION
+
++ UNLOCK DATABASE
+
++ UNLOCK TABLE
