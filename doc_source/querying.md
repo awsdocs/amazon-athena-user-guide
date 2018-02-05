@@ -6,14 +6,14 @@ Each query that you run has:
 
 + A results file stored automatically in a CSV format \(\*\.csv\), and
 
-+ A metadata file \(\*\.csv\.metadata\) that includes header information, such as column type\.
++ A metadata file \(`*.csv.metadata`\) that includes header information, such as column type\.
 
 If necessary, you can access the result files to work with them\. Athena stores query results in this Amazon S3 bucket by default: `aws-athena-query-results-<ACCOUNTID>-<REGION>`\.
 
 To view or change the default location for saving query results, choose **Settings** in the upper right pane\.
 
 **Note**  
-You can delete metadata files \(\*\.csv\.metadata\) without causing errors, but important information about the query is lost\.
+You can delete metadata files \(`*.csv.metadata`\) without causing errors, but important information about the query is lost\.
 
 Query results are saved in an Amazon S3 location based on the name of the query and the date the query ran, as follows:
 

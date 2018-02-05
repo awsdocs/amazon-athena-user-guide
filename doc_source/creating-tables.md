@@ -36,9 +36,9 @@ When you create a table, you specify an Amazon S3 bucket location for the underl
 
 + Athena does not support different storage classes within the bucket specified by the `LOCATION` clause, does not support the `GLACIER` storage class, and does not support Requester Pays buckets\. For more information, see [Storage Classes](http://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html), [Changing the Storage Class of an Object in Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/ChgStoClsOfObj.html), and [Requester Pays Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
-## Hive DDL Functions Supported<a name="hive-ddl-functions-supported"></a>
+## Functions Supported<a name="hive-ddl-functions-supported"></a>
 
-The functions supported in Athena queries are those found within Presto\. For more information, see [Functions and Operators](https://prestodb.io/docs/current/functions.html) in the Presto documentation\.
+The functions supported in Athena queries are those found within Presto\. For more information, see [Presto 0\.172 Functions and Operators](https://prestodb.io/docs/0.172/functions.html) in the Presto documentation\.
 
 ## CREATE TABLE AS Type Statements Are Not Supported<a name="create-table-as-type-statements-are-not-supported"></a>
 
@@ -54,7 +54,7 @@ When you create, update, or delete tables, those operations are guaranteed ACID\
 
 ## All Tables Are EXTERNAL<a name="all-tables-are-external"></a>
 
-If you use `CREATE TABLE` without the `1EXTERNAL` keyword, Athena issues an error; only tables with the `EXTERNAL` keyword can be created\. We recommend that you always use the `EXTERNAL` keyword\. When you drop a table in Athena, only the table metadata is removed; the data remains in Amazon S3\.
+If you use `CREATE TABLE` without the `EXTERNAL` keyword, Athena issues an error; only tables with the `EXTERNAL` keyword can be created\. We recommend that you always use the `EXTERNAL` keyword\. When you drop a table in Athena, only the table metadata is removed; the data remains in Amazon S3\.
 
 ## UDF and UDAF Are Not Supported<a name="udf-and-udaf-are-not-supported"></a>
 

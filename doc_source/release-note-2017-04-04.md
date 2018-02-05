@@ -12,7 +12,7 @@ Added support for Amazon S3 data encryption and released JDBC driver update \(ve
 
   +  Support for encrypting Athena query results\. 
 
-+ A new version of the [Using Athena with the JDBC Driver](connect-with-jdbc.md) \(AthenaJDBC41\-1\.0\.1\.jar\) supports new encryption features, adds improvements, and fixes issues\.
++ A new version of the driver supports new encryption features, adds improvements, and fixes issues\.
 
 + Added the ability to add, replace, and change columns using `ALTER TABLE`\. For more information, see [Alter Column](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterColumn) in the Hive documentation\.
 

@@ -2,9 +2,9 @@
 
 You can use a JDBC connection to connect Athena to business intelligence tools, such as SQL Workbench\. To do this, download, install, and configure the Athena JDBC driver, using the following link on Amazon S3\.
 
-## Download the JDBC Driver<a name="download-jdbc-older-version"></a>
+## Download the JDBC Driver<a name="download-jdbc-ate-version"></a>
 
-1. Download the driver \(JDBC 4\.1 and Java 8 compatible\) from this location in Amazon S3 [https://s3.amazonaws.com/athena-downloads-archive/drivers/AthenaJDBC41-1.0.1.jar](https://s3.amazonaws.com/athena-downloads-archive/drivers/AthenaJDBC41-1.0.1.jar)\.
+1. Download the driver \(JDBC 4\.1 and Java 8 compatible\) from this location in Amazon S3 [https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar](https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar)\.
 
 1. Use the AWS CLI with the following command: 
 
@@ -12,7 +12,7 @@ You can use a JDBC connection to connect Athena to business intelligence tools, 
    aws s3 cp s3://athena-downloads/drivers/AthenaJDBC41-1.1.0.jar [local_directory]
    ```
 
-## Specify the Connection String<a name="old-jdbc-connection-string"></a>
+## Specify the Connection String<a name="ate-jdbc-connection-string"></a>
 
 To specify the JDBC driver connection URL in your custom application, use the string in this format:
 
@@ -22,11 +22,11 @@ jdbc:awsathena://athena.{REGION}.amazonaws.com:443
 
 where `{REGION}` is a region identifier, such as `us-west-2`\. For information on Athena regions see [Regions](http://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.
 
-## Specify the JDBC Driver Class Name<a name="old-jdbc-class-name"></a>
+## Specify the JDBC Driver Class Name<a name="ate-jdbc-class-name"></a>
 
-To use the driver in custom applications, set up your Java class path to the location of the JAR file that you downloaded from Amazon S3 [https://s3.amazonaws.com/athena-downloads-archive/drivers/AthenaJDBC41-1.0.1.jar](https://s3.amazonaws.com/athena-downloads-archive/drivers/AthenaJDBC41-1.0.1.jar) in the previous section\. This makes the classes within the JAR available for use\. The main JDBC driver class is `com.amazonaws.athena.jdbc.AthenaDriver`\.
+To use the driver in custom applications, set up your Java class path to the location of the JAR file that you downloaded from Amazon S3 [https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar](https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar) in the previous section\. This makes the classes within the JAR available for use\. The main JDBC driver class is `com.amazonaws.athena.jdbc.AthenaDriver`\.
 
-## Provide the JDBC Driver Credentials<a name="old-jdbc-credentials"></a>
+## Provide the JDBC Driver Credentials<a name="ate-jdbc-credentials"></a>
 
 To gain access to AWS services and resources, such as Athena and the Amazon S3 buckets, provide JDBC driver credentials to your application\.
 
@@ -42,7 +42,7 @@ Another method to supply credentials to BI tools, such as SQL Workbench, is to s
 
 Users who connect through the JDBC driver and have custom access policies attached to their profiles need permissions for policy actions in addition to those in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
 
-### Policies<a name="jdbc-prev-version-policies"></a>
+### Policies<a name="jdbc-ate-version-policies"></a>
 
 You must allow JDBC users to perform a set of policy\-specific actions\. These actions are not part of the Athena API\. If the following actions are not allowed, users will be unable to see databases and tables:
 
@@ -60,7 +60,7 @@ You must allow JDBC users to perform a set of policy\-specific actions\. These a
 
 + `athena:GetTables`
 
-## Configure the JDBC Driver Options<a name="old-jdbc-driver-options"></a>
+## Configure the JDBC Driver Options<a name="ate-jdbc-driver-options"></a>
 
 You can configure the following options for the JDBC driver\. With this version of the driver, you can also pass parameters using the standard JDBC URL syntax, for example: `jdbc:awsathena://athena.us-west-1.amazonaws.com:443?max_error_retries=20&connection_timeout=20000`\.
 
