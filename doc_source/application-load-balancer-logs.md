@@ -46,7 +46,7 @@ Before you begin, [enable access logging](http://docs.aws.amazon.com/elasticload
    WITH SERDEPROPERTIES (
    'serialization.format' = '1',
    'input.regex' = '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:\-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) ([^ ]*) (- |[^ ]*)\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) (.*) (.*) (.*)' )
-   LOCATION 's3://royon-alb-logs/AWSLogs/997681433949/elasticloadbalancing/';
+   LOCATION 's3://your-alb-logs-directory/AWSLogs/elasticloadbalancing/';
    ```
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `alb_logs` table, making the data in it ready for you to issue queries\.

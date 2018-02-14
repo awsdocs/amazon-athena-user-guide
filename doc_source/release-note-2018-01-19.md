@@ -12,7 +12,7 @@ Major updates for this release, including the community\-contributed fixes, incl
 
 + Support for ignoring headers\. You can use the `skip.header.line.count` property when defining tables, to allow Athena to ignore headers\.
 
-+ Support for the `CHAR(n)` data type in `STRING` functions\. The range for `CHAR(n)` is `[1. 255]`, while the range for `VARCHAR(n)` is `[1,65535]`\. 
++ Support for the `CHAR(n)` data type in `STRING` functions\. The range for `CHAR(n)` is `[1.255]`, while the range for `VARCHAR(n)` is `[1,65535]`\. 
 
 + Support for correlated subqueries\.
 

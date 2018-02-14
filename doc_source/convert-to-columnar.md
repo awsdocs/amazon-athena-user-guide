@@ -136,13 +136,24 @@ Replace `REGION` in the `LOCATION` clause with the region where you are running 
    export SAMPLEURI=s3://${REGION}.elasticmapreduce/samples/hive-ads/tables/impressions/
    export S3BUCKET=myBucketName
    
-   aws emr create-cluster --applications Name=Hadoop Name=Hive Name=HCatalog \
+   aws emr create-cluster 
+   --applications Name=Hadoop Name=Hive Name=HCatalog \
    --ec2-attributes KeyName=myKey,InstanceProfile=EMR_EC2_DefaultRole,SubnetId=subnet-mySubnetId \
-   --service-role EMR_DefaultRole --release-label emr-4.7.0 --instance-type \
-   m4.large --instance-count 1 --steps Type=HIVE,Name="Convert to Parquet",\
-   ActionOnFailure=CONTINUE,ActionOnFailure=TERMINATE_CLUSTER,Args=[-f,\
-   s3://athena-examples/conversion/write-parquet-to-s3.q,-hiveconf,INPUT=${SAMPLEURI},-hiveconf,OUTPUT=s3://{$S3BUCKET}/myParquet,-hiveconf,REGION=${REGION}] \
-   --region ${REGION} --auto-terminate
+   --service-role EMR_DefaultRole 
+   --release-label emr-4.7.0 
+   --instance-type \m4.large 
+   --instance-count 1 
+   --steps Type=HIVE,Name="Convert to Parquet",\
+   ActionOnFailure=CONTINUE,
+   ActionOnFailure=TERMINATE_CLUSTER,
+   Args=[-f,
+   \s3://athena-examples/conversion/write-parquet-to-s3.q,-hiveconf,
+   INPUT=${SAMPLEURI},-hiveconf,
+   OUTPUT=s3://${S3BUCKET}/myParquet,-hiveconf,
+   REGION=${REGION}
+   ] \
+   --region ${REGION} 
+   --auto-terminate
    ```
 
    For more information, see [Create and Use IAM Roles for Amazon EMR](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-iam-roles-creatingroles.html) in the Amazon EMR Management Guide\.
