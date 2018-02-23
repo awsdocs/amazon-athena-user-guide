@@ -25,7 +25,7 @@ Athena does not support running queries from one region on encrypted data stored
 
 ## Permissions for Encrypting and Decrypting Data<a name="permissions-for-encrypting-and-decrypting-data"></a>
 
-If you use SSE\-S3 for encryption, Athena users require no additional permissions for encryption and decryption\. Having the appropriate Amazon S3 permissions for the appropriate Amazon S3 location \(and for Athena actions\) is enough\. For more information about policies that allow appropriate Athena and Amazon S3 permissions, see IAM Policies for User Access and Amazon S3 Permissions\.
+If you use SSE\-S3 for encryption, Athena users require no additional permissions for encryption and decryption\. Having the appropriate Amazon S3 permissions for the appropriate Amazon S3 location \(and for Athena actions\) is enough\. For more information about policies that allow appropriate Athena and Amazon S3 permissions, see [IAM Policies for User Access](access.md#managed-policies) and [Amazon S3 Permissions](access.md#s3-permissions)\.
 
 For data that is encrypted using AWS KMS, Athena users must be allowed to perform particular AWS KMS actions in addition to Athena and S3 permissions\. You allow these actions by editing the key policy for the KMS customer master keys \(CMKs\) that are used to encrypt data in Amazon S3\. The easiest way to do this is to use the IAM console to add key users to the appropriate KMS key policies\. For information about how to add a user to a KMS key policy, see [How to Modify a Key Policy](http://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-how-to-console-default-view) in the *AWS Key Management Service Developer Guide*\.
 
@@ -45,10 +45,10 @@ If you use Amazon EMR along with EMRFS to upload encrypted Parquet files, you mu
 
 Indicate that the dataset is encrypted in Amazon S3 in one of the following ways\. This is not required if SSE\-KMS is used\.
 
-+ Use the CREATE TABLE statement with a `TBLPROPERTIES` clause that specifies `'has_encrypted_data'='true'`\.  
++ Use the [CREATE TABLE](create-table.md) statement with a `TBLPROPERTIES` clause that specifies `'has_encrypted_data'='true'`\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/encrypt_has_encrypted.png)
 
-+ Use the JDBC driver and set the `TBLPROPERTIES` value as above when you execute CREATE TABLE using `statement.executeQuery()`\.
++ Use the [JDBC driver](connect-with-jdbc.md) and set the `TBLPROPERTIES` value as above when you execute [CREATE TABLE](create-table.md) using `statement.executeQuery()`\.
 
 + Use the **Add table** wizard in the Athena console, and then choose **Encrypted data set** when you specify a value for **Location of input data set**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/encrypt_has_encrypted_console.png)
@@ -85,4 +85,4 @@ You use the Athena console or JDBC driver properties to specify that query resul
 
 ## Encrypting Query Results stored in Amazon S3 Using the JDBC Driver<a name="jdbc-encryption"></a>
 
-You can configure the JDBC Driver to encrypt your query results using any of the encryption protocols that Athena supports\. For more information, see JDBC Driver Options\.
+You can configure the JDBC Driver to encrypt your query results using any of the encryption protocols that Athena supports\. For more information, see [JDBC Driver Options](connect-with-jdbc.md#ate-jdbc-driver-options)\.

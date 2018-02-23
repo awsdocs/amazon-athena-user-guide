@@ -60,7 +60,7 @@ ROW FORMAT  serde 'org.apache.hive.hcatalog.data.JsonSerDe'
 LOCATION 's3://elasticmapreduce/samples/hive-ads/tables/impressions/' ;
 ```
 
-This table uses Hive's native JSON serializer\-deserializer to read JSON data stored in Amazon S3\. For more information about the formats supported, see Supported Data Formats, SerDes, and Compression Formats\.
+This table uses Hive's native JSON serializer\-deserializer to read JSON data stored in Amazon S3\. For more information about the formats supported, see [Supported Data Formats, SerDes, and Compression Formats](supported-format.md)\.
 
 After you execute this statement in Athena, choose **New Query** and execute:
 
@@ -161,4 +161,4 @@ For example, to load the data in s3://athena\-examples/elb/plaintext/2015/01/01/
 ALTER TABLE elb_logs_raw_native_part ADD PARTITION (year='2015',month='01',day='01') location 's3://athena-examples/elb/plaintext/2015/01/01/'
 ```
 
-You can also automate adding partitions by using the JDBC driver\.
+You can also automate adding partitions by using the [JDBC driver](connect-with-jdbc.md)\.

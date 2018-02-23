@@ -97,7 +97,7 @@ It returns the value at the specified index position in the JSON\-encoded array\
 +---------------------------------------+
 ```
 
-To return an Athena string type, use the `[]` operator inside a `JSONPath` expression, then Use the `json_extract_scalar` function\. For more information about `[]`, see Accessing Array Elements\.
+To return an Athena string type, use the `[]` operator inside a `JSONPath` expression, then Use the `json_extract_scalar` function\. For more information about `[]`, see [Accessing Array Elements](accessing-array-elements.md)\.
 
 ```
 WITH dataset AS (

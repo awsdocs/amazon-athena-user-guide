@@ -4,7 +4,7 @@ Published on *2017\-04\-04*
 
 Added support for Amazon S3 data encryption and released JDBC driver update \(version 1\.0\.1\) with encryption support, improvements, and bug fixes\.
 
-## Features<a name="release-note-2017-04-04"></a>
+## Features<a name="release-note-2017-04-04-features"></a>
 
 + Added the following encryption features:
 
@@ -20,7 +20,7 @@ Added support for Amazon S3 data encryption and released JDBC driver update \(ve
 
 For more information, see [Configuring Encryption Options](encryption.md)\.
 
-## Improvements<a name="release-note-2017-04-04"></a>
+## Improvements<a name="release-note-2017-04-04-improvements"></a>
 
 + Better JDBC query performance with page\-size improvements, returning 1,000 rows instead of 100\.
 
@@ -30,7 +30,7 @@ For more information, see [Configuring Encryption Options](encryption.md)\.
 
 + Added PROXY setting in the driver, which can now be set using [ClientConfiguration](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/ClientConfiguration.html) in the AWS SDK for Java\.
 
-## Bug Fixes<a name="release-note-2017-04-04"></a>
+## Bug Fixes<a name="release-note-2017-04-04-bug-fixes"></a>
 
 Fixed the following bugs:
 

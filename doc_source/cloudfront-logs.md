@@ -9,9 +9,9 @@ Make a note of the Amazon S3 bucket to which to save these logs\.
 **Note**  
 This procedure works for the Web distribution access logs in CloudFront\. It does not apply to streaming logs from RTMP distributions\.
 
-+  Creating the Table for CloudFront Logs 
++  [Creating the Table for CloudFront Logs](#create-cloudfront-table) 
 
-+  Example Query for CloudFront logs 
++  [Example Query for CloudFront logs](#query-examples-cloudfront-logs) 
 
 ## Creating the Table for CloudFront Logs<a name="create-cloudfront-table"></a>
 
@@ -19,7 +19,7 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 
 1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the S3 bucket that stores your logs\.
 
-   This query uses the LazySimpleSerDe by default and it is omitted\.
+   This query uses the [LazySimpleSerDe](lazy-simple-serde.md) by default and it is omitted\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS default.cloudfront_logs (

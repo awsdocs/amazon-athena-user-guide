@@ -4,9 +4,9 @@ Amazon Virtual Private Cloud flow logs capture information about the IP traffic 
 
 Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) and [export log data to Amazon S3](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasksConsole.html)\. After you create the logs, let them run for a few minutes to collect some data\.
 
-+  Creating the Table for VPC Flow Logs 
++  [Creating the Table for VPC Flow Logs](#create-vpc-logs-table) 
 
-+  Example Queries for Amazon VPC Flow Logs 
++  [Example Queries for Amazon VPC Flow Logs](#query-examples-vpc-logs) 
 
 ## Creating the Table for VPC Flow Logs<a name="create-vpc-logs-table"></a>
 

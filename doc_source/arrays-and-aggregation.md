@@ -2,7 +2,7 @@
 
 + To add values within an array, use `SUM`, as in the following example\.
 
-+ To aggregate multiple rows within an array, use `array_agg`\. For information, see Creating Arrays from Subqueries\.
++ To aggregate multiple rows within an array, use `array_agg`\. For information, see [Creating Arrays from Subqueries](creating-arrays-from-subqueries.md)\.
 
 ```
 WITH

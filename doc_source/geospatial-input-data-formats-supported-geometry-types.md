@@ -10,7 +10,7 @@ To handle geospatial queries, Athena supports input data in these data formats:
 
 +  **WKB \(Well\-known binary\)**\. In Athena, WKB is represented as a `varbinary` data type with a spatial reference ID \(WKID\) 4326\. For information about both of these types, see the Wikipedia topic on [Well\-known text](https://en.wikipedia.org/wiki/Well-known_text)\.
 
-+  **JSON\-encoded geospatial data**\. To parse JSON files with geospatial data and create tables for them, Athena uses the [Hive JSON SerDe](https://github.com/Esri/spatial-framework-for-hadoop/wiki/Hive-JSON-SerDe)\. For more information about using this SerDe in Athena, see JSON SerDe Libraries\.
++  **JSON\-encoded geospatial data**\. To parse JSON files with geospatial data and create tables for them, Athena uses the [Hive JSON SerDe](https://github.com/Esri/spatial-framework-for-hadoop/wiki/Hive-JSON-SerDe)\. For more information about using this SerDe in Athena, see [JSON SerDe Libraries](json.md)\.
 
 ## Geometry Data Types<a name="geometry-data-types"></a>
 

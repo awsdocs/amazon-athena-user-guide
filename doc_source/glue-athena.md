@@ -8,5 +8,5 @@ In regions where AWS Glue is supported, Athena uses the AWS Glue Data Catalog as
 
 For more information about the AWS Glue Data Catalog, see [Populating the AWS Glue Data Catalog](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) in the *AWS Glue Developer Guide*\. For a list of regions where AWS Glue is available, see [Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#glue_region) in the *AWS General Reference*\.
 
-Separate charges apply to AWS Glue\. For more information, see [AWS Glue Pricing](https://aws.amazon.com/glue/pricing) and Are there separate charges for AWS Glue? For more information about the benefits of using AWS Glue with Athena, see Why should I upgrade to the AWS Glue Data Catalog? 
+Separate charges apply to AWS Glue\. For more information, see [AWS Glue Pricing](https://aws.amazon.com/glue/pricing) and [Are there separate charges for AWS Glue?](glue-faq.md#faq-pricing) For more information about the benefits of using AWS Glue with Athena, see [Why should I upgrade to the AWS Glue Data Catalog?](glue-faq.md#faq-benefits) 
 

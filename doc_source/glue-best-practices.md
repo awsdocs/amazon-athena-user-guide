@@ -6,38 +6,38 @@ Under the hood, Athena uses Presto to execute DML statements and Hive to execute
 
  **In this topic** 
 
-+  Database, Table, and Column Names 
++  [Database, Table, and Column Names](#schema-names) 
 
 +   
-** Using AWS Glue Crawlers **  
+** [Using AWS Glue Crawlers](#schema-crawlers) **  
 
-  +  Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync 
+  +  [Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync](#schema-crawlers-schedule) 
 
-  +  Using Multiple Data Sources with Crawlers 
+  +  [Using Multiple Data Sources with Crawlers](#schema-crawlers-data-sources) 
 
-  +  Syncing Partition Schema to Avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH" 
+  +  [Syncing Partition Schema to Avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"](#schema-syncing) 
 
-  +  Updating Table Metadata 
-
-+   
-** Working with CSV Files **  
-
-  +  CSV Data Enclosed in Quotes 
-
-  +  CSV Files with Headers 
+  +  [Updating Table Metadata](#schema-table-metadata) 
 
 +   
-** Using AWS Glue Jobs for ETL with Athena **  
+** [Working with CSV Files](#schema-csv) **  
 
-  +  Creating Tables Using Athena for AWS Glue ETL Jobs 
+  +  [CSV Data Enclosed in Quotes](#schema-csv-quotes) 
 
-  +  Using ETL Jobs to Optimize Query Performance 
+  +  [CSV Files with Headers](#schema-csv-headers) 
 
-  +  Converting SMALLINT and TINYINT Datatypes to INT When Converting to ORC 
++   
+** [Using AWS Glue Jobs for ETL with Athena](#schema-classifier) **  
 
-  +  Changing Date Data Types to String for Parquet ETL Transformation 
+  +  [Creating Tables Using Athena for AWS Glue ETL Jobs](#schema-etl-tables) 
 
-  +  Automating AWS Glue Jobs for ETL 
+  +  [Using ETL Jobs to Optimize Query Performance](#schema-etl-performance) 
+
+  +  [Converting SMALLINT and TINYINT Datatypes to INT When Converting to ORC](#schema-etl-orc) 
+
+  +  [Changing Date Data Types to String for Parquet ETL Transformation](#schema-etl-parquet) 
+
+  +  [Automating AWS Glue Jobs for ETL](#schema-etl-automate) 
 
 ## Database, Table, and Column Names<a name="schema-names"></a>
 
@@ -105,7 +105,7 @@ The new values for **Include locations** appear under data stores
 
 ### Syncing Partition Schema to Avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"<a name="schema-syncing"></a>
 
-For each table within the AWS Glue Data Catalog that has partition columns, the schema is stored at the table level and for each individual partition within the table\. The schema for partitions are populated by an AWS Glue crawler based on the sample of data that it reads within the partition\. For more information, see Using Multiple Data Sources with Crawlers\.
+For each table within the AWS Glue Data Catalog that has partition columns, the schema is stored at the table level and for each individual partition within the table\. The schema for partitions are populated by an AWS Glue crawler based on the sample of data that it reads within the partition\. For more information, see [Using Multiple Data Sources with Crawlers](#schema-crawlers-data-sources)\.
 
 When Athena runs a query, it validates the schema of the table and the schema of any partitions necessary for the query\. The validation compares the column data types in order and makes sure that they match for the columns that overlap\. This prevents unexpected operations such as adding or removing columns from the middle of a table\. If Athena detects that the schema of a partition differs from the schema of the table, Athena may not be able to process the query and fails with `HIVE_PARTITION_SCHEMA_MISMATCH`\.
 
@@ -115,7 +115,7 @@ There are a few ways to fix this issue\. First, if the data was accidentally add
 
 After a crawl, the AWS Glue crawler automatically assigns certain table metadata to help make it compatible with other external technologies like Apache Hive, Presto, and Spark\. Occasionally, the crawler may incorrectly assign metadata properties\. Manually correct the properties in AWS Glue before querying the table using Athena\. For more information, see [Viewing and Editing Table Details](http://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
 
-AWS Glue may mis\-assign metadata when a CSV file has quotes around each data field, getting the `serializationLib` property wrong\. For more information, see CSV Data Enclosed in quotes\.
+AWS Glue may mis\-assign metadata when a CSV file has quotes around each data field, getting the `serializationLib` property wrong\. For more information, see [CSV Data Enclosed in quotes](#schema-csv-quotes)\.
 
 ## Working with CSV Files<a name="schema-csv"></a>
 
@@ -123,7 +123,7 @@ CSV files occasionally have quotes around the data values intended for each colu
 
 ### CSV Data Enclosed in Quotes<a name="schema-csv-quotes"></a>
 
-If you run a query in Athena against a table created from a CSV file with quoted data values, update the table definition in AWS Glue so that it specifies the right SerDe and SerDe properties\. This allows the table definition to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see OpenCSVSerDe for Processing CSV\.
+If you run a query in Athena against a table created from a CSV file with quoted data values, update the table definition in AWS Glue so that it specifies the right SerDe and SerDe properties\. This allows the table definition to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv.md)\.
 
 In this case, you need to change the `serializationLib` property under field in the SerDeInfo field in the table to `org.apache.hadoop.hive.serde2.OpenCSVSerde` and enter appropriate values for `separatorChar`, `quoteChar`, and `escapeChar`\.
 

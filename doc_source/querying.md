@@ -21,7 +21,7 @@ Query results are saved in an Amazon S3 location based on the name of the query 
 
 In this notation:
 
-+  `QueryLocation` is the base location for all query results\. To view or change this location, choose **Settings**\. You can enter a new value for **Query result location** at any time\. You can also choose to encrypt query results in Amazon S3\. For more information, see Configuring Encryption Options\.
++  `QueryLocation` is the base location for all query results\. To view or change this location, choose **Settings**\. You can enter a new value for **Query result location** at any time\. You can also choose to encrypt query results in Amazon S3\. For more information, see [Configuring Encryption Options](encryption.md)\.
 
 +  `QueryName` is the name of the query for which the results are saved\. If the query wasn't saved, `Unsaved` appears\. To see a list of queries and examine their SQL statements, choose **Saved queries**\.
 

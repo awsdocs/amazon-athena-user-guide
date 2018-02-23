@@ -17,7 +17,7 @@ Athena table, database, and column names cannot contain special characters, othe
 Use backtics to enclose table or column names that begin with an underscore\. For example:
 
 ```
-CREATE TABLE `_myUnderScoreTable` (
+CREATE TABLE `_myunderscoretable` (
 `_id` string,
 `_index`string,
 ...
@@ -28,7 +28,7 @@ CREATE TABLE `_myUnderScoreTable` (
 Enclose table names that include numbers in quotation marks\. For example:
 
 ```
-CREATE TABLE "Table123"
+CREATE TABLE "table123"
 `_id` string,
 `_index` string,
 ...

@@ -20,7 +20,7 @@ The `AmazonAthenaFullAccess` policy is the managed policy for Athena\. Attach th
 
  *Customer\-managed* and *inline* policies allow you to specify more granular Athena actions within a policy to fine\-tune access\. We recommend that you use the `AmazonAthenaFullAccess` policy as a starting point and then allow or deny specific actions listed in the [Amazon Athena API Reference](http://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about inline policies, see [Managed Policies and Inline Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) in the *AWS Identity and Access Management User Guide*\.
 
-If you also have principals that connect using JDBC, you must allow additional actions not listed in the API\. For more information, see Service Actions for JDBC Connections\.
+If you also have principals that connect using JDBC, you must allow additional actions not listed in the API\. For more information, see [Service Actions for JDBC Connections](#policy-actions)\.
 
 ## AmazonAthenaFullAccess Managed Policy<a name="amazonathenafullaccess-managed-policy"></a>
 
@@ -178,7 +178,7 @@ Managed policy contents change, so the policy shown here may be out\-of\-date\. 
 
 ## Access through JDBC Connections<a name="policy-actions"></a>
 
-To gain access to AWS services and resources, such as Athena and the Amazon S3 buckets, provide JDBC driver credentials to your application\. See Connect with the JDBC Driver\.
+To gain access to AWS services and resources, such as Athena and the Amazon S3 buckets, provide JDBC driver credentials to your application\. See [Connect with the JDBC Driver](connect-with-jdbc.md)\.
 
 ## Amazon S3 Permissions<a name="s3-permissions"></a>
 

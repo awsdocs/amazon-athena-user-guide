@@ -12,13 +12,13 @@ Geospatial functions in Athena have these characteristics:
 
 Athena supports four types of geospatial functions:
 
-+  Constructor Functions 
++  [Constructor Functions](#constructors-functions) 
 
-+  Geospatial Relationship Functions 
++  [Geospatial Relationship Functions](#geospatial-relationships-functions) 
 
-+  Operation Functions 
++  [Operation Functions](#operations-functions) 
 
-+  Accessor Functions 
++  [Accessor Functions](#accessors-functions) 
 
 ## Before You Begin<a name="before-you-begin"></a>
 

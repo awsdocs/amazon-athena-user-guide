@@ -34,11 +34,11 @@ For example:
 
 Using the highest level in the object hierarchy gives you the greatest flexibility when you query using Athena\.
 
-To query the CloudTrail logs, you use the CloudTrail SerDe\.
+To query the CloudTrail logs, you use the [CloudTrail SerDe](cloudtrail.md)\.
 
-+  Creating the Table for CloudTrail Logs 
++  [Creating the Table for CloudTrail Logs](#create-cloudtrail-table) 
 
-+  Tips for Querying CloudTrail Logs 
++  [Tips for Querying CloudTrail Logs](#tips-for-querying-cloudtrail-logs) 
 
 ## Creating the Table for CloudTrail Logs<a name="create-cloudtrail-table"></a>
 
@@ -50,7 +50,7 @@ To query the CloudTrail logs, you use the CloudTrail SerDe\.
 
    Verify that fields are listed correctly\. For a full list of fields in a CloudTrail record, see [CloudTrail Record Contents](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
 
-   In this example, the fields `requestParameters`, `responseElements`, and `additionalEventData` are included as part of `STRUCT` data type used in JSON\. To get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see Extracting Data From JSON\.
+   In this example, the fields `requestParameters`, `responseElements`, and `additionalEventData` are included as part of `STRUCT` data type used in JSON\. To get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\.
 
    ```
    CREATE EXTERNAL TABLE cloudtrail_logs (
@@ -110,13 +110,13 @@ To query the CloudTrail logs, you use the CloudTrail SerDe\.
 
 To explore the CloudTrail logs data, use these tips:
 
-+ Before querying the logs, verify that your logs table looks the same as the one in Creating the Table for CloudTrail Logs\. If it isn’t the first table, delete the existing table: `DROP TABLE cloudtrail_logs;`\.
++ Before querying the logs, verify that your logs table looks the same as the one in [Creating the Table for CloudTrail Logs](#create-cloudtrail-table)\. If it isn’t the first table, delete the existing table: `DROP TABLE cloudtrail_logs;`\.
 
-+ Recreate the table\. For more information, see Creating the Table for CloudTrail Logs\.
++ Recreate the table\. For more information, see [Creating the Table for CloudTrail Logs](#create-cloudtrail-table)\.
 
   Verify that fields in your Athena query are listed correctly\. For a full list of fields in a CloudTrail record, see [CloudTrail Record Contents](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
 
-  If your query includes fields in JSON formats, such as `STRUCT`, extract data from JSON\. See Extracting Data From JSON\. 
+  If your query includes fields in JSON formats, such as `STRUCT`, extract data from JSON\. See [Extracting Data From JSON](extracting-data-from-JSON.md)\. 
 
   Now you are ready to issue queries against your CloudTrail table\.
 

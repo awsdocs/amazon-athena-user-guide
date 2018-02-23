@@ -2,9 +2,9 @@
 
 In Athena, you can use two SerDe libraries for processing JSON files:
 
-+ The native Hive JSON SerDe 
++ The native [Hive JSON SerDe](#hivejson) 
 
-+ The OpenX JSON SerDe 
++ The [OpenX JSON SerDe](#openxjson) 
 
 This SerDe is used to process JSON documents, most commonly events\. These events are represented as blocks of JSON\-encoded text separated by a new line\. The JsonSerDe is also capable of parsing more complex JSON documents with nested structures\. However this requires a matching DDL representing the complex data types\. There are only two properties for the JsonSerDe: `ignore.malformed.json`, which is self\-explanatory, and `dots.in.keys`, which can be set to true or false and determines if there are dots in the name of the keys that will be replaced with underscores by the SerDe\.
 
@@ -26,7 +26,7 @@ Use one of the following:
 
 The Hive JSON SerDe is used to process JSON documents, most commonly events\. These events are represented as blocks of JSON\-encoded text separated by a new line\.
 
-You can also use the Hive JSONSerDe to parse more complex JSON documents with nested structures\. See Example: Deserializing Nested JSON 
+You can also use the Hive JSONSerDe to parse more complex JSON documents with nested structures\. See [Example: Deserializing Nested JSON](#nested-json-serde-example) 
 
 This SerDe has two useful optional properties you can specify when creating tables in Athena, to help deal with inconsistencies in the data:
 

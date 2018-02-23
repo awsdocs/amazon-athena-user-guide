@@ -5,25 +5,25 @@ Use examples in this topic as a starting point for writing Athena applications u
 +   
 **Java Code Samples**  
 
-  +  Create a Client to Access Athena 
+  +  [Create a Client to Access Athena](#create-a-client-to-access-athena) 
 
   +   
 **Working with Query Executions**  
 
-    +  Start Query Execution 
+    +  [Start Query Execution](#start-query-execution) 
 
-    +  Stop Query Execution 
+    +  [Stop Query Execution](#stop-query-execution) 
 
-    +  List Query Executions 
+    +  [List Query Executions](#list-query-executions) 
 
   +   
 **Working with Named Queries**  
 
-    +  Create a Named Query 
+    +  [Create a Named Query](#create-a-named-query) 
 
-    +  Delete a Named Query 
+    +  [Delete a Named Query](#delete-a-named-query) 
 
-    +  List Query Executions 
+    +  [List Query Executions](#list-query-executions) 
 
 **Note**  
 These samples use constants \(for example, `ATHENA_SAMPLE_QUERY`\) for strings, which are defined in an `ExampleConstants` class declaration not shown in this topic\. Replace these constants with your own strings or defined constants\.

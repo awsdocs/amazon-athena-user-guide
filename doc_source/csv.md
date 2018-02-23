@@ -4,7 +4,7 @@ When you create a table from a CSV file in Athena, determine what types of value
 
 + If the file contains values enclosed in quotes, use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\.
 
-+ If the file does not contain values enclosed in quotes, you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files\.
++ If the file does not contain values enclosed in quotes, you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\.
 
 ## CSV SerDe \(OpenCSVSerde\)<a name="csv-serde-opencsvserde"></a>
 

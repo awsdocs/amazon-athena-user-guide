@@ -123,4 +123,4 @@ SELECT * FROM table;
 SELECT os, COUNT(*) count FROM cloudfront_logs WHERE date BETWEEN date '2014-07-05' AND date '2014-08-05' GROUP BY os;
 ```
 
-For more examples, see Querying Data in Amazon Athena Tables\.
+For more examples, see [Querying Data in Amazon Athena Tables](querying-athena-tables.md)\.

@@ -2,19 +2,19 @@
 
 Your source data often contains arrays with complex data types and nested structures\. Examples in this section show how to change element's data type, locate elements within arrays, order values, and find keywords using Athena queries\.
 
-+  Creating a ROW 
++  [Creating a ROW](#creating-row) 
 
-+  Changing Field Names in Arrays Using CAST 
++  [Changing Field Names in Arrays Using CAST](#changing-row-arrays-with-cast) 
 
-+  Filtering Arrays Using the \. Notation 
++  [Filtering Arrays Using the \. Notation](#filtering-with-dot) 
 
-+  Filtering Arrays with Nested Values 
++  [Filtering Arrays with Nested Values](#filtering-nested-with-dot) 
 
-+  Filtering Arrays Using UNNEST 
++  [Filtering Arrays Using UNNEST](#filtering-with-unnest) 
 
-+  Finding Keywords in Arrays 
++  [Finding Keywords in Arrays](#filtering-with-regexp) 
 
-+  Ordering Values in Arrays 
++  [Ordering Values in Arrays](#ordering-arrays-containing-rows) 
 
 ## Creating a `ROW`<a name="creating-row"></a>
 
@@ -68,7 +68,7 @@ In the example above, you declare `name` as a `VARCHAR` because this is its type
 
 ## Filtering Arrays Using the `.` Notation<a name="filtering-with-dot"></a>
 
-In the following example, select the `accountId` field from the `userIdentity` column of a AWS CloudTrail logs table by using the dot `.` notation\. For more information, see Querying AWS CloudTrail Logs\.
+In the following example, select the `accountId` field from the `userIdentity` column of a AWS CloudTrail logs table by using the dot `.` notation\. For more information, see [Querying AWS CloudTrail Logs](cloudtrail-logs.md)\.
 
 ```
 SELECT
@@ -163,7 +163,7 @@ This query selects the nested fields and returns this result:
 
 ## Filtering Arrays Using `UNNEST`<a name="filtering-with-unnest"></a>
 
-To filter an array that includes a nested structure by one of its child elements, issue a query with an `UNNEST` operator\. For more information about `UNNEST`, see Flattening Nested Arrays\.
+To filter an array that includes a nested structure by one of its child elements, issue a query with an `UNNEST` operator\. For more information about `UNNEST`, see [Flattening Nested Arrays](flattening-arrays.md)\.
 
 For example, this query finds hostnames of sites in the dataset\.
 

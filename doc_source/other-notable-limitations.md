@@ -6,7 +6,7 @@ Athena does not support the following features, which are supported by an open s
 
 + Stored procedures\.
 
-+ A particular subset of data types is supported\. For more information, see Data Types\.
++ A particular subset of data types is supported\. For more information, see [Data Types](data-types.md)\.
 
 + `CREATE TABLE AS SELECT` statements\.
 

@@ -17,33 +17,9 @@ Added an Amazon Athena API and AWS CLI support for Athena; updated JDBC driver t
 
 | Deprecated Policy\-Specific Action | Corresponding Athena API Action | 
 | --- |--- |
-|  
-
-```
-athena:RunQuery
-```  |  
-
-```
-athena:StartQueryExecution
-```  | 
-|  
-
-```
-athena:CancelQueryExecution
-```  |  
-
-```
-athena:StopQueryExecution
-```  | 
-|  
-
-```
-athena:GetQueryExecutions
-```  |  
-
-```
-athena:ListQueryExecutions
-```  | 
+|  <pre>athena:RunQuery</pre>  |  <pre>athena:StartQueryExecution</pre>  | 
+|  <pre>athena:CancelQueryExecution</pre>  |  <pre>athena:StopQueryExecution</pre>  | 
+|  <pre>athena:GetQueryExecutions</pre>  |  <pre>athena:ListQueryExecutions</pre>  | 
 
 ## Improvements<a name="release-note-2017-05-19-improvements"></a>
 

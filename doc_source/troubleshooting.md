@@ -2,7 +2,7 @@
 
 Use these resources to troubleshoot problems with Amazon Athena\.
 
-+  Service Limits 
++  [Service Limits](service-limits.md) 
 
 +  [Athena topics in the AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/#athena) 
 

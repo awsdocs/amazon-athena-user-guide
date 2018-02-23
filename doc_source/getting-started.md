@@ -6,7 +6,7 @@ The tutorial is using live resources, so you are charged for the queries that yo
 
 ## Prerequisites<a name="prerequisites"></a>
 
-If you have not already done so, sign up for an account in Setting Up\.
+If you have not already done so, sign up for an account in [Setting Up](setting-up.md)\.
 
 ## Step 1: Create a Database<a name="step-1-create-a-database"></a>
 
@@ -87,8 +87,8 @@ Now that you have the `cloudfront_logs` table created in Athena based on the dat
 1. Optionally, you can save the results of a query to CSV by choosing the file icon on the **Results** pane\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/savecsv.png)
 
-You can also view the results of previous queries or queries that may take some time to complete\. Choose **History** then either search for your query or choose **View** or **Download** to view or download the results of previous completed queries\. This also displays the status of queries that are currently running\. Query history is retained for 45 days\. For information, see Viewing Query History\.
+You can also view the results of previous queries or queries that may take some time to complete\. Choose **History** then either search for your query or choose **View** or **Download** to view or download the results of previous completed queries\. This also displays the status of queries that are currently running\. Query history is retained for 45 days\. For information, see [Viewing Query History](queries-viewing-history.md)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/history.png)
 
-Query results are also stored in Amazon S3 in a bucket called aws\-athena\-query\-results\-*ACCOUNTID*\-*REGION*\. You can change the default location in the console and encryption options by choosing **Settings** in the upper right pane\. For more information, see Query Results\.
+Query results are also stored in Amazon S3 in a bucket called aws\-athena\-query\-results\-*ACCOUNTID*\-*REGION*\. You can change the default location in the console and encryption options by choosing **Settings** in the upper right pane\. For more information, see [Query Results](querying.md)\.

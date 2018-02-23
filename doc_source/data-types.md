@@ -1,6 +1,6 @@
 # Data Types<a name="data-types"></a>
 
-When you run `CREATE TABLE`, you must specify column names and their data types\. For a complete syntax of this command, see CREATE TABLE\.
+When you run `CREATE TABLE`, you must specify column names and their data types\. For a complete syntax of this command, see [CREATE TABLE](create-table.md)\.
 
 The field `col_name` specifies the name for each column in the table Athena creates, along with the column's data type\. If `col_name` begins with an underscore, enclose it in backticks, for example ``_mycolumn``\.
 

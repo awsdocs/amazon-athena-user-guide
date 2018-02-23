@@ -10,9 +10,9 @@ The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2
 
 The following examples show how to create tables in Athena from CSV and TSV, using the `LazySimpleSerDe`\. To deserialize custom\-delimited file using this SerDe, specify the delimiters similar to the following examples\.
 
-+  CSV Example 
++  [CSV Example](#csv-example) 
 
-+  TSV Example 
++  [TSV Example](#tsv-example) 
 
 **Note**  
 You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-east-1/path/to/data/`\.

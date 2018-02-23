@@ -4,9 +4,9 @@ Use the following functions directly in Athena\.
 
 Amazon Athena query engine is based on [Presto 0\.172](https://prestodb.io/docs/0.172/index.html)\. For more information about these functions, see [Presto 0\.172 Functions and Operators](https://prestodb.io/docs/0.172/functions.html)\.
 
-Athena does not support all of Presto's features\. For information, see Limitations\. 
+Athena does not support all of Presto's features\. For information, see [Limitations](other-notable-limitations.md)\. 
 
-+ SELECT
++ [SELECT](select.md)
 
 + [Logical Operators](https://prestodb.io/docs/0.172/functions/logical.html)
 
