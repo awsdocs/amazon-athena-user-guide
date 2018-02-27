@@ -12,6 +12,9 @@ To specify the Grok SerDe when creating a table in Athena, use the `ROW FORMAT S
 
 + The `LOCATION` clause specifies an Amazon S3 bucket, which can contain multiple source data files\. All files in the bucket are deserialized to create the table\.
 
+**Note**  
+The Grok SerDe does not map pattern names to column names, known as lazy name mapping\. Pattern names are named regular expression groups, and they are not checked against the column names for your tables\. This means that you cannot use regular expression patterns similar to: `%{WORD:alias}`\. In this example, the Grok SerDe does not map the regular expression group named ``alias`` to a column with the name ``alias``\. 
+
 ## Examples<a name="examples"></a>
 
 These examples rely on the list of predefined Grok patterns\. See [pre\-defined patterns](https://github.com/elastic/logstash/blob/v1.4.2/patterns/grok-patterns)\.

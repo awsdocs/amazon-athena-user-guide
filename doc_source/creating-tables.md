@@ -4,7 +4,7 @@ Amazon Athena uses [Apache Hive](https://hive.apache.org/) data definition langu
 
 You can run DDL statements:
 
-+  In the Athena console
++ In the Athena console
 
 + using a JDBC or an ODBC driver
 
@@ -22,6 +22,8 @@ When you create a database and table in Athena, you are simply describing the sc
 
 When you query, you query the table using standard SQL and the data is read at that time\. You can find guidance for how to create databases and tables using [Apache Hive documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL), but the following provides guidance specifically for Athena\.
 
+The maximum query string length is 256 KB\.
+
 Hive supports multiple data formats through the use of serializer\-deserializer \(SerDe\) libraries\. You can also define complex schemas using regular expressions\. For a list of supported SerDe libraries, see [Supported Data Formats, SerDes, and Compression Formats](supported-format.md)\.
 
 ## Requirements for Tables in Athena and Data in Amazon S3<a name="s3-considerations"></a>
@@ -30,7 +32,7 @@ When you create a table, you specify an Amazon S3 bucket location for the underl
 
 + You must have the appropriate permissions to work with data in the Amazon S3 location\. For more information, see [Setting User and Amazon S3 Bucket Permissions](access.md)\.
 
-+ If the data is not encrypted in Amazon S3, it can be stored n a different region from the primary region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\.
++ If the data is not encrypted in Amazon S3, it can be stored in a different region from the primary region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\.
 
 + If the data is encrypted in Amazon S3, it must be stored in the same region, and the user or principal who creates the table in Athena must have the appropriate permissions to decrypt the data\. For more information, see [Configuring Encryption Options](encryption.md)\.
 
