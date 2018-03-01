@@ -24,3 +24,13 @@ A SerDe is a custom library that tells the data catalog used by Athena how to ha
 |  Apache WebServer log files  |  A format for storing log files in Apache WebServer\.  |  Use the [RegexSerDe for Processing Apache Web Server Logs](apache.md)\.  | 
 |  CloudTrail log files  |  A format for storing log files in CloudTrail\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/supported-format.html)  | 
 
+
++ [Avro SerDe](avro.md)
++ [RegexSerDe for Processing Apache Web Server Logs](apache.md)
++ [CloudTrail SerDe](cloudtrail.md)
++ [OpenCSVSerDe for Processing CSV](csv.md)
++ [Grok SerDe](grok.md)
++ [JSON SerDe Libraries](json.md)
++ [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)
++ [ORC SerDe](orc.md)
++ [Parquet SerDe](parquet.md)

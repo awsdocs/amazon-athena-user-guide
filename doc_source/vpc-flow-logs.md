@@ -29,8 +29,8 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs
      protocol int,
      numpackets int,
      numbytes int,
-     starttime string,
-     endtime string,
+     starttime int,
+     endtime int,
      action string,
      logstatus string
    )

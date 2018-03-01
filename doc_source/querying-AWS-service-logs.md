@@ -6,3 +6,9 @@ The tasks in this section use the Athena console, but you can also use other too
 
 The topics in this section assume that you have set up both an IAM user with appropriate permissions to access Athena and the Amazon S3 bucket where the data to query should reside\. For more information, see [Setting Up](setting-up.md) and [Getting Started](getting-started.md)\.
 
+
++ [Querying AWS CloudTrail Logs](cloudtrail-logs.md)
++ [Querying Amazon CloudFront Logs](cloudfront-logs.md)
++ [Querying Classic Load Balancer Logs](elasticloadbalancer-classic-logs.md)
++ [Querying Application Load Balancer Logs](application-load-balancer-logs.md)
++ [Querying Amazon VPC Flow Logs](vpc-flow-logs.md)

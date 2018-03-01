@@ -101,7 +101,7 @@ To query the CloudTrail logs, you use the [CloudTrail SerDe](cloudtrail.md)\.
    ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
    STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/bucket_ID/';
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/Account_ID/';
    ```
 
 1. Run the query in Athena console\. After the query completes, Athena registers `cloudtrail_logs`, making the data in it ready for you to issue queries\.
