@@ -6,8 +6,6 @@ In Athena, you can use two SerDe libraries for processing JSON files:
 
 + The [OpenX JSON SerDe](#openxjson) 
 
-This SerDe is used to process JSON documents, most commonly events\. These events are represented as blocks of JSON\-encoded text separated by a new line\. The JsonSerDe is also capable of parsing more complex JSON documents with nested structures\. However this requires a matching DDL representing the complex data types\. There are only two properties for the JsonSerDe: `ignore.malformed.json`, which is self\-explanatory, and `dots.in.keys`, which can be set to true or false and determines if there are dots in the name of the keys that will be replaced with underscores by the SerDe\.
-
 ## SerDe Names<a name="serde-names"></a>
 
  [Hive\-JsonSerDe](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-JSON) 
@@ -26,72 +24,87 @@ Use one of the following:
 
 The Hive JSON SerDe is used to process JSON documents, most commonly events\. These events are represented as blocks of JSON\-encoded text separated by a new line\.
 
-You can also use the Hive JSONSerDe to parse more complex JSON documents with nested structures\. See [Example: Deserializing Nested JSON](#nested-json-serde-example) 
+You can also use the Hive JSON SerDe to parse more complex JSON documents with nested structures\. However, this requires having a matching DDL representing the complex data types\. See [Example: Deserializing Nested JSON](#nested-json-serde-example)\.
 
 This SerDe has two useful optional properties you can specify when creating tables in Athena, to help deal with inconsistencies in the data:
 
-+  `'ignore.malformed.json'` if set to TRUE, lets you skip malformed JSON syntax\.
++  `'ignore.malformed.json'` if set to `TRUE`, lets you skip malformed JSON syntax\.
 
-+  `'dots.in.keys'` if set to TRUE, specifies that the names of the keys include dots and replaces them with underscores\.
++  `'dots.in.keys'` if set to `TRUE`, specifies that the names of the keys include dots and replaces them with underscores\.
 
 **Note**  
 You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-east-1/path/to/data/`\.
 
-The following DDL statement uses the Hive JsonSerDe:
+The following DDL statement uses the Hive JSON SerDe:
 
 ```
 CREATE EXTERNAL TABLE impressions (
-    requestBeginTime string,
-    adId string,
-    impressionId string,
+    requestbegintime string,
+    adid string,
+    impressionid string,
     referrer string,
-    userAgent string,
-    userCookie string,
+    useragent string,
+    usercookie string,
     ip string,
     number string,
-    processId string,
-    browserCookie string,
-    requestEndTime string,
-    timers struct<modelLookup:string, requestTime:string>,
-    threadId string, hostname string,
-    sessionId string
-)   PARTITIONED BY (dt string)
+    processid string,
+    browsercookie string,
+    requestendtime string,
+    timers struct
+                <
+                 modellookup:string, 
+                 requesttime:string
+                >,
+    threadid string, 
+    hostname string,
+    sessionid string
+)   
+PARTITIONED BY (dt string)
 ROW FORMAT  serde 'org.apache.hive.hcatalog.data.JsonSerDe'
-with serdeproperties ( 'paths'='requestBeginTime, adId, impressionId, referrer, userAgent, userCookie, ip' )
+with serdeproperties ( 'paths'='requestbegintime, adid, impressionid, referrer, useragent, usercookie, ip' )
 LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 ```
 
 ## OpenX JSON SerDe<a name="openxjson"></a>
 
-The following DDL statement uses the OpenX SerDe:
+The following DDL statement uses the OpenX JSON SerDe:
 
 ```
 CREATE EXTERNAL TABLE impressions (
-    requestBeginTime string,
-    adId string,
+    requestbegintime string,
+    adid string,
     impressionId string,
     referrer string,
-    userAgent string,
-    userCookie string,
+    useragent string,
+    usercookie string,
     ip string,
     number string,
-    processId string,
-    browserCookie string,
-    requestEndTime string,
-    timers struct<modelLookup:string, requestTime:string>,
-    threadId string, hostname string,
-    sessionId string
+    processid string,
+    browsercokie string,
+    requestendtime string,
+    timers struct<
+       modellookup:string, 
+       requesttime:string>,
+    threadid string, 
+    hostname string,
+    sessionid string
 )   PARTITIONED BY (dt string)
 ROW FORMAT  serde 'org.openx.data.jsonserde.JsonSerDe'
-with serdeproperties ( 'paths'='requestBeginTime, adId, impressionId, referrer, userAgent, userCookie, ip' )
+with serdeproperties ( 'paths'='requestbegintime, adid, impressionid, referrer, useragent, usercookie, ip' )
 LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 ```
 
 ## Example: Deserializing Nested JSON<a name="nested-json-serde-example"></a>
 
-JSON data can be challenging to deserialize when creating a table in Athena\. When dealing with complex nested JSON, there are common issues you may encounter\. For more information about these issues and troubleshooting practices, see the AWS Knowledge Center Article [I receive errors when I try to read JSON data in Amazon Athena](https://aws.amazon.com/premiumsupport/knowledge-center/error-json-athena/)\. For more information about common scenarios and query tips, see [Create Tables in Amazon Athena from Nested JSON and Mappings Using JSONSerDe](http://aws.amazon.com/blogs/big-data/create-tables-in-amazon-athena-from-nested-json-and-mappings-using-jsonserde/)\.
+JSON data can be challenging to deserialize when creating a table in Athena\.
 
-The following example demonstrates a simple approach to creating an Athena table from a nested JSON file\. This example presumes a JSON file with the following structure:
+ When dealing with complex nested JSON, there are common issues you may encounter\. For more information about these issues and troubleshooting practices, see the AWS Knowledge Center Article [I receive errors when I try to read JSON data in Amazon Athena](https://aws.amazon.com/premiumsupport/knowledge-center/error-json-athena/)\. 
+
+For more information about common scenarios and query tips, see [Create Tables in Amazon Athena from Nested JSON and Mappings Using JSONSerDe](http://aws.amazon.com/blogs/big-data/create-tables-in-amazon-athena-from-nested-json-and-mappings-using-jsonserde/)\.
+
+The following example demonstrates a simple approach to creating an Athena table from a nested JSON file\.To parse JSON\-encoded files in Athena, each JSON document must be on its own line, separated by a new line\. 
+
+This example presumes a JSON file with the following structure:
 
 ```
 {
@@ -120,20 +133,20 @@ The following example demonstrates a simple approach to creating an Athena table
 }
 ```
 
-The following `CREATE TABLE` command uses the [Openx\-JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) with collection data types like `struct` and `array` to establish groups of objects\.
+The following `CREATE TABLE` command uses the [Openx\-JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) with collection data types like `struct` and `array` to establish groups of objects\. Each JSON document is on its own line, separated by a new line\.
 
 ```
 CREATE external TABLE complex_json (
-   DocId string,
-   `USER` struct<Id:INT,
-               Username:string,
-               Name:string,
-               ShippingAddress:struct<Address1:string,
-                                      Address2:string,
-                                      City:string,
-                                      State:string>,
-               Orders:array<struct<ItemId:INT,
-                                   OrderDate:string>>>
+   docid string,
+   `user` struct<id:INT,
+               username:string,
+               name:string,
+               shippingaddress:struct<address1:string,
+                                      address2:string,
+                                      city:string,
+                                      state:string>,
+               orders:array<struct<itemid:INT,
+                                   orderdate:string>>>
    )
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 LOCATION 's3://mybucket/myjsondata/';

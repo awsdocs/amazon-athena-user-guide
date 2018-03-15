@@ -19,7 +19,9 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 
 1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the S3 bucket that stores your logs\.
 
-   This query uses the [LazySimpleSerDe](lazy-simple-serde.md) by default and it is omitted\.
+   This query uses the [LazySimpleSerDe](lazy-simple-serde.md) by default and it is omitted\. 
+
+   The column `date` is escaped using backticks \(`\) because it is a reserved word in Athena\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS default.cloudfront_logs (
@@ -52,7 +54,7 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
    )
    ROW FORMAT DELIMITED 
    FIELDS TERMINATED BY '\t'
-   LOCATION 's3://your_log_bucket/prefix/'
+   LOCATION 's3:////CloudFront_bucket_name/AWSLogs/Account_ID/'
    TBLPROPERTIES ( 'skip.header.line.count'='2' )
    ```
 

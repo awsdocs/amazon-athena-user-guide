@@ -1,6 +1,8 @@
 # Logging Amazon Athena API Calls with AWS CloudTrail<a name="monitor-with-cloudtrail"></a>
 
-Athena is integrated with CloudTrail, a service that captures all of the Athena API calls and delivers the log files to an Amazon S3 bucket that you specify\. CloudTrail captures API calls from the Athena console or from your code to the Athena API operations\. Using the information collected by CloudTrail, you can determine the request that was made to Athena, the source IP address from which the request was made, who made the request, when it was made, and so on\.
+Athena is integrated with CloudTrail, a service that captures all of the Athena API calls and delivers the log files to an Amazon S3 bucket that you specify\. 
+
+CloudTrail captures API calls from the Athena console or from your code to the Athena API operations\. Using the information collected by CloudTrail, you can determine the request that was made to Athena, the source IP address from which the request was made, who made the request, when it was made, and so on\.
 
 You can also use Athena to query CloudTrail log files for insight\. For more information, see [CloudTrail SerDe](cloudtrail.md)\. To learn more about CloudTrail, including how to configure and enable it, see the [AWS CloudTrail User Guide](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\.
 

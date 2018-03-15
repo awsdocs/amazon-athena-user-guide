@@ -44,7 +44,7 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs
 
 ## Example Queries for Amazon VPC Flow Logs<a name="query-examples-vpc-logs"></a>
 
-The following query lists all of the rejected TCP connections\. The query uses a `datetime` function to convert the timestamp field `ts`, and extracts only the day of the week for which these events occurred\.
+The following query lists all of the rejected TCP connections\. The query uses [Date and Time Functions and Operators](https://prestodb.io/docs/0.172/functions/datetime.html) to convert the timestamp field `ts`, and extracts only the day of the week for which these events occurred\.
 
 ```
 SELECT day_of_week(from_iso8601_timestamp(ts)) AS

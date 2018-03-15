@@ -30,9 +30,9 @@ The following statement creates a table in Athena called `mygroktable` from the 
 
 ```
 CREATE EXTERNAL TABLE `mygroktable`(
-   'SYSLOGBASE' string,
-   'queue_id' string,
-   'syslog_message' string
+   syslogbase string,
+   queue_id string,
+   syslog_message string
    )
 ROW FORMAT SERDE
    'com.amazonaws.glue.serde.GrokSerDe'
@@ -48,7 +48,7 @@ LOCATION
    's3://mybucket/groksample';
 ```
 
-Start with something simple like `%{NOTSPACE:column}` to get the columns mapped first and then specialize the columns if you want to\.
+Start with a simple pattern, such as `%{NOTSPACE:column}`, to get the columns mapped first and then specialize the columns if you want to\.
 
 ### Example 2<a name="example-2"></a>
 
@@ -91,5 +91,5 @@ To query this log file:
   "input.format" = "%{TIMESTAMP_ISO8601:timestamp}, %{LOGLEVEL:loglevel} - processType=%{NOTSPACE:processtype}, processId=%{NOTSPACE:processid}, status=%{NOTSPACE:status}, threadId=%{NOTSPACE:threadid}, executionTime=%{POSINT:executiontime}, tenantId=%{POSINT:tenantid}, userId=%{NOTSPACE:userid}, shard=%{NOTSPACE:shard}, jobId=%{NOTSPACE:jobid}, messageType=%{NOTSPACE:messagetype}, action=%{C_ACTION:action}, hostname=%{HOST:hostname}"
   ) STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-  LOCATION 's3://mybucket /samples/';
+  LOCATION 's3://mybucket/samples/';
   ```

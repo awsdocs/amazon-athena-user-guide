@@ -14,7 +14,9 @@ Use these tips and examples when you specify the location in Amazon S3\.
 s3://bucketname/keyname/
 ```
 
-+ Do not use filenames, wildcards, or glob patterns for specifying file locations\.
+Do not use any of the following items in file locations\.
+
++ Do not use filenames, underscores, wildcards, or glob patterns for specifying file locations\.
 
 + Do not add the full HTTP notation, such as `s3.amazon.com` to the Amazon S3 bucket path\.
 

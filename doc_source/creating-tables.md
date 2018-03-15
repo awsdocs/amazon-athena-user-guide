@@ -1,14 +1,6 @@
 # Tables and Databases Creation Process in Athena<a name="creating-tables"></a>
 
-Amazon Athena uses [Apache Hive](https://hive.apache.org/) data definition language \(DDL\) statements to define and query external tables where data resides on Amazon Simple Storage Service\. 
-
-You can run DDL statements:
-
-+ In the Athena console
-
-+ using a JDBC or an ODBC driver
-
-+ using the Athena **Create Table** wizard\.
+You can run DDL statements in the Athena console, using a JDBC or an ODBC driver, or using the Athena **Create Table** wizard\.
 
 When you create a new table schema in Athena, Athena stores the schema in a data catalog and uses it when you run queries\.
 
