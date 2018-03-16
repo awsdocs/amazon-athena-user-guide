@@ -38,9 +38,7 @@ For more information about where logs are stored, the JSON structure, and the re
 
 To collect logs and save them to Amazon S3, enable CloudTrail for the console\. For more information, see [Creating a Trail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html) in the *AWS CloudTrail User Guide*\.
 
-Note the destination Amazon S3 bucket where you save the logs, as you need it in the next section\.
-
-Replace the `LOCATION` clause with the path to the CloudTrail log location and the set of objects with which to work\. The example uses a `LOCATION` value of logs for a particular account, but you can use the degree of specificity that suits your application\.
+Note the destination Amazon S3 bucket where you save the logs\. Replace the `LOCATION` clause with the path to the CloudTrail log location and the set of objects with which to work\. The example uses a `LOCATION` value of logs for a particular account, but you can use the degree of specificity that suits your application\.
 
 For example:
 
@@ -52,13 +50,7 @@ Using the highest level in the object hierarchy gives you the greatest flexibili
 
 ## Creating a Table for CloudTrail Logs in the CloudTrail Console<a name="create-cloudtrail-table-ct"></a>
 
-You can automatically create tables for querying CloudTrail logs directly from the CloudTrail console\. This is a fairly straightforward method of creating tables, but you can only create tables this way if all of the following conditions are true:
-
-+ You are logged in with an IAM user or role that has sufficient permissions to create tables in Athena\. For more information, see [Setting Up](setting-up.md)\.
-
-+ The Amazon S3 bucket that contains the log files for the trail is in a Region supported by Amazon Athena\.
-
-If even one of these conditions is not true, you can still create a table but you must do so from Athena\. For more information, see [Manually Creating the Table for CloudTrail Logs in Athena](#create-cloudtrail-table)\.
+You can automatically create tables for querying CloudTrail logs directly from the CloudTrail console\. This is a fairly straightforward method of creating tables, but you can only create tables this way if the Amazon S3 bucket that contains the log files for the trail is in a Region supported by Amazon Athena, and you are logged in with an IAM user or role that has sufficient permissions to create tables in Athena\. For more information, see [Setting Up](setting-up.md)\.
 
 **To create a table for a CloudTrail trail in the CloudTrail console**
 
@@ -68,7 +60,7 @@ If even one of these conditions is not true, you can still create a table but yo
 
 1. In **Event history**, choose **Run advanced queries in Amazon Athena**\.
 
-1. For **Storage location**, choose the Amazon S3 bucket where log files are stored for the trail\.
+1. For **Storage location**, choose the Amazon S3 bucket where log files are stored for the trail to query\.
 **Note**  
 You can find out what bucket is associated with a trail by going to **Trails** and choosing the trail\. The bucket name is displayed in **Storage location**\.
 
