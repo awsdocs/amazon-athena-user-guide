@@ -17,7 +17,7 @@ You can delete metadata files \(`*.csv.metadata`\) without causing errors, but i
 
 Query results are saved in an Amazon S3 location based on the name of the query and the date the query ran, as follows:
 
- `QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}/` 
+ `{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}/` 
 
 In this notation:
 
