@@ -54,7 +54,7 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
    )
    ROW FORMAT DELIMITED 
    FIELDS TERMINATED BY '\t'
-   LOCATION 's3:////CloudFront_bucket_name/AWSLogs/Account_ID/'
+   LOCATION 's3://CloudFront_bucket_name/AWSLogs/Account_ID/'
    TBLPROPERTIES ( 'skip.header.line.count'='2' )
    ```
 
