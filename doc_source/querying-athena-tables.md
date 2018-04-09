@@ -2,7 +2,7 @@
 
  Examples of Athena queries in this section show you how to work with arrays, concatenate, filter, flatten, sort, and query data in them\. Other examples include queries for data in tables with nested structures and maps, and tables that contain JSON\-encoded values\.
 
-
+**Topics**
 + [Query Results](querying.md)
 + [Viewing Query History](queries-viewing-history.md)
 + [Querying Arrays](querying-arrays.md)

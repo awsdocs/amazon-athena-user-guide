@@ -1,28 +1,18 @@
 # Code Samples<a name="code-samples"></a>
 
 Use examples in this topic as a starting point for writing Athena applications using the AWS SDK for Java\.
-
 +   
 **Java Code Samples**  
-
   +  [Create a Client to Access Athena](#create-a-client-to-access-athena) 
-
   +   
 **Working with Query Executions**  
-
     +  [Start Query Execution](#start-query-execution) 
-
     +  [Stop Query Execution](#stop-query-execution) 
-
     +  [List Query Executions](#list-query-executions) 
-
   +   
 **Working with Named Queries**  
-
     +  [Create a Named Query](#create-a-named-query) 
-
     +  [Delete a Named Query](#delete-a-named-query) 
-
     +  [List Query Executions](#list-query-executions) 
 
 **Note**  

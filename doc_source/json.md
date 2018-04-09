@@ -1,9 +1,7 @@
 # JSON SerDe Libraries<a name="json"></a>
 
 In Athena, you can use two SerDe libraries for processing JSON files:
-
 + The native [Hive JSON SerDe](#hivejson) 
-
 + The [OpenX JSON SerDe](#openxjson) 
 
 ## SerDe Names<a name="serde-names"></a>
@@ -27,9 +25,7 @@ The Hive JSON SerDe is used to process JSON documents, most commonly events\. Th
 You can also use the Hive JSON SerDe to parse more complex JSON documents with nested structures\. However, this requires having a matching DDL representing the complex data types\. See [Example: Deserializing Nested JSON](#nested-json-serde-example)\.
 
 This SerDe has two useful optional properties you can specify when creating tables in Athena, to help deal with inconsistencies in the data:
-
 +  `'ignore.malformed.json'` if set to `TRUE`, lets you skip malformed JSON syntax\.
-
 +  `'dots.in.keys'` if set to `TRUE`, specifies that the names of the keys include dots and replaces them with underscores\.
 
 **Note**  
@@ -108,28 +104,28 @@ This example presumes a JSON file with the following structure:
 
 ```
 {
-   "DocId": "AWS",
-   "User": {
-         "Id": 1234,
-         "Username": "bob1234",
-         "Name": "Bob",
-         "ShippingAddress": {
-         "Address1": "123 Main St.",
-         "Address2": null,
-         "City": "Seattle",
-         "State": "WA"
-         },
-   "Orders": [
-         {
-            "ItemId": 6789,
-            "OrderDate": "11/11/2017"
-         },
-         {
-            "ItemId": 4352,
-            "OrderDate": "12/12/2017"
-         }
-      ]
+"DocId": "AWS",
+"User": {
+        "Id": 1234,
+        "Username": "bob1234", 
+        "Name": "Bob",
+"ShippingAddress": {
+"Address1": "123 Main St.",
+"Address2": null,
+"City": "Seattle",
+"State": "WA"
+   },
+"Orders": [
+   {
+     "ItemId": 6789,
+     "OrderDate": "11/11/2017" 
+   },
+   {
+     "ItemId": 4352,
+     "OrderDate": "12/12/2017"
    }
+  ]
+ }
 }
 ```
 
@@ -138,15 +134,23 @@ The following `CREATE TABLE` command uses the [Openx\-JsonSerDe](https://github.
 ```
 CREATE external TABLE complex_json (
    docid string,
-   `user` struct<id:INT,
+   `user` struct<
+               id:INT,
                username:string,
                name:string,
-               shippingaddress:struct<address1:string,
+               shippingaddress:struct<
+                                      address1:string,
                                       address2:string,
                                       city:string,
-                                      state:string>,
-               orders:array<struct<itemid:INT,
-                                   orderdate:string>>>
+                                      state:string
+                                      >,
+               orders:array<
+                            struct<
+                                 itemid:INT,
+                                  orderdate:string
+                                  >
+                              >
+               >
    )
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 LOCATION 's3://mybucket/myjsondata/';

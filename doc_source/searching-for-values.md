@@ -30,15 +30,10 @@ This query returns a list of users\.
 ```
 
 The following query example lists the names of users who have completed projects along with the total number of completed projects\. It performs these actions:
-
 + Uses nested `SELECT` statements for clarity\.
-
 + Extracts the array of projects\.
-
 + Converts the array to a native array of key\-value pairs using `CAST`\.
-
 + Extracts each individual array element using the `UNNEST` operator\.
-
 + Filters obtained values by completed projects and counts them\.
 
 **Note**  

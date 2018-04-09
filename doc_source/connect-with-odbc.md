@@ -7,15 +7,11 @@ Download the ODBC driver, the Amazon Athena ODBC driver License Agreement, and t
  [License Agreement](https://s3.amazonaws.com/athena-downloads/agreement/ODBC/Amazon+Athena+ODBC+Driver+License+Agreement.pdf) 
 
 ## Windows<a name="windows"></a>
-
 +  [Windows 32 bit ODBC Driver](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Windows/Simba+Athena+1.0+32-bit.msi) 
-
 +  [Windows 64 bit ODBC Driver](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Windows/Simba+Athena+1.0+64-bit.msi) 
 
 ## Linux<a name="linux"></a>
-
 +  [Linux 32 bit ODBC Driver](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Linux/simbaathena-1.0.2.1003-1.i686.rpm) 
-
 +  [Linux 64 bit ODBC Driver](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Linux/simbaathena-1.0.2.1003-1.x86_64.rpm) 
 
 ## OSX<a name="osx"></a>

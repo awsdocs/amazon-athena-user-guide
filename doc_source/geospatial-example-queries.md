@@ -3,9 +3,7 @@
 The following examples create two tables and issue a query against them\.
 
 These examples rely on two files stored in an Amazon S3 location:
-
 + An `earthquakes.csv` sample file, which lists earthquakes that occurred in California\. This file has fields that correspond to the fields in the table `earthquakes` in the following example\.
-
 + A `california-counties.json` file, which lists JSON\-encoded county data in the ESRI\-compliant format, and includes many fields, such as AREA, PERIMETER, STATE, COUNTY, and NAME\. The following example shows the `counties` table from this file with two fields only: `Name` \(string\), and `BoundaryShape` \(binary\)\.
 
 **Note**  

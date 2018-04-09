@@ -13,7 +13,7 @@ DROP {DATABASE | SCHEMA} [IF EXISTS] database_name [RESTRICT | CASCADE]
 **\[IF EXISTS\]**  
 Causes the error to be suppressed if `database_name` doesn't exist\.
 
-**\[RESTRICT|CASCADE\]**  
+**\[RESTRICT\|CASCADE\]**  
 Determines how tables within `database_name` are regarded during the `DROP` operation\. If you specify `RESTRICT`, the database is not dropped if it contains tables\. This is the default behavior\. Specifying `CASCADE` causes the database and all its tables to be dropped\.
 
 ## Examples<a name="examples"></a>

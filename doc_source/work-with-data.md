@@ -6,7 +6,7 @@ When you create a database and table in Athena, you describe the schema and the 
 
 To improve query performance and reduce costs, we recommend that you partition your data and use open source columnar formats for storage in Amazon S3, such as [Apache Parquet](https://parquet.apache.org) or [ORC](https://orc.apache.org/)\. 
 
-
+**Topics**
 + [Tables and Databases Creation Process in Athena](creating-tables.md)
 + [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)
 + [Table Location in Amazon S3](tables-location-format.md)

@@ -1,23 +1,15 @@
 # List of Supported Geospatial Functions<a name="geospatial-functions-list"></a>
 
 Geospatial functions in Athena have these characteristics:
-
 + The functions follow the general principles of [Spatial Query](https://en.wikipedia.org/wiki/Spatial_query)\.
-
 + The functions are implemented as a Presto plugin that uses the ESRI Java Geometry Library\. This library has an Apache 2 license\.
-
 + The functions rely on the [ESRI Geometry API](https://esri.github.io/geometry-api-java/javadoc/index.html?overview-summary.html)\.
-
 + Not all of the ESRI\-supported functions are available in Athena\. This topic lists only the ESRI geospatial functions that are supported in Athena\.
 
 Athena supports four types of geospatial functions:
-
 +  [Constructor Functions](#constructors-functions) 
-
 +  [Geospatial Relationship Functions](#geospatial-relationships-functions) 
-
 +  [Operation Functions](#operations-functions) 
-
 +  [Accessor Functions](#accessors-functions) 
 
 ## Before You Begin<a name="before-you-begin"></a>
@@ -57,9 +49,7 @@ LOCATION 's3://my-query-log/json'
 ```
 
 Some of the subsequent examples are based on these tables and rely on two sample files stored in the Amazon S3 location\. These files are not inlcuded with Athena and are used for illustration purposes only:
-
 + An `earthquakes.csv` file, which lists earthquakes that occurred in California\. This file has fields that correspond to the fields in the table `earthquakes`\.
-
 + A `california-counties.json` file, which lists JSON\-encoded county data in the ESRI\-compliant format, and includes many fields, such as AREA, PERIMETER, STATE, COUNTY, and NAME\. The `counties` table is based on this file and has two fields only: `Name` \(string\), and `BoundaryShape` \(binary\)\.
 
 ## Constructor Functions<a name="constructors-functions"></a>
@@ -137,9 +127,7 @@ SELECT ST_GEOMETRY_FROM_TEXT(ST_GEOMETRY_TO_TEXT(ST_Point(1, 2)))
 The following functions express relationships between two different geometries that you specify as input\. They return results of type `boolean`\. The order in which you specify the pair of geometries matters: the first geometry value is called the left geometry, the second geometry value is called the right geometry\.
 
 These functions return:
-
 +  `TRUE` if and only if the relationship described by the function is satisfied\.
-
 +  `FALSE` if and only if the relationship described by the function is not satisfied\.
 
 ### `ST_CONTAINS (geometry, geometry)`<a name="st-contains-geometry-geometry"></a>

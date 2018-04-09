@@ -9,9 +9,7 @@ The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2
 ## Examples<a name="examples"></a>
 
 The following examples show how to create tables in Athena from CSV and TSV, using the `LazySimpleSerDe`\. To deserialize custom\-delimited file using this SerDe, specify the delimiters similar to the following examples\.
-
 +  [CSV Example](#csv-example) 
-
 +  [TSV Example](#tsv-example) 
 
 **Note**  

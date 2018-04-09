@@ -3,9 +3,7 @@
 An Application Load Balancer is a load balancing option for Elastic Load Balancing that enables traffic distribution in a microservices deployment using containers\. Querying Application Load Balancer logs allows you to see the source of traffic, latency, and bytes transferred to and from Elastic Load Balancing instances and backend applications\.
 
 Before you begin, [enable access logging](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#enable-access-logging) for Application Load Balancer logs to be saved to your Amazon S3 bucket\.
-
 +  [Creating the Table for ALB Logs](#create-alb-table) 
-
 +  [Example Queries for ALB logs](#query-alb-logs-examples) 
 
 ## Creating the Table for ALB Logs<a name="create-alb-table"></a>

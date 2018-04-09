@@ -45,19 +45,12 @@ Users who connect through the JDBC driver and have custom access policies attach
 ### Policies<a name="jdbc-ate-version-policies"></a>
 
 You must allow JDBC users to perform a set of policy\-specific actions\. These actions are not part of the Athena API\. If the following actions are not allowed, users will be unable to see databases and tables:
-
 + `athena:GetCatalogs`
-
 + `athena:GetExecutionEngine`
-
 + `athena:GetExecutionEngines`
-
 + `athena:GetNamespace`
-
 + `athena:GetNamespaces`
-
 + `athena:GetTable`
-
 + `athena:GetTables`
 
 ## Configure the JDBC Driver Options<a name="ate-jdbc-driver-options"></a>
@@ -76,7 +69,7 @@ You can configure the following options for the JDBC driver\. With this version 
 | aws\_credentials\_provider\_arguments | Arguments for the credentials provider constructor as comma\-separated values\. | N/A | No | 
 | max\_error\_retries |  The maximum number of retries that the JDBC client attempts to make a request to Athena\.  | 10 | No | 
 | connection\_timeout | The maximum amount of time, in milliseconds, to make a successful connection to Athena before an attempt is terminated\. | 10,000 | No | 
-| socket\_timeoutt | The maximum amount of time, in milliseconds, to wait for a socket in order to send data to Athena\. | 10,000 | No | 
+| socket\_timeout | The maximum amount of time, in milliseconds, to wait for a socket in order to send data to Athena\. | 10,000 | No | 
 | retry\_base\_delay | Minimum delay amount, in milliseconds, between retrying attempts to connect Athena\. | 100 | No | 
 | retry\_max\_backoff\_time | Maximum delay amount, in milliseconds, between retrying attempts to connect to Athena\. | 1000 | No | 
 | log\_path | Local path of the Athena JDBC driver logs\. If no log path is provided, then no log files are created\. | N/A | No | 

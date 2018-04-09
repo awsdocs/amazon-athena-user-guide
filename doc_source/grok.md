@@ -3,13 +3,9 @@
 The Logstash Grok SerDe is a library with a set of specialized patterns for deserialization of unstructured text files, usually logs\. Each Grok pattern is a named regular expression\. You can identify and re\-use these deserialization patterns as needed\. This makes it easier to use Grok compared with using regular expressions\. Grok provides a set of [pre\-defined patterns](https://github.com/elastic/logstash/blob/v1.4.2/patterns/grok-patterns)\. You can also create custom patterns\.
 
 To specify the Grok SerDe when creating a table in Athena, use the `ROW FORMAT SERDE 'com.amazonaws.glue.serde.GrokSerDe'` clause, followed by the `WITH SERDEPROPERTIES` clause that specifies the patterns to match in your data, where:
-
 + The `input.format` expression defines the patterns to match in the data file\. It is required\.
-
 + The `input.grokCustomPatterns` expression defines a named custom pattern, which you can subsequently use within the `input.format` expression\. It is optional\.
-
 + The `STORED AS INPUTFORMAT` and `OUTPUTFORMAT` clauses are required\.
-
 + The `LOCATION` clause specifies an Amazon S3 bucket, which can contain multiple source data files\. All files in the bucket are deserialized to create the table\.
 
 ## Examples<a name="examples"></a>
@@ -63,9 +59,7 @@ action=receive, hostname=1.abc.def.com
 ```
 
 To query this log file:
-
 + Add the Grok pattern to the `input.format` for each column\. For example, for `timestamp`, add `%{TIMESTAMP_ISO8601:timestamp}`\. For `loglevel`, add `%{LOGLEVEL:loglevel}`\.
-
 + Make sure the pattern in `input.format` matches the format of the log exactly, by mapping the dashes \(`-`\) and the commas that separate the entries in the log format\.
 
   ```

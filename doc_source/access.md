@@ -1,9 +1,7 @@
 # Setting User and Amazon S3 Bucket Permissions<a name="access"></a>
 
 To run queries in Athena, you must have the appropriate permissions for:
-
 + The Athena actions\.
-
 + The Amazon S3 locations where the underlying data is stored that you are going to query in Athena\.
 
 If you are an administrator for other users, make sure that they have appropriate permissions associated with their user profiles\.

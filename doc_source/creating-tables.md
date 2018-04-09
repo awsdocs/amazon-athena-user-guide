@@ -21,13 +21,9 @@ Hive supports multiple data formats through the use of serializer\-deserializer 
 ## Requirements for Tables in Athena and Data in Amazon S3<a name="s3-considerations"></a>
 
 When you create a table, you specify an Amazon S3 bucket location for the underlying data using the `LOCATION` clause\. Consider the following:
-
 + You must have the appropriate permissions to work with data in the Amazon S3 location\. For more information, see [Setting User and Amazon S3 Bucket Permissions](access.md)\.
-
 + If the data is not encrypted in Amazon S3, it can be stored in a different region from the primary region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\.
-
 + If the data is encrypted in Amazon S3, it must be stored in the same region, and the user or principal who creates the table in Athena must have the appropriate permissions to decrypt the data\. For more information, see [Configuring Encryption Options](encryption.md)\.
-
 + Athena does not support different storage classes within the bucket specified by the `LOCATION` clause, does not support the `GLACIER` storage class, and does not support Requester Pays buckets\. For more information, see [Storage Classes](http://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html), [Changing the Storage Class of an Object in Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/ChgStoClsOfObj.html), and [Requester Pays Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
 ## Functions Supported<a name="hive-ddl-functions-supported"></a>

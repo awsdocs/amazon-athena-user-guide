@@ -5,50 +5,31 @@ When using Athena with the AWS Glue Data Catalog, you can use AWS Glue to create
 Under the hood, Athena uses Presto to execute DML statements and Hive to execute the DDL statements that create and modify schema\. With these technologies, there are a couple conventions to follow so that Athena and AWS Glue work well together\.
 
  **In this topic** 
-
 +  [Database, Table, and Column Names](#schema-names) 
-
 +   
 ** [Using AWS Glue Crawlers](#schema-crawlers) **  
-
   +  [Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync](#schema-crawlers-schedule) 
-
   +  [Using Multiple Data Sources with Crawlers](#schema-crawlers-data-sources) 
-
   +  [Syncing Partition Schema to Avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"](#schema-syncing) 
-
   +  [Updating Table Metadata](#schema-table-metadata) 
-
 +   
 ** [Working with CSV Files](#schema-csv) **  
-
   +  [CSV Data Enclosed in Quotes](#schema-csv-quotes) 
-
   +  [CSV Files with Headers](#schema-csv-headers) 
-
 +   
 ** [Using AWS Glue Jobs for ETL with Athena](#schema-classifier) **  
-
   +  [Creating Tables Using Athena for AWS Glue ETL Jobs](#schema-etl-tables) 
-
   +  [Using ETL Jobs to Optimize Query Performance](#schema-etl-performance) 
-
   +  [Converting SMALLINT and TINYINT Datatypes to INT When Converting to ORC](#schema-etl-orc) 
-
   +  [Changing Date Data Types to String for Parquet ETL Transformation](#schema-etl-parquet) 
-
   +  [Automating AWS Glue Jobs for ETL](#schema-etl-automate) 
 
 ## Database, Table, and Column Names<a name="schema-names"></a>
 
 When you create schema in AWS Glue to query in Athena, consider the following:
-
 + A database name cannot be longer than 252 characters\.
-
 + A table name cannot be longer than 255 characters\.
-
 + A column name cannot be longer than 128 characters\.
-
 + The only acceptable characters for database names, table names, and column names are lowercase letters, numbers, and the underscore character\.
 
 You can use the AWS Glue Catalog Manager to rename columns, but at this time table names and database names cannot be changed using the AWS Glue console\. To correct database names, you need to create a new database and copy tables to it \(in other words, copy the metadata to a new entity\)\. You can follow a similar process for tables\. You can use the AWS Glue SDK or AWS CLI to do this\.

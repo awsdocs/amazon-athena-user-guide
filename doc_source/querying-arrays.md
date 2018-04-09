@@ -2,7 +2,7 @@
 
 Amazon Athena lets you create arrays, concatenate them, convert them to different data types, and then filter, flatten, and sort them\.
 
-
+**Topics**
 + [Creating Arrays](creating-arrays.md)
 + [Concatenating Arrays](concatenating-arrays.md)
 + [Converting Array Data Types](converting-array-data-types.md)

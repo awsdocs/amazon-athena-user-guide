@@ -114,9 +114,7 @@ Replace `REGION` in the `LOCATION` clause with the region where you are running 
 1. After your EMR cluster is terminated, create your table in Athena, which uses the data in the format produced by the cluster\.
 
 ## Before you begin<a name="prerequisites"></a>
-
 + You need to create EMR clusters\. For more information about Amazon EMR, see the [Amazon EMR Management Guide](http://docs.aws.amazon.com/emr/latest/ManagementGuide/)\.
-
 + Follow the instructions found in [Setting Up](setting-up.md)\.
 
 ## Example: Converting data to Parquet using an EMR cluster<a name="example-converting-data-to-parquet-using-an-emr-cluster"></a>

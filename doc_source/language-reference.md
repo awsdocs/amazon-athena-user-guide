@@ -6,7 +6,7 @@ Athena query engine is based on [Hive DDL](https://cwiki.apache.org/confluence/d
 
 Athena does not support all DDL statements\. For information, see [Unsupported DDL](unsupported-ddl.md)\.
 
-
+**Topics**
 + [ALTER DATABASE SET DBPROPERTIES](alter-database-set-dbproperties.md)
 + [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)
 + [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md)

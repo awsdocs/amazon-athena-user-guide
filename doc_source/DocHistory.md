@@ -7,6 +7,7 @@ This documentation is associated with the May, 18, 2017 version of Amazon Athena
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+|  Use auto\-complete to type queries in the Athena console\.  |  Use auto\-complete to type queries in the Athena console\.  | April 6, 2018 | 
 |   Added an ability to create Athena tables for CloudTrail log files directly from the CloudTrail console\.   |   Added an ability to automatically create Athena tables for CloudTrail log files directly from the CloudTrail console\. For information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](cloudtrail-logs.md#create-cloudtrail-table-ct)\.  | March 15, 2018 | 
 | Added support for securely offloading intermediate data to disk for queries with GROUP BY\. | Added an ability to securely offload intermediate data to disk for memory\-intensive queries that use the GROUP BY clause\. This improves the reliability of such queries, preventing "Query resource exhausted" errors\. For more information, see the release note for [February 2, 2018](release-note-2018-02-12.md)\. | February 2, 2018 | 
 | Added support for Presto version 0\.172\. | Upgraded the underlying engine in Amazon Athena to a version based on Presto version 0\.172\. For more information, see the release note for [January 19, 2018](release-note-2018-01-19.md)\. | January 19, 2018 | 

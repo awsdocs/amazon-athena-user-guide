@@ -5,11 +5,8 @@ If you created databases and tables using Athena in a region before AWS Glue was
 ## Why should I upgrade to the AWS Glue Data Catalog?<a name="faq-benefits"></a>
 
 AWS Glue is a completely\-managed extract, transform, and load \(ETL\) service\. It has three main components:
-
 +  **An AWS Glue crawler** can automatically scan your data sources, identify data formats, and infer schema\.
-
 +  **A fully managed ETL service** allows you to transform and move data to various destinations\.
-
 +  **The AWS Glue Data Catalog** stores metadata information about databases and tables, pointing to a data store in Amazon S3 or a JDBC\-compliant data store\.
 
 For more information, see [AWS Glue Concepts](http://docs.aws.amazon.com/glue/latest/dg/components-key-concepts.html)\.
@@ -39,19 +36,12 @@ For more information, see [Authoring AWS Glue Jobs](http://docs.aws.amazon.com/g
 Yes\. With AWS Glue, you pay a monthly rate for storing and accessing the metadata stored in the AWS Glue Data Catalog, an hourly rate billed per second for AWS Glue ETL jobs and crawler runtime, and an hourly rate billed per second for each provisioned development endpoint\. The AWS Glue Data Catalog allows you to store up to a million objects at no charge\. If you store more than a million objects, you are charged USD$1 for each 100,000 objects over a million\. An object in the AWS Glue Data Catalog is a table, a partition, or a database\. For more information, see [AWS Glue Pricing](https://aws.amazon.com/glue/pricing)\.
 
 ## Upgrade process FAQ<a name="faq-upgrade"></a>
-
 +  [Who can perform the upgrade?](#faq-upgrade-who) 
-
 +  [My users use a managed policy with Athena and Redshift Spectrum\. What steps do I need to take to upgrade?](#faq-upgrade-managed-policy) 
-
 +  [What happens if I don’t upgrade?](#faq-upgrade-delayed) 
-
 +  [Why do I need to add AWS Glue policies to Athena users?](#faq-upgrade-custom-policy) 
-
 +  [What happens if I don’t allow AWS Glue policies for Athena users?](#faq-upgrade-no-perms) 
-
 +  [Is there risk of data loss during the upgrade?](#faq-upgrade-data-loss) 
-
 +  [Is my data also moved during this upgrade?](#faq-upgrade-data-move) 
 
 ### Who can perform the upgrade?<a name="faq-upgrade-who"></a>

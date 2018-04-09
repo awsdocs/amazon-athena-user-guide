@@ -29,14 +29,11 @@ Each subquery defines a temporary table, similar to a view definition, which you
 subquery_table_name [ ( column_name [, ...] ) ] AS (subquery)
 ```
 Where:  
-
 +  `subquery_table_name` is a unique name for a temporary table that defines the results of the `WITH` clause subquery\. Each `subquery` must have a table name that can be referenced in the `FROM` clause\.
-
 +  `column_name [, ...]` is an optional list of output column names\. The number of column names must be equal to or less than the number of columns defined by `subquery`\.
-
 +  `subquery` is any query statement\.
 
-**\[ ALL | DISTINCT \] select\_expr**  
+**\[ ALL \| DISTINCT \] select\_expr**  
  `select_expr` determines the rows to be selected\.   
  `ALL` is the default\. Using `ALL` is treated the same as if it were omitted; all rows for all columns are selected and duplicates are kept\.  
 Use `DISTINCT` to return only distinct values when a column contains duplicate values\.
@@ -44,32 +41,24 @@ Use `DISTINCT` to return only distinct values when a column contains duplicate v
 **FROM from\_item \[, \.\.\.\]**  
 Indicates the input to the query, where `from_item` can be a view, a join construct, or a subquery as described below\.  
 The `from_item` can be either:  
-
 +  `table_name [ [ AS ] alias [ (column_alias [, ...]) ] ]` 
 
   Where `table_name` is the name of the target table from which to select rows, `alias` is the name to give the output of the `SELECT` statement, and `column_alias` defines the columns for the `alias` specified\.
  **\-OR\-**   
-
 +  `join_type from_item [ ON join_condition | USING ( join_column [, ...] ) ]` 
 
   Where `join_type` is one of:
-
   +  `[ INNER ] JOIN` 
-
   +  `LEFT [ OUTER ] JOIN` 
-
   +  `RIGHT [ OUTER ] JOIN` 
-
   +  `FULL [ OUTER ] JOIN` 
-
   +  `CROSS JOIN` 
-
   +  `ON join_condition | USING (join_column [, ...])` Where using `join_condition` allows you to specify column names for join keys in multiple tables, and using `join_column` requires `join_column` to exist in both tables\.
 
 **\[ WHERE condition \]**  
 Filters results according to the `condition` you specify\.
 
-**\[ GROUP BY \[ ALL | DISTINCT \] grouping\_expressions \[, \.\.\.\] \]**  
+**\[ GROUP BY \[ ALL \| DISTINCT \] grouping\_expressions \[, \.\.\.\] \]**  
 Divides the output of the `SELECT` statement into rows with matching values\.  
  `ALL` and `DISTINCT` determine whether duplicate grouping sets each produce distinct output rows\. If omitted, `ALL` is assumed\.   
 `grouping_expressions` allow you to perform complex grouping operations\.  
@@ -84,23 +73,23 @@ You can often use `UNION ALL` to achieve the same results as these `GROUP BY` op
 **\[ HAVING condition \]**  
 Used with aggregate functions and the `GROUP BY` clause\. Controls which groups are selected, eliminating groups that don't satisfy `condition`\. This filtering occurs after groups and aggregates are computed\.
 
-**\[ UNION \[ ALL | DISTINCT \] union\_query\] \]**  
+**\[ UNION \[ ALL \| DISTINCT \] union\_query\] \]**  
 Combines the results of more than one `SELECT` statement into a single query\. `ALL` or `DISTINCT` control which rows are included in the final result set\.   
 `ALL` causes all rows to be included, even if the rows are identical\.  
  `DISTINCT` causes only unique rows to be included in the combined result set\. `DISTINCT` is the default\.   
 Multiple `UNION` clauses are processed left to right unless you use parentheses to explicitly define the order of processing\.
 
-**\[ ORDER BY expression \[ ASC | DESC \] \[ NULLS FIRST | NULLS LAST\] \[, \.\.\.\] \]**  
+**\[ ORDER BY expression \[ ASC \| DESC \] \[ NULLS FIRST \| NULLS LAST\] \[, \.\.\.\] \]**  
 Sorts a result set by one or more output `expression`\.   
 When the clause contains multiple expressions, the result set is sorted according to the first `expression`\. Then the second `expression` is applied to rows that have matching values from the first expression, and so on\.   
 Each `expression` may specify output columns from `SELECT` or an ordinal number for an output column by position, starting at one\.  
  `ORDER BY` is evaluated as the last step after any `GROUP BY` or `HAVING` clause\. `ASC` and `DESC` determine whether results are sorted in ascending or descending order\.   
 The default null ordering is `NULLS LAST`, regardless of ascending or descending sort order\.
 
-**LIMIT \[ count | ALL \]**  
+**LIMIT \[ count \| ALL \]**  
 Restricts the number of rows in the result set to `count`\. `LIMIT ALL` is the same as omitting the `LIMIT` clause\. If the query has no `ORDER BY` clause, the results are arbitrary\.
 
-**TABLESAMPLE BERNOULLI | SYSTEM \(percentage\)**  
+**TABLESAMPLE BERNOULLI \| SYSTEM \(percentage\)**  
 Optional operator to select rows from a table based on a sampling method\.  
  `BERNOULLI` selects each row to be in the table sample with a probability of `percentage`\. All physical blocks of the table are scanned, and certain rows are skipped based on a comparison between the sample `percentage` and a random value calculated at runtime\.   
 With `SYSTEM`, the table is divided into logical segments of data, and the table is sampled at this granularity\.   

@@ -8,13 +8,10 @@ These options encrypt data at rest in Amazon S3\. Regardless of whether you use 
 The setup for querying an encrypted dataset in Amazon S3 and the options in Athena to encrypt query results are independent\. Each option is enabled and configured separately\. You can use different encryption methods or keys for each\. This means that reading encrypted data in Amazon S3 doesn't automatically encrypt Athena query results in Amazon S3\. The opposite is also true\. Encrypting Athena query results in Amazon S3 doesn't encrypt the underlying dataset in Amazon S3\.
 
 Athena supports the following S3 encryption options, both for encrypted datasets in Amazon S3 and for encrypted query results:
-
 + Server side encryption with an Amazon S3\-managed key \([SSE\-S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\)
-
 + Server\-side encryption with a AWS KMS\-managed key \([SSE\-KMS](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)\)\.
 **Note**  
 With SSE\-KMS, Athena does not require you to indicate data is encrypted when creating a table\.
-
 + Client\-side encryption with a AWS KMS\-managed key \([CSE\-KMS](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html#client-side-encryption-kms-managed-master-key-intro)\)
 
 For more information about AWS KMS encryption with Amazon S3, see [What is AWS Key Management Service](http://docs.aws.amazon.com/kms/latest/developerguide/overview.html) and [How Amazon Simple Storage Service \(Amazon S3\) Uses AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/services-s3.html) in the *AWS Key Management Service Developer Guide*\.
@@ -44,12 +41,9 @@ Users that run queries, including the user who creates the table, must have the 
 If you use Amazon EMR along with EMRFS to upload encrypted Parquet files, you must disable multipart uploads \(set `fs.s3n.multipart.uploads.enabled` to `false`\); otherwise, Athena is unable to determine the Parquet file length and a **HIVE\_CANNOT\_OPEN\_SPLIT** error occurs\. For more information, see [Configure Multipart Upload for Amazon S3](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-upload-s3.html#Config_Multipart) in the *EMR Management Guide*\.
 
 Indicate that the dataset is encrypted in Amazon S3 in one of the following ways\. This is not required if SSE\-KMS is used\.
-
 + Use the [CREATE TABLE](create-table.md) statement with a `TBLPROPERTIES` clause that specifies `'has_encrypted_data'='true'`\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/encrypt_has_encrypted.png)
-
 + Use the [JDBC driver](connect-with-jdbc.md) and set the `TBLPROPERTIES` value as above when you execute [CREATE TABLE](create-table.md) using `statement.executeQuery()`\.
-
 + Use the **Add table** wizard in the Athena console, and then choose **Encrypted data set** when you specify a value for **Location of input data set**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/encrypt_has_encrypted_console.png)
 
@@ -74,11 +68,8 @@ You use the Athena console or JDBC driver properties to specify that query resul
 1. For **Encryption type**, choose **CSE\-KMS**, **SSE\-KMS**, or **SSE\-S3**\.
 
    If you chose **SSE\-KMS** or **CSE\-KMS**, for **Encryption key**, specify one of the following:
-
    + If your account has access to an existing KMS CMK, choose its alias, or
-
    + Choose **Enter a KMS key ARN** and then enter an ARN\.
-
    + To create a new KMS key, choose **Create KMS key**, use the IAM console to create the key, and then return to specify the key by alias or ARN as described in the previous steps\. For more information, see [Creating Keys](http://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
 
 1. Choose **Save**\.

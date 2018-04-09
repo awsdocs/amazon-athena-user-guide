@@ -3,10 +3,8 @@
 Athena stores query results in Amazon S3\.
 
 Each query that you run has:
-
 + A results file stored automatically in a CSV format \(\*\.csv\), and
-
-+ An Athena metadata file (`*.csv.metadata`).
++ An Athena metadata file \(`*.csv.metadata`\)\.
 
 If necessary, you can access the result files to work with them\. Athena stores query results in this Amazon S3 bucket by default: `aws-athena-query-results-<ACCOUNTID>-<REGION>`\.
 
@@ -20,13 +18,9 @@ Query results are saved in an Amazon S3 location based on the name of the query 
  `{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}/` 
 
 In this notation:
-
 +  `QueryLocation` is the base location for all query results\. To view or change this location, choose **Settings**\. You can enter a new value for **Query result location** at any time\. You can also choose to encrypt query results in Amazon S3\. For more information, see [Configuring Encryption Options](encryption.md)\.
-
 +  `QueryName` is the name of the query for which the results are saved\. If the query wasn't saved, `Unsaved` appears\. To see a list of queries and examine their SQL statements, choose **Saved queries**\.
-
 +  `yyyy/mm/dd/` is the date the query ran\.
-
 +  `QueryID` is the unique ID of the query\.
 
 ## Saving Query Results<a name="saving-query-results"></a>

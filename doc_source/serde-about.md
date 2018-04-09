@@ -7,7 +7,6 @@ It is the SerDe you specify, and not the DDL, that defines the table schema\. In
 ## To Use a SerDe in Queries<a name="to-use-a-serde"></a>
 
 To use a SerDe when creating a table in Athena, use one of the following methods:
-
 + Use DDL statements to describe how to read and write data to the table and do not specify a `ROW FORMAT`, as in this example\. This omits listing the actual SerDe type and the native `LazySimpleSerDe` is used by default\.
 
 In general, Athena uses the `LazySimpleSerDe` if you do not specify a `ROW FORMAT`, or if you specify `ROW FORMAT DELIMITED`\.
@@ -19,7 +18,6 @@ ESCAPED BY '\\'
 COLLECTION ITEMS TERMINATED BY '|'
 MAP KEYS TERMINATED BY ':'
 ```
-
 + Explicitly specify the type of SerDe Athena should use when it reads and writes data to the table\. Also, specify additional properties in `SERDEPROPERTIES`, as in this example\.
 
 ```
