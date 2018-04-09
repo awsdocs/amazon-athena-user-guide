@@ -6,7 +6,7 @@ Each query that you run has:
 
 + A results file stored automatically in a CSV format \(\*\.csv\), and
 
-+ A metadata file \(`*.csv.metadata`\) that includes header information, such as column type\.
++ An Athena metadata file (`*.csv.metadata`).
 
 If necessary, you can access the result files to work with them\. Athena stores query results in this Amazon S3 bucket by default: `aws-athena-query-results-<ACCOUNTID>-<REGION>`\.
 
