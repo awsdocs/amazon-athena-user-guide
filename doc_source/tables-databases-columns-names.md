@@ -8,7 +8,7 @@ If you are interacting with Apache Spark, then your table names and table column
 
 Queries with mixedCase column names, such as `profileURI`, or upper case column names do not work\.
 
-Similarly, partition names (and the underlying S3 keys) must also be lower case.
+Similarly, partition names and their underlying Amazon S3 keys must also be lower case.
 
 ## Athena table, database, and column names allow only underscore special characters<a name="ate-table-database-and-column-names-allow-only-underscore-special-characters"></a>
 
