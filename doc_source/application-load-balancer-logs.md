@@ -69,7 +69,7 @@ We recommand that you automate the partitions creation using a daily [CloudWatch
 
 ## Example Queries for ALB logs<a name="query-alb-logs-examples"></a>
 
-The following query counts the number of HTTP GET requests received by the load balancer grouped by the client IP address\.
+The following query counts the number of HTTP GET requests received by the load balancer grouped by the client IP address:
 
 ```
 SELECT COUNT(request_verb) AS
@@ -81,7 +81,7 @@ GROUP BY request_verb, client_ip
 LIMIT 100;
 ```
 
-Another query shows the URLs visited by Safari browser users\.
+Another query shows the URLs visited by Safari browser users:
 
 ```
 SELECT request_url
@@ -90,4 +90,15 @@ WHERE user_agent LIKE '%Safari%'
 LIMIT 10;
 ```
 
+Query all records in a time range (an example for working with time and date):
 
+```
+SELECT *
+FROM alb_logs
+WHERE parse_datetime(time,'yyyy-MM-dd''T''HH:mm:ss.SSSSSSZ')
+    BETWEEN parse_datetime('2018-04-15 12:30:00','yyyy-MM-dd HH:mm:ss')
+        AND parse_datetime('2018-04-15 13:00:00','yyyy-MM-dd HH:mm:ss')
+        AND year=2018
+        AND month=04
+        AND day=15; 
+```
