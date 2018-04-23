@@ -2,75 +2,39 @@
 
 You can use a JDBC connection to connect Athena to business intelligence tools, such as SQL Workbench\. To do this, download, install, and configure the Athena JDBC driver, using the following link on Amazon S3\.
 
-## Download the JDBC Driver<a name="download-jdbc-ate-version"></a>
+## Migration from Previous Version of the JDBC Driver<a name="migration-from-previous-jdbc-driver"></a>
 
-1. Download the driver \(JDBC 4\.1 and Java 8 compatible\) from this location in Amazon S3 [https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar](https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar)\.
+The current JDBC driver version 2\.x is *not* a drop\-in replacement of the previous version of the JDBC driver, and is *not* backwards compatible with the JDBC driver version 1\.x that you used before\. 
 
-1. Use the AWS CLI with the following command: 
+**Important**  
+The latest version of the JDBC driver is 2\.0\.2\. If you are migrating from a 1\.x driver to a 2\.x driver, you will need to migrate your existing configurations to the new configuration\. We highly recommend that you migrate to the current driver\.   
+For information about the changes introduced in the new version of the driver, the version differences, and examples, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\.   
+For information about the previous version of the JDBC driver, see [Using Athena with the Previous Version of the JDBC Driver](connect-with-previous-jdbc.md)\.
 
-   ```
-   aws s3 cp s3://athena-downloads/drivers/AthenaJDBC41-1.1.0.jar [local_directory]
-   ```
+## Links for Downloading the JDBC Driver<a name="download-the-jdbc-driver"></a>
 
-## Specify the Connection String<a name="ate-jdbc-connection-string"></a>
+The JDBC driver complies with the JDBC API 4\.1 and 4\.2 data standards\. 
 
-To specify the JDBC driver connection URL in your custom application, use the string in this format:
+**Note**  
+The JDBC driver version 2\.x is not available for JDK 6\.0 \(Java 1\.6\), and is not compatible with JDBC API version 4\.0\. 
 
-```
-jdbc:awsathena://athena.{REGION}.amazonaws.com:443
-```
+Before downloading the driver, check which version of Java Runtime Environment \(JRE\) you use\. The JRE version depends on the version of the JDBC API you are using with the driver\. If you are not sure, download the latest version of the driver\. 
 
-where `{REGION}` is a region identifier, such as `us-west-2`\. For information on Athena regions see [Regions](http://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.
+Download the driver that matches your version of the JDK and the JDBC data standards\.
++ The [AthenaJDBC41\-2\.0\.2\.jar](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/AthenaJDBC41_2.0.2.jar) is compatible with JDBC 4\.1 and requires JDK 7\.0 or later\.
++ The [AthenaJDBC42\-2\.0\.2\.jar](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/AthenaJDBC42_2.0.2.jar) is compatible with JDBC 4\.2 and requires JDK 8\.0 or later\.
 
-## Specify the JDBC Driver Class Name<a name="ate-jdbc-class-name"></a>
+## JDBC Driver Release Notes, License Agreement, and Notices<a name="atelong-jdbc-driver-license-agreement"></a>
 
-To use the driver in custom applications, set up your Java class path to the location of the JAR file that you downloaded from Amazon S3 [https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar](https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar) in the previous section\. This makes the classes within the JAR available for use\. The main JDBC driver class is `com.amazonaws.athena.jdbc.AthenaDriver`\.
+After you download the version you need, read the release notes, and review the License Agreement and Notices\. 
++ [Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/release-notes.txt)
++ [License Agreement](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/LICENSE.txt)
++ [Notices](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/NOTICES.txt)
 
-## Provide the JDBC Driver Credentials<a name="ate-jdbc-credentials"></a>
+Now you are ready to migrate from the previous version and install and configure this version of the JDBC driver\. 
 
-To gain access to AWS services and resources, such as Athena and the Amazon S3 buckets, provide JDBC driver credentials to your application\.
+## JDBC Driver Documentation<a name="documentation-jdbc"></a>
 
- To provide credentials in the Java code for your application:
+To install and configure the JDBC driver version 2\.x, see the [JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\.
 
-1. Use a class which implements the [http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/AWSCredentialsProvider.html](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/AWSCredentialsProvider.html)\. 
-
-1. Set the JDBC property, `aws_credentials_provider_class`, equal to the class name, and include it in your classpath\.
-
-1. To include constructor parameters, set the JDBC property `aws_credentials_provider_arguments` as specified in the following section about configuration options\.
-
-Another method to supply credentials to BI tools, such as SQL Workbench, is to supply the credentials used for the JDBC as AWS access key and AWS secret key for the JDBC properties for user and password, respectively\.
-
-Users who connect through the JDBC driver and have custom access policies attached to their profiles need permissions for policy actions in addition to those in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
-
-### Policies<a name="jdbc-ate-version-policies"></a>
-
-You must allow JDBC users to perform a set of policy\-specific actions\. These actions are not part of the Athena API\. If the following actions are not allowed, users will be unable to see databases and tables:
-+ `athena:GetCatalogs`
-+ `athena:GetExecutionEngine`
-+ `athena:GetExecutionEngines`
-+ `athena:GetNamespace`
-+ `athena:GetNamespaces`
-+ `athena:GetTable`
-+ `athena:GetTables`
-
-## Configure the JDBC Driver Options<a name="ate-jdbc-driver-options"></a>
-
-You can configure the following options for the JDBC driver\. With this version of the driver, you can also pass parameters using the standard JDBC URL syntax, for example: `jdbc:awsathena://athena.us-west-1.amazonaws.com:443?max_error_retries=20&connection_timeout=20000`\.
-
-
-**Options for the JDBC Driver**  
-
-| Property Name | Description | Default Value | Is Required | 
-| --- | --- | --- | --- | 
-| s3\_staging\_dir | The S3 location to which your query output is written, for example s3://query\-results\-bucket/folder/, which is established under Settings in the Athena Console, [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\. The JDBC driver then asks Athena to read the results and provide rows of data back to the user\. | N/A | Yes | 
-| query\_results\_encryption\_option | The encryption method to use for the directory specified by s3\_staging\_dir\. If not specified, the location is not encrypted\. Valid values are SSE\_S3, SSE\_KMS, and CSE\_KMS\. | N/A | No | 
-| query\_results\_aws\_kms\_key |  The Key ID of the AWS customer master key \(CMK\) to use if` query_results_encryption_option` specifies `SSE-KMS` or `CSE-KMS`\. For example, `123abcde-4e56-56f7-g890-1234h5678i9j`\.  | N/A | No | 
-| aws\_credentials\_provider\_class | The credentials provider class name, which implements the AWSCredentialsProvider interface\. | N/A | No | 
-| aws\_credentials\_provider\_arguments | Arguments for the credentials provider constructor as comma\-separated values\. | N/A | No | 
-| max\_error\_retries |  The maximum number of retries that the JDBC client attempts to make a request to Athena\.  | 10 | No | 
-| connection\_timeout | The maximum amount of time, in milliseconds, to make a successful connection to Athena before an attempt is terminated\. | 10,000 | No | 
-| socket\_timeout | The maximum amount of time, in milliseconds, to wait for a socket in order to send data to Athena\. | 10,000 | No | 
-| retry\_base\_delay | Minimum delay amount, in milliseconds, between retrying attempts to connect Athena\. | 100 | No | 
-| retry\_max\_backoff\_time | Maximum delay amount, in milliseconds, between retrying attempts to connect to Athena\. | 1000 | No | 
-| log\_path | Local path of the Athena JDBC driver logs\. If no log path is provided, then no log files are created\. | N/A | No | 
-| log\_level | Log level of the Athena JDBC driver logs\. Valid values: INFO, DEBUG, WARN, ERROR, ALL, OFF, FATAL, TRACE\. | N/A | No | 
+To migrate from the previous version of the JDBC driver to this driver, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\.

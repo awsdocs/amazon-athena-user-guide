@@ -11,7 +11,7 @@ The `data_type` value in the `col_name` field of `CREATE TABLE` can be any of th
 **primitive\_type**  
   + TINYINT
   + SMALLINT
-  + INT
+  + INT\. Athena combines two different implementations of the Integer data type\. In Data Definition Language \(DDL\) queries, Athena uses the INT data type\. In all other queries, Athena uses the INTEGER data type\. In the JDBC driver, INTEGER is returned, to ensure compatibility with the business analytics applications\.
   + BIGINT
   + BOOLEAN
   + DOUBLE
@@ -31,3 +31,5 @@ The `data_type` value in the `col_name` field of `CREATE TABLE` can be any of th
 +   
 **struct\_type**  
   + STRUCT < col\_name : data\_type \[COMMENT col\_comment\] \[, \.\.\.\] >
+
+For information about supported data type mappings between types in Athena, the JDBC driver, and Java data types, see the *"Data Types"* section in the [JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\. 

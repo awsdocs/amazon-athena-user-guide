@@ -17,7 +17,7 @@ For more information, see [Configuring Encryption Options](encryption.md)\.
 ## Improvements<a name="release-note-2017-04-04-improvements"></a>
 + Better JDBC query performance with page\-size improvements, returning 1,000 rows instead of 100\.
 + Added ability to cancel a query using the JDBC driver interface\.
-+ Added ability to specify JDBC options in the JDBC connection URL\. For more information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.
++ Added ability to specify JDBC options in the JDBC connection URL\. For more information, see [Using Athena with the Previous Version of the JDBC Driver](connect-with-previous-jdbc.md) for the previous version of the driver, and [Connect with the JDBC](connect-with-jdbc.md), for the most current version\.
 + Added PROXY setting in the driver, which can now be set using [ClientConfiguration](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/ClientConfiguration.html) in the AWS SDK for Java\.
 
 ## Bug Fixes<a name="release-note-2017-04-04-bug-fixes"></a>

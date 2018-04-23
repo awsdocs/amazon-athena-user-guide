@@ -16,6 +16,7 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What is Amazon Athena?](what-is.md)
 + [Release Notes](release-notes.md)
+   + [April 19, 2018](release-note-2018-04-19.md)
    + [April 6, 2018](release-note-2018-04-06.md)
    + [March 15, 2018](release-note-2018-03-15.md)
    + [February 2, 2018](release-note-2018-02-12.md)
@@ -125,8 +126,9 @@ Amazon's trademarks and trade dress may not be used in
       + [SELECT](select.md)
    + [Unsupported DDL](unsupported-ddl.md)
    + [Limitations](other-notable-limitations.md)
-+ [Code Samples and Service Limits](reference.md)
++ [Code Samples, Service Limits, and Previous JDBC Driver](reference.md)
    + [Code Samples](code-samples.md)
+   + [Using the Previous Version of the JDBC Driver](connect-with-previous-jdbc.md)
    + [Service Limits](service-limits.md)
 + [Document History](DocHistory.md)
 + [AWS Glossary](glossary.md)
