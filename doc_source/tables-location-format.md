@@ -22,7 +22,7 @@ Do not use any of the following items in file locations\.
 s3://path_to_bucket
 s3://path_to_bucket/*
 s3://path_to_bucket/mySpecialFile.dat
-s3://bucketname/keyname/filename.csv
+s3://bucketname/prefix/filename.csv
 s3://test-bucket.s3.amazon.com
 arn:aws:s3:::bucketname/prefix
 ```

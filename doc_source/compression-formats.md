@@ -1,7 +1,9 @@
 # Compression Formats<a name="compression-formats"></a>
 
 Athena supports the following compression formats:
-+ SNAPPY\. This is the default compression format for files in the Parquet format\. For Amazon Kinesis Firehose logs, SNAPPY compression is not supported\. Use GZIP instead\.
-+ ZLIB\. This is the default compression format for files in the ORC format\.
++ SNAPPY \(Default compression format for files in the Parquet format\) 
++ ZLIB\. \(Default compression format for files in the ORC format\)
 + GZIP
 + LZO
+**Note**  
+Use the GZIP compression in Athena for querying Amazon Kinesis Firehose logs\. Athena and Amazon Kinesis Firehose each support different versions of SNAPPY, so GZIP is the only compatible format\. 
