@@ -134,7 +134,7 @@ public class StartQueryExample
       while (isQueryStillRunning) {
           getQueryExecutionResult = client.getQueryExecution(getQueryExecutionRequest);
           String queryState = getQueryExecutionResult.getQueryExecution().getStatus().getState();
-          if (queryState.equals(QueryExecutionState.FAILED.toString()) {
+          if (queryState.equals(QueryExecutionState.FAILED.toString())) {
               throw new RuntimeException("Query Failed to run with Error Message: " + getQueryExecutionResult.getQueryExecution().getStatus().getStateChangeReason());
           }
           else if (queryState.equals(QueryExecutionState.CANCELLED.toString())) {
