@@ -15,7 +15,8 @@ You can delete metadata files \(`*.csv.metadata`\) without causing errors, but i
 
 Query results are saved in an Amazon S3 location based on the name of the query and the date the query ran, as follows:
 
- `{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}/` 
+ `{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}.csv` 
+ `{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}.csv.metadata` 
 
 In this notation:
 +  `QueryLocation` is the base location for all query results\. To view or change this location, choose **Settings**\. You can enter a new value for **Query result location** at any time\. You can also choose to encrypt query results in Amazon S3\. For more information, see [Configuring Encryption Options](encryption.md)\.
