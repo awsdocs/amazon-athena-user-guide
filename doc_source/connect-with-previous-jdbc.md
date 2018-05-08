@@ -110,7 +110,7 @@ In this case, the file `/Users/myUser/.athenaCredentials` should contain the fol
 accessKey = ACCESSKEY
 secretKey = SECRETKEY
 ```
-You replace the right part of the assignments with your account's AWS access and secret keys\.
+Replace the right part of the assignments with your account's AWS access and secret keys\.
 
 **Example Example: Using a Credentials Provider with Multiple Arguments**  
 This example shows an example credentials provider, `CustomSessionsCredentialsProvider`, that uses an access and secret key in addition to a session token\. `CustomSessionsCredentialsProvider` is shown for example only and is not included in the driver\. The signature of the class looks like the following:  
@@ -130,3 +130,14 @@ Properties myProps = new Properties();
          myProps.put("aws_credentials_provider_arguments",providerArgs);
 ```
  If you use the [http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html), you don't need to supply any credential provider arguments because they are provided using the Amazon EC2 instance profile for the instance on which you are running your application\. You would still set the `aws_credentials_provider_class` property to this class name, however\.
+
+## Policies for the JDBC driver earlier than version 1\.1\.0<a name="jdbc-version-before-1.0.1."></a>
+
+Use these deprecated actions in policies **only** with JDBC drivers **earlier than version 1\.1\.0**\. If you are upgrading the JDBC driver, replace policy statements that allow or deny deprecated actions with the appropriate API actions as listed or errors will occur:
+
+
+| Deprecated Policy\-Specific Action | Corresponding Athena API Action | 
+| --- |--- |
+|  <pre>athena:RunQuery</pre>  |  <pre>athena:StartQueryExecution</pre>  | 
+|  <pre>athena:CancelQueryExecution</pre>  |  <pre>athena:StopQueryExecution</pre>  | 
+|  <pre>athena:GetQueryExecutions</pre>  |  <pre>athena:ListQueryExecutions</pre>  | 

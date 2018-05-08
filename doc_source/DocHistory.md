@@ -2,11 +2,12 @@
 
 This documentation is associated with the May, 18, 2017 version of Amazon Athena\.
 
- **Latest documentation update: April 19, 2018\.** 
+ **Latest documentation update: May 8, 2018\.** 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added query tabs, and an ability to configure auto\-complete in the Query Editor\.  |  Added query tabs, and an ability to configure auto\-complete in the Query Editor\. For information, see [Using the Console](accessing-Athena.md#console-Athena)\.  | May 8, 2018 | 
 | Released the JDBC driver version 2\.0\.2\. |  Released the new version of the JDBC driver \(version 2\.0\.2\)\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.  | April 19, 2018 | 
 |  Added auto\-complete for typing queries in the Athena console\.  |  Added auto\-complete for typing queries in the Athena console\.  | April 6, 2018 | 
 |   Added an ability to create Athena tables for CloudTrail log files directly from the CloudTrail console\.   |   Added an ability to automatically create Athena tables for CloudTrail log files directly from the CloudTrail console\. For information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](cloudtrail-logs.md#create-cloudtrail-table-ct)\.  | March 15, 2018 | 

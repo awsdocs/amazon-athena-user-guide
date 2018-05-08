@@ -36,6 +36,7 @@ Amazon's trademarks and trade dress may not be used in
    + [February 20, 2017](release-note-2017-02-20.md)
 + [Setting Up](setting-up.md)
 + [Getting Started](getting-started.md)
++ [Accessing Amazon Athena](accessing-Athena.md)
 + [Integration with AWS Glue](glue-athena.md)
    + [Upgrading to the AWS Glue Data Catalog Step-by-Step](glue-upgrade.md)
    + [FAQ: Upgrading to the AWS Glue Data Catalog](glue-faq.md)

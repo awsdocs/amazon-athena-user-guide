@@ -150,6 +150,6 @@ To explore the CloudTrail logs data, use these tips:
   LIMIT 100;
   ```
 + Modify the earlier query to further explore your data\.
-+ To improve performance and prevent long\-running queries, include the `LIMIT` clause to return a specified subset of rows\.
++ To improve performance, include the `LIMIT` clause to return a specified subset of rows\.
 
 For more information, see the AWS Big Data blog post [Analyze Security, Compliance, and Operational Activity Using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.
