@@ -9,7 +9,7 @@ With Athena, there are no versions to manage\. We have transparently upgraded th
 With the upgrade, you can now use [Presto 0\.172 Functions and Operators](https://prestodb.io/docs/0.172/functions.html), including [Presto 0\.172 Lambda Expressions](https://prestodb.io/docs/0.172/functions/lambda.html) in Athena\. 
 
 Major updates for this release, including the community\-contributed fixes, include:
-+ Support for ignoring headers\. You can use the `skip.header.line.count` property when defining tables, to allow Athena to ignore headers\.
++ Support for ignoring headers\. You can use the `skip.header.line.count` property when defining tables, to allow Athena to ignore headers\. This is currently supported for queries that use the OpenCSV Serde, and not for Grok or OpenCSV SerDes.
 + Support for the `CHAR(n)` data type in `STRING` functions\. The range for `CHAR(n)` is `[1.255]`, while the range for `VARCHAR(n)` is `[1,65535]`\. 
 + Support for correlated subqueries\.
 + Support for Presto Lambda expressions and functions\.
