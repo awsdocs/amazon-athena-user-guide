@@ -131,9 +131,9 @@ Properties myProps = new Properties();
 ```
  If you use the [http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html), you don't need to supply any credential provider arguments because they are provided using the Amazon EC2 instance profile for the instance on which you are running your application\. You would still set the `aws_credentials_provider_class` property to this class name, however\.
 
-## Policies for the JDBC driver earlier than version 1\.1\.0<a name="jdbc-version-before-1.0.1."></a>
+## Policies for the JDBC Driver Earlier than Version 1\.1\.0<a name="jdbc-version-before-1.0.1."></a>
 
-Use these deprecated actions in policies **only** with JDBC drivers **earlier than version 1\.1\.0**\. If you are upgrading the JDBC driver, replace policy statements that allow or deny deprecated actions with the appropriate API actions as listed or errors will occur:
+Use these deprecated actions in policies **only** with JDBC drivers **earlier than version 1\.1\.0**\. If you are upgrading the JDBC driver, replace policy statements that allow or deny deprecated actions with the appropriate API actions as listed or errors will occur\.
 
 
 | Deprecated Policy\-Specific Action | Corresponding Athena API Action | 
