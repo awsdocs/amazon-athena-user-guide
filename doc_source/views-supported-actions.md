@@ -21,4 +21,4 @@ Athena detects stale views and displays an error message in such cases\. A stale
 
 You can create and run nested views as long as the query behind the nested view is valid and the tables and databases exist\.
 
-You cannot use views in Athena for data access classification\. 
+You cannot use views to manage access control on data in Amazon S3\. To query a view, you need permissions to access the data stored in Amazon S3\. For more information, see [Amazon S3 Permissions](access.md#s3-permissions)\.
