@@ -3,6 +3,10 @@
 Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 **Contents**
++ [June 5, 2018](release-note-2018-06-05.md)
+  + [Support for Views](release-note-2018-06-05.md#support-for-views)
+  + [Improvements and Updates to Error Messages](release-note-2018-06-05.md#improvements)
+  + [Bug Fixes](release-note-2018-06-05.md#bug-fixes)
 + [May 17, 2018](release-note-2018-05-17.md)
 + [April 19, 2018](release-note-2018-04-19.md)
 + [April 6, 2018](release-note-2018-04-06.md)

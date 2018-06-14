@@ -25,7 +25,6 @@ The following native Hive DDLs are not supported by Athena:
 + CREATE ROLE
 + CREATE TABLE `table_name` LIKE `existing_table_name` 
 + CREATE TEMPORARY MACRO
-+ CREATE VIEW
 + DELETE FROM
 + DESCRIBE DATABASE
 + DFS

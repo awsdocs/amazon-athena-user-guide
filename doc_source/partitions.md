@@ -2,7 +2,9 @@
 
 By partitioning your data, you can restrict the amount of data scanned by each query, thus improving performance and reducing cost\. Athena leverages Hive for [partitioning](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterPartition) data\. You can partition your data by any key\. A common practice is to partition the data based on time, often leading to a multi\-level partitioning scheme\. For example, a customer who has data coming in every hour might decide to partition by year, month, date, and hour\. Another customer, who has data coming from many different sources but loaded one time per day, may partition by a data source identifier and date\.
 
-To create a table with partitions, you must define it during the CREATE TABLE statement\. Use PARTITIONED BY to define the keys by which to partition data\. There are two scenarios discussed below:
+If you issue queries against Amazon S3 buckets with a large number of objects and the data is not partitioned, such queries may affect the Get request rate limits in Amazon S3 and lead to Amazon S3 exceptions\. To prevent errors, partition your data\. Additionally, consider tuning your Amazon S3 request rates\. If your workload in an Amazon S3 bucket routinely exceeds 100 PUT/LIST/DELETE requests per second, or more than 300 GET requests per second, to ensure the best performance and scalability, follow the guidance for tuning performance\. For more information, see [Request Rate and Performance Considerations](https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html)\.
+
+To create a table with partitions, you must define it during the `CREATE TABLE `statement\. Use `PARTITIONED BY` to define the keys by which to partition data\. There are two scenarios discussed below:
 
 1. Data is already partitioned, stored on Amazon S3, and you need to access the data on Athena\.
 

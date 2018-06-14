@@ -41,7 +41,7 @@ Specifies the name for each column to be created, along with the column's data t
   + STRING
   + TIMESTAMP
   + DECIMAL \[ \(precision, scale\) \]
-  + DATE \(not supported for PARQUET file\_format\)
+  + DATE \(not supported for Parquet file\_format\)
   + CHAR\. Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
   + VARCHAR\. Variable length character data, with a specified length between 1 and 65535, such as `varchar(10)`\. For more information, see [VARCHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-varchar)\. 
 +   

@@ -106,7 +106,9 @@ CSV files occasionally have quotes around the data values intended for each colu
 
 If you run a query in Athena against a table created from a CSV file with quoted data values, update the table definition in AWS Glue so that it specifies the right SerDe and SerDe properties\. This allows the table definition to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv.md)\.
 
-In this case, you need to change the `serializationLib` property under field in the SerDeInfo field in the table to `org.apache.hadoop.hive.serde2.OpenCSVSerde` and enter appropriate values for `separatorChar`, `quoteChar`, and `escapeChar`\.
+In this case, make the following changes:
++ Change the `serializationLib` property under field in the `SerDeInfo` field in the table to `org.apache.hadoop.hive.serde2.OpenCSVSerde`\.
++ Enter appropriate values for `separatorChar`, `quoteChar`, and `escapeChar`\. The `separatorChar` value is a comma, the `quoteChar` value is double quotes \(``\), and the `escapeChar` value is the backslash \(\\\)\.
 
 For example, for a CSV file with records such as the following:
 
@@ -114,8 +116,6 @@ For example, for a CSV file with records such as the following:
 "John","Doe","123-555-1231","John said \"hello\""
 "Jane","Doe","123-555-9876","Jane said \"hello\""
 ```
-
-The `separatorChar``value is a comma, the ``quoteChar` value is double quotes, and the `escapeChar` value is the backslash\.
 
 You can use the AWS Glue console to edit table details as shown in this example:
 

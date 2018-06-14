@@ -17,36 +17,37 @@ Before you begin, [enable access logging](http://docs.aws.amazon.com/elasticload
    CREATE EXTERNAL TABLE IF NOT EXISTS alb_logs (
     type string,
     time string,
+    actions_executed string,
     elb string,
+    elb_status_code string,
     client_ip string,
     client_port int,
-    target_ip string,
-    target_port int,
-    request_processing_time double,
-    target_processing_time double,
-    response_processing_time double,
-    elb_status_code string,
-    target_status_code string,
-    received_bytes bigint,
-    sent_bytes bigint,
-    request_verb string,
+    chosen_cert_arn string, 
+    domain_name string,
+    matched_rule_priority string,
     request_url string,
     request_proto string,
+    request_verb string,
+    request_creation_time string,
+    request_processing_time double,
+    response_processing_time double,
+    target_processing_time double,
+    target_status_code string,
+    target_ip string,
+    target_port int,
+    received_bytes bigint,
+    sent_bytes bigint,
     user_agent string,
     ssl_cipher string,
     ssl_protocol string,
     target_group_arn string,
-    trace_id string,
-    domain_name string,
-    chosen_cert_arn string,
-    matched_rule_priority string,
-    request_creation_time string,
-    actions_executed string
+    trace_id string
     )
    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
    WITH SERDEPROPERTIES (
    'serialization.format' = '1',
-   'input.regex' = '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) ([^ ]*) (- |[^ ]*)\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) (\"[^\"]*\") (\"[^\"]*\") (\"[^\"]*\") ([-.0-9]*) ([^ ]*) (\"[^\"]*\")' )
+   'input.regex' = 
+   '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) ([^ ]*) (- |[^ ]*)\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) (\"[^\"]*\") (\"[^\"]*\") (\"[^\"]*\") ([-.0-9]*) ([^ ]*) (\"[^\"]*\")' )
    LOCATION 's3://your-alb-logs-directory/AWSLogs/elasticloadbalancing/region';
    ```
 
