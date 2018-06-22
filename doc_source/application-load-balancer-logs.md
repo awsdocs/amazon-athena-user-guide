@@ -75,3 +75,15 @@ FROM alb_logs
 WHERE user_agent LIKE '%Safari%'
 LIMIT 10;
 ```
+
+The following example shows how to parse the logs by `datetime`:
+
+```
+SELECT client_ip, sum(received_bytes)
+FROM alb_logs_config_us
+WHERE from_iso8601_date(time)
+BETWEEN parse_datetime('2018-05-30:12:00:00','%Y-%m-%dT%H:%i:%S.%fZ')
+AND
+parse_datetime('2018-05-31:00:00:00','%Y-%m-%dT%H:%i:%S.%fZ')
+GROUP BY client_ip;
+```
