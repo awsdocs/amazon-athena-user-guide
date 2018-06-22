@@ -7,7 +7,7 @@ This documentation is associated with the May, 18, 2017 version of Amazon Athena
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
-| Added support for views\. Added guidelines for schema updates in various data formats\.  |  Added support for views\. For information, see [Views](views.md)\. Updated this guide with guidance on handling schema updates for various data formats\. For information, see [Handling Schema Updates](handling-schema-updates-chapter.md)\.  | June 5, 2018 | 
+| Added support for views\. Added guidelines for schema manipulations for various data storage formats\.  |  Added support for views\. For information, see [Views](views.md)\. Updated this guide with guidance on handling schema updates for various data storage formats\. For information, see [Handling Schema Updates](handling-schema-updates-chapter.md)\.  | June 5, 2018 | 
 |  Increased default query concurrency limits from five to twenty\. |  You can submit and run up to twenty `DDL` queries and twenty `SELECT` queries at a time\. For information, see [Service Limits](service-limits.md)\.   | May 17, 2018 | 
 | Added query tabs, and an ability to configure auto\-complete in the Query Editor\.  |  Added query tabs, and an ability to configure auto\-complete in the Query Editor\. For information, see [Using the Console](accessing-Athena.md#console-Athena)\.  | May 8, 2018 | 
 | Released the JDBC driver version 2\.0\.2\. |  Released the new version of the JDBC driver \(version 2\.0\.2\)\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.  | April 19, 2018 | 

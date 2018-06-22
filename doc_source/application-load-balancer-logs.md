@@ -10,44 +10,44 @@ Before you begin, [enable access logging](http://docs.aws.amazon.com/elasticload
 
 1. Copy and paste the following DDL statement into the Athena console, and modify values in `LOCATION 's3://your_log_bucket/prefix/AWSLogs/your_ID/elasticloadbalancing/region'`\. For a full list of fields present in the ALB logs, see [Access Log Entries](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format)\. 
 
-   Create the `alb_logs` table as follows\.
+   Create the `alb_logs` table as follows:
 
    ```
     
-   CREATE EXTERNAL TABLE IF NOT EXISTS alb_logs (
-    type string,
-    time string,
-    actions_executed string,
-    elb string,
-    elb_status_code string,
-    client_ip string,
-    client_port int,
-    chosen_cert_arn string, 
-    domain_name string,
-    matched_rule_priority string,
-    request_url string,
-    request_proto string,
-    request_verb string,
-    request_creation_time string,
-    request_processing_time double,
-    response_processing_time double,
-    target_processing_time double,
-    target_status_code string,
-    target_ip string,
-    target_port int,
-    received_bytes bigint,
-    sent_bytes bigint,
-    user_agent string,
-    ssl_cipher string,
-    ssl_protocol string,
-    target_group_arn string,
-    trace_id string
+   CREATE EXTERNAL TABLE IF NOT EXISTS alb_logs (  
+   type string,  
+   time string,  
+   elb string,  
+   client_ip string,  
+   client_port int,  
+   target_ip string,  
+   target_port int,  
+   request_processing_time double,  
+   target_processing_time double,  
+   response_processing_time double,  
+   elb_status_code string,  
+   target_status_code string,  
+   received_bytes bigint,  
+   sent_bytes bigint,  
+   request_verb string,  
+   request_url string,  
+   request_proto string, 
+   user_agent string,  
+   ssl_cipher string,  
+   ssl_protocol string,  
+   target_group_arn string,  
+   trace_id string,  
+   domain_name string,  
+   chosen_cert_arn string, 
+   matched_rule_priority string,  
+   request_creation_time string, 
+   actions_executed string
     )
    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
    WITH SERDEPROPERTIES (
    'serialization.format' = '1',
-   'input.regex' = 
-   '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) ([^ ]*) (- |[^ ]*)\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) (\"[^\"]*\") (\"[^\"]*\") (\"[^\"]*\") ([-.0-9]*) ([^ ]*) (\"[^\"]*\")' )
+   'input.regex' =
+   '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) ([^ ]*) (- |[^ ]*)\" \"([^\"]*)\" ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" ([-.0-9]*) ([^ ]*) \"([^\"]*)\"' ) 
    LOCATION 's3://your-alb-logs-directory/AWSLogs/elasticloadbalancing/region';
    ```
 
