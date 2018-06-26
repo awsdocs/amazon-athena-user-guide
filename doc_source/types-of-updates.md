@@ -52,9 +52,9 @@ In the following sections, we review how updates to these tables affect Athena q
 
 Adding columns is one of the most frequent schema changes\. For example, you may add a new column to enrich the table with new data\. Or, you may add a new column if the source for an existing column has changed, and keep the previous version of this column, to adjust applications that depend on them\.
 
-To add columns at the beginning or in the middle of the table, and continue running queries, use AVRO, JSON, and Parquet and ORC if they are read by name\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\.
+To add columns at the beginning or in the middle of the table, and continue running queries against existing tables, use AVRO, JSON, and Parquet and ORC if their SerDe property is set to read by name\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\.
 
-Do not use CSV and TSV, as these formats depend on ordering\. Adding a column at the beginning or in the middle of the table in CSV and TSV will lead to schema mismatch errors in cases when the schema of partitions changes\.
+Do not add columns at the beginning or in the middle of the table in CSV and TSV, as these formats depend on ordering\. Adding a column in such cases will lead to schema mismatch errors when the schema of partitions changes\.
 
  The following example shows adding a column to a JSON table in the middle of the table:
 
@@ -119,7 +119,7 @@ LOCATION 's3://schema_updates/orders_csv/';
 
 You may need to remove columns from tables if they no longer contain data, or to restrict access to the data in them\.
 + You can remove columns from tables in JSON, Avro, and in Parquet and ORC if they are read by name\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\. 
-+ You cannot remove columns from tables in CSV and TSV\.
++ We do not recommend removing columns from tables in CSV and TSV if you want to retain the tables you have already created in Athena\. Removing a column breaks the schema and requires that you recreate the table without the removed column\.
 
 In this example, remove a column ``totalprice`` from a table in Parquet and run a query\. In Athena, Parquet is read by name by default, this is why we omit the SERDEPROPERTIES configuration that specifies reading by name\. Notice that the following query succeeds, even though you changed the schema:
 
