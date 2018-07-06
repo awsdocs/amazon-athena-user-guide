@@ -5,22 +5,31 @@ Athena stores query results in Amazon S3\.
 Each query that you run has:
 + A results file stored automatically in a CSV format \(\*\.csv\), and
 + An Athena metadata file \(`*.csv.metadata`\)\.
-
-If necessary, you can access the result files to work with them\. Athena stores query results in this Amazon S3 bucket by default: `aws-athena-query-results-<ACCOUNTID>-<REGION>`\.
-
-To view or change the default location for saving query results, choose **Settings** in the upper right pane\.
-
 **Note**  
 You can delete metadata files \(`*.csv.metadata`\) without causing errors, but important information about the query is lost\.
 
+If necessary, you can access the result files to work with them\. 
+
+Athena stores query results in this Amazon S3 bucket by default:
+
+```
+aws-athena-query-results-<ACCOUNTID>-<REGION>
+```
+
+To view or change the default location for saving query results, choose **Settings** in the upper right pane\.
+
 Query results are saved in an Amazon S3 location based on the name of the query and the date the query ran, as follows:
 
- `{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}.csv` 
+```
+{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}.csv
+```
 
- `{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}.csv.metadata` 
+```
+{QueryLocation}/{QueryName|Unsaved}/{yyyy}/{mm}/{dd}/{QueryID}.csv.metadata
+```
 
 In this notation:
-+  `QueryLocation` is the base location for all query results\. To view or change this location, choose **Settings**\. You can enter a new value for **Query result location** at any time\. You can also choose to encrypt query results in Amazon S3\. For more information, see [Configuring Encryption Options](encryption.md)\.
++  `QueryLocation` is the base location for all query results\. To view or change this location, choose **Settings** in the upper right pane\. You can enter a new value for **Query result location** at any time\. You can also choose to encrypt query results in Amazon S3\. For more information, see [Configuring Encryption Options](encryption.md)\.
 +  `QueryName` is the name of the query for which the results are saved\. If the query wasn't saved, `Unsaved` appears\. To see a list of queries and examine their SQL statements, choose **Saved queries**\.
 +  `yyyy/mm/dd/` is the date the query ran\.
 +  `QueryID` is the unique ID of the query\.
