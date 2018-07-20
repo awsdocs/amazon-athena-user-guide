@@ -52,6 +52,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Working with Source Data](work-with-data.md)
    + [Tables and Databases Creation Process in Athena](creating-tables.md)
    + [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)
+   + [Reserved Keywords](reserved-words.md)
    + [Table Location in Amazon S3](tables-location-format.md)
    + [Partitioning Data](partitions.md)
    + [Converting to Columnar Formats](convert-to-columnar.md)

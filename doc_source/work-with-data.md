@@ -9,6 +9,7 @@ To improve query performance and reduce costs, we recommend that you partition y
 **Topics**
 + [Tables and Databases Creation Process in Athena](creating-tables.md)
 + [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)
++ [Reserved Keywords](reserved-words.md)
 + [Table Location in Amazon S3](tables-location-format.md)
 + [Partitioning Data](partitions.md)
 + [Converting to Columnar Formats](convert-to-columnar.md)

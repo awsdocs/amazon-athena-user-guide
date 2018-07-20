@@ -56,7 +56,7 @@ Before you begin, [enable access logging](http://docs.aws.amazon.com/elasticload
 
 ## Example Queries for ALB logs<a name="query-alb-logs-examples"></a>
 
-The following query counts the number of HTTP GET requests received by the load balancer grouped by the client IP address\.
+The following query counts the number of HTTP GET requests received by the load balancer grouped by the client IP address:
 
 ```
 SELECT COUNT(request_verb) AS
@@ -68,7 +68,7 @@ GROUP BY request_verb, client_ip
 LIMIT 100;
 ```
 
-Another query shows the URLs visited by Safari browser users\.
+Another query shows the URLs visited by Safari browser users:
 
 ```
 SELECT request_url
@@ -82,9 +82,10 @@ The following example shows how to parse the logs by `datetime`:
 ```
 SELECT client_ip, sum(received_bytes)
 FROM alb_logs_config_us
-WHERE from_iso8601_date(time)
-BETWEEN parse_datetime('2018-05-30:12:00:00','%Y-%m-%dT%H:%i:%S.%fZ')
-AND
-parse_datetime('2018-05-31:00:00:00','%Y-%m-%dT%H:%i:%S.%fZ')
+WHERE parse_datetime(time,'yyyy-MM-DD''T''HH:mm:ss.SSSSSS''Z')
+  BETWEEN 
+    parse_datetime('2018-05-30-12:00:00','yyyy-MM-DD-HH:mm:ss')
+    AND
+    parse_datetime('2018-05-31-00:00:00','yyyy-MM-DD-HH:mm:ss')
 GROUP BY client_ip;
 ```
