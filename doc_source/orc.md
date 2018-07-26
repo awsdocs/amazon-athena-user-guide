@@ -134,7 +134,7 @@ LOCATION 's3://athena-examples-myregion/flight/orc/'
 tblproperties ("orc.compress"="ZLIB");
 ```
 
-Run the `MSCK REPAIR TABLE` statement on the table to refresh partition metadata\.
+Run the `MSCK REPAIR TABLE` statement on the table to refresh partition metadata:
 
 ```
 MSCK REPAIR TABLE flight_delays_orc;
@@ -144,7 +144,7 @@ Use this query to obtain the top 10 routes delayed by more than 1 hour:
 
 ```
 SELECT origin, dest, count(*) as delays
-FROM flight_delays_pq
+FROM flight_delays_orc
 WHERE depdelayminutes > 60
 GROUP BY origin, dest
 ORDER BY 3 DESC
