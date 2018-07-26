@@ -5,7 +5,7 @@ To view your recent query history, use **History**\. Athena retains query histor
 **Note**  
 Starting on December 1, 2017, Athena retains query history for 45 days\.
 
-To retain query history for a longer period, write a Java program using methods from Athena API and the AWS CLI to periodically retrieve the query history and save it to a data store:
+To retain query history for a longer period, write a program using methods from Athena API and the AWS CLI to periodically retrieve the query history and save it to a data store:
 
 1. Retrieve the query IDs with [ListQueryExecutions](http://docs.aws.amazon.com/athena/latest/APIReference/API_ListQueryExecutions.html)\.
 
