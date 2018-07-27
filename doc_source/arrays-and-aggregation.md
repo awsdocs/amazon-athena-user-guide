@@ -2,6 +2,9 @@
 + To add values within an array, use `SUM`, as in the following example\.
 + To aggregate multiple rows within an array, use `array_agg`\. For information, see [Creating Arrays from Subqueries](creating-arrays-from-subqueries.md)\.
 
+**Note**  
+`ORDER BY` is not supported for aggregation functions, for example, you cannot use it within `array_agg(x)`\.
+
 ```
 WITH
 dataset AS (

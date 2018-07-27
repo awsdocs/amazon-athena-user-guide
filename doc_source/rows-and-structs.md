@@ -1,18 +1,17 @@
 # Querying Arrays with Complex Types and Nested Structures<a name="rows-and-structs"></a>
 
-Your source data often contains arrays with complex data types and nested structures\. Examples in this section show how to change element's data type, locate elements within arrays, order values, and find keywords using Athena queries\.
+Your source data often contains arrays with complex data types and nested structures\. Examples in this section show how to change element's data type, locate elements within arrays, and find keywords using Athena queries\.
 +  [Creating a ROW](#creating-row) 
 +  [Changing Field Names in Arrays Using CAST](#changing-row-arrays-with-cast) 
 +  [Filtering Arrays Using the \. Notation](#filtering-with-dot) 
 +  [Filtering Arrays with Nested Values](#filtering-nested-with-dot) 
 +  [Filtering Arrays Using UNNEST](#filtering-with-unnest) 
-+  [Finding Keywords in Arrays](#filtering-with-regexp) 
-+  [Ordering Values in Arrays](#ordering-arrays-containing-rows) 
++  [Finding Keywords in Arrays Using `regexp_like`](#filtering-with-regexp) 
 
 ## Creating a `ROW`<a name="creating-row"></a>
 
 **Note**  
-The examples in this section use `ROW` as a means to create sample data to work with\. When you query tables within Athena, you do not need to create `ROW` data types, as they are already created from your data source by Presto\. When you use `CREATE_TABLE`, Athena defines a `STRUCT` in it, and relies on Presto for populating it with data\. In turn, Presto creates the `ROW` data type for you, for each row in the dataset\. The underlying `ROW` data type consists of named fields of any SQL data types supported in Presto\.
+The examples in this section use `ROW` as a means to create sample data to work with\. When you query tables within Athena, you do not need to create `ROW` data types, as they are already created from your data source\. When you use `CREATE_TABLE`, Athena defines a `STRUCT` in it, populates it with data, and reates the `ROW` data type for you, for each row in the dataset\. The underlying `ROW` data type consists of named fields of any supported SQL data types\.
 
 ```
 WITH dataset AS (
@@ -189,16 +188,18 @@ It returns:
 +------------------------+
 ```
 
-## Finding Keywords in Arrays<a name="filtering-with-regexp"></a>
+## Finding Keywords in Arrays Using `regexp_like`<a name="filtering-with-regexp"></a>
 
-To search a dataset for a keyword within an element inside an array, use the `regexp_like` function\.
+The following examples illustrate how to search a dataset for a keyword within an element inside an array, using the [regexp\_like](https://prestodb.io/docs/0.172/functions/regexp.html) function\. It takes as an input a regular expression pattern to evaluate, or a list of terms separated by a pipe \(\|\), evaluates the pattern, and determines if the specified string contains it\.
+
+The regular expression pattern needs to be contained within the string, and does not have to match it\. To match the entire string, enclose the pattern with ^ at the beginning of it, and $ at the end, such as `'^pattern$'`\.
 
 Consider an array of sites containing their hostname, and a `flaggedActivity` element\. This element includes an `ARRAY`, containing several `MAP` elements, each listing different popular keywords and their popularity count\. Assume you want to find a particular keyword inside a `MAP` in this array\.
 
-To search this dataset for sites with a specific keyword, use the `regexp_like` function\.
+To search this dataset for sites with a specific keyword, we use `regexp_like` instead of the similar SQL `LIKE` operator, because searching for a large number of keywords is more efficient with `regexp_like`\.
 
-**Note**  
-Instead of using the SQL `LIKE` operator, this query uses the `regexp_like` function\. This function takes as an input a regular expression pattern to evaluate, or a list of terms separated by `|`, known as an `OR` operator\. Additionally, searching for a large number of keywords is more efficient with the `regexp_like` function, because its performance exceeds that of the SQL `LIKE` operator\.
+**Example Example 1: Using `regexp_like`**  
+The query in this example uses the `regexp_like` function to search for terms `'politics|bigdata'`, found in values within arrays:  
 
 ```
 WITH dataset AS (
@@ -241,8 +242,7 @@ FROM sites, UNNEST(sites.flaggedActivity.flags) t(flags)
 WHERE regexp_like(flags['term'], 'politics|bigdata')
 GROUP BY (hostname)
 ```
-
-This query returns two sites:
+This query returns two sites:  
 
 ```
 +----------------+
@@ -254,9 +254,8 @@ This query returns two sites:
 +----------------+
 ```
 
-## Ordering Values in Arrays<a name="ordering-arrays-containing-rows"></a>
-
-To order values in an array, use `ORDER BY`\. The query in the following example adds up the total popularity scores for the sites matching your search terms with the `regexp_like` function, and then orders them from highest to lowest\.
+**Example Example 2: Using `regexp_like`**  
+The query in the following example adds up the total popularity scores for the sites matching your search terms with the `regexp_like` function, and then orders them from highest to lowest\.   
 
 ```
 WITH dataset AS (
@@ -300,15 +299,14 @@ WHERE regexp_like(flags['term'], 'politics|bigdata')
 GROUP BY (hostname)
 ORDER BY total DESC
 ```
-
-This query returns this result:
+This query returns two sites:  
 
 ```
-+------------------------------------------------+
-| hostname       | terms                 | total |
-+------------------------------------------------+
-| news.cnn.com   | [politics,serverless] | 241   |
-+------------------------------------------------+
-| aws.amazon.com | [serverless]          | 10    |
-+------------------------------------------------+
++------------------------------------+
+| hostname       | terms    | total  |
++----------------+-------------------+
+| news.cnn.com   | politics |  241   |
++----------------+-------------------+
+| aws.amazon.com | big data |  10    |
++----------------+-------------------+
 ```
