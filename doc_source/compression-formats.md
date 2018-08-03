@@ -6,4 +6,4 @@ Athena supports the following compression formats:
 + GZIP
 + LZO
 **Note**  
-Use the GZIP compression in Athena for querying Amazon Kinesis Firehose logs\. Athena and Amazon Kinesis Firehose each support different versions of SNAPPY, so GZIP is the only compatible format\. 
+Use the GZIP compression in Athena for querying Amazon Kinesis Data Firehose logs\. Athena and Amazon Kinesis Data Firehose each support different versions of SNAPPY, so GZIP is the only compatible format\. 
