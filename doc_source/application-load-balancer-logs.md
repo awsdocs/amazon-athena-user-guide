@@ -12,7 +12,7 @@ Before you begin, [enable access logging](http://docs.aws.amazon.com/elasticload
 
    Create the `alb_logs` table as follows\.
 **Note**  
-This query includes all fields present in the list of current Application Load Balancer [Access Log Entries](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format)\. In addition, it also includes a table column `new_field` at the end, reserved as a placeholder for any future additions to the ALB logs\. Having this field in your query does not break it\. The regular expression in the SerDe properties ignores this field if your logs don't have it\. When new fields are introduced in ALB log entries, they are added to the end of the log entry\. You should ignore any fields at the end of the log entry that you were not expecting\. 
+This query includes all fields present in the list of current Application Load Balancer [Access Log Entries](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format)\. It also includes a table column `new_field` at the end, in case you require additions to the ALB logs\. This field does not break your query\. The regular expression in the SerDe properties ignores this field if your logs don't have it\. 
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS alb_logs (
