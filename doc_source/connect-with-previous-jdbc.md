@@ -46,12 +46,13 @@ Users who connect through the JDBC driver and have custom access policies attach
 
 ## Policies<a name="jdbc-prev-version-policies"></a>
 
-You must allow JDBC users to perform a set of policy\-specific actions\. These actions are not part of the Athena API\. If the following actions are not allowed, users will be unable to see databases and tables:
+You must allow JDBC users to perform a set of policy\-specific actions\. If the following actions are not allowed, users will be unable to see databases and tables:
 + `athena:GetCatalogs`
 + `athena:GetExecutionEngine`
 + `athena:GetExecutionEngines`
 + `athena:GetNamespace`
 + `athena:GetNamespaces`
++ `athena:GetQueryResultsStream`
 + `athena:GetTable`
 + `athena:GetTables`
 

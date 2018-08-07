@@ -19,7 +19,7 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 
    This query uses the [LazySimpleSerDe](lazy-simple-serde.md) by default and it is omitted\. 
 
-   The column `date` is escaped using backticks \(`\) because it is a reserved word in Athena\.
+   The column `date` is escaped using backticks \(`\) because it is a reserved word in Athena\. For information, see [Reserved Keywords](reserved-words.md)\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS default.cloudfront_logs (

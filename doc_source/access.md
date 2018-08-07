@@ -95,7 +95,7 @@ Managed policy contents change, so the policy shown here may be out\-of\-date\. 
 
 ## AWSQuicksightAthenaAccess Managed Policy<a name="awsquicksightathenaaccess-managed-policy"></a>
 
-An additional managed policy, `AWSQuicksightAthenaAccess`, grants access to actions that Amazon QuickSight needs to integrate with Athena\. This policy includes deprecated actions for Athena that are not in the API\. Attach this policy only to principals who use Amazon QuickSight in conjunction with Athena\.
+An additional managed policy, `AWSQuicksightAthenaAccess`, grants access to actions that Amazon QuickSight needs to integrate with Athena\. This policy includes some actions for Athena that are either deprecated and not included in the current public API, or that are used only with the JDBC driver\. Attach this policy only to principals who use Amazon QuickSight in conjunction with Athena\.
 
 Managed policy contents change, so the policy shown here may be out\-of\-date\. Check the IAM console for the most up\-to\-date policy\.
 
@@ -116,6 +116,7 @@ Managed policy contents change, so the policy shown here may be out\-of\-date\. 
                 "athena:GetQueryExecution",
                 "athena:GetQueryExecutions",
                 "athena:GetQueryResults",
+                "athena:GetQueryResultsStream",
                 "athena:GetTable",
                 "athena:GetTables",
                 "athena:ListQueryExecutions",

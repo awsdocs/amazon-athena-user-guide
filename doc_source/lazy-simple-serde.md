@@ -4,7 +4,7 @@ Specifying this SerDe is optional\. This is the SerDe for files in CSV, TSV, and
 
 ## Library Name<a name="library-name"></a>
 
-The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`\. For more information, see [LazySimpleSerDe](https://hive.apache.org/javadocs/r2.1.1/api/org/apache/hadoop/hive/serde2/lazy/LazySimpleSerDe.html) 
+The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`\. For more information, see [LazySimpleSerDe](https://hive.apache.org/javadocs/r2.1.1/api/org/apache/hadoop/hive/serde2/lazy/LazySimpleSerDe.html)\. 
 
 ## Examples<a name="examples"></a>
 

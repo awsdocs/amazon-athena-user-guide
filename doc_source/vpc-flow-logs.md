@@ -2,7 +2,7 @@
 
 Amazon Virtual Private Cloud flow logs capture information about the IP traffic going to and from network interfaces in a VPC\. Use the logs to investigate network traffic patterns and identify threats and risks across your VPC network\.
 
-Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) and [export log data to Amazon S3](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasksConsole.html)\. After you create the logs, let them run for a few minutes to collect some data\.
+Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets you query directly\. 
 +  [Creating the Table for VPC Flow Logs](#create-vpc-logs-table) 
 +  [Example Queries for Amazon VPC Flow Logs](#query-examples-vpc-logs) 
 
@@ -10,13 +10,12 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs
 
 ### To create the Amazon VPC table<a name="to-create-the-vpc-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\.
+1. Copy and paste the following DDL statement into the Athena console\. This query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\. In addition, in this query, fields are terminated by a space\.
 
-1. Modify the `LOCATION 's3://your_log_bucket/prefix/'` to point to the S3 bucket that contains your log data\.
+1. Modify the `LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}'` to point to the S3 bucket that contains your log data\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS vpc_flow_logs (
-     ts string,
      version int,
      account string,
      interfaceid string,
@@ -31,22 +30,34 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs
      endtime int,
      action string,
      logstatus string
-   )
-   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
-   WITH SERDEPROPERTIES
-    ( "input.regex" = "^([^ ]+)\\s+([0-9]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([0-9]+)\\s+([0-9]+)\\s+([0-9]+)\\s+([0-9]+)\\s+([0-9]+)\\s+([0-9]+)\\s+([0-9]+)\\s+([^ ]+)\\s+([^ ]+)$" )
-   LOCATION 's3://your_log_bucket/prefix/';
+   )  
+   PARTITIONED BY (dt string)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ' '
+   LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}'
+   TBLPROPERTIES ("skip.header.line.count"="1");
    ```
 
 1. Run the query in Athena console\. After the query completes, Athena registers the `vpc_flow_logs` table, making the data in it ready for you to issue queries\.
 
 ## Example Queries for Amazon VPC Flow Logs<a name="query-examples-vpc-logs"></a>
 
-The following query lists all of the rejected TCP connections\. The query uses [Date and Time Functions and Operators](https://prestodb.io/docs/0.172/functions/datetime.html) to convert the timestamp field `ts`, and extracts only the day of the week for which these events occurred\.
+The following query creates a partition column named `dt`, which represents partitions per date:
 
 ```
-SELECT day_of_week(from_iso8601_timestamp(ts)) AS
+ALTER TABLE vpc_flow_logs
+ADD PARTITION (dt='YYYY-MM-dd')
+location 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}/YYYY/MM/dd';
+```
+
+The following query lists all of the rejected TCP connections and uses the newly created date partition column, `dt`, to extract from it the day of the week for which these events occurred\.
+
+This query uses [Date and Time Functions and Operators](https://prestodb.io/docs/0.172/functions/datetime.html)\. It converts values in the `dt` String column to timestamp with the date function `from_iso8601_timestamp(string)`, and extracts the day of the week from timestamp with `day_of_week`\.
+
+```
+SELECT day_of_week(from_iso8601_timestamp(dt)) AS
   day,
+  dt,
   interfaceid,
   sourceaddress,
   action,
