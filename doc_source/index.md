@@ -16,6 +16,7 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What is Amazon Athena?](what-is.md)
 + [Release Notes](release-notes.md)
+   + [August 16, 2018](release-note-2018-08-16.md)
    + [August 7, 2018](release-note-2018-08-07.md)
    + [June 5, 2018](release-note-2018-06-05.md)
    + [May 17, 2018](release-note-2018-05-17.md)

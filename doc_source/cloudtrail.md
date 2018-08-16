@@ -1,8 +1,8 @@
 # CloudTrail SerDe<a name="cloudtrail"></a>
 
-AWS CloudTrail is a service that records AWS API calls and events for AWS accounts\. CloudTrail generates encrypted log files and stores them in Amazon S3\. You can use Athena to query these log files directly from Amazon S3, specifying the `LOCATION` of log files\.
+AWS CloudTrail is a service that records AWS API calls and events for AWS accounts\. CloudTrail generates encrypted logs and stores them in Amazon S3\. You can use Athena to query these logs directly from Amazon S3, specifying the `LOCATION` of logs\.
 
-To query CloudTrail logs in Athena, create table from the log files and use the CloudTrail SerDe to deserialize the logs data\.
+To query CloudTrail logs in Athena, create table from the logs and use the CloudTrail SerDe to deserialize the logs data\.
 
 In addition to using the CloudTrail SerDe, instances exist where you need to use a different SerDe or to extract data from JSON\. Certain fields in CloudTrail logs are STRING values that may have a variable data format, which depends on the service\. As a result, the CloudTrail SerDe is unable to predictably deserialize them\. To query the following fields, identify the data pattern and then use a different SerDe, such as the [OpenX JSON SerDe](json.md#openxjson)\. Alternatively, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\. 
 +  `requestParameters` 
@@ -20,7 +20,7 @@ In addition to using the CloudTrail SerDe, instances exist where you need to use
 
 ## Examples<a name="examples"></a>
 
-The following example uses the CloudTrail SerDe on a fictional set of log files to create a table based on them\.
+The following example uses the CloudTrail SerDe on a fictional set of logs to create a table based on them\.
 
 In this example, the fields `requestParameters`, `responseElements`, and `additionalEventData` are included as part of `STRUCT` data type used in JSON\. To get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\.
 
@@ -76,7 +76,7 @@ OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION 's3://cloudtrail_bucket_name/AWSLogs/Account_ID/';
 ```
 
-The following query returns the logins that occurred over a 24\-hour period\.
+The following query returns the logins that occurred over a 24\-hour period:
 
 ```
 SELECT

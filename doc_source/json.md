@@ -1,6 +1,6 @@
 # JSON SerDe Libraries<a name="json"></a>
 
-In Athena, you can use two SerDe libraries for processing JSON files:
+In Athena, you can use two SerDe libraries for processing data in JSON:
 + The native [Hive JSON SerDe](#hivejson) 
 + The [OpenX JSON SerDe](#openxjson) 
 
@@ -20,9 +20,9 @@ Use one of the following:
 
 ## Hive JSON SerDe<a name="hivejson"></a>
 
-The Hive JSON SerDe is used to process JSON documents, most commonly events\. These events are represented as blocks of JSON\-encoded text separated by a new line\.
+The Hive JSON SerDe is used to process JSON data, most commonly events\. These events are represented as blocks of JSON\-encoded text separated by a new line\.
 
-You can also use the Hive JSON SerDe to parse more complex JSON documents with nested structures\. However, this requires having a matching DDL representing the complex data types\. See [Example: Deserializing Nested JSON](#nested-json-serde-example)\.
+You can also use the Hive JSON SerDe to parse more complex JSON\-encoded data with nested structures\. However, this requires having a matching DDL representing the complex data types\. See [Example: Deserializing Nested JSON](#nested-json-serde-example)\.
 
 This SerDe has a useful property you can specify when creating tables in Athena, to help deal with inconsistencies in the data:
 +  `'ignore.malformed.json'` if set to `TRUE`, lets you skip malformed JSON syntax\.
@@ -97,9 +97,9 @@ JSON data can be challenging to deserialize when creating a table in Athena\.
 
 For more information about common scenarios and query tips, see [Create Tables in Amazon Athena from Nested JSON and Mappings Using JSONSerDe](http://aws.amazon.com/blogs/big-data/create-tables-in-amazon-athena-from-nested-json-and-mappings-using-jsonserde/)\.
 
-The following example demonstrates a simple approach to creating an Athena table from a nested JSON file\.To parse JSON\-encoded files in Athena, each JSON document must be on its own line, separated by a new line\. 
+The following example demonstrates a simple approach to creating an Athena table from data with nested structures in JSON\.To parse JSON\-encoded data in Athena, each JSON document must be on its own line, separated by a new line\. 
 
-This example presumes a JSON file with the following structure:
+This example presumes a JSON\-encoded data with the following structure:
 
 ```
 {
@@ -128,7 +128,7 @@ This example presumes a JSON file with the following structure:
 }
 ```
 
-The following `CREATE TABLE` command uses the [Openx\-JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) with collection data types like `struct` and `array` to establish groups of objects\. Each JSON document is on its own line, separated by a new line\.
+The following `CREATE TABLE` command uses the [Openx\-JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) with collection data types like `struct` and `array` to establish groups of objects\. Each JSON document is listed on its own line, separated by a new line\.
 
 ```
 CREATE external TABLE complex_json (

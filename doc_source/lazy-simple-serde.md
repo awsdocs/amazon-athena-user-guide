@@ -1,6 +1,6 @@
 # LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files<a name="lazy-simple-serde"></a>
 
-Specifying this SerDe is optional\. This is the SerDe for files in CSV, TSV, and custom\-delimited formats that Athena uses by default\. This SerDe is used if you don't specify any SerDe and only specify `ROW FORMAT DELIMITED`\. Use this SerDe if your data does not have values enclosed in quotes\.
+Specifying this SerDe is optional\. This is the SerDe for data in CSV, TSV, and custom\-delimited formats that Athena uses by default\. This SerDe is used if you don't specify any SerDe and only specify `ROW FORMAT DELIMITED`\. Use this SerDe if your data does not have values enclosed in quotes\.
 
 ## Library Name<a name="library-name"></a>
 
@@ -20,7 +20,7 @@ The flight table data comes from [Flights](http://www.transtats.bts.gov/DL_Selec
 
 ### CSV Example<a name="csv-example"></a>
 
-Use the `CREATE TABLE` statement to create an Athena table from the underlying CSV file stored in Amazon S3\.
+Use the `CREATE TABLE` statement to create an Athena table from the underlying data in CSV stored in Amazon S3\.
 
 ```
 CREATE EXTERNAL TABLE flight_delays_csv (
@@ -142,13 +142,13 @@ CREATE EXTERNAL TABLE flight_delays_csv (
     LOCATION 's3://athena-examples-myregion/flight/csv/';
 ```
 
-Run `MSCK REPAIR TABLE` to refresh partition metadata each time a new partition is added to this table\.
+Run `MSCK REPAIR TABLE` to refresh partition metadata each time a new partition is added to this table:
 
 ```
 MSCK REPAIR TABLE flight_delays_csv;
 ```
 
-Query the top 10 routes delayed by more than 1 hour\.
+Query the top 10 routes delayed by more than 1 hour:
 
 ```
 SELECT origin, dest, count(*) as delays
@@ -161,9 +161,9 @@ LIMIT 10;
 
 ### TSV Example<a name="tsv-example"></a>
 
-This example presumes a source TSV file saved in `s3://mybucket/mytsv/`\. 
+This example presumes source data in TSV saved in `s3://mybucket/mytsv/`\. 
 
-Use a `CREATE TABLE` statement to create an Athena table from the TSV file stored in Amazon S3\. Notice that this example does not reference any SerDe class in `ROW FORMAT` because it uses the LazySimpleSerDe, and it can be omitted\. The example specifies SerDe properties for character and line separators, and an escape character:
+Use a `CREATE TABLE` statement to create an Athena table from the TSV data stored in Amazon S3\. Notice that this example does not reference any SerDe class in `ROW FORMAT` because it uses the LazySimpleSerDe, and it can be omitted\. The example specifies SerDe properties for character and line separators, and an escape character:
 
 ```
 CREATE EXTERNAL TABLE flight_delays_tsv (
@@ -285,13 +285,13 @@ CREATE EXTERNAL TABLE flight_delays_tsv (
  LOCATION 's3://athena-examples-myregion/flight/tsv/';
 ```
 
-Run `MSCK REPAIR TABLE` to refresh partition metadata each time a new partition is added to this table\.
+Run `MSCK REPAIR TABLE` to refresh partition metadata each time a new partition is added to this table:
 
 ```
 MSCK REPAIR TABLE flight_delays_tsv;
 ```
 
-Query the top 10 routes delayed by more than 1 hour\.
+Query the top 10 routes delayed by more than 1 hour:
 
 ```
 SELECT origin, dest, count(*) as delays

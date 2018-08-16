@@ -6,7 +6,7 @@
 
 ## Library Name<a name="library-name"></a>
 
-This is the SerDe class for ORC files\. It passes the object from the ORC file to the reader and from the ORC file to the writer: [OrcSerDe](https://hive.apache.org/javadocs/r1.2.2/api/org/apache/hadoop/hive/ql/io/orc/OrcSerde.html) 
+This is the SerDe class for data in the ORC format\. It passes the object from ORC to the reader and from ORC to the writer: [OrcSerDe](https://hive.apache.org/javadocs/r1.2.2/api/org/apache/hadoop/hive/ql/io/orc/OrcSerde.html) 
 
 ## Examples<a name="examples"></a>
 

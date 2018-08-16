@@ -1,35 +1,37 @@
 # Logging Amazon Athena API Calls with AWS CloudTrail<a name="monitor-with-cloudtrail"></a>
 
-Athena is integrated with CloudTrail, a service that captures all of the Athena API calls and delivers the log files to an Amazon S3 bucket that you specify\. 
+Athena is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in Athena\. 
 
-CloudTrail captures API calls from the Athena console or from your code to the Athena API operations\. Using the information collected by CloudTrail, you can determine the request that was made to Athena, the source IP address from which the request was made, who made the request, when it was made, and so on\.
+CloudTrail captures all API calls for Athena as events\. The calls captured include calls from the Athena console and code calls to the Athena API operations\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Athena\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. 
 
-You can also use Athena to query CloudTrail log files for insight\. For more information, see [CloudTrail SerDe](cloudtrail.md)\. To learn more about CloudTrail, including how to configure and enable it, see the [AWS CloudTrail User Guide](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\.
+Using the information collected by CloudTrail, you can determine the request that was made to Athena, the IP address from which the request was made, who made the request, when it was made, and additional details\. 
 
-## Athena Information in CloudTrail<a name="ate-information-in-ct"></a>
+To learn more about CloudTrail, see the [AWS CloudTrail User Guide](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 
-When CloudTrail logging is enabled in your AWS account, API calls made to Athena actions are tracked in CloudTrail log files, where they are written with other AWS service records\. CloudTrail determines when to create and write to a new file based on a time period and file size\.
+You can also use Athena to query CloudTrail log files for insight\. For more information, see [Querying AWS CloudTrail Logs](cloudtrail-logs.md) and [CloudTrail SerDe](cloudtrail.md)\. 
+
+## Athena Information in CloudTrail<a name="athena-info-in-cloudtrail"></a>
+
+CloudTrail is enabled on your AWS account when you create the account\. When activity occurs in Athena, that activity is recorded in a CloudTrail event along with other AWS service events in **Event history**\. You can view, search, and download recent events in your AWS account\. For more information, see [Viewing Events with CloudTrail Event History](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html)\. 
+
+For an ongoing record of events in your AWS account, including events for Athena, create a trail\. A *trail* enables CloudTrail to deliver log files to an Amazon S3 bucket\. By default, when you create a trail in the console, the trail applies to all AWS Regions\. The trail logs events from all Regions in the AWS partition and delivers the log files to the Amazon S3 bucket that you specify\. Additionally, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see the following: 
++ [Overview for Creating a Trail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail.html)
++ [CloudTrail Supported Services and Integrations](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html#cloudtrail-aws-service-specific-topics-integrations)
++ [Configuring Amazon SNS Notifications for CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)
++ [Receiving CloudTrail Log Files from Multiple Regions](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html) and [Receiving CloudTrail Log Files from Multiple Accounts](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)
 
 All Athena actions are logged by CloudTrail and are documented in the [Amazon Athena API Reference](http://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html)\. For example, calls to the [StartQueryExecution](http://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) and [GetQueryResults](http://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) actions generate entries in the CloudTrail log files\.
 
-Every log entry contains information about who generated the request\. The user identity information in the log entry helps you determine the following:
-+ Whether the request was made with root or IAM user credentials
-+ Whether the request was made with temporary security credentials for a role or federated user
-+ Whether the request was made by another AWS service
+Every event or log entry contains information about who generated the request\. The identity information helps you determine the following: 
++ Whether the request was made with root or AWS Identity and Access Management \(IAM\) user credentials\.
++ Whether the request was made with temporary security credentials for a role or federated user\.
++ Whether the request was made by another AWS service\.
 
-For more information, see [CloudTrail userIdentity Element](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html) in the *AWS CloudTrail User Guide*\.
-
-You can store your log files in your S3 bucket for as long as you want, but you can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. By default, your log files are encrypted with Amazon S3 server\-side encryption \(SSE\)\.
-
-To be notified upon log file delivery, you can configure CloudTrail to publish Amazon SNS notifications when new log files are delivered\. For more information, see [Configuring Amazon SNS Notifications for CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/configure-sns-notifications-for-cloudtrail.html)\.
-
-You can also aggregate Athena log files from multiple AWS regions and multiple AWS accounts into a single S3 bucket\.
-
-For more information, see [Receiving CloudTrail Log Files from Multiple Regions](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html) and [Receiving CloudTrail Log Files from Multiple Accounts](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)\.
+For more information, see the [CloudTrail userIdentity Element](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
 
 ## Understanding Athena Log File Entries<a name="understanding-ate-log-file-entries"></a>
 
-CloudTrail log files can contain one or more log entries\. Each entry lists multiple JSON\-formatted events\. A log entry represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. Log entries are not an ordered stack trace of the public API calls, so they do not appear in any specific order\.
+A trail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. CloudTrail log files aren't an ordered stack trace of the public API calls, so they don't appear in any specific order\. 
 
 The following examples demonstrate CloudTrail log entries for:
 +  [StartQueryExecution \(Successful\)](#startqueryexecution-successful) 

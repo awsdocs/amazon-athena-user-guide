@@ -2,18 +2,18 @@
 
 ## SerDe Name<a name="serde-name"></a>
 
-ParquetHiveSerDe is used for files stored in Parquet\. For more information, see [Parquet Format](https://cwiki.apache.org/confluence/display/Hive/Parquet)\.
+ParquetHiveSerDe is used for data stored in [Parquet Format](https://cwiki.apache.org/confluence/display/Hive/Parquet)\.
 
 ## Library Name<a name="library-name"></a>
 
-Athena uses this class when it needs to deserialize files stored in Parquet: [org\.apache\.hadoop\.hive\.ql\.io\.parquet\.serde\.ParquetHiveSerDe](https://hive.apache.org/javadocs/r1.2.2/api/org/apache/hadoop/hive/ql/io/parquet/serde/ParquetHiveSerDe.html) 
+Athena uses this class when it needs to deserialize data stored in Parquet: [org\.apache\.hadoop\.hive\.ql\.io\.parquet\.serde\.ParquetHiveSerDe](https://hive.apache.org/javadocs/r1.2.2/api/org/apache/hadoop/hive/ql/io/parquet/serde/ParquetHiveSerDe.html)\. 
 
 ## Example: Querying a File Stored in Parquet<a name="example-querying-a-file-stored-in-parquet"></a>
 
 **Note**  
 You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-east-1/path/to/data/`\.
 
-Use the `CREATE TABLE` statement to create an Athena table from the underlying CSV file stored in Amazon S3 in Parquet\.
+Use the following `CREATE TABLE` statement to create an Athena table from the underlying data in CSV stored in Amazon S3 in Parquet:
 
 ```
 CREATE EXTERNAL TABLE flight_delays_pq (
@@ -133,13 +133,13 @@ LOCATION 's3://athena-examples-myregion/flight/parquet/'
 tblproperties ("parquet.compress"="SNAPPY");
 ```
 
-Run the `MSCK REPAIR TABLE` statement on the table to refresh partition metadata\.
+Run the `MSCK REPAIR TABLE` statement on the table to refresh partition metadata:
 
 ```
 MSCK REPAIR TABLE flight_delays_pq;
 ```
 
-Query the top 10 routes delayed by more than 1 hour\.
+Query the top 10 routes delayed by more than 1 hour:
 
 ```
 SELECT origin, dest, count(*) as delays

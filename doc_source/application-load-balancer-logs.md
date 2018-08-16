@@ -84,10 +84,10 @@ The following example shows how to parse the logs by `datetime`:
 ```
 SELECT client_ip, sum(received_bytes)
 FROM alb_logs_config_us
-WHERE parse_datetime(time,'yyyy-MM-DD''T''HH:mm:ss.SSSSSS''Z')
+WHERE parse_datetime(time,'yyyy-MM-dd''T''HH:mm:ss.SSSS''Z')
   BETWEEN 
-    parse_datetime('2018-05-30-12:00:00','yyyy-MM-DD-HH:mm:ss')
+    parse_datetime('2018-05-30-12:00:00','yyyy-MM-dd-HH:mm:ss')
     AND
-    parse_datetime('2018-05-31-00:00:00','yyyy-MM-DD-HH:mm:ss')
+    parse_datetime('2018-05-31-00:00:00','yyyy-MM-dd-HH:mm:ss')
 GROUP BY client_ip;
 ```

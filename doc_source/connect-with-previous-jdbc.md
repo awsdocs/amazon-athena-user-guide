@@ -1,20 +1,41 @@
 # Using the Previous Version of the JDBC Driver<a name="connect-with-previous-jdbc"></a>
 
-We recommend that you use the current version of the driver\. However, if you need to use the previous version, follow the steps in this section to download and configure the driver\.
+We recommend that you use the current version of the driver, which is version 2\.0\.5\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\. If you need to use the previous versions, follow the steps in this section to download and configure the driver\. 
 
-## Download the Previous Version of the JDBC Driver<a name="download-jdbc-older-version"></a>
+The previous version of the JDBC driver is 2\.0\.2\.
 
-1. Download the driver \(JDBC 4\.1 and Java 8 compatible\) from this location in Amazon S3 [https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/AthenaJDBC41-1.1.0.jar](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/AthenaJDBC41-1.1.0.jar)\.
+The JDBC driver version 1\.1\.0 is also available for download, however, we highly recommend that you migrate to the current version of the driver\. For information, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. 
 
-1. Download the license: [https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/docs/LICENSE.txt](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/docs/LICENSE.txt), and the third\-party licenses: [https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/docs/third-party-licenses.txt](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/docs/third-party-licenses.txt)\.
+The JDBC driver version 1\.0\.1 and earlier versions are deprecated\.
+
+## Using the Previous Version of the JDBC Driver<a name="download-jdbc-older-version"></a>
+
+1. Download the version of the driver that you need\.   
+**Links for Downloading Previous Version of the JDBC Driver**    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/connect-with-previous-jdbc.html)
+
+1. Download the [Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/release-notes.txt), the [License Agreement](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/LICENSE.txt) and [Notices](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/NOTICES.txt) for the driver you downloaded in step 1\. 
 
 1. Use the AWS CLI with the following command: 
 
    ```
-   aws s3 cp s3://athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/AthenaJDBC41-1.1.0.jar [local_directory]
+   aws s3 cp s3://path_to_the_driver [local_directory]
    ```
 
-## Specify the Connection String<a name="old-jdbc-connection-string"></a>
+1. To use the driver, see the following documentation: 
+   + To install and configure the JDBC driver version 2\.0\.2, see the [JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\.
+   + To migrate to this version of the JDBC driver from a 1\.x version, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\.
+
+## Instructions for JDBC Driver version 1\.1\.0<a name="jdbc-deprecated-version"></a>
+
+This section includes instructions for the 1\.1\.0 version of the JDBC driver\. Use these instructions only if you have not migrated to the newer \(and supported\) version of the JDBC driver\. 
+
+Download theJDBC driver version 1\.1\.0 that is compatible with JDBC 4\.1 and JDK 7\.0: [AthenaJDBC41\-1\.1\.0\.jar](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/AthenaJDBC41-1.1.0.jar)\. Also, download the [driver license](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/docs/LICENSE.txt), and the [third\-party licenses](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/docs/third-party-licenses.txt) for the driver\. Use the AWS CLI with the following command: `aws s3 cp s3://path_to_the_driver [local_directory]`, and then use the remaining instructions in this section\. 
+
+**Note**  
+The following instructions are specific to JDBC version 1\.1\.0 and earlier\.
+
+### JDBC Driver Version 1\.1\.0: Specify the Connection String<a name="old-jdbc-connection-string"></a>
 
 To specify the JDBC driver connection URL in your custom application, use the string in this format:
 
@@ -24,11 +45,11 @@ jdbc:awsathena://athena.{REGION}.amazonaws.com:443
 
 where `{REGION}` is a region identifier, such as `us-west-2`\. For information on Athena regions see [Regions](http://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.
 
-## Specify the JDBC Driver Class Name<a name="old-jdbc-class-name"></a>
+### JDBC Driver Version 1\.1\.0: Specify the JDBC Driver Class Name<a name="old-jdbc-class-name"></a>
 
-To use the driver in custom applications, set up your Java class path to the location of the JAR file that you downloaded from Amazon S3 [https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/AthenaJDBC41-1.1.0.jar](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/AthenaJDBC41-1.1.0.jar) in the previous section\. This makes the classes within the JAR available for use\. The main JDBC driver class is `com.amazonaws.athena.jdbc.AthenaDriver`\.
+To use the driver in custom applications, set up your Java class path to the location of the JAR file that you downloaded from Amazon S3 [https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/AthenaJDBC41-1.1.0.jar](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/AthenaJDBC_1.1.0/AthenaJDBC41-1.1.0.jar)\. This makes the classes within the JAR available for use\. The main JDBC driver class is `com.amazonaws.athena.jdbc.AthenaDriver`\.
 
-## Provide the JDBC Driver Credentials<a name="old-jdbc-credentials"></a>
+### JDBC Driver Version 1\.1\.0: Provide the JDBC Driver Credentials<a name="old-jdbc-credentials"></a>
 
 To gain access to AWS services and resources, such as Athena and the Amazon S3 buckets, provide JDBC driver credentials to your application\.
 
@@ -44,7 +65,7 @@ Another method to supply credentials to BI tools, such as SQL Workbench, is to s
 
 Users who connect through the JDBC driver and have custom access policies attached to their profiles need permissions for policy actions in addition to those in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
 
-## Policies<a name="jdbc-prev-version-policies"></a>
+### Policies for the JDBC Driver Version 1\.1\.0<a name="jdbc-prev-version-policies"></a>
 
 You must allow JDBC users to perform a set of policy\-specific actions\. If the following actions are not allowed, users will be unable to see databases and tables:
 + `athena:GetCatalogs`
@@ -52,16 +73,15 @@ You must allow JDBC users to perform a set of policy\-specific actions\. If the 
 + `athena:GetExecutionEngines`
 + `athena:GetNamespace`
 + `athena:GetNamespaces`
-+ `athena:GetQueryResultsStream`
 + `athena:GetTable`
 + `athena:GetTables`
 
-## Configure the JDBC Driver Options<a name="old-jdbc-driver-options"></a>
+### JDBC Driver Version 1\.1\.0: Configure the JDBC Driver Options<a name="old-jdbc-driver-options"></a>
 
-You can configure the following options for the deprecated version of the JDBC driver\. With this version of the driver, you can also pass parameters using the standard JDBC URL syntax, for example: `jdbc:awsathena://athena.us-west-1.amazonaws.com:443?max_error_retries=20&connection_timeout=20000`\.
+You can configure the following options for the version of the JDBC driver version 1\.1\.0\. With this version of the driver, you can also pass parameters using the standard JDBC URL syntax, for example: `jdbc:awsathena://athena.us-west-1.amazonaws.com:443?max_error_retries=20&connection_timeout=20000`\.
 
 
-**Options for the Previous Version of JDBC Driver**  
+**Options for the JDBC Driver Version 1\.0\.1**  
 
 | Property Name | Description | Default Value | Is Required | 
 | --- | --- | --- | --- | 
@@ -78,11 +98,11 @@ You can configure the following options for the deprecated version of the JDBC d
 | log\_path | Local path of the Athena JDBC driver logs\. If no log path is provided, then no log files are created\. | N/A | No | 
 | log\_level | Log level of the Athena JDBC driver logs\. Valid values: INFO, DEBUG, WARN, ERROR, ALL, OFF, FATAL, TRACE\. | N/A | No | 
 
-## Examples: Using the Previous Version of the JDBC Driver with the JDK<a name="jdbc-prev-version-examples"></a>
+### Examples: Using the 1\.1\.0 Version of the JDBC Driver with the JDK<a name="jdbc-prev-version-examples"></a>
 
- The following code examples demonstrate how to use the previous version of the JDBC driver in a Java application\. These examples assume that the AWS JAVA SDK is included in your classpath, specifically the `aws-java-sdk-core` module, which includes the authorization packages \(`com.amazonaws.auth.*`\) referenced in the examples\.
+ The following code examples demonstrate how to use the JDBC driver version 1\.1\.0 in a Java application\. These examples assume that the AWS JAVA SDK is included in your classpath, specifically the `aws-java-sdk-core` module, which includes the authorization packages \(`com.amazonaws.auth.*`\) referenced in the examples\.
 
-**Example Example: Creating a Driver**  
+**Example Example: Creating a Driver Version 1\.0\.1**  
 
 ```
          Properties info = new Properties();
@@ -98,7 +118,7 @@ You can configure the following options for the deprecated version of the JDBC d
 
 The following examples demonstrate different ways to use a credentials provider that implements the `AWSCredentialsProvider` interface with the previous version of the JDBC driver\. 
 
-**Example Example: Using a Credentials Provider**  
+**Example Example: Using a Credentials Provider for JDBC Driver 1\.0\.1**  
 
 ```
 Properties myProps = new Properties();
@@ -132,7 +152,7 @@ Properties myProps = new Properties();
 ```
  If you use the [http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html), you don't need to supply any credential provider arguments because they are provided using the Amazon EC2 instance profile for the instance on which you are running your application\. You would still set the `aws_credentials_provider_class` property to this class name, however\.
 
-## Policies for the JDBC Driver Earlier than Version 1\.1\.0<a name="jdbc-version-before-1.0.1."></a>
+### Policies for the JDBC Driver Earlier than Version 1\.1\.0<a name="jdbc-version-before-1.0.1."></a>
 
 Use these deprecated actions in policies **only** with JDBC drivers **earlier than version 1\.1\.0**\. If you are upgrading the JDBC driver, replace policy statements that allow or deny deprecated actions with the appropriate API actions as listed or errors will occur\.
 

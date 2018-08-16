@@ -10,13 +10,13 @@
 
 ## Examples<a name="examples"></a>
 
-Athena does not support using `avro.schema.url` to specify table schema for security reasons\. Use `avro.schema.literal`\. To extract schema from an Avro file, you can use the Apache `avro-tools-<version>.jar` with the `getschema` parameter\. This returns a schema that you can use in your `WITH SERDEPROPERTIES` statement\. For example:
+Athena does not support using `avro.schema.url` to specify table schema for security reasons\. Use `avro.schema.literal`\. To extract schema from data in the Avro format, use the Apache `avro-tools-<version>.jar` with the `getschema` parameter\. This returns a schema that you can use in your `WITH SERDEPROPERTIES` statement\. For example:
 
  `java -jar avro-tools-1.8.2.jar getschema my_data.avro` 
 
 The `avro-tools-<version>.jar` file is located in the `java` subdirectory of your installed Avro release\. To download Avro, see [Apache Avro Releases](http://avro.apache.org/releases.html#Download)\. To download Apache Avro Tools directly, see the [Apache Avro Tools Maven Repository](https://mvnrepository.com/artifact/org.apache.avro/avro-tools)\.
 
-After you obtain the schema, use a `CREATE TABLE` statement to create an Athena table based on underlying Avro data stored in Amazon S3\. In `ROW FORMAT`, specify the Avro SerDe as follows: `ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'` In `SERDEPROPERTIES`, specify the schema, as shown in this example\.
+After you obtain the schema, use a `CREATE TABLE` statement to create an Athena table based on underlying Avro data stored in Amazon S3\. In `ROW FORMAT`, specify the Avro SerDe as follows: `ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'`\. In `SERDEPROPERTIES`, specify the schema, as shown in the following example\.
 
 **Note**  
 You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-east-1/path/to/data/`\.
