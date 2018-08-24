@@ -21,7 +21,6 @@ Under the hood, Athena uses Presto to execute DML statements and Hive to execute
   +  [Creating Tables Using Athena for AWS Glue ETL Jobs](#schema-etl-tables) 
   +  [Using ETL Jobs to Optimize Query Performance](#schema-etl-performance) 
   +  [Converting SMALLINT and TINYINT Datatypes to INT When Converting to ORC](#schema-etl-orc) 
-  +  [Changing Date Data Types to String for Parquet ETL Transformation](#schema-etl-parquet) 
   +  [Automating AWS Glue Jobs for ETL](#schema-etl-automate) 
 
 ## Database, Table, and Column Names<a name="schema-names"></a>
@@ -42,13 +41,13 @@ AWS Glue crawlers help discover and register the schema for datasets in the AWS 
 
 AWS Glue crawlers can be set up to run on a schedule or on demand\. For more information, see [Time\-Based Schedules for Jobs and Crawlers](http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html) in the *AWS Glue Developer Guide*\.
 
-If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually execute an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](http://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
+If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue Crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually execute an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](http://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_crawler.png)
 
 ### Using Multiple Data Sources with Crawlers<a name="schema-crawlers-data-sources"></a>
 
-When an AWS Glue crawler scans Amazon S3 and detects multiple directories, it uses a heuristic to determine where the root for a table is in the directory structure, and which directories are partitions for the table\. In some cases, where the schema detected in two or more directories is similar, the crawler may treat them as partitions instead of separate tables\. One way to help the crawler discover individual tables is to add each table's root directory as a data store for the crawler\.
+When an AWS Glue Crawler scans Amazon S3 and detects multiple directories, it uses a heuristic to determine where the root for a table is in the directory structure, and which directories are partitions for the table\. In some cases, where the schema detected in two or more directories is similar, the crawler may treat them as partitions instead of separate tables\. One way to help the crawler discover individual tables is to add each table's root directory as a data store for the crawler\.
 
 The following partitions in Amazon S3 are an example:
 
@@ -62,25 +61,27 @@ s3://bucket01/folder1/table2/partition5/file.txt
 
 If the schema for `table1` and `table2` are similar, and a single data source is set to `s3://bucket01/folder1/` in AWS Glue, the crawler may create a single table with two partition columns: one partition column that contains `table1` and `table2`, and a second partition column that contains `partition1` through `partition5`\.
 
-To have the AWS Glue crawler create two separate tables as intended, use the AWS Glue console to set the crawler to have two data sources, `s3://bucket01/folder1/table1/` and `s3://bucket01/folder1/table2`, as shown in the following procedure\.
+To have the AWS Glue crawler create two separate tables, set the crawler to have two data sources, `s3://bucket01/folder1/table1/` and `s3://bucket01/folder1/table2`, as shown in the following procedure\.
 
 ### To add another data store to an existing crawler in AWS Glue<a name="to-add-another-data-store-to-an-existing-crawler-in-aws-glue"></a>
 
-1. In the AWS Glue console, choose **Crawlers**, select your crawler, and then choose **Action**, **Edit crawler**\.  
+1. Sign in to the AWS Management Console and open the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/)\.
+
+1. Choose **Crawlers**, select your crawler, and then choose **Action**, **Edit crawler**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_add_data_store0.png)
 
 1. Under **Add information about your crawler**, choose additional settings as appropriate, and then choose **Next**\.
 
-1. Under **Add a data store**, change **Include path** to the table\-level directory\. For instance, given the example above, you would change it from s3://bucket01/folder1 to s3://bucket01/folder1/table1/\. Choose **Next**\.  
+1. Under **Add a data store**, change **Include path** to the table\-level directory\. For instance, given the example above, you would change it from `s3://bucket01/folder1 to s3://bucket01/folder1/table1/`\. Choose **Next**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_add_data_store1.png)
 
 1. For **Add another data store**, choose **Yes**, **Next**\.
 
-1. For **Include path**, enter your other table\-level directory \(for example, s3://bucket01/folder1/table2/\) and choose **Next**\.
+1. For **Include path**, enter your other table\-level directory \(for example, `s3://bucket01/folder1/table2/`\) and choose **Next**\.
 
    1. Repeat steps 3\-5 for any additional table\-level directories, and finish the crawler configuration\.
 
-The new values for **Include locations** appear under data stores
+The new values for **Include locations** appear under data stores as follows:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_add_data_store2.png)
 
@@ -104,7 +105,7 @@ CSV files occasionally have quotes around the data values intended for each colu
 
 ### CSV Data Enclosed in Quotes<a name="schema-csv-quotes"></a>
 
-If you run a query in Athena against a table created from a CSV file with quoted data values, update the table definition in AWS Glue so that it specifies the right SerDe and SerDe properties\. This allows the table definition to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv.md)\.
+If you run a query in Athena against a table created from a CSV file with quoted data values, update the table definition inAWS Glue so that it specifies the right SerDe and SerDe properties\. This allows the table definition to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv.md)\.
 
 In this case, make the following changes:
 + Change the `serializationLib` property under field in the `SerDeInfo` field in the table to `org.apache.hadoop.hive.serde2.OpenCSVSerde`\.
@@ -153,7 +154,7 @@ AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extrac
 
 ### Creating Tables Using Athena for AWS Glue ETL Jobs<a name="schema-etl-tables"></a>
 
-Tables that you create from within Athena must have a table property added to them called a `classification`, which identifies the format of the data\. This allows AWS Glue to be able to use the tables for ETL jobs\. The classification values can be `csv`, `parquet`, `orc`, `avro`, or `json`\. An example create table statement in Athena follows:
+Tables that you create in Athena must have a table property added to them called a `classification`, which identifies the format of the data\. This allows AWS Glue to use the tables for ETL jobs\. The classification values can be `csv`, `parquet`, `orc`, `avro`, or `json`\. An example `CREATE TABLE` statement in Athena follows:
 
 ```
 CREATE EXTERNAL TABLE sampleTable (
@@ -164,7 +165,7 @@ CREATE EXTERNAL TABLE sampleTable (
   'classification'='parquet')
 ```
 
-If the table property was not added when the table was created, the property can be added using the AWS Glue console\.
+If the table property was not added when the table was created, you can add it using the AWS Glue console\.
 
 ### To change the classification property using the console<a name="to-change-the-classification-property-using-the-console"></a>
 
@@ -184,16 +185,12 @@ For more information, see [Working with Tables](http://docs.aws.amazon.com/glue/
 
 AWS Glue jobs can help you transform data to a format that optimizes query performance in Athena\. Data formats have a large impact on query performance and query costs in Athena\.
 
-We recommend the Parquet and ORC formats\. AWS Glue supports writing to both of these data formats, which can make it easier and faster for you to transform data to an optimal format for Athena\. For more information about these formats and other ways to improve performance, see [Top Performance Tuning tips for Amazon Athena](http://aws.amazon.com/blogs/big-data/top-10-performance-tuning-tips-for-amazon-athena/)\.
+We recommend to use Parquet and ORC data formats\. AWS Glue supports writing to both of these data formats, which can make it easier and faster for you to transform data to an optimal format for Athena\. For more information about these formats and other ways to improve performance, see [Top Performance Tuning tips for Amazon Athena](http://aws.amazon.com/blogs/big-data/top-10-performance-tuning-tips-for-amazon-athena/)\.
 
-### Converting SMALLINT and TINYINT Datatypes to INT When Converting to ORC<a name="schema-etl-orc"></a>
+### Converting SMALLINT and TINYINT Data Types to INT When Converting to ORC<a name="schema-etl-orc"></a>
 
 To reduce the likelihood that Athena is unable to read the `SMALLINT` and `TINYINT` data types produced by an AWS Glue ETL job, convert `SMALLINT` and `TINYINT` to `INT` when using the wizard or writing a script for an ETL job\.
 
-### Changing Date Data Types to String for Parquet ETL Transformation<a name="schema-etl-parquet"></a>
-
-Athena currently does not support the `DATE` data type for Parquet files\. Convert `DATE` data types to `STRING` when using the wizard or writing a script for an AWS Glue ETL job\.
-
 ### Automating AWS Glue Jobs for ETL<a name="schema-etl-automate"></a>
 
-You can configure AWS Glue ETL jobs to run automatically based on triggers\. This feature is ideal when data from outside AWS is being pushed to an S3 bucket in a suboptimal format for querying in Athena\. For more information, see [Triggering AWS Glue Jobs](http://docs.aws.amazon.com/glue/latest/dg/trigger-job.html) in the *AWS Glue Developer Guide*\.
+You can configure AWS Glue ETL jobs to run automatically based on triggers\. This feature is ideal when data from outside AWS is being pushed to an Amazon S3 bucket in a suboptimal format for querying in Athena\. For more information, see [Triggering AWS Glue Jobs](http://docs.aws.amazon.com/glue/latest/dg/trigger-job.html) in the *AWS Glue Developer Guide*\.

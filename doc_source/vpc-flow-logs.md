@@ -42,14 +42,6 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs
 
 ## Example Queries for Amazon VPC Flow Logs<a name="query-examples-vpc-logs"></a>
 
-The following query creates a partition column named `dt`, which represents partitions per date:
-
-```
-ALTER TABLE vpc_flow_logs
-ADD PARTITION (dt='YYYY-MM-dd')
-location 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}/YYYY/MM/dd';
-```
-
 The following query lists all of the rejected TCP connections and uses the newly created date partition column, `dt`, to extract from it the day of the week for which these events occurred\.
 
 This query uses [Date and Time Functions and Operators](https://prestodb.io/docs/0.172/functions/datetime.html)\. It converts values in the `dt` String column to timestamp with the date function `from_iso8601_timestamp(string)`, and extracts the day of the week from timestamp with `day_of_week`\.
@@ -81,3 +73,14 @@ LIMIT 10;
 ```
 
 For more information, see the AWS Big Data blog post [Analyzing VPC Flow Logs with Amazon Kinesis Firehose, Athena, and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-vpc-flow-logs-with-amazon-kinesis-firehose-amazon-athena-and-amazon-quicksight/)\.
+
+The following sample query creates a single partition for a specified date\. Replace the placeholders for date and location as needed\. 
+
+**Note**  
+This query creates a single partition only, for a date that you specify\. To automate the process, use a script that runs this query and creates partitions this way for the `year/month/day`, or use AWS Glue Crawler to create partitions for a given Amazon S3 bucket\. For information, see [Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync](glue-best-practices.md#schema-crawlers-schedule)\.
+
+```
+ALTER TABLE vpc_flow_logs
+ADD PARTITION (dt='YYYY-MM-dd')
+location 's3://your_log_bucket/prefix/AWSLogs/{account_id}/vpcflowlogs/{region_code}/YYYY/MM/dd';
+```

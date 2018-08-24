@@ -76,4 +76,4 @@ You use the Athena console or JDBC driver properties to specify that query resul
 
 ## Encrypting Query Results stored in Amazon S3 Using the JDBC Driver<a name="jdbc-encryption"></a>
 
-You can configure the JDBC Driver to encrypt your query results using any of the encryption protocols that Athena supports\. For more information, see the [JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\. If you are using the previous version of the driver, see [Using Athena with the Previous Version of the JDBC Driver](connect-with-previous-jdbc.md)\.
+You can configure the JDBC Driver to encrypt your query results using any of the encryption protocols that Athena supports\. For more information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.

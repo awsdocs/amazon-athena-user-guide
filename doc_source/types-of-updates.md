@@ -219,10 +219,16 @@ LOCATION 's3://schema_updates/orders_parquet/';
 
 ## Changing a Column's Data Type<a name="updates-changing-column-type"></a>
 
-You change column types because a column's data type can no longer hold the amount of information, for example, when an ID column exceeds the size of an `INT` data type and has to change to a `BIGINT` data type\. Only certain data types can be converted to other data types\.
+You change column types because a column's data type can no longer hold the amount of information, for example, when an ID column exceeds the size of an `INT` data type and has to change to a `BIGINT` data type\. 
 
-**Note**  
-We strongly suggest that you test and verify your queries before performing data type translations\. If Athena cannot convert the data type from the original data type to the target data type, the `CREATE TABLE` query may fail\.
+Changing a column's data type has these limitations:
++ Only certain data types can be converted to other data types\. See the table in this section for data types that can change\.
++ For data in Parquet and ORC, you cannot change a column's data type if the table is not partitioned\. 
+
+  For partitioned tables in Parquet and ORC, a partition's column type can be different from another partition's column type, and Athena will `CAST` to the desired type, if possible\. For information, see [Avoiding Schema Mismatch Errors for Tables with Partitions](updates-and-partitions.md#partitions-dealing-with-schema-mismatch-errors)\.
+
+**Important**  
+We strongly suggest that you test and verify your queries before performing data type translations\. If Athena cannot convert the data type from the original data type to the target data type, the `CREATE TABLE` query may fail\. 
 
 The following table lists data types that you can change:
 

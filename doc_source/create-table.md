@@ -33,15 +33,16 @@ Specifies the name for each column to be created, along with the column's data t
 **primitive\_type**  
   + TINYINT
   + SMALLINT
-  + INT
+  + INT\. Athena combines two different implementations of the `INTEGER` data type\. In Data Definition Language \(DDL\) queries, Athena uses the `INT` data type\. In all other queries, Athena uses the `INTEGER` data type\. In the JDBC driver, `INTEGER` is returned, to ensure compatibility with business analytics applications\.
   + BIGINT
+  + BINARY \(for data in Parquet\)
   + BOOLEAN
   + DOUBLE
   + FLOAT
   + STRING
   + TIMESTAMP
   + DECIMAL \[ \(precision, scale\) \]
-  + DATE \(not supported for Parquet data types\)
+  + DATE
   + CHAR\. Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
   + VARCHAR\. Variable length character data, with a specified length between 1 and 65535, such as `varchar(10)`\. For more information, see [VARCHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-varchar)\. 
 +   

@@ -35,7 +35,7 @@ CSV and TSV allow you to do all schema manipulations except reordering of column
 |  [Add columns at the end of the table](types-of-updates.md#updates-add-columns-end-of-table) | Store your data in CSV or TSV, JSON, AVRO, and in ORC and Parquet if they are read by name\. | Y | Y | Y | Y | N | N | Y | 
 | [Remove columns](types-of-updates.md#updates-removing-columns) |  Store your data in JSON, AVRO, or Parquet and ORC, if they are read by name\. Do not use CSV and TSV\. | N | Y | Y | Y | N | N | Y | 
 | [Reorder columns](types-of-updates.md#updates-reordering-columns) | Store your data in AVRO, JSON or ORC and Parquet if they are read by name\. | N | Y | Y | Y | N | N | Y | 
-| [Change a column's data type](types-of-updates.md#updates-changing-column-type) | Store your data in any format, but test your query in Athena to make sure the data types are compatible\. | Y | Y | Y | Y | Y | Y | Y | 
+| [Change a column's data type](types-of-updates.md#updates-changing-column-type) | Store your data in any format, but test your query in Athena to make sure the data types are compatible\. For Parquet and ORC, changing a data type works only for partitioned tables\. | Y | Y | Y | Y | Y | Y | Y | 
 
 ## Index Access in ORC and Parquet<a name="index-access"></a>
 
