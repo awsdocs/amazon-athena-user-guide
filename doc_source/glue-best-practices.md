@@ -105,7 +105,7 @@ CSV files occasionally have quotes around the data values intended for each colu
 
 ### CSV Data Enclosed in Quotes<a name="schema-csv-quotes"></a>
 
-If you run a query in Athena against a table created from a CSV file with quoted data values, update the table definition inAWS Glue so that it specifies the right SerDe and SerDe properties\. This allows the table definition to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv.md)\.
+If you run a query in Athena against a table created from a CSV file with quoted data values, update the table definition in AWS Glue so that it specifies the right SerDe and SerDe properties\. This allows the table definition to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv.md)\.
 
 In this case, make the following changes:
 + Change the `serializationLib` property under field in the `SerDeInfo` field in the table to `org.apache.hadoop.hive.serde2.OpenCSVSerde`\.
