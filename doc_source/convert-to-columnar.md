@@ -114,12 +114,12 @@ Replace `REGION` in the `LOCATION` clause with the region where you are running 
 1. After your EMR cluster is terminated, create your table in Athena, which uses the data in the format produced by the cluster\.
 
 ## Before you begin<a name="prerequisites"></a>
-+ You need to create EMR clusters\. For more information about Amazon EMR, see the [Amazon EMR Management Guide](http://docs.aws.amazon.com/emr/latest/ManagementGuide/)\.
++ You need to create EMR clusters\. For more information about Amazon EMR, see the [Amazon EMR Management Guide](https://docs.aws.amazon.com/emr/latest/ManagementGuide/)\.
 + Follow the instructions found in [Setting Up](setting-up.md)\.
 
 ## Example: Converting data to Parquet using an EMR cluster<a name="example-converting-data-to-parquet-using-an-emr-cluster"></a>
 
-1. Use the AWS CLI to create a cluster\. If you need to install the AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the AWS Command Line Interface User Guide\.
+1. Use the AWS CLI to create a cluster\. If you need to install the AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the AWS Command Line Interface User Guide\.
 
 1. You need roles to use Amazon EMR, so if you haven't used Amazon EMR before, create the default roles using the following command:
 
@@ -154,7 +154,7 @@ Replace `REGION` in the `LOCATION` clause with the region where you are running 
    --auto-terminate
    ```
 
-   For more information, see [Create and Use IAM Roles for Amazon EMR](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-iam-roles-creatingroles.html) in the Amazon EMR Management Guide\.
+   For more information, see [Create and Use IAM Roles for Amazon EMR](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-iam-roles-creatingroles.html) in the Amazon EMR Management Guide\.
 
    A successful request gives you a cluster ID\.
 

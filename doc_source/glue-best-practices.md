@@ -35,13 +35,13 @@ You can use the AWS Glue Catalog Manager to rename columns, but at this time tab
 
 ## Using AWS Glue Crawlers<a name="schema-crawlers"></a>
 
-AWS Glue crawlers help discover and register the schema for datasets in the AWS Glue Data Catalog\. The crawlers go through your data, and inspect portions of it to determine the schema\. In addition, the crawler can detect and register partitions\. For more information, see [Cataloging Data with a Crawler](http://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\.
+AWS Glue crawlers help discover and register the schema for datasets in the AWS Glue Data Catalog\. The crawlers go through your data, and inspect portions of it to determine the schema\. In addition, the crawler can detect and register partitions\. For more information, see [Cataloging Data with a Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\.
 
 ### Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync<a name="schema-crawlers-schedule"></a>
 
-AWS Glue crawlers can be set up to run on a schedule or on demand\. For more information, see [Time\-Based Schedules for Jobs and Crawlers](http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html) in the *AWS Glue Developer Guide*\.
+AWS Glue crawlers can be set up to run on a schedule or on demand\. For more information, see [Time\-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html) in the *AWS Glue Developer Guide*\.
 
-If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue Crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually execute an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](http://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
+If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue Crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually execute an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_crawler.png)
 
@@ -95,7 +95,7 @@ There are a few ways to fix this issue\. First, if the data was accidentally add
 
 ### Updating Table Metadata<a name="schema-table-metadata"></a>
 
-After a crawl, the AWS Glue crawler automatically assigns certain table metadata to help make it compatible with other external technologies like Apache Hive, Presto, and Spark\. Occasionally, the crawler may incorrectly assign metadata properties\. Manually correct the properties in AWS Glue before querying the table using Athena\. For more information, see [Viewing and Editing Table Details](http://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
+After a crawl, the AWS Glue crawler automatically assigns certain table metadata to help make it compatible with other external technologies like Apache Hive, Presto, and Spark\. Occasionally, the crawler may incorrectly assign metadata properties\. Manually correct the properties in AWS Glue before querying the table using Athena\. For more information, see [Viewing and Editing Table Details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
 
 AWS Glue may mis\-assign metadata when a CSV file has quotes around each data field, getting the `serializationLib` property wrong\. For more information, see [CSV Data Enclosed in quotes](#schema-csv-quotes)\.
 
@@ -136,11 +136,11 @@ Alternatively, you can update the table definition in AWS Glue to have a SerDeIn
 },
 ```
 
-For more information, see [Viewing and Editing Table Details](http://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
+For more information, see [Viewing and Editing Table Details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
 
 ### CSV Files with Headers<a name="schema-csv-headers"></a>
 
-If you are writing CSV files from AWS Glue to query using Athena, you must remove the CSV headers so that the header information is not included in Athena query results\. One way to achieve this is to use AWS Glue jobs, which perform extract, transform, and load \(ETL\) work\. You can write scripts in AWS Glue using a language that is an extension of the PySpark Python dialect\. For more information, see [Authoring Jobs in Glue](http://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+If you are writing CSV files from AWS Glue to query using Athena, you must remove the CSV headers so that the header information is not included in Athena query results\. One way to achieve this is to use AWS Glue jobs, which perform extract, transform, and load \(ETL\) work\. You can write scripts in AWS Glue using a language that is an extension of the PySpark Python dialect\. For more information, see [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
 
 The following example shows a function in an AWS Glue script that writes out a dynamic frame using `from_options`, and sets the `writeHeader` format option to false, which removes the header information:
 
@@ -150,7 +150,7 @@ glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_t
 
 ## Using AWS Glue Jobs for ETL with Athena<a name="schema-classifier"></a>
 
-AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extracts data from sources, transforms the data, and loads it into targets\. For more information, see [Authoring Jobs in Glue](http://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extracts data from sources, transforms the data, and loads it into targets\. For more information, see [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
 
 ### Creating Tables Using Athena for AWS Glue ETL Jobs<a name="schema-etl-tables"></a>
 
@@ -179,7 +179,7 @@ If the table property was not added when the table was created, you can add it u
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_edit_table_classification.png)
 
-For more information, see [Working with Tables](http://docs.aws.amazon.com/glue/latest/dg/console-tables.html) in the *AWS Glue Developer Guide*\.
+For more information, see [Working with Tables](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html) in the *AWS Glue Developer Guide*\.
 
 ### Using ETL Jobs to Optimize Query Performance<a name="schema-etl-performance"></a>
 
@@ -193,4 +193,4 @@ To reduce the likelihood that Athena is unable to read the `SMALLINT` and `TINYI
 
 ### Automating AWS Glue Jobs for ETL<a name="schema-etl-automate"></a>
 
-You can configure AWS Glue ETL jobs to run automatically based on triggers\. This feature is ideal when data from outside AWS is being pushed to an Amazon S3 bucket in a suboptimal format for querying in Athena\. For more information, see [Triggering AWS Glue Jobs](http://docs.aws.amazon.com/glue/latest/dg/trigger-job.html) in the *AWS Glue Developer Guide*\.
+You can configure AWS Glue ETL jobs to run automatically based on triggers\. This feature is ideal when data from outside AWS is being pushed to an Amazon S3 bucket in a suboptimal format for querying in Athena\. For more information, see [Triggering AWS Glue Jobs](https://docs.aws.amazon.com/glue/latest/dg/trigger-job.html) in the *AWS Glue Developer Guide*\.

@@ -20,7 +20,7 @@ Note your AWS account number, because you need it for the next task\.
 
 An AWS Identity and Access Management \(IAM\) user is an account that you create to access services\. It is a different user than your main AWS account\. As a security best practice, we recommend that you use the IAM user's credentials to access AWS services\. Create an IAM user, and then add the user to an IAM group with administrative permissions or and grant this user administrative permissions\. You can then access AWS using a special URL and the credentials for the IAM user\.
 
-If you signed up for AWS but have not created an IAM user for yourself, you can create one using the IAM console\. If you aren't familiar with using the console, see [Working with the AWS Management Console](http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html)\.
+If you signed up for AWS but have not created an IAM user for yourself, you can create one using the IAM console\. If you aren't familiar with using the console, see [Working with the AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html)\.
 
 ### To create a group for administrators<a name="to-create-a-group-for-administrators"></a>
 
@@ -62,7 +62,7 @@ It is also possible the sign\-in link will use your account name instead of numb
 
 ## Attach Managed Policies for Using Athena<a name="attach-managed-policies-for-using-ate"></a>
 
-Attach Athena managed policies to the IAM account you use to access Athena\. There are two managed policies for Athena: `AmazonAthenaFullAccess` and `AWSQuicksightAthenaAccess`\. These policies grant permissions to Athena to query Amazon S3 as well as write the results of your queries to a separate bucket on your behalf\. For more information and step\-by\-step instructions, see [Attaching Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html#attach-managed-policy-console) in the *AWS Identity and Access Management User Guide*\. For information about policy contents, see [IAM Policies for User Access](access.md#managed-policies)\.
+Attach Athena managed policies to the IAM account you use to access Athena\. There are two managed policies for Athena: `AmazonAthenaFullAccess` and `AWSQuicksightAthenaAccess`\. These policies grant permissions to Athena to query Amazon S3 as well as write the results of your queries to a separate bucket on your behalf\. For more information and step\-by\-step instructions, see [Attaching Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html#attach-managed-policy-console) in the *AWS Identity and Access Management User Guide*\. For information about policy contents, see [IAM Policies for User Access](access.md#managed-policies)\.
 
 **Note**  
 You may need additional permissions to access the underlying dataset in Amazon S3\. If you are not the account owner or otherwise have restricted access to a bucket, contact the bucket owner to grant access using a resource\-based bucket policy, or contact your account administrator to grant access using an identity\-based policy\. For more information, see [Amazon S3 Permissions](access.md#s3-permissions)\. If the dataset or Athena query results are encrypted, you may need additional permissions\. For more information, see [Configuring Encryption Options](encryption.md)\.

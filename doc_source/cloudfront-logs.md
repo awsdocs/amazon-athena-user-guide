@@ -2,7 +2,7 @@
 
 You can configure Amazon CloudFront CDN to export Web distribution access logs to Amazon Simple Storage Service\. Use these logs to explore users’ surfing patterns across your web properties served by CloudFront\.
 
-Before you begin querying the logs, enable Web distributions access log on your preferred CloudFront distribution\. For information, see [Access Logs](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) in the *Amazon CloudFront Developer Guide*\.
+Before you begin querying the logs, enable Web distributions access log on your preferred CloudFront distribution\. For information, see [Access Logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) in the *Amazon CloudFront Developer Guide*\.
 
 Make a note of the Amazon S3 bucket to which to save these logs\.
 

@@ -34,4 +34,4 @@ For more information about AWS SDK documentation and downloads, see the *SDKs* s
 
 ## Using the CLI<a name="Using-CLI"></a>
 
- You can access Amazon Athena using the AWS CLI\. For more information, see the [AWS CLI Reference for Athena](http://docs.aws.amazon.com/cli/latest/reference/athena/)\. 
+ You can access Amazon Athena using the AWS CLI\. For more information, see the [AWS CLI Reference for Athena](https://docs.aws.amazon.com/cli/latest/reference/athena/)\. 

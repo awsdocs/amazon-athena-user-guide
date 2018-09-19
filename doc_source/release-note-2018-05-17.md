@@ -8,4 +8,4 @@ Concurrency limits in Athena are defined as the number of queries that can be su
 
 After you submit your queries to Athena, it processes the queries by assigning resources based on the overall service load and the amount of incoming requests\. We continuously monitor and make adjustments to the service so that your queries process as fast as possible\. 
 
-For information, see [Service Limits](service-limits.md)\. This is a soft limit and you can [request a limit increase](http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) for concurrent queries\.
+For information, see [Service Limits](service-limits.md)\. This is a soft limit and you can [request a limit increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) for concurrent queries\.

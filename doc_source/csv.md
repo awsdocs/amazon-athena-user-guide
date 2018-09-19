@@ -1,15 +1,15 @@
 # OpenCSVSerDe for Processing CSV<a name="csv"></a>
 
 When you create a table from CSV data in Athena, determine what types of values it contains:
-+ If data contains values enclosed in double quotes \(''\), then you can use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\. In the following sections, note the behavior of this SerDe with `STRING` data types\.
-+ If data does not contain values enclosed in double quotes \("\), you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\.
++ If data contains values enclosed in double quotes \(`"`\), then you can use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\. In the following sections, note the behavior of this SerDe with `STRING` data types\.
++ If data does not contain values enclosed in double quotes \(`"`\), you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\.
 
 ## CSV SerDe \(OpenCSVSerde\)<a name="csv-serde-opencsvserde"></a>
 
 The [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) behaves as follows:
 + Converts all column type values to `STRING`\.
 + To recognize data types other than `STRING`, relies on the Presto parser and converts the values from `STRING` into those data types if it can recognize them\.
-+ Uses double quotes \(`''`\) as the default quote character, and allows you to specify separator, quote, and escape characters, such as: 
++ Uses double quotes \(`"`\) as the default quote character, and allows you to specify separator, quote, and escape characters, such as: 
 
   ```
   WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = "`", "escapeChar" = "\\" )

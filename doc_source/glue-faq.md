@@ -1,6 +1,6 @@
 # FAQ: Upgrading to the AWS Glue Data Catalog<a name="glue-faq"></a>
 
-If you created databases and tables using Athena in a region before AWS Glue was available in that region, metadata is stored in an Athena\-managed data catalog, which only Athena and Amazon Redshift Spectrum can access\. To use AWS Glue features together with Athena and Redshift Spectrum, you must upgrade to the AWS Glue Data Catalog\. Athena can only be used together with the AWS Glue Data Catalog in regions where AWS Glue is available\. For a list of regions, see [Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#glue_region) in the *AWS General Reference*\.
+If you created databases and tables using Athena in a region before AWS Glue was available in that region, metadata is stored in an Athena\-managed data catalog, which only Athena and Amazon Redshift Spectrum can access\. To use AWS Glue features together with Athena and Redshift Spectrum, you must upgrade to the AWS Glue Data Catalog\. Athena can only be used together with the AWS Glue Data Catalog in regions where AWS Glue is available\. For a list of regions, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#glue_region) in the *AWS General Reference*\.
 
 ## Why should I upgrade to the AWS Glue Data Catalog?<a name="faq-benefits"></a>
 
@@ -9,7 +9,7 @@ AWS Glue is a completely\-managed extract, transform, and load \(ETL\) service\.
 +  **A fully managed ETL service** allows you to transform and move data to various destinations\.
 +  **The AWS Glue Data Catalog** stores metadata information about databases and tables, pointing to a data store in Amazon S3 or a JDBC\-compliant data store\.
 
-For more information, see [AWS Glue Concepts](http://docs.aws.amazon.com/glue/latest/dg/components-key-concepts.html)\.
+For more information, see [AWS Glue Concepts](https://docs.aws.amazon.com/glue/latest/dg/components-key-concepts.html)\.
 
 Upgrading to the AWS Glue Data Catalog has the following benefits\.
 
@@ -17,19 +17,19 @@ Upgrading to the AWS Glue Data Catalog has the following benefits\.
 
 The AWS Glue Data Catalog provides a unified metadata repository across a variety of data sources and data formats\. It provides out\-of\-the\-box integration with [Amazon Simple Storage Service \(Amazon S3\)](https://aws.amazon.com/s3/), [Amazon Relational Database Service \(Amazon RDS\)](https://aws.amazon.com/rds/), [Amazon Redshift](https://aws.amazon.com/redshift/), [Amazon Redshift Spectrum](https://aws.amazon.com/redshift/spectrum/), Athena, [Amazon EMR](https://aws.amazon.com/emr/), and any application compatible with the Apache Hive metastore\. You can create your table definitions one time and query across engines\.
 
-For more information, see [Populating the AWS Glue Data Catalog](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html)\.
+For more information, see [Populating the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html)\.
 
 ### Automatic schema and partition recognition<a name="automatic-schema-and-partition-recognition"></a>
 
 AWS Glue crawlers automatically crawl your data sources, identify data formats, and suggest schema and transformations\. Crawlers can help automate table creation and automatic loading of partitions that you can query using Athena, Amazon EMR, and Redshift Spectrum\. You can also create tables and partitions directly using the AWS Glue API, SDKs, and the AWS CLI\.
 
-For more information, see [Cataloging Tables with a Crawler](http://docs.aws.amazon.com/glue/latest/dg/add-crawler.html)\.
+For more information, see [Cataloging Tables with a Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html)\.
 
 ### Easy\-to\-build pipelines<a name="easy-to-build-pipelines"></a>
 
 The AWS Glue ETL engine generates Python code that is entirely customizable, reusable, and portable\. You can edit the code using your favorite IDE or notebook and share it with others using GitHub\. After your ETL job is ready, you can schedule it to run on the fully managed, scale\-out Spark infrastructure of AWS Glue\. AWS Glue handles provisioning, configuration, and scaling of the resources required to run your ETL jobs, allowing you to tightly integrate ETL with your workflow\.
 
-For more information, see [Authoring AWS Glue Jobs](http://docs.aws.amazon.com/glue/latest/dg/author-job.html) in the *AWS Glue Developer Guide*\.
+For more information, see [Authoring AWS Glue Jobs](https://docs.aws.amazon.com/glue/latest/dg/author-job.html) in the *AWS Glue Developer Guide*\.
 
 ## Are there separate charges for AWS Glue?<a name="faq-pricing"></a>
 

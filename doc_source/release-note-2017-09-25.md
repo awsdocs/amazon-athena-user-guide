@@ -2,4 +2,4 @@
 
 Published on *2017\-09\-25*
 
-Added support for Asia Pacific \(Sydney\)\. For a list of supported regions, see [AWS Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.
+Added support for Asia Pacific \(Sydney\)\. For a list of supported regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.

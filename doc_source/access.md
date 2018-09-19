@@ -20,15 +20,15 @@ If you are an administrator for other users, make sure that they have appropriat
 
 To allow or deny Athena service actions for yourself or other users, use IAM policies attached to principals, such as users or groups\.
 
-Each IAM policy consists of statements that define the actions that are allowed or denied\. For a list of actions, see the [Amazon Athena API Reference](http://docs.aws.amazon.com/athena/latest/APIReference/)\.
+Each IAM policy consists of statements that define the actions that are allowed or denied\. For a list of actions, see the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
 
- *Managed policies* are easy to use and are automatically updated with the required actions as the service evolves\. For more information and step\-by\-step instructions for attaching a policy to a user, see [Attaching Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html#attach-managed-policy-console) in the *AWS Identity and Access Management User Guide*\.
+ *Managed policies* are easy to use and are automatically updated with the required actions as the service evolves\. For more information and step\-by\-step instructions for attaching a policy to a user, see [Attaching Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html#attach-managed-policy-console) in the *AWS Identity and Access Management User Guide*\.
 
 Athena has these managed policies:
 + The `AmazonAthenaFullAccess` managed policy grants full access to Athena\. Attach it to users and other principals who need full access to Athena\. See [AmazonAthenaFullAccess Managed Policy](#amazonathenafullaccess-managed-policy)\.
 + The `AWSQuicksightAthenaAccess` managed policy grants access to actions that Amazon QuickSightneeds to integrate with Athena\. Attach this policy to principals who use Amazon QuickSight in conjunction with Athena\. See [AWSQuicksightAthenaAccess Managed Policy](#awsquicksightathenaaccess-managed-policy)\.
 
- *Customer\-managed* and *inline* policies allow you to specify more granular Athena actions within a policy to fine\-tune access\. We recommend that you use the `AmazonAthenaFullAccess` policy as a starting point and then allow or deny specific actions listed in the [Amazon Athena API Reference](http://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about inline policies, see [Managed Policies and Inline Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) in the *AWS Identity and Access Management User Guide*\.
+ *Customer\-managed* and *inline* policies allow you to specify more granular Athena actions within a policy to fine\-tune access\. We recommend that you use the `AmazonAthenaFullAccess` policy as a starting point and then allow or deny specific actions listed in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about inline policies, see [Managed Policies and Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) in the *AWS Identity and Access Management User Guide*\.
 
 If you also have principals that connect using JDBC, you must provide the JDBC driver credentials to your application\. For more information, see [Service Actions for JDBC Connections](#policy-actions)\.
 
@@ -203,7 +203,7 @@ For information about the latest version of the ODBC driver, see [Connect with t
 
 In addition to the allowed actions for Athena that you define in policies, if you or your users need to create tables and work with underlying data, you must grant appropriate access to the Amazon S3 location of the data\.
 
-You can do this using user policies, bucket policies, or both\. For detailed information and scenarios about how to grant Amazon S3 access, see [Example Walkthroughs: Managing Access](http://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access.html) in the *Amazon Simple Storage Service Developer Guide*\. For more information and an example of which Amazon S3 actions to allow, see the example bucket policy later in this topic\.
+You can do this using user policies, bucket policies, or both\. For detailed information and scenarios about how to grant Amazon S3 access, see [Example Walkthroughs: Managing Access](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access.html) in the *Amazon Simple Storage Service Developer Guide*\. For more information and an example of which Amazon S3 actions to allow, see the example bucket policy later in this topic\.
 
 **Note**  
 Athena does not support restricting or allowing access to Amazon S3 resources based on the `aws:SourceIp` condition key\.
@@ -212,7 +212,7 @@ Athena does not support restricting or allowing access to Amazon S3 resources ba
 
 The encryption of objects in the AWS Glue Data Catalog is only available if you have migrated to using AWS Glue with Athena\. 
 
-You can optionally enable encryption in the AWS Glue Data Catalog using the AWS Glue console, or the API\. For information, see [Encrypting Your Data Catalog](http://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html) in the *AWS Glue Developer Guide*\.
+You can optionally enable encryption in the AWS Glue Data Catalog using the AWS Glue console, or the API\. For information, see [Encrypting Your Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html) in the *AWS Glue Developer Guide*\.
 
  If you choose to encrypt your AWS Glue Data Catalog, you must add the following actions to all of your policies used to access Athena:
 

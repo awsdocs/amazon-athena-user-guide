@@ -29,31 +29,25 @@ Athena table names are case\-insensitive; however, if you work with Apache Spark
 
 **\[ \( col\_name data\_type \[COMMENT col\_comment\] \[, \.\.\.\] \) \]**  
 Specifies the name for each column to be created, along with the column's data type\. Column names do not allow special characters other than underscore `(_)`\. If `col_name` begins with an underscore, enclose the column name in backticks, for example ``_mycolumn``\. The `data_type` value can be any of the following:  
-+   
-**primitive\_type**  
-  + TINYINT
-  + SMALLINT
-  + INT\. Athena combines two different implementations of the `INTEGER` data type\. In Data Definition Language \(DDL\) queries, Athena uses the `INT` data type\. In all other queries, Athena uses the `INTEGER` data type\. In the JDBC driver, `INTEGER` is returned, to ensure compatibility with business analytics applications\.
-  + BIGINT
-  + BINARY \(for data in Parquet\)
-  + BOOLEAN
-  + DOUBLE
-  + FLOAT
-  + STRING
-  + TIMESTAMP
-  + DECIMAL \[ \(precision, scale\) \]
-  + DATE
-  + CHAR\. Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
-  + VARCHAR\. Variable length character data, with a specified length between 1 and 65535, such as `varchar(10)`\. For more information, see [VARCHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-varchar)\. 
-+   
-**array\_type**  
-  + ARRAY < data\_type >
-+   
-**map\_type**  
-  + MAP < primitive\_type, data\_type >
-+   
-**struct\_type**  
-  + STRUCT < col\_name : data\_type \[COMMENT col\_comment\] \[, \.\.\.\] >
++ `BOOLEAN`\. Values are `true` and `false`\.
++ `TINYINT`\. A 8\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^7 and a maximum value of 2^7\-1\.
++ `SMALLINT`\. A 16\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^15 and a maximum value of 2^15\-1\.
++ `INT`\. Athena combines two different implementations of the `INTEGER` data type\. In Data Definition Language \(DDL\) queries, Athena uses the `INT` data type\. In all other queries, Athena uses the `INTEGER` data type, where `INTEGER` is represented as a 32\-bit signed value in two's complement format, with a minimum value of\-2^31 and a maximum value of 2^31\-1\. In the JDBC driver, `INTEGER` is returned, to ensure compatibility with business analytics applications\.
++ `BIGINT`\.A 64\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^63 and a maximum value of 2^63\-1\.
++ `DOUBLE`
++ `FLOAT`
++ `DECIMAL [ (precision, scale) ]`, where `precision` is the total number of digits, and `scale` \(optional\) is the number of digits in fractional part, the default is 0\. For example, use these type definitions: `DECIMAL(11,5)`, `DECIMAL(15)`\. 
+
+  To specify decimal values as literals, such as when selecting rows with a specific decimal value in a query DDL expression, specify the `DECIMAL` type definition, and list the decimal value as a literal \(in single quotes\) in your query, as in this example: `decimal_value = DECIMAL '0.12'`\.
++ `CHAR`\. Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
++ `VARCHAR`\. Variable length character data, with a specified length between 1 and 65535, such as `varchar(10)`\. For more information, see [VARCHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-varchar)\. 
++ `BINARY` \(for data in Parquet\)
++ Date and time types
++ `DATE`, in the UNIX format, such as `YYYY-MM-DD`\.
++ `TIMESTAMP`\. Instant in time and date in the UNiX format, such as `yyyy-mm-dd hh:mm:ss[.f...]`\. For example, `TIMESTAMP '2008-09-15 03:04:05.324'`\. This format uses the session time zone\.
++ `ARRAY` < data\_type >
++ `MAP` < primitive\_type, data\_type >
++ `STRUCT` < col\_name : data\_type \[COMMENT col\_comment\] \[, \.\.\.\] >
 
 **\[COMMENT table\_comment\]**  
 Creates the `comment` table property and populates it with the `table_comment` you specify\.
@@ -93,7 +87,7 @@ Use a trailing slash for your folder or bucket\. Do not use file names or glob c
 **\[TBLPROPERTIES \( \['has\_encrypted\_data'='true \| false',\] \['classification'='aws\_glue\_classification',\] property\_name=property\_value \[, \.\.\.\] \) \]**  
 Specifies custom metadata key\-value pairs for the table definition in addition to predefined table properties, such as `"comment"`\.  
 Athena has a built\-in property, `has_encrypted_data`\. Set this property to `true` to indicate that the underlying dataset specified by `LOCATION` is encrypted\. If omitted, `false` is assumed\. If omitted or set to `false` when underlying data is encrypted, the query results in an error\. For more information, see [Configuring Encryption Options](encryption.md)\.  
-To run ETL jobs, AWS Glue requires that you create a table with the `classification` property to indicate the data type for AWS Glue as `csv`, `parquet`, `orc`, `avro`, or `json`\. For example, `'classification'='csv'`\. ETL jobs will fail if you do not specify this property\. You can subsequently specify it using the AWS Glue console, API, or CLI\. For more information, see [Using AWS Glue Jobs for ETL with Athena](glue-best-practices.md#schema-classifier) and [Authoring Jobs in Glue](http://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+To run ETL jobs, AWS Glue requires that you create a table with the `classification` property to indicate the data type for AWS Glue as `csv`, `parquet`, `orc`, `avro`, or `json`\. For example, `'classification'='csv'`\. ETL jobs will fail if you do not specify this property\. You can subsequently specify it using the AWS Glue console, API, or CLI\. For more information, see [Using AWS Glue Jobs for ETL with Athena](glue-best-practices.md#schema-classifier) and [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
 
 ## Examples<a name="examples"></a>
 

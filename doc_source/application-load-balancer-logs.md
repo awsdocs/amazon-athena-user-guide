@@ -2,7 +2,7 @@
 
 An Application Load Balancer is a load balancing option for Elastic Load Balancing that enables traffic distribution in a microservices deployment using containers\. Querying Application Load Balancer logs allows you to see the source of traffic, latency, and bytes transferred to and from Elastic Load Balancing instances and backend applications\.
 
-Before you begin, [enable access logging](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#enable-access-logging) for Application Load Balancer logs to be saved to your Amazon S3 bucket\.
+Before you begin, [enable access logging](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#enable-access-logging) for Application Load Balancer logs to be saved to your Amazon S3 bucket\.
 +  [Creating the Table for ALB Logs](#create-alb-table) 
 +  [Example Queries for ALB logs](#query-alb-logs-examples) 
 
@@ -12,7 +12,7 @@ Before you begin, [enable access logging](http://docs.aws.amazon.com/elasticload
 
    Create the `alb_logs` table as follows\.
 **Note**  
-This query includes all fields present in the list of current Application Load Balancer [Access Log Entries](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format)\. It also includes a table column `new_field` at the end, in case you require additions to the ALB logs\. This field does not break your query\. The regular expression in the SerDe properties ignores this field if your logs don't have it\. 
+This query includes all fields present in the list of current Application Load Balancer [Access Log Entries](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format)\. It also includes a table column `new_field` at the end, in case you require additions to the ALB logs\. This field does not break your query\. The regular expression in the SerDe properties ignores this field if your logs don't have it\. 
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS alb_logs (

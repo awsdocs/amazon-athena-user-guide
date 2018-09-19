@@ -2,7 +2,7 @@
 
 Amazon Virtual Private Cloud flow logs capture information about the IP traffic going to and from network interfaces in a VPC\. Use the logs to investigate network traffic patterns and identify threats and risks across your VPC network\.
 
-Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets you query directly\. 
+Before you begin querying the logs in Athena, [enable VPC flow logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets you query directly\. 
 +  [Creating the Table for VPC Flow Logs](#create-vpc-logs-table) 
 +  [Example Queries for Amazon VPC Flow Logs](#query-examples-vpc-logs) 
 
@@ -25,7 +25,7 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](http://docs
      destinationport int,
      protocol int,
      numpackets int,
-     numbytes int,
+     numbytes bigint,
      starttime int,
      endtime int,
      action string,

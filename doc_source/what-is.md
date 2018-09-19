@@ -8,21 +8,21 @@ Athena is serverless, so there is no infrastructure to set up or manage, and you
 
 Athena helps you analyze unstructured, semi\-structured, and structured data stored in Amazon S3\. Examples include CSV, JSON, or columnar data formats such as Apache Parquet and Apache ORC\. You can use Athena to run ad\-hoc queries using ANSI SQL, without the need to aggregate or load the data into Athena\.
 
-Athena integrates with the AWS Glue Data Catalog, which offers a persistent metadata store for your data in Amazon S3\. This allows you to create tables and query data in Athena based on a central metadata store available throughout your AWS account and integrated with the ETL and data discovery features of AWS Glue\. For more information, see [Integration with AWS Glue](glue-athena.md) and [What is AWS Glue](http://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) in the *AWS Glue Developer Guide*\.
+Athena integrates with the AWS Glue Data Catalog, which offers a persistent metadata store for your data in Amazon S3\. This allows you to create tables and query data in Athena based on a central metadata store available throughout your AWS account and integrated with the ETL and data discovery features of AWS Glue\. For more information, see [Integration with AWS Glue](glue-athena.md) and [What is AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) in the *AWS Glue Developer Guide*\.
 
 Athena integrates with Amazon QuickSight for easy data visualization\.
 
-You can use Athena to generate reports or to explore data with business intelligence tools or SQL clients connected with a JDBC or an ODBC driver\. For more information, see [What is Amazon QuickSight](http://docs.aws.amazon.com/quicksight/latest/user/welcome.html) in the *Amazon QuickSight User Guide* and [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena-bi-tools-jdbc-odbc.md)\.
+You can use Athena to generate reports or to explore data with business intelligence tools or SQL clients connected with a JDBC or an ODBC driver\. For more information, see [What is Amazon QuickSight](https://docs.aws.amazon.com/quicksight/latest/user/welcome.html) in the *Amazon QuickSight User Guide* and [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena-bi-tools-jdbc-odbc.md)\.
 
-You can create named queries with AWS CloudFormation and run them in Athena\. Named queries allow you to map a query name to a query and then call the query multiple times referencing it by its name\. For information, see [CreateNamedQuery](http://docs.aws.amazon.com/athena/latest/APIReference/API_CreateNamedQuery.html) in the *Amazon Athena API Reference*, and [AWS::Athena::NamedQuery](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html) in the *AWS CloudFormation User Guide*\.
+You can create named queries with AWS CloudFormation and run them in Athena\. Named queries allow you to map a query name to a query and then call the query multiple times referencing it by its name\. For information, see [CreateNamedQuery](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateNamedQuery.html) in the *Amazon Athena API Reference*, and [AWS::Athena::NamedQuery](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html) in the *AWS CloudFormation User Guide*\.
 
 ## Accessing Athena<a name="accessing-ate"></a>
 
 You can access Athena using the AWS Management Console, through a JDBC connection, using the Athena API, or using the Athena CLI\.
 + To get started with the console, see [Getting Started](getting-started.md)\.
 + To learn how to use JDBC, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
-+ To use the Athena API, see the [Amazon Athena API Reference](http://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html)\.
-+ To use the CLI, [install the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) and then type `aws athena help` from the command line to see available commands\. For information about available commands, see the [AWS Athena command line reference](http://docs.aws.amazon.com/cli/latest/reference/athena/)\.
++ To use the Athena API, see the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html)\.
++ To use the CLI, [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) and then type `aws athena help` from the command line to see available commands\. For information about available commands, see the [AWS Athena command line reference](https://docs.aws.amazon.com/cli/latest/reference/athena/)\.
 
 ## Understanding Tables, Databases, and the Data Catalog<a name="understanding-tables-databases-and-the-data-catalog"></a>
 

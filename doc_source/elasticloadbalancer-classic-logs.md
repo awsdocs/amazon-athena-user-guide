@@ -2,7 +2,7 @@
 
 Use Classic Load Balancer logs to analyze and understand traffic patterns to and from Elastic Load Balancing instances and backend applications\. You can see the source of traffic, latency, and bytes transferred\.
 
-Before you begin to analyze the Elastic Load Balancing logs, configure them for saving in the destination Amazon S3 bucket\. For more information, see [Enable Access Logs for Your Classic Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html)\.
+Before you begin to analyze the Elastic Load Balancing logs, configure them for saving in the destination Amazon S3 bucket\. For more information, see [Enable Access Logs for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html)\.
 +  [Creating the Table for ELB Logs](#create-elb-table) 
 +  [Example Queries for ELB Logs](#query-elb-logs-examples) 
 
