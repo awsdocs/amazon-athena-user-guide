@@ -2,11 +2,13 @@
 
 This documentation is associated with the May, 18, 2017 version of Amazon Athena\.
 
- **Latest documentation update: August 16, 2018\.** 
+ **Latest documentation update: October 10, 2018\.** 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added support for CREATE TABLE AS SELECT statements\. Made other improvements in the documentation\. |  Added support for `CREATE TABLE AS SELECT` statements\. See [Creating a Table from Query Results](ctas.md), [Considerations and Limitations](considerations-ctas.md), and [Examples](ctas-examples.md)\.  | October 10, 2018 | 
+|  Released the ODBC driver version 1\.0\.3 with support for streaming results instead of fetching them in pages\. Made other improvements in the documentation\.  |  The ODBC driver version 1\.0\.3 supports streaming results and also includes improvements, bug fixes, and an updated documentation for *"Using SSL with a Proxy Server"*\. For details, see the [Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/release-notes.txt) for the driver\. For downloading the ODBC driver version 1\.0\.3 and its documentation, see [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.   | September 6, 2018 | 
 |  Released the JDBC driver version 2\.0\.5 with default support for streaming results instead of fetching them in pages\. Made other improvements in the documentation\.  |  Released the JDBC driver 2\.0\.5 with default support for streaming results instead of fetching them in pages\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.  For information about streaming results, search for **UseResultsetStreaming** in the [ JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\.  | August 16, 2018 | 
 |  Updated the documentation for querying Amazon Virtual Private Cloud flow logs, which can be stored directly in Amazon S3 in a GZIP format\.  Updated examples for querying ALB logs\.  |  Updated the documentation for querying Amazon Virtual Private Cloud flow logs, which can be stored directly in Amazon S3 in a GZIP format\. For information, see [Querying Amazon VPC Flow Logs](vpc-flow-logs.md)\. Updated examples for querying ALB logs\. For information, see [Querying Application Load Balancer Logs](application-load-balancer-logs.md)\.  | August 7, 2018 | 
 | Added support for views\. Added guidelines for schema manipulations for various data storage formats\.  |  Added support for views\. For information, see [Views](views.md)\. Updated this guide with guidance on handling schema updates for various data storage formats\. For information, see [Handling Schema Updates](handling-schema-updates-chapter.md)\.  | June 5, 2018 | 

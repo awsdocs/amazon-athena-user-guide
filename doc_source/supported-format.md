@@ -2,6 +2,9 @@
 
 Athena supports creating tables and querying data from CSV, TSV, custom\-delimited, and JSON formats; data from Hadoop\-related formats: ORC, Apache Avro and Parquet; logs from Logstash, AWS CloudTrail logs, and Apache WebServer logs\.
 
+**Note**  
+The formats listed in this section are used by Athena for reading data\. For information about formats that Athena uses for writing data when it runs CTAS queries, see [Creating a Table from Query Results \(CTAS\)](ctas.md)\.
+
 To create tables and query data in these formats in Athena, specify a serializer\-deserializer class \(SerDe\) so that Athena knows which format is used and how to parse the data\.
 
 This table lists the data formats supported in Athena and their corresponding SerDe libraries\.

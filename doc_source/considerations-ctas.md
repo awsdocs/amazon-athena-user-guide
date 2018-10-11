@@ -1,0 +1,16 @@
+# Considerations and Limitations for CTAS Queries<a name="considerations-ctas"></a>
+
+ The following table describes what you need to know about CTAS queries in Athena:
+
+
+| Item | What You Need to Know | 
+| --- | --- | 
+| CTAS query syntax |  The CTAS query syntax differs from the syntax of `CREATE [EXTERNAL] TABLE` used for creating tables\. See [CREATE TABLE AS](create-table-as.md)\.  | 
+| CTAS queries vs views |  CTAS queries write new data to a specified location in Amazon S3, whereas views do not write any data\.   | 
+| Location of CTAS query results |  The location for storing CTAS query results in Amazon S3 must be empty\. A CTAS query checks that the bucket is empty and never overwrites the bucket if it already has data in it\. To use the same location again, delete the data, otherwise your CTAS query will fail\. You can specify the location for storing your CTAS query results\. If omitted, Athena uses this location by default: `s3://aws-athena-query-results-<account>-<region>/<query-name-or-unsaved>/year/month/date/<query-id>/`\.   | 
+| Formats for storing query results |  The results of CTAS queries are stored in Parquet by default, if you don't specify a data storage format\. You can store CTAS results in `PARQUET`, `ORC`, `AVRO`, `JSON`, and `TEXTFILE`\. CTAS queries do not require specifying a SerDe to interpret format transformations\. See [Example 5: Storing Results of a CTAS Query in Another Format](ctas-examples.md#ctas-example-query-storage-format)\.  | 
+| Compression formats |  GZIP compression is used for CTAS query results by default\. For Parquet and ORC, you can also specify SNAPPY\. See [Example 4: Specifying Data Storage and Compression Formats for CTAS Query Results](ctas-examples.md#ctas-example4)\.   | 
+| Partitioning |  You can partition the results data of a CTAS query by one or more columns\. When creating a partitioned table, Athena automatically adds partitions to the AWS Glue Data Catalog\.  The results of a CTAS query in Athena can have a maximum of 100 partitions that Athena creates for you when writing CTAS query results to a specified location in Amazon S3\. List partition columns at the end of the `SELECT` statement in a CTAS query\. For more information, see [Example 7: CTAS Queries with Partitions](ctas-examples.md#ctas-example-partitioned) and [Bucketing vs Partitioning](bucketing-vs-partitioning.md)\.   | 
+| Bucketing  |   You can configure buckets for storing the results of a CTAS query and bucket data by one or more columns\. There is no limit to the number of buckets you can specify\. For more information, see [Example 8: A CTAS Query with Bucketing](ctas-examples.md#ctas-example-bucketed) and [Bucketing vs Partitioning](bucketing-vs-partitioning.md)\.  | 
+| Encryption |  You can encrypt CTAS query results in Amazon S3, similar to the way you encrypt other query results in Athena\. For more information, see [Configuring Encryption Options](encryption.md)\.  | 
+| Data types |  Column data types for a CTAS query are the same as specified for the original query\.  | 

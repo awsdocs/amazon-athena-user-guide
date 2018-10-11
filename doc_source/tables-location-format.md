@@ -1,6 +1,6 @@
 # Table Location in Amazon S3<a name="tables-location-format"></a>
 
-When you run a `CREATE TABLE AS` query in Athena, you register your table with the data catalog that Athena uses\. If you migrated to AWS Glue, this is the catalog from AWS Glue\. You also specify the location in Amazon S3 for your table in this format: `s3://bucketname/keyname`\.
+When you run a `CREATE TABLE` query in Athena, you register your table with the data catalog that Athena uses\. If you migrated to AWS Glue, this is the catalog from AWS Glue\. You also specify the location in Amazon S3 for your table in this format: `s3://bucketname/keyname/`\.
 
 Use these tips and examples when you specify the location in Amazon S3\.
 + Athena reads all files in an Amazon S3 location you specify in the `CREATE TABLE` statement, and cannot ignore any files included in the prefix\. When you create tables, include in the Amazon S3 path only the files you want Athena to read\. Use AWS Lambda functions to scan files in the source location, remove any empty files, and move unneeded files to another location\.

@@ -2,16 +2,16 @@
 
 When you run queries in Athena that include reserved keywords, you must escape them by enclosing them in special characters\. Use the lists in this topic to check which keywords are reserved in Athena\. 
 
-To escape reserved keywords in DDL statements, use backticks \(`\)\. To escape reserved keywords in SQL `SELECT` statements, use double quotes \(''\)\.
+To escape reserved keywords in DDL statements, enclose them in backticks \(`\)\. To escape reserved keywords in SQL `SELECT` statements and in queries on [Views](views.md), enclose them in double quotes \(''\)\.
 +  [List of Reserved Keywords in DDL Statements](#list-of-ddl-reserved-words) 
 +  [List of Reserved Keywords in SQL SELECT Statements](#list-of-reserved-words-sql-select) 
 +  [Examples of Queries with Reserved Keywords](#examples-reserved-words) 
 
 ## List of Reserved Keywords in DDL Statements<a name="list-of-ddl-reserved-words"></a>
 
-Athena uses the following list of reserved keywords in its DDL statements\. If you use them without escaping them, Athena issues an error\. To escape them, use backticks \(`\)\.
+Athena uses the following list of reserved keywords in its DDL statements\. If you use them without escaping them, Athena issues an error\. To escape them, enclose them in backticks \(`\)\.
 
-You cannot use DDL reserved keywords as identifier names in DDL statements without escaping them with backticks \(`\)\.
+You cannot use DDL reserved keywords as identifier names in DDL statements without enclosing them in backticks \(`\)\.
 
 ```
 ALL, ALTER, AND, ARRAY, AS, AUTHORIZATION, BETWEEN, BIGINT, BINARY, BOOLEAN, BOTH, 
@@ -30,9 +30,9 @@ UNIQUEJOIN, UPDATE, USER, USING, UTC_TMESTAMP, VALUES, VARCHAR, VIEWS, WHEN, WHE
 
 ## List of Reserved Keywords in SQL SELECT Statements<a name="list-of-reserved-words-sql-select"></a>
 
-Athena uses the following list of reserved keywords in SQL `SELECT` Statements\. 
+Athena uses the following list of reserved keywords in SQL `SELECT` statements and in queries on views\. 
 
-If you use these keywords as identifiers, you must quote them using double quotes \("\) in your query statements\.
+If you use these keywords as identifiers, you must enclose them in double quotes \("\) in your query statements\.
 
 ```
 ALTER, AND, AS, BETWEEN, BY, CASE, CAST,

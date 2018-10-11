@@ -12,4 +12,5 @@ To improve query performance and reduce costs, we recommend that you partition y
 + [Reserved Keywords](reserved-words.md)
 + [Table Location in Amazon S3](tables-location-format.md)
 + [Partitioning Data](partitions.md)
++ [Columnar Storage Formats](columnar-storage.md)
 + [Converting to Columnar Formats](convert-to-columnar.md)

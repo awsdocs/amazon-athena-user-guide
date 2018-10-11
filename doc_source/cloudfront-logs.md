@@ -58,7 +58,7 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 
 1. Run the query in Athena console\. After the query completes, Athena registers the `cloudfront_logs` table, making the data in it ready for you to issue queries\.
 
-## Example Query for CloudFront logs<a name="query-examples-cloudfront-logs"></a>
+## Example Query for CloudFront Logs<a name="query-examples-cloudfront-logs"></a>
 
 The following query adds up the number of bytes served by CloudFront between June 9 and June 11, 2017\. Surround the date column name with double quotes because it is a reserved word\.
 

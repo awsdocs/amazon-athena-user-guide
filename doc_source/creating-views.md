@@ -11,7 +11,9 @@ Before you create a view, choose a database and then choose a table\. Run a `SEL
 
    In the Query Editor, a sample view query displays\. 
 
-1. Edit the sample view query\. Specify the table name and add other syntax\. For more information, see [CREATE VIEW](create-view.md) and [Examples of Views](views-examples.md)\.
+1. Edit the sample view query\. Specify the table name and add other syntax\. For more information, see [CREATE VIEW](create-view.md) and [Examples of Views](views-examples.md)\. 
+
+   View names cannot contain special characters, other than underscore `(_)`\. See [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)\. Avoid using [Reserved Keywords](reserved-words.md) for naming views\.
 
 1. Run the view query, debug it if needed, and save it\.
 

@@ -6,6 +6,7 @@
 + [Query Results](querying.md)
 + [Viewing Query History](queries-viewing-history.md)
 + [Views](views.md)
++ [Creating a Table from Query Results \(CTAS\)](ctas.md)
 + [Querying Arrays](querying-arrays.md)
 + [Querying Arrays with Complex Types and Nested Structures](rows-and-structs.md)
 + [Querying Arrays with Maps](maps.md)

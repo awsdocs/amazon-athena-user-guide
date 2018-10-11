@@ -34,7 +34,7 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](https://doc
    PARTITIONED BY (dt string)
    ROW FORMAT DELIMITED
    FIELDS TERMINATED BY ' '
-   LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}'
+   LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}/'
    TBLPROPERTIES ("skip.header.line.count"="1");
    ```
 

@@ -21,6 +21,7 @@ Hive supports multiple data formats through the use of serializer\-deserializer 
 ## Requirements for Tables in Athena and Data in Amazon S3<a name="s3-considerations"></a>
 
 When you create a table, you specify an Amazon S3 bucket location for the underlying data using the `LOCATION` clause\. Consider the following:
++ Athena can only query the latest version of data on a versioned Amazon S3 bucket, and cannot query previous versions of the data\.
 + You must have the appropriate permissions to work with data in the Amazon S3 location\. For more information, see [Setting User and Amazon S3 Bucket Permissions](access.md)\.
 + If the data is not encrypted in Amazon S3, it can be stored in a different region from the primary region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\.
 + If the data is encrypted in Amazon S3, it must be stored in the same region, and the user or principal who creates the table in Athena must have the appropriate permissions to decrypt the data\. For more information, see [Configuring Encryption Options](encryption.md)\.
@@ -30,10 +31,6 @@ When you create a table, you specify an Amazon S3 bucket location for the underl
 ## Functions Supported<a name="hive-ddl-functions-supported"></a>
 
 The functions supported in Athena queries are those found within Presto\. For more information, see [Presto 0\.172 Functions and Operators](https://prestodb.io/docs/0.172/functions.html) in the Presto documentation\.
-
-## CREATE TABLE AS Type Statements Are Not Supported<a name="create-table-as-type-statements-are-not-supported"></a>
-
-Athena does not support CREATE TABLE AS type statements, for example, `CREATE TABLE AS SELECT`, which creates a table from the result of a SELECT query statement\.
 
 ## Transactional Data Transformations Are Not Supported<a name="transactional-data-transformations-are-not-supported"></a>
 

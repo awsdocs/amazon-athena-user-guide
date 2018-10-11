@@ -15,6 +15,7 @@ Athena does not support all DDL statements\. For information, see [Unsupported D
 + [ALTER TABLE SET TBLPROPERTIES](alter-table-set-tblproperties.md)
 + [CREATE DATABASE](create-database.md)
 + [CREATE TABLE](create-table.md)
++ [CREATE TABLE AS](create-table-as.md)
 + [CREATE VIEW](create-view.md)
 + [DESCRIBE TABLE](describe-table.md)
 + [DESCRIBE VIEW](describe-view.md)

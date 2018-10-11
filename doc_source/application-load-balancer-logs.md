@@ -56,7 +56,7 @@ This query includes all fields present in the list of current Application Load B
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `alb_logs` table, making the data in it ready for you to issue queries\.
 
-## Example Queries for ALB logs<a name="query-alb-logs-examples"></a>
+## Example Queries for ALB Logs<a name="query-alb-logs-examples"></a>
 
 The following query counts the number of HTTP GET requests received by the load balancer grouped by the client IP address:
 
@@ -82,12 +82,10 @@ LIMIT 10;
 The following example shows how to parse the logs by `datetime`:
 
 ```
-SELECT client_ip, sum(received_bytes)
-FROM alb_logs_config_us
-WHERE parse_datetime(time,'yyyy-MM-dd''T''HH:mm:ss.SSSS''Z')
-  BETWEEN 
-    parse_datetime('2018-05-30-12:00:00','yyyy-MM-dd-HH:mm:ss')
-    AND
-    parse_datetime('2018-05-31-00:00:00','yyyy-MM-dd-HH:mm:ss')
+SELECT client_ip, sum(received_bytes) 
+FROM alb_logs_config_us 
+WHERE parse_datetime(time,'yyyy-MM-dd''T''HH:mm:ss.SSSSSS''Z') 
+     BETWEEN parse_datetime('2018-05-30-12:00:00','yyyy-MM-dd-HH:mm:ss') 
+     AND parse_datetime('2018-05-31-00:00:00','yyyy-MM-dd-HH:mm:ss') 
 GROUP BY client_ip;
 ```

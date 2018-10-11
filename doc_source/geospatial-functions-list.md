@@ -5,6 +5,7 @@ Geospatial functions in Athena have these characteristics:
 + The functions are implemented as a Presto plugin that uses the ESRI Java Geometry Library\. This library has an Apache 2 license\.
 + The functions rely on the [ESRI Geometry API](https://esri.github.io/geometry-api-java/javadoc/index.html?overview-summary.html)\.
 + Not all of the ESRI\-supported functions are available in Athena\. This topic lists only the ESRI geospatial functions that are supported in Athena\.
++ You cannot use views with geospatial functions\.
 
 Athena supports four types of geospatial functions:
 +  [Constructor Functions](#constructors-functions) 

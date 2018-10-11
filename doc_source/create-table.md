@@ -10,7 +10,8 @@ CREATE [EXTERNAL] TABLE [IF NOT EXISTS]
  [COMMENT table_comment]
  [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]
  [ROW FORMAT row_format]
- [STORED AS file_format] [WITH SERDEPROPERTIES (...)] ]
+ [STORED AS file_format] 
+ [WITH SERDEPROPERTIES (...)] ]
  [LOCATION 's3_loc']
  [TBLPROPERTIES ( ['has_encrypted_data'='true | false',] ['classification'='aws_glue_classification',] property_name=property_value [, ...] ) ]
 ```
@@ -28,7 +29,8 @@ Specifies a name for the table to be created\. The optional `db_name` parameter 
 Athena table names are case\-insensitive; however, if you work with Apache Spark, Spark requires lowercase table names\.
 
 **\[ \( col\_name data\_type \[COMMENT col\_comment\] \[, \.\.\.\] \) \]**  
-Specifies the name for each column to be created, along with the column's data type\. Column names do not allow special characters other than underscore `(_)`\. If `col_name` begins with an underscore, enclose the column name in backticks, for example ``_mycolumn``\. The `data_type` value can be any of the following:  
+Specifies the name for each column to be created, along with the column's data type\. Column names do not allow special characters other than underscore `(_)`\. If `col_name` begins with an underscore, enclose the column name in backticks, for example ``_mycolumn``\.   
+The `data_type` value can be any of the following:  
 + `BOOLEAN`\. Values are `true` and `false`\.
 + `TINYINT`\. A 8\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^7 and a maximum value of 2^7\-1\.
 + `SMALLINT`\. A 16\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^15 and a maximum value of 2^15\-1\.
@@ -79,7 +81,7 @@ Specifies the file format for table data\. If omitted, `TEXTFILE` is the default
 + INPUTFORMAT input\_format\_classname OUTPUTFORMAT output\_format\_classname
 
 **\[LOCATION 'S3\_loc'\]**  
-Specifies the location of the underlying data in Amazon S3 from which the table is created, for example, ``s3://mystorage/``\. For more information about considerations such as data format and permissions, see [Requirements for Tables in Athena and Data in Amazon S3](creating-tables.md#s3-considerations)\.  
+Specifies the location of the underlying data in Amazon S3 from which the table is created, for example, `'s3://mystorage/'`\. For more information about considerations such as data format and permissions, see [Requirements for Tables in Athena and Data in Amazon S3](creating-tables.md#s3-considerations)\.  
 Use a trailing slash for your folder or bucket\. Do not use file names or glob characters\.  
  **Use:** `s3://mybucket/myfolder/`   
  **Don't use:** `s3://path_to_bucket` `s3://path_to_bucket/*` `s3://path_to-bucket/mydatafile.dat` 

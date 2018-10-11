@@ -10,6 +10,7 @@ Athena supports the following actions for views\. You can run these commands in 
 | [DROP VIEW](drop-view.md) |  Deletes an existing view\. The optional `IF EXISTS` clause suppresses the error if the view does not exist\. For more information, see [Deleting Views](deleting-views.md)\.  | 
 | [SHOW CREATE VIEW](show-create-view.md) |  Shows the SQL statement that creates the specified view\.  | 
 | [SHOW VIEWS](show-views.md) |  Lists the views in the specified database, or in the current database if you omit the database name\. Use the optional `LIKE` clause with a regular expression to restrict the list of view names\. You can also see the list of views in the left pane in the console\.  | 
+| [SHOW COLUMNS](show-columns.md) |  Lists the columns in the schema for a view\.  | 
 
 ## Considerations for Views<a name="considerations-views"></a>
 
@@ -20,5 +21,11 @@ In Athena, you can preview and work with views created in the Athena Console, in
 Athena detects stale views and displays an error message in such cases\. A stale view is a view query that references tables or databases that do not exist\.
 
 You can create and run nested views as long as the query behind the nested view is valid and the tables and databases exist\.
+
+Athena view names cannot contain special characters, other than underscore `(_)`\. For more information, see [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)\.
+
+Avoid using reserved keywords for naming views\. If you use reserved keywords, use double quotes to enclose reserved keywords in your queries on views\. See [Reserved Keywords](reserved-words.md)\.
+
+You cannot use views with geospatial functions\.
 
 You cannot use views to manage access control on data in Amazon S3\. To query a view, you need permissions to access the data stored in Amazon S3\. For more information, see [Access to Amazon S3 ](access.md#s3-permissions)\.
