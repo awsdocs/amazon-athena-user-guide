@@ -9,7 +9,7 @@ Creates a new table populated with the results of a [SELECT](select.md) query\. 
 ## Synopsis<a name="synopsis"></a>
 
 ```
-CREATE table_name
+CREATE TABLE table_name
 [ WITH ( property_name = expression [, ...] ) ]
 AS query
 [ WITH [ NO ] DATA ]
