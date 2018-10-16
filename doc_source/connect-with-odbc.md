@@ -43,7 +43,7 @@ The current ODBC driver version 1\.0\.3 is a drop\-in replacement of the previou
 **Important**  
 To use the ODBC driver version 1\.0\.3, follow these requirements:   
 Keep the port 444 open to outbound traffic\.
-Add the `athena:GetQueryResultsStream` policy action to the list of policies for Athena\. This policy action is not exposed directly with the API and is only used with the ODBC and JDBC drivers, as part of streaming results support\. For an example policy, see [AWSQuicksightAthenaAccess Managed Policy](access.md#awsquicksightathenaaccess-managed-policy)\. 
+Add the `athena:GetQueryResultsStream` policy action to the list of policies for Athena\. This policy action is not exposed directly with the API and is only used with the ODBC and JDBC drivers, as part of streaming results support\. For an example policy, see [AWSQuicksightAthenaAccess Managed Policy](managed-policies.md#awsquicksightathenaaccess-managed-policy)\. 
 
 ## Previous Versions of the ODBC Driver<a name="odbc-previous-versions"></a>
 

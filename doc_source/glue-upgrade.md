@@ -31,7 +31,7 @@ The following is an example policy statement\.
 
 ## Step 2 \- Update Customer\-Managed/Inline Policies Associated with Athena Users<a name="upgrade-step2"></a>
 
-If you have customer\-managed or inline IAM policies associated with Athena users, you need to update the policy or policies to allow actions that AWS Glue requires\. If you use the managed policy, they are automatically updated\. The AWS Glue policy actions to allow are listed in the example policy below\. For the full policy statement, see [IAM Policies for User Access](access.md#managed-policies)\.
+If you have customer\-managed or inline IAM policies associated with Athena users, you need to update the policy or policies to allow actions that AWS Glue requires\. If you use the managed policy, they are automatically updated\. The AWS Glue policy actions to allow are listed in the example policy below\. For the full policy statement, see [IAM Policies for User Access](managed-policies.md)\.
 
 ```
 {

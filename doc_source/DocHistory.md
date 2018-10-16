@@ -2,11 +2,12 @@
 
 This documentation is associated with the May, 18, 2017 version of Amazon Athena\.
 
- **Latest documentation update: October 10, 2018\.** 
+ **Latest documentation update: October 15, 2018\.** 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+|  Added support for fine\-grained access control to databases and tables in Athena\. Additionally, added policies in Athena that allow you to encrypt database and table metadata in the Data Catalog\.  |  Added support for creating identity\-based \(IAM\) policies that provide fine\-grained access control to resources in the AWS Glue Data Catalog, such as databases and tables used in Athena\.  Additionally, you can encrypt database and table metadata in the Data Catalog, by adding specific policies to Athena\.  For details, see [Access Control Policies](https://docs.aws.amazon.com/athena/latest/ug/access.html)\.   | October 15, 2018 | 
 | Added support for CREATE TABLE AS SELECT statements\. Made other improvements in the documentation\. |  Added support for `CREATE TABLE AS SELECT` statements\. See [Creating a Table from Query Results](ctas.md), [Considerations and Limitations](considerations-ctas.md), and [Examples](ctas-examples.md)\.  | October 10, 2018 | 
 |  Released the ODBC driver version 1\.0\.3 with support for streaming results instead of fetching them in pages\. Made other improvements in the documentation\.  |  The ODBC driver version 1\.0\.3 supports streaming results and also includes improvements, bug fixes, and an updated documentation for *"Using SSL with a Proxy Server"*\. For details, see the [Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/release-notes.txt) for the driver\. For downloading the ODBC driver version 1\.0\.3 and its documentation, see [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.   | September 6, 2018 | 
 |  Released the JDBC driver version 2\.0\.5 with default support for streaming results instead of fetching them in pages\. Made other improvements in the documentation\.  |  Released the JDBC driver 2\.0\.5 with default support for streaming results instead of fetching them in pages\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.  For information about streaming results, search for **UseResultsetStreaming** in the [ JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\.  | August 16, 2018 | 

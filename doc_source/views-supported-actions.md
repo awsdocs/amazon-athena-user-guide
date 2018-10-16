@@ -28,4 +28,4 @@ Avoid using reserved keywords for naming views\. If you use reserved keywords, u
 
 You cannot use views with geospatial functions\.
 
-You cannot use views to manage access control on data in Amazon S3\. To query a view, you need permissions to access the data stored in Amazon S3\. For more information, see [Access to Amazon S3 ](access.md#s3-permissions)\.
+You cannot use views to manage access control on data in Amazon S3\. To query a view, you need permissions to access the data stored in Amazon S3\. For more information, see [Access to Amazon S3](s3-permissions.md)\.
