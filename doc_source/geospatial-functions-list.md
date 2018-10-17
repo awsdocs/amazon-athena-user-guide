@@ -61,7 +61,7 @@ Use constructor geospatial functions to obtain binary representations of a `poin
 
 Returns a value in the `point` data type, which is a binary representation of the geometry data type `point`\.
 
-For the geometry data type `point` in `ST_POINT`, Athena uses the map units from the Cartesian Coordinates System, and an angular unit from the spatial reference, specified in linear units, based on the Global Positioning System \(GPS\) World Geodetic System \(WGS1984\) format\. For example, in this notation: `ST_POINT(40.705220,-74.006801), 15.0)`, the map coordinates are specified in Cartesian Coordinates System units, and the angular value of 15 is specified in linear units based on WGS84\.
+For the geometry data type `point` in `ST_POINT`, Athena uses the map units from the Cartesian Coordinates System, and an angular unit from the spatial reference, specified in linear units, based on the Global Positioning System \(GPS\) World Geodetic System \(also known as WGS1984, or WGS84\) format\. For example, in this notation: `ST_BUFFER(ST_POINT(40.705220,-74.006801), 15.0)`, the map coordinates are specified in Cartesian Coordinates System units, and the angular value of 15 is specified in linear units based on WGS84\.
 
 Syntax:
 
