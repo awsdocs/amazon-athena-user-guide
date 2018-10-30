@@ -7,6 +7,7 @@ You can create a view from a `SELECT` query and then reference this view in futu
 **Topics**
 + [When to Use Views?](when-to-use-views.md)
 + [Supported Actions for Views in Athena](views-supported-actions.md)
++ [Considerations for Views](considerations-views.md)
 + [Working with Views in the Console](views-console.md)
 + [Creating Views](creating-views.md)
 + [Examples of Views](views-examples.md)
