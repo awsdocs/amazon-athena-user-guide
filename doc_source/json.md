@@ -24,9 +24,6 @@ The Hive JSON SerDe is used to process JSON data, most commonly events\. These e
 
 You can also use the Hive JSON SerDe to parse more complex JSON\-encoded data with nested structures\. However, this requires having a matching DDL representing the complex data types\. See [Example: Deserializing Nested JSON](#nested-json-serde-example)\.
 
-This SerDe has a useful property you can specify when creating tables in Athena, to help deal with inconsistencies in the data:
-+  `'ignore.malformed.json'` if set to `TRUE`, lets you skip malformed JSON syntax\.
-
 **Note**  
 You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-east-1/path/to/data/`\.
 
@@ -61,6 +58,9 @@ LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 ```
 
 ## OpenX JSON SerDe<a name="openxjson"></a>
+
+This SerDe has a useful property you can specify when creating tables in Athena, to help deal with inconsistencies in the data:
++  `'ignore.malformed.json'` if set to `TRUE`, lets you skip malformed JSON syntax\.
 
 The following DDL statement uses the OpenX JSON SerDe:
 

@@ -16,10 +16,10 @@ You can encrypt:
 ## Amazon S3 Encryption Options Supported in Athena<a name="encryption-options-S3-and-Athena"></a>
 
 Athena supports the following Amazon S3 encryption options, both for encrypted datasets in Amazon S3 and for encrypted query results:
-+ Server side encryption with an Amazon S3\-managed key \([SSE\-S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\)
-+ Server\-side encryption with a AWS KMS\-managed key \([SSE\-KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)\)\.
-+ Client\-side encryption with a AWS KMS\-managed key \([CSE\-KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html#client-side-encryption-kms-managed-master-key-intro)\)
-+ 
++ Server side encryption \(SSE\) with an Amazon S3\-managed key \([SSE\-S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\)
++ Server\-side encryption \(SSE\) with a AWS Key Management Service customer managed key \([SSE\-KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)\)\.
++ Client\-side encryption \(CSE\) with a AWS KMS customer managed key \([CSE\-KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html#client-side-encryption-kms-managed-master-key-intro)\)
+
 **Note**  
 With SSE\-KMS, Athena does not require you to indicate that data is encrypted when creating a table\.
 
@@ -54,9 +54,11 @@ The setting for query\-result encryption applies to all queries\. You can't conf
 
 1. For **Encryption type**, choose **CSE\-KMS**, **SSE\-KMS**, or **SSE\-S3**\.
 
-   If you chose **SSE\-KMS** or **CSE\-KMS**, for **Encryption key**, specify one of the following:
-   + If your account has access to an existing KMS CMK, choose its alias, or choose **Enter a KMS key ARN** and then enter an ARN\.
-   + Create a new KMS key\. Choose **Create KMS key**, use the IAM console to create the key, and then return to specify the key by alias or ARN as described in the previous steps\. For more information, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
+1. If you chose **SSE\-KMS** or **CSE\-KMS**, specify the **Encryption key**\.
+   + If your account has access to an existing AWS KMS customer managed key \(CMK\), choose its alias or choose **Enter a KMS key ARN** and then enter an ARN\.
+   +  If your account does not have access to an existing AWS KMS customer managed key \(CMK\), choose **Create KMS key**, and then open the [AWS KMS console](https://console.aws.amazon.com/kms)\. In the navigation pane, choose **AWS managed keys**\. For more information, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
+
+1. Return to the Athena console to specify the key by alias or ARN as described in the previous step\. 
 
 1. Choose **Save**\.
 
@@ -64,7 +66,7 @@ The setting for query\-result encryption applies to all queries\. You can't conf
 
 Depending on the type of encryption you use in Amazon S3, you may need to add permissions, also known as "Allow" actions, to your policies used in Athena:
 + SSE\-S3\. If you use SSE\-S3 for encryption, Athena users require no additional permissions in their policies\. It is sufficient to have the appropriate Amazon S3 permissions for the appropriate Amazon S3 location and for Athena actions\. For more information about policies that allow appropriate Athena and Amazon S3 permissions, see [IAM Policies for User Access](managed-policies.md) and [Amazon S3 Permissions](s3-permissions.md)\.
-+ AWS KMS\. If you use AWS KMS for encryption, Athena users must be allowed to perform particular AWS KMS actions in addition to Athena and Amazon S3 permissions\. You allow these actions by editing the key policy for the KMS customer master keys \(CMKs\) that are used to encrypt data in Amazon S3\. The easiest way to do this is to use the IAM console to add key users to the appropriate KMS key policies\. For information about how to add a user to a KMS key policy, see [How to Modify a Key Policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-how-to-console-default-view) in the *AWS Key Management Service Developer Guide*\.
++ AWS KMS\. If you use AWS KMS for encryption, Athena users must be allowed to perform particular AWS KMS actions in addition to Athena and Amazon S3 permissions\. You allow these actions by editing the key policy for the AWS KMS customer managed keys \(CMKs\) that are used to encrypt data in Amazon S3\. The easiest way to do this is to use the IAM console to add key users to the appropriate AWS KMS key policies\. For information about how to add a user to a AWS KMS key policy, see [How to Modify a Key Policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-how-to-console-default-view) in the *AWS Key Management Service Developer Guide*\.
 **Note**  
 Advanced key policy administrators can adjust key policies\. `kms:Decrypt` is the minimum allowed action for an Athena user to work with an encrypted dataset\. To work with encrypted query results, the minimum allowed actions are `kms:GenerateDataKey` and `kms:Decrypt`\.
 
@@ -76,12 +78,12 @@ If you [encrypt metadata in the AWS Glue Data Catalog](https://docs.aws.amazon.c
 
 ## Creating Tables Based on Encrypted Datasets in Amazon S3<a name="creating-tables-based-on-encrypted-datasets-in-s3"></a>
 
-When you create a table, indicate to Athena that a dataset is encrypted in Amazon S3\. This is not required when using SSE\-KMS\. For both SSE\-S3 and KMS encryption, Athena determines the proper materials to use to decrypt the dataset and create the table, so you don't need to provide key information\.
+When you create a table, indicate to Athena that a dataset is encrypted in Amazon S3\. This is not required when using SSE\-KMS\. For both SSE\-S3 and AWS KMS encryption, Athena determines the proper materials to use to decrypt the dataset and create the table, so you don't need to provide key information\.
 
 Users that run queries, including the user who creates the table, must have the appropriate permissions as described earlier in this topic\.
 
 **Important**  
-If you use Amazon EMR along with EMRFS to upload encrypted Parquet files, you must disable multipart uploads by setting `fs.s3n.multipart.uploads.enabled` to `false`\. If you don't do this, Athena is unable to determine the Parquet file length and a **HIVE\_CANNOT\_OPEN\_SPLIT** error occurs\. For more information, see [Configure Multipart Upload for Amazon S3](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-upload-s3.html#Config_Multipart) in the *EMR Management Guide*\.
+If you use Amazon EMR along with EMRFS to upload encrypted Parquet files, you must disable multipart uploads by setting `fs.s3n.multipart.uploads.enabled` to `false`\. If you don't do this, Athena is unable to determine the Parquet file length and a **HIVE\_CANNOT\_OPEN\_SPLIT** error occurs\. For more information, see [Configure Multipart Upload for Amazon S3](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-upload-s3.html#Config_Multipart) in the *Amazon EMR Management Guide*\.
 
 Indicate that the dataset is encrypted in Amazon S3 in one of the following ways\. This step is not required if SSE\-KMS is used\.
 + Use the [CREATE TABLE](create-table.md) statement with a `TBLPROPERTIES` clause that specifies `'has_encrypted_data'='true'`\.  
