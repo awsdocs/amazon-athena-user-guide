@@ -14,3 +14,4 @@ If you are an administrator for other users, make sure that they have appropriat
 + [Fine\-Grained Access to Databases and Tables](fine-grained-access-to-glue-resources.md)
 + [Access to Encrypted Metadata in the Data Catalog](access-encrypted-data-glue-data-catalog.md)
 + [Cross\-account Access](cross-account-permissions.md)
++ [Enabling Federated Access to Athena API](access-federation-saml.md)

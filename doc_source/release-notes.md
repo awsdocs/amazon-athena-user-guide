@@ -3,6 +3,7 @@
 Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 **Contents**
++ [November 20, 2018](release-note-2018-11-20.md)
 + [October 15, 2018](release-note-2018-10-15.md)
 + [October 10, 2018](release-note-2018-10-10.md)
 + [September 6, 2018](release-note-2018-09-06.md)

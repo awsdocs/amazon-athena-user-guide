@@ -23,7 +23,7 @@ Athena supports the following Amazon S3 encryption options, both for encrypted d
 **Note**  
 With SSE\-KMS, Athena does not require you to indicate that data is encrypted when creating a table\.
 
-These options encrypt data at rest in Amazon S3\. Regardless of whether you use these options, transport layer security \(TLS\) encrypts objects in\-transit between Athena resources and between Athena and Amazon S3\. Query results stream to JDBC clients as plain text and are encrypted using SSL\.
+These options encrypt data at rest in Amazon S3\. Regardless of whether you use these options, transport layer security \(TLS\) encrypts objects in\-transit between Athena resources and between Athena and Amazon S3\. Query results stream to JDBC clients as plain text and are encrypted using TLS\.
 
 **Important**  
 The setup for querying an encrypted dataset in Amazon S3 and the options in Athena to encrypt query results are independent\. Each option is enabled and configured separately\. You can use different encryption methods or keys for each\. This means that reading encrypted data in Amazon S3 doesn't automatically encrypt Athena query results in Amazon S3\. The opposite is also true\. Encrypting Athena query results in Amazon S3 doesn't encrypt the underlying dataset in Amazon S3\.

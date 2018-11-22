@@ -4,7 +4,7 @@
 You can contact AWS Support to [request a limit increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) for the limits listed here\.
 + By default, limits on your account allow you to submit: 
   + 20 DDL queries at the same time\. DDL queries include `CREATE TABLE` and `CREATE TABLE ADD PARTITION` queries\. 
-  + 20 DML queries at the same time\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\)\.
+  + 20 DML queries at the same time\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
 
   After you submit your queries to Athena, it processes the queries by assigning resources based on the overall service load and the amount of incoming requests\. We continuously monitor and make adjustments to the service so that your queries process as fast as possible\. 
 

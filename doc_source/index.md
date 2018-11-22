@@ -16,6 +16,7 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What is Amazon Athena?](what-is.md)
 + [Release Notes](release-notes.md)
+   + [November 20, 2018](release-note-2018-11-20.md)
    + [October 15, 2018](release-note-2018-10-15.md)
    + [October 10, 2018](release-note-2018-10-10.md)
    + [September 6, 2018](release-note-2018-09-06.md)
@@ -59,6 +60,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Fine-Grained Access to Databases and Tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)
       + [Access to Encrypted Metadata in the AWS Glue Data Catalog](access-encrypted-data-glue-data-catalog.md)
       + [Cross-account Access](cross-account-permissions.md)
+      + [Enabling Federated Access to Athena API](access-federation-saml.md)
    + [Configuring Encryption Options](encryption.md)
 + [Working with Source Data](work-with-data.md)
    + [Tables and Databases Creation Process in Athena](creating-tables.md)
