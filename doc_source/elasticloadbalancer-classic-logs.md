@@ -26,7 +26,7 @@ Create the table that you can later query\. This table must include the exact lo
     backend_port int,
     request_processing_time double,
     backend_processing_time double,
-    client_response_time double,
+    response_processing_time double,
     elb_response_code string,
     backend_response_code string,
     received_bytes bigint,
