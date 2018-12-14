@@ -7,4 +7,8 @@ The compression formats listed in this section are used for [CREATE TABLE](creat
 + SNAPPY\. This is the default compression format for files in the Parquet data storage format\. 
 + ZLIB\. This is the default compression format for files in the ORC data storage format\.
 + LZO
-+ GZIP\. Use the GZIP compression in Athena for querying Amazon Kinesis Data Firehose logs\. Athena and Amazon Kinesis Data Firehose each support different versions of SNAPPY, so GZIP is the only compatible format\. 
++ GZIP\. 
+
+  For data in CSV, TSV, and JSON, Athena determines the compression type from the file extension\. If it is not present, the data is not decompressed\. If your data is compressed, make sure the file name includes the compression extension, such as `gz`\. 
+
+  Use the GZIP compression in Athena for querying Amazon Kinesis Data Firehose logs\. Athena and Amazon Kinesis Data Firehose each support different versions of SNAPPY, so GZIP is the only compatible format\. 

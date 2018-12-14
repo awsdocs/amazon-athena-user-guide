@@ -15,6 +15,10 @@ Amazon's trademarks and trade dress may not be used in
 -----
 ## Contents
 + [What is Amazon Athena?](what-is.md)
+   + [When should I use Athena?](when-should-i-use-ate.md)
+   + [Accessing Athena](accessing-ate.md)
+   + [Understanding Tables, Databases, and the Data Catalog](understanding-tables-databases-and-the-data-catalog.md)
+   + [AWS Service Integrations with Athena](athena-aws-service-integrations.md)
 + [Release Notes](release-notes.md)
    + [November 20, 2018](release-note-2018-11-20.md)
    + [October 15, 2018](release-note-2018-10-15.md)

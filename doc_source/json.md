@@ -24,6 +24,8 @@ The Hive JSON SerDe is used to process JSON data, most commonly events\. These e
 
 You can also use the Hive JSON SerDe to parse more complex JSON\-encoded data with nested structures\. However, this requires having a matching DDL representing the complex data types\. See [Example: Deserializing Nested JSON](#nested-json-serde-example)\.
 
+With this SerDe, duplicate keys are not allowed in `map` \(or `struct`\) key names\.
+
 **Note**  
 You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-east-1/path/to/data/`\.
 
@@ -61,6 +63,8 @@ LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 
 This SerDe has a useful property you can specify when creating tables in Athena, to help deal with inconsistencies in the data:
 +  `'ignore.malformed.json'` if set to `TRUE`, lets you skip malformed JSON syntax\.
+
+With this SerDe, duplicate keys are not allowed in `map` \(or `struct`\) key names\.
 
 The following DDL statement uses the OpenX JSON SerDe:
 
@@ -128,7 +132,7 @@ This example presumes a JSON\-encoded data with the following structure:
 }
 ```
 
-The following `CREATE TABLE` command uses the [Openx\-JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) with collection data types like `struct` and `array` to establish groups of objects\. Each JSON document is listed on its own line, separated by a new line\.
+The following `CREATE TABLE` command uses the [Openx\-JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) with collection data types like `struct` and `array` to establish groups of objects\. Each JSON document is listed on its own line, separated by a new line\. To avoid errors, the data being queried does not include duplicate keys in `struct` and map key names\. Duplicate keys are not allowed in map \(or `struct`\) key names\. 
 
 ```
 CREATE external TABLE complex_json (

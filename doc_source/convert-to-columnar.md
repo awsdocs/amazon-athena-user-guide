@@ -11,6 +11,8 @@ The process for converting to columnar formats using an EMR cluster is as follow
 1. Create an EMR cluster with Hive installed\.
 
 1. In the step section of the cluster create statement, specify a script stored in Amazon S3, which points to your input data and creates output data in the columnar format in an Amazon S3 location\. In this example, the cluster auto\-terminates\.
+**Note**  
+The script is based on Amazon EMR version 4\.7 and needs to be updated to the current version\. For information about versions, see [Amazon EMR Release Guide](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/)\.
 
    The full script is located on Amazon S3 at:
 
@@ -41,7 +43,7 @@ The process for converting to columnar formats using an EMR cluster is as follow
    PARTITIONED BY (dt string)
    ROW FORMAT  serde 'org.apache.hive.hcatalog.data.JsonSerDe'
    with serdeproperties ( 'paths'='requestBeginTime, adId, impressionId, referrer, userAgent, userCookie, ip' )
-   LOCATION 's3://${REGION}.elasticmapreduce/samples/hive-ads/tables/impressions' ;
+   LOCATION 's3://${REGION}.elasticmapreduce/samples/hive-ads/tables/impressions/' ;
    ```
 **Note**  
 Replace `REGION` in the `LOCATION` clause with the region where you are running queries\. For example, if your console is in us\-east\-1, `REGION` is `s3://us-east-1.elasticmapreduce/samples/hive-ads/tables/`\.

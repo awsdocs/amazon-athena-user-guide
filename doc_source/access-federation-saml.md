@@ -53,7 +53,7 @@ In this procedure, actions take place either on the side of your organization, o
 
 1. In your organization, register AWS as a service provider \(SP\) in your IdP\. This process is known as *relying party trust*\. For more information, see [Configuring your SAML 2\.0 IdP with Relying Party Trust](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html) in the *IAM User Guide*\. As part of this task, perform these steps:
 
-   1. Obtain the sample SAML metadata document from this URL: [https://signin.aws.amazon.com/static/saml-%20metadata.xml](https://signin.aws.amazon.com/static/saml-%20metadata.xml)\.
+   1. Obtain the sample SAML metadata document from this URL: [https://signin.aws.amazon.com/static/saml-metadata.xml](https://signin.aws.amazon.com/static/saml-metadata.xml)\.
 
    1. In your organization's IdP \(AD FS\), generate an equivalent metadata XML file that describes your IdP as an identity provider to AWS\. Your metadata file must include the issuer name, creation date, expiration date, and keys that AWS uses to validate authentication responses \(assertions\) from your organization\. 
 
@@ -82,7 +82,7 @@ In this procedure, actions take place either on the side of your organization, o
    + For `idp_host`, provide the host name of the AD FS IdP server\.
    + For `idp_port`, provide the port number that the AD FS IdP listens on for the SAML assertion request\.
    + For `UID` and `PWD`, provide the AD domain user credentials\. When using the driver on Windows, if `UID` and `PWD` are not provided, the driver attempts to obtain the user credentials of the user logged in to the Windows machine\.
-   + Optionally, set `ssl_insecure` to 1 if the AD FS IdP’s SSL certificate has not been configured to be trusted by the driver\.
+   + Optionally, set `ssl_insecure` to `true`\. In this case, the driver does not check the authenticity of the SSL certificate for the AD FS IdP server\. Setting to `true` is needed if the AD FS IdP’s SSL certificate has not been configured to be trusted by the driver\.
    + To enable mapping of an Active Directory domain user or group to one or more IAM roles \(as mentioned in step 4 of this procedure\), in the `preferred_role` for the JDBC or ODBC connection, specify the IAM role \(ARN\) to assume for the driver connection\. Specifying the `preferred_role` is optional, and is useful if the role is not the first role listed in the claim rule\.
 
    As a result, the following actions occur:
