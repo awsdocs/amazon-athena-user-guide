@@ -40,9 +40,13 @@ Athena does not support running queries from one Region on encrypted data stored
 
 To configure the JDBC driver to encrypt your query results using any of the encryption protocols that Athena supports, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.
 
-The setting for query\-result encryption applies to all queries\. You can't configure the setting for individual databases, tables, or queries\.
+ You can configure the setting for encryption of query results in two ways:
++ **Client\-side settings**\. When you use **Settings** in the console or the API operations to indicate that you want to encrypt query results, this is known as using client\-side settings\. Client\-side settings include query results location and encryption\. If you specify them, they are used, unless they are overridden by the workgroup settings\. 
++ **Workgroup settings**\. When you [create or edit a workgroup](workgroups-create-update-delete.md#creating-workgroups) and select the **Override client\-side settings** field, then all queries that run in this workgroup use the workgroup settings\. For more information, see [Workgroup Settings Override Client\-Side Settings](workgroups-settings-override.md)\. Workgroup settings include query results location and encryption\. 
 
 **To encrypt query results stored in Amazon S3 using the console**
+**Important**  
+If your workgroup has the **Override client\-side settings** field selected, then the queries use the workgroup settings\. The encryption configuration and the query results location listed in **Settings**, the API operations, and the driver are not used\. For more information, see [Workgroup Settings Override Client\-Side Settings](workgroups-settings-override.md)\.
 
 1. In the Athena console, choose **Settings**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/settings.png)

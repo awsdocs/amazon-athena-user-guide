@@ -1,0 +1,13 @@
+# Workgroup Settings<a name="workgroups-settings"></a>
+
+Each workgroup has the following settings:
++ A unique name\. It can contain from 1 to 128 characters, including alphanumeric characters, dashes, and underscores\. After you create a workgroup, you cannot change its name\. You can, however, create a new workgroup with the same settings and a different name\.
++ Settings that apply to all queries running in the workgroup\. They include: 
+  + **A location in Amazon S3 for storing query results** for all queries that run in this workgroup\. This location must exist before you specify it for the workgroup when you create it\.
+  + **An encryption setting**, if you use encryption for all workgroup queries\. You can encrypt only all queries in a workgroup, not just some of them\. It is best to create separate workgroups to contain queries that are either encrypted or not encrypted\.
+
+In addition, you can [override client\-side settings](workgroups-settings-override.md)\. Before the release of workgroups, you could specify results location and encryption options as parameters in the JDBC driver, or in the **Properties** tab in the Athena console\. These settings could also be specified directly via the API operations\. These settings are known as "client\-side settings"\. With workgroups, you can configure these settings at the workgroup level and enforce control over them\. This spares your users from setting them individually\. If you select the **Override Client\-Side Settings**, queries use the workgroup settings and ignore the client\-side settings\. 
+
+If **Override Client\-Side Settings** is selected, the user is notified on the console that their settings have changed\. If workgroup settings are enforced this way, users can omit corresponding client\-side settings\. In this case, if you run queries in the console, the workgroup's settings are used for them even if any queries have client\-side settings\. Also, if you run queries in this workgroup through the command line interface, API operations, or the driver, any settings that you specified are overwritten by the workgroup's settings\. This affects the query results location and encryption\. To check which settings are used for the workgroup, [view workgroup's details](workgroups-create-update-delete.md#viewing-details-workgroups)\.
+
+You can also [set query limits](control-limits.md) for queries in workgroups\.

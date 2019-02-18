@@ -16,6 +16,9 @@ If you also have principals that connect using JDBC, you must provide the JDBC d
 
 If you have migrated to using AWS Glue with Athena, and have chosen to encrypt your AWS Glue Data Catalog, you must specify additional actions to the identity\-based IAM policies that you use in Athena\. For more information, see [Access to Encrypted Metadata in the AWS Glue Data Catalog](access-encrypted-data-glue-data-catalog.md)\.
 
+**Important**  
+If you create and use workgroups, make sure your policies include appropriate access to workgroup actions\. For detailed information, see [ IAM Policies for Accessing Workgroups](workgroups-iam-policy.md) and [Workgroup Example Policies](example-policies-workgroup.md)\. 
+
 ## AmazonAthenaFullAccess Managed Policy<a name="amazonathenafullaccess-managed-policy"></a>
 
 The `AmazonAthenaFullAccess` managed policy grants full access to Athena\. 
@@ -81,10 +84,43 @@ Managed policy contents change, so the policy shown here may be out\-of\-date\. 
         {
             "Effect": "Allow",
             "Action": [
-                "s3:GetObject"
+                "s3:GetObject",
+                "s3:ListBucket"
             ],
             "Resource": [
                 "arn:aws:s3:::athena-examples*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetBucketLocation",
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sns:ListTopics",
+                "sns:GetTopicAttributes"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricAlarm",
+                "cloudwatch:DescribeAlarms",
+                "cloudwatch:DeleteAlarms"
+            ],
+            "Resource": [
+                "*"
             ]
         }
     ]

@@ -17,7 +17,7 @@ In the Athena console, you can:
 
    1. For **Description**, optionally add a comment to describe your query\.
 
-   1. For **Output location**, optionally specify the location in Amazon S3, such as `s3://my_athena_results/mybucket/`\. If you don't specify a location, the following predefined location is used: `s3://aws-athena-query-results-<account>-<region>/<query-name-or-unsaved>/year/month/date/<query-id>/`\.
+   1. For **Output location**, optionally specify the location in Amazon S3, such as `s3://my_athena_results/mybucket/`\. If you don't specify a location and your workgroup does not [Override Client\-Side Settings](workgroups-settings-override.md), the following predefined location is used: `s3://aws-athena-query-results-<account>-<region>/<query-name-or-unsaved>/year/month/date/<query-id>/`\.
 
    1. For **Output data format**, select from the list of supported formats\. Parquet is used if you don't specify a format\. See [Columnar Storage Formats](columnar-storage.md)\.  
 ![\[The screenshot for the CTAS wizard screen.\]](http://docs.aws.amazon.com/athena/latest/ug/images/ctas-wizard.png)

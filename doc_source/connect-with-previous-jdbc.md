@@ -1,10 +1,10 @@
 # Using the Previous Version of the JDBC Driver<a name="connect-with-previous-jdbc"></a>
 
-We recommend that you use the current version of the JDBC driver, which is version 2\.0\.6\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\. If you need to use the previous versions, follow the steps in this section to download and configure the driver\. 
+We recommend that you use the current version of the JDBC driver, which is version 2\.0\.7\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\. If you need to use the previous versions, follow the steps in this section to download and configure the driver\. 
 
-The previous versions of the JDBC driver are 2\.0\.5 and 2\.0\.2\.
+The previous versions of the JDBC driver are 2\.0\.6, 2\.0\.5, and 2\.0\.2\.
 
-The JDBC driver version 1\.1\.0 is also available for download, however, we highly recommend that you migrate to the current version of the driver\. For information, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. 
+The JDBC driver version 1\.1\.0 is also available for download, however, we highly recommend that you migrate to the current version of the driver\. For information, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.6/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. 
 
 The JDBC driver version 1\.0\.1 and earlier versions are deprecated\.
 
@@ -14,7 +14,7 @@ The JDBC driver version 1\.0\.1 and earlier versions are deprecated\.
 **Links for Downloading Previous Versions of the JDBC Driver**    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/connect-with-previous-jdbc.html)
 
-1. Download the [Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/release-notes.txt), the [License Agreement](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/LICENSE.txt) and [Notices](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/NOTICES.txt) for the driver you downloaded in step 1\. 
+1. Download the [Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.6/docs/release-notes.txt), the [License Agreement](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.6/docs/LICENSE.txt) and [Notices](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.6/docs/NOTICES.txt) for the driver you downloaded in step 1\. 
 
 1. Use the AWS CLI with the following command: 
 
@@ -23,8 +23,8 @@ The JDBC driver version 1\.0\.1 and earlier versions are deprecated\.
    ```
 
 1. To use the driver, see the following documentation: 
-   + To install and configure the JDBC driver version 2\.0\.2, see the [ JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\.
-   + To migrate to this version of the JDBC driver from a 1\.x version, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\.
+   + To install and configure the JDBC driver version 2\.0\.6, see the [ JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.6/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\.
+   + To migrate to this version of the JDBC driver from a 1\.x version, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.6/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\.
 
 ## Instructions for JDBC Driver version 1\.1\.0<a name="jdbc-deprecated-version"></a>
 
@@ -43,7 +43,7 @@ To specify the JDBC driver connection URL in your custom application, use the st
 jdbc:awsathena://athena.{REGION}.amazonaws.com:443
 ```
 
-where `{REGION}` is a region identifier, such as `us-west-2`\. For information on Athena regions see [Regions](http://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.
+where `{REGION}` is a region identifier, such as `us-west-2`\. For information on Athena regions see [Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.
 
 ### JDBC Driver Version 1\.1\.0: Specify the JDBC Driver Class Name<a name="old-jdbc-class-name"></a>
 
@@ -150,7 +150,7 @@ Properties myProps = new Properties();
          String providerArgs = "My_Access_Key," + "My_Secret_Key," + "My_Token";
          myProps.put("aws_credentials_provider_arguments",providerArgs);
 ```
- If you use the [http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html), you don't need to supply any credential provider arguments because they are provided using the Amazon EC2 instance profile for the instance on which you are running your application\. You would still set the `aws_credentials_provider_class` property to this class name, however\.
+ If you use the [ https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html]( https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html), you don't need to supply any credential provider arguments because they are provided using the Amazon EC2 instance profile for the instance on which you are running your application\. You would still set the `aws_credentials_provider_class` property to this class name, however\.
 
 ### Policies for the JDBC Driver Earlier than Version 1\.1\.0<a name="jdbc-version-before-1.0.1."></a>
 

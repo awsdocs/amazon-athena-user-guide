@@ -53,8 +53,8 @@ Add the `athena:GetQueryResultsStream` policy action to the list of policies for
 | --- | --- | 
 | ODBC 1\.0\.3 for Windows 32\-bit | [Windows 32\-bit ODBC Driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Windows/Simba+Athena+1.0+32-bit.msi) | 
 | ODBC 1\.0\.3 for Windows 64\-bit | [Windows 64\-bit ODBC Driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Windows/Simba+Athena+1.0+64-bit.msi) | 
-| ODBC 1\.0\.3 for Linux 32\-bit | [Linux 32\-bit ODBC Driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Linux/simbaathena-1.0.3.1003-1.i686.rpm) | 
-| ODBC 1\.0\.3 for Linux 64\-bit | [Linux 64\-bit ODBC Driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Linux/simbaathena-1.0.3.1003-1.x86_64.rpm) | 
+| ODBC 1\.0\.3 for Linux 32\-bit | [Linux 32\-bit ODBC Driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Linux/simbaathena-1.0.3.1004-1.i686.rpm) | 
+| ODBC 1\.0\.3 for Linux 64\-bit | [Linux 64\-bit ODBC Driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Linux/simbaathena-1.0.3.1004-1.x86_64.rpm) | 
 | ODBC 1\.0\.3 for OSX | [OSX ODBC Driver 1\.0](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/OSX/Simba+Athena+1.0.dmg) | 
 | Documentation for ODBC 1\.0\.3 | [ODBC Driver Installation and Configuration Guide version 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf) | 
 

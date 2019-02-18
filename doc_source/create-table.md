@@ -83,12 +83,12 @@ Specifies the file format for table data\. If omitted, `TEXTFILE` is the default
 **\[LOCATION 'S3\_loc'\]**  
 Specifies the location of the underlying data in Amazon S3 from which the table is created, for example, `'s3://mystorage/'`\. For more information about considerations such as data format and permissions, see [Requirements for Tables in Athena and Data in Amazon S3](creating-tables.md#s3-considerations)\.  
 Use a trailing slash for your folder or bucket\. Do not use file names or glob characters\.  
- **Use:** `s3://mybucket/myfolder/`   
+ **Use:** `s3://mybucket/key/`   
  **Don't use:** `s3://path_to_bucket` `s3://path_to_bucket/*` `s3://path_to-bucket/mydatafile.dat` 
 
 **\[TBLPROPERTIES \( \['has\_encrypted\_data'='true \| false',\] \['classification'='aws\_glue\_classification',\] property\_name=property\_value \[, \.\.\.\] \) \]**  
 Specifies custom metadata key\-value pairs for the table definition in addition to predefined table properties, such as `"comment"`\.  
-Athena has a built\-in property, `has_encrypted_data`\. Set this property to `true` to indicate that the underlying dataset specified by `LOCATION` is encrypted\. If omitted, `false` is assumed\. If omitted or set to `false` when underlying data is encrypted, the query results in an error\. For more information, see [Configuring Encryption Options](encryption.md)\.  
+Athena has a built\-in property, `has_encrypted_data`\. Set this property to `true` to indicate that the underlying dataset specified by `LOCATION` is encrypted\. If omitted and if the workgroup's settings do not override client\-side settings, `false` is assumed\. If omitted or set to `false` when underlying data is encrypted, the query results in an error\. For more information, see [Configuring Encryption Options](encryption.md)\.  
 To run ETL jobs, AWS Glue requires that you create a table with the `classification` property to indicate the data type for AWS Glue as `csv`, `parquet`, `orc`, `avro`, or `json`\. For example, `'classification'='csv'`\. ETL jobs will fail if you do not specify this property\. You can subsequently specify it using the AWS Glue console, API, or CLI\. For more information, see [Using AWS Glue Jobs for ETL with Athena](glue-best-practices.md#schema-classifier) and [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
 
 ## Examples<a name="examples"></a>

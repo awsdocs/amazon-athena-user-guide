@@ -4,7 +4,7 @@ When you run a `CREATE TABLE` query in Athena, you register your table with the 
 
 Use these tips and examples when you specify the location in Amazon S3\.
 + Athena reads all files in an Amazon S3 location you specify in the `CREATE TABLE` statement, and cannot ignore any files included in the prefix\. When you create tables, include in the Amazon S3 path only the files you want Athena to read\. Use AWS Lambda functions to scan files in the source location, remove any empty files, and move unneeded files to another location\.
-+ In the `LOCATION` clause, use a trailing slash for your folder or bucket\.
++ In the `LOCATION` clause, use a trailing slash for your bucket\.
 
  **Use**:
 

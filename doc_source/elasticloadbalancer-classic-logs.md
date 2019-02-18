@@ -1,23 +1,18 @@
 # Querying Classic Load Balancer Logs<a name="elasticloadbalancer-classic-logs"></a>
 
-Use Classic Load Balancer logs to analyze and understand traffic patterns to and from Elastic Load Balancing instances and backend applications\. You can see the source of traffic, latency, and bytes transferred\.
+Use Classic Load Balancer logs to analyze and understand traffic patterns to and from Elastic Load Balancing instances and backend applications\. You can see the source of traffic, latency, and bytes that have been transferred\.
 
-Before you begin to analyze the Elastic Load Balancing logs, configure them for saving in the destination Amazon S3 bucket\. For more information, see [Enable Access Logs for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html)\.
-+  [Creating the Table for ELB Logs](#create-elb-table) 
-+  [Example Queries for ELB Logs](#query-elb-logs-examples) 
+Before you analyze the Elastic Load Balancing logs, configure them for saving in the destination Amazon S3 bucket\. For more information, see [Enable Access Logs for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html)\.
++ [Create the table for Elastic Load Balancing logs](#create-elb-table)
++ [Elastic Load Balancing Example Queries](#query-elb-classic-example)
 
-## Creating the Table for Elastic Load Balancing Logs<a name="create-elb-table"></a>
+## To create the table for Elastic Load Balancing logs<a name="create-elb-table"></a>
 
-Create the table that you can later query\. This table must include the exact location of your Elastic Load Balancing logs in Amazon S3\.
-
-### To create the Elastic Load Balancing table<a name="to-create-the-elb-table"></a>
-
-1. Copy and paste the following DDL statement into the Athena console\.
-
-1. Modify the `LOCATION` S3 bucket to specify the destination of your Elastic Load Balancing logs\.
+1. Copy and paste the following DDL statement into the Athena console\. Check the [syntax ](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html#access-log-entry-format) of the Elastic Load Balancing log records\. You may need to update the following query to include the columns and the Regex syntax for latest version of the record\. 
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs (
+   
     request_timestamp string,
     elb_name string,
     request_ip string,
@@ -45,11 +40,13 @@ Create the table that you can later query\. This table must include the exact lo
    LOCATION 's3://your_log_bucket/prefix/AWSLogs/AWS_account_ID/elasticloadbalancing/';
    ```
 
-1. Run the query in the Athena console\. After the query completes, Athena registers the `elb_logs` table, making the data in it ready for queries\.
+1. Modify the `LOCATION` Amazon S3 bucket to specify the destination of your Elastic Load Balancing logs\.
 
-## Example Queries for Elastic Load Balancing Logs<a name="query-elb-logs-examples"></a>
+1. Run the query in the Athena console\. After the query completes, Athena registers the `elb_logs` table, making the data in it ready for queries\. For more information, see [Elastic Load Balancing Example Queries](#query-elb-classic-example)
 
-Use a query similar to this example\. It lists the backend application servers that returned a `4XX` or `5XX` error response code\. Use the `LIMIT` operator to limit the number of logs to query at a time\.
+## Elastic Load Balancing Example Queries<a name="query-elb-classic-example"></a>
+
+Use a query similar to the following example\. It lists the backend application servers that returned a `4XX` or `5XX` error response code\. Use the `LIMIT` operator to limit the number of logs to query at a time\.
 
 ```
 SELECT

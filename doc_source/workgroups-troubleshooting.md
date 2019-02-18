@@ -1,0 +1,23 @@
+# Troubleshooting Workgroups<a name="workgroups-troubleshooting"></a>
+
+Use the following tips to troubleshoot workgroups\.
++ Check permissions for individual users in your account\. They must have access to the location for query results, and to the workgroup in which they want to run queries\. If they want to switch workgroups, they too need permissions to both workgroups\. For information, see [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\.
++ Pay attention to the context in the Athena console, to see in which workgroup you are going to run queries\. If you use the driver, make sure to set the workgroup to the one you need\. For information, see [Specify a Workgroup in Which to Run Queries](workgroups-create-update-delete.md#specify-wkgroup-to-athena-in-which-to-run-queries)\.
++ If you override client\-side settings with workgroup settings, you may encounter errors with query result location\. For example, a workgroup's user may not have permissions to the workgroup's location in Amazon S3 for storing query results\. In this case, add the necessary permissions\.
++ Workgroups introduce changes in the behavior of the API operations\. Calls to the following existing API operations require that users in your account have resource\-based permissions to the workgroups in which they make them\. If no permissions to the workgroup exist, the following API actions throw `AccessDeniedException`: **CreateNamedQuery**, **DeleteNamedQuery**, **GetNamedQuery**, **ListNamedQueries**, **StartQueryExecution**, **StopQueryExecution**, **ListQueryExecutions**, **GetQueryExecution**, **GetQueryResults**, and **GetQueryResultsStream** \(this API action is only available for use with the driver and is not exposed otherwise for public use\)\. 
+
+  Calls to the **BatchGetQueryExecution** and **BatchGetNamedQuery** API operations return information about query executions only for those queries that run in workgroups to which users have access\. If the user has no access to the workgroup, these API operations return the unauthorized query IDs as part of the unprocessed IDs list\. For more information, see [ Athena Workgroup APIs](workgroups-api-list.md)\.
++ If the workgroup in which a query will run is configured with an [enforced query results location](workgroups-settings-override.md), do not specify an `external_location` for the CTAS query\. Athena issues an error and fails a query that specifies an `external_location` in this case\. For example, this query fails, if you override client\-side settings for query results location, enforcing the workgroup to use its own location: `CREATE TABLE <DB>.<TABLE1> WITH (format='Parquet', external_location='s3://my_test/test/') AS SELECT * FROM <DB>.<TABLE2> LIMIT 10;`
+
+You may see the following errors\. This table provides a list of some of the errors related to workgroups and suggests solutions\.
+
+
+**Workgroup errors**  
+
+| Error | Occurs when\.\.\. | 
+| --- | --- | 
+| query state CANCELED\. Bytes scanned limit was exceeded\. | A query hits a per\-query data limit and is canceled\. Consider rewriting the query so that it reads less data, or contact your account administrator\. | 
+| User: arn:aws:iam::123456789012:user/abc is not authorized to perform: athena:StartQueryExecution on resource: arn:aws:athena:us\-east\-1:123456789012:workgroup/workgroupname  | A user runs a query in a workgroup, but does not have access to it\. Update your policy to have access to the workgroup\.  | 
+| INVALID\_INPUT\. WorkGroup <name> is disabled\. | A user runs a query in a workgroup, but the workgroup is disabled\. Your workgroup could be disabled by your administrator\. It is possible also that you don’t have access to it\. In both cases, contact an administrator who has access to modify workgroups\. | 
+| INVALID\_INPUT\. WorkGroup <name> is not found\. | A user runs a query in a workgroup, but the workgroup does not exist\. This could happen if the workgroup was deleted\. Switch to another workgroup to run your query\. | 
+|  `The Create Table As Select query failed because it was submitted with an 'external_location' property to an Athena Workgroup that enforces a centralized output location for all queries. Please remove the 'external_location' property and resubmit the query.`  | If the workgroup in which a query runs is configured with an [enforced query results location](workgroups-settings-override.md), and you specify an external\_location for the CTAS query\. In this case, remove the external\_location and rerun the query\. | 

@@ -10,7 +10,7 @@ Added the AWS CloudTrail SerDe, improved performance, fixed partition issues\.
 ## Improvements<a name="release-note-2017-03-24-improvements"></a>
 + Improved performance when scanning a large number of partitions\.
 + Improved performance on `MSCK Repair Table` operation\.
-+ Added ability to query Amazon S3 data stored in regions other than your primary region\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\.
++ Added ability to query Amazon S3 data stored in regions other than your primary Region\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\.
 
 ## Bug Fixes<a name="release-note-2017-03-24-bug-fixes"></a>
 + Fixed a bug where a "table not found error" might occur if no partitions are loaded\.

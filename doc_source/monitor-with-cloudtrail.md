@@ -20,7 +20,7 @@ For an ongoing record of events in your AWS account, including events for Athena
 + [Configuring Amazon SNS Notifications for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)
 + [Receiving CloudTrail Log Files from Multiple Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html) and [Receiving CloudTrail Log Files from Multiple Accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)
 
-All Athena actions are logged by CloudTrail and are documented in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html)\. For example, calls to the [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) and [GetQueryResults](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) actions generate entries in the CloudTrail log files\.
+All Athena actions are logged by CloudTrail and are documented in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For example, calls to the [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) and [GetQueryResults](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) actions generate entries in the CloudTrail log files\.
 
 Every event or log entry contains information about who generated the request\. The identity information helps you determine the following: 
 + Whether the request was made with root or AWS Identity and Access Management \(IAM\) user credentials\.

@@ -1,7 +1,7 @@
 # Amazon Athena User Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -20,6 +20,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Understanding Tables, Databases, and the Data Catalog](understanding-tables-databases-and-the-data-catalog.md)
    + [AWS Service Integrations with Athena](athena-aws-service-integrations.md)
 + [Release Notes](release-notes.md)
+   + [February 18, 2019](release-note-2019-02-18.md)
    + [November 20, 2018](release-note-2018-11-20.md)
    + [October 15, 2018](release-note-2018-10-15.md)
    + [October 10, 2018](release-note-2018-10-10.md)
@@ -64,6 +65,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Fine-Grained Access to Databases and Tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)
       + [Access to Encrypted Metadata in the AWS Glue Data Catalog](access-encrypted-data-glue-data-catalog.md)
       + [Cross-account Access](cross-account-permissions.md)
+      + [Workgroup Policies](workgroups-access.md)
       + [Enabling Federated Access to Athena API](access-federation-saml.md)
    + [Configuring Encryption Options](encryption.md)
 + [Working with Source Data](work-with-data.md)
@@ -119,12 +121,28 @@ Amazon's trademarks and trade dress may not be used in
    + [Querying AWS CloudTrail Logs](cloudtrail-logs.md)
    + [Querying Amazon CloudFront Logs](cloudfront-logs.md)
    + [Querying Classic Load Balancer Logs](elasticloadbalancer-classic-logs.md)
+   + [Querying Network Load Balancer Logs](networkloadbalancer-classic-logs.md)
    + [Querying Application Load Balancer Logs](application-load-balancer-logs.md)
    + [Querying Amazon VPC Flow Logs](vpc-flow-logs.md)
 + [Handling Schema Updates](handling-schema-updates-chapter.md)
    + [Types of Updates](types-of-updates.md)
    + [Updates in Tables with Partitions](updates-and-partitions.md)
-+ [Monitoring Logs and Troubleshooting](manage-and-monitor.md)
++ [Using Workgroups to Control Query Access and Costs](manage-queries-control-costs-with-workgroups.md)
+   + [Using Workgroups for Running Queries](workgroups.md)
+      + [How Workgroups Work](user-created-workgroups.md)
+      + [Setting up Workgroups](workgroups-procedure.md)
+      + [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)
+      + [Workgroup Example Policies](example-policies-workgroup.md)
+      + [Workgroup Settings](workgroups-settings.md)
+         + [Workgroup Settings Override Client-Side Settings](workgroups-settings-override.md)
+      + [Managing Workgroups](workgroups-create-update-delete.md)
+      + [Athena Workgroup APIs](workgroups-api-list.md)
+      + [Troubleshooting Workgroups](workgroups-troubleshooting.md)
+   + [Controlling Costs and Viewing Metrics for Workgroup Queries](control-limits.md)
+      + [Enabling Query Metrics](athena-cloudwatch-metrics-enable.md)
+      + [Viewing Query Metrics](query-metrics-viewing.md)
+      + [Setting Data Usage Control Limits](workgroups-setting-control-limits-cloudwatch.md)
++ [Monitoring Logs and Troubleshooting](monitor-logs-and-troubleshoot.md)
    + [Logging Amazon Athena API Calls with AWS CloudTrail](monitor-with-cloudtrail.md)
    + [Troubleshooting](troubleshooting.md)
 + [SerDe Reference](serde-reference.md)

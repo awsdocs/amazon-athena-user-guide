@@ -2,13 +2,13 @@
 
 Published on *2017\-02\-20*
 
-Added support for AvroSerDe and OpenCSVSerDe, US East \(Ohio\) region, and bulk editing columns in the console wizard\. Improved performance on large Parquet tables\.
+Added support for AvroSerDe and OpenCSVSerDe, US East \(Ohio\) Region, and bulk editing columns in the console wizard\. Improved performance on large Parquet tables\.
 
 ## Features<a name="release-note-2017-02-20-features"></a>
 + **Introduced support for new SerDes:**
   + [Avro SerDe](avro.md)
   + [OpenCSVSerDe for Processing CSV](csv.md)
-+ **US East \(Ohio\)** region \(**us\-east\-2**\) launch\. You can now run queries in this region\.
++ **US East \(Ohio\)** Region \(**us\-east\-2**\) launch\. You can now run queries in this region\.
 + You can now use the **Add Table** wizard to define table schema in bulk\. Choose **Catalog Manager**, **Add table**, and then choose **Bulk add columns** as you walk through the steps to define the table\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/bulk_add.png)
 

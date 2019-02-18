@@ -30,7 +30,7 @@ In the right pane, the Query Editor displays an introductory screen that prompts
 
 For examples of using the AWS SDK for Java with Athena, see [Code Samples](code-samples.md)\. 
 
-For more information about AWS SDK documentation and downloads, see the *SDKs* section in [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\. 
+For more information about AWS SDK for Java documentation and downloads, see the *SDKs* section in [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\. 
 
 ## Using the CLI<a name="Using-CLI"></a>
 
