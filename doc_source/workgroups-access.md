@@ -1,4 +1,4 @@
-# Workgroup Policies<a name="workgroups-access"></a>
+# Workgroup and Tag Policies<a name="workgroups-access"></a>
 
 A workgroup is a resource managed by Athena\. Therefore, if your workgroup policy uses actions that take `workgroup` as an input, you must specify the workgroup's ARN as follows:
 
@@ -13,6 +13,8 @@ Where `<workgroup-name>` is the name of your workgroup\. For example, for workgr
 ```
 
 For a full list of example policies, see [Workgroup Example Policies](example-policies-workgroup.md)\.
+
+For a list of tag\-based policies for workgroups, see [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
 
 For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html)\. 
 

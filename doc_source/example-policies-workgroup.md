@@ -40,6 +40,7 @@ The following policy allows full access to all workgroup resources that might ex
                 "*"
             ]
         }
+    ]
 }
 ```
 
@@ -50,7 +51,7 @@ The following policy allows full access to the single specific workgroup resourc
 {
     "Version": "2012-10-17",
     "Statement": [
-       {
+        {
             "Effect": "Allow",
             "Action": [
                 "athena:ListWorkGroups",
@@ -97,6 +98,7 @@ The following policy allows full access to the single specific workgroup resourc
                 "arn:aws:athena:us-east-1:123456789012:workgroup/workgroupA"
             ]
         }
+    ]
 }
 ```
 
@@ -143,6 +145,7 @@ In the following policy, a user is allowed to run queries in the specified `work
                 "arn:aws:athena:us-east-1:123456789012:workgroup/workgroupA"
             ]
         }
+    ]
 }
 ```
 
@@ -178,11 +181,11 @@ The following policy allows all users to list all workgroups:
 
 ```
 {
-   "Effect": "Allow",
-   "Action": [
-      "athena:ListWorkGroups"
-   ],
-   "Resource": "*"
+    "Effect": "Allow",
+    "Action": [
+        "athena:ListWorkGroups"
+    ],
+    "Resource": "*"
 }
 ```
 
@@ -191,14 +194,14 @@ In this policy, a user is allowed to run queries in the workgroup:
 
 ```
 {
-   "Effect": "Allow",
-   "Action": [
-      "athena:StartQueryExecution", 
-      "athena:StopQueryExecution"      
-   ],
-   "Resource": [
-     "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
-   ]
+    "Effect": "Allow",
+    "Action": [
+        "athena:StartQueryExecution",
+        "athena:StopQueryExecution"
+    ],
+    "Resource": [
+        "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
+    ]
 }
 ```
 
@@ -207,14 +210,14 @@ In the following policy, a user has permissions to create, delete, and obtain in
 
 ```
 {
-   "Effect": "Allow",
-   "Action": [
-      "athena:CreateNamedQuery", 
-      "athena:GetNamedQuery", 
-      "athena:DeleteNamedQuery"   
-   ],
-   "Resource": [
-     "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
-   ]
+    "Effect": "Allow",
+    "Action": [
+        "athena:CreateNamedQuery",
+        "athena:GetNamedQuery",
+        "athena:DeleteNamedQuery"
+    ],
+    "Resource": [
+        "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
+    ]
 }
 ```
