@@ -12,7 +12,7 @@ Where `<workgroup-name>` is the name of your workgroup\. For example, for workgr
 "Resource": ["arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"]
 ```
 
-For a full list of example policies, see [Workgroup Example Policies](example-policies-workgroup.md)\.
+For a list of workgroup policies, see [Workgroup Example Policies](example-policies-workgroup.md)\.
 
 For a list of tag\-based policies for workgroups, see [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
 

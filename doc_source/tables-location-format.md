@@ -15,6 +15,7 @@ s3://bucketname/prefix/
 Do not use any of the following items in file locations\.
 + Do not use filenames, underscores, wildcards, or glob patterns for specifying file locations\.
 + Do not add the full HTTP notation, such as `s3.amazon.com` to the Amazon S3 bucket path\.
++ Do not use empty prefixes \(with the extra /\) in the path, as follows: `S3://bucketname/prefix//prefix/`\. While this is a valid Amazon S3 path, Athena does not allow it and changes it to `s3://bucketname/prefix/prefix/`, removing the extra /\. 
 
  **Do not use**:
 
@@ -24,5 +25,6 @@ s3://path_to_bucket/*
 s3://path_to_bucket/mySpecialFile.dat
 s3://bucketname/prefix/filename.csv
 s3://test-bucket.s3.amazon.com
+S3://bucket/prefix//prefix/
 arn:aws:s3:::bucketname/prefix
 ```

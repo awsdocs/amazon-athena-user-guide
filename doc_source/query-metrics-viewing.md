@@ -1,4 +1,4 @@
-# Viewing Query Metrics<a name="query-metrics-viewing"></a>
+# Monitoring Athena Queries with CloudWatch Metrics<a name="query-metrics-viewing"></a>
 
 Athena publishes query\-related metrics to Amazon CloudWatch, when **Publish to CloudWatch** is selected\. You can create custom dashboards, set alarms and triggers on metrics in CloudWatch, or use pre\-populated dashboards directly from the Athena console\. 
 
@@ -35,7 +35,7 @@ Athena publishes the following metrics to the CloudWatch console:
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Select the **AWS/Athena** namespace\.
+1. Select the `AWS/Athena` namespace\.
 
 **To view metrics with the CLI**
 + Open a command prompt, and use the following command:
@@ -49,9 +49,9 @@ Athena publishes the following metrics to the CloudWatch console:
   aws cloudwatch list-metrics --namespace "AWS/Athena"
   ```
 
-## List of Athena Metrics in CloudWatch<a name="athena-cloudwatch-metrics-table"></a>
+## List of CloudWatch Metrics for Athena<a name="athena-cloudwatch-metrics-table"></a>
 
-If you've enabled CloudWatch metrics in Athena, it sends the following metrics to CloudWatch\. 
+If you've enabled CloudWatch metrics in Athena, it sends the following metrics to CloudWatch\. The metrics use the `AWS/Athena` namespace\.
 
 
 | Metric Name | Description | 

@@ -4,4 +4,4 @@ Use workgroups to separate users, teams, applications, or workloads, and to set 
 
 **Topics**
 + [Using Workgroups for Running Queries](workgroups.md)
-+ [Controlling Costs and Viewing Metrics](control-limits.md)
++ [Controlling Costs and Monitoring Queries with CloudWatch Metrics](control-limits.md)

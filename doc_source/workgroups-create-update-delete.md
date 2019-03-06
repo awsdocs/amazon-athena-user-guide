@@ -98,7 +98,7 @@ You can open up to ten query tabs within each workgroup\. When you switch betwee
 
 ## Enable and Disable a Workgroup<a name="workgroups-enabled-disabled"></a>
 
-If you have permissions to do so, you can enable or disable workgroups in the console, by using the API operations, or with the JDBC driver\.
+If you have permissions to do so, you can enable or disable workgroups in the console, by using the API operations, or with the JDBC and ODBC drivers\.
 
 **To enable or disable a workgroup**
 
@@ -124,7 +124,7 @@ Before you can run queries, you must specify to Athena which workgroup to use\. 
                    .withQueryExecutionContext(queryExecutionContext)
                   .withWorkgroup(WorkgroupName)
      ```
-   + If you are using the JDBC driver, set the workgroup name in the connection string using the `Workgroup` configuration parameter\. The driver passes the workgroup name to Athena\. Specify the workgroup parameter in the connection string as in the following example: 
+   + If you are using the JDBC or ODBC driver, set the workgroup name in the connection string using the `Workgroup` configuration parameter\. The driver passes the workgroup name to Athena\. Specify the workgroup parameter in the connection string as in the following example: 
 
      ```
      jdbc:awsathena://AwsRegion=<AWSREGION>;UID=<ACCESSKEY>;

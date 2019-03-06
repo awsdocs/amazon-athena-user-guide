@@ -1,6 +1,6 @@
 # IAM Policies for Accessing Workgroups<a name="workgroups-iam-policy"></a>
 
-To control access to workgroups, use resource\-based or identity\-based IAM policies\. 
+To control access to workgroups, use resource\-level IAM permissions or identity\-based IAM policies\. 
 
 The following procedure is specific to Athena\. 
 
@@ -14,7 +14,7 @@ For IAM\-specific information, see the links listed at the end of this section\.
 
 1. On the **Visual editor** tab, choose **Choose a service**\. Then choose Athena to add to the policy\.
 
-1. Choose **Select actions**, and then choose the actions to add to the policy\. The visual editor shows the actions available in Athena\. 
+1. Choose **Select actions**, and then choose the actions to add to the policy\. The visual editor shows the actions available in Athena\. For more information, see [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html#amazonathena-aws_ResourceTag___TagKey_) in the *IAM User Guide*\.
 
 1. Choose **add actions** to type a specific action or use wildcards \(\*\) to specify multiple actions\. 
 
@@ -37,6 +37,7 @@ For IAM\-specific information, see the links listed at the end of this section\.
    In an identity\-based policy, attach the policy to an identity and specify the `workgroup` resources that a user, a group, or role can access\. In a resource\-based policy, attach a policy to the `workgroup` resource that you want to control\. In the policy, specify which principals can access that resource\. 
 
 For more information, see the following topics in the *IAM User Guide*:
++ [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html#amazonathena-aws_ResourceTag___TagKey_)
 + [Creating Policies with the Visual Editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor)
 + [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)
 + [Controlling Access to Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_controlling.html#access_controlling-resources)
