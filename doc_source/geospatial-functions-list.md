@@ -49,7 +49,7 @@ OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION 's3://my-query-log/json'
 ```
 
-Some of the subsequent examples are based on these tables and rely on two sample files stored in the Amazon S3 location\. These files are not inlcuded with Athena and are used for illustration purposes only:
+Some of the subsequent examples are based on these tables and rely on two sample files stored in the Amazon S3 location\. These files are not included with Athena and are used for illustration purposes only:
 + An `earthquakes.csv` file, which lists earthquakes that occurred in California\. This file has fields that correspond to the fields in the table `earthquakes`\.
 + A `california-counties.json` file, which lists JSON\-encoded county data in the ESRI\-compliant format, and includes many fields, such as AREA, PERIMETER, STATE, COUNTY, and NAME\. The `counties` table is based on this file and has two fields only: `Name` \(string\), and `BoundaryShape` \(binary\)\.
 
