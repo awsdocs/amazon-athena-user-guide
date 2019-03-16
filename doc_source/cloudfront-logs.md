@@ -15,7 +15,7 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 
 ### To create the CloudFront table<a name="to-create-the-cf-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the S3 bucket that stores your logs\.
+1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\.
 
    This query uses the [LazySimpleSerDe](lazy-simple-serde.md) by default and it is omitted\. 
 
@@ -27,32 +27,32 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
      time STRING,
      location STRING,
      bytes BIGINT,
-     requestip STRING,
+     request_ip STRING,
      method STRING,
      host STRING,
      uri STRING,
      status INT,
      referrer STRING,
-     useragent STRING,
-     querystring STRING,
+     user_agent STRING,
+     query_string STRING,
      cookie STRING,
-     resulttype STRING,
-     requestid STRING,
-     hostheader STRING,
-     requestprotocol STRING,
-     requestbytes BIGINT,
-     timetaken FLOAT,
-     xforwardedfor STRING,
-     sslprotocol STRING,
-     sslcipher STRING,
-     responseresulttype STRING,
-     httpversion STRING,
-     filestatus STRING,
-     encryptedfields INT
+     result_type STRING,
+     request_id STRING,
+     host_header STRING,
+     request_protocol STRING,
+     request_bytes BIGINT,
+     time_taken FLOAT,
+     xforwarded_for STRING,
+     ssl_protocol STRING,
+     ssl_cipher STRING,
+     response_result_type STRING,
+     http_version STRING,
+     fle_status STRING,
+     fle_encrypted_fields INT
    )
    ROW FORMAT DELIMITED 
    FIELDS TERMINATED BY '\t'
-   LOCATION 's3://CloudFront_bucket_name/AWSLogs/Account_ID/'
+   LOCATION 's3://CloudFront_bucket_name/AWSLogs/ACCOUNT_ID/'
    TBLPROPERTIES ( 'skip.header.line.count'='2' )
    ```
 
@@ -60,15 +60,21 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 
 ## Example Query for CloudFront Logs<a name="query-examples-cloudfront-logs"></a>
 
-The following query adds up the number of bytes served by CloudFront between June 9 and June 11, 2017\. Surround the date column name with double quotes because it is a reserved word\.
+The following query adds up the number of bytes served by CloudFront between June 9 and June 11, 2018\. Surround the date column name with double quotes because it is a reserved word\.
 
 ```
 SELECT SUM(bytes) AS total_bytes
 FROM cloudfront_logs
-WHERE "date" BETWEEN DATE '2017-06-09' AND DATE '2017-06-11'
+WHERE "date" BETWEEN DATE '2018-06-09' AND DATE '2018-06-11'
 LIMIT 100;
 ```
 
-In some cases, you need to eliminate empty values from the results of `CREATE TABLE` query for CloudFront\. To do so, run `SELECT DISTINCT * FROM cloudfront_logs LIMIT 10;` 
+In some cases, you need to eliminate empty values from the results of `CREATE TABLE` query for CloudFront\. To do so, run: 
+
+```
+SELECT DISTINCT * 
+FROM cloudfront_logs 
+LIMIT 10;
+```
 
 For more information, see the AWS Big Data Blog post [Build a Serverless Architecture to Analyze Amazon CloudFront Access Logs Using AWS Lambda, Amazon Athena, and Amazon Kinesis Analytics](http://aws.amazon.com/blogs/big-data/build-a-serverless-architecture-to-analyze-amazon-cloudfront-access-logs-using-aws-lambda-amazon-athena-and-amazon-kinesis-analytics/)\.

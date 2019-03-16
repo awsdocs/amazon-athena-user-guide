@@ -12,8 +12,8 @@ Before you analyze the Elastic Load Balancing logs, configure them for saving in
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS elb_logs (
-   
-    request_timestamp string,
+    
+    timestamp string,
     elb_name string,
     request_ip string,
     request_port int,
@@ -21,7 +21,7 @@ Before you analyze the Elastic Load Balancing logs, configure them for saving in
     backend_port int,
     request_processing_time double,
     backend_processing_time double,
-    response_processing_time double,
+    client_response_time double,
     elb_response_code string,
     backend_response_code string,
     received_bytes bigint,
@@ -36,8 +36,8 @@ Before you analyze the Elastic Load Balancing logs, configure them for saving in
    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
    WITH SERDEPROPERTIES (
     'serialization.format' = '1',
-    'input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:\-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' )
-   LOCATION 's3://your_log_bucket/prefix/AWSLogs/AWS_account_ID/elasticloadbalancing/';
+    'input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' )
+   LOCATION 's3://your_log_bucket/prefix/AWSLogs/AWS_account_ID/elasticloadbalancing/'
    ```
 
 1. Modify the `LOCATION` Amazon S3 bucket to specify the destination of your Elastic Load Balancing logs\.

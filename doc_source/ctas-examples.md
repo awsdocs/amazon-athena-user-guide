@@ -50,9 +50,9 @@ The following example uses `WITH NO DATA` to create a new table that is empty an
 
 ```
 CREATE TABLE new_table 
-WITH NO DATA
 AS SELECT * 
-FROM old_table;
+FROM old_table
+WITH NO DATA;
 ```
 
 **Example Example 4: Specifying Data Storage and Compression Formats for CTAS Query Results**  <a name="ctas-example4"></a>

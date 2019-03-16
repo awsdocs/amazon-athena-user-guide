@@ -8,7 +8,7 @@ Before you begin, [enable access logging](https://docs.aws.amazon.com/elasticloa
 
 ## Creating the Table for ALB Logs<a name="create-alb-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console, and modify values in `LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/region'`\. 
+1. Copy and paste the following DDL statement into the Athena console, and modify values in `LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>'`\. 
 
    Create the `alb_logs` table as follows\.
 **Note**  
@@ -52,7 +52,7 @@ This query includes all fields present in the list of current Application Load B
                'serialization.format' = '1',
                'input.regex' = 
            '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) ([^ ]*) (- |[^ ]*)\" \"([^\"]*)\" ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" ([-.0-9]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\"($| \"[^ ]*\")(.*)')
-               LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/region';
+               LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>';
    ```
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `alb_logs` table, making the data in it ready for you to issue queries\.

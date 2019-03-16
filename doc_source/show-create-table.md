@@ -20,5 +20,5 @@ SHOW CREATE TABLE orderclickstoday;
 ```
 
 ```
-SHOW CREATE TABLE salesdata.orderclickstoday;
+SHOW CREATE TABLE `salesdata.orderclickstoday`;
 ```
