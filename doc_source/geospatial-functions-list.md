@@ -51,32 +51,34 @@ LOCATION 's3://my-query-log/json'
 
 Some of the subsequent examples are based on these tables and rely on two sample files stored in the Amazon S3 location\. These files are not included with Athena and are used for illustration purposes only:
 + An `earthquakes.csv` file, which lists earthquakes that occurred in California\. This file has fields that correspond to the fields in the table `earthquakes`\.
-+ A `california-counties.json` file, which lists JSON\-encoded county data in the ESRI\-compliant format, and includes many fields, such as AREA, PERIMETER, STATE, COUNTY, and NAME\. The `counties` table is based on this file and has two fields only: `Name` \(string\), and `BoundaryShape` \(binary\)\.
++ A `california-counties.json` file, which lists JSON\-encoded county data in the ESRI\-compliant format, and includes many fields, such as `AREA`, `PERIMETER`, `STATE`, `COUNTY`, and `NAME`\. The `counties` table is based on this file and has two fields only: `Name` \(string\), and `BoundaryShape` \(binary\)\.
 
 ## Constructor Functions<a name="constructors-functions"></a>
 
-Use constructor geospatial functions to obtain binary representations of a `point`, ``line`, or `polygon`\. You can also convert a particular geometry data type to text, and obtain a binary representation of a geometry data type from text \(WKT\)\.
+Use constructor functions to obtain binary representations of `point`, `line`, or `polygon` geometry data types\. You can also use these functions to convert binary data to text, and obtain binary values for geometry data that is expressed as Well\-Known Text \(WKT\)\. 
 
 ### `ST_POINT(double, double)`<a name="st-point-double-double"></a>
 
-Returns a value in the `point` data type, which is a binary representation of the geometry data type `point`\.
+Returns a binary representation of a `point` geometry data type\.
 
-For the geometry data type `point` in `ST_POINT`, Athena uses the map units from the Cartesian Coordinates System, and an angular unit from the spatial reference, specified in linear units, based on the Global Positioning System \(GPS\) World Geodetic System \(also known as WGS1984, or WGS84\) format\. For example, in this notation: `ST_BUFFER(ST_POINT(40.705220,-74.006801), 15.0)`, the map coordinates are specified in Cartesian Coordinates System units, and the angular value of 15 is specified in linear units based on WGS84\.
+To obtain the `point` geometry data type, use the ST\_POINT function in Athena\. For the input data values to this function, use geometric values, such as values in the Universal Transverse Mercator \(UTM\) Cartesian coordinate system, or geographic, or map units \(longitude and latitude\) in decimal degrees\. The longitude and latitude values use the World Geodetic System, also known as WGS 1984, or EPSG:4326\. WGS 1984 is the coordinate system used by the Global Positioning System \(GPS\)\. 
+
+For example, in the following notation, the map coordinates are specified in longitude and latitude, and the value `.072284`, which is the buffer distance, is specified in angular units as decimal degrees:
+
+```
+ST_BUFFER(ST_POINT(-74.006801, 40.705220), .072284)
+```
 
 Syntax:
 
 ```
-SELECT ST_POINT(longitude, latitude)
-FROM earthquakes
-LIMIT 1;
+SELECT ST_POINT(longitude, latitude) FROM earthquakes LIMIT 1;
 ```
 
 In the alternative syntax, you can also specify the coordinates as a `point` data type with two values:
 
 ```
-SELECT ST_POINT('point (0 0)')
-FROM earthquakes
-LIMIT 1;
+SELECT ST_POINT('point (-74.006801 40.705220)');
 ```
 
 Example\. This example uses specific longitude and latitude coordinates from `earthquakes.csv`:
@@ -92,6 +94,26 @@ It returns this binary representation of a geometry data type `point`:
 ```
 00 00 00 00 01 01 00 00 00 48 e1 7a 14 ae c7 4e 40 e1 7a 14 ae 47 d1 63 c0
 ```
+
+The next example uses specific longitude and latitude coordinates: 
+
+```
+SELECT ST_POINT(-74.006801, 40.705220);
+```
+
+It returns this binary representation of a geometry data type `point`: 
+
+```
+00 00 00 00 01 01 00 00 00 20 25 76 6d 6f 80 52 c0 18 3e 22 a6 44 5a 44 40
+```
+
+In the following example, we use the ST\_GEOMETRY\_TO\_TEXT function to obtain the binary values from WKT: 
+
+```
+SELECT ST_GEOMETRY_TO_TEXT(ST_POINT(-74.006801, 40.705220)) AS WKT;
+```
+
+This query returns a WKT representation of the `point` geometry type: `1 POINT (-74.006801 40.70522)`\.
 
 ### `ST_LINE(varchar)`<a name="st-line-varchar"></a>
 

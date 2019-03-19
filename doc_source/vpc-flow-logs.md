@@ -12,10 +12,11 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](https://doc
 
 1. Copy and paste the following DDL statement into the Athena console\. This query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\. In addition, in this query, fields are terminated by a space\.
 
-1. Modify the `LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}'` to point to the S3 bucket that contains your log data\.
+1. Modify the `LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}/'` to point to the Amazon S3 bucket that contains your log data\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS vpc_flow_logs (
+     dt string,
      version int,
      account string,
      interfaceid string,

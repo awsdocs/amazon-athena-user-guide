@@ -12,7 +12,7 @@ You can contact AWS Support to [request a limit increase](https://docs.aws.amazo
 + If you use Athena in regions where AWS Glue is available, migrate to AWS Glue Data Catalog\. See [Upgrading to the AWS Glue Data Catalog Step\-by\-Step](glue-upgrade.md)\. If you have migrated to AWS Glue, for service limits on tables, databases, and partitions in Athena, see [AWS Glue Limits](https://docs.aws.amazon.com/glue/latest/dg/troubleshooting-service-limits.html)\. If you have not migrated to AWS Glue Catalog, the number of partitions per table is 20,000\. You can [request a limit increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)\.
 + You may encounter a limit for Amazon S3 buckets per account, which is 100\. Athena also needs a separate bucket to log results\.
 + The query timeout is 30 minutes\.
-+ The maximum allowed query string length is 262144 bytes\. Use these [tips](tables-databases-columns-names.md) for naming columns, tables, and databases in Athena\.
++ The maximum allowed query string length is 262144 bytes, where the strings are encoded in UTF\-8\. Use these [tips](tables-databases-columns-names.md) for naming columns, tables, and databases in Athena\.
 +  Athena APIs have the following default limits for the number of calls to the API per account \(not per query\):    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/service-limits.html)
 

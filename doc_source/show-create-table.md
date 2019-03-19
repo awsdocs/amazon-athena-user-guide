@@ -11,7 +11,8 @@ SHOW CREATE TABLE [db_name.]table_name
 ## Parameters<a name="parameters"></a>
 
 **TABLE \[db\_name\.\]table\_name**  
-The `db_name` parameter is optional\. If omitted, the context defaults to the current database\.
+The `db_name` parameter is optional\. If omitted, the context defaults to the current database\.   
+The table name is required\.
 
 ## Examples<a name="examples"></a>
 

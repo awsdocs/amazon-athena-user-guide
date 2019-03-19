@@ -9,8 +9,8 @@ Using geospatial queries in Athena, you can run these and other similar operatio
 + Check whether one area \(polygon\) contains another\.
 + Check whether one line crosses or touches another line or polygon\.
 
-For example, to obtain a point type from a pair of `double` values for the geographic coordinates of Mount Rainier in Athena, use the `ST_POINT (double, double) ((longitude, latitude) pair)` geospatial function, specifying the latitude and longitude:
+For example, to obtain a `point` geometry data type from a pair of `double` values for the geographic coordinates of Mount Rainier in Athena, use the `ST_POINT (double, double) (longitude, latitude)` geospatial function, specifying the longitude first, then latitude: 
 
 ```
-ST_POINT(46.8527,-121.7602) ((longitude, latitude) pair)
+ST_POINT(-121.7602, 46.8527) (longitude, latitude)
 ```
