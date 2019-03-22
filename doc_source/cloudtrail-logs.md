@@ -16,6 +16,7 @@ You can use Athena to query these log files directly from Amazon S3, specifying 
 + [Understanding CloudTrail Logs and Athena Tables](#create-cloudtrail-table-understanding)
 + [Creating a Table for CloudTrail Logs in the CloudTrail Console](#create-cloudtrail-table-ct)
 + [Manually Creating the Table for CloudTrail Logs in Athena](#create-cloudtrail-table)
++ [Example Query for CloudTrail Logs](#query-examples-cloudtrail-logs)
 + [Tips for Querying CloudTrail Logs](#tips-for-querying-cloudtrail-logs)
 
 ## Understanding CloudTrail Logs and Athena Tables<a name="create-cloudtrail-table-understanding"></a>
@@ -70,7 +71,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
 
 1. Verify that fields are listed correctly\. For more information about the full list of fields in a CloudTrail record, see [CloudTrail Record Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
 
-   In this example, the fields `requestParameters`, `responseElements`, and `additionalEventData` are included as part of `STRUCT` data type used in JSON\. To get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data from JSON](extracting-data-from-JSON.md)\.
+   In this example, the fields `requestparameters`, `responseelements`, and `additionaleventdata` are listed as type `STRING` in the query, but are `STRUCT` data type used in JSON\. Therefore, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data from JSON](extracting-data-from-JSON.md)\.
 
    ```
    CREATE EXTERNAL TABLE cloudtrail_logs (
@@ -126,6 +127,23 @@ You can manually create tables for CloudTrail log files in the Athena console, a
 
 1. Run the query in the Athena console\. After the query completes, Athena registers `cloudtrail_logs`, making the data in it ready for you to issue queries\.
 
+## Example Query for CloudTrail Logs<a name="query-examples-cloudtrail-logs"></a>
+
+The following example shows a portion of a query that returns all anonymous \(unsigned \) requests from the table created on top of CloudTrail event logs\. This query selects those requests where `useridentity.accountid` is anonymous, and `useridentity.arn` is not specified:
+
+```
+SELECT *
+FROM cloudtrail_logs
+WHERE 
+    eventsource = 's3.amazonaws.com' AND 
+    eventname in ('GetObject') AND 
+    useridentity.accountid LIKE '%ANONYMOUS%' AND 
+    useridentity.arn IS NULL AND
+    requestparameters LIKE '%[your bucket name ]%'
+```
+
+For more information, see the AWS Big Data blog post [Analyze Security, Compliance, and Operational Activity Using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.
+
 ## Tips for Querying CloudTrail Logs<a name="tips-for-querying-cloudtrail-logs"></a>
 
 To explore the CloudTrail logs data, use these tips:
@@ -151,5 +169,3 @@ To explore the CloudTrail logs data, use these tips:
   ```
 + Modify the earlier query to further explore your data\.
 + To improve performance, include the `LIMIT` clause to return a specified subset of rows\.
-
-For more information, see the AWS Big Data blog post [Analyze Security, Compliance, and Operational Activity Using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.
