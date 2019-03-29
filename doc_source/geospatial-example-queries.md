@@ -3,14 +3,15 @@
 The following examples create two tables and issue a query against them\.
 
 **Note**  
-For additional examples of geospatial queries, see the blog post: [Querying OpenStreetMap with Amazon Athena](https://aws.amazon.com/blogs/big-data/querying-openstreetmap-with-amazon-athena/)\.
+These files are *not* included with the product and are used in the documentation for illustration purposes only\. They contain sample data and are not guaranteed to be accurate\.
 
-These examples rely on two files stored in an Amazon S3 location:
+These examples rely on two files:
 + An `earthquakes.csv` sample file, which lists earthquakes that occurred in California\. This file has fields that correspond to the fields in the table `earthquakes` in the following example\.
-+ A `california-counties.json` file, which lists JSON\-encoded county data in the ESRI\-compliant format, and includes many fields, such as AREA, PERIMETER, STATE, COUNTY, and NAME\. The following example shows the `counties` table from this file with two fields only: `Name` \(string\), and `BoundaryShape` \(binary\)\.
++ A `california-counties.json` file, which lists JSON\-encoded county data in the ESRI\-compliant format, and includes many fields such as AREA, PERIMETER, STATE, COUNTY, and NAME\. The following example shows the `counties` table from this file with two fields only: `Name` \(string\), and `BoundaryShape` \(binary\)\.
 
-**Note**  
-These files contain sample data and are not guaranteed to be accurate\. They are used in the documentation for illustration purposes only and are not included with the product\.
+For additional examples of geospatial queries, see these blog posts:
++ [Querying OpenStreetMap with Amazon Athena](https://aws.amazon.com/blogs/big-data/querying-openstreetmap-with-amazon-athena/)
++ [Visualize over 200 years of global climate data using Amazon Athena and Amazon QuickSight](https://aws.amazon.com/blogs/big-data/visualize-over-200-years-of-global-climate-data-using-amazon-athena-and-amazon-quicksight/)\.
 
 The following code example creates a table called `earthquakes`:
 

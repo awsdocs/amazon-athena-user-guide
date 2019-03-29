@@ -2,6 +2,9 @@
 
 Your Amazon Athena query performance improves if you convert your data into open source columnar formats, such as [Apache Parquet](https://parquet.apache.org) or [ORC](https://orc.apache.org/)\.
 
+**Note**  
+Use the [CREATE TABLE AS \(CTAS\)](ctas-examples.md#ctas-example-query-storage-format) queries to perform the conversion to columnar formats, such as Parquet and ORC, in one step\. 
+
 You can do this to existing Amazon S3 data sources by creating a cluster in Amazon EMR and converting it using Hive\. The following example using the AWS CLI shows you how to do this with a script and data stored in Amazon S3\.
 
 ## Overview<a name="overview"></a>

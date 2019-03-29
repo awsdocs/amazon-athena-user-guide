@@ -20,7 +20,7 @@ CREATE TABLE new_table AS
 SELECT * 
 FROM old_table;
 ```
-In the following variation of the same example, your `SELECT` statement also includes a `WHERE` clause\. In this case, the query selects only those columns from the table that satisfy the `WHERE` clause:   
+In the following variation of the same example, your `SELECT` statement also includes a `WHERE` clause\. In this case, the query selects only those rows from the table that satisfy the `WHERE` clause:   
 
 ```
 CREATE TABLE new_table AS 

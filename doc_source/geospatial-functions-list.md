@@ -61,7 +61,7 @@ Use constructor functions to obtain binary representations of `point`, `line`, o
 
 Returns a binary representation of a `point` geometry data type\.
 
-To obtain the `point` geometry data type, use the ST\_POINT function in Athena\. For the input data values to this function, use geometric values, such as values in the Universal Transverse Mercator \(UTM\) Cartesian coordinate system, or geographic, or map units \(longitude and latitude\) in decimal degrees\. The longitude and latitude values use the World Geodetic System, also known as WGS 1984, or EPSG:4326\. WGS 1984 is the coordinate system used by the Global Positioning System \(GPS\)\. 
+To obtain the `point` geometry data type, use the ST\_POINT function in Athena\. For the input data values to this function, use geometric values, such as values in the Universal Transverse Mercator \(UTM\) Cartesian coordinate system, or geographic map units \(longitude and latitude\) in decimal degrees\. The longitude and latitude values use the World Geodetic System, also known as WGS 1984, or EPSG:4326\. WGS 1984 is the coordinate system used by the Global Positioning System \(GPS\)\. 
 
 For example, in the following notation, the map coordinates are specified in longitude and latitude, and the value `.072284`, which is the buffer distance, is specified in angular units as decimal degrees:
 
@@ -261,12 +261,16 @@ SELECT ST_BOUNDARY(ST_POLYGON('polygon((1  1, 1  4, 4  4, 4 1))'))
 
 ### `ST_BUFFER (geometry, double)`<a name="st-buffer-geometry-double"></a>
 
-Takes as an input one of the geometry data types, such as point, line, polygon, multiline, or multipolygon, and a distance as type `double`\)\. Returns a binary representation of the geometry data type buffered by the specified distance \(or radius\)\. 
-
-Example:
+Takes as an input one of the geometry data types, such as point, line, polygon, multiline, or multipolygon, and a distance as type `double`\)\. Returns a binary representation of the geometry data type buffered by the specified distance \(or radius\)\. Example:
 
 ```
 SELECT ST_BUFFER(ST_Point(1, 2), 2.0)
+```
+
+In the following example, the map coordinates are specified in longitude and latitude, and the value `.072284`, which is the buffer distance, is specified in angular units as decimal degrees:
+
+```
+ST_BUFFER(ST_POINT(-74.006801, 40.705220), .072284)
 ```
 
 ### `ST_DIFFERENCE (geometry, geometry)`<a name="st-difference-geometry-geometry"></a>
@@ -279,7 +283,7 @@ SELECT ST_GEOMETRY_TO_TEXT(ST_DIFFERENCE(ST_POLYGON('polygon((0 0, 0 10, 10 10, 
 
 ### `ST_ENVELOPE (geometry)`<a name="st-envelope-geometry"></a>
 
-Takes as an input one of the geometry data types and returns a binary representation of an envelope, where an envelope is a rectangle around the specified geometry data type\. Examples:
+Takes as an input `line`, `polygon`, `multiline`, and `multipolygon` geometry data types\. Does not support `point` geometry data type\. Returns a binary representation of an envelope, where an envelope is a rectangle around the specified geometry data type\. Examples:
 
 ```
 SELECT ST_ENVELOPE(ST_LINE('linestring(0 1, 1 0)'))
@@ -339,10 +343,14 @@ SELECT ST_AREA(ST_POLYGON('polygon((1 1, 4 1, 4 4, 1 4))'))
 
 ### `ST_CENTROID (geometry)`<a name="st-centroid-geometry"></a>
 
-Takes as an input a geometry data type `polygon`, and returns a `point` that is the center of the polygon's envelope in type `varchar`\. Example:
+Takes as an input a geometry data type `polygon`, and returns a `point` that is the center of the polygon's envelope in type `varchar`\. Examples:
 
 ```
 SELECT ST_CENTROID(ST_GEOMETRY_FROM_TEXT('polygon ((0 0, 3 6, 6 0, 0 0))'))
+```
+
+```
+SELECT ST_GEOMETRY_TO_TEXT(ST_CENTROID(ST_ENVELOPE(ST_GEOMETRY_FROM_TEXT('POINT (53 27)'))))
 ```
 
 ### `ST_COORDINATE_DIMENSION (geometry)`<a name="st-coordinate-dimension-geometry"></a>
