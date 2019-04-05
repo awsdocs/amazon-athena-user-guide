@@ -16,7 +16,6 @@ Before you begin querying the logs in Athena, [enable VPC flow logs](https://doc
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS vpc_flow_logs (
-     dt string,
      version int,
      account string,
      interfaceid string,
