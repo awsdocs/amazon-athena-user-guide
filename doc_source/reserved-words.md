@@ -61,7 +61,7 @@ STORED AS TEXTFILE
 LOCATION 's3://test_bucket/test_examples/';
 ```
 
-The following example queries include a column name containing the DDL\-related reserved keywords in `ALTER TABLE ADD PARTITION` and `ALTER TABlE DROP PARTITION` statements\. The DDL reserved keywords are enclosed in backticks \(`\):
+The following example queries include a column name containing the DDL\-related reserved keywords in `ALTER TABLE ADD PARTITION` and `ALTER TABLE DROP PARTITION` statements\. The DDL reserved keywords are enclosed in backticks \(`\):
 
 ```
 ALTER TABLE test_table 
