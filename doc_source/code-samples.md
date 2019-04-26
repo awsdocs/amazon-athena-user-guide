@@ -1,8 +1,9 @@
 # Code Samples<a name="code-samples"></a>
 
-Use examples in this topic as a starting point for writing Athena applications using the AWS SDK for Java\.
+Use examples in this topic as a starting point for writing Athena applications using the SDK for Java 2\.x\.
 +   
-**Java Code Samples**  
+**Java Code Examples**  
+  +  [Constants](#constants) 
   +  [Create a Client to Access Athena](#create-a-client-to-access-athena) 
   +   
 **Working with Query Executions**  
@@ -16,424 +17,415 @@ Use examples in this topic as a starting point for writing Athena applications u
     +  [List Query Executions](#list-query-executions) 
 
 **Note**  
-These samples use constants \(for example, `ATHENA_SAMPLE_QUERY`\) for strings, which are defined in an `ExampleConstants` class declaration not shown in this topic\. Replace these constants with your own strings or defined constants\.
+These samples use constants \(for example, `ATHENA_SAMPLE_QUERY`\) for strings, which are defined in an `ExampleConstants.java` class declaration\. Replace these constants with your own strings or defined constants\.
+
+## Constants<a name="constants"></a>
+
+The `ExampleConstants.java` class demonstrates how to query a table created by the [Getting Started](getting-started.md) tutorial in Athena\.
+
+```
+package aws.example.athena;
+
+public class ExampleConstants {
+
+    public static final int CLIENT_EXECUTION_TIMEOUT = 100000;
+    public static final String ATHENA_OUTPUT_BUCKET = "s3://my-athena-bucket";
+    // This example demonstrates how to query a table created by the "Getting Started" tutorial in Athena
+    public static final String ATHENA_SAMPLE_QUERY = "SELECT elb_name, "
+            + " count(1)"
+            + " FROM elb_logs"
+            + " Where elb_response_code = '200'"
+            + " GROUP BY elb_name"
+            + " ORDER BY 2 DESC limit 10;";
+    public static final long SLEEP_AMOUNT_IN_MS = 1000;
+    public static final String ATHENA_DEFAULT_DATABASE = "default";
+
+}
+```
 
 ## Create a Client to Access Athena<a name="create-a-client-to-access-athena"></a>
 
-```
-package com.amazonaws.services.athena.sdksamples;
+The `AthenaClientFactory.java` class shows how to create and configure an Amazon Athena client\.
 
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.auth.InstanceProfileCredentialsProvider;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.athena.AmazonAthena;
-import com.amazonaws.services.athena.AmazonAthenaClientBuilder;
+```
+package aws.example.athena;
+
+import software.amazon.awssdk.auth.credentials.InstanceProfileCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.athena.AthenaClient;
+import software.amazon.awssdk.services.athena.AthenaClientBuilder;
 
 /**
-* AthenaClientFactory
-* -------------------------------------
-* This code shows how to create and configure an Amazon Athena client.
-*/
-public class AthenaClientFactory
-{
-  /**
-   * AmazonAthenaClientBuilder to build Athena with the following properties:
-   * - Set the region of the client
-   * - Use the instance profile from the EC2 instance as the credentials provider
-   * - Configure the client to increase the execution timeout.
-   */
-  private final AmazonAthenaClientBuilder builder = AmazonAthenaClientBuilder.standard()
-          .withRegion(Regions.US_EAST_1)
-          .withCredentials(InstanceProfileCredentialsProvider.getInstance())
-          .withClientConfiguration(new ClientConfiguration().withClientExecutionTimeout(ExampleConstants.CLIENT_EXECUTION_TIMEOUT));
+ * AthenaClientFactory
+ * -------------------------------------
+ * This code shows how to create and configure an Amazon Athena client.
+ */
+public class AthenaClientFactory {
+    /**
+     * AthenaClientClientBuilder to build Athena with the following properties:
+     * - Set the region of the client
+     * - Use the instance profile from the EC2 instance as the credentials provider
+     * - Configure the client to increase the execution timeout.
+     */
+    private final AthenaClientBuilder builder = AthenaClient.builder()
+            .region(Region.US_WEST_2)
+            .credentialsProvider(InstanceProfileCredentialsProvider.create());
 
-  public AmazonAthena createClient()
-  {
-      return builder.build();
-  }
+    public AthenaClient createClient() {
+        return builder.build();
+    }
 }
 ```
 
 ## Start Query Execution<a name="start-query-execution"></a>
 
-```
-package com.amazonaws.services.athena.sdksamples;
+The `StartQueryExample` shows how to submit a query to Athena for execution, wait until the results become available, and then process the results\.
 
-import com.amazonaws.services.athena.AmazonAthena;
-import com.amazonaws.services.athena.model.ColumnInfo;
-import com.amazonaws.services.athena.model.GetQueryExecutionRequest;
-import com.amazonaws.services.athena.model.GetQueryExecutionResult;
-import com.amazonaws.services.athena.model.GetQueryResultsRequest;
-import com.amazonaws.services.athena.model.GetQueryResultsResult;
-import com.amazonaws.services.athena.model.QueryExecutionContext;
-import com.amazonaws.services.athena.model.QueryExecutionState;
-import com.amazonaws.services.athena.model.ResultConfiguration;
-import com.amazonaws.services.athena.model.Row;
-import com.amazonaws.services.athena.model.StartQueryExecutionRequest;
-import com.amazonaws.services.athena.model.StartQueryExecutionResult;
+```
+package aws.example.athena;
+
+import software.amazon.awssdk.services.athena.AthenaClient;
+import software.amazon.awssdk.services.athena.model.*;
+import software.amazon.awssdk.services.athena.paginators.GetQueryResultsIterable;
 
 import java.util.List;
 
 /**
-* StartQueryExample
-* -------------------------------------
-* This code shows how to submit a query to Athena for execution, wait till results
-* are available, and then process the results.
-*/
-public class StartQueryExample
-{
-  public static void main(String[] args) throws InterruptedException
-  {
-      // Build an AmazonAthena client
-      AthenaClientFactory factory = new AthenaClientFactory();
-      AmazonAthena client = factory.createClient();
+ * StartQueryExample
+ * -------------------------------------
+ * This code shows how to submit a query to Athena for execution, wait till results
+ * are available, and then process the results.
+ */
+public class StartQueryExample {
+    public static void main(String[] args) throws InterruptedException {
+        // Build an AthenaClient client
+        AthenaClientFactory factory = new AthenaClientFactory();
+        AthenaClient athenaClient = factory.createClient();
 
-      String queryExecutionId = submitAthenaQuery(client);
+        String queryExecutionId = submitAthenaQuery(athenaClient);
 
-      waitForQueryToComplete(client, queryExecutionId);
+        waitForQueryToComplete(athenaClient, queryExecutionId);
 
-      processResultRows(client, queryExecutionId);
-  }
+        processResultRows(athenaClient, queryExecutionId);
+    }
 
-  /**
-   * Submits a sample query to Athena and returns the execution ID of the query.
-   */
-  private static String submitAthenaQuery(AmazonAthena client)
-  {
-      // The QueryExecutionContext allows us to set the Database.
-      QueryExecutionContext queryExecutionContext = new QueryExecutionContext().withDatabase(ExampleConstants.ATHENA_DEFAULT_DATABASE);
+    /**
+     * Submits a sample query to Athena and returns the execution ID of the query.
+     */
+    private static String submitAthenaQuery(AthenaClient athenaClient) {
+        // The QueryExecutionContext allows us to set the Database.
+        QueryExecutionContext queryExecutionContext = QueryExecutionContext.builder()
+                .database(ExampleConstants.ATHENA_DEFAULT_DATABASE).build();
 
-      // The result configuration specifies where the results of the query should go in S3 and encryption options
-      ResultConfiguration resultConfiguration = new ResultConfiguration()
-              // You can provide encryption options for the output that is written.
-              // .withEncryptionConfiguration(encryptionConfiguration)
-              .withOutputLocation(ExampleConstants.ATHENA_OUTPUT_BUCKET);
+        // The result configuration specifies where the results of the query should go in S3 and encryption options
+        ResultConfiguration resultConfiguration = ResultConfiguration.builder()
+                // You can provide encryption options for the output that is written.
+                // .withEncryptionConfiguration(encryptionConfiguration)
+                .outputLocation(ExampleConstants.ATHENA_OUTPUT_BUCKET).build();
 
-      // Create the StartQueryExecutionRequest to send to Athena which will start the query.
-      StartQueryExecutionRequest startQueryExecutionRequest = new StartQueryExecutionRequest()
-              .withQueryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
-              .withQueryExecutionContext(queryExecutionContext)
-              .withResultConfiguration(resultConfiguration);
+        // Create the StartQueryExecutionRequest to send to Athena which will start the query.
+        StartQueryExecutionRequest startQueryExecutionRequest = StartQueryExecutionRequest.builder()
+                .queryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
+                .queryExecutionContext(queryExecutionContext)
+                .resultConfiguration(resultConfiguration).build();
 
-      StartQueryExecutionResult startQueryExecutionResult = client.startQueryExecution(startQueryExecutionRequest);
-      return startQueryExecutionResult.getQueryExecutionId();
-  }
+        StartQueryExecutionResponse startQueryExecutionResponse = athenaClient.startQueryExecution(startQueryExecutionRequest);
+        return startQueryExecutionResponse.queryExecutionId();
+    }
 
-  /**
-   * Wait for an Athena query to complete, fail or to be cancelled. This is done by polling Athena over an
-   * interval of time. If a query fails or is cancelled, then it will throw an exception.
-   */
+    /**
+     * Wait for an Athena query to complete, fail or to be cancelled. This is done by polling Athena over an
+     * interval of time. If a query fails or is cancelled, then it will throw an exception.
+     */
 
-       private static void waitForQueryToComplete(AmazonAthena client, String queryExecutionId) throws InterruptedException
-  {
-      GetQueryExecutionRequest getQueryExecutionRequest = new GetQueryExecutionRequest()
-              .withQueryExecutionId(queryExecutionId);
+    private static void waitForQueryToComplete(AthenaClient athenaClient, String queryExecutionId) throws InterruptedException {
+        GetQueryExecutionRequest getQueryExecutionRequest = GetQueryExecutionRequest.builder()
+                .queryExecutionId(queryExecutionId).build();
 
-      GetQueryExecutionResult getQueryExecutionResult = null;
-      boolean isQueryStillRunning = true;
-      while (isQueryStillRunning) {
-          getQueryExecutionResult = client.getQueryExecution(getQueryExecutionRequest);
-          String queryState = getQueryExecutionResult.getQueryExecution().getStatus().getState();
-          if (queryState.equals(QueryExecutionState.FAILED.toString())) {
-              throw new RuntimeException("Query Failed to run with Error Message: " + getQueryExecutionResult.getQueryExecution().getStatus().getStateChangeReason());
-          }
-          else if (queryState.equals(QueryExecutionState.CANCELLED.toString())) {
-              throw new RuntimeException("Query was cancelled.");
-          }
-          else if (queryState.equals(QueryExecutionState.SUCCEEDED.toString())) {
-              isQueryStillRunning = false;
-          }
-          else {
-              // Sleep an amount of time before retrying again.
-              Thread.sleep(ExampleConstants.SLEEP_AMOUNT_IN_MS);
-          }
-          System.out.println("Current Status is: " + queryState);
-      }
-  }
+        GetQueryExecutionResponse getQueryExecutionResponse;
+        boolean isQueryStillRunning = true;
+        while (isQueryStillRunning) {
+            getQueryExecutionResponse = athenaClient.getQueryExecution(getQueryExecutionRequest);
+            String queryState = getQueryExecutionResponse.queryExecution().status().state().toString();
+            if (queryState.equals(QueryExecutionState.FAILED.toString())) {
+                throw new RuntimeException("Query Failed to run with Error Message: " + getQueryExecutionResponse
+                        .queryExecution().status().stateChangeReason());
+            } else if (queryState.equals(QueryExecutionState.CANCELLED.toString())) {
+                throw new RuntimeException("Query was cancelled.");
+            } else if (queryState.equals(QueryExecutionState.SUCCEEDED.toString())) {
+                isQueryStillRunning = false;
+            } else {
+                // Sleep an amount of time before retrying again.
+                Thread.sleep(ExampleConstants.SLEEP_AMOUNT_IN_MS);
+            }
+            System.out.println("Current Status is: " + queryState);
+        }
+    }
 
-  /**
-   * This code calls Athena and retrieves the results of a query.
-   * The query must be in a completed state before the results can be retrieved and
-   * paginated. The first row of results are the column headers.
-   */
-  private static void processResultRows(AmazonAthena client, String queryExecutionId)
-  {
-      GetQueryResultsRequest getQueryResultsRequest = new GetQueryResultsRequest()
-              // Max Results can be set but if its not set,
-              // it will choose the maximum page size
-              // As of the writing of this code, the maximum value is 1000
-              // .withMaxResults(1000)
-              .withQueryExecutionId(queryExecutionId);
+    /**
+     * This code calls Athena and retrieves the results of a query.
+     * The query must be in a completed state before the results can be retrieved and
+     * paginated. The first row of results are the column headers.
+     */
+    private static void processResultRows(AthenaClient athenaClient, String queryExecutionId) {
+        GetQueryResultsRequest getQueryResultsRequest = GetQueryResultsRequest.builder()
+                // Max Results can be set but if its not set,
+                // it will choose the maximum page size
+                // As of the writing of this code, the maximum value is 1000
+                // .withMaxResults(1000)
+                .queryExecutionId(queryExecutionId).build();
 
-      GetQueryResultsResult getQueryResultsResult = client.getQueryResults(getQueryResultsRequest);
-      List<ColumnInfo> columnInfoList = getQueryResultsResult.getResultSet().getResultSetMetadata().getColumnInfo();
+        GetQueryResultsIterable getQueryResultsResults = athenaClient.getQueryResultsPaginator(getQueryResultsRequest);
 
-      while (true) {
-          List<Row> results = getQueryResultsResult.getResultSet().getRows();
-          for (Row row : results) {
-              // Process the row. The first row of the first page holds the column names.
-              processRow(row, columnInfoList);
-          }
-          // If nextToken is null, there are no more pages to read. Break out of the loop.
-          if (getQueryResultsResult.getNextToken() == null) {
-              break;
-          }
-          getQueryResultsResult = client.getQueryResults(
-                  getQueryResultsRequest.withNextToken(getQueryResultsResult.getNextToken()));
-      }
-  }
+        for (GetQueryResultsResponse Resultresult : getQueryResultsResults) {
+            List<ColumnInfo> columnInfoList = Resultresult.resultSet().resultSetMetadata().columnInfo();
+            List<Row> results = Resultresult.resultSet().rows();
+            processRow(results, columnInfoList);
+        }
+    }
 
-  private static void processRow(Row row, List<ColumnInfo> columnInfoList)
-  {
-      for (int i = 0; i < columnInfoList.size(); ++i) {
-          switch (columnInfoList.get(i).getType()) {
-              case "varchar":
-                  // Convert and Process as String
-                  break;
-              case "tinyint":
-                  // Convert and Process as tinyint
-                  break;
-              case "smallint":
-                  // Convert and Process as smallint
-                  break;
-              case "integer":
-                  // Convert and Process as integer
-                  break;
-              case "bigint":
-                  // Convert and Process as bigint
-                  break;
-              case "double":
-                  // Convert and Process as double
-                  break;
-              case "boolean":
-                  // Convert and Process as boolean
-                  break;
-              case "date":
-                  // Convert and Process as date
-                  break;
-              case "timestamp":
-                  // Convert and Process as timestamp
-                  break;
-              default:
-                  throw new RuntimeException("Unexpected Type is not expected" + columnInfoList.get(i).getType());
-          }
-      }
-  }
+    private static void processRow(List<Row> row, List<ColumnInfo> columnInfoList) {
+        for (ColumnInfo columnInfo : columnInfoList) {
+            switch (columnInfo.type()) {
+                case "varchar":
+                    // Convert and Process as String
+                    break;
+                case "tinyint":
+                    // Convert and Process as tinyint
+                    break;
+                case "smallint":
+                    // Convert and Process as smallint
+                    break;
+                case "integer":
+                    // Convert and Process as integer
+                    break;
+                case "bigint":
+                    // Convert and Process as bigint
+                    break;
+                case "double":
+                    // Convert and Process as double
+                    break;
+                case "boolean":
+                    // Convert and Process as boolean
+                    break;
+                case "date":
+                    // Convert and Process as date
+                    break;
+                case "timestamp":
+                    // Convert and Process as timestamp
+                    break;
+                default:
+                    throw new RuntimeException("Unexpected Type is not expected" + columnInfo.type());
+            }
+        }
+    }
 }
 ```
 
 ## Stop Query Execution<a name="stop-query-execution"></a>
 
-```
-package com.amazonaws.services.athena.sdksamples;
+The `StopQueryExecutionExample` runs an example query, immediately stops the query, and checks the status of the query to ensure that it was canceled\.
 
-import com.amazonaws.services.athena.AmazonAthena;
-import com.amazonaws.services.athena.model.GetQueryExecutionRequest;
-import com.amazonaws.services.athena.model.GetQueryExecutionResult;
-import com.amazonaws.services.athena.model.QueryExecutionContext;
-import com.amazonaws.services.athena.model.ResultConfiguration;
-import com.amazonaws.services.athena.model.StartQueryExecutionRequest;
-import com.amazonaws.services.athena.model.StartQueryExecutionResult;
-import com.amazonaws.services.athena.model.StopQueryExecutionRequest;
-import com.amazonaws.services.athena.model.StopQueryExecutionResult;
+```
+package aws.example.athena;
+
+import software.amazon.awssdk.services.athena.AthenaClient;
+import software.amazon.awssdk.services.athena.model.*;
 
 /**
-* StopQueryExecutionExample
-* -------------------------------------
-* This code runs an example query, immediately stops the query, and checks the status of the query to
-* ensure that it was cancelled.
-*/
-public class StopQueryExecutionExample
-{
-  public static void main(String[] args) throws Exception
-  {
-      // Build an Athena client
-      AthenaClientFactory factory = new AthenaClientFactory();
-      AmazonAthena client = factory.createClient();
+ * StopQueryExecutionExample
+ * -------------------------------------
+ * This code runs an example query, immediately stops the query, and checks the status of the query to
+ * ensure that it was cancelled.
+ */
+public class StopQueryExecutionExample {
+    public static void main(String[] args) throws Exception {
+        // Build an Athena client
+        AthenaClientFactory factory = new AthenaClientFactory();
+        AthenaClient athenaClient = factory.createClient();
 
-      String sampleQueryExecutionId = getExecutionId(client);
+        String sampleQueryExecutionId = submitAthenaQuery(athenaClient);
 
-      // Submit the stop query Request
-      StopQueryExecutionRequest stopQueryExecutionRequest = new StopQueryExecutionRequest()
-              .withQueryExecutionId(sampleQueryExecutionId);
+        // Submit the stop query Request
+        StopQueryExecutionRequest stopQueryExecutionRequest = StopQueryExecutionRequest.builder()
+                .queryExecutionId(sampleQueryExecutionId).build();
 
-      StopQueryExecutionResult stopQueryExecutionResult = client.stopQueryExecution(stopQueryExecutionRequest);
+        StopQueryExecutionResponse stopQueryExecutionResponse = athenaClient.stopQueryExecution(stopQueryExecutionRequest);
 
-      // Ensure that the query was stopped
-      GetQueryExecutionRequest getQueryExecutionRequest = new GetQueryExecutionRequest()
-              .withQueryExecutionId(sampleQueryExecutionId);
+        // Ensure that the query was stopped
+        GetQueryExecutionRequest getQueryExecutionRequest = GetQueryExecutionRequest.builder()
+                .queryExecutionId(sampleQueryExecutionId).build();
 
-      GetQueryExecutionResult getQueryExecutionResult = client.getQueryExecution(getQueryExecutionRequest);
-      if (getQueryExecutionResult.getQueryExecution().getStatus().getState().equals(ExampleConstants.QUERY_STATE_CANCELLED)) {
-          // Query was cancelled.
-          System.out.println("Query has been cancelled");
-      }
-  }
+        GetQueryExecutionResponse getQueryExecutionResponse = athenaClient.getQueryExecution(getQueryExecutionRequest);
+        if (getQueryExecutionResponse.queryExecution()
+                .status()
+                .state()
+                .equals(QueryExecutionState.CANCELLED)) {
+            // Query was cancelled.
+            System.out.println("Query has been cancelled");
+        }
+    }
 
-  /**
-   * Submits an example query and returns a query execution ID of a running query to stop.
-   */
-  public static String getExecutionId(AmazonAthena client)
-  {
-      QueryExecutionContext queryExecutionContext = new QueryExecutionContext().withDatabase(ExampleConstants.ATHENA_DEFAULT_DATABASE);
+    /**
+     * Submits an example query and returns a query execution ID of a running query to stop.
+     */
+    public static String submitAthenaQuery(AthenaClient athenaClient) {
+        QueryExecutionContext queryExecutionContext = QueryExecutionContext.builder()
+                .database(ExampleConstants.ATHENA_DEFAULT_DATABASE).build();
 
-      ResultConfiguration resultConfiguration = new ResultConfiguration()
-              .withOutputLocation(ExampleConstants.ATHENA_OUTPUT_BUCKET);
+        ResultConfiguration resultConfiguration = ResultConfiguration.builder()
+                .outputLocation(ExampleConstants.ATHENA_OUTPUT_BUCKET).build();
 
-      StartQueryExecutionRequest startQueryExecutionRequest = new StartQueryExecutionRequest()
-              .withQueryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
-              .withQueryExecutionContext(queryExecutionContext)
-              .withResultConfiguration(resultConfiguration);
+        StartQueryExecutionRequest startQueryExecutionRequest = StartQueryExecutionRequest.builder()
+                .queryExecutionContext(queryExecutionContext)
+                .queryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
+                .resultConfiguration(resultConfiguration).build();
 
-      StartQueryExecutionResult startQueryExecutionResult = client.startQueryExecution(startQueryExecutionRequest);
+        StartQueryExecutionResponse startQueryExecutionResponse = athenaClient.startQueryExecution(startQueryExecutionRequest);
 
-      return startQueryExecutionResult.getQueryExecutionId();
-  }
+        return startQueryExecutionResponse.queryExecutionId();
+
+    }
 }
 ```
 
 ## List Query Executions<a name="list-query-executions"></a>
 
-```
-package com.amazonaws.services.athena.sdksamples;
+The `ListQueryExecutionsExample` shows how to obtain a list of query execution IDs\.
 
-import com.amazonaws.services.athena.AmazonAthena;
-import com.amazonaws.services.athena.model.ListQueryExecutionsRequest;
-import com.amazonaws.services.athena.model.ListQueryExecutionsResult;
+```
+package aws.example.athena;
+
+import software.amazon.awssdk.services.athena.AthenaClient;
+import software.amazon.awssdk.services.athena.model.ListQueryExecutionsRequest;
+import software.amazon.awssdk.services.athena.model.ListQueryExecutionsResponse;
+import software.amazon.awssdk.services.athena.paginators.ListQueryExecutionsIterable;
 
 import java.util.List;
 
 /**
-* ListQueryExecutionsExample
-* -------------------------------------
-* This code shows how to obtain a list of query execution IDs.
-*/
-public class ListQueryExecutionsExample
-{
-  public static void main(String[] args) throws Exception
-  {
-      // Build an Athena client
-      AthenaClientFactory factory = new AthenaClientFactory();
-      AmazonAthena client = factory.createClient();
+ * ListQueryExecutionsExample
+ * -------------------------------------
+ * This code shows how to obtain a list of query execution IDs.
+ */
+public class ListQueryExecutionsExample {
+    public static void main(String[] args) throws Exception {
+        // Build an Athena client
+        AthenaClientFactory factory = new AthenaClientFactory();
+        AthenaClient athenaClient = factory.createClient();
 
-      // Build the request
-      ListQueryExecutionsRequest listQueryExecutionsRequest = new ListQueryExecutionsRequest();
+        // Build the request
+        ListQueryExecutionsRequest listQueryExecutionsRequest = ListQueryExecutionsRequest.builder().build();
 
-      // Get the list results.
-      ListQueryExecutionsResult listQueryExecutionsResult = client.listQueryExecutions(listQueryExecutionsRequest);
+        // Get the list results.
+        ListQueryExecutionsIterable listQueryExecutionResponses = athenaClient.listQueryExecutionsPaginator(listQueryExecutionsRequest);
 
-      // Process the results.
-      boolean hasMoreResults = true;
-      while (hasMoreResults) {
-          List<String> queryExecutionIds = listQueryExecutionsResult.getQueryExecutionIds();
-          // process queryExecutionIds.
+        for (ListQueryExecutionsResponse listQueryExecutionResponse : listQueryExecutionResponses) {
+            List<String> queryExecutionIds = listQueryExecutionResponse.queryExecutionIds();
+            // process queryExecutionIds.
 
-          //If nextToken is not null, then there are more results. Get the next page of results.
-          if (listQueryExecutionsResult.getNextToken() != null) {
-              listQueryExecutionsResult = client.listQueryExecutions(
-                      listQueryExecutionsRequest.withNextToken(listQueryExecutionsResult.getNextToken()));
-          }
-          else {
-              hasMoreResults = false;
-          }
-      }
-  }
+            System.out.println(queryExecutionIds);
+        }
+
+    }
 }
 ```
 
 ## Create a Named Query<a name="create-a-named-query"></a>
 
-```
-package com.amazonaws.services.athena.sdksamples;
+The `CreateNamedQueryExample` shows how to create a named query\.
 
-import com.amazonaws.services.athena.AmazonAthena;
-import com.amazonaws.services.athena.model.CreateNamedQueryRequest;
-import com.amazonaws.services.athena.model.CreateNamedQueryResult;
+```
+package aws.example.athena;
+
+import software.amazon.awssdk.services.athena.AthenaClient;
+import software.amazon.awssdk.services.athena.model.CreateNamedQueryRequest;
+import software.amazon.awssdk.services.athena.model.CreateNamedQueryResponse;
 
 /**
-* CreateNamedQueryExample
-* -------------------------------------
-* This code shows how to create a named query.
-*/
-public class CreateNamedQueryExample
-{
-  public static void main(String[] args) throws Exception
-  {
-      // Build an Athena client
-      AthenaClientFactory factory = new AthenaClientFactory();
-      AmazonAthena client = factory.createClient();
+ * CreateNamedQueryExample
+ * -------------------------------------
+ * This code shows how to create a named query.
+ */
+public class CreateNamedQueryExample {
+    public static void main(String[] args) throws Exception {
+        // Build an Athena client
+        AthenaClientFactory factory = new AthenaClientFactory();
+        AthenaClient athenaClient = factory.createClient();
 
-      // Create the named query request.
-      CreateNamedQueryRequest createNamedQueryRequest = new CreateNamedQueryRequest()
-              .withDatabase(ExampleConstants.ATHENA_DEFAULT_DATABASE)
-              .withQueryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
-              .withDescription("Sample Description")
-              .withName("SampleQuery");
+        // Create the named query request.
+        CreateNamedQueryRequest createNamedQueryRequest = CreateNamedQueryRequest.builder()
+                .database(ExampleConstants.ATHENA_DEFAULT_DATABASE)
+                .queryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
+                .description("Sample Description")
+                .name("SampleQuery2").build();
 
-      // Call Athena to create the named query. If it fails, an exception is thrown.
-      CreateNamedQueryResult createNamedQueryResult = client.createNamedQuery(createNamedQueryRequest);
-  }
+        // Call Athena to create the named query. If it fails, an exception is thrown.
+        CreateNamedQueryResponse createNamedQueryResult = athenaClient.createNamedQuery(createNamedQueryRequest);
+    }
 }
 ```
 
 ## Delete a Named Query<a name="delete-a-named-query"></a>
 
-```
-package com.amazonaws.services.athena.sdksamples;
+The `DeleteNamedQueryExample` shows how to delete a named query by using the named query ID\.
 
-import com.amazonaws.services.athena.AmazonAthena;
-import com.amazonaws.services.athena.model.CreateNamedQueryRequest;
-import com.amazonaws.services.athena.model.CreateNamedQueryResult;
-import com.amazonaws.services.athena.model.DeleteNamedQueryRequest;
-import com.amazonaws.services.athena.model.DeleteNamedQueryResult;
+```
+package aws.example.athena;
+
+import software.amazon.awssdk.services.athena.AthenaClient;
+import software.amazon.awssdk.services.athena.model.CreateNamedQueryRequest;
+import software.amazon.awssdk.services.athena.model.CreateNamedQueryResponse;
+import software.amazon.awssdk.services.athena.model.DeleteNamedQueryRequest;
+import software.amazon.awssdk.services.athena.model.DeleteNamedQueryResponse;
 
 /**
  * DeleteNamedQueryExample
  * -------------------------------------
  * This code shows how to delete a named query by using the named query ID.
  */
-public class DeleteNamedQueryExample
-{
-    private static String getNamedQueryId(AmazonAthena athenaClient)
-    {
+public class DeleteNamedQueryExample {
+    private static String getNamedQueryId(AthenaClient athenaClient) {
         // Create the NameQuery Request.
-        CreateNamedQueryRequest createNamedQueryRequest = new CreateNamedQueryRequest()
-                .withDatabase(ExampleConstants.ATHENA_DEFAULT_DATABASE)
-                .withQueryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
-                .withName("SampleQueryName")
-                .withDescription("Sample Description");
+        CreateNamedQueryRequest createNamedQueryRequest = CreateNamedQueryRequest.builder()
+                .database(ExampleConstants.ATHENA_DEFAULT_DATABASE)
+                .queryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
+                .name("SampleQueryName")
+                .description("Sample Description").build();
 
         // Create the named query. If it fails, an exception is thrown.
-        CreateNamedQueryResult createNamedQueryResult = athenaClient.createNamedQuery(createNamedQueryRequest);
-        return createNamedQueryResult.getNamedQueryId();
+        CreateNamedQueryResponse createNamedQueryResponse = athenaClient.createNamedQuery(createNamedQueryRequest);
+        return createNamedQueryResponse.namedQueryId();
     }
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
         // Build an Athena client
         AthenaClientFactory factory = new AthenaClientFactory();
-        AmazonAthena client = factory.createClient();
+        AthenaClient athenaClient = factory.createClient();
 
-        String sampleNamedQueryId = getNamedQueryId(client);
+        String sampleNamedQueryId = getNamedQueryId(athenaClient);
 
         // Create the delete named query request
-        DeleteNamedQueryRequest deleteNamedQueryRequest = new DeleteNamedQueryRequest()
-                .withNamedQueryId(sampleNamedQueryId);
+        DeleteNamedQueryRequest deleteNamedQueryRequest = DeleteNamedQueryRequest.builder()
+                .namedQueryId(sampleNamedQueryId).build();
 
         // Delete the named query
-        DeleteNamedQueryResult deleteNamedQueryResult = client.deleteNamedQuery(deleteNamedQueryRequest);
+        DeleteNamedQueryResponse deleteNamedQueryResponse = athenaClient.deleteNamedQuery(deleteNamedQueryRequest);
     }
 }
 ```
 
 ## List Named Queries<a name="list-named-queries"></a>
 
-```
-package com.amazonaws.services.athena.sdksamples;
+The `ListNamedQueryExample` shows how to obtain a list of named query IDs\.
 
-import com.amazonaws.services.athena.AmazonAthena;
-import com.amazonaws.services.athena.model.ListNamedQueriesRequest;
-import com.amazonaws.services.athena.model.ListNamedQueriesResult;
+```
+package aws.example.athena;
+
+import software.amazon.awssdk.services.athena.AthenaClient;
+import software.amazon.awssdk.services.athena.model.ListNamedQueriesRequest;
+import software.amazon.awssdk.services.athena.model.ListNamedQueriesResponse;
+import software.amazon.awssdk.services.athena.paginators.ListNamedQueriesIterable;
 
 import java.util.List;
 
@@ -442,36 +434,28 @@ import java.util.List;
  * -------------------------------------
  * This code shows how to obtain a list of named query IDs.
  */
-public class ListNamedQueryExample
-{
-    public static void main(String[] args) throws Exception
-    {
+public class ListNamedQueryExample {
+    public static void main(String[] args) throws Exception {
         // Build an Athena client
         AthenaClientFactory factory = new AthenaClientFactory();
-        AmazonAthena client = factory.createClient();
+        AthenaClient athenaClient = factory.createClient();
 
         // Build the request
-        ListNamedQueriesRequest listNamedQueriesRequest = new ListNamedQueriesRequest();
+        ListNamedQueriesRequest listNamedQueriesRequest = ListNamedQueriesRequest.builder().build();
 
         // Get the list results.
-        ListNamedQueriesResult listNamedQueriesResult = client.listNamedQueries(listNamedQueriesRequest);
+        ListNamedQueriesIterable listNamedQueriesResponses = athenaClient.listNamedQueriesPaginator(listNamedQueriesRequest);
+
 
         // Process the results.
-        boolean hasMoreResults = true;
-
-        while (hasMoreResults) {
-            List<String> namedQueryIds = listNamedQueriesResult.getNamedQueryIds();
+        for (ListNamedQueriesResponse listNamedQueriesResponse : listNamedQueriesResponses) {
+            List<String> namedQueryIds = listNamedQueriesResponse.namedQueryIds();
             // process named query IDs
 
-            // If nextToken is not null,  there are more results. Get the next page of results.
-            if (listNamedQueriesResult.getNextToken() != null) {
-                listNamedQueriesResult = client.listNamedQueries(
-                        listNamedQueriesRequest.withNextToken(listNamedQueriesResult.getNextToken()));
-            }
-            else {
-                hasMoreResults = false;
-            }
+            System.out.println(namedQueryIds);
         }
+
+
     }
 }
 ```

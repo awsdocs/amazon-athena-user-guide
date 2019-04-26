@@ -45,6 +45,9 @@ PARQUET and ORC are columnar data storage formats that can be read by index, or 
 
 Since these are defaults, specifying these SerDe properties in your `CREATE TABLE` queries is optional, they are used implicitly\. When used, they allow you to run some schema update operations while preventing other such operations\. To enable those operations, run another `CREATE TABLE` query and change the SerDe settings\. 
 
+**Note**  
+The SerDe properties are *not* automatically propagated to each partition\. Use `ALTER TABLE ADD PARTITION` statements to set the SerDe properties for each partition\. To automate this process, write a script that runs `ALTER TABLE ADD PARTITION` statements\.
+
 The following sections describe these cases in detail\.
 
 ### ORC: Read by Index<a name="orc-read-by-index"></a>

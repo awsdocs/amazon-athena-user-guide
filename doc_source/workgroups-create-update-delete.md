@@ -64,6 +64,8 @@ For each workgroup, you can view its details\. The details include the workgroup
 
 You can delete a workgroup if you have permissions to do so\. The primary workgroup cannot be deleted\. 
 
+If you have permissions, you can delete an empty workgroup at any time\. You can also delete a workgroup that contains saved queries\. In this case, before proceeding to delete a workgroup, Athena warns you that saved queries are deleted\.
+
 If you delete a workgroup while you are in it, the console switches focus to the primary workgroup\. If you have access to it, you can run queries and view its settings\.
 
 If you delete a workgroup, its settings and per\-query data limit controls are deleted\. The workgroup\-wide data limit controls remain in CloudWatch, and you can delete them there if needed\.

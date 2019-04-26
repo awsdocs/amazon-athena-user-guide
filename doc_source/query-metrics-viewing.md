@@ -5,11 +5,11 @@ Athena publishes query\-related metrics to Amazon CloudWatch, when **Publish to 
 When you enable query metrics for queries in workgroups, the metrics are displayed within the **Metrics** tab in the **Workgroups** panel, for each workgroup in the Athena console\.
 
 Athena publishes the following metrics to the CloudWatch console:
-+ Total amount of data scanned per query \(in Megabytes\)
-+ Query state \(successful, failed, or canceled\)
-+ Total query execution time \(in seconds\)
-+ Query type \(DDL or DML\)
-+ Workgroup name
++ `Query Status` \(successful, failed, or canceled\)
++ `Query Execution Time` \(in seconds\)
++ `Query Type` \(DDL or DML\)
++ `Data Processed Per Query`\. This is the total amount of data scanned per query \(in Megabytes\)\.
++ `Workgroup Name`
 
 **To view query metrics for a workgroup in the console**
 

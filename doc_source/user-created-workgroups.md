@@ -1,17 +1,15 @@
 # How Workgroups Work<a name="user-created-workgroups"></a>
 
 Workgroups in Athena have the following characteristics:
-+ By default, each account has a primary workgroup and the default permissions allow all authenticated users access to this workgroup\. The primary workgroup cannot be deleted\. 
-+ We recommend using workgroups to isolate queries for teams, applications, or different workloads\. For example, you may create separate workgroups for two different teams in your organization\. You can also separate workloads\. For example, you can create two independent workgroups, one for automated scheduled applications, such as report generation, and another for ad\-hoc usage by analysts\. You can switch between workgroups\. 
++ By default, each account has a primary workgroup and the default permissions allow all authenticated users access to this workgroup\. The primary workgroup cannot be deleted\.
 + Each workgroup that you create shows saved queries and query history only for queries that ran in it, and not for all queries in the account\. This separates your queries from other queries within an account and makes it more efficient for you to locate your own saved queries and queries in history\.
-+ Workgroups display in the Athena console in the **Workgroup:*<workgroup\_name>*** tab\. The console lists the workgroup that you have switched to\. When you run queries, they run in this workgroup\. You can run queries in the workgroup in the console, or by using the API operations, the command line interface, or a client application through the JDBC or ODBC driver\. When you have access to a workgroup, you can view workgroup's settings, metrics, and data usage control limits\. Additionally, you can have permissions to edit the settings and data usage control limits\.
-+ Workgroups are IAM resources\. You can apply resource\-based policies to restrict access to the workgroup\.
 + Disabling a workgroup prevents queries from running in it, until you enable it\. Queries sent to a disabled workgroup fail, until you enable it again\.
-+ You can delete an empty workgroup at any time\. You can also delete a workgroup that contains saved queries\. In this case, before proceeding to delete a workgroup, Athena warns you that saved queries are deleted\.
-
-  If you delete a workgroup, if its users have access *only* to this workgroup, they lose access to running queries\. Therefore, before deleting a workgroup, make sure its users have access to other workgroups in which they can continue to run queries\. The primary workgroup cannot be deleted\. 
++ If you have permissions, you can delete an empty workgroup, and a workgroup that contains saved queries\. In this case, before deleting a workgroup, Athena warns you that saved queries are deleted\. Before deleting a workgroup to which other users have access, make sure its users have access to other workgroups in which they can continue to run queries\. 
 + You can set up workgroup\-wide settings and enforce their usage by all queries that run in a workgroup\. The settings include query results location in Amazon S3 and encryption configuration\. 
 **Important**  
 When you enforce workgroup\-wide settings, all queries that run in this workgroup use workgroup settings\. This happens even if their client\-side settings may differ from workgroup settings\. For information, see [Workgroup Settings Override Client\-Side Settings](workgroups-settings-override.md)\.
 
-Workgroups integrate with IAM, CloudWatch, and Amazon Simple Notification Service\. IAM policies with resource\-level permissions control who can run queries in a workgroup\. Athena publishes the workgroup query metrics to CloudWatch, if you enable query metrics\. In Amazon SNS, you can create Amazon SNS topics that issue alarms to specified workgroup users when data usage controls for queries in a workgroup exceed your established thresholds\.
+## Limitations for Workgroups<a name="limitations-workgroups"></a>
++ You can create up to 1000 workgroups per Region in your account\. 
++ The primary workgroup cannot be deleted\. 
++ You can open up to ten query tabs within each workgroup\. When you switch between workgroups, your query tabs remain open for up to three workgroups\. 

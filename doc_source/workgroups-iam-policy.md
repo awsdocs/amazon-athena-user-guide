@@ -32,9 +32,7 @@ For IAM\-specific information, see the links listed at the end of this section\.
 
 1. Choose **Create policy** to save your new policy\.
 
-1. Attach the policy to your groups, users, or roles\. 
-
-   In an identity\-based policy, attach the policy to an identity and specify the `workgroup` resources that a user, a group, or role can access\. In a resource\-based policy, attach a policy to the `workgroup` resource that you want to control\. In the policy, specify which principals can access that resource\. 
+1. Attach this identity\-based policy to a user, a group, or role and specify the `workgroup` resources they can access\.
 
 For more information, see the following topics in the *IAM User Guide*:
 + [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html#amazonathena-aws_ResourceTag___TagKey_)
