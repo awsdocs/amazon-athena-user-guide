@@ -10,5 +10,5 @@ Athena does not support the following features, which are supported by an open s
 + `CREATE TABLE LIKE`\.
 + `DESCRIBE INPUT` and `DESCRIBE OUTPUT`\.
 + `EXPLAIN` statements\.
-+ Federated connectors\. For more information, see [Connectors](https://prestodb.io/docs/0.172/connector.html)\.
++ Federated connectors\. For more information, see [Connectors](https://prestosql.io/docs/0.172/connector.html)\.
 + When you query columns with complex data types \(`array`, `map`, `struct`\), and are using Parquet for storing data, Athena currently reads an entire row of data, instead of selectively reading only the specified columns as expected\. This is a known issue\.

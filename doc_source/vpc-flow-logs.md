@@ -54,7 +54,7 @@ This query creates a single partition only, for a date that you specify\. To aut
 
 The following query lists all of the rejected TCP connections and uses the newly created date partition column, `dt`, to extract from it the day of the week for which these events occurred\.
 
-This query uses [Date and Time Functions and Operators](https://prestodb.io/docs/0.172/functions/datetime.html)\. It converts values in the `dt` String column to timestamp with the date function `from_iso8601_timestamp(string)`, and extracts the day of the week from timestamp with `day_of_week`\.
+This query uses [Date and Time Functions and Operators](https://prestosql.io/docs/0.172/functions/datetime.html)\. It converts values in the `dt` String column to timestamp with the date function `from_iso8601_timestamp(string)`, and extracts the day of the week from timestamp with `day_of_week`\.
 
 ```
 SELECT day_of_week(from_iso8601_timestamp(dt)) AS
