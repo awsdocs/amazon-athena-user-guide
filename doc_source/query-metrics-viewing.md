@@ -56,7 +56,7 @@ If you've enabled CloudWatch metrics in Athena, it sends the following metrics t
 
 | Metric Name | Description | 
 | --- | --- | 
-| Total amount of data scanned per query |  The amount of data in Megabytes that Athena scanned per query\.  | 
+| Total amount of data scanned per query |  The amount of data in Megabytes that Athena scanned per query\. For queries that were canceled \(either by the users, or automatically, if they reached the limit\), this includes the amount of data scanned before the cancellation time\.  | 
 | Query state |  The query state\. Valid statistics: Successful, Failed, Canceled  | 
 | Total query execution time |  The amount of time in seconds it takes Athena to run the query\.  | 
 | Query type |  The query type\. Valid statistics: DDL or DML\.  | 

@@ -20,6 +20,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Understanding Tables, Databases, and the Data Catalog](understanding-tables-databases-and-the-data-catalog.md)
    + [AWS Service Integrations with Athena](athena-aws-service-integrations.md)
 + [Release Notes](release-notes.md)
+   + [May 24, 2019](release-note-2019-05-24.md)
    + [March 05, 2019](release-note-2019-03-05.md)
    + [February 22, 2019](release-note-2019-02-22.md)
    + [February 18, 2019](release-note-2019-02-18.md)
