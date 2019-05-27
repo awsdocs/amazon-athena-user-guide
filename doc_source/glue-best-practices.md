@@ -2,7 +2,7 @@
 
 When using Athena with the AWS Glue Data Catalog, you can use AWS Glue to create databases and tables \(schema\) to be queried in Athena, or you can use Athena to create schema and then use them in AWS Glue and related services\. This topic provides considerations and best practices when using either method\.
 
-Under the hood, Athena uses Presto to execute DML statements and Hive to execute the DDL statements that create and modify schema\. With these technologies, there are a couple conventions to follow so that Athena and AWS Glue work well together\.
+Under the hood, Athena uses Presto to execute DML statements and Hive to execute the DDL statements that create and modify schema\. With these technologies, there are a couple of conventions to follow so that Athena and AWS Glue work well together\.
 
  **In this topic** 
 +  [Database, Table, and Column Names](#schema-names) 
