@@ -309,6 +309,7 @@ import java.util.List;
  * This code shows how to obtain a list of query execution IDs.
  */
 public class ListQueryExecutionsExample {
+    
     public static void main(String[] args) throws Exception {
         // Build an Athena client
         AthenaClientFactory factory = new AthenaClientFactory();

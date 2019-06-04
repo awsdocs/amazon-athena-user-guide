@@ -128,6 +128,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Querying Network Load Balancer Logs](networkloadbalancer-classic-logs.md)
    + [Querying Application Load Balancer Logs](application-load-balancer-logs.md)
    + [Querying Amazon VPC Flow Logs](vpc-flow-logs.md)
+   + [Querying AWS WAF Logs](waf-logs.md)
 + [Handling Schema Updates](handling-schema-updates-chapter.md)
    + [Types of Updates](types-of-updates.md)
    + [Updates in Tables with Partitions](updates-and-partitions.md)

@@ -4,7 +4,10 @@ By partitioning your data, you can restrict the amount of data scanned by each q
 
 If you issue queries against Amazon S3 buckets with a large number of objects and the data is not partitioned, such queries may affect the Get request rate limits in Amazon S3 and lead to Amazon S3 exceptions\. To prevent errors, partition your data\. Additionally, consider tuning your Amazon S3 request rates\. For more information, see [Request Rate and Performance Considerations](https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html)\.
 
-To create a table with partitions, you must define it during the `CREATE TABLE `statement\. Use `PARTITIONED BY` to define the keys by which to partition data\. There are two scenarios discussed below:
+**Note**  
+If you query a partitioned table and specify the partition in the `WHERE` clause, Athena scans the data only from that partition\. For more information, see [Table Location and Partitions](tables-location-format.md#table-location-and-partitions)\.
+
+To create a table with partitions, you must define it during the `CREATE TABLE`statement\. Use `PARTITIONED BY` to define the keys by which to partition data\. There are two scenarios discussed in the following sections:
 
 1. Data is already partitioned, stored on Amazon S3, and you need to access the data on Athena\.
 

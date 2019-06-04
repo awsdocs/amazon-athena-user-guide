@@ -13,3 +13,4 @@ The topics in this section assume that you have set up both an IAM user with app
 + [Querying Network Load Balancer Logs](networkloadbalancer-classic-logs.md)
 + [Querying Application Load Balancer Logs](application-load-balancer-logs.md)
 + [Querying Amazon VPC Flow Logs](vpc-flow-logs.md)
++ [Querying AWS WAF Logs](waf-logs.md)
