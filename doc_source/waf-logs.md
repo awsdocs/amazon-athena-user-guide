@@ -61,7 +61,7 @@ Make a note of the Amazon S3 bucket to which you save these logs\.
     'paths'='action,formatVersion,httpRequest,httpSourceId,httpSourceName,nonTerminatingMatchingRules,rateBasedRuleList,ruleGroupList,terminatingRuleId,terminatingRuleType,timestamp,webaclId')
    STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-   LOCATION 's3://athenawaflogs/ProtectWebSiteACL2018/ProtectWebSiteACL2018/09/06/01/'
+   LOCATION 's3://athenawaflogs/WebACL/'
    ```
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `waf_logs` table, making the data in it available for queries\.
