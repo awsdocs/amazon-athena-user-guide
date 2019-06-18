@@ -8,7 +8,7 @@ Each identity\-based \(IAM \) policy consists of statements that define the acti
 
 Athena has these managed policies:
 + The `AmazonAthenaFullAccess` managed policy grants full access to Athena\. Attach it to users and other principals who need full access to Athena\. See [AmazonAthenaFullAccess Managed Policy](#amazonathenafullaccess-managed-policy)\.
-+ The `AWSQuicksightAthenaAccess` managed policy grants access to actions that Amazon QuickSightneeds to integrate with Athena\. Attach this policy to principals who use Amazon QuickSight in conjunction with Athena\. See [AWSQuicksightAthenaAccess Managed Policy](#awsquicksightathenaaccess-managed-policy)\.
++ The `AWSQuicksightAthenaAccess` managed policy grants access to actions that Amazon QuickSight needs to integrate with Athena\. Attach this policy to principals who use Amazon QuickSight in conjunction with Athena\. See [AWSQuicksightAthenaAccess Managed Policy](#awsquicksightathenaaccess-managed-policy)\.
 
  *Customer\-managed* and *inline* identity\-based policies allow you to specify more detailed Athena actions within a policy to fine\-tune access\. We recommend that you use the `AmazonAthenaFullAccess` policy as a starting point and then allow or deny specific actions listed in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about inline policies, see [Managed Policies and Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) in the *AWS Identity and Access Management User Guide*\.
 
