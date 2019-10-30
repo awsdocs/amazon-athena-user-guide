@@ -72,7 +72,7 @@ Optional\. When set to `TRUE`, lets you skip malformed JSON syntax\. The default
 Optional\. The default is `FALSE`\. When set to `TRUE`, allows the SerDe to replace the dots in key names with underscores\. For example, if the JSON dataset contains a key with the name `"a.b"`, you can use this property to define the column name to be `"a_b"` in Athena\. By default \(without this SerDe\), Athena does not allow dots in column names\.
 
 **case\.insensitive**  
-Optional\. By default, Athena requires that all keys in your JSON dataset use lowercase\. The default is `TRUE`\. When set to `TRUE`, the SerDe converts all uppercase columns to lowercase\. Using `WITH SERDE PROPERTIES ("case.insensitive"= FALSE;)` allows you to use case\-sensitive key names in your data\.
+Optional\. By default, Athena requires that all keys in your JSON dataset use lowercase\. The default is `TRUE`\. When set to `TRUE`, the SerDe converts all uppercase columns to lowercase\. Using `WITH SERDEPROPERTIES ("case.insensitive"= FALSE;)` allows you to use case\-sensitive key names in your data\.
 
 **ColumnToJsonKeyMappings**  
 Optional\. Maps column names to JSON keys that aren't identical to the column names\. This is useful when the JSON data contains keys that are [keywords](reserved-words.md)\. For example, if you have a JSON key named `timestamp`, set this parameter to `{"ts": "timestamp"}` to map this key to a column named `ts`\. This parameter takes values of type string\. It uses the following key pattern: `^\S+$` and the following value pattern: `^(?!\s*$).+`
