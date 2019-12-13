@@ -48,11 +48,18 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
      response_result_type STRING,
      http_version STRING,
      fle_status STRING,
-     fle_encrypted_fields INT
+     fle_encrypted_fields INT,
+     c_port INT,
+     time_to_first_byte FLOAT,
+     x_edge_detailed_result_type STRING,
+     sc_content_type STRING,
+     sc_content_len BIGINT,
+     sc_range_start BIGINT,
+     sc_range_end BIGINT
    )
    ROW FORMAT DELIMITED 
    FIELDS TERMINATED BY '\t'
-   LOCATION 's3://CloudFront_bucket_name/AWSLogs/ACCOUNT_ID/'
+   LOCATION 's3://CloudFront_bucket_name/CloudFront/'
    TBLPROPERTIES ( 'skip.header.line.count'='2' )
    ```
 
