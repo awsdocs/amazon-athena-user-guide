@@ -50,7 +50,7 @@ Use a query similar to the following example\. It lists the backend application 
 
 ```
 SELECT
- request_timestamp,
+ timestamp,
  elb_name,
  backend_ip,
  backend_response_code
