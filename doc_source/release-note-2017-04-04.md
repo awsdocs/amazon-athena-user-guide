@@ -12,7 +12,7 @@ Added support for Amazon S3 data encryption and released JDBC driver update \(ve
 + Added the ability to add, replace, and change columns using `ALTER TABLE`\. For more information, see [Alter Column](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterColumn) in the Hive documentation\.
 + Added support for querying LZO\-compressed data\.
 
-For more information, see [Configuring Encryption Options](encryption.md)\.
+For more information, see [Encryption at Rest](encryption.md)\.
 
 ## Improvements<a name="release-note-2017-04-04-improvements"></a>
 + Better JDBC query performance with page\-size improvements, returning 1,000 rows instead of 100\.

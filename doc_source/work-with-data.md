@@ -1,4 +1,4 @@
-# Working with Source Data<a name="work-with-data"></a>
+# Creating Tables and Databases<a name="work-with-data"></a>
 
 Amazon Athena supports a subset of data definition language \(DDL\) statements and ANSI SQL functions and operators to define and query external tables where data resides in Amazon Simple Storage Service\. 
 

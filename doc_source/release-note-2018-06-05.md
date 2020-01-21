@@ -9,7 +9,7 @@ Published on *2018\-06\-05*
 
 ## Support for Views<a name="support-for-views"></a>
 
-Added support for views\. You can now use [CREATE VIEW](create-view.md), [DESCRIBE VIEW](describe-view.md), [DROP VIEW](drop-view.md), [SHOW CREATE VIEW](show-create-view.md), and [SHOW VIEWS](show-views.md) in Athena\. The query that defines the view runs each time you reference the view in your query\. For more information, see [Views](views.md)\.
+Added support for views\. You can now use [CREATE VIEW](create-view.md), [DESCRIBE VIEW](describe-view.md), [DROP VIEW](drop-view.md), [SHOW CREATE VIEW](show-create-view.md), and [SHOW VIEWS](show-views.md) in Athena\. The query that defines the view runs each time you reference the view in your query\. For more information, see [Working with Views](views.md)\.
 
 ## Improvements and Updates to Error Messages<a name="improvements"></a>
 + Included a GSON 2\.8\.0 library into the CloudTrail SerDe, to solve an issue with the CloudTrail SerDe and enable parsing of JSON strings\.

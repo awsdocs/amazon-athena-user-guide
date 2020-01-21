@@ -1,8 +1,8 @@
 # ALTER TABLE SET TBLPROPERTIES<a name="alter-table-set-tblproperties"></a>
 
-Adds custom metadata properties to a table sets their assigned values\.
+Adds custom metadata properties to a table and sets their assigned values\.
 
-[Managed tables](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-ManagedandExternalTables) are not supported, so setting 'EXTERNAL'='FALSE' has no effect\.
+[Managed tables](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-ManagedandExternalTables) are not supported, so setting `'EXTERNAL'='FALSE'` has no effect\.
 
 ## Synopsis<a name="synopsis"></a>
 
@@ -18,5 +18,6 @@ Specifies the metadata properties to add as `property_name` and the value for ea
 ## Examples<a name="examples"></a>
 
 ```
-ALTER TABLE orders SET TBLPROPERTIES ('notes'="Please don't drop this table.");
+ALTER TABLE orders 
+SET TBLPROPERTIES ('notes'="Please don't drop this table.");
 ```

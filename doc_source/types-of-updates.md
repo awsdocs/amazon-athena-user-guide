@@ -77,7 +77,7 @@ LOCATION 's3://schema_updates/orders_json/';
 
 ## Adding Columns at the End of the Table<a name="updates-add-columns-end-of-table"></a>
 
-If you create tables in any of the formats that Athena supports, such as Parquet, ORC, Avro, JSON, CSV, and TSV, you can add new columns *at the end of the table*\. If you use ORC formats, you must configure ORC to read by name\. Parquet reads by name by default\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\.
+If you create tables in any of the formats that Athena supports, such as Parquet, ORC, Avro, JSON, CSV, and TSV, you can add new columns *at the end of the table*\. For tables in Parquet and ORC, you can add columns at the end of the table regardless of the type of [index access](handling-schema-updates-chapter.md#index-access) they use\.
 
 In the following example, drop an existing table in Parquet, and add a new Parquet table with a new ``comment`` column at the end of the table: 
 

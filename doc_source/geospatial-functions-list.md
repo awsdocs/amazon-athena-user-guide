@@ -117,7 +117,7 @@ This query returns a WKT representation of the `point` geometry type: `1 POINT (
 
 ### `ST_LINE(varchar)`<a name="st-line-varchar"></a>
 
-Returns a value in the `line` data type, which is a binary representation of the geometry data type `line`\. Example:
+Returns a value in the `line` data type, which is a binary representation of the [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `line`\. Example:
 
 ```
 SELECT ST_Line('linestring(1 1, 2 2, 3 3)')
@@ -125,15 +125,15 @@ SELECT ST_Line('linestring(1 1, 2 2, 3 3)')
 
 ### `ST_POLYGON(varchar)`<a name="st-polygon-varchar"></a>
 
-Returns a value in the `polygon` data type, which is a binary representation of the geometry data type `polygon`\. Example:
+Returns a value in the `polygon` data type, which is a binary representation of the [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `polygon`\. Example:
 
 ```
-SELECT ST_Polygon('polygon ((1 1, 4 1, 1 4))')
+SELECT ST_POLYGON('polygon ((1 1, 1 4, 4 4, 4 1))') 
 ```
 
 ### `ST_GEOMETRY_TO_TEXT (varbinary)`<a name="st-geometry-to-text-varbinary"></a>
 
-Converts each of the specified geometry data types to text\. Returns a value in a geometry data type, which is a WKT representation of the geometry data type\. Example:
+Converts each of the specified [geometry data types](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) to text\. Returns a value in a geometry data type, which is a WKT representation of the geometry data type\. Example:
 
 ```
 SELECT ST_GEOMETRY_TO_TEXT(ST_POINT(61.56, -158.54))
@@ -343,7 +343,7 @@ SELECT ST_AREA(ST_POLYGON('polygon((1 1, 4 1, 4 4, 1 4))'))
 
 ### `ST_CENTROID (geometry)`<a name="st-centroid-geometry"></a>
 
-Takes as an input a geometry data type `polygon`, and returns a `point` that is the center of the polygon's envelope in type `varchar`\. Examples:
+Takes as an input a [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `polygon`, and returns a `point` that is the center of the polygon's envelope in type `varchar`\. Examples:
 
 ```
 SELECT ST_CENTROID(ST_GEOMETRY_FROM_TEXT('polygon ((0 0, 3 6, 6 0, 0 0))'))
@@ -355,7 +355,7 @@ SELECT ST_GEOMETRY_TO_TEXT(ST_CENTROID(ST_ENVELOPE(ST_GEOMETRY_FROM_TEXT('POINT 
 
 ### `ST_COORDINATE_DIMENSION (geometry)`<a name="st-coordinate-dimension-geometry"></a>
 
-Takes as input one of the supported geometry types, and returns the count of coordinate components in type `bigint`\. Example:
+Takes as input one of the supported [geometry data types](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types), and returns the count of coordinate components in type `bigint`\. Example:
 
 ```
 SELECT ST_COORDINATE_DIMENSION(ST_POINT(1.5,2.5))
@@ -363,7 +363,7 @@ SELECT ST_COORDINATE_DIMENSION(ST_POINT(1.5,2.5))
 
 ### `ST_DIMENSION (geometry)`<a name="st-dimension-geometry"></a>
 
-Takes as an input one of the supported geometry types, and returns the spatial dimension of a geometry in type `bigint`\. Example:
+Takes as an input one of the supported [geometry data types](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types), and returns the spatial dimension of a geometry in type `bigint`\. Example:
 
 ```
 SELECT ST_DIMENSION(ST_POLYGON('polygon((1 1, 4 1, 4 4, 1 4))'))
@@ -387,7 +387,7 @@ SELECT ST_IS_CLOSED(ST_LINE('linestring(0 2, 2 2)'))
 
 ### `ST_IS_EMPTY (geometry)`<a name="st-is-empty-geometry"></a>
 
-Returns `TRUE` \(type `boolean`\) if and only if the specified geometry is empty\. Example:
+Takes as an input only `line` and `multiline` [geometry data types](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types)\. Returns `TRUE` \(type `boolean`\) if and only if the specified geometry is empty, in other words, when the `line` start and end values co\-inside\. Example:
 
 ```
 SELECT ST_IS_EMPTY(ST_POINT(1.5, 2.5))

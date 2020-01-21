@@ -1,12 +1,12 @@
 # Tagging Workgroups<a name="tags"></a>
 
-A tag consists of a key and a value, both of which you define\. When you tag a workgroup, you assign custom metadata to it\. You can use tags to categorize your AWS resources in different ways; for example, by purpose, owner, or environment\. For Athena, the workgroup is the resource that you can tag\. For example, you can create a set of tags for workgroups in your account that helps you track workgroup owners, or identify workgroups by their purpose\. We recommend that you use [AWS tagging best practices](https://aws.amazon.com/answers/account-management/aws-tagging-strategies/) to create a consistent set of tags to meet your organization requirements\.
+A tag consists of a key and a value, both of which you define\. When you tag a workgroup, you assign custom metadata to it\. You can use tags to categorize your AWS resources in different ways; for example, by purpose, owner, or environment\. For Athena, the workgroup is the resource that you can tag\. For example, you can create a set of tags for workgroups in your account that helps you track workgroup owners, or identify workgroups by their purpose\. We recommend that you use [AWS tagging best practices](url-mkt-domain;answers/account-management/aws-tagging-strategies/) to create a consistent set of tags to meet your organization requirements\.
 
 You can work with tags using the Athena console or the API operations\. 
 
 **Topics**
 + [Tag Basics](#tag-basics)
-+ [Tag Restrictions](#tag-restricitions)
++ [Tag Restrictions](#tag-restrictions)
 + [Working with Tags Using the Console](tags-console.md)
 + [Working with Tags Using the API Actions](tags-api.md)
 + [Tag\-Based IAM Access Control Policies](tags-access-control.md)
@@ -27,9 +27,9 @@ For a complete list of Amazon Athena tag actions, see the API action names in th
 
 You can use the same tags for billing\. For more information, see [Using Tags for Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
-For more information, see [Tag Restrictions](#tag-restricitions)\.
+For more information, see [Tag Restrictions](#tag-restrictions)\.
 
-## Tag Restrictions<a name="tag-restricitions"></a>
+## Tag Restrictions<a name="tag-restrictions"></a>
 
 Tags have the following restrictions:
 + In Athena, you can tag workgroups\. You cannot tag queries\.

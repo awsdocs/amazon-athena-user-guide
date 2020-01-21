@@ -2,12 +2,12 @@
 
 By partitioning your data, you can restrict the amount of data scanned by each query, thus improving performance and reducing cost\. Athena leverages Hive for [partitioning](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterPartition) data\. You can partition your data by any key\. A common practice is to partition the data based on time, often leading to a multi\-level partitioning scheme\. For example, a customer who has data coming in every hour might decide to partition by year, month, date, and hour\. Another customer, who has data coming from many different sources but loaded one time per day, may partition by a data source identifier and date\.
 
-If you issue queries against Amazon S3 buckets with a large number of objects and the data is not partitioned, such queries may affect the Get request rate limits in Amazon S3 and lead to Amazon S3 exceptions\. To prevent errors, partition your data\. Additionally, consider tuning your Amazon S3 request rates\. For more information, see [Request Rate and Performance Considerations](https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html)\.
+If you issue queries against Amazon S3 buckets with a large number of objects and the data is not partitioned, such queries may affect the Get request rate limits in Amazon S3 and lead to Amazon S3 exceptions\. To prevent errors, partition your data\. Additionally, consider tuning your Amazon S3 request rates\. For more information, see [Best Practices Design Patterns: Optimizing Amazon S3 Performance ](https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html)\.
 
 **Note**  
 If you query a partitioned table and specify the partition in the `WHERE` clause, Athena scans the data only from that partition\. For more information, see [Table Location and Partitions](tables-location-format.md#table-location-and-partitions)\.
 
-To create a table with partitions, you must define it during the `CREATE TABLE`statement\. Use `PARTITIONED BY` to define the keys by which to partition data\. There are two scenarios discussed in the following sections:
+To create a table with partitions, you must define it during the `CREATE TABLE` statement\. Use `PARTITIONED BY` to define the keys by which to partition data\. There are two scenarios discussed in the following sections:
 
 1. Data is already partitioned, stored on Amazon S3, and you need to access the data on Athena\.
 
@@ -103,7 +103,7 @@ This query should show you data similar to the following:
 A layout like the following does not, however, work for automatically adding partition data with MSCK REPAIR TABLE:
 
 ```
-aws s3 ls s3://athena-examples/elb/plaintext/ --recursive
+aws s3 ls s3://athena-examples-myregion/elb/plaintext/ --recursive
 
 2016-11-23 17:54:46   11789573 elb/plaintext/2015/01/01/part-r-00000-ce65fca5-d6c6-40e6-b1f9-190cc4f93814.txt
 2016-11-23 17:54:46    8776899 elb/plaintext/2015/01/01/part-r-00001-ce65fca5-d6c6-40e6-b1f9-190cc4f93814.txt
@@ -160,10 +160,10 @@ aws s3 ls s3://athena-examples/elb/plaintext/ --recursive
 
 In this case, you would have to use ALTER TABLE ADD PARTITION to add each partition manually\.
 
-For example, to load the data in s3://athena\-examples/elb/plaintext/2015/01/01/, you can run the following:
+For example, to load the data in s3://athena\-examples\-*myregion*/elb/plaintext/2015/01/01/, you can run the following:
 
 ```
-ALTER TABLE elb_logs_raw_native_part ADD PARTITION (year='2015',month='01',day='01') location 's3://athena-examples/elb/plaintext/2015/01/01/'
+ALTER TABLE elb_logs_raw_native_part ADD PARTITION (year='2015',month='01',day='01') location 's3://athena-examples-us-west-1/elb/plaintext/2015/01/01/'
 ```
 
 You can also automate adding partitions by using the [JDBC driver](connect-with-jdbc.md)\.

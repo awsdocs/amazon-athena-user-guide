@@ -134,4 +134,4 @@ Before you can run queries, you must specify to Athena which workgroup to use\. 
      Workgroup=<WORKGROUPNAME>;
      ```
 
-      For more information, search for "Workgroup" in the driver documentation link included in [JDBC Driver Documentation](connect-with-jdbc.md#documentation-jdbc)\.
+     For more information, search for "Workgroup" in the driver documentation link included in [JDBC Driver Documentation](connect-with-jdbc.md#documentation-jdbc)\.

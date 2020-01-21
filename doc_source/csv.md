@@ -16,6 +16,7 @@ The [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) 
   ```
 + Cannot escape `\t` or `\n` directly\. To escape them, use `"escapeChar" = "\\"`\. See the example in this topic\.
 + Does not support embedded line breaks in CSV files\.
++ Does not support empty fields in columns defined as a numeric data type\.
 
 **Note**  
 When you use Athena with OpenCSVSerDe, the SerDe converts all column types to `STRING`\. Next, the parser in Athena parses the values from `STRING` into actual types based on what it finds\. For example, it parses the values into `BOOLEAN`, `BIGINT`, `INT`, and `DOUBLE` data types when it can discern them\. If the values are in `TIMESTAMP` in the UNIX format, Athena parses them as `TIMESTAMP`\. If the values are in `TIMESTAMP` in Hive format, Athena parses them as `INT`\. `DATE` type values are also parsed as `INT`\.   
@@ -23,10 +24,42 @@ When you use Athena with OpenCSVSerDe, the SerDe converts all column types to `S
 
 For data types *other* than `STRING`, when the parser in Athena can recognize them, this SerDe behaves as follows:
 + Recognizes `BOOLEAN`, `BIGINT`, `INT`, and `DOUBLE` data types and parses them without changes\.
-+ Recognizes the `TIMESTAMP` type if it is specified in the UNIX format, such as `yyyy-mm-dd hh:mm:ss[.f...]`, as the type `LONG`\.
-+ Does not support `TIMESTAMP` in the JDBC\-compliant `java.sql.Timestamp` format, such as `"YYYY-MM-DD HH:MM:SS.fffffffff"` \(9 decimal place precision\)\. If you are processing CSV data from Hive, use the UNIX format for `TIMESTAMP`\.
-+ Recognizes the `DATE` type if it is specified in the UNIX format, such as `YYYY-MM-DD`, as the type `LONG`\.
-+ Does not support `DATE` in another format\. If you are processing CSV data from Hive, use the UNIX format for `DATE`\.
++ Recognizes the `TIMESTAMP` type if it is specified in the UNIX numeric format, such as `1564610311`\.
++ Does not support `TIMESTAMP` in the JDBC\-compliant `java.sql.Timestamp` format, such as `"YYYY-MM-DD HH:MM:SS.fffffffff"` \(9 decimal place precision\)\. If you are processing CSV data from Hive, use the UNIX numeric format\.
++ Recognizes the `DATE` type if it is specified in the UNIX numeric format, such as `1562112000`\.
++ Does not support `DATE` in another format\. If you are processing CSV data from Hive, use the UNIX numeric format\.
+
+**Note**  
+For information about using the `TIMESTAMP` and `DATE` columns when they are not specified in the UNIX numeric format, see the article [When I query a table in Amazon Athena, the TIMESTAMP result is empty](https://aws.amazon.com/premiumsupport/knowledge-center/query-table-athena-timestamp-empty/) in the [AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
+
+**Example Example: Using the TIMESTAMP type and DATE type specified in the UNIX numeric format\.**  
+Consider the following test data:  
+
+```
+"unixvalue creationdate 18276 creationdatetime 1579146280000","18276","1579146280000"
+```
+The following statement creates a table in Athena from the specified Amazon S3 bucket location\.  
+
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS testtimestamp1(
+ `profile_id` string,
+ `creationdate` date,
+ `creationdatetime` timestamp
+ )
+ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+ LOCATION 's3://<location>'
+```
+Next, run the following query:   
+
+```
+select * from testtimestamp1
+```
+The query returns the following result, showing the date and time data:  
+
+```
+        profile_id       creationdate       creationdatetime
+1       unixvalue creationdate 18276 creationdatetime 1579146280000       2020-01-15       2020-01-16 03:44:40.000
+```
 
 **Example Example: Escaping `\t` or `\n`**  
 Consider the following test data:  

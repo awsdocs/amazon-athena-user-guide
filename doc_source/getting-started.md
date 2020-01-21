@@ -40,7 +40,7 @@ Now that you have a database, you're ready to create a table that's based on the
 
 1. In the query pane, enter the following CREATE TABLE statement, and then choose **Run Query**:
 **Note**  
-You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-east-1/path/to/data/`\.
+You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS cloudfront_logs (
@@ -87,7 +87,7 @@ Now that you have the `cloudfront_logs` table created in Athena based on the dat
 1. Optionally, you can save the results of a query to CSV by choosing the file icon on the **Results** pane\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/savecsv.png)
 
-You can also view the results of previous queries or queries that may take some time to complete\. Choose **History** then either search for your query or choose **View** or **Download** to view or download the results of previous completed queries\. This also displays the status of queries that are currently running\. Query history is retained for 45 days\. For information, see [Viewing Query History](queries-viewing-history.md)\.
+You can also view the results of previous queries or queries that may take some time to complete\. Choose **History** then either search for your query or choose **View** or **Download** to view or download the results of previous completed queries\. This also displays the status of queries that are currently running\. Query history is retained for 45 days\. For information, see [Viewing Query History](querying.md#queries-viewing-history)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/history.png)
 

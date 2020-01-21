@@ -1,10 +1,16 @@
-# Data Types<a name="data-types"></a>
+# Data Types Supported by Amazon Athena<a name="data-types"></a>
 
-When you run `CREATE TABLE`, you must specify column names and their data types\. For a complete syntax of this command, see [CREATE TABLE](create-table.md)\.
+When you run [CREATE TABLE](create-table.md), you specify column names and the data type that each column can contain\. Athena supports the the data types listed below\. For information about the data type mappings that the JDBC driver supports between Athena, JDBC, and Java, see [Data Types](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf#page=37) in the *JDBC Driver Installation and Configuration Guide*\. For information about the data type mappings that the ODBC driver supports between Athena and SQL, see [Data Types](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf#page=50) in the *ODBC Driver Installation and Configuration Guide*\.
 
-## List of Supported Data Types in Athena<a name="list-of-supported-data-types-in-ate"></a>
-
-Athena supports the following data types: 
+**Supported Data Types**
++ [BOOLEAN](#type-boolean)
++ [Integer types](#type-integer)
++ [Floating-point types](#type-floating)
++ [Fixed precision types](#type-fixed-precision)
++ [String types](#type-string)
++ [BINARY](#type-binary)
++ [Date and time types](#type-date)
++ [Structural types](#type-struct)
 + `BOOLEAN`\. Values are `true` and `false`\.
 + Integer types
   + `TINYINT`\. A 8\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^7 and a maximum value of 2^7\-1\.
@@ -29,5 +35,3 @@ Athena supports the following data types:
   + `ARRAY` < data\_type >
   + `MAP` < primitive\_type, data\_type >
   + `STRUCT` < col\_name : data\_type \[COMMENT col\_comment\] \[, \.\.\.\] >
-
-For information about supported data type mappings between types in Athena, the JDBC driver, and Java data types, see the *"Data Types"* section in the [JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\. 

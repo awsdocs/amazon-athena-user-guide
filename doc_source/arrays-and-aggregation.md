@@ -21,7 +21,7 @@ item AS (
 )
 SELECT array_items, sum(val) AS total
 FROM item, UNNEST(array_items) AS t(val)
-GROUP BY array_items
+GROUP BY array_items;
 ```
 
 This query returns the following results\. The order of returned results is not guaranteed\.

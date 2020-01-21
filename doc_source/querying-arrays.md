@@ -14,3 +14,5 @@ Amazon Athena lets you create arrays, concatenate them, convert them to differen
 + [Sorting Arrays](sorting-arrays.md)
 + [Using Aggregation Functions with Arrays](arrays-and-aggregation.md)
 + [Converting Arrays to Strings](converting-arrays-to-strings.md)
++ [Using Arrays to Create Maps](maps.md)
++ [Querying Arrays with Complex Types and Nested Structures](rows-and-structs.md)

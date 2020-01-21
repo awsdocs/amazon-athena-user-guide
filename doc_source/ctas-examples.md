@@ -3,16 +3,16 @@
 Use the following examples to create CTAS queries\. For information about the CTAS syntax, see [CREATE TABLE AS](create-table-as.md)\.
 
 In this section: 
-+ [Example 1: Selecting All Columns with CTAS](#ctas-example1)
-+ [Example 2: Selecting Specific Columns from One or More Tables with CTAS](#ctas-example2)
-+ [Example 3: Creating an Empty Copy of an Existing Table with CTAS](#ctas-example3)
-+ [Example 4: Specifying Data Storage and Compression Formats for CTAS Query Results](#ctas-example4)
-+ [Example 5: Storing Results of a CTAS Query in Another Format](#ctas-example-query-storage-format)
-+ [Example 6: CTAS Queries without Partitions](#ctas-example-not-partitioned)
-+ [Example 7: CTAS Queries with Partitions](#ctas-example-partitioned)
-+ [Example 8: A CTAS Query with Bucketing](#ctas-example-bucketed)
++ [Example: Duplicating a Table by Selecting All Columns](#ctas-example-dupe-table)
++ [Example: Selecting Specific Columns From One or More Tables](#ctas-example-specify-columns)
++ [Example: Creating an Empty Copy of an Existing Table](#ctas-example-empty-table)
++ [Example: Specifying Data Storage and Compression Formats](#ctas-example-compression)
++ [Example: Writing Query Results to a Different Format](#ctas-example-format)
++ [Example: Creating Unpartitioned Tables](#ctas-example-unpartitioned)
++ [Example: Creating Partitioned Tables](#ctas-example-partitioned)
++ [Example: Creating Bucketed and Partitioned Tables](#ctas-example-bucketed)
 
-**Example Example 1: Selecting All Columns with CTAS**  <a name="ctas-example1"></a>
+**Example Example: Duplicating a Table by Selecting All Columns**  
 The following example creates a table by copying all columns from a table:  
 
 ```
@@ -29,7 +29,7 @@ FROM old_table
 WHERE condition;
 ```
 
-**Example Example 2: Selecting Specific Columns from One or More Tables with CTAS**  <a name="ctas-example2"></a>
+**Example Example: Selecting Specific Columns from One or More Tables**  
 The following example creates a new query that runs on a set of columns from another table:  
 
 ```
@@ -45,7 +45,7 @@ SELECT column_1, column_2, ... column_n
 FROM old_table_1, old_table_2, ... old_table_n;
 ```
 
-**Example Example 3: Creating an Empty Copy of an Existing Table with CTAS**  <a name="ctas-example3"></a>
+**Example Example: Creating an Empty Copy of an Existing Table**  
 The following example uses `WITH NO DATA` to create a new table that is empty and has the same schema as the original table:  
 
 ```
@@ -55,8 +55,8 @@ FROM old_table
 WITH NO DATA;
 ```
 
-**Example Example 4: Specifying Data Storage and Compression Formats for CTAS Query Results**  <a name="ctas-example4"></a>
-The following example creates a new CTAS query that saves data in Parquet\. This allows you to change the storage format from the one used by the original table\. You can specify `PARQUET`, `ORC`, `AVRO`, `JSON`, and `TEXTFILE` in a similar way\.   
+**Example Example: Specifying Data Storage and Compression Formats**  
+The following example uses a CTAS query to create a new table with Parquet data from a source table in a different format\. You can specify `PARQUET`, `ORC`, `AVRO`, `JSON`, and `TEXTFILE` in a similar way\.   
 This example also specifies compression as `SNAPPY`\. If omitted, GZIP is used\. GZIP and SNAPPY are the supported compression formats for CTAS query results stored in Parquet and ORC\.   
 
 ```
@@ -67,7 +67,7 @@ WITH (
 AS SELECT *
 FROM old_table;
 ```
-The following example is similar, but it stores the CTAS query results in ORC, and uses the `orc_compression` parameter, to specify the compression format\. If you omit the compression format, Athena uses GZIP by default\.  
+The following example is similar, but it stores the CTAS query results in ORC and uses the `orc_compression` parameter to specify the compression format\. If you omit the compression format, Athena uses GZIP by default\.  
 
 ```
 CREATE TABLE new_table
@@ -77,8 +77,8 @@ AS SELECT *
 FROM old_table ;
 ```
 
-**Example Example 5: Storing Results of a CTAS Query in Another Format**  <a name="ctas-example-query-storage-format"></a>
-The following CTAS query takes the results from another query, which could be stored in CSV or another text format, and stores them in ORC:   
+**Example Example: Writing Query Results to a Different Format**  
+The following CTAS query selects all records from `old_table`, which could be stored in CSV or another format, and creates a new table with underlying data saved to Amazon S3 in ORC format:   
 
 ```
 CREATE TABLE my_orc_ctas_table
@@ -89,7 +89,7 @@ AS SELECT *
 FROM old_table;
 ```
 
-**Example Example 6: CTAS Queries without Partitions**  <a name="ctas-example-not-partitioned"></a>
+**Example Example: Creating Unpartitioned Tables**  
 The following examples create tables that are not partitioned\. The table data is stored in different formats\. Some of these examples specify the external location\.   
 The following example creates a CTAS query that stores the results as a text file:  
 
@@ -139,9 +139,9 @@ AS SELECT key1, name1, comment1
 FROM table1;
 ```
 
-**Example Example 7: CTAS Queries with Partitions**  <a name="ctas-example-partitioned"></a>
+**Example Example: Creating Partitioned Tables**  
 The following examples show `CREATE TABLE AS SELECT` queries for partitioned tables in different storage formats, using `partitioned_by`, and other properties in the `WITH` clause\. For syntax, see [CTAS Table Properties](create-table-as.md#ctas-table-properties)\. For more information about choosing the columns for partitioning, see [Bucketing vs Partitioning](bucketing-vs-partitioning.md)\.  
-List partition columns at the end of the list of columns in the `SELECT` statement\. You can partition by more than one column and have up to 100 partitions\.
+List partition columns at the end of the list of columns in the `SELECT` statement\. You can partition by more than one column, and have up to 100 unique partition and bucket combinations\. For example, you can have 100 partitions if no buckets are specified\.
 
 ```
 CREATE TABLE ctas_csv_partitioned 
@@ -163,8 +163,8 @@ AS select name1, address1, comment1, key1
 FROM table1;
 ```
 
-**Example Example 8: A CTAS Query with Bucketing**  <a name="ctas-example-bucketed"></a>
-The following example shows a `CREATE TABLE AS SELECT` query that uses both partitioning and bucketing for storing query results in Amazon S3\. The table results are partitioned and bucketed by different columns\. You can create an unlimited number of buckets and bucket by one or more columns\. For syntax, see [CTAS Table Properties](create-table-as.md#ctas-table-properties)\.  
+**Example Example: Creating Bucketed and Partitioned Tables**  
+The following example shows a `CREATE TABLE AS SELECT` query that uses both partitioning and bucketing for storing query results in Amazon S3\. The table results are partitioned and bucketed by different columns\. Athena supports a maximum of 100 unique bucket and partition combinations\. For example, if you create a table with five buckets, 20 partitions with five buckets each are supported\. For syntax, see [CTAS Table Properties](create-table-as.md#ctas-table-properties)\.  
 For information about choosing the columns for bucketing, see [Bucketing vs Partitioning](bucketing-vs-partitioning.md)\.  
 
 ```

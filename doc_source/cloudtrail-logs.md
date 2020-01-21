@@ -139,7 +139,7 @@ WHERE
     eventname in ('GetObject') AND 
     useridentity.accountid LIKE '%ANONYMOUS%' AND 
     useridentity.arn IS NULL AND
-    requestparameters LIKE '%[your bucket name ]%'
+    requestparameters LIKE '%[your bucket name ]%';
 ```
 
 For more information, see the AWS Big Data blog post [Analyze Security, Compliance, and Operational Activity Using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.

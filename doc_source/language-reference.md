@@ -2,11 +2,12 @@
 
 Use the following DDL statements directly in Athena\. 
 
-Athena query engine is based on [Hive DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)\.
+The Athena query engine is based on [HiveQL DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)\.
 
-Athena does not support all DDL statements\. For information, see [Unsupported DDL](unsupported-ddl.md)\.
+Athena does not support all DDL statements, and there are some differences between HiveQL DDL and Athena DDL\. For more information, see the reference topics in this section and [Unsupported DDL](unsupported-ddl.md)\.
 
 **Topics**
++ [Unsupported DDL](unsupported-ddl.md)
 + [ALTER DATABASE SET DBPROPERTIES](alter-database-set-dbproperties.md)
 + [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)
 + [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md)

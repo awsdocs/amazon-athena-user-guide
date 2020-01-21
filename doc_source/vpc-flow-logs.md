@@ -3,14 +3,18 @@
 Amazon Virtual Private Cloud flow logs capture information about the IP traffic going to and from network interfaces in a VPC\. Use the logs to investigate network traffic patterns and identify threats and risks across your VPC network\.
 
 Before you begin querying the logs in Athena, [enable VPC flow logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets you query directly\. 
+
+When you create a VPC flow log, you can use the default format, or you can specify a custom format\. A custom format is where you specify which fields to return in the flow log, and the order in which they should appear\. For more information, see [Flow Log Records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in the *Amazon VPC User Guide*\.
 +  [Creating the Table for VPC Flow Logs](#create-vpc-logs-table) 
 +  [Example Queries for Amazon VPC Flow Logs](#query-examples-vpc-logs) 
 
 ## Creating the Table for VPC Flow Logs<a name="create-vpc-logs-table"></a>
 
+The following section creates an Amazon VPC table for VPC flow logs that use the default format\. If you create a flow log with a custom format, you must create a table with fields that match the fields that you specified when you created the flow log, in the same order that you specified them\.
+
 ### To create the Amazon VPC table<a name="to-create-the-vpc-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\. This query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\. In addition, in this query, fields are terminated by a space\.
+1. Copy and paste the following DDL statement into the Athena console\. This query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\. In addition, in this query, fields are terminated by a space\. For a VPC flow log with a custom format, modify the fields to match the fields that you specified when you created the flow log\.
 
 1. Modify the `LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}/'` to point to the Amazon S3 bucket that contains your log data\.
 

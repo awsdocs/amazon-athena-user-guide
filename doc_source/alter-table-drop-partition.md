@@ -19,9 +19,11 @@ Each `partition_spec` specifies a column name/value combination in the form `par
 ## Examples<a name="examples"></a>
 
 ```
-ALTER TABLE orders DROP PARTITION (dt = '2014-05-14', country = 'IN');
+ALTER TABLE orders 
+DROP PARTITION (dt = '2014-05-14', country = 'IN');
 ```
 
 ```
-ALTER TABLE orders DROP PARTITION (dt = '2014-05-14', country = 'IN'), PARTITION (dt = '2014-05-15', country = 'IN');
+ALTER TABLE orders 
+DROP PARTITION (dt = '2014-05-14', country = 'IN'), PARTITION (dt = '2014-05-15', country = 'IN');
 ```

@@ -2,7 +2,7 @@
 
 Drops \(deletes\) an existing view\. The optional `IF EXISTS` clause causes the error to be suppressed if the view does not exist\.
 
-For more information, see [Deleting Views](deleting-views.md)\.
+For more information, see [Deleting Views](views.md#deleting-views)\.
 
 ## Synopsis<a name="synopsis"></a>
 

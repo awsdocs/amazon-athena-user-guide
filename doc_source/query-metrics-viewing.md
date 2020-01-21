@@ -5,11 +5,17 @@ Athena publishes query\-related metrics to Amazon CloudWatch, when **Publish to 
 When you enable query metrics for queries in workgroups, the metrics are displayed within the **Metrics** tab in the **Workgroups** panel, for each workgroup in the Athena console\.
 
 Athena publishes the following metrics to the CloudWatch console:
-+ `Query Status` \(successful, failed, or canceled\)
-+ `Query Execution Time` \(in seconds\)
-+ `Query Type` \(DDL or DML\)
-+ `Data Processed Per Query`\. This is the total amount of data scanned per query \(in Megabytes\)\.
-+ `Workgroup Name`
++ `DataScannedInBytes` – the total amount of data scanned per query
++ `EngineExecutionTime` – in milliseconds
++ `QueryPlanningTime` – in milliseconds
++ `QueryQueueTime` – in milliseconds
++ `QueryState` – successful, failed, or canceled
++ `QueryType` – DDL or DML
++ `ServiceProcessingTime` – in milliseconds
++ `TotalExecutionTime` – in milliseconds 
++ `WorkGroup` – name of the workgroup
+
+For more information, see the [List of CloudWatch Metrics for Athena](#athena-cloudwatch-metrics-table) later in this topic\.
 
 **To view query metrics for a workgroup in the console**
 
@@ -51,13 +57,17 @@ Athena publishes the following metrics to the CloudWatch console:
 
 ## List of CloudWatch Metrics for Athena<a name="athena-cloudwatch-metrics-table"></a>
 
-If you've enabled CloudWatch metrics in Athena, it sends the following metrics to CloudWatch\. The metrics use the `AWS/Athena` namespace\.
+If you've enabled CloudWatch metrics in Athena, it sends the following metrics to CloudWatch per workgroup\. The metrics use the `AWS/Athena` namespace\.
 
 
 | Metric Name | Description | 
 | --- | --- | 
-| Total amount of data scanned per query |  The amount of data in Megabytes that Athena scanned per query\. For queries that were canceled \(either by the users, or automatically, if they reached the limit\), this includes the amount of data scanned before the cancellation time\.  | 
-| Query state |  The query state\. Valid statistics: Successful, Failed, Canceled  | 
-| Total query execution time |  The amount of time in seconds it takes Athena to run the query\.  | 
-| Query type |  The query type\. Valid statistics: DDL or DML\.  | 
-| Workgroup name |  The name of the workgroup\.  | 
+| DataScannedInBytes |  The amount of data in megabytes that Athena scanned per query\. For queries that were canceled \(either by the users, or automatically, if they reached the limit\), this includes the amount of data scanned before the cancellation time\.  | 
+| EngineExecutionTime |  The number of milliseconds that the query took to execute\.  | 
+| QueryPlanningTime | The number of milliseconds that Athena took to plan the query processing flow\. This includes the time spent retrieving table partitions from the data source\. Note that because the query engine performs the query planning, query planning time is a subset of EngineExecutionTime\. | 
+| QueryQueueTime | The number of milliseconds that the query was in the query queue waiting for resources\. Note that if transient errors occur, the query can be automatically added back to the queue\. | 
+| QueryState |  The query state\. Valid statistics: Succeeded, Failed, Canceled  | 
+| QueryType |  The query type\. Valid statistics: DDL or DML\.  | 
+| ServiceProcessingTime | Number of milliseconds that Athena took to process the query results after the query engine finished query execution\. | 
+| TotalExecutionTime | The number of milliseconds that Athena took to run the query\. | 
+| WorkGroup |  The name of the workgroup\.  | 

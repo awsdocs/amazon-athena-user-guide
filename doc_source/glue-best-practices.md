@@ -5,7 +5,7 @@ When using Athena with the AWS Glue Data Catalog, you can use AWS Glue to create
 Under the hood, Athena uses Presto to execute DML statements and Hive to execute the DDL statements that create and modify schema\. With these technologies, there are a couple of conventions to follow so that Athena and AWS Glue work well together\.
 
  **In this topic** 
-+  [Database, Table, and Column Names](#schema-names) 
++  **[Database, Table, and Column Names](#schema-names)** 
 +   
 ** [Using AWS Glue Crawlers](#schema-crawlers) **  
   +  [Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync](#schema-crawlers-schedule) 
@@ -16,6 +16,7 @@ Under the hood, Athena uses Presto to execute DML statements and Hive to execute
 ** [Working with CSV Files](#schema-csv) **  
   +  [CSV Data Enclosed in Quotes](#schema-csv-quotes) 
   +  [CSV Files with Headers](#schema-csv-headers) 
++ **[Working with Geospatial Data](#schema-geospatial)**
 +   
 ** [Using AWS Glue Jobs for ETL with Athena](#schema-classifier) **  
   +  [Creating Tables Using Athena for AWS Glue ETL Jobs](#schema-etl-tables) 
@@ -147,6 +148,10 @@ The following example shows a function in an AWS Glue script that writes out a d
 ```
 glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://MYBUCKET/MYTABLEDATA/"}, format = "csv", format_options = {"writeHeader": False}, transformation_ctx = "datasink2")
 ```
+
+## Working with Geospatial Data<a name="schema-geospatial"></a>
+
+AWS Glue does not natively support Well\-known Text \(WKT\), Well\-Known Binary \(WKB\), or other PostGIS data types\. The AWS Glue classifier parses geospatial data and classifies them using supported data types for the format, such as `varchar` for CSV\. As with other AWS Glue tables, you may need to update the properties of tables created from geospatial data to allow Athena to parse these data types as\-is\. For more information, see [Using AWS Glue Crawlers](#schema-crawlers) and [Working with CSV Files](#schema-csv)\. Athena may not be able to parse some geospatial data types in AWS Glue tables as\-is\. For more information about working with geospatial data in Athena, see [Querying Geospatial Data](querying-geospatial-data.md)\.
 
 ## Using AWS Glue Jobs for ETL with Athena<a name="schema-classifier"></a>
 

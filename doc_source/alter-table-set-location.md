@@ -14,10 +14,10 @@ ALTER TABLE table_name [ PARTITION (partition_spec) ] SET LOCATION 'new location
 Specifies the partition with parameters `partition_spec` whose location you want to change\. The `partition_spec` specifies a column name/value combination in the form `partition_col_name = partition_col_value`\.
 
 **SET LOCATION 'new location'**  
-Specifies the new location, which must be an Amazon S3 location\.
+Specifies the new location, which must be an Amazon S3 location\. For information about syntax, see [Table Location in Amazon S3](tables-location-format.md)\.
 
 ## Examples<a name="examples"></a>
 
 ```
-ALTER TABLE customers PARTITION (zip='98040', state='WA') SET LOCATION 's3://mystorage/custdata';
+ALTER TABLE customers PARTITION (zip='98040', state='WA') SET LOCATION 's3://mystorage/custdata/';
 ```

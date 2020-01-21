@@ -2,7 +2,7 @@
 
 When you run queries in Athena that include reserved keywords, you must escape them by enclosing them in special characters\. Use the lists in this topic to check which keywords are reserved in Athena\. 
 
-To escape reserved keywords in DDL statements, enclose them in backticks \(`\)\. To escape reserved keywords in SQL `SELECT` statements and in queries on [Views](views.md), enclose them in double quotes \(''\)\.
+To escape reserved keywords in DDL statements, enclose them in backticks \(`\)\. To escape reserved keywords in SQL `SELECT` statements and in queries on [Working with Views](views.md), enclose them in double quotes \(''\)\.
 +  [List of Reserved Keywords in DDL Statements](#list-of-ddl-reserved-words) 
 +  [List of Reserved Keywords in SQL SELECT Statements](#list-of-reserved-words-sql-select) 
 +  [Examples of Queries with Reserved Keywords](#examples-reserved-words) 
@@ -15,7 +15,7 @@ You cannot use DDL reserved keywords as identifier names in DDL statements witho
 
 ```
 ALL, ALTER, AND, ARRAY, AS, AUTHORIZATION, BETWEEN, BIGINT, BINARY, BOOLEAN, BOTH, 
-BY, CASE, CAST, CHAR, COLUMN, CONF, CONSTRAINT, COMMIT, CREATE, CROSS, CUBE, 
+BY, CASE, CASHE, CAST, CHAR, COLUMN, CONF, CONSTRAINT, COMMIT, CREATE, CROSS, CUBE, 
 CURRENT, CURRENT_DATE, CURRENT_TIMESTAMP, CURSOR, DATABASE, DATE, DAYOFWEEK, DECIMAL, 
 DELETE, DESCRIBE, DISTINCT, DOUBLE, DROP, ELSE, END, EXCHANGE, EXISTS, EXTENDED, 
 EXTERNAL, EXTRACT, FALSE, FETCH, FLOAT, FLOOR, FOLLOWING, FOR, FOREIGN, FROM, FULL, 
@@ -23,9 +23,9 @@ FUNCTION, GRANT, GROUP, GROUPING, HAVING, IF, IMPORT, IN, INNER, INSERT, INT, IN
 INTERSECT, INTERVAL, INTO, IS, JOIN, LATERAL, LEFT, LESS, LIKE, LOCAL, MACRO, MAP, MORE, 
 NONE, NOT, NULL, NUMERIC, OF, ON, ONLY, OR, ORDER, OUT, OUTER, OVER, PARTIALSCAN, PARTITION, 
 PERCENT, PRECEDING, PRECISION, PRESERVE, PRIMARY, PROCEDURE, RANGE, READS, REDUCE, REGEXP,
-REFERENCES, REVOKE, RIGHT, RLIKE, ROLLBACK, ROLLUP, ROW, ROWS, SELECT, SET, SMALLINT, START, TABLE, 
-TABLESAMPLE, THEN, TIME, TIMESTAMP, TO, TRANSFORM, TRIGGER, TRUE, TRUNCATE, UNBOUNDED, UNION, 
-UNIQUEJOIN, UPDATE, USER, USING, UTC_TMESTAMP, VALUES, VARCHAR, VIEWS, WHEN, WHERE, WINDOW, WITH
+REFERENCES, REVOKE, RIGHT, RLIKE, ROLLBACK, ROLLUP, ROW, ROWS, SELECT, SET, SMALLINT, START,TABLE, 
+TABLESAMPLE, THEN, TIME, TIMESTAMP, TO, TRANSFORM, TRIGGER, TRUE, TRUNCATE, UNBOUNDED,UNION, 
+UNIQUEJOIN, UPDATE, USER, USING, UTC_TIMESTAMP, VALUES, VARCHAR, VIEWS, WHEN, WHERE, WINDOW, WITH
 ```
 
 ## List of Reserved Keywords in SQL SELECT Statements<a name="list-of-reserved-words-sql-select"></a>

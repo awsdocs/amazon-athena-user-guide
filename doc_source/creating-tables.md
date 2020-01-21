@@ -22,11 +22,11 @@ Hive supports multiple data formats through the use of serializer\-deserializer 
 
 When you create a table, you specify an Amazon S3 bucket location for the underlying data using the `LOCATION` clause\. Consider the following:
 + Athena can only query the latest version of data on a versioned Amazon S3 bucket, and cannot query previous versions of the data\.
-+ You must have the appropriate permissions to work with data in the Amazon S3 location\. For more information, see [Setting User and Amazon S3 Bucket Permissions](access.md)\.
++ You must have the appropriate permissions to work with data in the Amazon S3 location\. For more information, see [Access to Amazon S3](s3-permissions.md)\.
 + If the data is not encrypted in Amazon S3, it can be stored in a different Region from the primary region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\.
 + If the data is encrypted in Amazon S3, it must be stored in the same Region, and the user or principal who creates the table in Athena must have the appropriate permissions to decrypt the data\. For more information, see [Configuring Encryption Options](encryption.md)\.
 + Athena supports querying objects that are stored with multiple storage classes in the same bucket specified by the `LOCATION` clause\. For example, you can query data in objects that are stored in different Storage classes \(Standard, Standard\-IA and Intelligent\-Tiering\) in Amazon S3\.
-+  Athena does not support Requester Pays buckets\. 
++  Athena supports [Requester Pays Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html)\. For information how to enable Requester Pays for buckets with source data you intend to query in Athena, see [Creating a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
 + Athena does not support querying the data in the `GLACIER` storage class\. It ignores objects transitioned to the `GLACIER` storage class based on an Amazon S3 lifecycle policy\. 
 
   For more information, see [Storage Classes](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html), [Changing the Storage Class of an Object in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/ChgStoClsOfObj.html), [Transitioning to the GLACIER Storage Class \(Object Archival\) ](https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html#before-deciding-to-archive-objects), and [Requester Pays Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) in the *Amazon Simple Storage Service Developer Guide*\.
@@ -48,15 +48,11 @@ When you create, update, or delete tables, those operations are guaranteed ACID\
 
 If you use `CREATE TABLE` without the `EXTERNAL` keyword, Athena issues an error; only tables with the `EXTERNAL` keyword can be created\. We recommend that you always use the `EXTERNAL` keyword\. When you drop a table in Athena, only the table metadata is removed; the data remains in Amazon S3\.
 
-## UDF and UDAF Are Not Supported<a name="udf-and-udaf-are-not-supported"></a>
-
-User\-defined functions \(UDF or UDAFs\) and stored procedures are not supported\.
-
 ## To create a table using the AWS Glue Data Catalog<a name="to-create-a-table-using-the-aws-glue-data-catalog"></a>
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Choose **AWS Glue Data Catalog**\. You can now create a table with the AWS Glue Crawler\. For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
+1. Choose **AWS Glue Data Catalog**\. You can now create a table with the AWS Glue crawler\. For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_create_table.png)
 
@@ -106,7 +102,7 @@ The Athena Query Editor displays the current database\. If you create a table an
    ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
    WITH SERDEPROPERTIES (
    "input.regex" = "^(?!#)([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+[^\(]+[\(]([^\;]+).*\%20([^\/]+)[\/](.*)$"
-   ) LOCATION 's3://athena-examples/cloudfront/plaintext/';
+   ) LOCATION 's3://athena-examples-MyRegion/cloudfront/plaintext/';
    ```
 
 1. If the table was successfully created, you can then run queries against your data\.

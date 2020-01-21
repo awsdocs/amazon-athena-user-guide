@@ -64,7 +64,9 @@ Specifies the row format of the table and its underlying source data if applicab
 + \[DELIMITED COLLECTION ITEMS TERMINATED BY char\]
 + \[MAP KEYS TERMINATED BY char\]
 + \[LINES TERMINATED BY char\]
-+ \[NULL DEFINED AS char\] \-\- \(Note: Available in Hive 0\.13 and later\)
++ \[NULL DEFINED AS char\]
+
+  Available only with Hive 0\.13 and when the STORED AS file format is `TEXTFILE`\.
  **\-\-OR\-\-**   
 + SERDE 'serde\_name' \[WITH SERDEPROPERTIES \("property\_name" = "property\_value", "property\_name" = "property\_value" \[, \.\.\.\] \)\]
 
@@ -111,5 +113,5 @@ CREATE EXTERNAL TABLE IF NOT EXISTS mydatabase.cloudfront_logs (
       ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
       WITH SERDEPROPERTIES (
       "input.regex" = "^(?!#)([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+[^\(]+[\(]([^\;]+).*\%20([^\/]+)[\/](.*)$"
-      ) LOCATION 's3://athena-examples/cloudfront/plaintext/';
+      ) LOCATION 's3://athena-examples-myregion/cloudfront/plaintext/';
 ```

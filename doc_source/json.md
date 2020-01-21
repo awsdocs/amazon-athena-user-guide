@@ -27,7 +27,7 @@ You can also use the Hive JSON SerDe to parse more complex JSON\-encoded data wi
 With this SerDe, duplicate keys are not allowed in `map` \(or `struct`\) key names\.
 
 **Note**  
-You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-east-1/path/to/data/`\.
+You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
 
 The following DDL statement uses the Hive JSON SerDe:
 
@@ -68,7 +68,7 @@ This SerDe has a few useful properties that you can specify when creating tables
 **ignore\.malformed\.json**  
 Optional\. When set to `TRUE`, lets you skip malformed JSON syntax\. The default is `FALSE`\.
 
-**ConvertDotsInJsonKeysToUnderscores**  
+**dots\.in\.keys**  
 Optional\. The default is `FALSE`\. When set to `TRUE`, allows the SerDe to replace the dots in key names with underscores\. For example, if the JSON dataset contains a key with the name `"a.b"`, you can use this property to define the column name to be `"a_b"` in Athena\. By default \(without this SerDe\), Athena does not allow dots in column names\.
 
 **case\.insensitive**  

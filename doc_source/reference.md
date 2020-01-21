@@ -1,12 +1,12 @@
-# Code Samples, Service Limits, and Previous JDBC Driver<a name="reference"></a>
+# Code Samples, Service Quotas, and Previous JDBC Driver<a name="reference"></a>
 
-Use the following examples to create Athena applications based on AWS SDK for Java\.
+Use code samples to create Athena applications based on AWS SDK for Java\.
 
-Use the links in this section to use the previous version of the JDBC driver\.
+Use the links in this section to use earlier versions of the JDBC driver\.
 
-Learn about service limits\.
+Learn about service quotas\.
 
 **Topics**
 + [Code Samples](code-samples.md)
-+ [Using the Previous Version of the JDBC Driver](connect-with-previous-jdbc.md)
-+ [Service Limits](service-limits.md)
++ [Earlier Version JDBC Drivers](connect-with-previous-jdbc.md)
++ [Service Quotas](service-limits.md)

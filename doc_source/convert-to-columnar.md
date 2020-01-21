@@ -3,7 +3,7 @@
 Your Amazon Athena query performance improves if you convert your data into open source columnar formats, such as [Apache Parquet](https://parquet.apache.org) or [ORC](https://orc.apache.org/)\.
 
 **Note**  
-Use the [CREATE TABLE AS \(CTAS\)](ctas-examples.md#ctas-example-query-storage-format) queries to perform the conversion to columnar formats, such as Parquet and ORC, in one step\. 
+Use the [CREATE TABLE AS \(CTAS\)](ctas-examples.md#ctas-example-format) queries to perform the conversion to columnar formats, such as Parquet and ORC, in one step\. 
 
 You can do this to existing Amazon S3 data sources by creating a cluster in Amazon EMR and converting it using Hive\. The following example using the AWS CLI shows you how to do this with a script and data stored in Amazon S3\.
 
@@ -20,7 +20,7 @@ The script is based on Amazon EMR version 4\.7 and needs to be updated to the cu
    The full script is located on Amazon S3 at:
 
    ```
-   s3://athena-examples/conversion/write-parquet-to-s3.q
+   s3://athena-examples-myregion/conversion/write-parquet-to-s3.q
    ```
 
    Here's an example script beginning with the `CREATE TABLE` snippet:
@@ -46,10 +46,10 @@ The script is based on Amazon EMR version 4\.7 and needs to be updated to the cu
    PARTITIONED BY (dt string)
    ROW FORMAT  serde 'org.apache.hive.hcatalog.data.JsonSerDe'
    with serdeproperties ( 'paths'='requestBeginTime, adId, impressionId, referrer, userAgent, userCookie, ip' )
-   LOCATION 's3://${REGION}.elasticmapreduce/samples/hive-ads/tables/impressions/' ;
+   LOCATION 's3://MyRegion.elasticmapreduce/samples/hive-ads/tables/impressions/' ;
    ```
 **Note**  
-Replace `REGION` in the `LOCATION` clause with the region where you are running queries\. For example, if your console is in us\-east\-1, `REGION` is `s3://us-east-1.elasticmapreduce/samples/hive-ads/tables/`\.
+Replace *MyRegion* in the `LOCATION` clause with the region where you are running queries\. For example, if your console is in us\-west\-1, `s3://us-west-1.elasticmapreduce/samples/hive-ads/tables/`\.
 
    This creates the table in Hive on the cluster which uses samples located in the Amazon EMR samples bucket\. 
 
@@ -135,7 +135,7 @@ Replace `REGION` in the `LOCATION` clause with the region where you are running 
 1. Create an Amazon EMR cluster using the emr\-4\.7\.0 release to convert the data using the following AWS CLI emr create\-cluster command:
 
    ```
-   export REGION=us-east-1
+   export REGION=us-west-1
    export SAMPLEURI=s3://${REGION}.elasticmapreduce/samples/hive-ads/tables/impressions/
    export S3BUCKET=myBucketName
    

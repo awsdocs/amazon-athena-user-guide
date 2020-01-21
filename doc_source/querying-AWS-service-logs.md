@@ -9,6 +9,7 @@ The topics in this section assume that you have set up both an IAM user with app
 **Topics**
 + [Querying AWS CloudTrail Logs](cloudtrail-logs.md)
 + [Querying Amazon CloudFront Logs](cloudfront-logs.md)
++ [Querying Amazon EMR Logs](emr-logs.md)
 + [Querying Classic Load Balancer Logs](elasticloadbalancer-classic-logs.md)
 + [Querying Network Load Balancer Logs](networkloadbalancer-classic-logs.md)
 + [Querying Application Load Balancer Logs](application-load-balancer-logs.md)

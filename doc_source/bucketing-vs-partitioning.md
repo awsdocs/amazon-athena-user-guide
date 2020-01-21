@@ -14,8 +14,6 @@ Use the following tips to decide whether to partition and/or to configure bucket
 
   For example, columns storing `timestamp` data could potentially have a very large number of distinct values, and their data is evenly distributed across the data set\. This means that a column storing `timestamp` type data will most likely have values and won't have nulls\. This also means that data from such a column can be put in many buckets, where each bucket will have roughly the same amount of data stored in Amazon S3\. 
 
-  You can specify any number of buckets for your CTAS query results, using one or more columns as bucket names\. 
-
   To choose the column by which to bucket the CTAS query results, use the column that has a high number of values \(high cardinality\) and whose data can be split for storage into many buckets that will have roughly the same amount of data\. Columns that are sparsely populated with values are not good candidates for bucketing\. This is because you will end up with buckets that have less data and other buckets that have a lot of data\. By comparison, columns that you predict will almost always have values, such as `timestamp` type values, are good candidates for bucketing\. This is because their data has high cardinality and can be stored in roughly equal chunks\. 
 
   For more information about bucketing syntax, search for `bucketed_by` in [CREATE TABLE AS](create-table-as.md)\. 

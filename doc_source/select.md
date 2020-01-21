@@ -20,7 +20,7 @@ SELECT [ ALL | DISTINCT ] select_expression [, ...]
 
 **\[ WITH with\_query \[, \.\.\.\.\] \]**  
 You can use `WITH` to flatten nested queries, or to simplify subqueries\.  
- Using the `WITH` clause to create recursive queries is not supported\.   
+ Using the `WITH` clause to create recursive queries is not supported\.  
 The `WITH` clause precedes the `SELECT` list in a query and defines one or more subqueries for use within the `SELECT` query\.   
 Each subquery defines a temporary table, similar to a view definition, which you can reference in the `FROM` clause\. The tables are used only when the query runs\.   
 `with_query` syntax is:  

@@ -14,7 +14,7 @@ These examples rely on the list of predefined Grok patterns\. See [pre\-defined 
 
 ### Example 1<a name="example-1"></a>
 
-This example uses source data from Postfix maillog entries saved in `s3://mybucket/groksample`\.
+This example uses source data from Postfix maillog entries saved in `s3://mybucket/groksample/`\.
 
 ```
 Feb  9 07:15:00 m4eastmail postfix/smtpd[19305]: B88C4120838: connect from unknown[192.168.55.4]
@@ -41,7 +41,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT
    'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION
-   's3://mybucket/groksample';
+   's3://mybucket/groksample/';
 ```
 
 Start with a simple pattern, such as `%{NOTSPACE:column}`, to get the columns mapped first and then specialize the columns if needed\.
@@ -82,7 +82,7 @@ To query this logs data:
   ROW FORMAT SERDE 'com.amazonaws.glue.serde.GrokSerDe'
   WITH SERDEPROPERTIES (
   "input.grokCustomPatterns" = 'C_ACTION receive|send',
-  "input.format" = "%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:loglevel}%{SPACE} - processType=%{NOTSPACE:processtype}, processId=%{NOTSPACE:processid}, status=%{NOTSPACE:status}, threadId=%{NOTSPACE:threadid}, executionTime=%{POSINT:executiontime}, tenantId=%{POSINT:tenantid}, userId=%{NOTSPACE:userid}, shard=%{NOTSPACE:shard}, jobId=%{NOTSPACE:jobid}, messageType=%{NOTSPACE:messagetype}, action=%{C_ACTION:action}, hostname=%{HOST:hostname}"
+  "input.format" = "%{TIMESTAMP_ISO8601:timestamp} %{LOGLEVEL:loglevel} - processType=%{NOTSPACE:processtype}, processId=%{NOTSPACE:processid}, status=%{NOTSPACE:status}, threadId=%{NOTSPACE:threadid}, executionTime=%{POSINT:executiontime}, tenantId=%{POSINT:tenantid}, userId=%{NOTSPACE:userid}, shard=%{NOTSPACE:shard}, jobId=%{NOTSPACE:jobid}, messageType=%{NOTSPACE:messagetype}, action=%{C_ACTION:action}, hostname=%{HOST:hostname}"
   ) STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
   LOCATION 's3://mybucket/samples/';
@@ -122,5 +122,5 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION
-  's3://bucket-for-service-logs/s3_access'
+  's3://bucket-for-service-logs/s3_access/'
 ```

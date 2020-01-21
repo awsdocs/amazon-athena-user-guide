@@ -1,26 +1,64 @@
-# Service Limits<a name="service-limits"></a>
+# Service Quotas<a name="service-limits"></a>
 
 **Note**  
-You can contact AWS Support to [request a limit increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) for the limits listed here\.
-+ By default, limits on your account allow you to submit: 
-  + 20 DDL queries at the same time\. DDL queries include `CREATE TABLE` and `CREATE TABLE ADD PARTITION` queries\. 
-  + 20 DML queries at the same time\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
+The Service Quotas console provides information about Amazon Athena quotas\. Along with viewing the default quotas, you can use the Service Quotas console to [request quota increases](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) for the quotas that are adjustable\.
 
-  After you submit your queries to Athena, it processes the queries by assigning resources based on the overall service load and the amount of incoming requests\. We continuously monitor and make adjustments to the service so that your queries process as fast as possible\. 
+## Queries<a name="service-limits-queries"></a>
 
-  Athena service limits are shared across all workgroups in the account\.
+Your account has the following default query\-related quotas for Amazon Athena: 
++ **DDL query quota** – 20 DDL queries at the same time\. DDL queries include `CREATE TABLE` and `CREATE TABLE ADD PARTITION` queries\. 
++ **DDL query timeout** – The DDL query timeout is 600 minutes\.
++ **DML query quota** – 20 DML queries at the same time\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
++ **DML query timeout** – The DML query timeout is 30 minutes\.
 
-   These are soft limits and you can [request a limit increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)\. These limits in Athena are defined as the number of queries that can be submitted to the service at the same time\. You can submit up to 20 queries of the same type \(DDL or DML\) at a time\. If you submit a query that exceeds the query limit, the Athena API displays an error message: "You have exceeded the limit for the number of queries you can run concurrently\. Reduce the number of concurrent queries submitted by this account\. Contact customer support to request a concurrent query limit increase\.” 
-+ If you use Athena in regions where AWS Glue is available, migrate to AWS Glue Data Catalog\. See [Upgrading to the AWS Glue Data Catalog Step\-by\-Step](glue-upgrade.md)\.
-  + If you have migrated to AWS Glue Data Catalog, for service limits on tables, databases, and partitions in Athena, see [AWS Glue Limits](https://docs.aws.amazon.com/glue/latest/dg/troubleshooting-service-limits.html)\. 
-  + If you have *not* migrated to AWS Glue Data Catalog, the number of partitions per table is 20,000\. You can [request a limit increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)\.
-+ You may encounter a limit for Amazon S3 buckets per account, which is 100\. Athena also needs a separate bucket to log results\.
-+ The query timeout is 30 minutes\.
-+ The maximum allowed query string length is 262144 bytes, where the strings are encoded in UTF\-8\. Use these [tips](tables-databases-columns-names.md) for naming columns, tables, and databases in Athena\.
-+ The maximum number of workgroups you can create per Region in your account is 1000\.
-+  Athena APIs have the following default limits for the number of calls to the API per account \(not per query\):    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/service-limits.html)
+These are soft quotas; you can use the [Athena Service Quotas](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) console to request a quota increase\.
 
-  For example, for `StartQueryExecution`, you can make up to 20 calls per second\. In addition, if this API is not called for 4 seconds, your account accumulates a *burst capacity* of up to 80 calls\. In this case, your application can make up to 80 calls to this API in burst mode\.
+After you submit your queries to Athena, it processes the queries by assigning resources based on the overall service load and the amount of incoming requests\. 
 
-  If you use any of these APIs and exceed the default limit for the number of calls per second, or the burst capacity in your account, the Athena API issues an error similar to the following: ""ClientError: An error occurred \(ThrottlingException\) when calling the *<API\_name>* operation: Rate exceeded\." Reduce the number of calls per second, or the burst capacity for the API for this account\. You can contact AWS Support to [request a limit increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)\.
+### Query String Length<a name="service-limits-query-string-length"></a>
+
+The maximum allowed query string length is 262144 bytes, where the strings are encoded in UTF\-8\. This is not an adjustable quota\. Use these [tips](tables-databases-columns-names.md) for naming columns, tables, and databases in Athena\. 
+
+**Note**  
+If you require a greater query string length, provide feedback at [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com) with the details of your use case, or contact [AWS Support](https://console.aws.amazon.com/support/home/)\.
+
+## Workgroups<a name="service-limits-workgroups"></a>
+
+When you work with Athena workgroups, remember the following points:
++ Athena service quotas are shared across all workgroups in an account\.
++ The maximum number of workgroups you can create per Region in an account is 1000\.
++ The maximum number of tags per workgroup is 50\. For more information, see [Tag Restrictions](tags.md#tag-restrictions)\. 
+
+## AWS Glue<a name="service-limits-glue"></a>
++ If you are using the AWS Glue Data Catalog with Athena, see [AWS Glue Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/glue.html) for service quotas on tables, databases, and partitions\. 
++ If you are not using AWS Glue Data Catalog or are in a region where AWS Glue is not available, the number of partitions per table is 20,000\. You can [request a quota increase](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/glue/quotas)\.
+
+**Note**  
+If you are using Athena in a region where AWS Glue is available but have not yet migrated to AWS Glue Data Catalog, see [Upgrading to the AWS Glue Data Catalog Step\-by\-Step](glue-upgrade.md) for migration instructions\.
+
+## Amazon S3 Buckets<a name="service-limits-buckets"></a>
+
+When you work with Amazon S3 buckets, remember the following points:
++ Amazon S3 has a default service quota of 100 buckets per account\.
++ Athena requires a separate bucket to log results\.
++ You can request a quota increase of up to 1,000 Amazon S3 buckets per AWS account\. 
+
+## Per Account API Call Quotas<a name="service-limits-api-calls"></a>
+
+ Athena APIs have the following default quotas for the number of calls to the API per account \(not per query\):
+
+
+| API Name | Default Number of Calls per Second | Burst Capacity | 
+| --- | --- | --- | 
+| BatchGetNamedQuery, ListNamedQueries, ListQueryExecutions  | 5 | up to 10 | 
+| CreateNamedQuery, DeleteNamedQuery, GetNamedQuery | 5 | up to 20 | 
+| BatchGetQueryExecution | 20 | up to 40 | 
+| StartQueryExecution, StopQueryExecution | 20 | up to 80 | 
+| GetQueryExecution, GetQueryResults | 100 | up to 200 | 
+
+For example, for `StartQueryExecution`, you can make up to 20 calls per second\. In addition, if this API is not called for 4 seconds, your account accumulates a *burst capacity* of up to 80 calls\. In this case, your application can make up to 80 calls to this API in burst mode\.
+
+If you use any of these APIs and exceed the default quota for the number of calls per second, or the burst capacity in your account, the Athena API issues an error similar to the following: ""ClientError: An error occurred \(ThrottlingException\) when calling the *<API\_name>* operation: Rate exceeded\." Reduce the number of calls per second, or the burst capacity for the API for this account\. To request a quota increase, contact AWS Support\. Open the [AWS Support Center](https://console.aws.amazon.com/support/home#/) page, sign in if necessary, and choose **Create case**\. Choose **Service limit increase**\. Complete and submit the form\.
+
+**Note**  
+This quota cannot be changed in the Athena Service Quotas console\.

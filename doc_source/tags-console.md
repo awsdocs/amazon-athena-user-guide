@@ -30,7 +30,7 @@ Make sure you give a user IAM permissions to the TagResource and CreateWorkGroup
 
 1. Choose **Create workgroup** and fill in the values, as needed\. For detailed steps, see [Create a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
 
-1. Add one or more tags, by specifying keys and values\. Do not add duplicate tag keys at the same time to the same workgroup\. If you do, Athena issues an error message\. For more information, see [Tag Restrictions](tags.md#tag-restricitions)\.
+1. Add one or more tags, by specifying keys and values\. Do not add duplicate tag keys at the same time to the same workgroup\. If you do, Athena issues an error message\. For more information, see [Tag Restrictions](tags.md#tag-restrictions)\.
 
 1. When you are done, choose Create Workgroup\.
 
@@ -44,7 +44,7 @@ Make sure you give a user IAM permissions to the TagResource and CreateWorkGroup
 
 1. Choose the **Tags** tab\.
 
-1. On the **Tags** tab, choose **Manage tags**, and then specify the key and value for each tag\. For more information, see [Tag Restrictions](tags.md#tag-restricitions)\.  
+1. On the **Tags** tab, choose **Manage tags**, and then specify the key and value for each tag\. For more information, see [Tag Restrictions](tags.md#tag-restrictions)\.  
 ![\[Tags\]](http://docs.aws.amazon.com/athena/latest/ug/images/tags.png)
 
 1. When you are done, choose **Save**\.

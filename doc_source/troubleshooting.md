@@ -1,14 +1,14 @@
 # Troubleshooting<a name="troubleshooting"></a>
 
 Use these documentation topics to troubleshoot problems with Amazon Athena\.
-+  [Service Limits](service-limits.md) 
-+ [Limitations](other-notable-limitations.md)
++ [Service Quotas](service-limits.md)
++ [Considerations and Limitations for SQL Queries in Amazon Athena](other-notable-limitations.md)
 + [Unsupported DDL](unsupported-ddl.md)
 + [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)
-+ [Data Types](data-types.md)
++ [Data Types Supported by Amazon Athena](data-types.md)
 + [Supported SerDes and Data Formats](supported-format.md)
 + [Compression Formats](compression-formats.md)
-+ [Reserved Words](reserved-words.md)
++ [Reserved Keywords](reserved-words.md)
 + [Troubleshooting Workgroups](workgroups-troubleshooting.md)
 
 In addition, use the following AWS resources:
