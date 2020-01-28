@@ -19,7 +19,7 @@ When you run [CREATE TABLE](create-table.md), you specify column names and the d
   + `BIGINT`\.A 64\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^63 and a maximum value of 2^63\-1\.
 + Floating\-point types
   + `DOUBLE`
-  + `FLOAT`
+  + `REAL`
 + Fixed precision type
   + `DECIMAL [ (precision, scale) ]`, where `precision` is the total number of digits, and `scale` \(optional\) is the number of digits in fractional part, the default is 0\. For example, use these type definitions: `DECIMAL(11,5)`, `DECIMAL(15)`\. 
 
