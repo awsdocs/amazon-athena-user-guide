@@ -1,8 +1,8 @@
 # Example IAM Permissions Policies to Allow Athena Federated Query \(Preview\)<a name="federated-query-iam-access"></a>
 
 The permission policy examples in this topic demonstrate required allowed actions and the resources for which they are allowed\. Examine these policies carefully and modify them according to your requirements before attaching them to IAM identities\.
-+ [Example Policy to Allow an IAM Principal to Run and Return Results Using Athena Federated Query (Preview)](#fed-using-iam)
-+ [Example Policy to Allow an IAM Principal to Create a Data Source Connector](#fed-creating-iam)
++  [Example Policy to Allow an IAM Principal to Run and Return Results Using Athena Federated Query (Preview)](#fed-using-iam) 
++  [Example Policy to Allow an IAM Principal to Create a Data Source Connector](#fed-creating-iam) 
 
 **Example – Allow an IAM Principal to Run and Return Results Using Athena Federated Query \(Preview\)**  
 The following identity\-based permissions policy allows actions that a user or other IAM principal requires to use Athena Federated Query \(Preview\)\. Principals who are allowed to perform these actions are able to run queries that specify Athena catalogs associated with a federated data source\.  
@@ -15,23 +15,22 @@ The following identity\-based permissions policy allows actions that a user or o
             "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
-                "athena:StartQueryExecution",
-                "lambda:InvokeFunction",
-                "athena:GetQueryResults",
-                "s3:ListMultipartUploadParts",
                 "athena:GetWorkGroup",
                 "s3:PutObject",
                 "s3:GetObject",
+                "athena:StartQueryExecution",
                 "s3:AbortMultipartUpload",
+                "lambda:InvokeFunction",
                 "athena:CancelQueryExecution",
                 "athena:StopQueryExecution",
                 "athena:GetQueryExecution",
-                "s3:GetBucketLocation"
+                "athena:GetQueryResults",
+                "s3:ListMultipartUploadParts"
             ],
             "Resource": [
                 "arn:aws:athena:*:MyAWSAcctId:workgroup/AmazonAthenaPreviewFunctionality",
-                "arn:aws:s3:::MyQueryResultsBucket",
-                "arn:aws:s3:::MyLambdaSpillBucket/*",
+                "arn:aws:s3:::MyQueryResultsBucket/*",
+                "arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*",
                 "arn:aws:lambda:*:MyAWSAcctId:function:OneAthenaLambdaFunction",
                 "arn:aws:lambda:*:MyAWSAcctId:function:AnotherAthenaLambdaFunction"
             ]
@@ -45,8 +44,11 @@ The following identity\-based permissions policy allows actions that a user or o
         {
             "Sid": "VisualEditor2",
             "Effect": "Allow",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*"
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": "arn:aws:s3:::MyLambdaSpillBucket"
         }
     ]
 }

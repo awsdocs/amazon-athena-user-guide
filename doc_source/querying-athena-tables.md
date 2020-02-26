@@ -4,6 +4,12 @@ You can run SQL queries using Amazon Athena on data sources that are registered 
 
 This section provides guidance for running Athena queries on common data sources and data types using a variety of SQL statements\. General guidance is provided for working with common structures and operators—for example, working with arrays, concatenating, filtering, flattening, and sorting\. Other examples include queries for data in tables with nested structures and maps, tables based on JSON\-encoded datasets, and datasets associated with AWS services such as AWS CloudTrail logs and Amazon EMR logs\.
 
+**Important**  
+When data is moved or transitioned to the [Amazon S3 GLACIER storage class](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier), it is no longer readable or queryable by Athena\. This is true even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class\. 
+
+**Note**  
+You cannot use an Amazon S3 access point in a `LOCATION` clause\. However, as long the as the Amazon S3 bucket policy does not explicitly deny requests to objects not made through Amazon S3 access points, the objects should be accessible from Athena for requestors that have the right object access permissions\.
+
 **Topics**
 + [Query Results and Query History](querying.md)
 + [Working with Views](views.md)

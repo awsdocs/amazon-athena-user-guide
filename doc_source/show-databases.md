@@ -11,7 +11,7 @@ SHOW {DATABASES | SCHEMAS} [LIKE 'regular_expression']
 ## Parameters<a name="parameters"></a>
 
 **\[LIKE 'regular\_expression'\]**  
-Filters the list of databases to those that match the `regular_expression` you specify\. Wildcards can only be `*`, which indicates any character, or `|`, which indicates a choice between characters\.
+Filters the list of databases to those that match the `regular_expression` you specify\. Wildcards can only be `*`, and need to be preceded by `[a-z0-9]`, which indicates any character in the range a to z and 0 to 9, or `|`, which indicates a choice between characters\.
 
 ## Examples<a name="examples"></a>
 
@@ -20,5 +20,5 @@ SHOW SCHEMAS;
 ```
 
 ```
-SHOW DATABASES LIKE '*analytics';
+SHOW DATABASES LIKE '[a-z0-9]*analytics';
 ```

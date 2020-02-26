@@ -16,7 +16,7 @@ SELECT [ ALL | DISTINCT ] select_expression [, ...]
 [ LIMIT [ count | ALL ] ]
 ```
 
-## Parameters<a name="parameters"></a>
+## Parameters<a name="select-parameters"></a>
 
 **\[ WITH with\_query \[, \.\.\.\.\] \]**  
 You can use `WITH` to flatten nested queries, or to simplify subqueries\.  
@@ -102,7 +102,7 @@ Other columns are padded with nulls\.
 The `WITH ORDINALITY` clause adds an ordinality column to the end\.  
  `UNNEST` is usually used with a `JOIN` and can reference columns from relations on the left side of the `JOIN`\.
 
-## Examples<a name="examples"></a>
+## Examples<a name="select-examples"></a>
 
 ```
 SELECT * FROM table;
@@ -113,3 +113,14 @@ SELECT os, COUNT(*) count FROM cloudfront_logs WHERE date BETWEEN date '2014-07-
 ```
 
 For more examples, see [Querying Data in Amazon Athena Tables](querying-athena-tables.md)\.
+
+### Escaping Single Quotes<a name="select-escaping"></a>
+
+ To escape a single quote, precede it with another single quote, as in the following example\. Do not confuse this with a double quote\. 
+
+```
+Select 'O''Reilly'
+```
+
+**Results**  
+`O'Reilly`

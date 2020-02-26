@@ -20,8 +20,6 @@ For more information about AWS KMS encryption with Amazon S3, see [What is AWS K
 
 Athena does not support SSE with customer\-provided keys \(SSE\-C\), nor does it support client\-side encryption using a client\-side master key\. Athena does not support asymmetric keys\. To compare Amazon S3 encryption options, see [Protecting Data Using Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
-Athena does not support running queries from one Region on encrypted data stored in Amazon S3 in another Region\.
-
 **Important**  
 The setup for querying an encrypted dataset in Amazon S3 and the options in Athena to encrypt query results are independent\. Each option is enabled and configured separately\. You can use different encryption methods or keys for each\. This means that reading encrypted data in Amazon S3 doesn't automatically encrypt Athena query results in Amazon S3\. The opposite is also true\. Encrypting Athena query results in Amazon S3 doesn't encrypt the underlying dataset in Amazon S3\.
 

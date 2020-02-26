@@ -71,7 +71,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
 
 1. Verify that fields are listed correctly\. For more information about the full list of fields in a CloudTrail record, see [CloudTrail Record Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
 
-   In this example, the fields `requestparameters`, `responseelements`, and `additionaleventdata` are listed as type `STRING` in the query, but are `STRUCT` data type used in JSON\. Therefore, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data from JSON](extracting-data-from-JSON.md)\.
+   In this example, the fields `requestparameters`, `responseelements`, and `additionaleventdata` are listed as type `STRING` in the query, but are `STRUCT` data type used in JSON\. Therefore, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data from JSON](extracting-data-from-JSON.md)\. For performance improvements, this example partitions the data by Region, year, month, and day\.
 
    ```
    CREATE EXTERNAL TABLE cloudtrail_logs (
@@ -119,6 +119,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
    sharedeventid STRING,
    vpcendpointid STRING
    )
+   PARTITIONED BY (region string, year string, month string, day string)
    ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
    STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'

@@ -62,7 +62,7 @@ The following examples demonstrate CloudTrail log entries for:
     "resultConfiguration":{
        "outputLocation":"s3://athena-johndoe-test/test/"
     },
-    "query":"Select 10"
+    "queryString":"Select 10"
  },
  "responseElements":{
     "queryExecutionId":"b621c254-74e0-48e3-9630-78ed857782f9"
@@ -97,7 +97,7 @@ The following examples demonstrate CloudTrail log entries for:
  "errorMessage":"Invalid result configuration. Should specify either output location or result configuration",
  "requestParameters":{
   "clientRequestToken":"ca0e965f-d6d8-4277-8257-814a57f57446",
-  "query":"Select 10"
+  "queryString":"Select 10"
   },
  "responseElements":null,
  "requestID":"aefbc057-305f-11e7-9f39-bbc56d5d161e",

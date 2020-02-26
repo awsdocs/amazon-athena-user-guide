@@ -5,8 +5,8 @@ This tutorial walks you through using Amazon Athena to query data\. You'll creat
 The tutorial is using live resources, so you are charged for the queries that you run\. You aren't charged for the sample datasets that you use, but if you upload your own data files to Amazon S3, charges do apply\.
 
 ## Prerequisites<a name="prerequisites"></a>
-
-If you have not already done so, sign up for an account in [Setting Up](setting-up.md)\.
++ If you have not already done so, sign up for an account in [Setting Up](setting-up.md)\.
++ [Create a bucket in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) to hold your query results from Athena\.
 
 ## Step 1: Create a Database<a name="step-1-create-a-database"></a>
 
@@ -17,6 +17,14 @@ You first need to create a database in Athena\.
 1. Open the Athena console\.
 
 1. If this is your first time visiting the Athena console, you'll go to a Getting Started page\. Choose **Get Started** to open the Query Editor\. If it isn't your first time, the Athena Query Editor opens\.
+
+1. Choose the link to **set up a query result location in Amazon S3**\.  
+![\[Choose set up a query result location.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-set-up-query-location.png)
+
+1. In the **Settings** dialog box, enter the path to the bucket that you created in Amazon S3 for your query results\. Prefix the path with `s3://` and add a forward slash to the end of the path\.  
+![\[Specify a location in Amazon S3 to receive query results from Athena.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-setting-results-location.png)
+
+1. Click **Save**\.
 
 1. In the Athena Query Editor, you see a query pane with an example query\. Start typing your query anywhere in the query pane\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/example_query.png)

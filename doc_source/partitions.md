@@ -166,4 +166,6 @@ For example, to load the data in s3://athena\-examples\-*myregion*/elb/plaintext
 ALTER TABLE elb_logs_raw_native_part ADD PARTITION (year='2015',month='01',day='01') location 's3://athena-examples-us-west-1/elb/plaintext/2015/01/01/'
 ```
 
-You can also automate adding partitions by using the [JDBC driver](connect-with-jdbc.md)\.
+## Additional Resources<a name="partitions-additional-resources"></a>
++ You can use CTAS and INSERT INTO to partition a dataset\. For more information, see [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\.
++ You can automate adding partitions by using the [JDBC driver](connect-with-jdbc.md)\. 

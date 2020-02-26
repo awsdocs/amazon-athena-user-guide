@@ -1,6 +1,10 @@
 # INSERT INTO<a name="insert-into"></a>
 
-Inserts new rows into a destination table based on a `SELECT` query statement that runs on a source table, or based on a set of `VALUES` provided as part of the statement\. When the source table is based on underlying data in one format, such as CSV or JSON, and the destination table is based on another format, such as Parquet or ORC, you can use INSERT INTO queries to transform selected data into the destination table's format\.
+Inserts new rows into a destination table based on a `SELECT` query statement that runs on a source table, or based on a set of `VALUES` provided as part of the statement\. When the source table is based on underlying data in one format, such as CSV or JSON, and the destination table is based on another format, such as Parquet or ORC, you can use INSERT INTO queries to transform selected data into the destination table's format\. INSERT INTO automatically detects when a column in a destination table is partitioned and writes the data to Amazon S3 accordingly\. No special partitioning syntax is required\.
+
+**Note**  
+For information about using INSERT INTO to insert unpartitioned data into a partitioned table, see [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\. 
+For information about using INSERT INTO to insert partitioned data into a partitioned table, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
 
 ## Considerations and Limitations<a name="insert-into-limitations"></a>
 
@@ -30,6 +34,8 @@ You can run an `INSERT` query on tables created from data with the following for
 ### Partition Limits<a name="insert-into-partition-limits"></a>
 
 The `INSERT INTO` statement supports writing a maximum of 100 partitions to the destination table\. If you run the `SELECT` clause on a table with more than 100 partitions, the query fails unless the `SELECT` query is limited to 100 partitions or fewer\.
+
+For information about working around this limitation, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
 
 ### Files Written to Amazon S3<a name="insert-into-files-written-to-s3"></a>
 
@@ -72,7 +78,7 @@ WHERE date
         AND '2019-07-31';
 ```
 
-Select the values in the `city` and `state` columns in the `cities_usa` table only from those rows with a value of `usa` in the `country` column and insert them into the `city` and `state` columns in the `cities_world` table:
+Select the values in the `city` and `state` columns in the `cities_world` table only from those rows with a value of `usa` in the `country` column and insert them into the `city` and `state` columns in the `cities_usa` table:
 
 ```
 INSERT INTO cities_usa (city,state)
@@ -99,7 +105,7 @@ VALUES (col1value,col2value,...)[,
 
 #### Examples<a name="insert-into-values-examples"></a>
 
-In the following examples, the cities table has three columns: `id`, `city`, `state`, `state_motto`\. The id column is type `INT` and all other columns are type `VARCHAR`\.
+In the following examples, the cities table has three columns: `id`, `city`, `state`, `state_motto`\. The `id` column is type `INT` and all other columns are type `VARCHAR`\.
 
 Insert a single row into the `cities` table, with all column values specified:
 

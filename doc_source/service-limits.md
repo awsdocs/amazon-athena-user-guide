@@ -6,14 +6,14 @@ The Service Quotas console provides information about Amazon Athena quotas\. Alo
 ## Queries<a name="service-limits-queries"></a>
 
 Your account has the following default query\-related quotas for Amazon Athena: 
-+ **DDL query quota** – 20 DDL queries at the same time\. DDL queries include `CREATE TABLE` and `CREATE TABLE ADD PARTITION` queries\. 
++ **DDL query quota** – 20 DDL active queries\. DDL queries include `CREATE TABLE` and `CREATE TABLE ADD PARTITION` queries\. 
 + **DDL query timeout** – The DDL query timeout is 600 minutes\.
-+ **DML query quota** – 20 DML queries at the same time\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
++ **DML query quota** – 20 DML active queries\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
 + **DML query timeout** – The DML query timeout is 30 minutes\.
 
 These are soft quotas; you can use the [Athena Service Quotas](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) console to request a quota increase\.
 
-After you submit your queries to Athena, it processes the queries by assigning resources based on the overall service load and the amount of incoming requests\. 
+Athena processes queries by assigning resources based on the overall service load and the number of incoming requests\. 
 
 ### Query String Length<a name="service-limits-query-string-length"></a>
 
@@ -31,10 +31,10 @@ When you work with Athena workgroups, remember the following points:
 
 ## AWS Glue<a name="service-limits-glue"></a>
 + If you are using the AWS Glue Data Catalog with Athena, see [AWS Glue Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/glue.html) for service quotas on tables, databases, and partitions\. 
-+ If you are not using AWS Glue Data Catalog or are in a region where AWS Glue is not available, the number of partitions per table is 20,000\. You can [request a quota increase](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/glue/quotas)\.
++ If you are not using AWS Glue Data Catalog, the number of partitions per table is 20,000\. You can [request a quota increase](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/glue/quotas)\.
 
 **Note**  
-If you are using Athena in a region where AWS Glue is available but have not yet migrated to AWS Glue Data Catalog, see [Upgrading to the AWS Glue Data Catalog Step\-by\-Step](glue-upgrade.md) for migration instructions\.
+If you have not yet migrated to AWS Glue Data Catalog, see [Upgrading to the AWS Glue Data Catalog Step\-by\-Step](glue-upgrade.md) for migration instructions\.
 
 ## Amazon S3 Buckets<a name="service-limits-buckets"></a>
 

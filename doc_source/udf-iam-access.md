@@ -1,8 +1,8 @@
 # Example IAM Permissions Policies to Allow Amazon Athena User Defined Functions \(UDF\)<a name="udf-iam-access"></a>
 
 The permission policy examples in this topic demonstrate required allowed actions and the resources for which they are allowed\. Examine these policies carefully and modify them according to your requirements before you attach similar permissions policies to IAM identities\.
-+ [Example Policy to Allow an IAM Principal to Run and Return Queries that Contain an Athena UDF Statement](#udf-using-iam)
-+ [Example Policy to Allow an IAM Principal to Create an Athena UDF](#udf-creating-iam)
++  [Example Policy to Allow an IAM Principal to Run and Return Queries that Contain an Athena UDF Statement](#udf-using-iam) 
++  [Example Policy to Allow an IAM Principal to Create an Athena UDF](#udf-creating-iam) 
 
 **Example – Allow an IAM Principal to Run and Return Queries that Contain an Athena UDF Statement**  
 The following identity\-based permissions policy allows actions that a user or other IAM principal requires to run queries that use Athena UDF statements\.  
@@ -30,8 +30,7 @@ The following identity\-based permissions policy allows actions that a user or o
             ],
             "Resource": [
                 "arn:aws:athena:*:MyAWSAcctId:workgroup/AmazonAthenaPreviewFunctionality",
-                "arn:aws:s3:::MyQueryResultsBucket",
-                "arn:aws:s3:::MyLambdaSpillBucket/*",
+                "arn:aws:s3:::MyQueryResultsBucket/*",
                 "arn:aws:lambda:*:MyAWSAcctId:function:OneAthenaLambdaFunction",
                 "arn:aws:lambda:*:MyAWSAcctId:function:AnotherAthenaLambdaFunction"
             ]
@@ -41,12 +40,6 @@ The following identity\-based permissions policy allows actions that a user or o
             "Effect": "Allow",
             "Action": "athena:ListWorkGroups",
             "Resource": "*"
-        },
-        {
-            "Sid": "VisualEditor2",
-            "Effect": "Allow",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*"
         }
     ]
 }

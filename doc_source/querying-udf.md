@@ -101,9 +101,6 @@ If you are working on a development machine that already has Apache Maven, the A
 
 1. From the root of the `aws-athena-query-federation` directory that you created when you cloned, run the [prepare\_dev\_env\.sh](https://github.com/awslabs/aws-athena-query-federation/blob/master/tools/prepare_dev_env.sh) script that prepares your development environment\.
 
-   ```
-   ```
-
 1. Update your shell to source new variables created by the installation process or restart your terminal session\.
 
    ```
@@ -284,7 +281,7 @@ You have two options to deploy your code to Lambda:
 
 #### Option 1: Deploying to the AWS Serverless Application Repository<a name="udf-create-deploy-sar"></a>
 
-When you deploy your JAR file to the AWS Serverless Application Repository, you create an AWS SAM template YAML file that represents the architecture of your application\. You then specify this YAML file and an Amazon S3 bucket where artifacts for your application are uploaded and made available AWS Serverless Application Repository\. The procedure below uses the [publish\.sh](https://github.com/awslabs/aws-athena-query-federation/blob/master/tools/publish.sh) script located in the `athena-query-federation/tools` directory of the Athena Query Federation SDK that you cloned earlier\.
+When you deploy your JAR file to the AWS Serverless Application Repository, you create an AWS SAM template YAML file that represents the architecture of your application\. You then specify this YAML file and an Amazon S3 bucket where artifacts for your application are uploaded and made available to the AWS Serverless Application Repository\. The procedure below uses the [publish\.sh](https://github.com/awslabs/aws-athena-query-federation/blob/master/tools/publish.sh) script located in the `athena-query-federation/tools` directory of the Athena Query Federation SDK that you cloned earlier\.
 
 For more information and requirements, see [Publishing Applications](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-publishing-applications.html) in the *AWS Serverless Application Repository Developer Guide*, [AWS SAM Template Concepts](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-basics.html) in the *AWS Serverless Application Model Developer Guide*, and [Publishing Serverless Applications Using the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html)\.
 
@@ -349,7 +346,7 @@ For example, if your bucket location is `s3://mybucket/mysarapps/athenaudf` and 
 
 #### Option 2: Creating a Lambda Function Directly<a name="udf-create-deploy-lambda"></a>
 
-You can also create a Lambda function directly using the console or AWS CLI\. The following example demonstrates using the Lambda `create-function` CLI command\. Replace 
+You can also create a Lambda function directly using the console or AWS CLI\. The following example demonstrates using the Lambda `create-function` CLI command\. 
 
 ```
 aws lambda create-function \

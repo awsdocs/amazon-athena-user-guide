@@ -39,7 +39,7 @@ If the workgroup in which a query will run is configured with an [enforced query
 To obtain the results location specified for the workgroup, [view workgroup's details](workgroups-create-update-delete.md#viewing-details-workgroups)\.  
 `format = [format]`  
 The data format for the CTAS query results, such as `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE`\. For example, `WITH (format = 'PARQUET')`\. If omitted, `PARQUET` is used by default\. The name of this parameter, `format`, must be listed in lowercase, or your CTAS query will fail\.  
-`partitioned_by = ( [col_name,…])`  
+`partitioned_by = ARRAY( [col_name,…])`  
 Optional\. An array list of columns by which the CTAS table will be partitioned\. Verify that the names of partitioned columns are listed last in the list of columns in the `SELECT` statement\.   
 `bucketed_by( [bucket_name,…])`  
 An array list of buckets to bucket data\. If omitted, Athena does not bucket your data in this query\.  

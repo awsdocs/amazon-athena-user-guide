@@ -24,7 +24,7 @@ For a complete list of Amazon Athena actions, see the API action names in the [A
 + [Example Policy for Running and Stopping Queries in a Specific Workgroup](#example7-run-queries-access)
 + [Example Policy for Working with Named Queries in a Specific Workgroup](#example8-named-queries-access)
 
-**Example Example Policy for Full Access to All Workgroups**  <a name="example1-full-access-all-wkgs"></a>
+**Example Example Policy for Full Access to All Workgroups**  
 The following policy allows full access to all workgroup resources that might exist in the account\. We recommend that you use this policy for those users in your account that must administer and manage workgroups for all other users\.  
 
 ```
@@ -44,7 +44,7 @@ The following policy allows full access to all workgroup resources that might ex
 }
 ```
 
-**Example Example Policy for Full Access to a Specified Workgroup**  <a name="example2-full-access-this-wkg"></a>
+**Example Example Policy for Full Access to a Specified Workgroup**  
 The following policy allows full access to the single specific workgroup resource, named `workgroupA`\. You could use this policy for users with full control over a particular workgroup\.  
 
 ```
@@ -101,7 +101,7 @@ The following policy allows full access to the single specific workgroup resourc
 }
 ```
 
-**Example Example Policy for Running Queries in a Specified Workgroup**  <a name="example3-user-access"></a>
+**Example Example Policy for Running Queries in a Specified Workgroup**  
 In the following policy, a user is allowed to run queries in the specified `workgroupA`, and view them\. The user is not allowed to perform management tasks for the workgroup itself, such as updating or deleting it\.   
 
 ```
@@ -147,16 +147,16 @@ In the following policy, a user is allowed to run queries in the specified `work
 }
 ```
 
-**Example Example Policy for Running Queries in the Primary Workgroup**  <a name="example4-run-in-primary-access"></a>
+**Example Example Policy for Running Queries in the Primary Workgroup**  
 In the following example, we use the policy that allows a particular user to run queries in the primary workgroup\.   
 We recommend that you add this policy to all users who are otherwise configured to run queries in their designated workgroups\. Adding this policy to their workgroup user policies is useful in case their designated workgroup is deleted or is disabled\. In this case, they can continue running queries in the primary workgroup\.
-To allow users in your account to run queries in the primary workgroup, add the following policy to a resource section of the [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access)\.  
+To allow users in your account to run queries in the primary workgroup, add the following policy to a resource section of the [](#example3-user-access)\.  
 
 ```
 "arn:aws:athena:us-east-1:123456789012:workgroup/primary"
 ```
 
-**Example Example Policy for Management Operations on a Specified Workgroup**  <a name="example5-manage-wkgs-access"></a>
+**Example Example Policy for Management Operations on a Specified Workgroup**  
 In the following policy, a user is allowed to create, delete, obtain details, and update a workgroup `test_workgroup`\.   
 
 ```
@@ -174,7 +174,7 @@ In the following policy, a user is allowed to create, delete, obtain details, an
 }
 ```
 
-**Example Example Policy for Listing Workgroups**  <a name="example6-list-all-wkgs-access"></a>
+**Example Example Policy for Listing Workgroups**  
 The following policy allows all users to list all workgroups:  
 
 ```
@@ -187,7 +187,7 @@ The following policy allows all users to list all workgroups:
 }
 ```
 
-**Example Example Policy for Running and Stopping Queries in a Specific Workgroup**  <a name="example7-run-queries-access"></a>
+**Example Example Policy for Running and Stopping Queries in a Specific Workgroup**  
 In this policy, a user is allowed to run queries in the workgroup:  
 
 ```
@@ -203,7 +203,7 @@ In this policy, a user is allowed to run queries in the workgroup:
 }
 ```
 
-**Example Example Policy for Working with Named Queries in a Specific Workgroup**  <a name="example8-named-queries-access"></a>
+**Example Example Policy for Working with Named Queries in a Specific Workgroup**  
 In the following policy, a user has permissions to create, delete, and obtain information about named queries in the specified workgroup:  
 
 ```

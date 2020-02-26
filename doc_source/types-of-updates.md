@@ -69,7 +69,6 @@ CREATE EXTERNAL TABLE orders_json_column_addition (
    `o_orderpriority` string, 
    `o_clerk` string, 
    `o_shippriority` int, 
-   `o_comment` string
 ) 
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 LOCATION 's3://schema_updates/orders_json/';

@@ -1,8 +1,8 @@
 # Allow Access to an Athena Data Connector for External Hive Metastore \(Preview\)<a name="hive-metastore-iam-access"></a>
 
 The permission policy examples in this topic demonstrate required allowed actions and the resources for which they are allowed\. Examine these policies carefully and modify them according to your requirements before you attach similar permissions policies to IAM identities\.
-+ [Example Policy to Allow an IAM Principal to Query Data Using Athena Data Connector for External Hive Metastore (Preview)](#hive-using-iam)
-+ [Example Policy to Allow an IAM Principal to Create an Athena Data Connector for External Hive Metastore (Preview)](#hive-creating-iam)
++  [Example Policy to Allow an IAM Principal to Query Data Using Athena Data Connector for External Hive Metastore (Preview)](#hive-using-iam) 
++  [Example Policy to Allow an IAM Principal to Create an Athena Data Connector for External Hive Metastore (Preview)](#hive-creating-iam) 
 
 **Example – Allow an IAM Principal to Query Data Using Athena Data Connector for External Hive Metastore \(Preview\)**  
 The following policy is attached to IAM principals in addition to the [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md), which grants full access to Athena actions\.  
@@ -78,5 +78,5 @@ The following policy is attached to IAM principals in addition to the [AmazonAth
     ]
 }
 ```
-**Explanation of Permissions**  
+ **Explanation of Permissions**   
 Allows queries to invoke the AWS Lambda functions for the AWS Lambda functions specified in the `Resource` block\. For example, `arn:aws:lambda:*:MyAWSAcctId:function:MyAthenaLambdaFunction`, where *MyAthenaLambdaFunction* specifies the name of a Lambda function to be invoked\. Multiple functions can be specified as shown in the example\.

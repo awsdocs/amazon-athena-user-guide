@@ -11,4 +11,4 @@ The compression formats listed in this section are used for [CREATE TABLE](creat
 
   For data in CSV, TSV, and JSON, Athena determines the compression type from the file extension\. If it is not present, the data is not decompressed\. If your data is compressed, make sure the file name includes the compression extension, such as `gz`\. 
 
-  Use the GZIP compression in Athena for querying Amazon Kinesis Data Firehose logs\. Athena and Amazon Kinesis Data Firehose each support different versions of SNAPPY, so GZIP is the only compatible format\. 
+  For querying Amazon Kinesis Data Firehose logs from Athena, supported formats include GZIP compression or ORC files with SNAPPY compression\. 

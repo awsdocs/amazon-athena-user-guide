@@ -76,11 +76,11 @@ The following procedures describe how to grant each of these permissions\.
 **To grant access to the user in Account B from the AWS KMS key policy in Account A**
 
 1. In the AWS KMS key policy for Account A, grant the user in Account B permissions to the following actions:
-   + `kms:Encrypt`
-   + `kms:Decrypt`
-   + `kms:ReEncrypt*`
-   + `kms:GenerateDataKey*`
-   + `kms:DescribeKey`
+   +  `kms:Encrypt` 
+   +  `kms:Decrypt` 
+   +  `kms:ReEncrypt*` 
+   +  `kms:GenerateDataKey*` 
+   +  `kms:DescribeKey` 
 
    The following example grants key access to only one IAM user or role\.
 

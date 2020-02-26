@@ -2,7 +2,7 @@
 
 Published on *2019\-02\-22*
 
-Added tag support for workgroups in Amazon Athena\. A tag consists of a key and a value, both of which you define\. When you tag a workgroup, you assign custom metadata to it\. You can add tags to workgroups to help categorize them, using [AWS tagging best practices](https://aws.amazon.com/answers/account-management/aws-tagging-strategies/)\. You can use tags to restrict access to workgroups, and to track costs\. For example, create a workgroup for each cost center\. Then, by adding tags to these workgroups, you can track your Athena spending for each cost center\. For more information, see [Using Tags for Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+Added tag support for workgroups in Amazon Athena\. A tag consists of a key and a value, both of which you define\. When you tag a workgroup, you assign custom metadata to it\. You can add tags to workgroups to help categorize them, using [AWS tagging best practices](https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)\. You can use tags to restrict access to workgroups, and to track costs\. For example, create a workgroup for each cost center\. Then, by adding tags to these workgroups, you can track your Athena spending for each cost center\. For more information, see [Using Tags for Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
 You can work with tags by using the Athena console or the API operations\. For more information, see [Tagging Workgroups](tags.md)\. 
 

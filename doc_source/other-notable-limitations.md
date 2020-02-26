@@ -1,6 +1,6 @@
 # Considerations and Limitations for SQL Queries in Amazon Athena<a name="other-notable-limitations"></a>
 + Stored procedures are not supported\.
-+ The maximum number of partitions you can create with `CREATE TABLE AS SELECT` \(CTAS\) statements is 100\. For information, see [CREATE TABLE AS](create-table-as.md)\.
++ The maximum number of partitions you can create with `CREATE TABLE AS SELECT` \(CTAS\) statements is 100\. For information, see [CREATE TABLE AS](create-table-as.md)\. For a workaround, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
 + `PREPARED` statements are not supported\. You cannot run `EXECUTE` with `USING`\.
 + `CREATE TABLE LIKE` is not supported\.
 + `DESCRIBE INPUT` and `DESCRIBE OUTPUT` is not supported\.

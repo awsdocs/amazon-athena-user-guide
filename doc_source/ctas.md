@@ -12,3 +12,5 @@ Use CTAS queries to:
 + [Running CTAS Queries in the Console](ctas-console.md)
 + [Bucketing vs Partitioning](bucketing-vs-partitioning.md)
 + [Examples of CTAS Queries](ctas-examples.md)
++ [Using CTAS and INSERT INTO for ETL](ctas-insert-into-etl.md)
++ [Creating a Table with More Than 100 Partitions](ctas-insert-into.md)

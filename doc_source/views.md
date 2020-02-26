@@ -62,7 +62,10 @@ The following considerations apply to creating and using views in Athena:
   ```
 + If you have created Athena views in the Data Catalog, then Data Catalog treats views as tables\. You can use table level fine\-grained access control in Data Catalog to [restrict access](fine-grained-access-to-glue-resources.md) to these views\. 
 +  Athena prevents you from running recursive views and displays an error message in such cases\. A recursive view is a view query that references itself\.
-+ Athena detects stale views and displays an error message in such cases\. A stale view is a view query that references tables or databases that do not exist\.
++ Athena displays an error message when it detects stale views\. A stale view is reported when one of the following occurs:
+  + The view references tables or databases that do not exist\.
+  + A schema or metadata change is made in a referenced table\. 
+  + A referenced table is dropped and recreated with a different schema or configuration\.
 + You can create and run nested views as long as the query behind the nested view is valid and the tables and databases exist\.
 
 ## Limitations for Views<a name="limitations-views"></a>

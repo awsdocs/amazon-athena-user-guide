@@ -1,13 +1,13 @@
 # FAQ: Upgrading to the AWS Glue Data Catalog<a name="glue-faq"></a>
 
-If you created databases and tables using Athena in a region before AWS Glue was available in that region, metadata is stored in an Athena\-managed data catalog, which only Athena and Amazon Redshift Spectrum can access\. To use AWS Glue features together with Athena and Redshift Spectrum, you must upgrade to the AWS Glue Data Catalog\. Athena can only be used together with the AWS Glue Data Catalog in regions where AWS Glue is available\. For a list of regions, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#glue_region) in the *AWS General Reference*\.
+If you created databases and tables using Athena in a region before AWS Glue was available in that region, metadata is stored in an Athena\-managed data catalog, which only Athena and Amazon Redshift Spectrum can access\. To use AWS Glue with Athena and Redshift Spectrum, you must upgrade to the AWS Glue Data Catalog\.
 
 ## Why should I upgrade to the AWS Glue Data Catalog?<a name="faq-benefits"></a>
 
 AWS Glue is a completely\-managed extract, transform, and load \(ETL\) service\. It has three main components:
 +  **An AWS Glue crawler** can automatically scan your data sources, identify data formats, and infer schema\.
 +  **A fully managed ETL service** allows you to transform and move data to various destinations\.
-+  **The AWS Glue Data Catalog** stores metadata information about databases and tables, pointing to a data store in Amazon S3 or a JDBC\-compliant data store\.
++  **The AWS Glue Data Catalog** stores metadata information about databases and tables and points to a data store in Amazon S3 or a JDBC\-compliant data store\.
 
 For more information, see [AWS Glue Concepts](https://docs.aws.amazon.com/glue/latest/dg/components-key-concepts.html)\.
 
@@ -54,11 +54,11 @@ The Athena managed policy has been automatically updated with new policy actions
 
 ### What happens if I don’t upgrade?<a name="faq-upgrade-delayed"></a>
 
-If you don’t upgrade, you are not able to use AWS Glue features together with the databases and tables you create in Athena or vice versa\. You can use these services independently\. During this time, Athena and AWS Glue both prevent you from creating databases and tables that have the same names in the other data catalog\. This prevents name collisions when you do upgrade\.
+If you don’t upgrade, you are not able to use AWS Glue features together with the databases and tables that you create in Athena or vice versa\. You can use these services independently\. During this time, Athena and AWS Glue both prevent you from creating databases or tables that have the same names in the other data catalog\. This prevents name collisions when you do upgrade\.
 
 ### Why do I need to add AWS Glue policies to Athena users?<a name="faq-upgrade-custom-policy"></a>
 
-Before you upgrade, Athena manages the data catalog, so Athena actions must be allowed for your users to perform queries\. After you upgrade to the AWS Glue Data Catalog, Athena actions no longer apply to accessing the AWS Glue Data Catalog, so AWS Glue actions must be allowed for your users\. Remember, the managed policy for Athena has already been updated to allow the required AWS Glue actions, so no action is required if you use the managed policy\.
+Before you upgrade, Athena manages the data catalog, so Athena actions must be allowed for your users to perform queries\. After you upgrade to the AWS Glue Data Catalog, AWS Glue actions must be allowed for your users\. Remember, the managed policy for Athena has already been updated to allow the required AWS Glue actions, so no action is required if you use the managed policy\.
 
 ### What happens if I don’t allow AWS Glue policies for Athena users?<a name="faq-upgrade-no-perms"></a>
 

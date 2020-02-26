@@ -1,10 +1,14 @@
 # Upgrading to the AWS Glue Data Catalog Step\-by\-Step<a name="glue-upgrade"></a>
 
-Amazon Athena manages its own data catalog until the time that AWS Glue releases in the Athena region\. At that time, if you previously created databases and tables using Athena or Amazon Redshift Spectrum, you can choose to upgrade Athena to the AWS Glue Data Catalog\. If you are new to Athena, you don't need to make any changes; databases and tables are available to Athena using the AWS Glue Data Catalog and vice versa\. For more information about the benefits of using the AWS Glue Data Catalog, see [FAQ: Upgrading to the AWS Glue Data Catalog](glue-faq.md)\. For a list of regions where AWS Glue is available, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#glue_region) in the *AWS General Reference*\.
+Currently, all regions that support Athena also support AWS Glue Data Catalog\. Databases and tables are available to Athena using the AWS Glue Data Catalog and vice versa\. 
 
-Until you upgrade, the Athena\-managed data catalog continues to store your table and database metadata, and you see the option to upgrade at the top of the console\. The metadata in the Athena\-managed catalog isn't available in the AWS Glue Data Catalog or vice versa\. While the catalogs exist side\-by\-side, you aren't able to create tables or databases with the same names, and the creation process in either AWS Glue or Athena fails in this case\.
+If you created databases and tables using Athena or Amazon Redshift Spectrum prior to a region's support for AWS Glue, you can upgrade Athena to use the AWS Glue Data Catalog\. 
 
-We created a wizard in the Athena console to walk you through the steps of upgrading to the AWS Glue console\. The upgrade takes just a few minutes, and you can pick up where you left off\. For more information about each upgrade step, see the topics in this section\. For more information about working with data and tables in the AWS Glue Data Catalog, see the guidelines in [Best Practices When Using Athena with AWS Glue](glue-best-practices.md)\.
+If you are using the older Athena\-managed data catalog, you see the option to upgrade at the top of the console\. The metadata in the Athena\-managed catalog isn't available in the AWS Glue Data Catalog or vice versa\. While the catalogs exist side\-by\-side, creating tables or databases with the same names fails in either AWS Glue or Athena\. This prevents name collisions when you do upgrade\. For more information about the benefits of using the AWS Glue Data Catalog, see [FAQ: Upgrading to the AWS Glue Data Catalog](glue-faq.md)\.
+
+A wizard in the Athena console can walk you through upgrading to the AWS Glue console\. The upgrade takes just a few minutes, and you can pick up where you left off\. For information about each upgrade step, see the topics in this section\. 
+
+For information about working with data and tables in the AWS Glue Data Catalog, see the guidelines in [Best Practices When Using Athena with AWS Glue](glue-best-practices.md)\.
 
 ## Step 1 \- Allow a User to Perform the Upgrade<a name="upgrade-step1"></a>
 
@@ -31,7 +35,7 @@ The following is an example policy statement\.
 
 ## Step 2 \- Update Customer\-Managed/Inline Policies Associated with Athena Users<a name="upgrade-step2"></a>
 
-If you have customer\-managed or inline IAM policies associated with Athena users, you need to update the policy or policies to allow actions that AWS Glue requires\. If you use the managed policy, they are automatically updated\. The AWS Glue policy actions to allow are listed in the example policy below\. For the full policy statement, see [IAM Policies for User Access](managed-policies.md)\.
+If you have customer\-managed or inline IAM policies associated with Athena users, you need to update the policy or policies to allow actions that AWS Glue requires\. If you use the Athena managed policy, no action is required\. The AWS Glue policy actions to allow are listed in the example policy below\. For the full policy statement, see [IAM Policies for User Access](managed-policies.md)\.
 
 ```
 {
