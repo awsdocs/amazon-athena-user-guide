@@ -130,7 +130,7 @@ CREATE EXTERNAL TABLE flight_delays_pq (
 PARTITIONED BY (year STRING)
 STORED AS PARQUET
 LOCATION 's3://athena-examples-myregion/flight/parquet/'
-tblproperties ("parquet.compress"="SNAPPY");
+tblproperties ("parquet.compression"="SNAPPY");
 ```
 
 Run the `MSCK REPAIR TABLE` statement on the table to refresh partition metadata:
