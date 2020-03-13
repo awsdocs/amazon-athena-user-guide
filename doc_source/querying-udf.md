@@ -72,7 +72,7 @@ The query result returns `StringToBeCompressed`\.
 
 ## Creating and Deploying a UDF Using Lambda<a name="udf-creating-and-deploying"></a>
 
-To create a custom UDF, you create a new Java class by extending the `UserDefinedFunctionHandler` class\. The source code for the [UserDefinedFunctionHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-federation-sdk/src/main/java/com/amazonaws/athena/connector/lambda/handlers/UserDefinedFunctionHandler.java) in the SDK is available on GitHub in the awslabs/aws\-athena\-query\-federation/athena\-federation\-sdk [repository](https://github.com/awslabs/aws-athena-query-federation/athena-federation-sdk), along with [example UDF implementations](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-udfs) that you can examine and modify to create a custom UDF\.
+To create a custom UDF, you create a new Java class by extending the `UserDefinedFunctionHandler` class\. The source code for the [UserDefinedFunctionHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-federation-sdk/src/main/java/com/amazonaws/athena/connector/lambda/handlers/UserDefinedFunctionHandler.java) in the SDK is available on GitHub in the awslabs/aws\-athena\-query\-federation/athena\-federation\-sdk [repository](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-federation-sdk), along with [example UDF implementations](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-udfs) that you can examine and modify to create a custom UDF\.
 
 The steps in this section demonstrate writing and building a custom UDF Jar file using [Apache Maven](https://maven.apache.org/index.html) from the command line and a deploy\.
 

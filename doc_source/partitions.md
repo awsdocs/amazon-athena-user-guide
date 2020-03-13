@@ -7,15 +7,34 @@ If you issue queries against Amazon S3 buckets with a large number of objects an
 **Note**  
 If you query a partitioned table and specify the partition in the `WHERE` clause, Athena scans the data only from that partition\. For more information, see [Table Location and Partitions](tables-location-format.md#table-location-and-partitions)\.
 
-To create a table with partitions, you must define it during the `CREATE TABLE` statement\. Use `PARTITIONED BY` to define the keys by which to partition data\. There are two scenarios discussed in the following sections:
+## Creating and Loading a Table with Partitioned Data<a name="partitions-creating-loading"></a>
+
+To create a table that uses partitions, you must define it during the `[CREATE TABLE](create-table.md)` statement\. Use `PARTITIONED BY` to define the keys by which to partition data, as in the following example\. `LOCATION` specifies the root location of the partitioned data\.
+
+```
+CREATE EXTERNAL TABLE users (
+first string,
+last string,
+username string
+)
+PARTITIONED BY (id string)
+STORED AS parquet
+LOCATION 's3://bucket/folder/'
+```
+
+After you create the table, you load the data in the partitions for querying\. For Hive\-compatible data, you run [MSCK REPAIR TABLE](msck-repair-table.md)\. For non\-Hive compatible data, you use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to add the partitions manually\.
+
+## Preparing Partitioned and Nonpartitioned Data for Querying<a name="partitions-preparing-data"></a>
+
+The following sections discuss two scenarios:
 
 1. Data is already partitioned, stored on Amazon S3, and you need to access the data on Athena\.
 
 1. Data is not partitioned\.
 
-## Scenario 1: Data already partitioned and stored on S3 in hive format<a name="scenario-1-data-already-partitioned-and-stored-on-s3-in-hive-format"></a>
+### Scenario 1: Data already partitioned and stored on S3 in Hive format<a name="scenario-1-data-already-partitioned-and-stored-on-s3-in-hive-format"></a>
 
-### Storing Partitioned Data<a name="storing-partitioned-data"></a>
+#### Storing Partitioned Data<a name="storing-partitioned-data"></a>
 
 Partitions are stored in separate folders in Amazon S3\. For example, here is the partial listing for sample ad impressions:
 
@@ -38,7 +57,7 @@ aws s3 ls s3://elasticmapreduce/samples/hive-ads/tables/impressions/
 
 Here, logs are stored with the column name \(dt\) set equal to date, hour, and minute increments\. When you give a DDL with the location of the parent folder, the schema, and the name of the partitioned column, Athena can query data in those subfolders\.
 
-### Creating a Table<a name="creating-a-table"></a>
+#### Creating a Table<a name="creating-a-table"></a>
 
 To make a table out of this data, create a partition along 'dt' as in the following Athena DDL statement:
 
@@ -75,7 +94,7 @@ MSCK REPAIR TABLE impressions
 
 Athena loads the data in the partitions\.
 
-### Query the Data<a name="query-the-data"></a>
+#### Query the Data<a name="query-the-data"></a>
 
 Now, query the data from the impressions table using the partition column\. Here's an example:
 
@@ -98,7 +117,7 @@ This query should show you data similar to the following:
 2009-04-12-13-20    b31tJiIA25CK8eDHQrHnbcknfSndUk
 ```
 
-## Scenario 2: Data is not partitioned<a name="scenario-2-data-is-not-partitioned"></a>
+### Scenario 2: Data is not partitioned<a name="scenario-2-data-is-not-partitioned"></a>
 
 A layout like the following does not, however, work for automatically adding partition data with MSCK REPAIR TABLE:
 
@@ -166,6 +185,6 @@ For example, to load the data in s3://athena\-examples\-*myregion*/elb/plaintext
 ALTER TABLE elb_logs_raw_native_part ADD PARTITION (year='2015',month='01',day='01') location 's3://athena-examples-us-west-1/elb/plaintext/2015/01/01/'
 ```
 
-## Additional Resources<a name="partitions-additional-resources"></a>
+### Additional Resources<a name="partitions-additional-resources"></a>
 + You can use CTAS and INSERT INTO to partition a dataset\. For more information, see [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\.
 + You can automate adding partitions by using the [JDBC driver](connect-with-jdbc.md)\. 

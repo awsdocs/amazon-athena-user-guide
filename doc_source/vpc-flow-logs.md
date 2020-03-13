@@ -14,7 +14,7 @@ The following section creates an Amazon VPC table for VPC flow logs that use the
 
 ### To create the Amazon VPC table<a name="to-create-the-vpc-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\. This query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\. In addition, in this query, fields are terminated by a space\. For a VPC flow log with a custom format, modify the fields to match the fields that you specified when you created the flow log\.
+1. Copy and paste the following DDL statement into the Athena console\. This query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\. In addition, in this query, fields are terminated by a space\. Some fields can have a flow log destination of either CloudWatch Logs or Amazon S3\. Other fields apply only to Amazon S3\. For more information, see [Available Fields](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs-fields) in the [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)\. For a VPC flow log with a custom format, modify the fields to match the fields that you specified when you created the flow log\.
 
 1. Modify the `LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}/'` to point to the Amazon S3 bucket that contains your log data\.
 
@@ -33,7 +33,14 @@ The following section creates an Amazon VPC table for VPC flow logs that use the
      starttime int,
      endtime int,
      action string,
-     logstatus string
+     logstatus string,
+     vpcid string,
+     subnetid string,
+     instanceid string,
+     tcpflags int,
+     traffictype string,
+     packetsourceaddress string,
+     packetdestinationaddress string
    )  
    PARTITIONED BY (dt string)
    ROW FORMAT DELIMITED

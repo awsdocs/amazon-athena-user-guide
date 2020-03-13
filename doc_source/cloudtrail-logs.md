@@ -67,7 +67,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
 
 1. Copy and paste the following DDL statement into the Athena console\.
 
-1. Modify the `s3://CloudTrail_bucket_name/AWSLogs/Account_ID/` to point to the Amazon S3 bucket that contains your logs data\.
+1. Modify `s3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/` to point to the Amazon S3 bucket that contains your log data\.
 
 1. Verify that fields are listed correctly\. For more information about the full list of fields in a CloudTrail record, see [CloudTrail Record Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
 
@@ -123,10 +123,21 @@ You can manually create tables for CloudTrail log files in the Athena console, a
    ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
    STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-   LOCATION 's3://CloudTrail_bucket_name/AWSLogs/Account_ID/';
+   LOCATION 's3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/';
    ```
 
-1. Run the query in the Athena console\. After the query completes, Athena registers `cloudtrail_logs`, making the data in it ready for you to issue queries\.
+1. Run the query in the Athena console\.
+
+1. Use the [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) command to load the partitions so that you can query them, as in the following example\.
+
+   ```
+   ALTER TABLE table_name ADD 
+      PARTITION (region='us-east-1',
+                 year='2019',
+                 month='02',
+                 day='01')
+      LOCATION 's3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/us-east-1/2019/02/01/'
+   ```
 
 ## Example Query for CloudTrail Logs<a name="query-examples-cloudtrail-logs"></a>
 

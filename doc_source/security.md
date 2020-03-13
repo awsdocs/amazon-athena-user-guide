@@ -12,7 +12,7 @@ This documentation will help you understand how to apply the shared responsibili
 + [Data Protection in Athena](data-protection.md)
 + [Identity and Access Management in Athena](identity-and-access-management-in-athena.md)
 + [Logging and Monitoring in Athena](incident-response.md)
-+ [Compliance Validation for Amazon Athena](SERVICENAME-compliance.md)
++ [Compliance Validation for Amazon Athena](athena-compliance.md)
 + [Resilience in Athena](disaster-recovery-resiliency.md)
 + [Infrastructure Security in Athena](infrastructure-security.md)
 + [Configuration and Vulnerability Analysis in Athena](vulnerability-analysis-and-management.md)

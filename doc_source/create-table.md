@@ -56,7 +56,7 @@ Creates the `comment` table property and populates it with the `table_comment` y
 
 **\[PARTITIONED BY \(col\_name data\_type \[ COMMENT col\_comment \], \.\.\. \) \]**  
 Creates a partitioned table with one or more partition columns that have the `col_name`, `data_type` and `col_comment` specified\. A table can have one or more partitions, which consist of a distinct column name and value combination\. A separate data directory is created for each specified combination, which can improve query performance in some circumstances\. Partitioned columns don't exist within the table data itself\. If you use a value for `col_name` that is the same as a table column, you get an error\. For more information, see [Partitioning Data](partitions.md)\.  
-After you create a table with partitions, run a subsequent query that consists of the [MSCK REPAIR TABLE](msck-repair-table.md) clause to refresh partition metadata, for example, `MSCK REPAIR TABLE cloudfront_logs;`\.
+After you create a table with partitions, run a subsequent query that consists of the [MSCK REPAIR TABLE](msck-repair-table.md) clause to refresh partition metadata, for example, `MSCK REPAIR TABLE cloudfront_logs;`\. For partitions that are not Hive compatible, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to load the partitions so that you can query the data\.
 
 **\[ROW FORMAT row\_format\]**  
 Specifies the row format of the table and its underlying source data if applicable\. For `row_format`, you can specify one or more delimiters with the `DELIMITED` clause or, alternatively, use the `SERDE` clause as described below\. If `ROW FORMAT` is omitted or `ROW FORMAT DELIMITED` is specified, a native SerDe is used\.  
@@ -83,7 +83,7 @@ Specifies the file format for table data\. If omitted, `TEXTFILE` is the default
 + INPUTFORMAT input\_format\_classname OUTPUTFORMAT output\_format\_classname
 
 **\[LOCATION 'S3\_loc'\]**  
-Specifies the location of the underlying data in Amazon S3 from which the table is created, for example, `'s3://mystorage/'`\. For more information about considerations such as data format and permissions, see [Requirements for Tables in Athena and Data in Amazon S3](creating-tables.md#s3-considerations)\.  
+Specifies the location of the underlying data in Amazon S3 from which the table is created, for example, `'s3://mystorage/'`\. For more information about considerations such as data format and permissions, see [Requirements for Tables in Athena and Data in Amazon S3](creating-tables.md#s3-considerations)\. If you are using partitions, specify the root of the partitioned data\.  
 Use a trailing slash for your folder or bucket\. Do not use file names or glob characters\.  
  **Use:** `s3://mybucket/key/`   
  **Don't use:** `s3://path_to_bucket` `s3://path_to_bucket/*` `s3://path_to-bucket/mydatafile.dat` 

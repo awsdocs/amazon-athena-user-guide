@@ -69,7 +69,7 @@ This procedure establishes trust between your organization's IdP and your AWS ac
 
 1. In your organization's IdP \(ADFS\), define assertions that map users or groups in your organization to the IAM roles\. The mapping of users and groups to the IAM roles is also known as a *claim rule*\. Note that different users and groups in your organization might map to different IAM roles\. 
 
-   For information about configuring the mapping in ADFS, see the blog post: [Enabling Federation to AWS Using Windows Active Directory, ADFS, and SAML 2\.0](aws.amazon.com/blogssecurity/enabling-federation-to-aws-using-windows-active-directory-adfs-and-saml-2-0/)\.
+   For information about configuring the mapping in ADFS, see the blog post: [Enabling Federation to AWS Using Windows Active Directory, ADFS, and SAML 2\.0](http://aws.amazon.com/blogs/security/enabling-federation-to-aws-using-windows-active-directory-adfs-and-saml-2-0/)\.
 
 1. Install and configure the JDBC or ODBC driver with SAML 2\.0 support\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 

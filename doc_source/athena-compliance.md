@@ -1,4 +1,4 @@
-# Compliance Validation for Amazon Athena<a name="SERVICENAME-compliance"></a>
+# Compliance Validation for Amazon Athena<a name="athena-compliance"></a>
 
 Third\-party auditors assess the security and compliance of Amazon Athena as part of multiple AWS compliance programs\. These include SOC, PCI, FedRAMP, and others\.
 

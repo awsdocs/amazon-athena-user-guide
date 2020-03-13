@@ -156,16 +156,32 @@ When using the AWS CLI, specify the query result location using the `OutputLocat
 
 ## Viewing Query History<a name="queries-viewing-history"></a>
 
-Athena keeps a query history for 45 days\. To keep query history for longer, you can retrieve the query history and save it to a data store such as an Amazon S3 using the following Athena API actions\. You can automate this process by programming or scripting the operations, or you can run them on demand using the AWS CLI\. You can use query history in the Athena console to view errors for queries that failed, or to download query result files for successful queries\.
+You can use the Athena console to see the queries that succeeded and failed, download query result files for the queries that succeeded, and view error details for the queries that failed\. Athena keeps a query history for 45 days\. 
 
-1. Retrieve the query IDs with [ListQueryExecutions](https://docs.aws.amazon.com/athena/latest/APIReference/API_ListQueryExecutions.html)\.
+**To view query history in the Athena console**
 
-1. Retrieve information about each query based on its ID with [GetQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html)\.
+1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Save the obtained information in a data store, such as Amazon S3, using the [put\-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-object.html) action from the Amazon S3 API\.
+1. Choose the **History** tab\. The **History** tab shows information about each query that ran\.  
+![\[Viewing the query history in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history.png)
 
-### Viewing Query History<a name="id1"></a>
+1. Do one of the following:
+   + To see a query statement in the Query Editor, choose the text of the query in the **Query** column\. Longer query statements are abbreviated\.  
+![\[Choose the text of a query to see it in the Query Editor.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-view-query-statement.png)
+   + To see a query ID, chose its **State** \(**Succeeded**, **Failed**, or **Cancelled**\)\. The query ID shows in a pointer tip\.  
+![\[Viewing a query ID on the History tab of the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-viewing-query-id.png)
+   + To download the results of a successful query into a `.csv` file, choose **Download results**\.  
+![\[Downloading query results from the History tab of the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-download-results.png)
+   + To see the details for a query that failed, choose **Error details** for the query\.  
+![\[Choose Error details to view the details of a failed query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-choose-error-details.png)  
+![\[Viewing the error details of a query that failed.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-error-details.png)
 
-1. To use the Athena console to view query history, choose **History** and select a query\. You can also see which queries succeeded and failed, download their results, and view query IDs, by clicking the status value\.
+If you want to keep the query history longer than 45 days, you can retrieve the query history and save it to a data store such as Amazon S3\. To automate this process, you can use Athena and Amazon S3 API actions and CLI commands\. The following procedure summarizes these steps\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/query_history.png)
+**To retrieve and save query history programmatically**
+
+1. Use Athena [ListQueryExecutions](https://docs.aws.amazon.com/athena/latest/APIReference/API_ListQueryExecutions.html) API action or the [list\-query\-executions](https://docs.aws.amazon.com/cli/latest/reference/athena/list-query-executions.html) CLI command to retrieve the query IDs\.
+
+1. Use the Athena [GetQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html) API action or the [get\-query\-execution](https://docs.aws.amazon.com/cli/latest/reference/athena/get-query-execution.html) CLI command to retrieve information about each query based on its ID\.
+
+1. Use the Amazon S3 [PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html) API action or the [put\-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-object.html) CLI command to save the information in Amazon S3\.

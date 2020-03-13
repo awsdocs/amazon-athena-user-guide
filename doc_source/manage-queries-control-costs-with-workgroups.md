@@ -9,4 +9,4 @@ Workgroups integrate with IAM, CloudWatch, and Amazon Simple Notification Servic
 
 **Topics**
 + [Using Workgroups for Running Queries](workgroups.md)
-+ [Controlling Costs and Monitoring Queries with CloudWatch Metrics](control-limits.md)
++ [Controlling Costs and Monitoring Queries with CloudWatch Metrics and Events](control-limits.md)

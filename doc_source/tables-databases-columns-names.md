@@ -17,19 +17,17 @@ Athena table, view, database, and column names cannot contain special characters
 Use backtics to enclose table, view, or column names that begin with an underscore\. For example:
 
 ```
-CREATE TABLE `_myunderscoretable` (
-`_id` string,
-`_index`string,
-...
+CREATE EXTERNAL TABLE IF NOT EXISTS `_myunderscoretable`(
+  `_id` string, `_index` string)
+LOCATION 's3://my-athena-data/'
 ```
 
-## Table or view names that include numbers<a name="table-names-that-include-numbers"></a>
+## Table or view names that begin with numbers<a name="table-names-that-include-numbers"></a>
 
-Enclose table names that include numbers in quotation marks\. For example:
+Enclose table or view names that begin with numbers in quotation marks\. For example:
 
 ```
-CREATE TABLE "table123"
-`_id` string,
-`_index` string,
-...
+CREATE OR REPLACE VIEW "123view" AS
+SELECT column_name1, column_name2
+FROM "234table"
 ```

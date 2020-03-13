@@ -21,6 +21,8 @@ ALTER TABLE table_name ADD [IF NOT EXISTS]
 
 ## Parameters<a name="parameters"></a>
 
+When you add a partition, you specify one or more column name/value pairs for the partition and the Amazon S3 path where the data files for that partition reside\.
+
 **\[IF NOT EXISTS\]**  
 Causes the error to be suppressed if a partition with the same definition already exists\.
 

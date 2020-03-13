@@ -3,6 +3,8 @@
 Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 **Topics**
++ [March 11, 2020](release-note-2020-03-11.md)
++ [March 6, 2020](release-note-2020-03-06.md)
 + [November 26, 2019](release-note-2019-11-26.md)
 + [November 12, 2019](release-note-2019-11-12.md)
 + [November 8, 2019](release-note-2019-11-08.md)

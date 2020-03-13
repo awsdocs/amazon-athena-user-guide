@@ -1,6 +1,6 @@
 # INSERT INTO<a name="insert-into"></a>
 
-Inserts new rows into a destination table based on a `SELECT` query statement that runs on a source table, or based on a set of `VALUES` provided as part of the statement\. When the source table is based on underlying data in one format, such as CSV or JSON, and the destination table is based on another format, such as Parquet or ORC, you can use INSERT INTO queries to transform selected data into the destination table's format\. INSERT INTO automatically detects when a column in a destination table is partitioned and writes the data to Amazon S3 accordingly\. No special partitioning syntax is required\.
+Inserts new rows into a destination table based on a `SELECT` query statement that runs on a source table, or based on a set of `VALUES` provided as part of the statement\. When the source table is based on underlying data in one format, such as CSV or JSON, and the destination table is based on another format, such as Parquet or ORC, you can use INSERT INTO queries to transform selected data into the destination table's format\. 
 
 **Note**  
 For information about using INSERT INTO to insert unpartitioned data into a partitioned table, see [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\. 
@@ -39,7 +39,11 @@ For information about working around this limitation, see [Using CTAS and INSERT
 
 ### Files Written to Amazon S3<a name="insert-into-files-written-to-s3"></a>
 
-Athena writes files to source data locations in Amazon S3 as a result of the `INSERT` command\. Each `INSERT` operation creates a new file, rather than appending to an existing file\. The file locations depend on the structure of the table and the `SELECT` query, if present\. Athena generates a data manifest file for each `INSERT` query\. The manifest tracks the files that the query wrote\. It is saved to the Athena query result location in Amazon S3\. If a query fails, the manifest also tracks files that the query intended to write\. The manifest is useful for identifying orphaned files resulting from a failed query\. For more information, see [Working with Query Results, Output Files, and Query History](querying.md)\.
+Athena writes files to source data locations in Amazon S3 as a result of the `INSERT` command\. Each `INSERT` operation creates a new file, rather than appending to an existing file\. The file locations depend on the structure of the table and the `SELECT` query, if present\. Athena generates a data manifest file for each `INSERT` query\. The manifest tracks the files that the query wrote\. It is saved to the Athena query result location in Amazon S3\. For more information, see [Identifying Query Output Files](querying.md#querying-identifying-output-files)\.
+
+### Locating Orphaned Files<a name="insert-into-files-partial-data"></a>
+
+If a `CTAS` or `INSERT INTO` statement fails, it is possible that orphaned data are left in the data location\. Because Athena does not delete any data \(even partial data\) from your bucket, you might be able to read this partial data in subsequent queries\. To locate orphaned files for inspection or deletion, you can use the data manifest file that Athena provides to track the list of files to be written\. For more information, see [Identifying Query Output Files](querying.md#querying-identifying-output-files) and [DataManifestLocation](https://docs.aws.amazon.com/athena/latest/APIReference/API_QueryExecutionStatistics.html#athena-Type-QueryExecutionStatistics-DataManifestLocation)\.
 
 ## <a name="insert-into-select"></a>
 

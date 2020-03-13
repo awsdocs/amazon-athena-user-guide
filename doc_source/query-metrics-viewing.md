@@ -69,5 +69,5 @@ If you've enabled CloudWatch metrics in Athena, it sends the following metrics t
 | QueryState |  The query state\. Valid statistics: Succeeded, Failed, Canceled  | 
 | QueryType |  The query type\. Valid statistics: DDL or DML\.  | 
 | ServiceProcessingTime | Number of milliseconds that Athena took to process the query results after the query engine finished query execution\. | 
-| TotalExecutionTime | The number of milliseconds that Athena took to run the query\. | 
+| TotalExecutionTime | The number of milliseconds that Athena took to run the query\. TotalExecutionTime includes QueryQueueTime, QueryPlanningTime, EngineExecutionTime, and ServiceProcessingTime\. | 
 | WorkGroup |  The name of the workgroup\.  | 

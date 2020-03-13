@@ -74,12 +74,6 @@ Syntax:
 SELECT ST_POINT(longitude, latitude) FROM earthquakes LIMIT 1;
 ```
 
-In the alternative syntax, you can also specify the coordinates as a `point` data type with two values:
-
-```
-SELECT ST_POINT('point (-74.006801 40.705220)');
-```
-
 Example\. This example uses specific longitude and latitude coordinates from `earthquakes.csv`:
 
 ```
@@ -378,7 +372,7 @@ SELECT ST_DISTANCE(ST_POINT(0.0,0.0), ST_POINT(3.0,4.0))
 
 ### `ST_IS_CLOSED (geometry)`<a name="st-is-closed-geometry"></a>
 
-Returns `TRUE` \(type `boolean`\) if and only if the line is closed\. Example:
+Takes as an input only `line` and `multiline` [geometry data types](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types)\. Returns `TRUE` \(type `boolean`\) if and only if the line is closed\. Example:
 
 ```
 SELECT ST_IS_CLOSED(ST_LINE('linestring(0 2, 2 2)'))

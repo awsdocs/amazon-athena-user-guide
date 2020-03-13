@@ -49,3 +49,29 @@ This query returns:
 | [1, 2, 3, 4] |
 +--------------+
 ```
+
+## The `filter` Function<a name="filtering-arrays-filter-function"></a>
+
+```
+ filter(ARRAY [list_of_values], boolean_function)
+```
+
+The `filter` function creates an array from the items in the *list\_of\_values* for which *boolean\_function* is true\. The `filter` function can be useful in cases in which you cannot use the *UNNEST* function\.
+
+The following example creates an array from the values greater than zero in the array `[1,0,5,-1]`\.
+
+```
+SELECT filter(ARRAY [1,0,5,-1], x -> x>0)
+```
+
+**Results**  
+`[1,5]`
+
+The following example creates an array that consists of the non\-null values from the array `[-1, NULL, 10, NULL]`\.
+
+```
+SELECT filter(ARRAY [-1, NULL, 10, NULL], q -> q IS NOT NULL)
+```
+
+**Results**  
+`[-1,10]`

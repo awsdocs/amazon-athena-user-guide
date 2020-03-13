@@ -24,30 +24,37 @@ Make a note of the Amazon S3 bucket to which you save these logs\.
      `terminatingruleid` string,
      `terminatingruletype` string,
      `action` string,
+     `terminatingrulematchdetails` array<
+                                     struct<
+                                       conditiontype:string,
+                                       location:string,
+                                       matcheddata:array<string>
+                                           >
+                                        >,
      `httpsourcename` string,
      `httpsourceid` string,
      `rulegrouplist` array<string>,
      `ratebasedrulelist` array<
-                         struct<
-                           ratebasedruleid:string,
-                           limitkey:string,
-                           maxrateallowed:int
-                               >
+                           struct<
+                             ratebasedruleid:string,
+                             limitkey:string,
+                             maxrateallowed:int
+                                 >
                               >,
      `nonterminatingmatchingrules` array<
-                                   struct<
-                                     ruleid:string,
-                                     action:string
-                                         >
+                                     struct<
+                                       ruleid:string,
+                                       action:string
+                                           >
                                         >,
      `httprequest` struct<
                          clientip:string,
                          country:string,
                          headers:array<
-                                 struct<
-                                   name:string,
-                                   value:string
-                                       >
+                                   struct<
+                                     name:string,
+                                     value:string
+                                         >
                                       >,
                          uri:string,
                          args:string,
@@ -58,7 +65,7 @@ Make a note of the Amazon S3 bucket to which you save these logs\.
    )
    ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
    WITH SERDEPROPERTIES (
-    'paths'='action,formatVersion,httpRequest,httpSourceId,httpSourceName,nonTerminatingMatchingRules,rateBasedRuleList,ruleGroupList,terminatingRuleId,terminatingRuleType,timestamp,webaclId')
+    'paths'='action,formatVersion,httpRequest,httpSourceId,httpSourceName,nonTerminatingMatchingRules,rateBasedRuleList,ruleGroupList,terminatingRuleId,terminatingRuleMatchDetails,terminatingRuleType,timestamp,webaclId')
    STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
    LOCATION 's3://athenawaflogs/WebACL/'
