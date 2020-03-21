@@ -22,7 +22,9 @@ The following is the basic pattern for an Amazon Athena event\.
         "Athena Query State Change"
     ],
     "detail":{
-        "currentState":"SUCCEEDED"
+        "currentState":[
+            "SUCCEEDED"
+        ]
     }
 }
 ```

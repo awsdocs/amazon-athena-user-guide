@@ -364,7 +364,7 @@ SELECT ST_DIMENSION(ST_POLYGON('polygon((1 1, 4 1, 4 4, 1 4))'))
 
 ### `ST_DISTANCE (geometry, geometry)`<a name="st-distance-geometry-geometry"></a>
 
-Returns the distance in type `double` between the left geometry and the right geometry\. Example:
+Returns the distance in degrees in type `double` between the left geometry and the right geometry\. Example:
 
 ```
 SELECT ST_DISTANCE(ST_POINT(0.0,0.0), ST_POINT(3.0,4.0))

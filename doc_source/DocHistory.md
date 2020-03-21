@@ -1,12 +1,13 @@
 # Document History<a name="DocHistory"></a>
 
- **Latest documentation update: March 11, 2020\.** 
+ **Latest documentation update: March 20, 2020\.** 
 
 The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. We also update the documentation frequently to address your feedback\.
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added a topic on querying Amazon GuardDuty findings\. | For more information, see [Querying Amazon GuardDuty Findings](querying-guardduty.md)\. | March 19, 2020 | 
 | Added a topic on using CloudWatch Events to monitor Athena query state transitions\. | For more information, see [Monitoring Athena Queries with CloudWatch Events](athena-cloudwatch-events.md)\. | March 11, 2020 | 
 | Added a topic on querying AWS Global Accelerator flow logs with Athena\. | For more information, see [Querying AWS Global Accelerator Flow Logs](querying-global-accelerator-flow-logs.md)\. | February 6, 2020 | 
 |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/DocHistory.html)  |  Documentation updates include, but are not limited to, the following topics: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/DocHistory.html)  | February 4, 2020 | 

@@ -12,7 +12,7 @@ Consider the following when using `INSERT` queries with Athena\.
 
 **Important**  
 When running an INSERT query on a table with underlying data that is encrypted in Amazon S3, the output files that the `INSERT` query writes are not encrypted by default\. We recommend that you encrypt `INSERT` query results if you are inserting into tables with encrypted data\.   
-For more information about encrypting query results using the console, see [Encrypting Query Results Stored in Amazon S3](encryption.md#encrypting-query-results-stored-in-s3)\. To enable encryption using the AWS CLI or Athena API, use the `EncryptionConfiguration` properties of the [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) action to specify Amazon S3 encryption options according to your requirements\.
+For more information about encrypting query results using the console, see [Encrypting Query Results Stored in Amazon S3](encrypting-query-results-stored-in-s3.md)\. To enable encryption using the AWS CLI or Athena API, use the `EncryptionConfiguration` properties of the [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) action to specify Amazon S3 encryption options according to your requirements\.
 
 ### Supported Formats and SerDes<a name="insert-into-supported-formats"></a>
 

@@ -35,7 +35,7 @@ The `data_type` value can be any of the following:
 + `TINYINT`\. A 8\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^7 and a maximum value of 2^7\-1\.
 + `SMALLINT`\. A 16\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^15 and a maximum value of 2^15\-1\.
 + `INT`\. Athena combines two different implementations of the `INTEGER` data type\. In Data Definition Language \(DDL\) queries, Athena uses the `INT` data type\. In all other queries, Athena uses the `INTEGER` data type, where `INTEGER` is represented as a 32\-bit signed value in two's complement format, with a minimum value of\-2^31 and a maximum value of 2^31\-1\. In the JDBC driver, `INTEGER` is returned, to ensure compatibility with business analytics applications\.
-+ `BIGINT`\.A 64\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^63 and a maximum value of 2^63\-1\.
++ `BIGINT`\. A 64\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-2^63 and a maximum value of 2^63\-1\.
 + `DOUBLE`
 + `FLOAT`
 + `DECIMAL [ (precision, scale) ]`, where `precision` is the total number of digits, and `scale` \(optional\) is the number of digits in fractional part, the default is 0\. For example, use these type definitions: `DECIMAL(11,5)`, `DECIMAL(15)`\. 

@@ -150,7 +150,7 @@ In the following policy, a user is allowed to run queries in the specified `work
 **Example Example Policy for Running Queries in the Primary Workgroup**  
 In the following example, we use the policy that allows a particular user to run queries in the primary workgroup\.   
 We recommend that you add this policy to all users who are otherwise configured to run queries in their designated workgroups\. Adding this policy to their workgroup user policies is useful in case their designated workgroup is deleted or is disabled\. In this case, they can continue running queries in the primary workgroup\.
-To allow users in your account to run queries in the primary workgroup, add the following policy to a resource section of the [](#example3-user-access)\.  
+To allow users in your account to run queries in the primary workgroup, add the following policy to a resource section of the [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access)\.  
 
 ```
 "arn:aws:athena:us-east-1:123456789012:workgroup/primary"
