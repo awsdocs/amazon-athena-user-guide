@@ -2,7 +2,7 @@
 
 Amazon Athena automatically stores query results and metadata information for each query that runs in a *query result location* that you can specify in Amazon S3\. If necessary, you can access the files in this location to work with them\. You can also download query result files directly from the Athena console\.
 
-Output files are saved automatically for every query that runs regardless of whether the query itself was saved or not\. To access and view query output files, IAM principals \(users and roles\) need permission to the Amazon S3 [GetObject](https://docs.aws.amazon.com/) action for the query result location, as well as permission for the Athena [GetQueryResults](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html) action\. The query result location can be encrypted\. If the location is encrypted, users must have the appropriate key permissions to encrypt and decrypt the query result location\.
+Output files are saved automatically for every query that runs regardless of whether the query itself was saved or not\. To access and view query output files, IAM principals \(users and roles\) need permission to the Amazon S3 [GetObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html) action for the query result location, as well as permission for the Athena [GetQueryResults](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html) action\. The query result location can be encrypted\. If the location is encrypted, users must have the appropriate key permissions to encrypt and decrypt the query result location\.
 
 **Important**  
 IAM principals with permission to the Amazon S3 `GetObject` action for the query result location are able to retrieve query results from Amazon S3 even if permission to the Athena `GetQueryResults` action is denied\.
@@ -26,19 +26,19 @@ Files are saved to the query result location in Amazon S3 based on the name of t
 The following file types are saved:
 
 
-| File type | File naming pattern | Description | 
+| File type | File naming patterns | Description | 
 | --- | --- | --- | 
-|  **Query results files**  |  `QueryID.csv`  |  Query results files are saved in comma\-separated values \(CSV\) format\. They contain the tabular result of each query\. You can download these files from the console from the **Results** pane when using the console or from the query **History**\. For more information, see [Downloading Query Results Files Using the Athena Console](#saving-query-results)\.  | 
-|  **Query metadata files**  |  `QueryID.csv.metadata`  |  Query metadata files are saved in binary format and are not human readable\. Athena uses the metadata when reading query results using the `GetQueryResults` action\. Although these files can be deleted, we do not recommend it because important information about the query is lost\.  | 
+|  **Query results files**  |  `QueryID.csv` `QueryID.txt`  |  DML query results files are saved in comma\-separated values \(CSV\) format\. They contain the tabular result of each query\. DDL query results are saved as plain text files\. You can download these files from the console from the **Results** pane when using the console or from the query **History**\. For more information, see [Downloading Query Results Files Using the Athena Console](#saving-query-results)\.  | 
+|  **Query metadata files**  |  `QueryID.csv.metadata` `QueryID.txt.metadata`  |  DML and DDL query metadata files are saved in binary format and are not human readable\. The file extension corresponds to the related query results file\. Athena uses the metadata when reading query results using the `GetQueryResults` action\. Although these files can be deleted, we do not recommend it because important information about the query is lost\.  | 
 |  **Data manifest files**  |  `QueryID-manifest.csv`  |  Data manifest files are generated to track files that Athena creates in Amazon S3 data source locations when an [INSERT INTO](insert-into.md) query runs\. If a query fails, the manifest also tracks files that the query intended to write\. The manifest is useful for identifying orphaned files resulting from a failed query\.  | 
 
-Query output files are stored in sub\-folders according to the following pattern\.
+Query output files are stored in sub\-folders in the following path pattern unless the query occurs in a workgroup whose configuration overrides client\-side settings\. When workgroup configuration overrides client\-side settings, the query uses the results path specified by the workgroup\.
 
 ```
 QueryResultsLocationInS3/[QueryName|Unsaved/yyyy/mm/dd/]
 ```
 + *QueryResultsLocationInS3* is the query result location specified either by workgroup settings or client\-side settings\. See [Specifying a Query Result Location](#query-results-specify-location) below\.
-+ The following sub\-folders are created only for queries that run from the console\. Queries that run from the AWS CLI or using the Athena API are saved directly to the *QueryResultsLocationInS3*\.
++ The following sub\-folders are created only for queries run from the console whose results path has not been overriden by workgroup configuration\. Queries that run from the AWS CLI or using the Athena API are saved directly to the *QueryResultsLocationInS3*\.
   + *QueryName* is the name of the query for which the results are saved\. If the query ran but wasn't saved, `Unsaved` is used\. 
   + *yyyy/mm/dd* is the date that the query ran\.
 

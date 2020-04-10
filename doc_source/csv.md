@@ -23,7 +23,7 @@ When you use Athena with OpenCSVSerDe, the SerDe converts all column types to `S
  To further convert columns to the desired type in a table, you can [create a view](views.md) over the table and use `CAST` to convert to the desired type\.
 
 For data types *other* than `STRING`, when the parser in Athena can recognize them, this SerDe behaves as follows:
-+ Recognizes `BOOLEAN`, `BIGINT`, `INT`, and `DOUBLE` data types and parses them without changes\.
++ Recognizes `BOOLEAN`, `BIGINT`, `INT`, and `DOUBLE` data types and parses them without changes\. The parser does not recognize empty or null values in columns defined as a numeric data type, leaving them as the default data type of `STRING`\. The workaround is to declare the column as `STRING` and then `CAST` it in a `SELECT` query or view\.
 + Recognizes the `TIMESTAMP` type if it is specified in the UNIX numeric format, such as `1564610311`\.
 + Does not support `TIMESTAMP` in the JDBC\-compliant `java.sql.Timestamp` format, such as `"YYYY-MM-DD HH:MM:SS.fffffffff"` \(9 decimal place precision\)\. If you are processing CSV data from Hive, use the UNIX numeric format\.
 + Recognizes the `DATE` type if it is specified in the UNIX numeric format, such as `1562112000`\.

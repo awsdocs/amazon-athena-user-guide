@@ -16,9 +16,21 @@ Causes the error to be suppressed if `table_name` doesn't exist\.
 ## Examples<a name="examples"></a>
 
 ```
-DROP TABLE fulfilled_orders;
+DROP TABLE fulfilled_orders
 ```
 
 ```
-DROP TABLE IF EXISTS fulfilled_orders;
+DROP TABLE IF EXISTS fulfilled_orders
+```
+
+When using the Athena console query editor to drop a table that has special characters other than the underscore \(\_\), use backticks, as in the following example\.
+
+```
+DROP TABLE `my-athena-database-01.my-athena-table`
+```
+
+When using the JDBC connector to drop a table that has special characters, backtick characters are not required\.
+
+```
+DROP TABLE my-athena-database-01.my-athena-table
 ```

@@ -8,7 +8,7 @@ Consider the following when using Athena to query data registered in Lake Format
 + [Athena Query Results Location In Amazon S3 Not Registered With Lake Formation](#lf-athena-limitations-query-results-location)
 + [Use Athena Workgroups To Limit Access To Query History](#lf-athena-limitations-use-workgroups-to-limit-access-to-query-history)
 + [Cross\-Account Data Catalogs Not Supported](#lf-athena-limitations-cross-account-glue)
-+ [SSE\-KMS Amazon S3 Registered With Lake Formation Cannot Be Queried in Athena](#lf-athena-limitations-sse-kms)
++ [CSE\-KMS Amazon S3 Registered With Lake Formation Cannot Be Queried in Athena](#lf-athena-limitations-cse-kms)
 + [Partitioned Data Locations Registered with Lake Formation Must Be In Table Sub\-Directories](#lf-athena-limitations-partioned-data-locations)
 + [Create Table As Select \(CTAS\) Queries Require Amazon S3 Write Permissions](#lf-athena-limitations-ctas-queries)
 
@@ -34,9 +34,9 @@ Athena query history exposes a list of saved queries and complete query strings\
 
 An Athena user from one account can not query databases and tables in the Data Catalog of a different account, even when Lake Formation is used\. To query an Amazon S3 data location in a different account, a resource\-based IAM policy \(bucket policy\) must allow access to the location\. For more information, see [Cross\-account Access](cross-account-permissions.md)\. You can use Lake Formation to register an accessible bucket location in an external account with the Data Catalog in the local account\.
 
-## SSE\-KMS Encrypted Amazon S3 Locations Registered With Lake Formation Cannot Be Queried in Athena<a name="lf-athena-limitations-sse-kms"></a>
+## CSE\-KMS Encrypted Amazon S3 Locations Registered With Lake Formation Cannot Be Queried in Athena<a name="lf-athena-limitations-cse-kms"></a>
 
-Amazon S3 data locations that are registered with Lake Formation and encrypted using server\-side encryption with AWS KMS\-managed keys \(SSE\-KMS\) cannot be queried using Athena\. You still can use Athena to query SSE\-KMS encrypted Amazon S3 data locations that are not registered with Lake Formation and use IAM policies to allow or deny access\.
+Amazon S3 data locations that are registered with Lake Formation and encrypted using client\-side encryption \(CSE\) with AWS KMS customer\-managed keys \(CSE\-KMS\) cannot be queried using Athena\. You still can use Athena to query CSE\-KMS encrypted Amazon S3 data locations that are not registered with Lake Formation and use IAM policies to allow or deny access\.
 
 ## Partitioned Data Locations Registered with Lake Formation Must Be In Table Sub\-Directories<a name="lf-athena-limitations-partioned-data-locations"></a>
 

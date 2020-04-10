@@ -3,7 +3,9 @@
 You can use the Athena Data Connector for External Hive Metastore \(Preview\) to query data sets in Amazon S3 that use an Apache Hive metastore\. No migration of metadata to the AWS Glue Data Catalog is necessary\. In the Athena management console, you configure a Lambda function to communicate with the Hive metastore in your private VPC and then connect it\. For the Lambda function code, you can use Athena's default implementation – the Athena data source connector for external Hive metastore – or provide your own\.
 
 ## Considerations and Limitations<a name="connect-to-a-data-source-hive-considerations"></a>
++ You cannot use views with external Hive metastores, UDFs, or other data connectors\.
 
+**Permissions**  
 Prebuilt and custom data connectors might require access to the following resources to function correctly\. Check the information for the connector that you use to ensure that you have configured your VPC correctly\. For information about required IAM permissions to run queries and create a data source connector in Athena, see [Allow Access to an Athena Data Connector for External Hive Metastore \(Preview\)](hive-metastore-iam-access.md)\.
 + **AmazonAthenaPreviewFunctionality workgroup** – To use this feature in preview, you must create an Athena workgroup named `AmazonAthenaPreviewFunctionality` and join that workgroup\. For more information, see [Managing Workgroups](workgroups-create-update-delete.md)\. 
 + **Amazon S3** – In addition to writing query results to the Athena query results location in Amazon S3, data connectors also write to a spill bucket in Amazon S3\. Connectivity and permissions to this Amazon S3 location are required\.

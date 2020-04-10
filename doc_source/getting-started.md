@@ -26,27 +26,32 @@ You first need to create a database in Athena\.
 
 1. Click **Save**\.
 
-1. In the Athena Query Editor, you see a query pane with an example query\. Start typing your query anywhere in the query pane\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/example_query.png)
+1. In the Athena Query Editor, you see a query pane\. You can type queries and statements here\.  
+![\[The query pane in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/example_query.png)
 
-1. To create a database named `mydatabase`, enter the following CREATE DATABASE statement, and then choose **Run Query**:
+1. To create a database named `mydatabase`, enter the following CREATE DATABASE statement\.
 
    ```
    CREATE DATABASE mydatabase
    ```
 
-1. Confirm that the catalog display refreshes and `mydatabase` appears in the **DATABASE** list in the **Catalog** dashboard on the left side\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/db_list_and_refresh.png)
+1. Choose **Run Query** or press **Ctrl\+ENTER**\.
+
+1. Confirm that the catalog display refreshes and `mydatabase` appears in the **Database** list in the navigation pane on the left\.  
+![\[Created database appears in the Athena console navigation pane.\]](http://docs.aws.amazon.com/athena/latest/ug/images/db_list_and_refresh.png)
 
 ## Step 2: Create a Table<a name="step-2-create-a-table"></a>
 
-Now that you have a database, you're ready to create a table that's based on the sample data file\. You define columns that map to the data, specify how the data is delimited, and provide the location in Amazon S3 for the file\.
+Now that you have a database, you're ready to create a table that's based on the sample data file\. You define columns that map to the data, specify how the data is delimited, and provide the location in Amazon S3 that contains the sample data\.
 
 **To create a table**
 
-1. Make sure that `mydatabase` is selected for **DATABASE** and then choose **New Query**\.
+1. For **Database**, choose `mydatabase`\.
 
-1. In the query pane, enter the following CREATE TABLE statement, and then choose **Run Query**:
+1. Choose the plus \(**\+**\) sign in the Query Editor to create a tab with a new query\. You can have up to ten query tabs open at once\.  
+![\[Choose the plus icon to create a new query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-new-query-tab.png)
+
+1. In the query pane, enter the following CREATE TABLE statement, and then choose **Run Query**\.
 **Note**  
 You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
 
@@ -71,8 +76,8 @@ You can query data in regions other than the region where you run Athena\. Stand
      ) LOCATION 's3://athena-examples-myregion/cloudfront/plaintext/';
    ```
 
-   The `table cloudfront_logs` is created and appears in the **Catalog** dashboard for your database\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/table_create.png)
+   The table `cloudfront_logs` is created and appears under the list of **Tables** for the `mydatabase` database\.  
+![\[Table created in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-cf-logs-table-created.png)
 
 ## Step 3: Query Data<a name="step-3-query-data"></a>
 
@@ -80,7 +85,7 @@ Now that you have the `cloudfront_logs` table created in Athena based on the dat
 
 **To run a query**
 
-1. Choose **New Query**, enter the following statement anywhere in the query pane, and then choose **Run Query**:
+1. Open a new query tab and enter the following SQL statement in the query pane\.
 
    ```
    SELECT os, COUNT(*) count
@@ -89,14 +94,22 @@ Now that you have the `cloudfront_logs` table created in Athena based on the dat
    GROUP BY os;
    ```
 
-   Results are returned that look like the following:  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/results.png)
+1. Choose **Run Query**\.
 
-1. Optionally, you can save the results of a query to CSV by choosing the file icon on the **Results** pane\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/savecsv.png)
+   The results look like the following:  
+![\[Viewing query results in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/results.png)
 
-You can also view the results of previous queries or queries that may take some time to complete\. Choose **History** then either search for your query or choose **View** or **Download** to view or download the results of previous completed queries\. This also displays the status of queries that are currently running\. Query history is retained for 45 days\. For information, see [Viewing Query History](querying.md#queries-viewing-history)\.
+1. You can save the results of the query to a `.csv` file by choosing the download icon on the **Results** pane\.  
+![\[Downloading query results in CSV format.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-query-results-download-csv.png)
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/history.png)
+1. Choose the **History** tab to view your previous queries\.  
+![\[Choose History to view previous queries.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-history.png)
 
-Query results are also stored in Amazon S3 in a bucket called aws\-athena\-query\-results\-*ACCOUNTID*\-*REGION*\. You can change the default location in the console and encryption options by choosing **Settings** in the upper right pane\. For more information, see [Query Results](querying.md)\.
+1. Choose **Download results** to download the results of a previous query\. Query history is retained for 45 days\.  
+![\[Viewing query history in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-history-tab.png)
+
+   For more information, see [Working with Query Results, Output Files, and Query History](querying.md)\.
+
+## Connecting to Other Data Sources<a name="getting-started-other-data-sources"></a>
+
+This tutorial used a data source in Amazon S3 in CSV format\. You can connect Athena to a variety of data sources by using AWS Glue, ODBC and JDBC drivers, external Hive metastores, and Athena data source connectors\. For more information, see [Connecting to Data Sources](work-with-data-stores.md)\.

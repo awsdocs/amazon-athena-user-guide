@@ -12,7 +12,7 @@ Use the following tips to read JSON\-encoded data:
 
   ```
   CREATE EXTERNAL TABLE json_table (
-    column_a string
+    column_a string,
     column_b int
    )
    ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'

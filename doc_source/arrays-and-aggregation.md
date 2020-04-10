@@ -24,7 +24,27 @@ FROM item, UNNEST(array_items) AS t(val)
 GROUP BY array_items;
 ```
 
-This query returns the following results\. The order of returned results is not guaranteed\.
+In the last `SELECT` statement, instead of using `sum()` and `UNNEST`, you can use `reduce()` to decrease processing time and data transfer, as in the following example\.
+
+```
+WITH
+dataset AS (
+  SELECT ARRAY
+  [
+    ARRAY[1,2,3,4],
+    ARRAY[5,6,7,8],
+    ARRAY[9,0]
+  ] AS items
+),
+item AS (
+  SELECT i AS array_items
+  FROM dataset, UNNEST(items) AS t(i)
+)
+SELECT array_items, reduce(array_items, 0 , (s, x) -> s + x, s -> s) AS total
+FROM item;
+```
+
+Either query returns the following results\. The order of returned results is not guaranteed\.
 
 ```
 +----------------------+

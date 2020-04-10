@@ -197,7 +197,7 @@ FROM orders_csv_column_renamed;
 
 ## Reordering Columns<a name="updates-reordering-columns"></a>
 
-You can reorder columns only for tables with data in formats that read by name, such as JSON or ORC, which reads by name by default\. You can also make Parquet read by name, if needed\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\.
+You can reorder columns only for tables with data in formats that read by name, such as JSON or Parquet, which reads by name by default\. You can also make ORC read by name, if needed\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\.
 
 The following example illustrates reordering of columns:
 

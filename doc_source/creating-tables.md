@@ -1,6 +1,6 @@
-# Tables and Databases Creation Process in Athena<a name="creating-tables"></a>
+# Creating Tables in Athena<a name="creating-tables"></a>
 
-You can run DDL statements in the Athena console, using a JDBC or an ODBC driver, or using the Athena **Create Table** wizard\.
+You can run DDL statements in the Athena console, using a JDBC or an ODBC driver, or using the Athena [**Add table** wizard](#to-create-a-table-using-the-wizard)\.
 
 When you create a new table schema in Athena, Athena stores the schema in a data catalog and uses it when you run queries\.
 
@@ -18,7 +18,11 @@ The maximum query string length is 256 KB\.
 
 Hive supports multiple data formats through the use of serializer\-deserializer \(SerDe\) libraries\. You can also define complex schemas using regular expressions\. For a list of supported SerDe libraries, see [Supported Data Formats, SerDes, and Compression Formats](supported-format.md)\.
 
-## Requirements for Tables in Athena and Data in Amazon S3<a name="s3-considerations"></a>
+## Considerations and Limitations<a name="creating-tables-considerations-and-limitations"></a>
+
+Following are some important limitations and considerations for tables in Athena\.
+
+### Requirements for Tables in Athena and Data in Amazon S3<a name="s3-considerations"></a>
 
 When you create a table, you specify an Amazon S3 bucket location for the underlying data using the `LOCATION` clause\. Consider the following:
 + Athena can only query the latest version of data on a versioned Amazon S3 bucket, and cannot query previous versions of the data\.
@@ -32,57 +36,56 @@ When you create a table, you specify an Amazon S3 bucket location for the underl
   For more information, see [Storage Classes](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html), [Changing the Storage Class of an Object in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/ChgStoClsOfObj.html), [Transitioning to the GLACIER Storage Class \(Object Archival\) ](https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html#before-deciding-to-archive-objects), and [Requester Pays Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) in the *Amazon Simple Storage Service Developer Guide*\.
 + If you issue queries against Amazon S3 buckets with a large number of objects and the data is not partitioned, such queries may affect the Get request rate limits in Amazon S3 and lead to Amazon S3 exceptions\. To prevent errors, partition your data\. Additionally, consider tuning your Amazon S3 request rates\. For more information, see [Request Rate and Performance Considerations](https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html)\.
 
-## Functions Supported<a name="hive-ddl-functions-supported"></a>
+### Functions Supported<a name="hive-ddl-functions-supported"></a>
 
 The functions supported in Athena queries are those found within Presto\. For more information, see [Presto 0\.172 Functions and Operators](https://prestodb.io/docs/0.172/functions.html) in the Presto documentation\.
 
-## Transactional Data Transformations Are Not Supported<a name="transactional-data-transformations-are-not-supported"></a>
+### Transactional Data Transformations Are Not Supported<a name="transactional-data-transformations-are-not-supported"></a>
 
 Athena does not support transaction\-based operations \(such as the ones found in Hive or Presto\) on table data\. For a full list of keywords not supported, see [Unsupported DDL](unsupported-ddl.md)\.
 
-## Operations That Change Table States Are ACID<a name="operations-that-change-table-states-are-acid"></a>
+### Operations That Change Table States Are ACID<a name="operations-that-change-table-states-are-acid"></a>
 
 When you create, update, or delete tables, those operations are guaranteed ACID\-compliant\. For example, if multiple users or clients attempt to create or alter an existing table at the same time, only one will be successful\.
 
-## All Tables Are EXTERNAL<a name="all-tables-are-external"></a>
+### All Tables Are EXTERNAL<a name="all-tables-are-external"></a>
 
 If you use `CREATE TABLE` without the `EXTERNAL` keyword, Athena issues an error; only tables with the `EXTERNAL` keyword can be created\. We recommend that you always use the `EXTERNAL` keyword\. When you drop a table in Athena, only the table metadata is removed; the data remains in Amazon S3\.
 
-## To create a table using the AWS Glue Data Catalog<a name="to-create-a-table-using-the-aws-glue-data-catalog"></a>
+## Creating Tables Using AWS Glue or the Athena Console<a name="creating-tables-how-to"></a>
+
+You can create tables in Athena by using AWS Glue, the add table wizard, or by running a DDL statement in the Athena Query Editor\.
+
+### To create a table using the AWS Glue Data Catalog<a name="to-create-a-table-using-the-aws-glue-data-catalog"></a>
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Choose **AWS Glue Data Catalog**\. You can now create a table with the AWS Glue crawler\. For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
+1. In the Query Editor, under **Database**, choose **Create table**, and then choose **from AWS Glue crawler**\.   
+![\[Choosing to create a table by using AWS Glue.\]](http://docs.aws.amazon.com/athena/latest/ug/images/create-table-choices-glue.png)
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_create_table.png)
+1. In the **Go to AWS Glue to set up a crawler** dialog box, choose **Continue**\.  
+![\[Choose Continue to go to the AWS Glue console and set up a crawler.\]](http://docs.aws.amazon.com/athena/latest/ug/images/go-to-glue-crawler.png)
 
-## To create a table using the wizard<a name="to-create-a-table-using-the-wizard"></a>
+1. Follow the steps in the AWS Glue console to add a crawler\. 
 
-1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
+   For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
 
-1. Under the database display in the Query Editor, choose **Add table**, which displays a wizard\.
-
-1. Follow the steps for creating your table\.
-
-## To create a database using Hive DDL<a name="catalog-create-db"></a>
-
-A database in Athena is a logical grouping for tables you create in it\.
+### To create a table using the Athena add table wizard<a name="to-create-a-table-using-the-wizard"></a>
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Choose **Query Editor**\.
+1. Under the database display in the Query Editor, choose **Create table**, and then choose **from S3 bucket data\.**  
+![\[Choosing to create a table from S3 bucket data.\]](http://docs.aws.amazon.com/athena/latest/ug/images/create-table-choices-s3.png)
 
-1. Enter `CREATE DATABASE myDataBase` and choose **Run Query**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/createdatabase.png)
+1. in the **Add table** wizard, follow the steps to create your table\.  
+![\[Follow the steps in the Add table wizard to create a table in Athena from Amazon S3 data.\]](http://docs.aws.amazon.com/athena/latest/ug/images/add-table-wizard.png)
 
-1. Select your database from the menu\. It is likely to be an empty database\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/catalogdashboard.png)
+### To create a table using Hive DDL<a name="to-create-a-table-using-hive-ddl"></a>
 
-## To create a table using Hive DDL<a name="to-create-a-table-using-hive-ddl"></a>
+1. From the **Database** menu, choose the database for which you want to create a table\. If you don't specify a database in your `CREATE TABLE` statement, the table is created in the database that is currently selected in the Query Editor\.  
+![\[Choosing a database in the Athena Query Editor.\]](http://docs.aws.amazon.com/athena/latest/ug/images/catalogdashboard.png)
 
-The Athena Query Editor displays the current database\. If you create a table and don't specify a database, the table is created in the database chosen in the **Databases** section on the **Catalog** tab\.
-
-1. In the database that you created, create a table by entering the following statement and choosing **Run Query**:
+1. Enter a statement like the following, and then choose **Run Query**, or press **Ctrl\+ENTER**\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS cloudfront_logs (
@@ -105,4 +108,4 @@ The Athena Query Editor displays the current database\. If you create a table an
    ) LOCATION 's3://athena-examples-MyRegion/cloudfront/plaintext/';
    ```
 
-1. If the table was successfully created, you can then run queries against your data\.
+   After the table is created, you can run queries against your data\.

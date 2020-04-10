@@ -18,10 +18,44 @@ Filters the list of tables to those that match the `regular_expression` you spec
 
 ## Examples<a name="examples"></a>
 
-```
-SHOW TABLES;
-```
+**Example – show all of the tables in the database `sampledb`**  
 
 ```
-SHOW TABLES IN marketing_analytics 'orders*';
+SHOW TABLES IN sampledb
+```
+Results  
+
+```
+alb_logs
+cloudfront_logs
+elb_logs
+flights_2016
+flights_parquet
+view_2016_flights_dfw
+```
+
+**Example – show the names of all tables in `sampledb` that include the word "flights"**  
+
+```
+SHOW TABLES IN sampledb '*flights*'
+```
+Results  
+
+```
+flights_2016
+flights_parquet
+view_2016_flights_dfw
+```
+
+**Example – show the names of all tables in `sampledb` that end in the word "logs"**  
+
+```
+SHOW TABLES IN sampledb '*logs'
+```
+Results  
+
+```
+alb_logs
+cloudfront_logs
+elb_logs
 ```

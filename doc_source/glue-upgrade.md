@@ -25,7 +25,7 @@ The following is an example policy statement\.
         {
            "Effect": "Allow",
            "Action": [
-              "glue:ImportCatalogToGlue "
+              "glue:ImportCatalogToGlue"
            ],
            "Resource": [ "*" ]
         }
@@ -73,6 +73,6 @@ After you make the required IAM policy updates, choose **Upgrade** in the Athena
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_post_migration.png)
 
-When you create a table using the console, you now have the option to create a table using an AWS Glue crawler\. For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
+When you create a table using the console, you can create a table using an AWS Glue crawler\. For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_create_table.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/create-table-choices-glue.png)
