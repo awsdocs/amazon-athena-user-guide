@@ -117,7 +117,7 @@ This query should show you data similar to the following:
 2009-04-12-13-20    b31tJiIA25CK8eDHQrHnbcknfSndUk
 ```
 
-### Scenario 2: Data is not partitioned<a name="scenario-2-data-is-not-partitioned"></a>
+### Scenario 2: Data is not partitioned in Hive format<a name="scenario-2-data-is-not-partitioned"></a>
 
 A layout like the following does not, however, work for automatically adding partition data with MSCK REPAIR TABLE:
 
@@ -182,7 +182,7 @@ In this case, you would have to use ALTER TABLE ADD PARTITION to add each partit
 For example, to load the data in s3://athena\-examples\-*myregion*/elb/plaintext/2015/01/01/, you can run the following:
 
 ```
-ALTER TABLE elb_logs_raw_native_part ADD PARTITION (year='2015',month='01',day='01') location 's3://athena-examples-us-west-1/elb/plaintext/2015/01/01/'
+ALTER TABLE elb_logs_raw_native_part ADD PARTITION (dt='2015-01-01') location 's3://athena-examples-us-west-1/elb/plaintext/2015/01/01/'
 ```
 
 ### Additional Resources<a name="partitions-additional-resources"></a>
