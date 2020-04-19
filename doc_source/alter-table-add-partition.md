@@ -2,6 +2,8 @@
 
 Creates one or more partition columns for the table\. Each partition consists of one or more distinct column name/value combinations\. A separate data directory is created for each specified combination, which can improve query performance in some circumstances\. Partitioned columns don't exist within the table data itself, so if you use a column name that has the same name as a column in the table itself, you get an error\. For more information, see [Partitioning Data](partitions.md)\.
 
+In Athena, a table and its partitions must use the same data formats but their schemas may differ\. For more information, see [Updates in Tables with Partitions](updates-and-partitions.md)\.
+
 ## Synopsis<a name="synopsis"></a>
 
 ```

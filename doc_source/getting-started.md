@@ -2,7 +2,7 @@
 
 This tutorial walks you through using Amazon Athena to query data\. You'll create a table based on sample data stored in Amazon Simple Storage Service, query the table, and check the results of the query\.
 
-The tutorial is using live resources, so you are charged for the queries that you run\. You aren't charged for the sample datasets that you use, but if you upload your own data files to Amazon S3, charges do apply\.
+The tutorial is using live resources, so you are charged for the queries that you run\. You aren't charged for the sample data in the location that this tutorial uses, but if you upload your own data files to Amazon S3, charges do apply\.
 
 ## Prerequisites<a name="prerequisites"></a>
 + If you have not already done so, sign up for an account in [Setting Up](setting-up.md)\.
@@ -42,7 +42,7 @@ You first need to create a database in Athena\.
 
 ## Step 2: Create a Table<a name="step-2-create-a-table"></a>
 
-Now that you have a database, you're ready to create a table that's based on the sample data file\. You define columns that map to the data, specify how the data is delimited, and provide the location in Amazon S3 that contains the sample data\.
+Now that you have a database, you're ready to run a statement to create a table\. The table will be based on Athena sample data in the location `s3://athena-examples-aws-region/cloudfront/plaintext/`\. The statement that creates the table defines columns that map to the data, specifies how the data is delimited, and specifies the Amazon S3 location that contains the sample data\.
 
 **To create a table**
 
@@ -51,9 +51,7 @@ Now that you have a database, you're ready to create a table that's based on the
 1. Choose the plus \(**\+**\) sign in the Query Editor to create a tab with a new query\. You can have up to ten query tabs open at once\.  
 ![\[Choose the plus icon to create a new query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-new-query-tab.png)
 
-1. In the query pane, enter the following CREATE TABLE statement, and then choose **Run Query**\.
-**Note**  
-You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
+1. In the query pane, enter the following `CREATE TABLE` statement\. In the `LOCATION` statement at the end of the query, replace *myregion* with the AWS Region that you are currently using \(for example, `us-west-1`\)\. 
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS cloudfront_logs (
@@ -75,6 +73,10 @@ You can query data in regions other than the region where you run Athena\. Stand
      "input.regex" = "^(?!#)([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+[^\(]+[\(]([^\;]+).*\%20([^\/]+)[\/](.*)$"
      ) LOCATION 's3://athena-examples-myregion/cloudfront/plaintext/';
    ```
+**Note**  
+You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
+
+1. Choose **Run Query**\.
 
    The table `cloudfront_logs` is created and appears under the list of **Tables** for the `mydatabase` database\.  
 ![\[Table created in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-cf-logs-table-created.png)

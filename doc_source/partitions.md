@@ -179,7 +179,7 @@ aws s3 ls s3://athena-examples-myregion/elb/plaintext/ --recursive
 
 In this case, you would have to use ALTER TABLE ADD PARTITION to add each partition manually\.
 
-For example, to load the data in s3://athena\-examples\-*myregion*/elb/plaintext/2015/01/01/, you can run the following:
+For example, to load the data in s3://athena\-examples\-*myregion*/elb/plaintext/2015/01/01/, you can run the following\. Note that a separate partition column for each Amazon S3 folder is not required, and that the partition key value can be different from the Amazon S3 key\.
 
 ```
 ALTER TABLE elb_logs_raw_native_part ADD PARTITION (dt='2015-01-01') location 's3://athena-examples-us-west-1/elb/plaintext/2015/01/01/'

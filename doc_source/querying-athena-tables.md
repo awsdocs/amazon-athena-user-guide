@@ -21,6 +21,7 @@ This section provides guidance for running Athena queries on common data sources
 ## Considerations and Limitations<a name="querying-athena-tables-considerations-limitations"></a>
 
 When querying tables in Athena, keep in mind the following considerations and limitations\.
++  Cross\-region queries are not supported\. If you create an Athena table in one AWS Region and attempt to query data in an Amazon S3 bucket in another AWS Region, you may receive the error message InvalidToken: The provided token is malformed or otherwise invalid\. 
 + When data is moved or transitioned to the [Amazon S3 GLACIER storage class](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier), it is no longer readable or queryable by Athena\. This is true even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class\. 
 + You cannot use an Amazon S3 access point in a `LOCATION` clause\. However, as long the as the Amazon S3 bucket policy does not explicitly deny requests to objects not made through Amazon S3 access points, the objects should be accessible from Athena for requestors that have the right object access permissions\.
 + Athena treats sources files that start with an underscore \(`_`\) or a dot \(`.`\) as hidden\. To work around this limitation, rename the files\.

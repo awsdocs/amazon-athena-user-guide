@@ -16,6 +16,9 @@ SELECT [ ALL | DISTINCT ] select_expression [, ...]
 [ LIMIT [ count | ALL ] ]
 ```
 
+**Note**  
+Reserved words in SQL SELECT statements must be enclosed in double quotes\. For more information, see [List of Reserved Keywords in SQL SELECT Statements](reserved-words.md#list-of-reserved-words-sql-select)\.
+
 ## Parameters<a name="select-parameters"></a>
 
 **\[ WITH with\_query \[, \.\.\.\.\] \]**  

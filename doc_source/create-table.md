@@ -12,7 +12,7 @@ CREATE [EXTERNAL] TABLE [IF NOT EXISTS]
  [ROW FORMAT row_format]
  [STORED AS file_format] 
  [WITH SERDEPROPERTIES (...)] ]
- [LOCATION 's3_loc']
+ [LOCATION 's3://bucket_name/[folder]/']
  [TBLPROPERTIES ( ['has_encrypted_data'='true | false',] ['classification'='aws_glue_classification',] property_name=property_value [, ...] ) ]
 ```
 
@@ -82,11 +82,17 @@ Specifies the file format for table data\. If omitted, `TEXTFILE` is the default
 + AVRO
 + INPUTFORMAT input\_format\_classname OUTPUTFORMAT output\_format\_classname
 
-**\[LOCATION 'S3\_loc'\]**  
-Specifies the location of the underlying data in Amazon S3 from which the table is created, for example, `'s3://mystorage/'`\. For more information about considerations such as data format and permissions, see [Requirements for Tables in Athena and Data in Amazon S3](creating-tables.md#s3-considerations)\. If you are using partitions, specify the root of the partitioned data\.  
+**\[LOCATION 's3://bucket\_name/\[folder\]/'\]**  
+Specifies the location of the underlying data in Amazon S3 from which the table is created\. The location path must be a bucket name or a bucket name and one or more folders\. If you are using partitions, specify the root of the partitioned data\. For more information about table location, see [Table Location in Amazon S3](tables-location-format.md)\. For information about data format and permissions, see [Requirements for Tables in Athena and Data in Amazon S3](creating-tables.md#s3-considerations)\.   
 Use a trailing slash for your folder or bucket\. Do not use file names or glob characters\.  
- **Use:** `s3://mybucket/key/`   
- **Don't use:** `s3://path_to_bucket` `s3://path_to_bucket/*` `s3://path_to-bucket/mydatafile.dat` 
+ **Use:**  
+`s3://mybucket/`  
+`s3://mybucket/folder/`  
+`s3://mybucket/folder/anotherfolder/`  
+ **Don't use:**  
+`s3://path_to_bucket`  
+`s3://path_to_bucket/*`  
+`s3://path_to-bucket/mydatafile.dat`
 
 **\[TBLPROPERTIES \( \['has\_encrypted\_data'='true \| false',\] \['classification'='aws\_glue\_classification',\] property\_name=property\_value \[, \.\.\.\] \) \]**  
 Specifies custom metadata key\-value pairs for the table definition in addition to predefined table properties, such as `"comment"`\.  

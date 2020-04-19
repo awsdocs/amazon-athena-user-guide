@@ -76,7 +76,7 @@ WHERE "date" BETWEEN DATE '2018-06-09' AND DATE '2018-06-11'
 LIMIT 100;
 ```
 
-In some cases, you need to eliminate empty values from the results of `CREATE TABLE` query for CloudFront\. To do so, run: 
+To eliminate duplicate rows \(for example, duplicate empty rows\) from the query results, you can use the `SELECT DISTINCT` statement, as in the following example\. 
 
 ```
 SELECT DISTINCT * 
@@ -84,4 +84,12 @@ FROM cloudfront_logs
 LIMIT 10;
 ```
 
-For more information, see the AWS Big Data Blog post [Build a Serverless Architecture to Analyze Amazon CloudFront Access Logs Using AWS Lambda, Amazon Athena, and Amazon Kinesis Analytics](http://aws.amazon.com/blogs/big-data/build-a-serverless-architecture-to-analyze-amazon-cloudfront-access-logs-using-aws-lambda-amazon-athena-and-amazon-kinesis-analytics/)\.
+## Additional Resources<a name="cloudfront-logs-additional-resources"></a>
+
+For more information about using Athena to query CloudFront logs, see the following posts from the [AWS Big Data Blog](http://aws.amazon.com/blogs/big-data/)\.
+
+[Easily query AWS service logs using Amazon Athena](http://aws.amazon.com/blogs/big-data/easily-query-aws-service-logs-using-amazon-athena/) \(May 29, 2019\)\.
+
+[Analyze your Amazon CloudFront access logs at scale](http://aws.amazon.com/blogs/big-data/analyze-your-amazon-cloudfront-access-logs-at-scale/) \(December 21, 2018\)\.
+
+[Build a Serverless Architecture to Analyze Amazon CloudFront Access Logs Using AWS Lambda, Amazon Athena, and Amazon Kinesis Analytics](http://aws.amazon.com/blogs/big-data/build-a-serverless-architecture-to-analyze-amazon-cloudfront-access-logs-using-aws-lambda-amazon-athena-and-amazon-kinesis-analytics/) \(May 26, 2017\)\.
