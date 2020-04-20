@@ -1,4 +1,4 @@
-# Infrastructure Security in Athena<a name="infrastructure-security"></a>
+# Infrastructure Security in Athena<a name="security-infrastructure"></a>
 
 As a managed service, Amazon Athena is protected by the AWS global network security procedures that are described in the [Amazon Web Services: Overview of Security Processes](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf) whitepaper\.
 

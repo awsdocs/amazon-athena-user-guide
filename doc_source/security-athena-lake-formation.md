@@ -1,4 +1,4 @@
-# Using Athena to Query Data Registered With AWS Lake Formation<a name="lake-formation-athena"></a>
+# Using Athena to Query Data Registered With AWS Lake Formation<a name="security-athena-lake-formation"></a>
 
 [AWS Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html) allows you to define and enforce database, table, and column\-level access policies when using Athena queries to read data stored in Amazon S3\. Lake Formation provides an authorization and governance layer on data stored in Amazon S3\. You can use a hierarchy of permissions in Lake Formation to grant or revoke permissions to read data catalog objects such as databases, tables, and columns\. Lake Formation simplifies the management of permissions and allows you to implement fine\-grained access control \(FGAC\) for your data\.
 

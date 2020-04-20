@@ -9,11 +9,11 @@ Security is a shared responsibility between AWS and you\. The [shared responsibi
 This documentation will help you understand how to apply the shared responsibility model when using Amazon Athena\. The following topics show you how to configure Athena to meet your security and compliance objectives\. You'll also learn how to use other AWS services that can help you to monitor and secure your Athena resources\.
 
 **Topics**
-+ [Data Protection in Athena](data-protection.md)
-+ [Identity and Access Management in Athena](identity-and-access-management-in-athena.md)
-+ [Logging and Monitoring in Athena](incident-response.md)
-+ [Compliance Validation for Amazon Athena](athena-compliance.md)
-+ [Resilience in Athena](disaster-recovery-resiliency.md)
-+ [Infrastructure Security in Athena](infrastructure-security.md)
-+ [Configuration and Vulnerability Analysis in Athena](vulnerability-analysis-and-management.md)
-+ [Using Athena to Query Data Registered With AWS Lake Formation](lake-formation-athena.md)
++ [Data Protection in Athena](security-data-protection.md)
++ [Identity and Access Management in Athena](security-iam-athena.md)
++ [Logging and Monitoring in Athena](security-logging-monitoring.md)
++ [Compliance Validation for Amazon Athena](security-compliance-validation.md)
++ [Resilience in Athena](security-resilience.md)
++ [Infrastructure Security in Athena](security-infrastructure.md)
++ [Configuration and Vulnerability Analysis in Athena](security-vulnerability-management.md)
++ [Using Athena to Query Data Registered With AWS Lake Formation](security-athena-lake-formation.md)

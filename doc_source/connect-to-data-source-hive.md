@@ -13,7 +13,7 @@ Prebuilt and custom data connectors might require access to the following resour
 + **AWS Secrets Manager**
 + **AWS Glue** if your connector uses AWS Glue for supplemental or primary metadata\.
 + **AWS Key Management Service**
-+ **Policies** – Hive metastore, Athena Query Federation, and UDFs require policies in addition to the [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md)\. For more information, see [Identity and Access Management in Athena](identity-and-access-management-in-athena.md)\.
++ **Policies** – Hive metastore, Athena Query Federation, and UDFs require policies in addition to the [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md)\. For more information, see [Identity and Access Management in Athena](security-iam-athena.md)\.
 
 ## Connecting Athena to an Apache Hive Metastore<a name="connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore"></a>
 

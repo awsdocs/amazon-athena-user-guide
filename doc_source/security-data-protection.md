@@ -1,4 +1,4 @@
-# Data Protection in Athena<a name="data-protection"></a>
+# Data Protection in Athena<a name="security-data-protection"></a>
 
 Multiple types of data are involved when you use Athena to create databases and tables\. These data types include source data stored in Amazon S3, metadata for databases and tables that you create when you run queries or the AWS Glue Crawler to discover data, query results data, and query history\. This section discusses each type of data and provides guidance about protecting it\.
 + **Source data** – You store the data for databases and tables in Amazon S3, and Athena does not modify it\. For more information, see [Data Protection in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/DataDurability.html) in the *Amazon Simple Storage Service Developer Guide*\. You control access to your source data and can encrypt it in Amazon S3\. You can use Athena to [create tables based on encrypted datasets in Amazon S3](creating-tables-based-on-encrypted-datasets-in-s3.md)\.
