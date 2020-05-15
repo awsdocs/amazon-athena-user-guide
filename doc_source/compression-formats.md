@@ -10,6 +10,7 @@ Athena supports the following compression formats:
 + **`BZIP2`**
 
 ## Notes and Resources<a name="compression-formats-notes"></a>
-+ For data in CSV, TSV, and JSON, Athena determines the compression type from the file extension\. If it is not present, the data is not decompressed\. If your data is compressed, make sure the file name includes the compression extension, such as `gz`\. 
++ For data in CSV, TSV, and JSON, Athena determines the compression type from the file extension\. If no file extension is present, Athena treats the data as uncompressed plain text\. If your data is compressed, make sure the file name includes the compression extension, such as `gz`\.
++ The ZIP file format is not supported\. 
 + For querying Amazon Kinesis Data Firehose logs from Athena, supported formats include GZIP compression or ORC files with SNAPPY compression\. 
 + For more information on using compression, see section 3 \("Compress and split files"\) of the AWS Big Data Blog post [Top 10 Performance Tuning Tips for Amazon Athena](http://aws.amazon.com/blogs/big-data/top-10-performance-tuning-tips-for-amazon-athena/)\.

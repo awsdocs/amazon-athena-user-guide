@@ -9,7 +9,7 @@ A workgroup is a resource managed by Athena\. Therefore, if your workgroup polic
 For example, for a workgroup named `test_workgroup` in the `us-west-2` region for AWS account `123456789012`, specify the workgroup as a resource using the following ARN:
 
 ```
-"Resource":["arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"]
+"Resource":["arn:aws:athena:us-east-2:123456789012:workgroup/test_workgroup"]
 ```
 + For a list of workgroup policies, see [Workgroup Example Policies](example-policies-workgroup.md)\.
 + For a list of tag\-based policies for workgroups, see [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.

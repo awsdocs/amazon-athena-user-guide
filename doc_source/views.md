@@ -92,10 +92,10 @@ A view shows up in the console only if you have already created it\.
 ![\[The screenshot of an expanded view that shows columns.\]](http://docs.aws.amazon.com/athena/latest/ug/images/view_expanded.png)
 
 1. In the list of views, choose a view, and open the context \(right\-click\) menu\. The actions menu icon \(⋮\) is highlighted for the view that you chose, and the list of actions opens, as shown in the following example:  
-![\[The screenshot of the context menu for views. It lets you preview, show properties, edit, and delete a view.\]](http://docs.aws.amazon.com/athena/latest/ug/images/view_options.PNG)
+![\[The screenshot of the context menu for views. It lets you preview, show properties, edit, and delete a view.\]](http://docs.aws.amazon.com/athena/latest/ug/images/view_options.png)
 
 1. Choose an option\. For example, **Show properties** shows the view name, the name of the database in which the table for the view is created in Athena, and the time stamp when it was created:  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/view_properties.PNG)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/view_properties.png)
 
 ## Creating Views<a name="creating-views"></a>
 
@@ -106,7 +106,7 @@ You can create a view from any `SELECT` query\.
 Before you create a view, choose a database and then choose a table\. Run a `SELECT` query on a table and then create a view from it\.
 
 1. In the Athena console, choose **Create view**\.  
-![\[The screenshot that shows the button for creating a view.\]](http://docs.aws.amazon.com/athena/latest/ug/images/create_view.PNG)
+![\[The screenshot that shows the button for creating a view.\]](http://docs.aws.amazon.com/athena/latest/ug/images/create_view.png)
 
    In the Query Editor, a sample view query displays\. 
 
@@ -118,7 +118,7 @@ Before you create a view, choose a database and then choose a table\. Run a `SEL
 
 Alternatively, create a query in the Query Editor, and then use **Create view from query**\. 
 
-![\[The screenshot that shows the button for creating a view from query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/create_view_from_query.PNG)
+![\[The screenshot that shows the button for creating a view from query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/create_view_from_query.png)
 
 If you run a view that is not valid, Athena displays an error message\.
 

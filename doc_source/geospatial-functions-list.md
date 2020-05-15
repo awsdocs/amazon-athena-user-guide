@@ -140,6 +140,9 @@ Converts text into a geometry data type\. Returns a value in a geometry data typ
 SELECT ST_GEOMETRY_FROM_TEXT(ST_GEOMETRY_TO_TEXT(ST_Point(1, 2)))
 ```
 
+**Note**  
+If you are using the AmazonAthenaPreviewFunctionality workgroup, use the syntax `ST_GEOMETRYFROMTEXT (varchar)`\.
+
 ## Geospatial Relationship Functions<a name="geospatial-relationships-functions"></a>
 
 The following functions express relationships between two different geometries that you specify as input\. They return results of type `boolean`\. The order in which you specify the pair of geometries matters: the first geometry value is called the left geometry, the second geometry value is called the right geometry\.

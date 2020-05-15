@@ -261,4 +261,4 @@ Amazon's trademarks and trade dress may not be used in
    + [March 24, 2017](release-note-2017-03-24.md)
    + [February 20, 2017](release-note-2017-02-20.md)
 + [Document History](DocHistory.md)
-+ [AWS Glossary](glossary.md)
++ [AWS glossary](glossary.md)

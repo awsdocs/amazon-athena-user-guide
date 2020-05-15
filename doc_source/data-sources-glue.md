@@ -2,17 +2,23 @@
 
 Athena can connect to your data stored in Amazon S3 using the AWS Glue Data Catalog to store metadata such as table and column names\. After the connection is made, your databases, tables, and views appear in Athena's query editor\.
 
-To define schema information for AWS Glue to use, you can set up an AWS Glue crawler to retrieve the information, or you can manually add a table and enter the schema information\. 
+To define schema information for AWS Glue to use, you can set up an AWS Glue crawler to retrieve the information automatically, or you can manually add a table and enter the schema information\. 
 
 ## Setting up a Crawler<a name="data-sources-glue-crawler-setup"></a>
 
 You set up a crawler by starting in the Athena console and then using the AWS Glue console in an integrated way\. When you create a crawler, you can choose data stores to crawl or point the crawler to existing catalog tables\.
 
-**To set up a crawler in AWS Glue to retrieve schema information automatically**
+**Note**  
+The steps for setting up a crawler depend on the options available in the Athena console\. If the **Connect data source** link in **Option A** is not available, use the procedure in **Option B**\.
+
+### Option A<a name="data-sources-glue-crawler-setup-option-a"></a>
+
+**Option A: To set up a crawler in AWS Glue using the *Connect data source* link**
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Choose **Connect data source**\.
+1. Choose **Connect data source**\. If the **Connect data source** link is not present, use **Option B**\.  
+![\[Choose Connect data source.\]](http://docs.aws.amazon.com/athena/latest/ug/images/data-sources-glue-connect-data-source.png)
 
 1. On the **Connect data source** page, choose **AWS Glue Data Catalog**\.
 
@@ -22,7 +28,27 @@ You set up a crawler by starting in the Athena console and then using the AWS Gl
 
 1. Click **Connect to AWS AWS Glue**\.
 
-1. On the **AWS Glue** console **Add crawler** page, follow the steps to create a crawler\. For more information, see [Populating the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html)\.
+1. On the **AWS Glue** console **Add crawler** page, follow the steps to create a crawler\. 
+
+   For more information, see [Populating the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html)\.
+
+### Option B<a name="data-sources-glue-crawler-setup-option-b"></a>
+
+Use the following procedure to set up a AWS Glue crawler if the **Connect data source** link in **Option A** is not available in the Athena console\.<a name="data-sources-glue-catalog-link-procedure"></a>
+
+**Option B: To set up a crawler in AWS Glue from the *AWS Glue Data Catalog* link**
+
+1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
+
+1. Choose **AWS Glue Data Catalog**\.  
+![\[Choose AWS Glue Data Catalog.\]](http://docs.aws.amazon.com/athena/latest/ug/images/data-sources-glue-crawler-option-b-header.png)
+
+1. On the AWS Glue console **Tables** page, choose **Add tables using a crawler**\.  
+![\[Choose Add tables using a crawler.\]](http://docs.aws.amazon.com/athena/latest/ug/images/data-sources-glue-crawler-option-b-add-tables.png)
+
+1. On the **AWS Glue** console **Add crawler** page, follow the steps to create a crawler\. 
+
+   For more information, see [Populating the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html)\.
 
 ## Adding a Schema Table Manually<a name="data-sources-glue-manual-table"></a>
 

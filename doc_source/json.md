@@ -27,7 +27,7 @@ You can also use the Hive JSON SerDe to parse more complex JSON\-encoded data wi
 With this SerDe, duplicate keys are not allowed in `map` \(or `struct`\) key names\.
 
 **Note**  
-You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
+Replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
 
 The following DDL statement uses the Hive JSON SerDe:
 
@@ -72,7 +72,19 @@ Optional\. When set to `TRUE`, lets you skip malformed JSON syntax\. The default
 Optional\. The default is `FALSE`\. When set to `TRUE`, allows the SerDe to replace the dots in key names with underscores\. For example, if the JSON dataset contains a key with the name `"a.b"`, you can use this property to define the column name to be `"a_b"` in Athena\. By default \(without this SerDe\), Athena does not allow dots in column names\.
 
 **case\.insensitive**  
-Optional\. The default is `TRUE`\. When set to `TRUE`, the SerDe converts all uppercase keys to lowercase\. Using `WITH SERDEPROPERTIES ("case.insensitive" = "FALSE")` allows you to use case\-sensitive key names in your data\. For every key that is not already all\-lowercase, you must also provide a mapping from the column name to the property name, e\.\g. `WITH SERDEPROPERTIES ("case.insensitive" = "FALSE", "mapping.userid" = "userId")`\. If you have two keys that are the same when lower cased, you can use this property to map them to different names, e\.g\. `WITH SERDEPROPERTIES ("case.insensitive" = "FALSE", "mapping.url1" = "URL", "mapping.url2" = "Url")`\.
+Optional\. The default is `TRUE`\. When set to `TRUE`, the SerDe converts all uppercase columns to lowercase\.   
+To use case\-sensitive key names in your data, use `WITH SERDEPROPERTIES ("case.insensitive"= FALSE;)`\. Then, for every key that is not already all lowercase, provide a mapping from the column name to the property name using the following syntax:  
+
+```
+WITH SERDEPROPERTIES ("case.insensitive" = "FALSE", "mapping.userid" = "userId")
+```
+If you have two keys like `URL` and `Url` that are the same when they are in lowercase, an error like the following can occur:  
+HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object \- JSONException: Duplicate key "url"  
+To resolve this, set the `case.insensitive` property to `FALSE` and map the keys to different names, as in the following example:  
+
+```
+WITH SERDEPROPERTIES ("case.insensitive" = "FALSE", "mapping.url1" = "URL", "mapping.url2" = "Url")
+```
 
 **ColumnToJsonKeyMappings**  
 Optional\. Maps column names to JSON keys that aren't identical to the column names\. This is useful when the JSON data contains keys that are [keywords](reserved-words.md)\. For example, if you have a JSON key named `timestamp`, set this parameter to `{"ts": "timestamp"}` to map this key to a column named `ts`\. This parameter takes values of type string\. It uses the following key pattern: `^\S+$` and the following value pattern: `^(?!\s*$).+`

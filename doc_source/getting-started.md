@@ -74,7 +74,7 @@ Now that you have a database, you're ready to run a statement to create a table\
      ) LOCATION 's3://athena-examples-myregion/cloudfront/plaintext/';
    ```
 **Note**  
-You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
+Replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
 
 1. Choose **Run Query**\.
 
@@ -83,7 +83,7 @@ You can query data in regions other than the region where you run Athena\. Stand
 
 ## Step 3: Query Data<a name="step-3-query-data"></a>
 
-Now that you have the `cloudfront_logs` table created in Athena based on the data in Amazon S3, you can run queries on the table and see the results in Athena\.
+Now that you have the `cloudfront_logs` table created in Athena based on the data in Amazon S3, you can run SQL queries on the table and see the results in Athena\. For more information about using SQL in Athena, see [SQL Reference for Amazon Athena](ddl-sql-reference.md)\.
 
 **To run a query**
 

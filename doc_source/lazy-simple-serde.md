@@ -8,12 +8,12 @@ The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2
 
 ## Examples<a name="examples"></a>
 
-The following examples show how to create tables in Athena from CSV and TSV, using the `LazySimpleSerDe`\. To deserialize custom\-delimited file using this SerDe, specify the delimiters similar to the following examples\.
+The following examples show how to create tables in Athena from CSV and TSV, using the `LazySimpleSerDe`\. To deserialize custom\-delimited files using this SerDe, use the `FIELDS TERMINATED BY` clause to specify a single\-character delimiter, as in the following examples\. LazySimpleSerDe does not support multi\-character delimiters\.
 +  [CSV Example](#csv-example) 
 +  [TSV Example](#tsv-example) 
 
 **Note**  
-You can query data in regions other than the region where you run Athena\. Standard inter\-region data transfer rates for Amazon S3 apply in addition to standard Athena charges\. To reduce data transfer charges, replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
+Replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
 
 **Note**  
 The flight table data comes from [Flights](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&amp;DB_Short_Name=On-Time) provided by US Department of Transportation, [Bureau of Transportation Statistics](http://www.transtats.bts.gov/)\. Desaturated from original\.

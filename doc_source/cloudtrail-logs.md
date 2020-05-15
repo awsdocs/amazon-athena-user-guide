@@ -43,7 +43,9 @@ Using the highest level in the object hierarchy gives you the greatest flexibili
 
 ## Creating a Table for CloudTrail Logs in the CloudTrail Console<a name="create-cloudtrail-table-ct"></a>
 
-You can automatically create tables for querying CloudTrail logs directly from the CloudTrail console\. This is a fairly straightforward method of creating tables, but you can only create tables this way if the Amazon S3 bucket that contains the log files for the trail is in a Region supported by Amazon Athena, and you are logged in with an IAM user or role that has sufficient permissions to create tables in Athena\. For more information, see [Setting Up](setting-up.md)\.
+You can create a non\-partitioned Athena table for querying CloudTrail logs directly from the CloudTrail console\. Creating an Athena table from the CloudTrail console requires that you be logged in with an IAM user or role that has sufficient permissions to create tables in Athena\.
++ For information about setting up permissions for Athena, see [Setting Up](setting-up.md)\.
++ For information about creating a table with partitions, see [Manually Creating the Table for CloudTrail Logs in Athena](#create-cloudtrail-table)\.
 
 **To create a table for a CloudTrail trail in the CloudTrail console**
 
@@ -53,9 +55,9 @@ You can automatically create tables for querying CloudTrail logs directly from t
 
 1. In **Event history**, choose **Run advanced queries in Amazon Athena**\.
 
-1. For **Storage location**, choose the Amazon S3 bucket where log files are stored for the trail to query\.
+1. For **Storage location**, use the down arrow to select the Amazon S3 bucket where log files are stored for the trail to query\.
 **Note**  
-You can find out what bucket is associated with a trail by going to **Trails** and choosing the trail\. The bucket name is displayed in **Storage location**\.
+To find the name of the bucket that is associated with a trail, you can also choose **Trails** in the CloudTrail navigation pane and view the **S3 bucket** column for the trail\. To see the location of the bucket in Amazon S3, choose the link for the bucket in the **S3 bucket** column\. This opens the CloudTrail bucket location in the Amazon S3 console\. 
 
 1. Choose **Create table**\. The table is created with a default name that includes the name of the Amazon S3 bucket\.
 
@@ -65,7 +67,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
 
 **To create a table for a CloudTrail trail in the CloudTrail console**
 
-1. Copy and paste the following DDL statement into the Athena console\.
+1. Copy and paste the following DDL statement into the Athena console\. The statement is the same as the one in the CloudTrail console **Create a table in Amazon Athena** dialog box, but adds a `PARTITIONED BY` clause that makes the table partitioned\.
 
 1. Modify `s3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/` to point to the Amazon S3 bucket that contains your log data\.
 

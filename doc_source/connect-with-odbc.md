@@ -74,6 +74,17 @@ The 1\.1\.0 preview version of the ODBC driver for Athena includes support for d
 | Documentation for ODBC 1\.1\.0 preview | [ODBC Driver Installation and Configuration Guide version 1\.1\.0](https://athena-downloads.s3.amazonaws.com/drivers/ODBC/athena-preview/SimbaAthenaODBC_1.1.0_preview/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf) | 
 | Release Notes for ODBC 1\.1\.0 preview | [ODBC Driver Release Notes version 1\.1\.0 Preview](https://athena-downloads.s3.amazonaws.com/drivers/ODBC/athena-preview/SimbaAthenaODBC_1.1.0_preview/release-notes.txt) | 
 
+### Preview Power BI Plugin for Athena<a name="connect-with-odbc-preview-driver-power-bi"></a>
+
+This preview integrates Athena with the Power BI Desktop tool using the ODBC drivers\.
+
+
+| Driver Version | Download Link | 
+| --- | --- | 
+| Preview Power BI Plugin Download | [Preview Power BI Plugin for Athena](https://athena-downloads.s3.amazonaws.com/drivers/ODBC/SimbaAthenaPowerBI_PreviewPlugIn/Athena.mez) | 
+| Preview Power BI Plugin User Guide | [Preview Power BI Plugin for Athena User Guide](https://athena-downloads.s3.amazonaws.com/drivers/ODBC/SimbaAthenaPowerBI_PreviewPlugIn/Simba+Athena+Custom+Connector+for+Power+BI+User+Guide.pdf) | 
+| Preview Power BI Plugin Known Issues | [Preview Power BI Plugin for Athena Known Issues](https://athena-downloads.s3.amazonaws.com/drivers/ODBC/SimbaAthenaPowerBI_PreviewPlugIn/Known+Issues.txt) | 
+
 ## Migration from the Previous Version of the ODBC Driver<a name="migration-from-previous-odbc-driver"></a>
 
 The current ODBC driver version 1\.0\.5 is a drop\-in replacement of the previous version of the ODBC driver version 1\.0\.4\. It is also backward compatible with the ODBC driver version 1\.0\.3, if you use the following required steps to make sure that the driver runs\. 

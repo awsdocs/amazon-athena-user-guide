@@ -14,7 +14,9 @@ When you run [CREATE TABLE](create-table.md), you specify column names and the d
 + **`DECIMAL`**`(precision, scale)` – `precision` is the total number of digits\. `scale` \(optional\) is the number of digits in fractional part with a default of 0\. For example, use these type definitions: `DECIMAL(11,5)`, `DECIMAL(15)`\.
 
   To specify decimal values as literals, such as when selecting rows with a specific decimal value in a query DDL expression, specify the `DECIMAL` type definition, and list the decimal value as a literal \(in single quotes\) in your query, as in this example: `decimal_value = DECIMAL '0.12'`\. 
-+ **`STRING`** – A string literal enclosed in single or double quotes\. For more information, see [STRING Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-StringsstringStrings)\. 
++ **`STRING`** – A string literal enclosed in single or double quotes\. For more information, see [STRING Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-StringsstringStrings)\.
+**Note**  
+Other data types cannot be cast to `STRING` in Athena; cast them to `VARCHAR` instead\.
 + **`CHAR`** – Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
 **Note**  
 To use the `substr` function to return a substring of specified length from a `CHAR` data type, you must first cast the `CHAR` value as a `VARCHAR`, as in the following example\.  

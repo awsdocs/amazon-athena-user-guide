@@ -7,7 +7,7 @@ In the Athena console, you can:
 **To create a CTAS query from another query**
 
 1. Run the query, choose **Create**, and then choose **Create table from query**\.  
-![\[The screenshot for creating a table from query results.\]](http://docs.aws.amazon.com/athena/latest/ug/images/ctas-create-table-from-query.PNG)
+![\[The screenshot for creating a table from query results.\]](http://docs.aws.amazon.com/athena/latest/ug/images/ctas-create-table-from-query.png)
 
 1. In the **Create a new table on the results of a query** form, complete the fields as follows:
 
@@ -34,7 +34,7 @@ In the Athena console, you can:
 Use the `CREATE TABLE AS SELECT` template to create a CTAS query from scratch\.
 
 1. In the Athena console, choose **Create table**, and then choose **CREATE TABLE AS SELECT**\.  
-![\[The screenshot of the CREATE TABLE AS SELECT for a new table.\]](http://docs.aws.amazon.com/athena/latest/ug/images/ctas-create-new.PNG)
+![\[The screenshot of the CREATE TABLE AS SELECT for a new table.\]](http://docs.aws.amazon.com/athena/latest/ug/images/ctas-create-new.png)
 
 1. In the Query Editor, edit the query as needed, For query syntax, see [CREATE TABLE AS](create-table-as.md)\.
 
