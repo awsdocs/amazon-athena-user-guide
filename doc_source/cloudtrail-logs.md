@@ -14,7 +14,7 @@ You can use Athena to query these log files directly from Amazon S3, specifying 
 
 **Topics**
 + [Understanding CloudTrail Logs and Athena Tables](#create-cloudtrail-table-understanding)
-+ [Creating a Table for CloudTrail Logs in the CloudTrail Console](#create-cloudtrail-table-ct)
++ [Using the CloudTrail Console to Create an Athena Table for CloudTrail Logs](#create-cloudtrail-table-ct)
 + [Manually Creating the Table for CloudTrail Logs in Athena](#create-cloudtrail-table)
 + [Example Query for CloudTrail Logs](#query-examples-cloudtrail-logs)
 + [Tips for Querying CloudTrail Logs](#tips-for-querying-cloudtrail-logs)
@@ -41,15 +41,20 @@ For example:
 
 Using the highest level in the object hierarchy gives you the greatest flexibility when you query using Athena\.
 
-## Creating a Table for CloudTrail Logs in the CloudTrail Console<a name="create-cloudtrail-table-ct"></a>
+## Using the CloudTrail Console to Create an Athena Table for CloudTrail Logs<a name="create-cloudtrail-table-ct"></a>
 
-You can create a non\-partitioned Athena table for querying CloudTrail logs directly from the CloudTrail console\. Creating an Athena table from the CloudTrail console requires that you be logged in with an IAM user or role that has sufficient permissions to create tables in Athena\.
+You can create a non\-partitioned Athena table for querying CloudTrail logs directly from the older CloudTrail console\. Creating an Athena table from the CloudTrail console requires that you be logged in with an IAM user or role that has sufficient permissions to create tables in Athena\.
+
+**Note**  
+These steps do not work with the newer CloudTrail console\. Either use the older CloudTrail console, or [create the table manually in the Athena console](#create-cloudtrail-table)\.
 + For information about setting up permissions for Athena, see [Setting Up](setting-up.md)\.
 + For information about creating a table with partitions, see [Manually Creating the Table for CloudTrail Logs in Athena](#create-cloudtrail-table)\.
 
-**To create a table for a CloudTrail trail in the CloudTrail console**
+**To create an Athena table for a CloudTrail trail using the CloudTrail console**
 
 1. Open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
+1. If you are using the newer CloudTrail console, choose **Use the old console** in the navigation pane\.
 
 1. In the navigation pane, choose **Event history**\. 
 
@@ -65,7 +70,7 @@ To find the name of the bucket that is associated with a trail, you can also cho
 
 You can manually create tables for CloudTrail log files in the Athena console, and then run queries in Athena\.
 
-**To create a table for a CloudTrail trail in the CloudTrail console**
+**To create an Athena table for a CloudTrail trail using the Athena console**
 
 1. Copy and paste the following DDL statement into the Athena console\. The statement is the same as the one in the CloudTrail console **Create a table in Amazon Athena** dialog box, but adds a `PARTITIONED BY` clause that makes the table partitioned\.
 

@@ -1,6 +1,10 @@
 # MSCK REPAIR TABLE<a name="msck-repair-table"></a>
 
-Recovers Hive compatible partitions and data associated with them\. Use this statement when you add partitions to the catalog\. For example, after you create a table with partitions, run the `MSCK REPAIR TABLE` statement on the table to refresh the partition metadata\. This enables you query the data from Athena\.
+Use the `MSCK REPAIR TABLE` command to update the metadata in the catalog after you add or remove Hive compatible partitions\. 
+
+The `MSCK REPAIR TABLE` command scans a file system such as Amazon S3 for Hive compatible partitions that were added to or removed from the file system after the table was created\. The command updates the metadata in the catalog regarding the partitions and the data associated with them\.
+
+When you add or remove partitions, the metadata in the catalog becomes inconsistent with the layout of the data in the file system\. For example, after you create a table with partitions, information about the new partitions needs to be added to the catalog\. To update the metadata, you run `MSCK REPAIR TABLE` on the table\. This enables you to query the data in the new partitions from Athena\.
 
 It is possible it will take some time to add all partitions\. If this operation times out, it will be in an incomplete state where only a few partitions are added to the catalog\. You should run the statement on the same table until all partitions are added\. For more information, see [Partitioning Data](partitions.md)\. 
 

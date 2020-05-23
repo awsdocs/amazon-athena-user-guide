@@ -1,12 +1,13 @@
 # Document History<a name="DocHistory"></a>
 
- **Latest documentation update: May 14, 2020\.** 
+ **Latest documentation update: May 22, 2020\.** 
 
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added documentation on partition projection\. | For more information, see [Partition Projection with Amazon Athena](partition-projection.md)\. | May 21, 2020 | 
 | Updated the Java code examples for Athena\. | For more information, see [Code Samples](code-samples.md)\. | May 11, 2020 | 
 | Added a topic on querying Amazon GuardDuty findings\. | For more information, see [Querying Amazon GuardDuty Findings](querying-guardduty.md)\. | March 19, 2020 | 
 | Added a topic on using CloudWatch Events to monitor Athena query state transitions\. | For more information, see [Monitoring Athena Queries with CloudWatch Events](athena-cloudwatch-events.md)\. | March 11, 2020 | 
@@ -40,7 +41,7 @@ We update the documentation frequently to address your feedback\. The following 
 | Added query tabs, and an ability to configure auto\-complete in the Query Editor\.  |  Added query tabs, and an ability to configure auto\-complete in the Query Editor\. For information, see [Using the Console](accessing-Athena.md#console-Athena)\.  | May 8, 2018 | 
 | Released the JDBC driver version 2\.0\.2\. |  Released the new version of the JDBC driver \(version 2\.0\.2\)\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.  | April 19, 2018 | 
 |  Added auto\-complete for typing queries in the Athena console\.  |  Added auto\-complete for typing queries in the Athena console\.  | April 6, 2018 | 
-|   Added an ability to create Athena tables for CloudTrail log files directly from the CloudTrail console\.   |   Added an ability to automatically create Athena tables for CloudTrail log files directly from the CloudTrail console\. For information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](cloudtrail-logs.md#create-cloudtrail-table-ct)\.  | March 15, 2018 | 
+|   Added an ability to create Athena tables for CloudTrail log files directly from the CloudTrail console\.   |   Added an ability to automatically create Athena tables for CloudTrail log files directly from the CloudTrail console\. For information, see [Using the CloudTrail Console to Create an Athena Table for CloudTrail Logs ](cloudtrail-logs.md#create-cloudtrail-table-ct)\.  | March 15, 2018 | 
 | Added support for securely offloading intermediate data to disk for queries with GROUP BY\. | Added an ability to securely offload intermediate data to disk for memory\-intensive queries that use the GROUP BY clause\. This improves the reliability of such queries, preventing "Query resource exhausted" errors\. For more information, see the release note for [February 2, 2018](release-note-2018-02-12.md)\. | February 2, 2018 | 
 | Added support for Presto version 0\.172\. | Upgraded the underlying engine in Amazon Athena to a version based on Presto version 0\.172\. For more information, see the release note for [January 19, 2018](release-note-2018-01-19.md)\. | January 19, 2018 | 
 | Added support for the ODBC Driver\. | Added support for connecting Athena to the ODBC Driver\. For information, see [Connecting to Amazon Athena with ODBC](https://docs.aws.amazon.com/athena/latest/ug/connect-with-odbc.html)\. | November 13, 2017 | 
