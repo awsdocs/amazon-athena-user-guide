@@ -24,16 +24,16 @@ However, if all of your queries include a `WHERE` clause that filters for only a
 
 ```
 ...
- LOCATION "s3://bucket/prefix/"
  PARTITIONED BY
  (
      device_id STRING
  )
- TABLE PROPERTIES
+ LOCATION "s3://bucket/prefix/"
+ TBLPROPERTIES
  (
      "projection.enabled" = "true",
      "projection.device_id.type" = "injected",
-     "storage.location.template." = "s3://bucket/prefix/${device_id}"
+     "storage.location.template" = "s3://bucket/prefix/${device_id}"
  )
 ```
 
@@ -68,12 +68,12 @@ Using the scenario in the previous example and assuming 1 million buckets, ident
 
 ```
 ...
- LOCATION "s3://bucket/prefix/"
  PARTITIONED BY
  (
      BUCKET_ID BIGINT
  )
- TABLE PROPERTIES
+ LOCATION "s3://bucket/prefix/"
+ TBLPROPERTIES
  (
      "projection.enabled" = "true",
      "projection.bucket_id.type" = "integer",

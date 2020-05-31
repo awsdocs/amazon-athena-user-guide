@@ -11,7 +11,7 @@ AWS PrivateLink for Athena is not supported in the `Europe (Stockholm)` Region\.
 
 You can create an interface VPC endpoint to connect to Athena using the AWS console or AWS Command Line Interface \(AWS CLI\) commands\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)\.
 
-After you create an interface VPC endpoint, if you enable private DNS hostnames for the endpoint, the default Athena endpoint \(https://athena\.*Region*\.amazonaws\.com\) resolves to your VPC endpoint\.
+After you create an interface VPC endpoint, if you enable [private DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#vpce-private-dns) hostnames for the endpoint, the default Athena endpoint \(https://athena\.*Region*\.amazonaws\.com\) resolves to your VPC endpoint\.
 
 If you do not enable private DNS hostnames, Amazon VPC provides a DNS endpoint name that you can use in the following format:
 

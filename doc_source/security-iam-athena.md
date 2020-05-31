@@ -7,7 +7,7 @@ To run queries in Athena, you must have the appropriate permissions for the foll
 + Amazon S3 locations where the underlying data to query is stored\. 
 + Metadata and resources that you store in the AWS Glue Data Catalog, such as databases and tables, including additional actions for encrypted metadata\. 
 
-If you are an administrator for other users, make sure that they have appropriate permissions associated with their user profiles\.
+If you are an administrator for other users, make sure that they have appropriate permissions associated with their user profiles\. In addition to the following topics, see [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html) in the *[IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)*\.
 
 **Topics**
 + [Managed Policies for User Access](managed-policies.md)

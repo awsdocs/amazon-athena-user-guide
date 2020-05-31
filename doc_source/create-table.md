@@ -43,6 +43,9 @@ The `data_type` value can be any of the following:
   To specify decimal values as literals, such as when selecting rows with a specific decimal value in a query DDL expression, specify the `DECIMAL` type definition, and list the decimal value as a literal \(in single quotes\) in your query, as in this example: `decimal_value = DECIMAL '0.12'`\.
 + `CHAR`\. Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
 + `VARCHAR`\. Variable length character data, with a specified length between 1 and 65535, such as `varchar(10)`\. For more information, see [VARCHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-varchar)\. 
++ `STRING`\. A string literal enclosed in single or double quotes\.
+**Note**  
+Non\-string data types cannot be cast to `STRING` in Athena; cast them to `VARCHAR` instead\.
 + `BINARY` \(for data in Parquet\)
 + Date and time types
 + `DATE`, in the UNIX format, such as `YYYY-MM-DD`\.

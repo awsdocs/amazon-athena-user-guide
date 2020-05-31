@@ -12,12 +12,12 @@ By using partition projection, you can use a one\-time configuration to inform A
 
 ```
 ...
-LOCATION "s3://bucket/prefix/"
 PARTITIONED BY
 (
  DATEHOUR STRING
 )
-TABLE PROPERTIES
+LOCATION "s3://bucket/prefix/"
+TBLPROPERTIES
 (
  "projection.enabled" = "true",
  "projection.datehour.type" = "date",
@@ -26,4 +26,5 @@ TABLE PROPERTIES
  "projection.datehour.interval" = "1",
  "projection.datehour.interval.unit" = "HOURS",
  "storage.location.template" = "s3://bucket/prefix/${datehour}"
+)
 ```

@@ -120,7 +120,7 @@ Previously, if you ran a query without specifying a value for **Query result loc
 
 Now, before you can run an Athena query in a region in which your account hasn't used Athena previously, you must specify a query result location, or use a workgroup that overrides the query result location setting\. While Athena no longer creates a default query results location for you, previously created default `aws-athena-query-results-MyAcctID-MyRegion` locations remain valid and you can continue to use them\.
 
-**To specify the query result location using the Athena console**
+**To specify a client\-side setting query result location using the Athena console**
 
 1. From the nagivation bar, choose **Settings**\.
 

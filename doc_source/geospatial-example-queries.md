@@ -1,17 +1,10 @@
 # Examples: Geospatial Queries<a name="geospatial-example-queries"></a>
 
-The following examples create two tables and issue a query against them\.
-
+The examples in this topic create two tables from sample data available on GitHub and query the tables based on the data\. The sample data, which are for illustration purposes only and are not guaranteed to be accurate, are in the following files:
++ **[https://github.com/Esri/gis-tools-for-hadoop/blob/master/samples/data/earthquake-data/earthquakes.csv](https://github.com/Esri/gis-tools-for-hadoop/blob/master/samples/data/earthquake-data/earthquakes.csv)** – Lists earthquakes that occurred in California\. The example `earthquakes` table uses fields from this data\.
++ **[https://github.com/Esri/gis-tools-for-hadoop/blob/master/samples/data/counties-data/california-counties.json](https://github.com/Esri/gis-tools-for-hadoop/blob/master/samples/data/counties-data/california-counties.json)** – Lists county data for the state of California in [ESRI\-compliant GeoJSON format](https://doc.arcgis.com/en/arcgis-online/reference/geojson.htm)\. The data includes many fields such as `AREA`, `PERIMETER`, `STATE`, `COUNTY`, and `NAME`, but the example `counties` table uses only two: `Name` \(string\), and `BoundaryShape` \(binary\)\. 
 **Note**  
-These files are *not* included with the product and are used in the documentation for illustration purposes only\. They contain sample data and are not guaranteed to be accurate\.
-
-These examples rely on two files:
-+ An `earthquakes.csv` sample file, which lists earthquakes that occurred in California\. This file has fields that correspond to the fields in the table `earthquakes` in the following example\.
-+ A `california-counties.json` file, which lists JSON\-encoded county data in the ESRI\-compliant format, and includes many fields such as AREA, PERIMETER, STATE, COUNTY, and NAME\. The following example shows the `counties` table from this file with two fields only: `Name` \(string\), and `BoundaryShape` \(binary\)\.
-
-For additional examples of geospatial queries, see these blog posts:
-+ [Querying OpenStreetMap with Amazon Athena](https://aws.amazon.com/blogs/big-data/querying-openstreetmap-with-amazon-athena/)
-+ [Visualize over 200 years of global climate data using Amazon Athena and Amazon QuickSight](https://aws.amazon.com/blogs/big-data/visualize-over-200-years-of-global-climate-data-using-amazon-athena-and-amazon-quicksight/)\.
+Athena uses the `com.esri.json.hadoop.EnclosedJsonInputFormat` to convert the JSON data to geospatial binary format\.
 
 The following code example creates a table called `earthquakes`:
 
@@ -100,3 +93,9 @@ This query returns:
 | San Mateo        | 1   |
 +------------------------+
 ```
+
+## Additional Resources<a name="geospatial-example-queries-additional-resources"></a>
+
+For additional examples of geospatial queries, see the following blog posts:
++ [Querying OpenStreetMap with Amazon Athena](https://aws.amazon.com/blogs/big-data/querying-openstreetmap-with-amazon-athena/)
++ [Visualize over 200 years of global climate data using Amazon Athena and Amazon QuickSight](https://aws.amazon.com/blogs/big-data/visualize-over-200-years-of-global-climate-data-using-amazon-athena-and-amazon-quicksight/)\.

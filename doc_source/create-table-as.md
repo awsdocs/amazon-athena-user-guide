@@ -34,9 +34,23 @@ Each CTAS table in Athena has a list of optional CTAS table properties that you 
 
 **`WITH (property_name = expression [, ...], )`**    
 `external_location = [location]`   
-The location where Athena saves your CTAS query in Amazon S3, for example, ` WITH (external_location ='s3://my-bucket/tables/parquet_table/')`\. This property is optional\. When you don’t specify any location and your workgroup does not [override client\-side settings](workgroups-settings-override.md), Athena stores the CTAS query results in `external_location = 's3://aws-athena-query-results-<account>-<region>/<query-name-or-unsaved>/<year>/<month>/<date>/<query-id>/'`, and does not use the same path again\. If you specify the location manually, make sure that the Amazon S3 location has no data\. Athena never attempts to delete your data\. If you want to use the same location again, manually clean the data, otherwise your CTAS query will fail\.  
-If the workgroup in which a query will run is configured with an [enforced query results location](workgroups-settings-override.md), do not specify an `external_location` for the CTAS query\. Athena issues an error and fails a query that specifies an `external_location` in this case\. For example, this query fails, if you enforce the workgroup to use its own location: `CREATE TABLE <DB>.<TABLE1> WITH (format='Parquet', external_location='s3://my_test/test/') AS SELECT * FROM <DB>.<TABLE2> LIMIT 10;`  
-To obtain the results location specified for the workgroup, [view workgroup's details](workgroups-create-update-delete.md#viewing-details-workgroups)\.  
+Optional\. The location where Athena saves your CTAS query in Amazon S3, as in the following example:  
+
+```
+ WITH (external_location ='s3://my-bucket/tables/parquet_table/')
+```
+Athena does not use the same path for query results twice\. If you specify the location manually, make sure that the Amazon S3 location that you specify has no data\. Athena never attempts to delete your data\. If you want to use the same location again, manually delete the data, or your CTAS query will fail\.  
+If you run a CTAS query that specifies an `external_location` in a workgroup that [enforces a query results location](workgroups-settings-override.md), the query fails with an error message\. To see the query results location specified for the workgroup, [see the workgroup's details](workgroups-create-update-delete.md#viewing-details-workgroups)\.  
+If your workgroup overrides the client\-side setting for query results location, Athena creates your table in the following location:  
+
+```
+s3://<workgroup-query-results-location>/tables/<query-id>/
+```
+If you do not use the `external_location` property to specify a location and your workgroup does not override client\-side settings, Athena uses your [client\-side setting](querying.md#query-results-specify-location-console) for the query results location to create your table in the following location:  
+
+```
+s3://<query-results-location-setting>/<Unsaved-or-query-name>/<year>/<month/<date>/tables/<query-id>/
+```  
 `format = [format]`  
 The data format for the CTAS query results, such as `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE`\. For example, `WITH (format = 'PARQUET')`\. If omitted, `PARQUET` is used by default\. The name of this parameter, `format`, must be listed in lowercase, or your CTAS query will fail\.  
 `partitioned_by = ARRAY( [col_name,…])`  
@@ -54,4 +68,8 @@ Optional and specific to text\-based data storage formats\. The field delimiter 
 
 ## Examples<a name="ctas-table-examples"></a>
 
-See [Examples of CTAS Queries](ctas-examples.md)\.
+For examples of CTAS queries, consult the following resources\.
++ [Examples of CTAS Queries](ctas-examples.md)
++ [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)
++ [Use CTAS statements with Amazon Athena to reduce cost and improve performance](http://aws.amazon.com/blogs/big-data/using-ctas-statements-with-amazon-athena-to-reduce-cost-and-improve-performance/)
++ [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)
