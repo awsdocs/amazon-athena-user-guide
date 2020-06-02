@@ -1,6 +1,6 @@
 # Using Athena Data Connector for External Hive Metastore<a name="connect-to-data-source-hive"></a>
 
-You can use the Amazon Athena data connector for eternal Hive metastore to query data sets in Amazon S3 that use an Apache Hive metastore\. No migration of metadata to the AWS Glue Data Catalog is necessary\. In the Athena management console, you configure a Lambda function to communicate with the Hive metastore that is in your private VPC and then connect it to the metastore\. The connection from Lambda to your Hive metastore is secured by a private Amazon VPC channel and does not use the public internet\. You can provide your own Lambda function code, or you can use the default implementation of the Athena data connector for external Hive metastore\.
+You can use the Amazon Athena data connector for external Hive metastore to query data sets in Amazon S3 that use an Apache Hive metastore\. No migration of metadata to the AWS Glue Data Catalog is necessary\. In the Athena management console, you configure a Lambda function to communicate with the Hive metastore that is in your private VPC and then connect it to the metastore\. The connection from Lambda to your Hive metastore is secured by a private Amazon VPC channel and does not use the public internet\. You can provide your own Lambda function code, or you can use the default implementation of the Athena data connector for external Hive metastore\.
 
 **Topics**
 + [Overview of Features](#connect-to-a-data-source-hive-features)
