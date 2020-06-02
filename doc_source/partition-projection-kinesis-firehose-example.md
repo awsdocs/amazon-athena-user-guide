@@ -22,7 +22,7 @@ TBLPROPERTIES
  "projection.enabled" = "true",
  "projection.datehour.type" = "date",
  "projection.datehour.range" = "2018/01/01/00,NOW",
- "projection.datehour.format" = ""yyyy/MM/dd/HH",
+ "projection.datehour.format" = "yyyy/MM/dd/HH",
  "projection.datehour.interval" = "1",
  "projection.datehour.interval.unit" = "HOURS",
  "storage.location.template" = "s3://bucket/prefix/${datehour}"
