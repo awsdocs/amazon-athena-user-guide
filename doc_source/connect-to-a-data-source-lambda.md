@@ -49,7 +49,7 @@ After you deploy the data source connector to your account, you can connect it t
 
 1. For **Choose Lambda function**, choose the function that you named\. The Lambda function's ARN is displayed\.
 
-1. For **Catalog name**, enter a unique name to use for the data source in your SQL queries, such as `cloudwatchlogs`\. The name can be up to 127 characters and must be unique within your account\. It cannot be changed after creation\. Valid characters are a\-z, A\-z, 0\-9, \_\(underscore\), @\(ampersand\) and \-\(hyphen\)\.
+1. For **Catalog name**, enter a unique name to use for the data source in your SQL queries, such as `cloudwatchlogs`\. The name can be up to 127 characters and must be unique within your account\. It cannot be changed after creation\. Valid characters are a\-z, A\-z, 0\-9, \_\(underscore\), @\(ampersand\) and \-\(hyphen\)\. The names `awsdatacatalog`, `hive`, `jmx`, and `system` are reserved by Athena and cannot be used for custom catalog names\. 
 
 1. Choose **Connect**\. The **Data sources** page now shows your connector in the list of catalog names\. You can now use the connector in your queries\. 
 

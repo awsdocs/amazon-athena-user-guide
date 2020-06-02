@@ -2,7 +2,10 @@
 
 ## SerDe Name<a name="serde-name"></a>
 
-ParquetHiveSerDe is used for data stored in [Parquet Format](https://cwiki.apache.org/confluence/display/Hive/Parquet)\.
+ParquetHiveSerDe is used for data stored in [Parquet Format](https://cwiki.apache.org/confluence/display/Hive/Parquet)\. 
+
+**Note**  
+To convert data into Parquet format, you can use [CREATE TABLE AS SELECT \(CTAS\)](create-table-as.md) queries\. For more information, see [Creating a Table from Query Results \(CTAS\)](ctas.md), [Examples of CTAS Queries](ctas-examples.md) and [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\.
 
 ## Library Name<a name="library-name"></a>
 

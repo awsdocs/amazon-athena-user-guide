@@ -15,7 +15,7 @@ In the [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.co
 
 ## Create a Workgroup<a name="creating-workgroups"></a>
 
-Creating a workgroup requires permissions to `CreateWorkgroup` API actions\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding tags, you also need to add permissions to `TagResource`\. See [Tag Policy Examples](tags-access-control.md#tag-policy-examples)\.
+Creating a workgroup requires permissions to `CreateWorkgroup` API actions\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding tags, you also need to add permissions to `TagResource`\. See [Tag Policy Examples for Workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
 
 **To create a workgroup in the console**
 
@@ -36,7 +36,7 @@ After you create workgroups, create [IAM Policies for Workgroups](workgroups-iam
 
 ## Edit a Workgroup<a name="editing-workgroups"></a>
 
-Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding or editing tags, you also need to have permissions to `TagResource`\. See [Tag Policy Examples](tags-access-control.md#tag-policy-examples)\.
+Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding or editing tags, you also need to have permissions to `TagResource`\. See [Tag Policy Examples for Workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
 
 **To edit a workgroup in the console**
 

@@ -14,10 +14,10 @@ Driver=Simba Athena ODBC Driver;AwsRegion=[Region];S3OutputLocation=[S3Path];Aut
 
 For more information, search for "workgroup" in the [ODBC Driver Installation and Configuration Guide version 1\.0\.5](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf)\. There are no changes to the ODBC driver connection string when you use tags on workgroups\. To use tags, upgrade to the latest version of the ODBC driver, which is this current version\.
 
-This driver version lets you use [Athena API workgroup actions](workgroups-api-list.md) to create and manage workgroups, and [Athena API tag actions](tags-api.md) to add, list, or remove tags on workgroups\. Before you begin, make sure that you have resource\-level permissions in IAM for actions on workgroups and tags\. 
+This driver version lets you use [Athena API workgroup actions](workgroups-api-list.md) to create and manage workgroups, and [Athena API tag actions](tags-operations.md) to add, list, or remove tags on workgroups\. Before you begin, make sure that you have resource\-level permissions in IAM for actions on workgroups and tags\. 
 
 For more information, see:
 + [Using Workgroups for Running Queries](workgroups.md) and [Workgroup Example Policies](example-policies-workgroup.md)\.
-+ [Tagging Workgroups](tags.md) and [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
++ [Tagging Resources](tags.md) and [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
 
 If you use the JDBC driver or the AWS SDK, upgrade to the latest version of the driver and SDK, both of which already include support for workgroups and tags in Athena\. For more information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.

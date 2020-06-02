@@ -1,57 +1,88 @@
-# Using Athena Data Connector for External Hive Metastore \(Preview\)<a name="connect-to-data-source-hive"></a>
+# Using Athena Data Connector for External Hive Metastore<a name="connect-to-data-source-hive"></a>
 
-You can use the Athena Data Connector for External Hive Metastore \(Preview\) to query data sets in Amazon S3 that use an Apache Hive metastore\. No migration of metadata to the AWS Glue Data Catalog is necessary\. In the Athena management console, you configure a Lambda function to communicate with the Hive metastore in your private VPC and then connect it\. For the Lambda function code, you can use Athena's default implementation – the Athena data source connector for external Hive metastore – or provide your own\.
+You can use the Amazon Athena data connector for eternal Hive metastore to query data sets in Amazon S3 that use an Apache Hive metastore\. No migration of metadata to the AWS Glue Data Catalog is necessary\. In the Athena management console, you configure a Lambda function to communicate with the Hive metastore that is in your private VPC and then connect it to the metastore\. The connection from Lambda to your Hive metastore is secured by a private Amazon VPC channel and does not use the public internet\. You can provide your own Lambda function code, or you can use the default implementation of the Athena data connector for external Hive metastore\.
+
+**Topics**
++ [Overview of Features](#connect-to-a-data-source-hive-features)
++ [Workflow](#connect-to-data-source-hive-workflow)
++ [Considerations and Limitations](#connect-to-a-data-source-hive-considerations)
++ [Connecting Athena to an Apache Hive Metastore](connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore.md)
++ [Using the AWS Serverless Application Repository to Deploy a Hive Data Source Connector](connect-data-source-sar-hive.md)
++ [Using a Default Catalog in External Hive Metastore Queries](datastores-hive-default-catalog.md)
++ [Using the AWS CLI with Hive Metastores](datastores-hive-cli.md)
++ [Reference Implementation](datastores-hive-reference-implementation.md)
+
+## Overview of Features<a name="connect-to-a-data-source-hive-features"></a>
+
+With the Athena data connector for external Hive metastore, you can perform the following tasks:
++ Use the Athena console to register custom catalogs and run queries using them\.
++ Define Lambda functions for different external Hive metastores and join them in Athena queries\.
++ Use the AWS Glue Data Catalog and your external Hive metastores in the same Athena query\.
++ Specify a catalog in the query execution context as the current default catalog\. This removes the requirement to prefix catalog names to database names in your queries\. Instead of using the syntax `catalog.database.table`, you can use `database.table`\.
++ Use a variety of tools to run queries that reference external Hive metastores\. You can use the Athena console, the AWS CLI, the AWS SDK, Athena APIs, and updated Athena JDBC and ODBC drivers\. The updated drivers have support for custom catalogs\.
+
+### API Support<a name="connect-to-a-data-source-hive-features-api"></a>
+
+Athena Data Connector for External Hive Metastore includes support for catalog registration API operations and metadata API operations\.
++ **Catalog registration** – Register custom catalogs for external Hive metastores and [federated data sources](connect-to-a-data-source.md)\. 
++ **Metadata** – Use metadata APIs to provide database and table information for AWS Glue and any catalog that you register with Athena\.
++ **Athena JAVA SDK client** – Use catalog registration APIs, metadata APIs, and support for catalogs in the `StartQueryExecution` operation in the updated Athena Java SDK client\.
+
+### Reference Implementation<a name="connect-to-a-data-source-hive-features-reference-implementation"></a>
+
+Athena provides a reference implementation for the Lambda function that connects to external Hive metastores\. The reference implementation is provided on GitHub as an open source project at [Athena Hive Metastore](https://github.com/awslabs/aws-athena-hive-metastore)\.
+
+The reference implementation is available as the following two AWS SAM applications in the AWS Serverless Application Repository \(SAR\)\. You can use either of these applications in the SAR to create your own Lambda functions\.
++ `AthenaHiveMetastoreFunction` – Uber Lambda function `.jar` file\.
++ `AthenaHiveMetastoreFunctionWithLayer` – Lambda layer and thin Lambda function `.jar` file\.
+
+## Workflow<a name="connect-to-data-source-hive-workflow"></a>
+
+The following diagram shows how Athena interacts with your external Hive metastore\.
+
+![\[How Athena interacts with your external Hive metastore.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-to-data-source-hive-workflow.png)
+
+In this workflow, your database\-connected Hive metastore is inside your VPC\. You use Hive Server2 to manage your Hive metastore using the Hive CLI\.
+
+The workflow for using external Hive metastores from Athena includes the following steps\.
+
+1. You create a Lambda function that connects Athena to the Hive metastore that is inside your VPC\.
+
+1. You register a unique catalog name for your Hive metastore and a corresponding function name in your account\.
+
+1. When you run an Athena DML or DDL query that uses the catalog name, the Athena query engine calls the Lambda function name that you associated with the catalog name\.
+
+1. Using AWS PrivateLink, the Lambda function communicates with the external Hive metastore in your VPC and receives responses to metadata requests\. Athena uses the metadata from your external Hive metastore just like it uses the metadata from the default AWS Glue Data Catalog\.
 
 ## Considerations and Limitations<a name="connect-to-a-data-source-hive-considerations"></a>
-+ You cannot use views with external Hive metastores, UDFs, or other data connectors\.
 
-**Permissions**  
-Prebuilt and custom data connectors might require access to the following resources to function correctly\. Check the information for the connector that you use to ensure that you have configured your VPC correctly\. For information about required IAM permissions to run queries and create a data source connector in Athena, see [Allow Access to an Athena Data Connector for External Hive Metastore \(Preview\)](hive-metastore-iam-access.md)\.
-+ **AmazonAthenaPreviewFunctionality workgroup** – To use this feature in preview, you must create an Athena workgroup named `AmazonAthenaPreviewFunctionality` and join that workgroup\. For more information, see [Managing Workgroups](workgroups-create-update-delete.md)\. 
-+ **Amazon S3** – In addition to writing query results to the Athena query results location in Amazon S3, data connectors also write to a spill bucket in Amazon S3\. Connectivity and permissions to this Amazon S3 location are required\.
-+ **Athena** – For checking query status and preventing overscan\.
-+ **AWS Secrets Manager**
-+ **AWS Glue** if your connector uses AWS Glue for supplemental or primary metadata\.
+When you use Athena Data Connector for External Hive Metastore, consider the following points:
++ DDL support for external Hive Metastore is limited to the following statements\.
+  + DESCRIBE TABLE
+  + SHOW COLUMNS
+  + SHOW TABLES
+  + SHOW SCHEMAS
+  + SHOW CREATE TABLE
+  + SHOW TBLPROPERTIES
+  + SHOW PARTITIONS
++ The maximum number of registered catalogs that you can have is 1,000\.
++ You can use [CTAS](ctas.md) to create an AWS Glue table from a query on an external Hive metastore, but not to create a table on an external Hive metastore\.
++ You can use INSERT INTO to insert data into an AWS Glue table from a query on an external Hive metastore, but not to insert data into an external Hive metastore\.
++ Hive views are not compatible with Athena views and are not supported\.
++ Kerberos authentication for Hive metastore is not supported\.
+
+### Permissions<a name="connect-to-a-data-source-hive-considerations-permissions"></a>
+
+Prebuilt and custom data connectors might require access to the following resources to function correctly\. Check the information for the connector that you use to make sure that you have configured your VPC correctly\. For information about required IAM permissions to run queries and create a data source connector in Athena, see [Allow Access to an Athena Data Connector for External Hive Metastore](hive-metastore-iam-access.md) and [Allow Lambda Function Access to External Hive Metastores](hive-metastore-iam-access-lambda.md)\.
++ **Amazon S3** – In addition to writing query results to the Athena query results location in Amazon S3, data connectors also write to a spill bucket in Amazon S3\. Connectivity and permissions to this Amazon S3 location are required\. For more information, see [Spill Location in Amazon S3](#connect-to-data-source-hive-spill-location) later in this topic\.
++ **Athena** – Access is required to check query status and prevent overscan\.
++ **AWS Glue** – Access is required if your connector uses AWS Glue for supplemental or primary metadata\.
 + **AWS Key Management Service**
 + **Policies** – Hive metastore, Athena Query Federation, and UDFs require policies in addition to the [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md)\. For more information, see [Identity and Access Management in Athena](security-iam-athena.md)\.
 
-## Connecting Athena to an Apache Hive Metastore<a name="connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore"></a>
+### Spill Location in Amazon S3<a name="connect-to-data-source-hive-spill-location"></a>
 
-To connect Athena to an Apache Hive Metastore, you must create and configure a Lambda function\. For a basic implementation, you can perform all required steps from the Athena management console\.
+Because of the [limit](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) on Lambda function response sizes, responses larger than the threshold spill into an Amazon S3 location that you specify when you create your Lambda function\. Athena reads these responses from Amazon S3 directly\. 
 
-**To connect Athena to a Hive metastore**
-
-1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
-
-1. Choose **Connect data source**\.
-
-1. On the **Connect data source** page, for **Choose a metadata catalog**, choose **Apache Hive metastore**\.
-
-1. Choose **Next**\.
-
-1. On the **Connection details** page, for **Lambda function**, click **Create Lambda function**\.
-
-1. In the **Create Lambda function** dialog box, enter the following information for the Lambda function\. To use the default implementation, accept the defaults for the function code location in Amazon S3 and the Lambda handler\.
-   + **Lambda function name** – Provide a name for the function\. For example, **myHiveMetastore**\.
-   + **Lambda execution role** – Choose an IAM role or click **Create a new role** to create one\.
-   + **Function code** – The location in Amazon S3 for the Lambda function JAR file\. Use the default or enter the location of your custom JAR file\.
-   + **Lambda handler** – The method in the JAR file that implements the Hive connector\. Use the default, or replace it with the handler in your custom code\.
-   + **Hive metastore \(HMS\) URI** – Enter the name of your Hive metastore host that uses the Thrift protocol at port 9083 with the syntax `thrift://<host_name>:9083`\.
-   + **Spill location in S3** – Specify an Amazon S3 location in this account to hold spillover metadata if the Lambdafunction reponse size exceeds 4MB\.
-   + **Virtual Private \(VPC\)** – Choose the VPC that contains your Hive metastore\.
-   + **Subnets** – Choose the VPC subnets for Lambda to use to set up your VPC configuration\.
-   + **Security Groups** – Choose the VPC security groups for Lambda to use to set up your VPC configuration\.
-   + **Memory** – Specify a value from 128MB to 3008MB\. The Lambda function is allocated CPU cycles proportional to the amount of memory that you configure\.
-   + **Timeout** – Specify a value from 1 second to 15 minutes 59 seconds\. The default is 3 seconds\.
-
-1. Click **Create**\. The **Connection details** page informs you that the function is being created\. When the operation completes, your function name is available in the **Choose a function name** box, and your Lambda function ARN is displayed\.
-
-1. For **Catalog name**, enter a unique name to use for the data source in your SQL queries\. The name can be up to 127 characters and must be unique within your account\. It cannot be changed after creation\. Valid characters are a\-z, A\-z, 0\-9, \_\(underscore\), @\(ampersand\) and \-\(hyphen\)\.
-
-1. Click **Connect** to connect Athena to your data source\.
-
-   The **Data sources** page shows your connector in the list of catalog names\. You can now use the **Catalog name** that you specified to reference the Hive metastore in your SQL queries\. Use the syntax in the following example, where `MyHiveMetastore` is the catalog name that you specified earlier\.
-
-   ```
-   SELECT * FROM MyHiveMetastore.CustomerData.customers; 
-   ```
+**Note**  
+Athena does not remove the response files on Amazon S3\. We recommend that you set up a retention policy to delete response files automatically\. 

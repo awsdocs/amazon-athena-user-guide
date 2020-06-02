@@ -10,6 +10,8 @@ Athena natively supports the AWS Glue Data Catalog\. The AWS Glue Data Catalog i
 
 **Topics**
 + [Integration with AWS Glue](glue-athena.md)
-+ [Using Athena Data Connector for External Hive Metastore \(Preview\)](connect-to-data-source-hive.md)
++ [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)
 + [Using Amazon Athena Federated Query \(Preview\)](connect-to-a-data-source.md)
++ [IAM Policies for Accessing Data Catalogs](datacatalogs-iam-policy.md)
++ [Managing Data Sources](data-sources-managing.md)
 + [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena-bi-tools-jdbc-odbc.md)

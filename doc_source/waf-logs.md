@@ -14,7 +14,9 @@ Make a note of the Amazon S3 bucket to which you save these logs\.
 
 1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\.
 
-   This query uses the [Hive JSON SerDe](json.md#hivejson)\. The table format and the SerDe are suggested by the AWS Glue crawler when it analyzes AWS WAF logs\.
+   This query uses the [OpenX JSON SerDe](json.md#openxjson)\. The table format and the SerDe are suggested by the AWS Glue crawler when it analyzes AWS WAF logs\.
+**Note**  
+The SerDe expects each JSON record in the WAF logs in Amazon S3 to be on a single line of text with no line termination characters separating the fields in the record\. If the WAF log JSON text is in pretty print format, you may receive the error message HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object when you attempt to query the table after you create it\.
 
    ```
    CREATE EXTERNAL TABLE `waf_logs`(

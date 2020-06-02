@@ -7,7 +7,6 @@ We recommend using workgroups to isolate queries for teams, applications, or dif
 + [How Workgroups Work](user-created-workgroups.md)
 + [Setting up Workgroups](workgroups-procedure.md)
 + [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)
-+ [Workgroup Example Policies](example-policies-workgroup.md)
 + [Workgroup Settings](workgroups-settings.md)
 + [Managing Workgroups](workgroups-create-update-delete.md)
 + [Athena Workgroup APIs](workgroups-api-list.md)
