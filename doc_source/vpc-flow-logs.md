@@ -36,7 +36,7 @@ The following procedure creates an Amazon VPC table for VPC flow logs that use t
    PARTITIONED BY (`date` date)
    ROW FORMAT DELIMITED
    FIELDS TERMINATED BY ' '
-   LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}/'
+   LOCATION 's3://your_log_bucket/prefix/AWSLogs/{account_id}/vpcflowlogs/{region_code}/'
    TBLPROPERTIES ("skip.header.line.count"="1");
    ```
 
@@ -47,7 +47,7 @@ The following procedure creates an Amazon VPC table for VPC flow logs that use t
 Because `date` is a reserved keyword in DDL statements, it is escaped by backtick characters\. For more information, see [Reserved Keywords](reserved-words.md)\.
    + For a VPC flow log with a custom format, modify the fields to match the fields that you specified when you created the flow log\.
 
-1. Modify the `LOCATION 's3://your_log_bucket/prefix/AWSLogs/{subscribe_account_id}/vpcflowlogs/{region_code}/'` to point to the Amazon S3 bucket that contains your log data\.
+1. Modify the `LOCATION 's3://your_log_bucket/prefix/AWSLogs/{account_id}/vpcflowlogs/{region_code}/'` to point to the Amazon S3 bucket that contains your log data\.
 
 1. Run the query in Athena console\. After the query completes, Athena registers the `vpc_flow_logs` table, making the data in it ready for you to issue queries\.
 
