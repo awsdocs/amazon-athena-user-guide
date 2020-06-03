@@ -1,6 +1,8 @@
 # Example IAM Permissions Policies to Allow Athena Federated Query \(Preview\)<a name="federated-query-iam-access"></a>
 
 The permission policy examples in this topic demonstrate required allowed actions and the resources for which they are allowed\. Examine these policies carefully and modify them according to your requirements before attaching them to IAM identities\.
+
+For information about attaching policies to IAM identities, see [Adding and Removing IAM Identity Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 +  [Example Policy to Allow an IAM Principal to Run and Return Results Using Athena Federated Query (Preview)](#fed-using-iam) 
 +  [Example Policy to Allow an IAM Principal to Create a Data Source Connector](#fed-creating-iam) 
 

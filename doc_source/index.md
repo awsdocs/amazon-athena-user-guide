@@ -202,6 +202,7 @@ Amazon's trademarks and trade dress may not be used in
    + [DDL Statements](language-reference.md)
       + [Unsupported DDL](unsupported-ddl.md)
       + [ALTER DATABASE SET DBPROPERTIES](alter-database-set-dbproperties.md)
+      + [ALTER TABLE ADD COLUMNS](alter-table-add-columns.md)
       + [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)
       + [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md)
       + [ALTER TABLE RENAME PARTITION](alter-table-rename-partition.md)

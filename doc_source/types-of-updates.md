@@ -76,43 +76,16 @@ LOCATION 's3://schema_updates/orders_json/';
 
 ## Adding Columns at the End of the Table<a name="updates-add-columns-end-of-table"></a>
 
-If you create tables in any of the formats that Athena supports, such as Parquet, ORC, Avro, JSON, CSV, and TSV, you can add new columns *at the end of the table*\. For tables in Parquet and ORC, you can add columns at the end of the table regardless of the type of [index access](handling-schema-updates-chapter.md#index-access) they use\.
+If you create tables in any of the formats that Athena supports, such as Parquet, ORC, Avro, JSON, CSV, and TSV, you can use the `ALTER TABLE ADD COLUMNS` statement to add columns after existing columns but before partition columns\.
 
-In the following example, drop an existing table in Parquet, and add a new Parquet table with a new ``comment`` column at the end of the table: 
-
-```
-DROP TABLE orders_parquet;
-CREATE EXTERNAL TABLE orders_parquet (
-   `orderkey` int, 
-   `orderstatus` string, 
-   `totalprice` double, 
-   `orderdate` string, 
-   `orderpriority` string, 
-   `clerk` string, 
-   `shippriority` int
-   `comment` string
-) 
-STORED AS PARQUET
-LOCATION 's3://schema_updates/orders_parquet/';
-```
-
-In the following example, drop an existing table in CSV and add a new CSV table with a new ``comment`` column at the end of the table:
+The following example adds a `comment` column at the end of the `orders_parquet` table before any partition columns: 
 
 ```
-DROP TABLE orders_csv;
-CREATE EXTERNAL TABLE orders_csv (
-   `orderkey` int, 
-   `orderstatus` string, 
-   `totalprice` double, 
-   `orderdate` string, 
-   `orderpriority` string, 
-   `clerk` string, 
-   `shippriority` int
-   `comment` string
-) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
-LOCATION 's3://schema_updates/orders_csv/';
+ALTER TABLE orders_parquet ADD COLUMNS (comment string)
 ```
+
+**Note**  
+To see a new table column in the Athena Query Editor after you run `ALTER TABLE ADD COLUMNS`, manually refresh the table list in the editor, and then expand the table again\.
 
 ## Removing Columns<a name="updates-removing-columns"></a>
 

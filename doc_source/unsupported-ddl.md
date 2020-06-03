@@ -9,7 +9,6 @@ The following native Hive DDLs are not supported by Athena:
 + ALTER TABLE `table_name` NOT SKEWED
 + ALTER TABLE `table_name` NOT SORTED
 + ALTER TABLE `table_name` NOT STORED AS DIRECTORIES
-+ ALTER TABLE `table_name` partitionSpec ADD COLUMNS
 + ALTER TABLE `table_name` partitionSpec CHANGE COLUMNS
 + ALTER TABLE `table_name` partitionSpec COMPACT
 + ALTER TABLE `table_name` partitionSpec CONCATENATE
