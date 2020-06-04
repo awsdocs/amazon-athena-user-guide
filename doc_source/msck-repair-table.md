@@ -6,10 +6,12 @@ The `MSCK REPAIR TABLE` command scans a file system such as Amazon S3 for Hive c
 
 When you add or remove partitions, the metadata in the catalog becomes inconsistent with the layout of the data in the file system\. For example, after you create a table with partitions, information about the new partitions needs to be added to the catalog\. To update the metadata, you run `MSCK REPAIR TABLE` on the table\. This enables you to query the data in the new partitions from Athena\.
 
-It is possible it will take some time to add all partitions\. If this operation times out, it will be in an incomplete state where only a few partitions are added to the catalog\. You should run the statement on the same table until all partitions are added\. For more information, see [Partitioning Data](partitions.md)\. 
+## Considerations and Limitations<a name="msck-repair-table-considerations"></a>
 
-**Note**  
-For partitions that are not compatible with Hive, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to load the partitions so that you can query their data\.
+When using `MSCK REPAIR TABLE`, keep in mind the following points:
++ It is possible it will take some time to add all partitions\. If this operation times out, it will be in an incomplete state where only a few partitions are added to the catalog\. You should run `MSCK REPAIR TABLE` on the same table until all partitions are added\. For more information, see [Partitioning Data](partitions.md)\. 
++ For partitions that are not compatible with Hive, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to load the partitions so that you can query their data\.
++ Partition locations to be used with Athena must use the `s3` protocol \(for example, `s3://bucket/folder/`\)\. In Athena, locations that use other protocols \(for example, `s3a://bucket/folder/`\) will result in query failures when `MSCK REPAIR TABLE` queries are run on the containing tables\. 
 
 ## Synopsis<a name="synopsis"></a>
 
