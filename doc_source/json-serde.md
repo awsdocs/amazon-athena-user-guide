@@ -1,8 +1,8 @@
-# JSON SerDe Libraries<a name="json"></a>
+# JSON SerDe Libraries<a name="json-serde"></a>
 
-In Athena, you can use two SerDe libraries for processing data in JSON:
-+ The native [Hive JSON SerDe](#hivejson) 
-+ The [OpenX JSON SerDe](#openxjson) 
+In Athena, you can use two SerDe libraries to deserialize JSON data\. Deserialization converts the JSON data so that it can be serialized \(written out\) into a different format like Parquet or ORC\. 
++ The native [Hive JSON SerDe](#hive-json-serde)
++ The [OpenX JSON SerDe](#openx-json-serde) 
 
 ## SerDe Names<a name="serde-names"></a>
 
@@ -18,18 +18,11 @@ Use one of the following:
 
  [org\.openx\.data\.jsonserde\.JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) 
 
-## Hive JSON SerDe<a name="hivejson"></a>
+## Hive JSON SerDe<a name="hive-json-serde"></a>
 
-The Hive JSON SerDe is used to process JSON data, most commonly events\. These events are represented as blocks of JSON\-encoded text separated by a new line\.
+The Hive JSON SerDe is commonly used to process JSON data like events\. These events are represented as blocks of JSON\-encoded text separated by a new line\. The Hive JSON SerDe does not allow duplicate keys in `map` or `struct` key names\.
 
-You can also use the Hive JSON SerDe to parse more complex JSON\-encoded data with nested structures\. However, this requires having a matching DDL representing the complex data types\. See [Example: Deserializing Nested JSON](#nested-json-serde-example)\.
-
-With this SerDe, duplicate keys are not allowed in `map` \(or `struct`\) key names\.
-
-**Note**  
-Replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.
-
-The following DDL statement uses the Hive JSON SerDe:
+The following example DDL statement uses the Hive JSON SerDe to create a table based on sample online advertising data\. In the `LOCATION` clause, replace the *myregion* in `s3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions` with the region identifier where you run Athena \(for example, `s3://us-west-2.elasticmapreduce/samples/hive-ads/tables/impressions`\)\.
 
 ```
 CREATE EXTERNAL TABLE impressions (
@@ -59,11 +52,15 @@ with serdeproperties ( 'paths'='requestbegintime, adid, impressionid, referrer, 
 LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 ```
 
-## OpenX JSON SerDe<a name="openxjson"></a>
+After you create the table, run [MSCK REPAIR TABLE](msck-repair-table.md) to load the table and make it queryable from Athena:
 
-The OpenX SerDe is used by Athena for deserializing data, which means converting it from the JSON format in preparation for serializing it to the Parquet or ORC format\. This is one of two deserializers that you can choose, depending on which one offers the functionality that you need\. The other option is the Hive JsonSerDe\. 
+```
+MSCK REPAIR TABLE impressions
+```
 
-This SerDe has a few useful properties that you can specify when creating tables in Athena, to help address inconsistencies in the data:
+## OpenX JSON SerDe<a name="openx-json-serde"></a>
+
+The OpenX JSON SerDe has the following properties that are useful for addressing inconsistencies in data\. You specify these properties when you create Athena tables that use the OpenX JSON SerDe\.
 
 **ignore\.malformed\.json**  
 Optional\. When set to `TRUE`, lets you skip malformed JSON syntax\. The default is `FALSE`\.
@@ -76,6 +73,7 @@ Optional\. The default is `TRUE`\. When set to `TRUE`, the SerDe converts all up
 To use case\-sensitive key names in your data, use `WITH SERDEPROPERTIES ("case.insensitive"= FALSE;)`\. Then, for every key that is not already all lowercase, provide a mapping from the column name to the property name using the following syntax:  
 
 ```
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 WITH SERDEPROPERTIES ("case.insensitive" = "FALSE", "mapping.userid" = "userId")
 ```
 If you have two keys like `URL` and `Url` that are the same when they are in lowercase, an error like the following can occur:  
@@ -83,15 +81,21 @@ HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object \- JSONException: Duplicate 
 To resolve this, set the `case.insensitive` property to `FALSE` and map the keys to different names, as in the following example:  
 
 ```
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 WITH SERDEPROPERTIES ("case.insensitive" = "FALSE", "mapping.url1" = "URL", "mapping.url2" = "Url")
 ```
 
-**ColumnToJsonKeyMappings**  
-Optional\. Maps column names to JSON keys that aren't identical to the column names\. This is useful when the JSON data contains keys that are [keywords](reserved-words.md)\. For example, if you have a JSON key named `timestamp`, set this parameter to `{"ts": "timestamp"}` to map this key to a column named `ts`\. This parameter takes values of type string\. It uses the following key pattern: `^\S+$` and the following value pattern: `^(?!\s*$).+`
+**mapping**  
+Optional\. Maps column names to JSON keys that aren't identical to the column names\. The `mapping` parameter is useful when the JSON data contains keys that are [keywords](reserved-words.md)\. For example, if you have a JSON key named `timestamp`, use the following syntax to map the key to a column named `ts`:  
 
-With this SerDe, duplicate keys are not allowed in `map` \(or `struct`\) key names\.
+```
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
+WITH SERDEPROPERTIES ("mapping.ts"= "timestamp")
+```
 
-The following DDL statement uses the OpenX JSON SerDe:
+Like the Hive JSON SerDe, the OpenX JSON SerDe does not allow duplicate keys in `map` or `struct` key names\.
+
+The following example DDL statement uses the OpenX JSON SerDe to create a table based on the same sample online advertising data used in the example for the Hive JSON SerDe\. In the `LOCATION` clause, replace *myregion* with the region identifier where you run Athena\.
 
 ```
 CREATE EXTERNAL TABLE impressions (
@@ -120,15 +124,11 @@ LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 
 ## Example: Deserializing Nested JSON<a name="nested-json-serde-example"></a>
 
-JSON data can be challenging to deserialize when creating a table in Athena\.
+You can use the JSON SerDes to parse more complex JSON\-encoded data\. This requires using `CREATE TABLE` statements that use `struct` and `array` elements to represent nested structures\. 
 
- When dealing with complex nested JSON, there are common issues you may encounter\. For more information about these issues and troubleshooting practices, see the AWS Knowledge Center Article [I receive errors when I try to read JSON data in Amazon Athena](https://aws.amazon.com/premiumsupport/knowledge-center/error-json-athena/)\. 
+The following example creates an Athena table from JSON data that has nested structures\. To parse JSON\-encoded data in Athena, make sure that each JSON document is on its own line, separated by a new line\. 
 
-For more information about common scenarios and query tips, see [Create Tables in Amazon Athena from Nested JSON and Mappings Using JSONSerDe](http://aws.amazon.com/blogs/big-data/create-tables-in-amazon-athena-from-nested-json-and-mappings-using-jsonserde/)\.
-
-The following example demonstrates a simple approach to creating an Athena table from data with nested structures in JSON\.To parse JSON\-encoded data in Athena, each JSON document must be on its own line, separated by a new line\. 
-
-This example presumes a JSON\-encoded data with the following structure:
+This example presumes JSON\-encoded data that has the following structure:
 
 ```
 {
@@ -157,7 +157,7 @@ This example presumes a JSON\-encoded data with the following structure:
 }
 ```
 
-The following `CREATE TABLE` command uses the [Openx\-JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) with collection data types like `struct` and `array` to establish groups of objects\. Each JSON document is listed on its own line, separated by a new line\. To avoid errors, the data being queried does not include duplicate keys in `struct` and map key names\. Duplicate keys are not allowed in map \(or `struct`\) key names\. 
+The following `CREATE TABLE` statement uses the [Openx\-JsonSerDe](https://github.com/rcongiu/Hive-JSON-Serde) with the `struct` and `array` collection data types to establish groups of objects\. Each JSON document is listed on its own line, separated by a new line\. To avoid errors, the data being queried does not include duplicate keys in `struct` or map key names\.
 
 ```
 CREATE external TABLE complex_json (
@@ -183,3 +183,10 @@ CREATE external TABLE complex_json (
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 LOCATION 's3://mybucket/myjsondata/';
 ```
+
+## Additional Resources<a name="json-serdes-additional-resources"></a>
+
+For more information about working with JSON and nested JSON in Athena, see the following resources:
++ [Create Tables in Amazon Athena from Nested JSON and Mappings Using JSONSerDe](http://aws.amazon.com/blogs/big-data/create-tables-in-amazon-athena-from-nested-json-and-mappings-using-jsonserde/) \(AWS Big Data Blog\)
++ [I get errors when I try to read JSON data in Amazon Athena](http://aws.amazon.com/premiumsupport/knowledge-center/error-json-athena/) \(AWS Knowledge Center article\)
++ [hive\-json\-schema](https://github.com/quux00/hive-json-schema) \(GitHub\) – Tool written in Java that generates `CREATE TABLE` statements from example JSON documents\. The `CREATE TABLE` statements that are generated use the OpenX JSON Serde\.

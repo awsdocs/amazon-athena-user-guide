@@ -1,4 +1,4 @@
-# OpenCSVSerDe for Processing CSV<a name="csv"></a>
+# OpenCSVSerDe for Processing CSV<a name="csv-serde"></a>
 
 When you create a table from CSV data in Athena, determine what types of values it contains:
 + If data contains values enclosed in double quotes \(`"`\), you can use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\. In the following sections, note the behavior of this SerDe with `STRING` data types\.

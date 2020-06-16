@@ -11,9 +11,6 @@ Athena processes tables with partitions successfully if they meet the following 
 
   For example, for CSV and TSV formats, you can rename columns, add new columns at the end of the table, and change a column's data type if the types are compatible, but you cannot remove columns\. For other formats, you can add or remove columns, or change a column's data type to another if the types are compatible\. For information, see [Summary: Updates and Data Formats in Athena](handling-schema-updates-chapter.md#summary-of-updates)\. 
 
-**Important**  
-Schema updates described in this section do not work on tables with complex or nested data types, such as arrays and structs\.
-
 ## Avoiding Schema Mismatch Errors for Tables with Partitions<a name="partitions-dealing-with-schema-mismatch-errors"></a>
 
 At the beginning of query execution, Athena verifies the table's schema by checking that each column data type is compatible between the table and the partition\. 

@@ -3,9 +3,12 @@
 Because AWS Glue Data Catalog is used by many AWS services as their central metadata repository, you might want to query Data Catalog metadata\. To do so, you can use SQL queries in Athena\. You can use Athena to query AWS Glue catalog metadata like databases, tables, partitions, and columns\.
 
 **Note**  
-You can also use the individual hive [DDL commands](language-reference.md) to extract metadata information for specific databases, tables, views, partitions, and columns from Athena, but the output will be in a non\-tabular format\.
+You can individual hive [DDL commands](language-reference.md) to extract metadata information for specific databases, tables, views, partitions, and columns from Athena, but the output is in a non\-tabular format\.
 
-To obtain AWS Glue Catalog metadata, you query the `information_schema` database on the Athena backend\. The example queries in this topic show how to use Athena to query AWS Glue Catalog metadata for common use cases, but do not cover all scenarios\.
+To obtain AWS Glue Catalog metadata, you query the `information_schema` database on the Athena backend\. The example queries in this topic show how to use Athena to query AWS Glue Catalog metadata for common use cases\.
+
+**Important**  
+ You cannot use `CREATE VIEW` to create a view on the `information_schema` database\. 
 
 **Topics**
 + [Listing Databases and Searching a Specified Database](#querying-glue-catalog-querying-available-databases-including-rdbms)

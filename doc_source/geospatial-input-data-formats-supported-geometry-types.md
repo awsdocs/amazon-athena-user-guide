@@ -6,7 +6,7 @@ To use geospatial functions in Athena, input your data in the WKT format, or use
 
 To handle geospatial queries, Athena supports input data in these data formats:
 +  **WKT \(Well\-known Text\)**\. In Athena, WKT is represented as a `varchar` data type\.
-+  **JSON\-encoded geospatial data**\. To parse JSON files with geospatial data and create tables for them, Athena uses the [Hive JSON SerDe](https://github.com/Esri/spatial-framework-for-hadoop/wiki/Hive-JSON-SerDe)\. For more information about using this SerDe in Athena, see [JSON SerDe Libraries](json.md)\.
++  **JSON\-encoded geospatial data**\. To parse JSON files with geospatial data and create tables for them, Athena uses the [Hive JSON SerDe](https://github.com/Esri/spatial-framework-for-hadoop/wiki/Hive-JSON-SerDe)\. For more information about using this SerDe in Athena, see [JSON SerDe Libraries](json-serde.md)\.
 
 ## Geometry Data Types<a name="geometry-data-types"></a>
 

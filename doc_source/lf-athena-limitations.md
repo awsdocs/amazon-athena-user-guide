@@ -32,7 +32,7 @@ Athena query history exposes a list of saved queries and complete query strings\
 
 ## Cross\-Account Data Catalogs Not Supported<a name="lf-athena-limitations-cross-account-glue"></a>
 
-An Athena user from one account can not query databases and tables in the Data Catalog of a different account, even when Lake Formation is used\. To query an Amazon S3 data location in a different account, a resource\-based IAM policy \(bucket policy\) must allow access to the location\. For more information, see [Cross\-account Access](cross-account-permissions.md)\. You can use Lake Formation to register an accessible bucket location in an external account with the Data Catalog in the local account\.
+An Athena user from one account can not query databases and tables in the Data Catalog of a different account, even when Lake Formation is used\. To query an Amazon S3 data location in a different account, a resource\-based IAM policy \(bucket policy\) must allow access to the location\. For more information, see [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\. You can use Lake Formation to register an accessible bucket location in an external account with the Data Catalog in the local account\.
 
 ## CSE\-KMS Encrypted Amazon S3 Locations Registered With Lake Formation Cannot Be Queried in Athena<a name="lf-athena-limitations-cse-kms"></a>
 

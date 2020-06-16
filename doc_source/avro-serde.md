@@ -1,4 +1,4 @@
-# Avro SerDe<a name="avro"></a>
+# Avro SerDe<a name="avro-serde"></a>
 
 ## SerDe Name<a name="serde-name"></a>
 

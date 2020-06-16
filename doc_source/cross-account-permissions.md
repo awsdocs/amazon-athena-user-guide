@@ -1,6 +1,9 @@
-# Cross\-account Access<a name="cross-account-permissions"></a>
+# Cross\-account Access in Athena to Amazon S3 Buckets<a name="cross-account-permissions"></a>
 
 A common Amazon Athena scenario is granting access to users in an account different from the bucket owner so that they can perform queries\. In this case, use a bucket policy to grant access\.
+
+**Note**  
+ For information about cross\-account access in AWS Glue, see [Granting Cross\-Account Access](https://docs.aws.amazon.com/glue/latest/dg/cross-account-access.html) in the *[AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/)*\.
 
 The following example bucket policy, created and applied to bucket `s3://my-athena-data-bucket` by the bucket owner, grants access to all users in account `123456789123`, which is a different account\.
 

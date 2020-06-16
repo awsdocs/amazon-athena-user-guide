@@ -1,9 +1,6 @@
 # Types of Updates<a name="types-of-updates"></a>
 
 Here are the types of updates that a table’s schema can have\. We review each type of schema update and specify which data formats allow you to have them in Athena\.
-
-**Important**  
-Schema updates described in this section do not work on tables with complex or nested data types, such as arrays and structs\.
 + [Adding Columns at the Beginning or Middle of the Table](#updates-add-columns-beginning-middle-of-table)
 + [Adding Columns at the End of the Table](#updates-add-columns-end-of-table)
 + [Removing Columns](#updates-removing-columns)

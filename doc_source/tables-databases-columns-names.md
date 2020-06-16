@@ -10,7 +10,7 @@ Queries with mixedCase column names, such as `profileURI`, or upper case column 
 
 ## Special characters<a name="ate-table-database-and-column-names-special-characters"></a>
 
-You may have to use backticks to enclose Athena table, view, database, or column names that contain special characters\.
+You may have to use backticks or double quotes to enclose Athena table, view, database, or column names that contain special characters\.
 
 ### Names that begin with an underscore<a name="names-that-begin-with-an-underscore"></a>
 
@@ -22,12 +22,18 @@ CREATE EXTERNAL TABLE IF NOT EXISTS `_myunderscoretable`(
 LOCATION 's3://my-athena-data/'
 ```
 
-## Table or view names that begin with numbers<a name="table-names-that-include-numbers"></a>
+### Table, view, or column names that begin with numbers<a name="table-names-that-include-numbers"></a>
 
-Enclose table or view names that begin with numbers in quotation marks\. For example:
+In `SELECT`, `CTAS`, or `VIEW` queries, put quotation marks around identifiers like table, view, or column names that start with a digit\. For example:
 
 ```
 CREATE OR REPLACE VIEW "123view" AS
-SELECT column_name1, column_name2
+SELECT "123columnone", "123columntwo"
 FROM "234table"
 ```
+
+### Reserved words<a name="tables-databases-columns-names-reserved-words"></a>
+
+Certain reserved words in Athena must be escaped\. To escape reserved keywords in DDL statements, enclose them in backticks \(`\)\. To escape reserved keywords in SQL `SELECT` statements and in queries on [views](views.md), enclose them in double quotes \(''\)\. 
+
+For more information, see [Reserved Keywords](reserved-words.md)\.

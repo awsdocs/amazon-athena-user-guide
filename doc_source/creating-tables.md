@@ -16,7 +16,7 @@ When you query, you query the table using standard SQL and the data is read at t
 
 The maximum query string length is 256 KB\.
 
-Hive supports multiple data formats through the use of serializer\-deserializer \(SerDe\) libraries\. You can also define complex schemas using regular expressions\. For a list of supported SerDe libraries, see [Supported Data Formats, SerDes, and Compression Formats](supported-format.md)\.
+Hive supports multiple data formats through the use of serializer\-deserializer \(SerDe\) libraries\. You can also define complex schemas using regular expressions\. For a list of supported SerDe libraries, see [Supported SerDes and Data Formats](supported-serdes.md)\.
 
 ## Considerations and Limitations<a name="creating-tables-considerations-and-limitations"></a>
 

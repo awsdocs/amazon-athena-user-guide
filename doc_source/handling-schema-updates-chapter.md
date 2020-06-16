@@ -4,9 +4,6 @@ This section provides guidance on handling schema updates for various data forma
 
 If you anticipate changes in table schemas, consider creating them in a data format that is suitable for your needs\. Your goals are to reuse existing Athena queries against evolving schemas, and avoid schema mismatch errors when querying tables with partitions\.
 
-**Important**  
-Schema updates described in this section do not work on tables with complex or nested data types, such as arrays and structs\.
-
 To achieve these goals, choose a table's data format based on the table in the following topic\.
 
 **Topics**

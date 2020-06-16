@@ -1,4 +1,4 @@
-# Parquet SerDe<a name="parquet"></a>
+# Parquet SerDe<a name="parquet-serde"></a>
 
 ## SerDe Name<a name="serde-name"></a>
 

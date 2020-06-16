@@ -1,4 +1,4 @@
-# Grok SerDe<a name="grok"></a>
+# Grok SerDe<a name="grok-serde"></a>
 
 The Logstash Grok SerDe is a library with a set of specialized patterns for deserialization of unstructured text data, usually logs\. Each Grok pattern is a named regular expression\. You can identify and re\-use these deserialization patterns as needed\. This makes it easier to use Grok compared with using regular expressions\. Grok provides a set of [pre\-defined patterns](https://github.com/elastic/logstash/blob/v1.4.2/patterns/grok-patterns)\. You can also create custom patterns\.
 
