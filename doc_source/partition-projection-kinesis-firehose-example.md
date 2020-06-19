@@ -11,10 +11,13 @@ Normally, to use Athena to query Kinesis Data Firehose data without using partit
 By using partition projection, you can use a one\-time configuration to inform Athena where the partitions reside\. The following `CREATE TABLE` example assumes a start date of 2018\-01\-01 at midnight\. Note the use of `NOW` for the upper boundary of the date range, which allows new data to automatically become queryable at the appropriate UTC time\. 
 
 ```
+CREATE EXTERNAL TABLE my_table
+(
 ...
+)
 PARTITIONED BY
 (
- DATEHOUR STRING
+ datehour STRING
 )
 LOCATION "s3://bucket/prefix/"
 TBLPROPERTIES
@@ -27,4 +30,13 @@ TBLPROPERTIES
  "projection.datehour.interval.unit" = "HOURS",
  "storage.location.template" = "s3://bucket/prefix/${datehour}"
 )
+```
+
+With this table you can run queries like the following, without having to manually add partitions:
+
+```
+SELECT *
+FROM my_table
+WHERE datehour >= '2018/02/03/00'
+AND datehour < '2018/02/03/04'
 ```
