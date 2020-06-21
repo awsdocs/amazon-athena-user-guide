@@ -15,6 +15,7 @@ CREATE EXTERNAL TABLE my_table
 (
 ...
 )
+...
 PARTITIONED BY
 (
  datehour STRING

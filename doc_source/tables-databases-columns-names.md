@@ -10,7 +10,10 @@ Queries with mixedCase column names, such as `profileURI`, or upper case column 
 
 ## Special characters<a name="ate-table-database-and-column-names-special-characters"></a>
 
-You may have to use backticks or double quotes to enclose Athena table, view, database, or column names that contain special characters\.
+Special characters other than underscore \(\_\) are not supported\. For more information, see the Apache Hive [LanguageManual DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL) documentation\.
+
+**Important**  
+Although you may succeed in creating table, view, database, or column names that contain special characters other than underscore by enclosing them in backtick \(`\) characters, subsequent DDL or DML queries that reference them can fail\.
 
 ### Names that begin with an underscore<a name="names-that-begin-with-an-underscore"></a>
 
