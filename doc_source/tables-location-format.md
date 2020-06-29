@@ -32,7 +32,9 @@ When you specify the `LOCATION` in the `CREATE TABLE` statement, use the followi
 + Do not use any of the following items for specifying the `LOCATION` for your data\.
   + Do not use filenames, underscores, wildcards, or glob patterns for specifying file locations\.
   + Do not add the full HTTP notation, such as `s3.amazon.com` to the Amazon S3 bucket path\.
-  + Do not use an Amazon S3 [ access point](https://aws.amazon.com/s3/features/access-points/)\. However, as long the as the Amazon S3 bucket policy does not explicitly deny requests to objects not made through Amazon S3 access points, the objects should be accessible from Athena for requestors that have the right object access permissions\.
+  + Do not specify an Amazon S3 [ access point](https://aws.amazon.com/s3/features/access-points/) in the `LOCATION` clause\.
+**Note**  
+Although you cannot specify an access point in the LOCATION clause, Athena can query objects using a bucket's access point as long as the requestor has the right access permissions to the objects in the bucket\.
   + Do not use empty folders like `//` in the path, as follows: `S3://bucketname/folder//folder/`\. While this is a valid Amazon S3 path, Athena does not allow it and changes it to `s3://bucketname/folder/folder/`, removing the extra `/`\. 
 
      **Do not use**:
@@ -45,7 +47,8 @@ When you specify the `LOCATION` in the `CREATE TABLE` statement, use the followi
     s3://test-bucket.s3.amazon.com
     S3://bucket/prefix//prefix/
     arn:aws:s3:::bucketname/prefix
-    https://accesspointname-<number>.s3-accesspoint.<region>.amazonaws.com
+    s3://arn:aws:s3:<region>:<account_id>:accesspoint/<accesspointname>
+    https://<accesspointname>-<number>.s3-accesspoint.<region>.amazonaws.com
     ```
 
 ## Table Location and Partitions<a name="table-location-and-partitions"></a>

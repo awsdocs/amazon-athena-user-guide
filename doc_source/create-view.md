@@ -2,13 +2,16 @@
 
 Creates a new view from a specified `SELECT` query\. The view is a logical table that can be referenced by future queries\. Views do not contain any data and do not write data\. Instead, the query specified by the view runs each time you reference the view by another query\. 
 
-The optional `OR REPLACE` clause lets you update the existing view by replacing it\. For more information, see [Creating Views](views.md#creating-views)\.
+**Note**  
+This topic provides summary information for reference\. For more detailed information about using views in Athena, see [Working with Views](views.md)\.
 
 ## Synopsis<a name="synopsis"></a>
 
 ```
 CREATE [ OR REPLACE ] VIEW view_name AS query
 ```
+
+The optional `OR REPLACE` clause lets you update the existing view by replacing it\. For more information, see [Creating Views](views.md#creating-views)\.
 
 ## Examples<a name="examples"></a>
 

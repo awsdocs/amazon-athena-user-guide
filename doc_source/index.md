@@ -233,6 +233,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Service Quotas](service-limits.md)
 + [Release Notes](release-notes.md)
    + [June 1, 2020](release-note-2020-06-01.md)
+   + [May 21, 2020](release-note-2020-05-21.md)
    + [April 1, 2020](release-note-2020-04-01.md)
    + [March 11, 2020](release-note-2020-03-11.md)
    + [March 6, 2020](release-note-2020-03-06.md)
