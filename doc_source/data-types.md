@@ -26,8 +26,8 @@ To use the `substr` function to return a substring of specified length from a `C
 **Note**  
 Non\-string data types cannot be cast to `STRING` in Athena; cast them to `VARCHAR` instead\.
 + **`BINARY`** – Used for data in Parquet\.
-+ **`DATE`** – A date in UNIX format, such as `YYYY-MM-DD`\.
-+ **`TIMESTAMP`** – Date and time instant in the UNiX format, such as `yyyy-mm-dd hh:mm:ss[.f...]`\. For example, `TIMESTAMP '2008-09-15 03:04:05.324'`\. This format uses the session time zone\.
++ **`DATE`** – A date in ISO format, such as `yyyy-mm-dd`\. For example `DATE '2008-09-15'`\.
++ **`TIMESTAMP`** – Date and time instant in a `java.sql.Timestamp` compatible format such as `yyyy-mm-dd hh:mm:ss[.f...]`\. For example `TIMESTAMP '2008-09-15 03:04:05.324'`\. This format uses the session time zone\.
 + **`ARRAY`**`<data_type>`
 + **`MAP`**`<primitive_type, data_type>`
 + **`STRUCT`**`<col_name : data_type [COMMENT col_comment] , ...>`
