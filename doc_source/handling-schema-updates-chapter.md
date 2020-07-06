@@ -18,7 +18,7 @@ The following table summarizes data storage formats and their supported schema m
 
 In this table, observe that Parquet and ORC are columnar formats with different default column access methods\. By default, Parquet will access columns by name and ORC by index \(ordinal value\)\. Therefore, Athena provides a SerDe property defined when creating a table to toggle the default column access method which enables greater flexibility with schema evolution\. 
 
-For Parquet, the `parquet.column.index.access` property may be set to `TRUE`, which sets the column access method to use the column’s ordinal number\. Setting this property to `FALSE` will change the column access method to use column name\. Similarly, for ORC use the `orc.column.index.access` property to control the column access method\. For more information, see [Index Access in ORC and Parquet](#index-access)\.
+For Parquet, the `parquet.column.index.access` property may be set to `true`, which sets the column access method to use the column’s ordinal number\. Setting this property to `false` will change the column access method to use column name\. Similarly, for ORC use the `orc.column.index.access` property to control the column access method\. For more information, see [Index Access in ORC and Parquet](#index-access)\.
 
 CSV and TSV allow you to do all schema manipulations except reordering of columns, or adding columns at the beginning of the table\. For example, if your schema evolution requires only renaming columns but not removing them, you can choose to create your tables in CSV or TSV\. If you require removing columns, do not use CSV or TSV, and instead use any of the other supported formats, preferably, a columnar format, such as Parquet or ORC\.
 
@@ -58,7 +58,7 @@ WITH SERDEPROPERTIES (
 
 *Reading by index* allows you to rename columns\. But then you lose the ability to remove columns or add them in the middle of the table\. 
 
-To make ORC read by name, which will allow you to add columns in the middle of the table or remove columns in ORC, set the SerDe property `orc.column.index.access` to `FALSE` in the `CREATE TABLE` statement\. In this configuration, you will lose the ability to rename columns\.
+To make ORC read by name, which will allow you to add columns in the middle of the table or remove columns in ORC, set the SerDe property `orc.column.index.access` to `false` in the `CREATE TABLE` statement\. In this configuration, you will lose the ability to rename columns\.
 
 The following example illustrates how to change the ORC to make it read by name:
 
@@ -95,4 +95,4 @@ WITH SERDEPROPERTIES (
 
 *Reading by name* allows you to add columns in the middle of the table and remove columns\. But then you lose the ability to rename columns\. 
 
-To make Parquet read by index, which will allow you to rename columns, you must create a table with `parquet.column.index.access` SerDe property set to `TRUE`\.
+To make Parquet read by index, which will allow you to rename columns, you must create a table with `parquet.column.index.access` SerDe property set to `true`\.
