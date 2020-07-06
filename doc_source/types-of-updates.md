@@ -115,7 +115,7 @@ You can rename columns if you store your data in CSV and TSV, or in Parquet and 
 
 Athena reads data in CSV and TSV in the order of the columns in the schema and returns them in the same order\. It does not use column names for mapping data to a column, which is why you can rename columns in CSV or TSV without breaking Athena queries\. 
 
-In this example, rename the column ``o_totalprice`` to ``o_total_price`` in the Parquet table, and then run a query in Athena: 
+One strategy for renaming columns is to create a new table based on the same underlying data, but using new column names\. The following example creates a new `orders_parquet` table called `orders_parquet_column_renamed`\. The example changes the column ``o_totalprice`` name to ``o_total_price`` and then runs a query in Athena: 
 
 ```
 CREATE EXTERNAL TABLE orders_parquet_column_renamed (
@@ -130,7 +130,7 @@ CREATE EXTERNAL TABLE orders_parquet_column_renamed (
    `o_comment` string
 ) 
 STORED AS PARQUET
-LOCATION 's3://TBD/schema_updates/orders_parquet/';
+LOCATION 's3://schema_updates/orders_parquet/';
 ```
 
 In the Parquet table case, the following query runs, but the renamed column does not show data because the column was being accessed by name \(a default in Parquet\) rather than by index:

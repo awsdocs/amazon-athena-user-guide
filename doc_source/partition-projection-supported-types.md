@@ -16,6 +16,9 @@ Define the partition properties in the table as follows:
 | projection\.columnName\.type | `enum` | Required\. The projection type to use for column columnName\. The value must be enum \(case insensitive\) to signal the use of the enum type\. Leading and trailing white space is allowed\. | 
 | projection\.columnName\.values | `A,B,C,D,E,F,G,Unknown` | Required\. A comma\-separated list of enumerated partition values for column columnName\. Any white space is considered part of an enum value\. | 
 
+**Note**  
+As a best practice we recommend limiting the use of `enum` based partition projections to a few dozen or less\. Although there is no specific limit for `enum` projections, the total size of your table’s metadata cannot exceed the AWS Glue limit of about 1MB when gzip compressed\. Note that this limit is shared across key parts of your table like column names, location, storage format, and others\. If you find yourself using more than a few dozen unique IDs in your `enum` projection, consider an alternative approach such as bucketing into a smaller number of unique values in a surrogate field\. By trading off cardinality, you can control the number of unique values in your `enum` field\. 
+
 ## Integer Type<a name="partition-projection-integer-type"></a>
 
 Use the integer type for partition columns whose possible values are interpretable as integers within a defined range\. Projected integer columns are currently limited to the range of a Java signed long \(\-263 to 263\-1 inclusive\)\.

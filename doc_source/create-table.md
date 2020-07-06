@@ -48,8 +48,8 @@ The `data_type` value can be any of the following:
 Non\-string data types cannot be cast to `STRING` in Athena; cast them to `VARCHAR` instead\.
 + `BINARY` \(for data in Parquet\)
 + Date and time types
-+ `DATE`, in the UNIX format, such as `YYYY-MM-DD`\.
-+ `TIMESTAMP`\. Instant in time and date in the UNiX format, such as `yyyy-mm-dd hh:mm:ss[.f...]`\. For example, `TIMESTAMP '2008-09-15 03:04:05.324'`\. This format uses the session time zone\.
++ `DATE` A date in ISO format, such as `yyyy-mm-dd`\. For example, `DATE '2008-09-15'`\.
++ `TIMESTAMP` Date and time instant in a `java.sql.Timestamp` compatible format, such as `yyyy-mm-dd hh:mm:ss[.f...]`\. For example, `TIMESTAMP '2008-09-15 03:04:05.324'`\. This format uses the session time zone\.
 + `ARRAY` < data\_type >
 + `MAP` < primitive\_type, data\_type >
 + `STRUCT` < col\_name : data\_type \[COMMENT col\_comment\] \[, \.\.\.\] >
