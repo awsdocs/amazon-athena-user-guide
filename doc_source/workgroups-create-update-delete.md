@@ -124,7 +124,7 @@ Before you can run queries, you must specify to Athena which workgroup to use\. 
      StartQueryExecutionRequest startQueryExecutionRequest = new StartQueryExecutionRequest()
                    .withQueryString(ExampleConstants.ATHENA_SAMPLE_QUERY)
                    .withQueryExecutionContext(queryExecutionContext)
-                  .withWorkgroup(WorkgroupName)
+                   .withWorkGroup(WorkgroupName)
      ```
    + If you are using the JDBC or ODBC driver, set the workgroup name in the connection string using the `Workgroup` configuration parameter\. The driver passes the workgroup name to Athena\. Specify the workgroup parameter in the connection string as in the following example: 
 

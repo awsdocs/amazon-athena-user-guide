@@ -104,6 +104,7 @@ The following procedures describe how to grant each of these permissions\.
         "kms:DescribeKey"
       ],
       "Resource": "*"
+   }
    ```
 
 1. From Account A, review the key policy [using the AWS Management Console policy view](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-how-to-console-policy-view)\.
