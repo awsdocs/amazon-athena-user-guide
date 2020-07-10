@@ -49,4 +49,6 @@ Underlying source data in Amazon S3 and metadata in the Data Catalog that is reg
 
 ## Resource\-Based Permissions for Amazon S3 Buckets in External Accounts \(Optional\)<a name="lf-athena-user-permissions-s3-cross-account"></a>
 
-An Athena user from one account can not query databases and tables in the Data Catalog of a different account, even when Lake Formation is used\. To query an Amazon S3 data location in a different account, a resource\-based IAM policy \(bucket policy\) must allow access to the location\. For more information, see [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\. You can use Lake Formation to register an accessible bucket location in an external account with the Data Catalog in the local account\.
+To query an Amazon S3 data location in a different account, a resource\-based IAM policy \(bucket policy\) must allow access to the location\. For more information, see [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\.
+
+For information about accessing a Data Catalog in another account, see [Cross\-Account Data Catalog Access](lf-athena-limitations.md#lf-athena-limitations-cross-account-glue)\.

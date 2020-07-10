@@ -7,7 +7,7 @@ Consider the following when using Athena to query data registered in Lake Format
 + [Working With Lake Formation Permissions To Views](#lf-athena-limitations-permissions-to-views)
 + [Athena Query Results Location In Amazon S3 Not Registered With Lake Formation](#lf-athena-limitations-query-results-location)
 + [Use Athena Workgroups To Limit Access To Query History](#lf-athena-limitations-use-workgroups-to-limit-access-to-query-history)
-+ [Cross\-Account Data Catalogs Not Supported](#lf-athena-limitations-cross-account-glue)
++ [Cross\-Account Data Catalog Access](#lf-athena-limitations-cross-account-glue)
 + [CSE\-KMS Amazon S3 Registered With Lake Formation Cannot Be Queried in Athena](#lf-athena-limitations-cse-kms)
 + [Partitioned Data Locations Registered with Lake Formation Must Be In Table Sub\-Directories](#lf-athena-limitations-partioned-data-locations)
 + [Create Table As Select \(CTAS\) Queries Require Amazon S3 Write Permissions](#lf-athena-limitations-ctas-queries)
@@ -30,9 +30,29 @@ The query results locations in Amazon S3 for Athena cannot be registered with La
 
 Athena query history exposes a list of saved queries and complete query strings\. Unless you use workgroups to separate access to query histories, Athena users who are not authorized to query data in Lake Formation are able to view query strings run on that data, including column names, selection criteria, and so on\. We recommend that you use workgroups to separate query histories, and align Athena workgroup membership with Lake Formation permissions to limit access\. For more information, see [Using Workgroups to Control Query Access and Costs](manage-queries-control-costs-with-workgroups.md)\.
 
-## Cross\-Account Data Catalogs Not Supported<a name="lf-athena-limitations-cross-account-glue"></a>
+## Cross\-Account Data Catalog Access<a name="lf-athena-limitations-cross-account-glue"></a>
 
-An Athena user from one account can not query databases and tables in the Data Catalog of a different account, even when Lake Formation is used\. To query an Amazon S3 data location in a different account, a resource\-based IAM policy \(bucket policy\) must allow access to the location\. For more information, see [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\. You can use Lake Formation to register an accessible bucket location in an external account with the Data Catalog in the local account\.
+To access a data catalog in another account, you can use one of the following methods:
++ Set up cross\-account access in Lake Formation\. 
++ Use an Athena cross\-account [AWS Lambda](http://aws.amazon.com/lambda/) function to federate queries to the Data Catalog of your choice\.
+
+### Setting Up Cross\-Account Access in Lake Formation<a name="lf-athena-limitations-cross-account-glue-lf-xacct"></a>
+
+AWS Lake Formation lets you use a single account to manage a central Data Catalog\. You can use this feature to implement [cross\-account access](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-cross-account.html) to Data Catalog metadata and underlying data\. For example, an owner account can grant another \(recipient\) account `SELECT` permission on a table\. For a shared database or table to appear in the Athena Query Editor, you [create a resource link](https://docs.aws.amazon.com/lake-formation/latest/dg/resource-links-about.html) in Lake Formation to the shared database or table\. When the recipient account in Lake Formation queries the owner's table, [CloudTrail](https://docs.aws.amazon.com/lake-formation/latest/dg/cross-account-logging.html) adds the data access event to the logs for both the recipient account and the owner account\.
+
+For more information, see the following resources in the AWS Lake Formation Developer Guide:
+
+[Cross\-Account Access](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-cross-account.html)
+
+[How Resource Links Work in Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/resource-links-about.html)
+
+[Cross\-Account CloudTrail Logging](https://docs.aws.amazon.com/lake-formation/latest/dg/cross-account-logging.html)
+
+### Using an Athena Cross\-Account Lambda Function<a name="lf-athena-limitations-cross-account-glue-lambda"></a>
+
+You can use Athena to [connect to an external Hive metastore](connect-to-data-source-hive.md)\. The Hive metastore functionality uses a Lambda function to federate queries to the Data Catalog of your choice\. This same functionality can proxy catalog queries to a Data Catalog in a different account\.
+
+For steps, see [Cross\-account AWS Glue Data Catalog access with Amazon Athena](http://aws.amazon.com/blogs/big-data/cross-account-aws-glue-data-catalog-access-with-amazon-athena/) in the AWS Big Data Blog\.
 
 ## CSE\-KMS Encrypted Amazon S3 Locations Registered With Lake Formation Cannot Be Queried in Athena<a name="lf-athena-limitations-cse-kms"></a>
 
