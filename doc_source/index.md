@@ -43,6 +43,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Amazon Athena CloudWatch Metrics Connector](athena-prebuilt-data-connectors-cwmetrics.md)
          + [Amazon Athena DocumentDB Connector](athena-prebuilt-data-connectors-docdb.md)
          + [Amazon Athena DynamoDB Connector](athena-prebuilt-data-connectors-dynamodb.md)
+         + [Amazon Athena Elasticsearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)
          + [Amazon Athena HBase Connector](athena-prebuilt-data-connectors-hbase.md)
          + [Amazon Athena Connector for JDBC-Compliant Data Sources](athena-prebuilt-data-connectors-jdbc.md)
          + [Amazon Athena Redis Connector](athena-prebuilt-data-connectors-redis.md)

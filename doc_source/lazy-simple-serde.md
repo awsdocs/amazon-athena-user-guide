@@ -2,9 +2,11 @@
 
 Specifying this SerDe is optional\. This is the SerDe for data in CSV, TSV, and custom\-delimited formats that Athena uses by default\. This SerDe is used if you don't specify any SerDe and only specify `ROW FORMAT DELIMITED`\. Use this SerDe if your data does not have values enclosed in quotes\.
 
+For reference documentation about the LazySimpleSerDe, see the [Hive SerDe](https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide#DeveloperGuide-HiveSerDe) section of the Apache Hive Developer Guide\.
+
 ## Library Name<a name="library-name"></a>
 
-The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`\. For more information, see [LazySimpleSerDe](https://hive.apache.org/javadocs/r2.1.1/api/org/apache/hadoop/hive/serde2/lazy/LazySimpleSerDe.html)\. 
+The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`\. For information about the LazySimpleSerDe class, see [LazySimpleSerDe](https://hive.apache.org/javadocs/r2.1.1/api/org/apache/hadoop/hive/serde2/lazy/LazySimpleSerDe.html)\. 
 
 ## Examples<a name="examples"></a>
 

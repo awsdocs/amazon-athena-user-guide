@@ -1,12 +1,13 @@
 # Document History<a name="DocHistory"></a>
 
- **Latest documentation update: July 9, 2020\.** 
+ **Latest documentation update: July 21, 2020\.** 
 
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added documentation for the Amazon Athena Elasticsearch data connector\. | For more information, see [Amazon Athena Elasticsearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)\. | July 21, 2020 | 
 | Added documentation for querying Hudi datasets\. | For more information, see [Using Athena to Query Apache Hudi Datasets](querying-hudi.md)\. | July 9, 2020 | 
 | Added documentation on querying Apache web server logs and IIS web server logs stored in Amazon S3\. | For more information, see [Querying Apache Logs Stored in Amazon S3](querying-apache-logs.md) and [Querying Internet Information Server \(IIS\) Logs Stored in Amazon S3](querying-iis-logs.md)\. | July 8, 2020 | 
 | The Amazon Athena User Guide is now available in Kindle format\. | The Kindle ebook is free of charge\. For more information, see [Amazon Athena: User Guide Kindle Edition](http://www.amazon.com/dp/B08BF4RZV4), or choose the Kindle link at the top of any page in the online version of the [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/)\. | June 18, 2020 | 
