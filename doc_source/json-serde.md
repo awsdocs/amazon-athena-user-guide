@@ -60,7 +60,7 @@ MSCK REPAIR TABLE impressions
 
 ## OpenX JSON SerDe<a name="openx-json-serde"></a>
 
-The OpenX JSON SerDe has the following properties that are useful for addressing inconsistencies in data\. You specify these properties when you create Athena tables that use the OpenX JSON SerDe\.
+In addition to the `paths` property that defines the columns in the table, the OpenX JSON SerDe has the following optional properties that can be useful for addressing inconsistencies in data\.
 
 **ignore\.malformed\.json**  
 Optional\. When set to `TRUE`, lets you skip malformed JSON syntax\. The default is `FALSE`\.

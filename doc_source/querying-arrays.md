@@ -4,7 +4,7 @@ Amazon Athena lets you create arrays, concatenate them, convert them to differen
 
 **Topics**
 + [Creating Arrays](creating-arrays.md)
-+ [Concatenating Arrays](concatenating-arrays.md)
++ [Concatenating Arrays](concatenating-strings-and-arrays.md)
 + [Converting Array Data Types](converting-array-data-types.md)
 + [Finding Lengths](finding-lengths.md)
 + [Accessing Array Elements](accessing-array-elements.md)
