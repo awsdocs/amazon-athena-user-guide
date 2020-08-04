@@ -99,7 +99,7 @@ Restricts the number of rows in the result set to `count`\. `LIMIT ALL` is the s
 Optional operator to select rows from a table based on a sampling method\.  
  `BERNOULLI` selects each row to be in the table sample with a probability of `percentage`\. All physical blocks of the table are scanned, and certain rows are skipped based on a comparison between the sample `percentage` and a random value calculated at runtime\.   
 With `SYSTEM`, the table is divided into logical segments of data, and the table is sampled at this granularity\.   
-Either all rows from a particular segment are selected, or the segment is skipped based on a comparison between the sample `percentage` and a random value calculated at runtime\. `SYTSTEM` sampling is dependent on the connector\. This method does not guarantee independent sampling probabilities\.
+Either all rows from a particular segment are selected, or the segment is skipped based on a comparison between the sample `percentage` and a random value calculated at runtime\. `SYSTEM` sampling is dependent on the connector\. This method does not guarantee independent sampling probabilities\.
 
 **\[ UNNEST \(array\_or\_map\) \[WITH ORDINALITY\] \]**  
 Expands an array or map into a relation\. Arrays are expanded into a single column\. Maps are expanded into two columns \(*key*, *value*\)\.   
