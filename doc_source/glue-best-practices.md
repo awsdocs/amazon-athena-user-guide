@@ -2,7 +2,7 @@
 
 When using Athena with the AWS Glue Data Catalog, you can use AWS Glue to create databases and tables \(schema\) to be queried in Athena, or you can use Athena to create schema and then use them in AWS Glue and related services\. This topic provides considerations and best practices when using either method\.
 
-Under the hood, Athena uses Presto to execute DML statements and Hive to execute the DDL statements that create and modify schema\. With these technologies, there are a couple of conventions to follow so that Athena and AWS Glue work well together\.
+Under the hood, Athena uses Presto to process DML statements and Hive to process the DDL statements that create and modify schema\. With these technologies, there are a couple of conventions to follow so that Athena and AWS Glue work well together\.
 
  **In this topic** 
 +  **[Database, Table, and Column Names](#schema-names)** 
@@ -42,7 +42,7 @@ AWS Glue crawlers help discover and register the schema for datasets in the AWS 
 
 AWS Glue crawlers can be set up to run on a schedule or on demand\. For more information, see [Time\-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html) in the *AWS Glue Developer Guide*\.
 
-If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue Crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually execute an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
+If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue Crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually run an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_crawler.png)
 

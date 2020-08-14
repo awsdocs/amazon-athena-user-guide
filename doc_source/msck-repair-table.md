@@ -35,7 +35,7 @@ The following sections provide additional detail\.
 
 ### Allow glue:BatchCreatePartition in the IAM policy<a name="msck-repair-table-troubleshooting-allow-gluebatchcreatepartition-in-the-IAM-policy"></a>
 
-Review the IAM policies attached to the user or role that you're using to execute `MSCK REPAIR TABLE`\. When you [use the AWS Glue Data Catalog with Athena](glue-athena.md), the IAM policy must allow the `glue:BatchCreatePartition` action\. For an example of an IAM policy that allows the `glue:BatchCreatePartition` action, see [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md)\.
+Review the IAM policies attached to the user or role that you're using to run `MSCK REPAIR TABLE`\. When you [use the AWS Glue Data Catalog with Athena](glue-athena.md), the IAM policy must allow the `glue:BatchCreatePartition` action\. For an example of an IAM policy that allows the `glue:BatchCreatePartition` action, see [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md)\.
 
 ### Change the Amazon S3 path to lower case<a name="msck-repair-table-troubleshooting-change-the-amazon-s3-path-to-flat-case"></a>
 

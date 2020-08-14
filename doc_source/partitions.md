@@ -88,7 +88,7 @@ LOCATION 's3://elasticmapreduce/samples/hive-ads/tables/impressions/' ;
 
 This table uses Hive's native JSON serializer\-deserializer to read JSON data stored in Amazon S3\. For more information about the formats supported, see [Supported SerDes and Data Formats](supported-serdes.md)\.
 
-After you execute this statement in Athena, choose **New Query** and execute:
+After you run the preceding statement in Athena, choose **New Query** and run the following command:
 
 ```
 MSCK REPAIR TABLE impressions

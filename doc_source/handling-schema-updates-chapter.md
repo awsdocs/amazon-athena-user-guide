@@ -60,6 +60,9 @@ WITH SERDEPROPERTIES (
 
 To make ORC read by name, which will allow you to add columns in the middle of the table or remove columns in ORC, set the SerDe property `orc.column.index.access` to `false` in the `CREATE TABLE` statement\. In this configuration, you will lose the ability to rename columns\.
 
+**Note**  
+ When `orc.column.index.access` is set to `false`, Athena becomes case sensitive\. This can prevent Athena from reading data if you are using Spark, which requires lower case, and have column names that use uppercase\. The workaround is to rename the columns to lower case\.
+
 The following example illustrates how to change the ORC to make it read by name:
 
 ```

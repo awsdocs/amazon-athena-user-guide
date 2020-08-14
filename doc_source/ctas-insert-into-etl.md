@@ -37,7 +37,7 @@ The original data is stored in Amazon S3 with no partitions\. The data is in CSV
 2019-10-31 13:06:57  412.7 KiB artifacts/athena-ctas-insert-into-blog/2010.csv0101
 ```
 
-The file sizes in this sample are relatively small\. By merging them into larger files, you can reduce the total number of files, enabling faster query execution\. You can use CTAS and INSERT INTO statements to enhance query performance\.
+The file sizes in this sample are relatively small\. By merging them into larger files, you can reduce the total number of files, enabling better query performance\. You can use CTAS and INSERT INTO statements to enhance query performance\.
 
 **To create a database and table based on the sample dataset**
 
@@ -236,7 +236,7 @@ For Athena per\-query cost information, see [Amazon Athena pricing](https://aws.
 
 1. Note the time that the query ran and the amount of data scanned\.
 
-1. Run the same query on the new table, noting the query execution time and amount of data scanned\.
+1. Run the same query on the new table, noting the query runtime and amount of data scanned\.
 
    ```
    SELECT year,
@@ -260,7 +260,7 @@ For Athena per\-query cost information, see [Amazon Athena pricing](https://aws.
 
 1. Note the time that the query ran and the amount of data scanned\.
 
-1. Run the same query on the new table, noting the query execution time and amount of data scanned\.
+1. Run the same query on the new table, noting the query runtime and amount of data scanned\.
 
    ```
    SELECT element, round(avg(CAST(datavalue AS real)/10),2) AS value

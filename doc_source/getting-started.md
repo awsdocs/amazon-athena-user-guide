@@ -6,7 +6,7 @@ The tutorial is using live resources, so you are charged for the queries that yo
 
 ## Prerequisites<a name="prerequisites"></a>
 + If you have not already done so, sign up for an account in [Setting Up](setting-up.md)\.
-+ [Create a bucket in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) to hold your query results from Athena\.
++ Using the same AWS Region \(for example, US West \(Oregon\)\) and account that you are using for Athena, [Create a bucket in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) to hold your query results from Athena\.
 
 ## Step 1: Create a Database<a name="step-1-create-a-database"></a>
 

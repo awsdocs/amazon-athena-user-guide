@@ -108,19 +108,45 @@ Other columns are padded with nulls\.
 The `WITH ORDINALITY` clause adds an ordinality column to the end\.  
  `UNNEST` is usually used with a `JOIN` and can reference columns from relations on the left side of the `JOIN`\.
 
-## Examples<a name="select-examples"></a>
+## Getting the File Locations for Source Data in Amazon S3<a name="select-path"></a>
+
+To see the Amazon S3 file location for the data in a table row, you can use `"$path"` in a `SELECT` query, as in the following example:
 
 ```
-SELECT * FROM table;
+SELECT "$path" FROM "my_database"."my_table" WHERE year=2019;
 ```
 
+This returns a result like the following:
+
 ```
-SELECT os, COUNT(*) count FROM cloudfront_logs WHERE date BETWEEN date '2014-07-05' AND date '2014-08-05' GROUP BY os;
+s3://awsexamplebucket/datasets_mytable/year=2019/data_file1.json
 ```
 
-For more examples, see [Querying Data in Amazon Athena Tables](querying-athena-tables.md)\.
+To return a sorted, unique list of the S3 filename paths for the data in a table, you can use `SELECT DISTINCT` and `ORDER BY`, as in the following example\.
 
-### Escaping Single Quotes<a name="select-escaping"></a>
+```
+SELECT DISTINCT "$path" AS data_source_file
+FROM sampledb.elb_logs
+ORDER By data_source_file ASC
+```
+
+To return only the filenames without the path, you can pass `"$path"` as a parameter to an `regexp_extract` function, as in the following example\.
+
+```
+SELECT DISTINCT regexp_extract("$path", '[^/]+$') AS data_source_file
+FROM sampledb.elb_logs
+ORDER By data_source_file ASC
+```
+
+To return the data from a specific file, specify the file in the `WHERE` clause, as in the following example\.
+
+```
+SELECT *,"$path" FROM my_database.my_table WHERE "$path" = 's3://awsexamplebucket/my_table/my_partition/file-01.csv'
+```
+
+For more information and examples, see the Knowledge Center article [How can I see the Amazon S3 source file for a row in an Athena table?](http://aws.amazon.com/premiumsupport/knowledge-center/find-s3-source-file-athena-table-row/)\.
+
+## Escaping Single Quotes<a name="select-escaping"></a>
 
  To escape a single quote, precede it with another single quote, as in the following example\. Do not confuse this with a double quote\. 
 
@@ -130,3 +156,17 @@ Select 'O''Reilly'
 
 **Results**  
 `O'Reilly`
+
+## Additional Resources<a name="select-additional-resources"></a>
+
+For more information about using `SELECT` statements in Athena, see the following resources\.
+
+
+| For Information About This | See This | 
+| --- | --- | 
+| Running queries in Athena | [Running SQL Queries Using Amazon Athena](querying-athena-tables.md) | 
+| Using SELECT to create a table | [Creating a Table from Query Results \(CTAS\)](ctas.md) | 
+| Inserting data from a SELECT query into another table | [INSERT INTO](insert-into.md) | 
+| Using built\-in functions in SELECT statements | [Presto Functions in Amazon Athena](presto-functions.md) | 
+| Using user defined functions in SELECT statements | [Querying with User Defined Functions \(Preview\)](querying-udf.md) | 
+| Querying Data Catalog metadata | [Querying AWS Glue Data Catalog](querying-glue-catalog.md) | 

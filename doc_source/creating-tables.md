@@ -4,7 +4,7 @@ You can run DDL statements in the Athena console, using a JDBC or an ODBC driver
 
 When you create a new table schema in Athena, Athena stores the schema in a data catalog and uses it when you run queries\.
 
-Athena uses an approach known as *schema\-on\-read*, which means a schema is projected on to your data at the time you execute a query\. This eliminates the need for data loading or transformation\.
+Athena uses an approach known as *schema\-on\-read*, which means a schema is projected on to your data at the time you run a query\. This eliminates the need for data loading or transformation\.
 
  Athena does not modify your data in Amazon S3\.
 

@@ -8,6 +8,16 @@ For reference documentation about the LazySimpleSerDe, see the [Hive SerDe](http
 
 The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`\. For information about the LazySimpleSerDe class, see [LazySimpleSerDe](https://hive.apache.org/javadocs/r2.1.1/api/org/apache/hadoop/hive/serde2/lazy/LazySimpleSerDe.html)\. 
 
+## Ignoring Headers<a name="lazy-simple-serde-ignoring-headers"></a>
+
+To ignore headers in your data when you define a table, you can use the `skip.header.line.count` table property, as in the following example\.
+
+```
+TBLPROPERTIES ("skip.header.line.count"="1")
+```
+
+For examples, see the `CREATE TABLE` statements in [Querying Amazon VPC Flow Logs](vpc-flow-logs.md) and [Querying Amazon CloudFront Logs](cloudfront-logs.md)\.
+
 ## Examples<a name="examples"></a>
 
 The following examples show how to create tables in Athena from CSV and TSV, using the `LazySimpleSerDe`\. To deserialize custom\-delimited files using this SerDe, use the `FIELDS TERMINATED BY` clause to specify a single\-character delimiter, as in the following examples\. LazySimpleSerDe does not support multi\-character delimiters\.

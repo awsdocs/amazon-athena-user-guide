@@ -70,9 +70,9 @@ The JSON output includes the following properties\.
 | currentState | The state that the query transitioned to at the time of the event\. | 
 | previousState | The state that the query transitioned from at the time of the event\. | 
 | statementType | The type of query statement that was run\. | 
-| queryExecutionId | The unique identifier for the query execution\. | 
+| queryExecutionId | The unique identifier for the query that ran\. | 
 | workgroupName | The name of the workgroup in which the query ran\. | 
-| sequenceNumber | A monotonically increasing number that allows for deduplication and ordering of incoming events that involve a single query execution\. When duplicate events are published for the same state transition, the sequenceNumber value is the same\. When a query experiences a state transition more than once, such as queries that experience rare requeuing, you can use sequenceNumber to order events with identical currentState and previousState values\. | 
+| sequenceNumber | A monotonically increasing number that allows for deduplication and ordering of incoming events that involve a single query that ran\. When duplicate events are published for the same state transition, the sequenceNumber value is the same\. When a query experiences a state transition more than once, such as queries that experience rare requeuing, you can use sequenceNumber to order events with identical currentState and previousState values\. | 
 
 ## Example<a name="athena-cloudwatch-events-examples"></a>
 

@@ -10,7 +10,7 @@ If you use Amazon EMR along with EMRFS to upload encrypted Parquet files, you mu
 Indicate that the dataset is encrypted in Amazon S3 in one of the following ways\. This step is not required if SSE\-KMS is used\.
 + Use the [CREATE TABLE](create-table.md) statement with a `TBLPROPERTIES` clause that specifies `'has_encrypted_data'='true'`\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/encrypt_has_encrypted.png)
-+ Use the [JDBC driver](connect-with-jdbc.md) and set the `TBLPROPERTIES` value as shown in the previous example, when you execute [CREATE TABLE](create-table.md) using `statement.executeQuery()`\. 
++ Use the [JDBC driver](connect-with-jdbc.md) and set the `TBLPROPERTIES` value as shown in the previous example, when you run [CREATE TABLE](create-table.md) using `statement.executeQuery()`\. 
 + Use the **Add table** wizard in the Athena console, and then choose **Encrypted data set** when you specify a value for **Location of input data set**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/encrypt_has_encrypted_console.png)
 

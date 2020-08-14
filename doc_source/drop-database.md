@@ -1,6 +1,6 @@
 # DROP DATABASE<a name="drop-database"></a>
 
-Removes the named database from the catalog\. If the database contains tables, you must either drop the tables before executing `DROP DATABASE` or use the `CASCADE` clause\. The use of `DATABASE` and `SCHEMA` are interchangeable\. They mean the same thing\.
+Removes the named database from the catalog\. If the database contains tables, you must either drop the tables before running `DROP DATABASE` or use the `CASCADE` clause\. The use of `DATABASE` and `SCHEMA` are interchangeable\. They mean the same thing\.
 
 ## Synopsis<a name="synopsis"></a>
 

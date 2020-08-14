@@ -75,7 +75,7 @@ public class AthenaClientFactory {
 
 ## Start Query Execution<a name="start-query-execution"></a>
 
-The `StartQueryExample` shows how to submit a query to Athena for execution, wait until the results become available, and then process the results\.
+The `StartQueryExample` shows how to submit a query to Athena, wait until the results become available, and then process the results\.
 
 ```
 package aws.example.athena;

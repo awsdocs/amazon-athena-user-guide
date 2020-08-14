@@ -1,17 +1,13 @@
 # INSERT INTO<a name="insert-into"></a>
 
-Inserts new rows into a destination table based on a `SELECT` query statement that runs on a source table, or based on a set of `VALUES` provided as part of the statement\. When the source table is based on underlying data in one format, such as CSV or JSON, and the destination table is based on another format, such as Parquet or ORC, you can use INSERT INTO queries to transform selected data into the destination table's format\. 
-
-**Note**  
-For information about using INSERT INTO to insert unpartitioned data into a partitioned table, see [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\. 
-For information about using INSERT INTO to insert partitioned data into a partitioned table, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
+Inserts new rows into a destination table based on a `SELECT` query statement that runs on a source table, or based on a set of `VALUES` provided as part of the statement\. When the source table is based on underlying data in one format, such as CSV or JSON, and the destination table is based on another format, such as Parquet or ORC, you can use `INSERT INTO` queries to transform selected data into the destination table's format\. 
 
 ## Considerations and Limitations<a name="insert-into-limitations"></a>
 
 Consider the following when using `INSERT` queries with Athena\.
 
 **Important**  
-When running an INSERT query on a table with underlying data that is encrypted in Amazon S3, the output files that the `INSERT` query writes are not encrypted by default\. We recommend that you encrypt `INSERT` query results if you are inserting into tables with encrypted data\.   
+When running an `INSERT` query on a table with underlying data that is encrypted in Amazon S3, the output files that the `INSERT` query writes are not encrypted by default\. We recommend that you encrypt `INSERT` query results if you are inserting into tables with encrypted data\.   
 For more information about encrypting query results using the console, see [Encrypting Query Results Stored in Amazon S3](encrypting-query-results-stored-in-s3.md)\. To enable encryption using the AWS CLI or Athena API, use the `EncryptionConfiguration` properties of the [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) action to specify Amazon S3 encryption options according to your requirements\.
 
 ### Supported Formats and SerDes<a name="insert-into-supported-formats"></a>
@@ -31,11 +27,27 @@ You can run an `INSERT` query on tables created from data with the following for
 
 `INSERT INTO` is not supported on bucketed tables\. For more information, see [Bucketing vs Partitioning](bucketing-vs-partitioning.md)\.
 
-### Partition Limits<a name="insert-into-partition-limits"></a>
+### Partitioning<a name="insert-into-limitations-partitioning"></a>
+
+Consider the points in this section when using parititioning with `INSERT INTO` or `CREATE TABLE AS SELECT` queries\.
+
+#### Limits<a name="insert-into-partition-limits"></a>
 
 The `INSERT INTO` statement supports writing a maximum of 100 partitions to the destination table\. If you run the `SELECT` clause on a table with more than 100 partitions, the query fails unless the `SELECT` query is limited to 100 partitions or fewer\.
 
 For information about working around this limitation, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
+
+#### Column Ordering<a name="insert-into-partition-detection"></a>
+
+`INSERT INTO` or `CREATE TABLE AS SELECT` statements expect the partitioned column to be the last column in the list of projected columns in a `SELECT` statement\. 
+
+If the source table is non\-partitioned, or partitioned on different columns compared to the destination table, queries like `INSERT INTO destination_table SELECT * FROM source_table` consider the values in the last column of the source table to be values for a partition column in the destination table\. Keep this in mind when trying to create a partitioned table from a non\-partitioned table\.
+
+#### Resources<a name="insert-into-partition-resources"></a>
+
+For more information about using `INSERT INTO` with partitioning, see the following resources\.
++ For inserting partitioned data into a partitioned table, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
++ For inserting unpartitioned data into a partitioned table, see [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\. 
 
 ### Files Written to Amazon S3<a name="insert-into-files-written-to-s3"></a>
 

@@ -24,7 +24,7 @@ For more information, see [Encryption at Rest](encryption.md)\.
 
 Fixed the following bugs:
 + Throttling errors would occur when multiple queries were issued using the JDBC driver interface\.
-+ The JDBC driver would abort when projecting a decimal data type\.
++ The JDBC driver would stop when projecting a decimal data type\.
 +  The JDBC driver would return every data type as a string, regardless of how the data type was defined in the table\. For example, selecting a column defined as an `INT` data type using `resultSet.GetObject()` would return a `STRING` data type instead of `INT`\. 
 + The JDBC driver would verify credentials at the time a connection was made, rather than at the time a query would run\.
 + Queries made through the JDBC driver would fail when a schema was specified along with the URL\.
