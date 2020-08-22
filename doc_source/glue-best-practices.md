@@ -106,24 +106,34 @@ CSV files occasionally have quotes around the data values intended for each colu
 
 ### CSV Data Enclosed in Quotes<a name="schema-csv-quotes"></a>
 
-If you run a query in Athena against a table created from a CSV file with quoted data values, update the table definition in AWS Glue so that it specifies the right SerDe and SerDe properties\. This allows the table definition to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
-
-In this case, make the following changes:
-+ Change the `serializationLib` property under field in the `SerDeInfo` field in the table to `org.apache.hadoop.hive.serde2.OpenCSVSerde`\.
-+ Enter appropriate values for `separatorChar`, `quoteChar`, and `escapeChar`\. The `separatorChar` value is a comma, the `quoteChar` value is double quotes \(``\), and the `escapeChar` value is the backslash \(\\\)\.
-
-For example, for a CSV file with records such as the following:
+You might have a CSV file that has data fields enclosed in double quotes like the following example:
 
 ```
 "John","Doe","123-555-1231","John said \"hello\""
 "Jane","Doe","123-555-9876","Jane said \"hello\""
 ```
 
-You can use the AWS Glue console to edit table details as shown in this example:
+To run a query in Athena on a table created from a CSV file that has quoted values, you must modify the table properties in AWS Glue to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
 
+**To edit table properties in the AWS Glue console**
+
+1. In the AWS Glue console navigation pane, choose **Tables**\.
+
+1. Choose the table that you want to edit, and then choose **Edit table**\.
+
+1. In the **Edit table details** dialog box, make the following changes:
+   + For **Serde serialization lib**, enter `org.apache.hadoop.hive.serde2.OpenCSVSerde`\.
+   + For **Serde parameters**, enter the following values for the keys `escapeChar`, `quoteChar`, and `separatorChar`: 
+     + For `escapeChar`, enter a backslash \(**\\**\)\.
+     + For `quoteChar`, enter a double quote \(**"**\)\.
+     + For `separatorChar`, enter a comma \(**,**\)\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_edit_serde.png)
 
-Alternatively, you can update the table definition in AWS Glue to have a SerDeInfo block such as the following:
+For more information, see [Viewing and Editing Table Details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
+
+#### Updating AWS Glue Table Properties Programmatically<a name="schema-csv-quotes-api"></a>
+
+You can use the AWS Glue [UpdateTable](https://docs.aws.amazon.com/glue/latest/webapi/API_UpdateTable.html) API operation or [update\-table](https://docs.aws.amazon.com/cli/latest/reference/glue/update-table.html) CLI command to modify the `SerDeInfo` block in the table definition, as in the following example JSON\.
 
 ```
 "SerDeInfo": {
@@ -131,17 +141,24 @@ Alternatively, you can update the table definition in AWS Glue to have a SerDeIn
    "serializationLib": "org.apache.hadoop.hive.serde2.OpenCSVSerde",
    "parameters": {
       "separatorChar": ","
-      "quoteChar": """
+      "quoteChar": "\""
       "escapeChar": "\\"
       }
 },
 ```
 
-For more information, see [Viewing and Editing Table Details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
-
 ### CSV Files with Headers<a name="schema-csv-headers"></a>
 
-If you are writing CSV files from AWS Glue to query using Athena, you must remove the CSV headers so that the header information is not included in Athena query results\. One way to achieve this is to use AWS Glue jobs, which perform extract, transform, and load \(ETL\) work\. You can write scripts in AWS Glue using a language that is an extension of the PySpark Python dialect\. For more information, see [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+When you define a table in Athena with a `CREATE TABLE` statement, you can use the `skip.header.line.count` table property to ignore headers in your CSV data, as in the following example\.
+
+```
+...
+STORED AS TEXTFILE
+LOCATION 's3://my_bucket/csvdata_folder/';
+TBLPROPERTIES ("skip.header.line.count"="1")
+```
+
+Alternatively, you can remove the CSV headers beforehand so that the header information is not included in Athena query results\. One way to achieve this is to use AWS Glue jobs, which perform extract, transform, and load \(ETL\) work\. You can write scripts in AWS Glue using a language that is an extension of the PySpark Python dialect\. For more information, see [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
 
 The following example shows a function in an AWS Glue script that writes out a dynamic frame using `from_options`, and sets the `writeHeader` format option to false, which removes the header information:
 

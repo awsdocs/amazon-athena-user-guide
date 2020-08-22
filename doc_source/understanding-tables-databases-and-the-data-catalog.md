@@ -7,6 +7,8 @@ For each dataset that you'd like to query, Athena must have an underlying table 
 Regardless of how the tables are created, the tables creation process registers the dataset with Athena\. This registration occurs in the AWS Glue Data Catalog and enables Athena to run queries on the data\.
 + To create a table automatically, use an AWS Glue crawler from within Athena\. For more information about AWS Glue and crawlers, see [Integration with AWS Glue](glue-athena.md)\. When AWS Glue creates a table, it registers it in its own AWS Glue Data Catalog\. Athena uses the AWS Glue Data Catalog to store and retrieve this metadata, using it when you run queries to analyze the underlying dataset\.
 
+After you create a table, you can use [SQL SELECT](select.md) statements to query it, including getting [specific file locations for your source data](select.md#select-path)\. Your query results are stored in Amazon S3 in [the query result location that you specify](querying.md#query-results-specify-location)\.
+
 The AWS Glue Data Catalog is accessible throughout your AWS account\. Other AWS services can share the AWS Glue Data Catalog, so you can see databases and tables created throughout your organization using Athena and vice versa\. In addition, AWS Glue lets you automatically discover data schema and extract, transform, and load \(ETL\) data\.
 + To create a table manually:
   + Use the Athena console to run the **Create Table Wizard**\.
