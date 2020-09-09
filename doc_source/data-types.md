@@ -1,4 +1,4 @@
-# Data Types Supported by Amazon Athena<a name="data-types"></a>
+# Data Types in Amazon Athena<a name="data-types"></a>
 
 When you run [CREATE TABLE](create-table.md), you specify column names and the data type that each column can contain\. Athena supports the the data types listed below\. For information about the data type mappings that the JDBC driver supports between Athena, JDBC, and Java, see [Data Types](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf#page=37) in the *JDBC Driver Installation and Configuration Guide*\. For information about the data type mappings that the ODBC driver supports between Athena and SQL, see [Data Types](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf#page=50) in the *ODBC Driver Installation and Configuration Guide*\.
 + **`BOOLEAN`** – Values are `true` and `false`\.
@@ -10,7 +10,7 @@ When you run [CREATE TABLE](create-table.md), you specify column names and the d
     + To ensure compatibility with business analytics applications, the JDBC driver returns the `INTEGER` type\.
 + **`BIGINT`** – A 64\-bit signed `INTEGER` in two’s complement format, with a minimum value of \-263 and a maximum value of 263\-1\.
 + **`DOUBLE`** – A 64\-bit double\-precision floating point number\.
-+ **`FLOAT`** – A 32\-bit single\-precision floating point number\. Equivalent to the `REAL` in Presto\.
++ **`FLOAT`** – A 32\-bit single\-precision floating point number\. Equivalent to the `REAL` in Presto\. In Athena, use `FLOAT` in DDL statements like `CREATE TABLE` and `REAL` in SQL functions like `SELECT CAST`\. The AWS Glue crawler returns values in `FLOAT`, and Athena translates `REAL` and `FLOAT` types internally \(see the [June 5, 2018](release-note-2018-06-05.md) release notes\)\.
 + **`DECIMAL`**`(precision, scale)` – `precision` is the total number of digits\. `scale` \(optional\) is the number of digits in fractional part with a default of 0\. For example, use these type definitions: `DECIMAL(11,5)`, `DECIMAL(15)`\.
 
   To specify decimal values as literals, such as when selecting rows with a specific decimal value in a query DDL expression, specify the `DECIMAL` type definition, and list the decimal value as a literal \(in single quotes\) in your query, as in this example: `decimal_value = DECIMAL '0.12'`\. 

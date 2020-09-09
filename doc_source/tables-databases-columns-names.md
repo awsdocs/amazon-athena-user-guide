@@ -17,7 +17,7 @@ Although you may succeed in creating table, view, database, or column names that
 
 ### Names that begin with an underscore<a name="names-that-begin-with-an-underscore"></a>
 
-Use backticks to enclose table, view, or column names that begin with an underscore\. For example:
+When creating tables, use backticks to enclose table, view, or column names that begin with an underscore\. For example:
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS `_myunderscoretable`(
@@ -27,7 +27,7 @@ LOCATION 's3://my-athena-data/'
 
 ### Table, view, or column names that begin with numbers<a name="table-names-that-include-numbers"></a>
 
-In `SELECT`, `CTAS`, or `VIEW` queries, put quotation marks around identifiers like table, view, or column names that start with a digit\. For example:
+When running `SELECT`, `CTAS`, or `VIEW` queries, put quotation marks around identifiers like table, view, or column names that start with a digit\. For example:
 
 ```
 CREATE OR REPLACE VIEW "123view" AS

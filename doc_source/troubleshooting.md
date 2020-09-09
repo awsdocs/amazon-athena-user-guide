@@ -5,7 +5,7 @@ Use these documentation topics to troubleshoot problems with Amazon Athena\.
 + [Considerations and Limitations for SQL Queries in Amazon Athena](other-notable-limitations.md)
 + [Unsupported DDL](unsupported-ddl.md)
 + [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)
-+ [Data Types Supported by Amazon Athena](data-types.md)
++ [Data Types in Amazon Athena](data-types.md)
 + [Supported SerDes and Data Formats](supported-serdes.md)
 + [Compression Formats](compression-formats.md)
 + [Reserved Keywords](reserved-words.md)

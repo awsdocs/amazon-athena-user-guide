@@ -33,7 +33,6 @@ The following native Hive DDLs are not supported by Athena:
 + EXPORT TABLE
 + GRANT ROLE
 + IMPORT TABLE
-+ INSERT INTO
 + LOCK DATABASE
 + LOCK TABLE
 + REVOKE ROLE

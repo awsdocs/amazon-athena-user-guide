@@ -115,7 +115,7 @@ Hudi creates two tables in the Hive metastore for MoR: a table with the name tha
 The following example creates a nonpartitioned MoR table in Athena\.
 
 ```
-CREATE EXTERNAL TABLE `nonpartition_mor_ro`(
+CREATE EXTERNAL TABLE `nonpartition_mor`(
   `_hoodie_commit_time` string, 
   `_hoodie_commit_seqno` string, 
   `_hoodie_record_key` string, 
@@ -141,7 +141,7 @@ LOCATION
 The following example creates a partitioned MoR table in Athena\.
 
 ```
-CREATE EXTERNAL TABLE `partition_mor_ro`(
+CREATE EXTERNAL TABLE `partition_mor`(
   `_hoodie_commit_time` string, 
   `_hoodie_commit_seqno` string, 
   `_hoodie_record_key` string, 
@@ -163,10 +163,10 @@ LOCATION
   's3://bucket/folder/partition_mor'
 ```
 
-The following `ALTER TABLE ADD PARTITION` example adds two partitions to the example `partition_mor_ro` table\.
+The following `ALTER TABLE ADD PARTITION` example adds two partitions to the example `partition_mor` table\.
 
 ```
-ALTER TABLE partition_cow ADD
+ALTER TABLE partition_mor ADD
   PARTITION (event_type = 'one') LOCATION 's3://bucket/folder/partition_mor/one/'
   PARTITION (event_type = 'two') LOCATION 's3://bucket/folder/partition_mor/two/'
 ```

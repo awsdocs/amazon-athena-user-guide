@@ -13,11 +13,14 @@ Each query that runs is known as a *query execution*\. The query execution has a
 
 **To use the Athena console to get the *QueryID* of a query that ran**
 
-1. Choose **History** from the navigation bar\.
+1. Choose **History** from the navigation bar\.  
+![\[Viewing the query history in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history.png)
 
-1. From the list of queries, choose the query status under **State**—for example, **Failed**\.
+1. From the list of queries, choose the query status under **State**—for example, **Succeeded**\. The query ID shows in a pointer tip\.  
+![\[Viewing a query ID on the History tab of the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-viewing-query-id.png)
 
-1. Choose the icon next to **Query ID** to copy the ID to the clipboard\.
+1. To copy the ID to the clipboard, choose the icon next to **Query ID**\.  
+![\[Copying a query ID to the clipboard on the History tab of the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-copying-query-id.png)
 
 ## Identifying Query Output Files<a name="querying-identifying-output-files"></a>
 
@@ -92,13 +95,13 @@ You can download the query results CSV file from the query pane immediately afte
    When the query finishes running, the **Results** pane shows the query results\.
 
 1. To download the query results file, choose the file icon in the query results pane\. Depending on your browser and browser configuration, you may need to confirm the download\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/savecsv.png)
+![\[Saving query results to a .csv file in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/savecsv.png)
 
 **To download a query results file for an earlier query**
 
 1. Choose **History**\.
 
-1. Page through the list of queries until you find the query, and then choose **Download results** under **Action** for that query\.
+1. Page through the list of queries until you find the query, and then\. under **Action** for the query, choose **Download results**\.
 
 ## Specifying a Query Result Location<a name="query-results-specify-location"></a>
 
@@ -168,7 +171,7 @@ You can use the Athena console to see the queries that succeeded and failed, dow
 1. Do one of the following:
    + To see a query statement in the Query Editor, choose the text of the query in the **Query** column\. Longer query statements are abbreviated\.  
 ![\[Choose the text of a query to see it in the Query Editor.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-view-query-statement.png)
-   + To see a query ID, chose its **State** \(**Succeeded**, **Failed**, or **Cancelled**\)\. The query ID shows in a pointer tip\.  
+   + To see a query ID, choose its **State** \(**Succeeded**, **Failed**, or **Cancelled**\)\. The query ID shows in a pointer tip\.  
 ![\[Viewing a query ID on the History tab of the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-viewing-query-id.png)
    + To download the results of a successful query into a `.csv` file, choose **Download results**\.  
 ![\[Downloading query results from the History tab of the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-history-download-results.png)

@@ -22,6 +22,6 @@ Added support for views\. You can now use [CREATE VIEW](create-view.md), [DESCRI
 ## Bug Fixes<a name="bug-fixes"></a>
 
 Fixed the following bugs:
-+ Fixed an issue that enables the internal translation of `REAL` to `FLOAT` data types\. This improves integration with the AWS Glue Crawler that returns `FLOAT` data types\. 
++ Fixed an issue that enables the internal translation of `REAL` to `FLOAT` data types\. This improves integration with the AWS Glue crawler that returns `FLOAT` data types\. 
 + Fixed an issue where Athena was not converting AVRO `DECIMAL` \(a logical type\) to a `DECIMAL` type\. 
 + Fixed an issue where Athena did not return results for queries on Parquet data with `WHERE` clauses that referenced values in the `TIMESTAMP` data type\.
