@@ -30,6 +30,7 @@ MSCK REPAIR TABLE orders;
 After you run MSCK REPAIR TABLE, if Athena does not add the partitions to the table in the AWS Glue Data Catalog, check the following:
 + Make sure that the AWS Identity and Access Management \(IAM\) user or role has a policy that allows the `glue:BatchCreatePartition` action\.
 + Make sure that the Amazon S3 path is in lower case instead of camel case \(for example, `userid` instead of `userId`\)\.
++ Make sure that the AWS Identity and Access Management \(IAM\) user or role has a policy with sufficient permissions to access S3, including `s3:DescribeJob` action.
 
 The following sections provide additional detail\.
 
@@ -58,3 +59,7 @@ s3://bucket/path/userid=2/
 
 s3://bucket/path/userid=3/
 ```
+
+### Allow S3 actions in the IAM policy<a name="msck-repair-table-troubleshooting-allow-gluebatchcreatepartition-in-the-IAM-policy"></a>
+
+The IAM policies attached to the user or role that you're using to run `MSCK REPAIR TABLE` must allow enough permissions. But it is also necessary include `s3:DescribeJob` action.
