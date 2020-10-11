@@ -17,17 +17,15 @@ You can also use the [AWS Serverless Application Repository](https://aws.amazon.
 1. Choose the name of the connector\.   
 ![\[Choose the name of the Athena data source connector for Hive.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-data-source-sar-hive-1.png)
 
-1. On the Lambda function's **Application details** page, configure the parameters for the function, including the following\. 
-   + **Lambda function name** – Provide a name for the function\. For example, **myHiveMetastore**\.
-   + **Lambda execution role** – Choose an IAM role or click **Create a new role** to create one\.
-   + **Function code** – The location in Amazon S3 for the Lambda function JAR file\. Use the default or enter the location of your custom JAR file\.
-   + **Lambda handler** – The method in the JAR file that implements the Hive connector\. Use the default or replace it with the handler in your custom code\.
-   + **Hive metastore \(HMS\) URI** – Enter the name of your Hive metastore host that uses the Thrift protocol at port 9083 with the syntax `thrift://<host_name>:9083`\.
-   + **Spill location in S3** – Specify an Amazon S3 location in this account to hold spillover metadata if the Lambda function reponse size exceeds 4MB\.
-   + **Virtual Private Cloud \(VPC\)** – Choose the VPC that contains your Hive metastore\.
-   + **Subnets** – Choose the VPC subnets for Lambda to use to set up your VPC configuration\.
-   + **Security Groups** – Choose the VPC security groups for Lambda to use to set up your VPC configuration\.
-   + **Memory** – Specify a value from 128MB to 3008MB\. The Lambda function is allocated CPU cycles proportional to the amount of memory that you configure\.
-   + **Timeout** – Specify a value from 1 second to 15 minutes 59 seconds\. The default is 3 seconds\.
+1. Under **Application settings**, enter the parameters for your Lambda function\.
+   + **LambdaFuncName** – Provide a name for the function\. For example, **myHiveMetastore**\.
+   + **SpillLocation** – Specify an Amazon S3 location in this account to hold spillover metadata if the Lambda function reponse size exceeds 4MB\.
+   + **HMSUris** – Enter the URI of your Hive metastore host that uses the Thrift protocol at port 9083\. Use the syntax `thrift://<host_name>:9083`\.
+   + **LambdaMemory** – Specify a value from 128MB to 3008MB\. The Lambda function is allocated CPU cycles proportional to the amount of memory that you configure\. The default is 1024\.
+   + **LambdaTimeout** – Specify the maximum permissible Lambda invocation run time in seconds from 1 to 900 \(900 seconds is 15 minutes\)\. The default is 300 seconds \(5 minutes\)\.
+   + **VPCSecurityGroupIds** – Enter a comma\-separated list of VPC security group IDs for the Hive metastore\.
+   + **VPCSubnetIds** – Enter a comma\-separated list of VPC subnet IDs for the Hive metastore\.
 
-1. At the bottom right of the **Application details** page, choose **Deploy\.** When the deployment completes, the function appears in the Lambda console\.
+1. On the bottom right of the **Application details** page, select **I acknowledge that this app creates custom IAM roles**, and then choose **Deploy**\.
+
+At this point, you can configure Athena to use your Lambda function to connect to your Hive metastore\. For more information, see steps 8\-15 of [Connecting Athena to an Apache Hive Metastore](connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore.md)\.

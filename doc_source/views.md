@@ -145,23 +145,23 @@ WHERE employees.id = salaries.id
 
 **Example Example 2**  
 In the following example, we create a view named `view1` that enables you to hide more complex query syntax\.   
-This view runs on top of two tables, `table1` and `table2`, where each table is a different `SELECT` query\. The view selects all columns from `table1` and joins the results with `table2`\. The join is based on column `a` that is present in both tables\.  
+This view runs on top of two tables, `table1` and `table2`, where each table is a different `SELECT` query\. The view selects columns from `table1` and joins the results with `table2`\. The join is based on column `a` that is present in both tables\.  
 
 ```
 CREATE VIEW view1 AS
 WITH
   table1 AS (
          SELECT a, 
-         MAX(b) AS b 
+         MAX(b) AS the_max 
          FROM x 
          GROUP BY a
          ),
   table2 AS (
          SELECT a, 
-         AVG(d) AS d 
+         AVG(d) AS the_avg 
          FROM y 
          GROUP BY a)
-SELECT table1.*, table2.*
+SELECT table1.a, table1.the_max, table2.the_avg
 FROM table1
 JOIN table2 
 ON table1.a = table2.a;

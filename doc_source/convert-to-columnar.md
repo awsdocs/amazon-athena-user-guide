@@ -142,20 +142,19 @@ Replace *MyRegion* in the `LOCATION` clause with the region where you are runnin
    aws emr create-cluster 
    --applications Name=Hadoop Name=Hive Name=HCatalog \
    --ec2-attributes KeyName=myKey,InstanceProfile=EMR_EC2_DefaultRole,SubnetId=subnet-mySubnetId \
-   --service-role EMR_DefaultRole 
-   --release-label emr-4.7.0 
-   --instance-type \m4.large 
-   --instance-count 1 
-   --steps Type=HIVE,Name="Convert to Parquet",\
-   ActionOnFailure=CONTINUE,
+   --service-role EMR_DefaultRole \
+   --release-label emr-4.7.0 \
+   --instance-type \m4.large \
+   --instance-count 1 \
+   --steps Type=HIVE,Name="Convert to Parquet",
    ActionOnFailure=TERMINATE_CLUSTER,
    Args=[-f,
-   \s3://athena-examples/conversion/write-parquet-to-s3.q,-hiveconf,
-   INPUT=${SAMPLEURI},-hiveconf,
-   OUTPUT=s3://${S3BUCKET}/myParquet,-hiveconf,
+   "s3://athena-examples/conversion/write-parquet-to-s3.q",-hiveconf,
+   INPUT="${SAMPLEURI}",-hiveconf,
+   OUTPUT="s3://${S3BUCKET}/myParquet",-hiveconf,
    REGION=${REGION}
    ] \
-   --region ${REGION} 
+   --region ${REGION} \
    --auto-terminate
    ```
 

@@ -15,3 +15,4 @@ For more information about Lake Formation, see [Lake Formation FAQs](https://aws
 + [Considerations and Limitations](lf-athena-limitations.md)
 + [Managing User Permissions](lf-athena-user-permissions.md)
 + [Applying Lake Formation Permissions to Existing Databases and Tables](lf-athena-removing-permissions.md)
++ [Using Lake Formation and JDBC or ODBC for Federated Access](security-athena-lake-formation-jdbc.md)

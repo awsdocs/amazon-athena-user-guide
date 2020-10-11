@@ -161,6 +161,8 @@ Amazon's trademarks and trade dress may not be used in
       + [Considerations and Limitations When Using Athena to Query Data Registered With Lake Formation](lf-athena-limitations.md)
       + [Managing Lake Formation and Athena User Permissions](lf-athena-user-permissions.md)
       + [Applying Lake Formation Permissions to Existing Databases and Tables](lf-athena-removing-permissions.md)
+      + [Using Lake Formation and the Athena JDBC and ODBC Drivers for Federated Access to Athena](security-athena-lake-formation-jdbc.md)
+         + [Tutorial: Configuring Federated Access for Okta Users to Athena Using Lake Formation and JDBC](security-athena-lake-formation-jdbc-okta-tutorial.md)
 + [Using Workgroups to Control Query Access and Costs](manage-queries-control-costs-with-workgroups.md)
    + [Using Workgroups for Running Queries](workgroups.md)
       + [Benefits of Using Workgroups](workgroups-benefits.md)

@@ -2,6 +2,8 @@
 
 Creates a new table populated with the results of a [SELECT](select.md) query\. To create an empty table, use [CREATE TABLE](create-table.md)\.
 
+For additional information about `CREATE TABLE AS` beyond the scope of this reference topic, see [Creating a Table from Query Results \(CTAS\)](ctas.md)\.
+
 **Topics**
 + [Synopsis](#synopsis)
 + [CTAS Table Properties](#ctas-table-properties)
@@ -64,7 +66,7 @@ The compression type to use for ORC data\. For example, `WITH (orc_compression =
 `parquet_compression = [format]`  
 The compression type to use for Parquet data\. For example, `WITH (parquet_compression = 'SNAPPY')`\. If omitted, GZIP compression is used by default for Parquet and other data storage formats supported by CTAS\.  
 `field_delimiter = [delimiter]`  
-Optional and specific to text\-based data storage formats\. The field delimiter for files in CSV, TSV, and text files\. For example, `WITH (field_delimiter = ',')`\. If you don't specify a field delimiter, `\001` is used by default\.
+Optional and specific to text\-based data storage formats\. The single\-character field delimiter for files in CSV, TSV, and text files\. For example, `WITH (field_delimiter = ',')`\. Currently, multicharacter field delimiters are not supported for CTAS queries\. If you don't specify a field delimiter, `\001` is used by default\.
 
 ## Examples<a name="ctas-table-examples"></a>
 

@@ -32,9 +32,7 @@ When you specify the `LOCATION` in the `CREATE TABLE` statement, use the followi
 + Do not use any of the following items for specifying the `LOCATION` for your data\.
   + Do not use filenames, underscores, wildcards, or glob patterns for specifying file locations\.
   + Do not add the full HTTP notation, such as `s3.amazon.com` to the Amazon S3 bucket path\.
-  + Do not specify an Amazon S3 [ access point](https://aws.amazon.com/s3/features/access-points/) in the `LOCATION` clause\.
-**Note**  
-Although you cannot specify an access point in the LOCATION clause, Athena can query objects using a bucket's access point as long as the requestor has the right access permissions to the objects in the bucket\.
+  + Do not specify an Amazon S3 [ access point](https://aws.amazon.com/s3/features/access-points/) in the `LOCATION` clause\. The table location can only be specified as a URI\.
   + Do not use empty folders like `//` in the path, as follows: `S3://bucketname/folder//folder/`\. While this is a valid Amazon S3 path, Athena does not allow it and changes it to `s3://bucketname/folder/folder/`, removing the extra `/`\. 
 
      **Do not use**:

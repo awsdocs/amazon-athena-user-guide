@@ -2,6 +2,8 @@
 
 Renames a partition column, `partition_spec`, for the table named `table_name`, to `new_partition_spec`\.
 
+For information about partitioning, see [Partitioning Data](partitions.md)\.
+
 ## Synopsis<a name="synopsis"></a>
 
 ```
