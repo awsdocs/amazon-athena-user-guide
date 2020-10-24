@@ -83,6 +83,7 @@ Used with aggregate functions and the `GROUP BY` clause\. Controls which groups 
 Combines the results of more than one `SELECT` statement into a single query\. `ALL` or `DISTINCT` control which rows are included in the final result set\.   
 `ALL` causes all rows to be included, even if the rows are identical\.  
  `DISTINCT` causes only unique rows to be included in the combined result set\. `DISTINCT` is the default\.   
+To eliminate duplicates, `UNION` builds a hash table, which consumes memory\. For better performance, consider using `UNION ALL` if your query does not require the elimination of duplicates\.  
 Multiple `UNION` clauses are processed left to right unless you use parentheses to explicitly define the order of processing\.
 
 **\[ ORDER BY expression \[ ASC \| DESC \] \[ NULLS FIRST \| NULLS LAST\] \[, \.\.\.\] \]**  

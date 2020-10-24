@@ -127,7 +127,11 @@ Now, before you can run an Athena query in a region in which your account hasn't
 
 1. From the nagivation bar, choose **Settings**\.
 
-1. Enter a **Query result location**\. The location you enter is used for subsequent queries unless you change it later\.  
+1. For **Query result location**, enter the path to an existing Amazon S3 folder, including the trailing slash\.
+**Note**  
+Be sure to include the trailing slash\. Failing to include the trailing slash results in the error Invalid S3 folder location\.
+
+    The Amazon S3 location that you enter is used for subsequent queries\. You can change this location later if you want\.  
 ![\[Specifying a query result location in the Athena console\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-results-specify-location-console-1.png)
 
    If you are a member of a workgroup that specifies a query result location and overrides client\-side settings, the option to change the query result location is unavailable, as the following image shows:  

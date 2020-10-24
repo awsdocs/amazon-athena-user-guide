@@ -2,7 +2,7 @@
 
 Use the following DDL statements directly in Athena\. 
 
-The Athena query engine is based on [HiveQL DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)\.
+The Athena query engine is based in part on [HiveQL DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)\.
 
 Athena does not support all DDL statements, and there are some differences between HiveQL DDL and Athena DDL\. For more information, see the reference topics in this section and [Unsupported DDL](unsupported-ddl.md)\.
 

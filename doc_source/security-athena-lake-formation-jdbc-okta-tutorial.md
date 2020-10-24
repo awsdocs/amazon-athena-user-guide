@@ -28,7 +28,7 @@ This tutorial uses Okta as a SAML\-based identity provider\. If you do not alrea
 
 **To create an Okta account**
 
-1. To use Okta, navigate to the [Okta developer sign up page](https://developer.okta.com/signup/) and create a free Okta trial account\. The Developer Edition Service is free of charge up to the limits specified by Okta at [developer\.okta\.com/pricing](developer.okta.com/pricing)\.
+1. To use Okta, navigate to the [Okta developer sign up page](https://developer.okta.com/signup/) and create a free Okta trial account\. The Developer Edition Service is free of charge up to the limits specified by Okta at [developer\.okta\.com/pricing](https://developer.okta.com/pricing)\.
 
 1. When you receive the activation email, activate your account\. 
 
@@ -195,7 +195,7 @@ In this step, you use the AWS Identity and Access Management \(IAM\) console to 
 
 **To create an AWS SAML identity provider**
 
-1. Sign in to the **AWS account** **console** as **AWS account administrator** and navigate to the **IAM** console \([https://console\.aws\.amazon\.com/IAM](https://console.aws.amazon.com/IAM)\)
+1. Sign in to the **AWS account** **console** as **AWS account administrator** and navigate to the **IAM** console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\)\.
 
 1. In the navigation pane, choose **Identity providers**, and then click **Create Provider**\.  
 ![\[Creating an identity provider in the IAM console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-15.png)

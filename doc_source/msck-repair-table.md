@@ -27,10 +27,11 @@ MSCK REPAIR TABLE orders;
 
 ## Troubleshooting<a name="msck-repair-table-troubleshooting"></a>
 
-After you run MSCK REPAIR TABLE, if Athena does not add the partitions to the table in the AWS Glue Data Catalog, check the following:
+After you run `MSCK REPAIR TABLE`, if Athena does not add the partitions to the table in the AWS Glue Data Catalog, check the following:
 + Make sure that the AWS Identity and Access Management \(IAM\) user or role has a policy that allows the `glue:BatchCreatePartition` action\.
 + Make sure that the IAM user or role has a policy with sufficient permissions to access Amazon S3, including the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html) action\. For an example of which Amazon S3 actions to allow, see the example bucket policy in [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\.
 + Make sure that the Amazon S3 path is in lower case instead of camel case \(for example, `userid` instead of `userId`\)\.
++ **Query timeouts** – `MSCK REPAIR TABLE` is best used when creating a table for the first time or when there is uncertainty about parity between data and partition metadata\. If you use `MSCK REPAIR TABLE` to add new partitions frequently \(for example, on a daily basis\) and are experiencing query timeouts, consider using [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\.
 
 The following sections provide some additional detail\.
 

@@ -42,7 +42,7 @@ You first need to create a database in Athena\.
 
 ## Step 2: Create a Table<a name="step-2-create-a-table"></a>
 
-Now that you have a database, you're ready to run a statement to create a table\. The table will be based on Athena sample data in the location `s3://athena-examples-aws-region/cloudfront/plaintext/`\. The statement that creates the table defines columns that map to the data, specifies how the data is delimited, and specifies the Amazon S3 location that contains the sample data\.
+Now that you have a database, you're ready to run a statement to create a table\. The table will be based on Athena sample data in the location `s3://athena-examples-myregion/cloudfront/plaintext/`\. The statement that creates the table defines columns that map to the data, specifies how the data is delimited, and specifies the Amazon S3 location that contains the sample data\.
 
 **To create a table**
 

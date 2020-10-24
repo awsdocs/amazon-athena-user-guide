@@ -198,7 +198,7 @@ Consider an array of sites containing their hostname, and a `flaggedActivity` el
 
 To search this dataset for sites with a specific keyword, we use `regexp_like` instead of the similar SQL `LIKE` operator, because searching for a large number of keywords is more efficient with `regexp_like`\.
 
-**Example Example 1: Using `regexp_like`**  
+**Example 1: Using `regexp_like`**  
 The query in this example uses the `regexp_like` function to search for terms `'politics|bigdata'`, found in values within arrays:  
 
 ```
@@ -254,7 +254,7 @@ This query returns two sites:
 +----------------+
 ```
 
-**Example Example 2: Using `regexp_like`**  
+**Example 2: Using `regexp_like`**  
 The query in the following example adds up the total popularity scores for the sites matching your search terms with the `regexp_like` function, and then orders them from highest to lowest\.   
 
 ```

@@ -41,7 +41,9 @@ The file sizes in this sample are relatively small\. By merging them into larger
 
 **To create a database and table based on the sample dataset**
 
-1. In the Athena query editor, run the [CREATE DATABASE](create-database.md) command to create a database\. To avoid Amazon S3 cross\-Region data transfer charges, run this and the other queries in this topic in the `us-east-1` Region\.
+1. In the Athena console, choose the **US East \(N\. Virginia\)** AWS Region\. Be sure to run all queries in this tutorial in `us-east-1`\.
+
+1. In the Athena query editor, run the [CREATE DATABASE](create-database.md) command to create a database\. 
 
    ```
    CREATE DATABASE blogdb

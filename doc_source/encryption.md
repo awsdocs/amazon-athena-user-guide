@@ -21,11 +21,11 @@ The setup for querying an encrypted dataset in Amazon S3 and the options in Athe
 Athena supports the following encryption options for datasets and query results in Amazon S3\.
 
 
-| Encryption Type | Description | Cross\-Region Support | 
-| --- | --- | --- | 
-| [SSE\-S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) | Server side encryption \(SSE\) with an Amazon S3\-managed key\. | Yes | 
-| [SSE\-KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) | Server\-side encryption \(SSE\) with a AWS Key Management Service customer managed key\.  With this encryption type, Athena does not require you to indicate that data is encrypted when you create a table\.  | Yes | 
-| [CSE\-KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html#client-side-encryption-kms-managed-master-key-intro) |  Client\-side encryption \(CSE\) with a AWS KMS customer managed key\. In Athena, this option requires that you use a `CREATE TABLE` statement with a `TBLPROPERTIES` clause that specifies `'has_encrypted_data'='true'`\. For more information, see [Creating Tables Based on Encrypted Datasets in Amazon S3](creating-tables-based-on-encrypted-datasets-in-s3.md)\.  | No | 
+| Encryption Type | Description | 
+| --- | --- | 
+| [SSE\-S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) | Server side encryption \(SSE\) with an Amazon S3\-managed key\. | 
+| [SSE\-KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) | Server\-side encryption \(SSE\) with a AWS Key Management Service customer managed key\.  With this encryption type, Athena does not require you to indicate that data is encrypted when you create a table\.  | 
+| [CSE\-KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html#client-side-encryption-kms-managed-master-key-intro) |  Client\-side encryption \(CSE\) with a AWS KMS customer managed key\. In Athena, this option requires that you use a `CREATE TABLE` statement with a `TBLPROPERTIES` clause that specifies `'has_encrypted_data'='true'`\. For more information, see [Creating Tables Based on Encrypted Datasets in Amazon S3](creating-tables-based-on-encrypted-datasets-in-s3.md)\.  | 
 
 For more information about AWS KMS encryption with Amazon S3, see [What is AWS Key Management Service](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) and [How Amazon Simple Storage Service \(Amazon S3\) Uses AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/services-s3.html) in the *AWS Key Management Service Developer Guide*\. For more information about using SSE\-KMS or CSE\-KMS with Athena, see [Launch: Amazon Athena adds support for Querying Encrypted Data](http://aws.amazon.com/blogs/aws/launch-amazon-athena-adds-support-for-querying-encrypted-data/) from the *AWS Big Data Blog*\.
 

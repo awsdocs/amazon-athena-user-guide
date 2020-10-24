@@ -84,7 +84,7 @@ You can configure the following options for the version of the JDBC driver versi
 
  The following code examples demonstrate how to use the JDBC driver version 1\.1\.0 in a Java application\. These examples assume that the AWS JAVA SDK is included in your classpath, specifically the `aws-java-sdk-core` module, which includes the authorization packages \(`com.amazonaws.auth.*`\) referenced in the examples\.
 
-**Example Example: Creating a Driver Version 1\.0\.1**  
+**Example: Creating a Driver Version 1\.0\.1**  
 
 ```
          Properties info = new Properties();
@@ -100,7 +100,7 @@ You can configure the following options for the version of the JDBC driver versi
 
 The following examples demonstrate different ways to use a credentials provider that implements the `AWSCredentialsProvider` interface with the previous version of the JDBC driver\. 
 
-**Example Example: Using a Credentials Provider for JDBC Driver 1\.0\.1**  
+**Example: Using a Credentials Provider for JDBC Driver 1\.0\.1**  
 
 ```
 Properties myProps = new Properties();
@@ -115,7 +115,7 @@ secretKey = SECRETKEY
 ```
 Replace the right part of the assignments with your account's AWS access and secret keys\.
 
-**Example Example: Using a Credentials Provider with Multiple Arguments**  
+**Example: Using a Credentials Provider with Multiple Arguments**  
 This example shows an example credentials provider, `CustomSessionsCredentialsProvider`, that uses an access and secret key in addition to a session token\. `CustomSessionsCredentialsProvider` is shown for example only and is not included in the driver\. The signature of the class looks like the following:  
 
 ```

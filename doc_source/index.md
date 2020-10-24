@@ -239,6 +239,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Using Earlier Version JDBC Drivers](connect-with-previous-jdbc.md)
    + [Service Quotas](service-limits.md)
 + [Release Notes](release-notes.md)
+   + [October 22, 2020](release-note-2020-10-22.md)
    + [July 29, 2020](release-note-2020-07-29.md)
    + [July 9, 2020](release-note-2020-07-09.md)
    + [June 1, 2020](release-note-2020-06-01.md)
@@ -287,4 +288,4 @@ Amazon's trademarks and trade dress may not be used in
    + [March 24, 2017](release-note-2017-03-24.md)
    + [February 20, 2017](release-note-2017-02-20.md)
 + [Document History](DocHistory.md)
-+ [AWS Glossary](glossary.md)
++ [AWS glossary](glossary.md)

@@ -130,7 +130,7 @@ You can create a nested view, which is a view on top of an existing view\. Athen
 
 To show the syntax of the view query, use [SHOW CREATE VIEW](show-create-view.md)\.
 
-**Example Example 1**  
+**Example 1**  
 Consider the following two tables: a table `employees` with two columns, `id` and `name`, and a table `salaries`, with two columns, `id` and `salary`\.   
 In this example, we create a view named `name_salary` as a `SELECT` query that obtains a list of IDs mapped to salaries from the tables `employees` and `salaries`:  
 
@@ -143,7 +143,7 @@ FROM employees, salaries
 WHERE employees.id = salaries.id
 ```
 
-**Example Example 2**  
+**Example 2**  
 In the following example, we create a view named `view1` that enables you to hide more complex query syntax\.   
 This view runs on top of two tables, `table1` and `table2`, where each table is a different `SELECT` query\. The view selects columns from `table1` and joins the results with `table2`\. The join is based on column `a` that is present in both tables\.  
 

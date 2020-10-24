@@ -11,7 +11,7 @@ When using partitioning, keep in mind the following points:
 
 ## Creating and Loading a Table with Partitioned Data<a name="partitions-creating-loading"></a>
 
-To create a table that uses partitions, you must define it during the `[CREATE TABLE](create-table.md)` statement\. Use `PARTITIONED BY` to define the keys by which to partition data, as in the following example\. `LOCATION` specifies the root location of the partitioned data\.
+To create a table that uses partitions, you must define it during the `CREATE TABLE` statement\. Use `PARTITIONED BY` to define the keys by which to partition data, as in the following example\. `LOCATION` specifies the root location of the partitioned data\.
 
 ```
 CREATE EXTERNAL TABLE users (

@@ -32,7 +32,7 @@ For data types *other* than `STRING`, when the parser in Athena can recognize th
 **Note**  
 For information about using the `TIMESTAMP` and `DATE` columns when they are not specified in the UNIX numeric format, see the article [When I query a table in Amazon Athena, the TIMESTAMP result is empty](https://aws.amazon.com/premiumsupport/knowledge-center/query-table-athena-timestamp-empty/) in the [AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
 
-**Example Example: Using the TIMESTAMP type and DATE type specified in the UNIX numeric format\.**  
+**Example: Using the TIMESTAMP type and DATE type specified in the UNIX numeric format\.**  
 Consider the following test data:  
 
 ```
@@ -61,7 +61,7 @@ The query returns the following result, showing the date and time data:
 1       unixvalue creationdate 18276 creationdatetime 1579146280000       2020-01-15       2020-01-16 03:44:40.000
 ```
 
-**Example Example: Escaping `\t` or `\n`**  
+**Example: Escaping `\t` or `\n`**  
 Consider the following test data:  
 
 ```
