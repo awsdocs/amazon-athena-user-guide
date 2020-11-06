@@ -1,10 +1,13 @@
 # MSCK REPAIR TABLE<a name="msck-repair-table"></a>
 
-Use the `MSCK REPAIR TABLE` command to update the metadata in the catalog after you add or remove Hive compatible partitions\. 
+Use the `MSCK REPAIR TABLE` command to update the metadata in the catalog after you add Hive compatible partitions\. 
 
-The `MSCK REPAIR TABLE` command scans a file system such as Amazon S3 for Hive compatible partitions that were added to or removed from the file system after the table was created\. The command updates the metadata in the catalog regarding the partitions and the data associated with them\.
+The `MSCK REPAIR TABLE` command scans a file system such as Amazon S3 for Hive compatible partitions that were added to the file system after the table was created\. `MSCK REPAIR TABLE` compares the partitions in the table metadata and the partitions in S3\. If new partitions are present in the S3 location that you specified when you created the table, it adds those partitions to the metadata and to the Athena table\.
 
-When you add or remove partitions, the metadata in the catalog becomes inconsistent with the layout of the data in the file system\. For example, after you create a table with partitions, information about the new partitions needs to be added to the catalog\. To update the metadata, you run `MSCK REPAIR TABLE` on the table\. This enables you to query the data in the new partitions from Athena\.
+When you add physical partitions, the metadata in the catalog becomes inconsistent with the layout of the data in the file system, and information about the new partitions needs to be added to the catalog\. To update the metadata, run `MSCK REPAIR TABLE` so that you can query the data in the new partitions from Athena\.
+
+**Note**  
+`MSCK REPAIR TABLE` only adds partitions to metadata; it does not remove them\. To remove partitions from metadata after the partitions have been manually deleted in Amazon S3, run the command `ALTER TABLE table-name DROP PARTITION`\. For more information see [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md)\. 
 
 ## Considerations and Limitations<a name="msck-repair-table-considerations"></a>
 
@@ -32,6 +35,7 @@ After you run `MSCK REPAIR TABLE`, if Athena does not add the partitions to the 
 + Make sure that the IAM user or role has a policy with sufficient permissions to access Amazon S3, including the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html) action\. For an example of which Amazon S3 actions to allow, see the example bucket policy in [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\.
 + Make sure that the Amazon S3 path is in lower case instead of camel case \(for example, `userid` instead of `userId`\)\.
 + **Query timeouts** – `MSCK REPAIR TABLE` is best used when creating a table for the first time or when there is uncertainty about parity between data and partition metadata\. If you use `MSCK REPAIR TABLE` to add new partitions frequently \(for example, on a daily basis\) and are experiencing query timeouts, consider using [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\.
++ **Partitions missing from filesystem** – If you delete a partition manually in Amazon S3 and then run `MSCK REPAIR TABLE`, you may receive the error message Partitions missing from filesystem\. This occurs because `MSCK REPAIR TABLE` doesn't remove stale partitions from table metadata\. To remove the deleted partitions from table metadata, run [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md) instead\. Note that [SHOW PARTITIONS](show-partitions.md) similarly lists only the partitions in metadata, not the partitions in the file system\.
 
 The following sections provide some additional detail\.
 

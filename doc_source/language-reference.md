@@ -13,6 +13,7 @@ Athena does not support all DDL statements, and there are some differences betwe
 + [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)
 + [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md)
 + [ALTER TABLE RENAME PARTITION](alter-table-rename-partition.md)
++ [ALTER TABLE REPLACE COLUMNS](alter-table-replace-columns.md)
 + [ALTER TABLE SET LOCATION](alter-table-set-location.md)
 + [ALTER TABLE SET TBLPROPERTIES](alter-table-set-tblproperties.md)
 + [CREATE DATABASE](create-database.md)

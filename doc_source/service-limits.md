@@ -13,8 +13,9 @@ Your account has the following default query\-related quotas per AWS Region for 
 
 These are soft quotas; you can use the [Athena Service Quotas](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) console to request a quota increase\.
 
-**Note**  
 Athena processes queries by assigning resources based on the overall service load and the number of incoming requests\. Your queries may be temporarily queued before they run\. Asynchronous processes pick up the queries from queues and run them on physical resources as soon as the resources become available and for as long as your account configuration permits\.
+
+A DML or DDL query quota includes both running and queued queries\. For example, if you are using the default quota and your total of running and queued queries exceeds 20, query 21 will result in a "too many queries" error\. 
 
 ### Query String Length<a name="service-limits-query-string-length"></a>
 

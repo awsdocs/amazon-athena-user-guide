@@ -36,6 +36,7 @@ Currently, Athena supports only the first of these: the read\-optimized view\. Q
   + [Working With a Hudi Dataset](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hudi-work-with-dataset.html) in the [Amazon EMR Release Guide](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/)\.
   + [Writing Hudi Tables](https://hudi.apache.org/docs/0.5.1-writing_data.html) in the Apache Hudi documentation\.
 + Using MSCK REPAIR TABLE on Hudi tables in Athena is not supported\. If you need to load a Hudi table not created in AWS Glue, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\.
++ Querying Hudi tables that have been registered with AWS Lake Formation is not supported\.
 
 ## Creating Hudi Tables<a name="querying-hudi-in-athena-creating-hudi-tables"></a>
 

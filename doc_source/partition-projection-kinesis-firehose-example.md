@@ -20,7 +20,7 @@ PARTITIONED BY
 (
  datehour STRING
 )
-LOCATION "s3://bucket/prefix/"
+LOCATION "s3://bucket/table-name/"
 TBLPROPERTIES
 (
  "projection.enabled" = "true",
@@ -29,9 +29,11 @@ TBLPROPERTIES
  "projection.datehour.format" = "yyyy/MM/dd/HH",
  "projection.datehour.interval" = "1",
  "projection.datehour.interval.unit" = "HOURS",
- "storage.location.template" = "s3://bucket/prefix/${datehour}"
+ "storage.location.template" = "s3://bucket/table-name/${datehour}"
 )
 ```
+
+Kinesis Data Firehose adds the partition prefix after *table\-name* for you\. In the Kinesis console, *table\-name* appears in the **Custom Prefix** field\.
 
 With this table you can run queries like the following, without having to manually add partitions:
 

@@ -24,6 +24,9 @@ Download the following documentation for the driver:
 + [JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.14/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf)\. Use this guide to install and configure the driver\.
 + [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.14/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. Use this guide to migrate from previous versions to the current version\.
 
+**Important**  
+ To use the JDBC driver for multiple data catalogs with Athena \(for example, when using an [external Hive metastore](connect-to-data-source-hive.md) or [federated queries](connect-to-a-data-source.md)\), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\.
+
 ## Migration from Previous Version of the JDBC Driver<a name="migration-from-previous-jdbc-driver"></a>
 
 The current JDBC driver version 2\.0\.14 is a drop\-in replacement of the previous version of the JDBC driver version 2\.0\.9, and is backwards compatible with the JDBC driver version 2\.0\.9, with the following step that you must perform to ensure the driver runs\. 

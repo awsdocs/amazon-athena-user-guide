@@ -34,5 +34,6 @@ ALTER TABLE events PARTITION (awsregion='us-west-2') ADD COLUMNS (event string)
 ALTER TABLE events PARTITION (awsregion='us- west-2') ADD COLUMNS (eventdescription string)
 ```
 
-**Note**  
-To see a new table column in the Athena Query Editor after you run `ALTER TABLE ADD COLUMNS`, manually refresh the table list in the editor, and then expand the table again\.
+## Notes<a name="alter-table-add-columns-notes"></a>
++ To see a new table column in the Athena Query Editor navigation pane after you run `ALTER TABLE ADD COLUMNS`, manually refresh the table list in the editor, and then expand the table again\.
++ `ALTER TABLE ADD COLUMNS` does not work for columns with the `date` datatype\. To workaround this issue, use the `timestamp` datatype instead\.

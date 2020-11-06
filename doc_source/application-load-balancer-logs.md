@@ -1,6 +1,6 @@
 # Querying Application Load Balancer Logs<a name="application-load-balancer-logs"></a>
 
-An Application Load Balancer is a load balancing option for Elastic Load Balancing that enables traffic distribution in a microservices deployment using containers\. Querying Application Load Balancer logs allows you to see the source of traffic, latency, and bytes transferred to and from Elastic Load Balancing instances and backend applications\. For more information, see the [User Guide for Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/)\.
+An Application Load Balancer is a load balancing option for Elastic Load Balancing that enables traffic distribution in a microservices deployment using containers\. Querying Application Load Balancer logs allows you to see the source of traffic, latency, and bytes transferred to and from Elastic Load Balancing instances and backend applications\. For more information, see [Access logs for your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html) in the *User Guide for Application Load Balancers*\.
 
 **Topics**
 + [Prerequisites](#application-load-balancer-logs-prerequisites)
@@ -87,9 +87,11 @@ The following example shows how to parse the logs by `datetime`:
 
 ```
 SELECT client_ip, sum(received_bytes) 
-FROM alb_logs_config_us 
+FROM alb_logs
 WHERE parse_datetime(time,'yyyy-MM-dd''T''HH:mm:ss.SSSSSS''Z') 
      BETWEEN parse_datetime('2018-05-30-12:00:00','yyyy-MM-dd-HH:mm:ss') 
      AND parse_datetime('2018-05-31-00:00:00','yyyy-MM-dd-HH:mm:ss') 
 GROUP BY client_ip;
 ```
++ For more information and examples, see the AWS Knowledge Center article [How do I analyze my Application Load Balancer access logs using Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/)\.
++ For more information about partitioning ALB logs with Athena, see [athena\-add\-partition](https://github.com/buzzsurfr/athena-add-partition) on GitHub\.

@@ -12,7 +12,6 @@ The following native Hive DDLs are not supported by Athena:
 + ALTER TABLE `table_name` partitionSpec CHANGE COLUMNS
 + ALTER TABLE `table_name` partitionSpec COMPACT
 + ALTER TABLE `table_name` partitionSpec CONCATENATE
-+ ALTER TABLE `table_name` partitionSpec REPLACE COLUMNS
 + ALTER TABLE `table_name` partitionSpec SET FILEFORMAT
 + ALTER TABLE `table_name` RENAME TO
 + ALTER TABLE `table_name` SET SKEWED LOCATION

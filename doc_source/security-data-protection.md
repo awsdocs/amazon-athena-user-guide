@@ -1,5 +1,7 @@
 # Data Protection in Athena<a name="security-data-protection"></a>
 
+## Protecting Multiple Types of Data<a name="security-data-protection-types-of-data"></a>
+
 Multiple types of data are involved when you use Athena to create databases and tables\. These data types include source data stored in Amazon S3, metadata for databases and tables that you create when you run queries or the AWS Glue Crawler to discover data, query results data, and query history\. This section discusses each type of data and provides guidance about protecting it\.
 + **Source data** – You store the data for databases and tables in Amazon S3, and Athena does not modify it\. For more information, see [Data Protection in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/DataDurability.html) in the *Amazon Simple Storage Service Developer Guide*\. You control access to your source data and can encrypt it in Amazon S3\. You can use Athena to [create tables based on encrypted datasets in Amazon S3](creating-tables-based-on-encrypted-datasets-in-s3.md)\.
 + **Database and table metadata \(schema\)** – Athena uses schema\-on\-read technology, which means that your table definitions are applied to your data in Amazon S3 when Athena runs queries\. Any schemas you define are automatically saved unless you explicitly delete them\. In Athena, you can modify the Data Catalog metadata using DDL statements\. You can also delete table definitions and schema without impacting the underlying data stored in Amazon S3\. 
@@ -12,6 +14,7 @@ The metadata for databases and tables you use in Athena is stored in the AWS Glu
   Athena retains query history for 45 days\. You can [ view query history](querying.md#queries-viewing-history) using Athena APIs, in the console, and with AWS CLI\. To store the queries for longer than 45 days, save them\. To protect access to saved queries, [use workgroups](workgroups.md) in Athena, restricting access to saved queries only to users who are authorized to view them\.
 
 **Topics**
++ [Protecting Multiple Types of Data](#security-data-protection-types-of-data)
 + [Encryption at Rest](encryption.md)
 + [Encryption in Transit](encryption-in-transit.md)
 + [Key Management](key-management.md)

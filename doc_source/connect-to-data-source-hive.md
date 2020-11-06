@@ -70,6 +70,7 @@ When you use Athena Data Connector for External Hive Metastore, consider the fol
 + You can use INSERT INTO to insert data into an AWS Glue table from a query on an external Hive metastore, but not to insert data into an external Hive metastore\.
 + Hive views are not compatible with Athena views and are not supported\.
 + Kerberos authentication for Hive metastore is not supported\.
++ To use the JDBC driver with an external Hive metastore or [federated queries](connect-to-a-data-source.md), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. For information about the JDBC driver, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.
 
 ### Permissions<a name="connect-to-a-data-source-hive-considerations-permissions"></a>
 
