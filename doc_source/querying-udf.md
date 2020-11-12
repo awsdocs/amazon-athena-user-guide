@@ -14,7 +14,7 @@ You have two options for deploying a Lambda function for Athena UDFs\. You can d
 + **Java runtime only** – Currently, Athena UDFs support only the Java 8 runtime for Lambda\.
 + **IAM permissions** – To run a query in Athena that contains a UDF query statement and to create UDF statements, the IAM principal running the query must be allowed to perform actions in addition to Athena functions\. For more information, see [Example IAM Permissions Policies to Allow Amazon Athena User Defined Functions \(UDF\)](udf-iam-access.md)\.
 + **Lambda quotas** – Lambda quotas apply to UDFs\. For more information, see [AWS Lambda Quotas](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) in the *AWS Lambda Developer Guide*\.
-+ **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the Athena Federated Query \(Preview\) 
++ **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the Athena Federated Query 
 
 ## UDF Query Syntax<a name="udf-query-syntax"></a>
 
@@ -90,7 +90,7 @@ The steps in this section demonstrate writing and building a custom UDF Jar file
 Before you begin, make sure that git is installed on your system using `sudo yum install git -y`\.
 
 **To install the AWS Query Federation SDK**
-+ Enter the following at the command line to clone the SDK repository\. This repository includes the SDK, examples and a suite of data source connectors\. For more information about data source connectors, see [Using Amazon Athena Federated Query \(Preview\)](connect-to-a-data-source.md)\.
++ Enter the following at the command line to clone the SDK repository\. This repository includes the SDK, examples and a suite of data source connectors\. For more information about data source connectors, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
 
   ```
   git clone https://github.com/awslabs/aws-athena-query-federation.git

@@ -57,7 +57,7 @@ The workflow for using external Hive metastores from Athena includes the followi
 ## Considerations and Limitations<a name="connect-to-a-data-source-hive-considerations"></a>
 
 When you use Athena Data Connector for External Hive Metastore, consider the following points:
-+ DDL support for external Hive Metastore is limited to the following statements\.
++ DDL support for external Hive metastore is limited to the following statements\.
   + DESCRIBE TABLE
   + SHOW COLUMNS
   + SHOW TABLES

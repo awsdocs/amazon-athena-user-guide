@@ -11,13 +11,15 @@ See the following topics for more information:
 + For complete information about the Athena data source connectors, see [Available Connectors](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors) on GitHub\. 
 
 **Topics**
-+ [Athena AWS CMDB Connector](athena-prebuilt-data-connectors-cmdb.md)
 + [Amazon Athena CloudWatch Connector](athena-prebuilt-data-connectors-cwlogs.md)
 + [Amazon Athena CloudWatch Metrics Connector](athena-prebuilt-data-connectors-cwmetrics.md)
++ [Athena AWS CMDB Connector](athena-prebuilt-data-connectors-cmdb.md)
 + [Amazon Athena DocumentDB Connector](athena-prebuilt-data-connectors-docdb.md)
 + [Amazon Athena DynamoDB Connector](athena-prebuilt-data-connectors-dynamodb.md)
 + [Amazon Athena Elasticsearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)
 + [Amazon Athena HBase Connector](athena-prebuilt-data-connectors-hbase.md)
 + [Amazon Athena Connector for JDBC\-Compliant Data Sources](athena-prebuilt-data-connectors-jdbc.md)
++ [Amazon Athena Neptune Connector](athena-prebuilt-data-connectors-neptune.md)
 + [Amazon Athena Redis Connector](athena-prebuilt-data-connectors-redis.md)
++ [Amazon Athena Timestream Connector](athena-prebuilt-data-connectors-timestream.md)
 + [Amazon Athena TPC Benchmark DS \(TPC\-DS\) Connector](athena-prebuilt-data-connectors-tpcds.md)

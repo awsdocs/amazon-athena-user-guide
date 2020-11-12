@@ -1,12 +1,14 @@
 # Document History<a name="DocHistory"></a>
 
- **Latest documentation update: November 5, 2020\.** 
+ **Latest documentation update: November 11, 2020\.** 
 
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added documentation for Athena engine versioning and Athena engine version 2\. | For more information, see [Athena Engine Versioning](engine-versions.md)\. | November 11, 2020 | 
+| Updated federated query documentation for general availability release\. | For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Using Athena with CalledVia Context Keys](security-iam-athena-calledvia.md)\. | November 11, 2020 | 
 | Added documentation for using the JDBC driver with Lake Formation for federated access to Athena\. | For more information, see [Using Lake Formation and the Athena JDBC and ODBC Drivers for Federated Access to Athena](security-athena-lake-formation-jdbc.md) and [Tutorial: Configuring Federated Access for Okta Users to Athena Using Lake Formation and JDBC](security-athena-lake-formation-jdbc-okta-tutorial.md)\. | September 25, 2020 | 
 | Added documentation for the Amazon Athena Elasticsearch data connector\. | For more information, see [Amazon Athena Elasticsearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)\. | July 21, 2020 | 
 | Added documentation for querying Hudi datasets\. | For more information, see [Using Athena to Query Apache Hudi Datasets](querying-hudi.md)\. | July 9, 2020 | 

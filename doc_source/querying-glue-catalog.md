@@ -102,10 +102,33 @@ The following table shows a sample result\.
 
 ## Listing Partitions for a Specific Table<a name="querying-glue-catalog-listing-partitions"></a>
 
-You can use a metadata query to list the partition numbers and partition values for a specific table\.
+You can use `SHOW PARTITIONS table_name` to list the partitions for a specified table, as in the following example\.
 
-**Example – Querying the Partitions for a Table**  
-The following example query lists the partitions for the table `CloudTrail_logs_test2`\.  
+```
+SHOW PARTITIONS cloudtrail_logs_test2
+```
+
+You can also use a metadata query to list the partition numbers and partition values for a specific table\. The syntax that you use depends on the Athena engine version\.
+
+**Example – Querying the Partitions for a Table in Athena engine version 2**  
+The following example query lists the partitions for the table `cloudtrail_logs_test2` using Athena engine version 2\.  
+
+```
+SELECT * FROM default."cloudtrail_logs_test2$partitions" ORDER BY partition_number
+```
+The following table shows sample results\.  
+
+
+****  
+
+|  | table\_catalog | table\_schema | table\_name | year | month | day | 
+| --- | --- | --- | --- | --- | --- | --- | 
+| 1 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 2020 | 08 | 10 | 
+| 2 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 2020 | 08 | 11 | 
+| 3 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 2020 | 08 | 12 | 
+
+**Example – Querying the Partitions for a Table in Athena engine version 1**  
+The following example query lists the partitions for the table `cloudtrail_logs_test2` using Athena engine version 1\.  
 
 ```
 SELECT *
@@ -114,11 +137,6 @@ WHERE  table_schema = 'default'
        AND table_name = 'cloudtrail_logs_test2'
 ORDER  BY partition_number
 ```
-If the query does not work as expected, use `SHOW PARTITIONS table_name` to extract the partition details for a specified table, as in the following example\.  
-
-```
-SHOW PARTITIONS CloudTrail_logs_test2
-```
 The following table shows sample results\.  
 
 
@@ -126,9 +144,9 @@ The following table shows sample results\.
 
 |  | table\_catalog | table\_schema | table\_name | partition\_number | partition\_key | partition\_value | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| 1 | awsdatacatalog | default | CloudTrail\_logs\_test2 | 1 | year | 2018 | 
-| 2 | awsdatacatalog | default | CloudTrail\_logs\_test2 | 1 | month | 09 | 
-| 3 | awsdatacatalog | default | CloudTrail\_logs\_test2 | 1 | day | 30 | 
+| 1 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 1 | year | 2018 | 
+| 2 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 1 | month | 09 | 
+| 3 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 1 | day | 30 | 
 
 ## Listing or Searching Columns for a Specified Table or View<a name="querying-glue-catalog-listing-columns"></a>
 
