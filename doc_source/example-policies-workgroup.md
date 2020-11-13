@@ -54,6 +54,7 @@ The following policy allows full access to the single specific workgroup resourc
         {
             "Effect": "Allow",
             "Action": [
+                "athena:ListEngineVersions",
                 "athena:ListWorkGroups",
                 "athena:GetExecutionEngine",
                 "athena:GetExecutionEngines",
@@ -161,16 +162,28 @@ In the following policy, a user is allowed to create, delete, obtain details, an
 
 ```
 {
-   "Effect": "Allow",
-   "Action": [
-      "athena:CreateWorkGroup", 
-      "athena:GetWorkGroup", 
-      "athena:DeleteWorkGroup", 
-      "athena:UpdateWorkGroup"
-   ],
-   "Resource": [
-     "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
-   ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:ListEngineVersions"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:CreateWorkGroup",
+                "athena:GetWorkGroup",
+                "athena:DeleteWorkGroup",
+                "athena:UpdateWorkGroup"
+            ],
+            "Resource": [
+                "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
+            ]
+        }
+    ]
 }
 ```
 

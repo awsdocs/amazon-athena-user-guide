@@ -11,5 +11,7 @@ A database in Athena is a logical grouping for tables you create in it\. Creatin
 
 1. Choose **Run Query** or press **Ctrl\+ENTER**\.
 
-1. To make your database the current database, select it from from the **Database** menu\.  
+1. To make your database the current database, select it from from the **Database** menu\.
+**Note**  
+Currently, the database menu can show and filter a maximum of 1000 databases regardless of the type of data catalog used\. This is a limitation of the Athena console, not an account limit\. The number of databases that can be displayed and filtered is not user configurable\.  
 ![\[Choosing a database in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/catalogdashboard.png)

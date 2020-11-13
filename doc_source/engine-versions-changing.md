@@ -30,6 +30,9 @@ You can also use the **Workgroups** page to find the current engine version for 
 
 When a new engine version is available, you can choose to let Athena decide when to upgrade the workgroup, or manually specify the Athena engine version that the workgroup uses\.
 
+**Note**  
+To change the engine version for a workgroup, you must have permission to perform the `athena:ListEngineVersions` action on the workgroup\. For IAM policy examples, see [Workgroup Example Policies](example-policies-workgroup.md)\. 
+
 **To let Athena decide when to upgrade the workgroup**
 
 1. In the Athena console, choose the **Workgroup** tab\.
@@ -70,7 +73,7 @@ When a new engine version is available, you can choose to let Athena decide when
 
 ## Specifying the Engine Version When You Create a Workgroup<a name="engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup"></a>
 
-When you create a workgroup, you can specify the engine version that the workgroup uses or let Athena decide when to upgrade the workgroup\. A best practice is to create a workgroup to test the new engine before you upgrade your other workgroups\.
+When you create a workgroup, you can specify the engine version that the workgroup uses or let Athena decide when to upgrade the workgroup\. A best practice is to create a workgroup to test the new engine before you upgrade your other workgroups\. To specify the engine version for a workgroup, you must have the `athena:ListEngineVersions` permission on the workgroup\. For IAM policy examples, see [Workgroup Example Policies](example-policies-workgroup.md)\.
 
 **To specify the engine version when you create a workgroup**
 
