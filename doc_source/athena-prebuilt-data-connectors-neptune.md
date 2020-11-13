@@ -4,4 +4,4 @@ Amazon Neptune is a fast, reliable, fully managed graph database service that ma
 
 The Amazon Athena Neptune Connector enables Athena to communicate with your Neptune graph database instance, making your Neptune graph data accessible by SQL queries\.
 
-For information about configuration options, permissions, deployment, performance, and limitations, see [Amazon Athena Neptune Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-redis) on GitHub\.
+For information about configuration options, permissions, deployment, performance, and limitations, see [Amazon Athena Neptune Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-neptune) on GitHub\.
