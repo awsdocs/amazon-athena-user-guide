@@ -13,7 +13,7 @@ To use this feature in preview, you must create an Athena workgroup named `Amazo
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Choose **Connect data source**\.
+1. In the **Data sources** tab, choose **Connect data source**\.
 
 1. On the **Connect data source** page, choose **Query a data source**\.
 
