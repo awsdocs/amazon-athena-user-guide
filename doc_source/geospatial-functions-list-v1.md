@@ -92,7 +92,7 @@ SELECT ST_GEOMETRY_TO_TEXT(ST_POINT(-74.006801, 40.705220)) AS WKT;
 
 ### `ST_POLYGON(varchar)`<a name="st-polygon-varchar"></a>
 
-Returns a value in the varbinary data type, which is a binary representation of the [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `polygon`\. Example:
+Using the sequence of the ordinates provided clockwise, left to right, returns a value in the varbinary data type, which is a binary representation of the [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `polygon`\. Example:
 
 ```
 SELECT ST_POLYGON('polygon ((1 1, 1 4, 4 4, 4 1))') 

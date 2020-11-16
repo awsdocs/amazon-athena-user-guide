@@ -127,7 +127,7 @@ SELECT ST_AsText(ST_Point(-74.006801, 40.705220)) AS WKT
 
 ### `ST_Polygon(varchar)`<a name="geospatial-functions-list-v2-st-polygon"></a>
 
-Returns a [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `polygon`\. In Athena engine version 2, only polygons are accepted as inputs\. Example:
+Using the sequence of the ordinates provided clockwise, left to right, returns a [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `polygon`\. In Athena engine version 2, only polygons are accepted as inputs\. Example:
 
 ```
 SELECT ST_Polygon('polygon ((1 1, 1 4, 4 4, 4 1))') 

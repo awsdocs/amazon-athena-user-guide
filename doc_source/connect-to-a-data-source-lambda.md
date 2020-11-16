@@ -13,7 +13,11 @@ To use this feature in preview, you must create an Athena workgroup named `Amazo
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. In the **Data sources** tab, choose **Connect data source**\.
+1. Do one of the following:
+   + In the Query Editor navigation pane, choose **Connect data source**\.  
+![\[Choose Connect data source in the navigation pane.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-to-a-data-source-nav-pane.png)
+   + Choose the **Data sources** tab, and then choose **Connect data source**\.  
+![\[On the Data sources tab, choose Connect data source.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-to-a-data-source-data-sources-tab.png)
 
 1. On the **Connect data source** page, choose **Query a data source**\.
 
@@ -40,6 +44,10 @@ After you deploy the data source connector to your account, you can connect it t
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
 1. Choose **Connect data source**\.
+
+   Do one of the following:
+   + In the Query Editor navigation pane, choose **Connect data source**\.
+   + Choose the **Data sources** tab, and then choose **Connect data source**\.
 
 1. Choose **Query a data source**\.
 

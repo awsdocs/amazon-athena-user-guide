@@ -29,7 +29,7 @@ Download the Amazon Athena ODBC driver License Agreement, ODBC drivers, and ODBC
 
 | Driver Version | Download Link | 
 | --- | --- | 
-| ODBC 1\.1\.3 for OSX | [OSX ODBC Driver 1\.1\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.3/OSX/Simba+Athena+1.1.dmg) | 
+| ODBC 1\.1\.5 for OSX | [OSX ODBC Driver 1\.1\.5](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.5.1000/OSX/simbaathena-1.1.5.1000.dmg) | 
 
 ### Documentation<a name="connect-with-odbc-driver-documentation"></a>
 

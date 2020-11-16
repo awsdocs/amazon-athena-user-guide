@@ -134,3 +134,16 @@ GROUP BY webaclid, action, httprequest.clientip, httprequest.uri
 ORDER BY count DESC
 LIMIT 100;
 ```
+
+The following query uses the `from_unixtime` and `to_iso8601` functions to return the `timestamp` field in human\-readable ISO 8601 format \(for example, `2019-12-13T23:40:12.000Z` instead of `1576280412771`\)\. The query also returns the HTTP source name, source ID, and request\. 
+
+```
+SELECT to_iso8601(from_unixtime(timestamp / 1000)) as time_ISO_8601,
+       httpsourcename,
+       httpsourceid,
+       httprequest
+FROM   waf_logs
+LIMIT  10;
+```
+
+For more information about date and time functions, see [Date and Time Functions and Operators](https://prestodb.io/docs/0.217/functions/datetime.html) in the Presto documentation\.
