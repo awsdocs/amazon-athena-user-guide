@@ -1,6 +1,10 @@
 # Geospatial Function Name Changes and New Functions in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes-and-new-functions"></a>
 
-This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. Currently, Athena engine version 2 is supported in the US East \(N\. Virginia\), US East \(Ohio\), and US West \(Oregon\) Regions\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\.
+This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. Currently, Athena engine version 2 is supported in the US East \(N\. Virginia\), US East \(Ohio\), and US West \(Oregon\) Regions\. 
+
+For information about other changes in Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+
+For information about Athena engine versioning, see [Athena Engine Versioning](engine-versions.md)\.
 
 ## Geospatial Function Name Changes in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes"></a>
 
@@ -57,3 +61,19 @@ The following geospatial functions are new in Athena engine version 2\. For more
 + [ST\_NumGeometries](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-numgeometries)
 + [ST\_PointN](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-pointn)
 + [ST\_Points](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-points)
+
+**Aggregation Functions**
++ [convex\_hull\_agg](geospatial-functions-list-v2.md#geospatial-functions-list-v2-convex-hull-agg)
++ [geometry\_union\_agg](geospatial-functions-list-v2.md#geospatial-functions-list-v2-geometry-union-agg)
+
+**Bing Tile Functions**
++ [bing\_tile](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile)
++ [bing\_tile \(quadkey\)](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile-quadkey)
++ [bing\_tile\_at](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile-at)
++ [bing\_tiles\_around](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tiles-around)
++ [bing\_tiles\_around \(radius\)](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tiles-around-radius)
++ [bing\_tile\_coordinates](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile-coordinates)
++ [bing\_tile\_polygon](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile-polygon)
++ [bing\_tile\_quadkey](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile-quadkey-return)
++ [bing\_tile\_zoom\_level](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile-zoom-level)
++ [geometry\_to\_bing\_tiles](geospatial-functions-list-v2.md#geospatial-functions-list-v2-geometry-to-bing-tiles)

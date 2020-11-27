@@ -3,7 +3,7 @@
 You can also use the [AWS Serverless Application Repository](https://aws.amazon.com/serverless/serverlessrepo/) to deploy an Athena data source connector\. You find the connector that you want to use, provide the parameters that the connector requires, and then deploy the connector to your account\.
 
 **Note**  
-To use this feature in preview, you must create an Athena workgroup named `AmazonAthenaPreviewFunctionality` and join that workgroup\. For more information, see [Managing Workgroups](workgroups-create-update-delete.md)\.
+To use the Amazon Athena Federated Query feature, set your workgroup to Athena engine version 2\. For steps, see [Changing Athena Engine Versions](engine-versions-changing.md)\.
 
 **To use the AWS Serverless Application Repository to deploy a data source connector to your account**
 

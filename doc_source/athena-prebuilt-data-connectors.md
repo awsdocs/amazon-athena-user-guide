@@ -3,7 +3,7 @@
 This section lists prebuilt Athena data source connectors that you can use to query a variety of data sources external to Amazon S3\. To use a connector in your Athena queries, configure it and deploy it to your account\. 
 
 **Note**  
-To use this feature in preview, you must create an Athena workgroup named `AmazonAthenaPreviewFunctionality` and join that workgroup\. For more information, see [Managing Workgroups](workgroups-create-update-delete.md)\. 
+To use the Amazon Athena Federated Query feature, set your workgroup to Athena engine version 2\. For steps, see [Changing Athena Engine Versions](engine-versions-changing.md)\.
 
 See the following topics for more information:
 + For information about deploying an Athena data source connector, see [Deploying a Connector and Connecting to a Data Source](connect-to-a-data-source-lambda.md)\. 
@@ -18,7 +18,7 @@ See the following topics for more information:
 + [Amazon Athena DynamoDB Connector](athena-prebuilt-data-connectors-dynamodb.md)
 + [Amazon Athena Elasticsearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)
 + [Amazon Athena HBase Connector](athena-prebuilt-data-connectors-hbase.md)
-+ [Amazon Athena Connector for JDBC\-Compliant Data Sources](athena-prebuilt-data-connectors-jdbc.md)
++ [Amazon Athena Connector for JDBC\-Compliant Data Sources \(PostgreSQL, MySQL, and Amazon Redshift\)](athena-prebuilt-data-connectors-jdbc.md)
 + [Amazon Athena Neptune Connector](athena-prebuilt-data-connectors-neptune.md)
 + [Amazon Athena Redis Connector](athena-prebuilt-data-connectors-redis.md)
 + [Amazon Athena Timestream Connector](athena-prebuilt-data-connectors-timestream.md)

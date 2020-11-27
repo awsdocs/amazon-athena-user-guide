@@ -5,6 +5,6 @@ To write your own [data source connectors](connect-to-a-data-source.md), you can
 You can also customize Amazon Athena's [prebuilt connectors](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors) for your own use\. You can modify a copy of the source code from GitHub and then use the [Connector Publish Tool](https://github.com/awslabs/aws-athena-query-federation/wiki/Connector_Publish_Tool) to create your own AWS Serverless Application Repository package\. After you deploy your connector in this way, you can use it in your Athena queries\.
 
 **Note**  
-To use this feature in preview, you must create an Athena workgroup named `AmazonAthenaPreviewFunctionality` and join that workgroup\. For more information, see [Managing Workgroups](workgroups-create-update-delete.md)\.
+To use the Amazon Athena Federated Query feature, set your workgroup to Athena engine version 2\. For steps, see [Changing Athena Engine Versions](engine-versions-changing.md)\.
 
 For information about how to download the SDK and detailed instructions for writing your own connector, see [Example Athena Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-example) on GitHub\.

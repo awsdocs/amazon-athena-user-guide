@@ -1,13 +1,13 @@
 # Identity and Access Management in Athena<a name="security-iam-athena"></a>
 
-Amazon Athena uses AWS Identity and Access Management \(IAM\) policies to restrict access to Athena operations\.
+Amazon Athena uses [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) policies to restrict access to Athena operations\. For a full list of permissions for Athena, see [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonathena.html) in the **\. 
 
-To run queries in Athena, you must have the appropriate permissions for the following:
-+ Athena API actions including additional actions for Athena [workgroups](workgroups.md)\.
-+ Amazon S3 locations where the underlying data to query is stored\. 
-+ Metadata and resources that you store in the AWS Glue Data Catalog, such as databases and tables, including additional actions for encrypted metadata\. 
+The permissions required to run Athena queries include the following:
++ Amazon S3 locations where the underlying data to query is stored\. For more information, see [Identity and access management in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html) in the *Amazon Simple Storage Service Developer Guide*\.
++ Metadata and resources that you store in the AWS Glue Data Catalog, such as databases and tables, including additional actions for encrypted metadata\. For more information, see [Setting up IAM Permissions for AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/getting-started-access.html) and [Setting Up Encryption in AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/set-up-encryption.html) in the *AWS Glue Developer Guide*\.
++ Athena API actions\. For a list of API actions in Athena, see [Actions](https://docs.aws.amazon.com/athena/latest/APIReference/API_Operations.html) in the *Amazon Athena API Reference*\.
 
-If you are an administrator for other users, make sure that they have appropriate permissions associated with their user profiles\. In addition to the following topics, see [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html) in the *[IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)*\.
+The following topics provide more information about permissions for specific areas of Athena\.
 
 **Topics**
 + [Managed Policies for User Access](managed-policies.md)

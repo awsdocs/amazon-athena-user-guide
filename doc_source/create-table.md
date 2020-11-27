@@ -5,10 +5,11 @@ Creates a table with the name and the parameters that you specify\.
 ## Synopsis<a name="synopsis"></a>
 
 ```
-CREATE [EXTERNAL] TABLE [IF NOT EXISTS]
+CREATE EXTERNAL TABLE [IF NOT EXISTS]
  [db_name.]table_name [(col_name data_type [COMMENT col_comment] [, ...] )]
  [COMMENT table_comment]
  [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]
+ [CLUSTERED BY (col_name, col_name, ...) INTO num_buckets BUCKETS]
  [ROW FORMAT row_format]
  [STORED AS file_format] 
  [WITH SERDEPROPERTIES (...)] ]
@@ -18,8 +19,8 @@ CREATE [EXTERNAL] TABLE [IF NOT EXISTS]
 
 ## Parameters<a name="parameters"></a>
 
-**\[EXTERNAL\]**  
-Specifies that the table is based on an underlying data file that exists in Amazon S3, in the `LOCATION` that you specify\. When you create an external table, the data referenced must comply with the default format or the format that you specify with the `ROW FORMAT`, `STORED AS`, and `WITH SERDEPROPERTIES` clauses\.
+**EXTERNAL**  
+Specifies that the table is based on an underlying data file that exists in Amazon S3, in the `LOCATION` that you specify\. All tables created in Athena, except for those created using [CTAS](create-table-as.md), must be `EXTERNAL`\. When you create an external table, the data referenced must comply with the default format or the format that you specify with the `ROW FORMAT`, `STORED AS`, and `WITH SERDEPROPERTIES` clauses\.
 
 **\[IF NOT EXISTS\]**  
 Causes the error message to be suppressed if a table named `table_name` already exists\.
@@ -60,6 +61,9 @@ Creates the `comment` table property and populates it with the `table_comment` y
 **\[PARTITIONED BY \(col\_name data\_type \[ COMMENT col\_comment \], \.\.\. \) \]**  
 Creates a partitioned table with one or more partition columns that have the `col_name`, `data_type` and `col_comment` specified\. A table can have one or more partitions, which consist of a distinct column name and value combination\. A separate data directory is created for each specified combination, which can improve query performance in some circumstances\. Partitioned columns don't exist within the table data itself\. If you use a value for `col_name` that is the same as a table column, you get an error\. For more information, see [Partitioning Data](partitions.md)\.  
 After you create a table with partitions, run a subsequent query that consists of the [MSCK REPAIR TABLE](msck-repair-table.md) clause to refresh partition metadata, for example, `MSCK REPAIR TABLE cloudfront_logs;`\. For partitions that are not Hive compatible, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to load the partitions so that you can query the data\.
+
+**\[CLUSTERED BY \(col\_name, col\_name, \.\.\.\) INTO num\_buckets BUCKETS\]**  
+Divides, with or without partitioning, the data in the specified `col_name` columns into data subsets called *buckets*\. The `num_buckets` parameter specifies the number of buckets to create\. Bucketing can improve the performance of some queries on large data sets\.
 
 **\[ROW FORMAT row\_format\]**  
 Specifies the row format of the table and its underlying source data if applicable\. For `row_format`, you can specify one or more delimiters with the `DELIMITED` clause or, alternatively, use the `SERDE` clause as described below\. If `ROW FORMAT` is omitted or `ROW FORMAT DELIMITED` is specified, a native SerDe is used\.  
@@ -102,25 +106,4 @@ Specifies custom metadata key\-value pairs for the table definition in addition 
 Athena has a built\-in property, `has_encrypted_data`\. Set this property to `true` to indicate that the underlying dataset specified by `LOCATION` is encrypted\. If omitted and if the workgroup's settings do not override client\-side settings, `false` is assumed\. If omitted or set to `false` when underlying data is encrypted, the query results in an error\. For more information, see [Configuring Encryption Options](encryption.md)\.  
 To run ETL jobs, AWS Glue requires that you create a table with the `classification` property to indicate the data type for AWS Glue as `csv`, `parquet`, `orc`, `avro`, or `json`\. For example, `'classification'='csv'`\. ETL jobs will fail if you do not specify this property\. You can subsequently specify it using the AWS Glue console, API, or CLI\. For more information, see [Using AWS Glue Jobs for ETL with Athena](glue-best-practices.md#schema-classifier) and [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
 
-## Examples<a name="examples"></a>
-
-```
-CREATE EXTERNAL TABLE IF NOT EXISTS mydatabase.cloudfront_logs (
-  Date DATE,
-  Time STRING,
-  Location STRING,
-  Bytes INT,
-  RequestIP STRING,
-  Method STRING,
-  Host STRING,
-  Uri STRING,
-  Status INT,
-  Referrer STRING,
-  os STRING,
-  Browser STRING,
-  BrowserVersion STRING
-      ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
-      WITH SERDEPROPERTIES (
-      "input.regex" = "^(?!#)([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+[^\(]+[\(]([^\;]+).*\%20([^\/]+)[\/](.*)$"
-      ) LOCATION 's3://athena-examples-myregion/cloudfront/plaintext/';
-```
+For more information about creating tables, see [Creating Tables in Athena](creating-tables.md)\.

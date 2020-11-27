@@ -142,8 +142,20 @@ SELECT to_iso8601(from_unixtime(timestamp / 1000)) as time_ISO_8601,
        httpsourcename,
        httpsourceid,
        httprequest
-FROM   waf_logs
-LIMIT  10;
+FROM waf_logs
+LIMIT 10;
+```
+
+The following query uses a filter in the `WHERE` clause to return the same fields for records from the last 24 hours\.
+
+```
+SELECT to_iso8601(from_unixtime(timestamp/1000)) AS time_ISO_8601, 
+       httpsourcename, 
+       httpsourceid, 
+       httprequest 
+FROM waf_logs
+WHERE from_unixtime(timestamp/1000) > now() - interval '1' day
+LIMIT 10;
 ```
 
 For more information about date and time functions, see [Date and Time Functions and Operators](https://prestodb.io/docs/0.217/functions/datetime.html) in the Presto documentation\.

@@ -1,4 +1,4 @@
-# Amazon Athena Connector for JDBC\-Compliant Data Sources<a name="athena-prebuilt-data-connectors-jdbc"></a>
+# Amazon Athena Connector for JDBC\-Compliant Data Sources \(PostgreSQL, MySQL, and Amazon Redshift\)<a name="athena-prebuilt-data-connectors-jdbc"></a>
 
 The Amazon Athena Lambda JDBC connector enables Amazon Athena to access your JDBC\-compliant database\. Currently supported databases include MySQL, PostgreSQL, and Amazon Redshift\.
 

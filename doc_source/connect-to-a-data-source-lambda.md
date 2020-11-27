@@ -7,7 +7,7 @@ Preparing to create federated queries is a two\-part process: deploying a Lambda
 To choose, name, and deploy a data source connector, you use the Athena and Lambda consoles in an integrated process\.
 
 **Note**  
-To use this feature in preview, you must create an Athena workgroup named `AmazonAthenaPreviewFunctionality` and join that workgroup\. For more information, see [Managing Workgroups](workgroups-create-update-delete.md)\.
+ To use the Amazon Athena Federated Query feature, set your workgroup to Athena engine version 2\. For steps, see [Changing Athena Engine Versions](engine-versions-changing.md)\. 
 
 **To deploy a data source connector**
 

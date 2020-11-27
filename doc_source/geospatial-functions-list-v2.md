@@ -7,11 +7,13 @@ This topic lists the ESRI geospatial functions that are supported in Athena engi
 + The names of some geospatial functions have changed since Athena engine version 1\. For more information, see [Geospatial Function Name Changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
 + New functions have been added\. For more information, see [New Geospatial Functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
 
-Athena supports four types of geospatial functions:
+Athena supports the following types of geospatial functions:
 +  [Constructor Functions](#geospatial-functions-list-v2-constructors-functions) 
 +  [Geospatial Relationship Functions](#geospatial-functions-list-v2-geospatial-relationships-functions) 
 +  [Operation Functions](#geospatial-functions-list-v2-operations-functions) 
 +  [Accessor Functions](#geospatial-functions-list-v2-accessors-functions) 
++  [Aggregation Functions](#geospatial-functions-list-v2-aggregation-functions) 
++  [Bing Tile Functions](#geospatial-functions-list-v2-bing-tile-functions) 
 
 ## Constructor Functions<a name="geospatial-functions-list-v2-constructors-functions"></a>
 
@@ -395,7 +397,7 @@ SELECT simplify_geometry(ST_GeometryFromText('POLYGON ((1 0, 2 1, 3 1, 3 1, 4 1,
 
 ### `ST_Area(geometry)`<a name="geospatial-functions-list-v2-st-area"></a>
 
-Takes as an input a geometry data type `polygon` and returns an area in type `double`\. Example:
+Takes as an input a geometry data type and returns an area in type `double`\. Example:
 
 ```
 SELECT ST_Area(ST_Polygon('polygon((1 1, 4 1, 4 4, 1 4))'))
@@ -651,4 +653,98 @@ Returns the minimum Y coordinate of a geometry in type `double`\. Example:
 
 ```
 SELECT ST_YMin(ST_Line('linestring(0 2, 2 2)'))
+```
+
+## Aggregation Functions<a name="geospatial-functions-list-v2-aggregation-functions"></a>
+
+### `convex_hull_agg(geometry)`<a name="geospatial-functions-list-v2-convex-hull-agg"></a>
+
+Returns the minimum convex geometry that encloses all geometries passed as input\.
+
+### `geometry_union_agg(geometry)`<a name="geospatial-functions-list-v2-geometry-union-agg"></a>
+
+Returns a geometry that represents the point set union of all geometries passed as input\.
+
+## Bing Tile Functions<a name="geospatial-functions-list-v2-bing-tile-functions"></a>
+
+The following functions convert between geometries and tiles in the Microsoft [Bing Maps Tile System](https://docs.microsoft.com/bingmaps/articles/bing-maps-tile-system/)\.
+
+### `bing_tile(x, y, zoom_level)`<a name="geospatial-functions-list-v2-bing-tile"></a>
+
+Returns a Bing tile object from integer coordinates `x` and `y` and the specified zoom level\. The zoom level must be an integer from 1 through 23\. Example:
+
+```
+SELECT bing_tile(10, 20, 12)
+```
+
+### `bing_tile(quadKey)`<a name="geospatial-functions-list-v2-bing-tile-quadkey"></a>
+
+Returns a Bing tile object from a quadkey\. Example:
+
+```
+SELECT bing_tile(bing_tile_quadkey(bing_tile(10, 20, 12)))
+```
+
+### `bing_tile_at(latitude, longitude, zoom_level)`<a name="geospatial-functions-list-v2-bing-tile-at"></a>
+
+Returns a Bing tile object at the specified latitude, longitude, and zoom level\. The latitude must be between \-85\.05112878 and 85\.05112878\. The longitude must be between \-180 and 180\. The `latitude` and `longitude` values must be `double` and `zoom_level` an integer\. Example:
+
+```
+SELECT bing_tile_at(37.431944, -122.166111, 12)
+```
+
+### `bing_tiles_around(latitude, longitude, zoom_level)`<a name="geospatial-functions-list-v2-bing-tiles-around"></a>
+
+Returns an array of Bing tiles that surround the specified latitude and longitude point at the specified zoom level\. Example:
+
+```
+SELECT bing_tiles_around(47.265511, -122.465691, 14)
+```
+
+### `bing_tiles_around(latitude, longitude, zoom_level, radius_in_km)`<a name="geospatial-functions-list-v2-bing-tiles-around-radius"></a>
+
+Returns, at the specified zoom level, an array of Bing tiles\. The array contains the minimum set of Bing tiles that covers a circle of the specified radius in kilometers around the specified latitude and longitude\. The `latitude`, `longitude`, and `radius_in_km` values are `double`; the zoom level is an `integer`\. Example:
+
+```
+SELECT bing_tiles_around(37.8475, 112.596667, 10, .5)
+```
+
+### `bing_tile_coordinates(tile)`<a name="geospatial-functions-list-v2-bing-tile-coordinates"></a>
+
+Returns the `x` and `y` coordinates of the specified Bing tile\. Example:
+
+```
+SELECT bing_tile_coordinates(bing_tile_at(37.431944, -122.166111, 12))
+```
+
+### `bing_tile_polygon(tile)`<a name="geospatial-functions-list-v2-bing-tile-polygon"></a>
+
+Returns the polygon representation of the specified Bing tile\. Example:
+
+```
+SELECT bing_tile_polygon(bing_tile_at(47.265511, -122.465691, 4))
+```
+
+### `bing_tile_quadkey(tile)`<a name="geospatial-functions-list-v2-bing-tile-quadkey-return"></a>
+
+Returns the quadkey of the specified Bing tile\. Example:
+
+```
+SELECT bing_tile_quadkey(bing_tile(52, 143, 10))
+```
+
+### `bing_tile_zoom_level(tile)`<a name="geospatial-functions-list-v2-bing-tile-zoom-level"></a>
+
+Returns the zoom level of the specified Bing tile as an integer\. Example:
+
+```
+SELECT bing_tile_zoom_level(bing_tile(52, 143, 10))
+```
+
+### `geometry_to_bing_tiles(geometry, zoom_level)`<a name="geospatial-functions-list-v2-geometry-to-bing-tiles"></a>
+
+Returns the minimum set of Bing tiles that fully covers the specified geometry at the specified zoom level\. Zoom levels from 1 to 23 are supported\. Example:
+
+```
+SELECT geometry_to_bing_tiles(ST_Point(61.56, 58.54), 10)
 ```

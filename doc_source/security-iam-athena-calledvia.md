@@ -60,7 +60,7 @@ The following example shows the addition of the previous statement to a policy t
                 "s3:ListMultipartUploadParts" 
             ], 
             "Resource": [ 
-                "arn:aws:athena:*:MyAWSAcctId:workgroup/AmazonAthenaPreviewFunctionality",
+                "arn:aws:athena:*:MyAWSAcctId:workgroup/WorkGroupName",
                 "arn:aws:s3:::MyQueryResultsBucket/*", 
                 "arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*"
             ] 
