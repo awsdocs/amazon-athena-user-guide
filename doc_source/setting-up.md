@@ -18,7 +18,7 @@ Note your AWS account number, because you need it for the next task\.
 
 ## Create an IAM User<a name="create-an-iam-user"></a>
 
-An AWS Identity and Access Management \(IAM\) user is an account that you create to access services\. It is a different user than your main AWS account\. As a security best practice, we recommend that you use the IAM user's credentials to access AWS services\. Create an IAM user, and then add the user to an IAM group with administrative permissions or and grant this user administrative permissions\. You can then access AWS using a special URL and the credentials for the IAM user\.
+An AWS Identity and Access Management \(IAM\) user is an account that you create to access services\. It is a different user than your main AWS account\. As a security best practice, we recommend that you use the IAM user's credentials to access AWS services\. Create an IAM user, and then add the user to an IAM group that has administrative permissions or grant the user administrative permissions\. You can then access AWS using a special URL and the credentials for the IAM user\.
 
 If you signed up for AWS but have not created an IAM user for yourself, you can create one using the IAM console\. If you aren't familiar with using the console, see [Working with the AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html)\.
 
