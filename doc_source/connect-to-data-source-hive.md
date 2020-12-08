@@ -8,6 +8,7 @@ You can use the Amazon Athena data connector for external Hive metastore to quer
 + [Considerations and Limitations](#connect-to-a-data-source-hive-considerations)
 + [Connecting Athena to an Apache Hive Metastore](connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore.md)
 + [Using the AWS Serverless Application Repository to Deploy a Hive Data Source Connector](connect-data-source-sar-hive.md)
++ [Connecting Athena to a Hive Metastore Using an Existing IAM Execution Role](connect-data-source-hive-existing-iam-role.md)
 + [Using a Default Catalog in External Hive Metastore Queries](datastores-hive-default-catalog.md)
 + [Using the AWS CLI with Hive Metastores](datastores-hive-cli.md)
 + [Reference Implementation](datastores-hive-reference-implementation.md)

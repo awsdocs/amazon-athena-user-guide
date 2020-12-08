@@ -31,6 +31,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)
       + [Connecting Athena to an Apache Hive Metastore](connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore.md)
       + [Using the AWS Serverless Application Repository to Deploy a Hive Data Source Connector](connect-data-source-sar-hive.md)
+      + [Connecting Athena to a Hive Metastore Using an Existing IAM Execution Role](connect-data-source-hive-existing-iam-role.md)
       + [Using a Default Catalog in External Hive Metastore Queries](datastores-hive-default-catalog.md)
       + [Using the AWS CLI with Hive Metastores](datastores-hive-cli.md)
       + [Reference Implementation](datastores-hive-reference-implementation.md)

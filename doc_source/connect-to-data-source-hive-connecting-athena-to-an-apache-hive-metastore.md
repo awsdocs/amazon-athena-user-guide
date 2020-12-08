@@ -2,6 +2,9 @@
 
 To connect Athena to an Apache Hive metastore, you must create and configure a Lambda function\. For a basic implementation, you can perform all required steps starting from the Athena management console\.
 
+**Note**  
+The following procedure requires that you have permission to create a custom IAM role for the Lambda function\. If you do not have permission to create a custom role, you can use the Athena [reference implementation](connect-to-data-source-hive.md#connect-to-a-data-source-hive-features-reference-implementation) to create a Lambda function separately, and then use the AWS Lambda console to choose an existing IAM role for the function\. For more information, see [Connecting Athena to a Hive Metastore Using an Existing IAM Execution Role](connect-data-source-hive-existing-iam-role.md)\.
+
 **To connect Athena to a Hive metastore**
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
