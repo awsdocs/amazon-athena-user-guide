@@ -12,6 +12,6 @@ Use these documentation topics to troubleshoot problems with Amazon Athena\.
 + [Troubleshooting Workgroups](workgroups-troubleshooting.md)
 
 In addition, use the following AWS resources:
-+  [Athena topics in the AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/#athena) 
++  [Athena topics in the AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/#Amazon_Athena) 
 +  [Athena discussion forum](https://forums.aws.amazon.com/forum.jspa?forumID=242) 
 +  [Athena posts in the AWS Big Data Blog](http://aws.amazon.com/blogs/big-data/tag/amazon-athena/) 

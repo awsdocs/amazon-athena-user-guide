@@ -19,7 +19,7 @@ A DML or DDL query quota includes both running and queued queries\. For example,
 
 ### Query String Length<a name="service-limits-query-string-length"></a>
 
-The maximum allowed query string length is 262144 bytes, where the strings are encoded in UTF\-8\. This is not an adjustable quota\. Use these [tips](tables-databases-columns-names.md) for naming columns, tables, and databases in Athena\. 
+The maximum allowed query string length is 262144 bytes, where the strings are encoded in UTF\-8\. This is not an adjustable quota\. However, you can work around this limitation by splitting long queries into multiple smaller queries\. For more information, see [How can I increase the maximum query string length in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-query-string-length/) in the AWS Knowledge Center\.
 
 **Note**  
 If you require a greater query string length, provide feedback at [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com) with the details of your use case, or contact [AWS Support](https://console.aws.amazon.com/support/home/)\.

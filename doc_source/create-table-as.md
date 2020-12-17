@@ -55,9 +55,9 @@ s3://<query-results-location-setting>/<Unsaved-or-query-name>/<year>/<month/<dat
 ```  
 `format = [format]`  
 The data format for the CTAS query results, such as `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE`\. For example, `WITH (format = 'PARQUET')`\. If omitted, `PARQUET` is used by default\. The name of this parameter, `format`, must be listed in lowercase, or your CTAS query will fail\.  
-`partitioned_by = ARRAY[ [col_name,…] ]`  
+`partitioned_by = ARRAY[ col_name[,…] ]`  
 Optional\. An array list of columns by which the CTAS table will be partitioned\. Verify that the names of partitioned columns are listed last in the list of columns in the `SELECT` statement\.   
-`bucketed_by = ARRAY[ [bucket_name,…] ]`  
+`bucketed_by = ARRAY[ bucket_name[,…] ]`  
 An array list of buckets to bucket data\. If omitted, Athena does not bucket your data in this query\.  
 `bucket_count = [int]`  
 The number of buckets for bucketing your data\. If omitted, Athena does not bucket your data\.  

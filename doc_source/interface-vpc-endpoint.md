@@ -6,8 +6,7 @@ The interface VPC endpoint connects your VPC directly to Athena without an inter
 
 To use Athena through your VPC, you must connect from an instance that is inside the VPC or connect your private network to your VPC by using an Amazon Virtual Private Network \(VPN\) or AWS Direct Connect\. For information about Amazon VPN, see [VPN Connections](https://docs.aws.amazon.com/vpc/latest/userguide/vpn-connections.html) in the *Amazon Virtual Private Cloud User Guide*\. For information about AWS Direct Connect, see [Creating a Connection](https://docs.aws.amazon.com/directconnect/latest/UserGuide/create-connection.html) in the *AWS Direct Connect User Guide*\.
 
-**Note**  
-AWS PrivateLink for Athena is not supported in the `Europe (Stockholm)` Region\. Athena supports VPC endpoints in all other AWS Regions where both [Amazon VPC](https://docs.aws.amazon.com/general/latest/gr/rande.html#vpc_region) and [Athena](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena) are available\.
+Athena supports VPC endpoints in all AWS Regions where both [Amazon VPC](https://docs.aws.amazon.com/general/latest/gr/rande.html#vpc_region) and [Athena](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena) are available\.
 
 You can create an interface VPC endpoint to connect to Athena using the AWS console or AWS Command Line Interface \(AWS CLI\) commands\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)\.
 
