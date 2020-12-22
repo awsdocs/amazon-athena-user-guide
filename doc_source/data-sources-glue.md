@@ -50,6 +50,9 @@ Use the following procedure to set up a AWS Glue crawler if the **Connect data s
 
    For more information, see [Populating the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html)\.
 
+**Note**  
+Athena does not recognize [exclude patterns](https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude) that you specify for an AWS Glue crawler\. For example, if you have an Amazon S3 bucket that contains both `.csv` and `.json` files and you exclude the `.json` files from the crawler, Athena queries both groups of files\. To avoid this, place the files that you want to exclude in a different location\.
+
 ## Adding a Schema Table Manually<a name="data-sources-glue-manual-table"></a>
 
 The following procedure shows you how to use the Athena console to add a table manually\.

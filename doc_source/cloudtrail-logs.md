@@ -16,7 +16,8 @@ You can use Athena to query these log files directly from Amazon S3, specifying 
 + [Understanding CloudTrail Logs and Athena Tables](#create-cloudtrail-table-understanding)
 + [Using the CloudTrail Console to Create an Athena Table for CloudTrail Logs](#create-cloudtrail-table-ct)
 + [Manually Creating the Table for CloudTrail Logs in Athena](#create-cloudtrail-table)
-+ [Example Query for CloudTrail Logs](#query-examples-cloudtrail-logs)
++ [Querying Nested Fields](#cloudtrail-logs-nested-fields)
++ [Example Query](#query-examples-cloudtrail-logs)
 + [Tips for Querying CloudTrail Logs](#tips-for-querying-cloudtrail-logs)
 
 ## Understanding CloudTrail Logs and Athena Tables<a name="create-cloudtrail-table-understanding"></a>
@@ -145,9 +146,61 @@ You can manually create tables for CloudTrail log files in the Athena console, a
       LOCATION 's3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/us-east-1/2019/02/01/'
    ```
 
-## Example Query for CloudTrail Logs<a name="query-examples-cloudtrail-logs"></a>
+## Querying Nested Fields<a name="cloudtrail-logs-nested-fields"></a>
 
-The following example shows a portion of a query that returns all anonymous \(unsigned \) requests from the table created on top of CloudTrail event logs\. This query selects those requests where `useridentity.accountid` is anonymous, and `useridentity.arn` is not specified:
+Because the `userIdentity` and `resources` fields are nested data types, querying them requires special treatment\.
+
+The `userIdentity` object consists of nested `STRUCT` types\. These can be queried using a dot to separate the fields, as in the following example:
+
+```
+SELECT 
+    eventsource, 
+    eventname,
+    useridentity.sessioncontext.attributes.creationdate,
+    useridentity.sessioncontext.sessionissuer.arn
+FROM cloudtrail_logs
+WHERE useridentity.sessioncontext.sessionissuer.arn IS NOT NULL
+ORDER BY eventsource, eventname
+LIMIT 10
+```
+
+The `resources` field is an array of `STRUCT` objects\. For these arrays, use `CROSS JOIN UNNEST` to unnest the array so that you can query its objects\.
+
+The following example returns all rows where the resource ARN ends in `example/datafile.txt`\. For readability, the [replace](https://prestodb.io/docs/0.217/functions/string.html#replace) function removes the initial `arn:aws:s3:::` substring from the ARN\.
+
+```
+SELECT 
+    awsregion,
+    replace(unnested.resources_entry.ARN,'arn:aws:s3:::') as s3_resource,
+    eventname,
+    eventtime,
+    useragent
+FROM cloudtrail_logs t
+CROSS JOIN UNNEST(t.resources) unnested (resources_entry)
+WHERE unnested.resources_entry.ARN LIKE '%example/datafile.txt'
+ORDER BY eventtime
+```
+
+The following example queries for `DeleteBucket` events\. The query extracts the name of the bucket and the account ID to which the bucket belongs from the `resources` object\.
+
+```
+SELECT 
+    awsregion,
+    replace(unnested.resources_entry.ARN,'arn:aws:s3:::') as deleted_bucket,
+    eventtime AS time_deleted,
+    useridentity.username, 
+    unnested.resources_entry.accountid as bucket_acct_id 
+FROM cloudtrail_logs t
+CROSS JOIN UNNEST(t.resources) unnested (resources_entry)
+WHERE eventname = 'DeleteBucket'
+ORDER BY eventtime
+```
+
+For more information about unnesting, see [Filtering Arrays](filtering-arrays.md)\.
+
+## Example Query<a name="query-examples-cloudtrail-logs"></a>
+
+The following example shows a portion of a query that returns all anonymous \(unsigned\) requests from the table created for CloudTrail event logs\. This query selects those requests where `useridentity.accountid` is anonymous, and `useridentity.arn` is not specified:
 
 ```
 SELECT *

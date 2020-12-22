@@ -38,6 +38,9 @@ You can use the AWS Glue Catalog Manager to rename columns, but at this time tab
 
 AWS Glue crawlers help discover and register the schema for datasets in the AWS Glue Data Catalog\. The crawlers go through your data, and inspect portions of it to determine the schema\. In addition, the crawler can detect and register partitions\. For more information, see [Cataloging Data with a Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\.
 
+**Note**  
+Athena does not recognize [exclude patterns](https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude) that you specify for an AWS Glue crawler\. For example, if you have an Amazon S3 bucket that contains both `.csv` and `.json` files and you exclude the `.json` files from the crawler, Athena queries both groups of files\. To avoid this, place the files that you want to exclude in a different location\. 
+
 ### Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync<a name="schema-crawlers-schedule"></a>
 
 AWS Glue crawlers can be set up to run on a schedule or on demand\. For more information, see [Time\-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html) in the *AWS Glue Developer Guide*\.

@@ -31,7 +31,7 @@ Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/d
 + **Complex grouping** – Added support for complex grouping operations\.
 + **Correlated subqueries** – Added support for correlated subqueries in `IN` predicates and for correlated subqueries that require coercions\.
 + **CROSS JOIN** – Added support for `CROSS JOIN` against `LATERAL` derived tables\.
-+ **Grouping sets** – Added support for `ORDER BY` clauses in aggregations for queries that use grouping sets\.
++ **GROUPING SETS** – Added support for `ORDER BY` clauses in aggregations for queries that use `GROUPING SETS`\.
 + **Lambda expressions** – Added support for dereferencing row fields in Lambda expressions\.
 + **Null values in semijoins** – Added support for null values on the left\-hand side of a semijoin \(that is, an `IN` predicate with subqueries\)\.
 + **Spatial joins** – Added support for broadcast spatial joins and spatial left joins\.
@@ -261,6 +261,6 @@ The following functions are no longer supported and have been replaced by syntax
 
 The following limits were introduced in Athena engine version 2 to ensure that queries do not fail due to resource limitations\. These limits are not configurable by users\.
 + **Number of result elements** – The number of result elements `n` is restricted to 10,000 or less for the following functions: `min(col, n)`, `max(col, n)`, `min_by(col1, col2, n)`, and `max_by(col1, col2, n)`\.
-+ **GROUP BY maximum number of sets** – The default maximum number of grouping sets in a `GROUP BY` clause is 2048\.
++ **GROUPING SETS** – The maximum number of slices in a grouping set is 2048\.
 + **Maximum text file line length** – The default maximum line length for text files is 100 MB\.
 + **Sequence function maximum result size** – The maximum result size of a sequence function is 50000 entries\. For example, `SELECT sequence(0,45000,1)` succeeds, but `SELECT sequence(0,55000,1)` fails with the error message The result of the sequence function must not have more than 50000 entries\. This limit applies to all input types for sequence functions, including timestamps\.
