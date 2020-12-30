@@ -72,6 +72,38 @@ The following image shows the results of the query in the Athena Query Editor\.
 
 ![\[Example query results in Athena of W3C extended log files stored in Amazon S3.\]](http://docs.aws.amazon.com/athena/latest/ug/images/querying-iis-logs-1.png)
 
+### Combining the Date and Time Fields<a name="querying-iis-logs-example-w3c-extended-log-combining-date-and-time"></a>
+
+The space delimited `date` and `time` fields are separate entries in the log source data, but you can combine them into a timestamp if you want\. Use the [concat\(\)](https://prestodb.io/docs/0.217/functions/string.html#concat) and [date\_parse\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#date_parse) functions in a [SELECT](select.md) or [CREATE TABLE AS SELECT](create-table-as.md) query to concatenate and convert the date and time columns into timestamp format\. The following example uses a CTAS query to create a new table with a `derived_timestamp` column\.
+
+```
+CREATE TABLE iis_w3c_logs_w_timestamp AS
+SELECT 
+  date_parse(concat(date_col,' ', time_col),'%Y-%m-%d %H:%i:%s') as derived_timestamp, 
+  c_ip, 
+  s_ip, 
+  cs_method, 
+  cs_uri_stem, 
+  sc_status, 
+  sc_bytes, 
+  cs_bytes, 
+  time_taken, 
+  cs_version
+FROM iis_w3c_logs
+```
+
+After the table is created, you can query the new timestamp column directly, as in the following example\.
+
+```
+SELECT derived_timestamp, cs_uri_stem, time_taken
+FROM iis_w3c_logs_w_timestamp
+WHERE cs_method = 'GET' AND sc_status = '200'
+```
+
+The following image shows the results of the query\.
+
+![\[W3C extended log file query results on an table with a derived timestamp column.\]](http://docs.aws.amazon.com/athena/latest/ug/images/querying-iis-logs-1a.png)
+
 ## IIS Log File Format<a name="querying-iis-logs-iis-log-file-format"></a>
 
 Unlike the W3C extended format, the [IIS log file format](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc728311(v%3dws.10)) has a fixed set of fields and includes a comma as a delimiter\. The LazySimpleSerDe treats the comma as the delimiter and the space after the comma as the beginning of the next field\.

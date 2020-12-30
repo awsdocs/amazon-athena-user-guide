@@ -3,7 +3,7 @@
 Retrieves rows of data from zero or more tables\.
 
 **Note**  
-This topic provides summary information for reference\. Comprehensive information about using `SELECT` and the SQL language is beyond the scope of this documentation\. For information about using SQL that is specific to Athena, see [Considerations and Limitations for SQL Queries in Amazon Athena](other-notable-limitations.md) and [Running SQL Queries Using Amazon Athena](querying-athena-tables.md)\.
+This topic provides summary information for reference\. Comprehensive information about using `SELECT` and the SQL language is beyond the scope of this documentation\. For information about using SQL that is specific to Athena, see [Considerations and Limitations for SQL Queries in Amazon Athena](other-notable-limitations.md) and [Running SQL Queries Using Amazon Athena](querying-athena-tables.md)\. For help getting started with querying data in Athena, see [Getting Started](getting-started.md)\.
 
 ## Synopsis<a name="synopsis"></a>
 

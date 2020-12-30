@@ -8,14 +8,14 @@ The Service Quotas console provides information about Amazon Athena quotas\. Alo
 Your account has the following default query\-related quotas per AWS Region for Amazon Athena: 
 + **DDL query quota** – 20 DDL active queries\. DDL queries include `CREATE TABLE` and `CREATE TABLE ADD PARTITION` queries\. 
 + **DDL query timeout** – The DDL query timeout is 600 minutes\.
-+ **DML query quota** – 20 DML active queries\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
++ **DML query quota** – 25 DML active queries\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
 + **DML query timeout** – The DML query timeout is 30 minutes\.
 
 These are soft quotas; you can use the [Athena Service Quotas](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) console to request a quota increase\.
 
 Athena processes queries by assigning resources based on the overall service load and the number of incoming requests\. Your queries may be temporarily queued before they run\. Asynchronous processes pick up the queries from queues and run them on physical resources as soon as the resources become available and for as long as your account configuration permits\.
 
-A DML or DDL query quota includes both running and queued queries\. For example, if you are using the default quota and your total of running and queued queries exceeds 20, query 21 will result in a "too many queries" error\. 
+A DML or DDL query quota includes both running and queued queries\. For example, if you are using the default DML quota and your total of running and queued queries exceeds 25, query 26 will result in a "too many queries" error\. 
 
 ### Query String Length<a name="service-limits-query-string-length"></a>
 
