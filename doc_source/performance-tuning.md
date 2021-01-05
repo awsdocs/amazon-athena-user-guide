@@ -22,8 +22,6 @@ Query exhausted resources at this scale factor
 Encountered too many errors talking to a worker node. The node may have crashed or be under too much load.
 ```
 
-Due to physical hardware limitations, Athena currently limits per\-node memory usage to 14GB and overall query memory usage to 400GB\. Athena also limits the per node data spilled to 90GB\. These limits are subject to change\. Spill to disk does not happen on every query\.
-
 ## Query Optimization Techniques<a name="performance-tuning-query-optimization-techniques"></a>
 
 For queries that require resources beyond existing limits, you can either optimize the query or restructure the data being queried\. To optimize your queries, consider the suggestions in this section\.
