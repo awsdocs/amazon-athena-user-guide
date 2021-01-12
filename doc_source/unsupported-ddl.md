@@ -1,6 +1,6 @@
 # Unsupported DDL<a name="unsupported-ddl"></a>
 
-The following native Hive DDLs are not supported by Athena:
+The following DDL statements are not supported by Athena:
 + ALTER INDEX
 + ALTER TABLE `table_name` ARCHIVE PARTITION
 + ALTER TABLE `table_name` CLUSTERED BY
