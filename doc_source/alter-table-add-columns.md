@@ -31,7 +31,7 @@ ALTER TABLE events PARTITION (awsregion='us-west-2') ADD COLUMNS (event string)
 ```
 
 ```
-ALTER TABLE events PARTITION (awsregion='us- west-2') ADD COLUMNS (eventdescription string)
+ALTER TABLE events PARTITION (awsregion='us-west-2') ADD COLUMNS (eventdescription string)
 ```
 
 ## Notes<a name="alter-table-add-columns-notes"></a>
