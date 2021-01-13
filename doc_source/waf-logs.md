@@ -35,7 +35,30 @@ The SerDe expects each JSON record in the WAF logs in Amazon S3 to be on a singl
                                         >,
      `httpsourcename` string,
      `httpsourceid` string,
-     `rulegrouplist` array<string>,
+     `rulegrouplist` array<
+                        struct<
+                           rulegroupid:string,
+                           terminatingrule:struct<
+                              ruleid:string,
+                              action:string,
+                              rulematchdetails:string
+                                                  >,
+                           nonterminatingmatchingrules:array<
+                                                          struct<
+                                                             ruleid:string,
+                                                             action:string,
+                                                             rulematchdetails:array<
+                                                                  struct<
+                                                                     conditiontype:string,
+                                                                     location:string,
+                                                                     matcheddata:array<string>
+                                                                        >
+                                                                     >
+                                                                  >
+                                                               >,
+                           excludedrules:string
+                              >
+                          >,
      `ratebasedrulelist` array<
                            struct<
                              ratebasedruleid:string,
