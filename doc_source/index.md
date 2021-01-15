@@ -214,6 +214,7 @@ Amazon's trademarks and trade dress may not be used in
       + [SELECT](select.md)
       + [INSERT INTO](insert-into.md)
       + [Presto Functions in Amazon Athena](presto-functions.md)
+      + [Supported Time Zones](athena-supported-time-zones.md)
    + [DDL Statements](language-reference.md)
       + [Unsupported DDL](unsupported-ddl.md)
       + [ALTER DATABASE SET DBPROPERTIES](alter-database-set-dbproperties.md)

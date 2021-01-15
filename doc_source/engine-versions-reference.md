@@ -237,7 +237,7 @@ Changes made to geospatial functions include the following\.
     ```
     ST_area(ST_GeomFromLegacyBinary(<legacy_varbinary_value>))
     ```
-+ **ST\_ExteriorRing\(\) and ST\_Polygon\(\)** – [`ST_ExteriorRing()`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-exterior-ring) and [`ST_Polygon()`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-polygon) now accept only polygons as inputs\. Previously, these functions erroneously accepted other geometries\.
++ **ST\_ExteriorRing\(\) and ST\_Polygon\(\)** – [`ST_ExteriorRing()`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-exteriorring) and [`ST_Polygon()`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-polygon) now accept only polygons as inputs\. Previously, these functions erroneously accepted other geometries\.
 + **ST\_Distance\(\)** – As required by the [SQL/MM specification](http://doesen0.informatik.uni-leipzig.de/proceedings/paper/68.pdf), the [`ST_Distance()`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-distance) function now returns `NULL` if one of the inputs is an empty geometry\. Previously, `NaN` was returned\.
 
 #### ANSI SQL Compliance<a name="engine-versions-reference-0002-ansi-sql-compliance"></a>

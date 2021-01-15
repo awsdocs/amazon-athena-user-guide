@@ -1,6 +1,6 @@
 # Presto Functions in Amazon Athena<a name="presto-functions"></a>
 
-Athena supports some, but not all, of Presto's functions and features\. For information, see [Considerations and Limitations](other-notable-limitations.md)\.
+Athena supports some, but not all, of Presto's functions and features\. For information, see [Considerations and Limitations](other-notable-limitations.md)\. For a list of the time zones that can be used with the `AT TIME ZONE` operator, see [Supported Time Zones](athena-supported-time-zones.md)\.
 
 ## Athena engine version 2<a name="presto-functions-env2"></a>
 

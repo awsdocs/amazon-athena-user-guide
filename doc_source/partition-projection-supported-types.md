@@ -13,8 +13,8 @@ Define the partition properties in the table as follows:
 
 | Property Name | Example Values | Description | 
 | --- | --- | --- | 
-| projection\.columnName\.type | `enum` | Required\. The projection type to use for column columnName\. The value must be enum \(case insensitive\) to signal the use of the enum type\. Leading and trailing white space is allowed\. | 
-| projection\.columnName\.values | `A,B,C,D,E,F,G,Unknown` | Required\. A comma\-separated list of enumerated partition values for column columnName\. Any white space is considered part of an enum value\. | 
+| projection\.columnName\.type |  `enum`  | Required\. The projection type to use for column columnName\. The value must be enum \(case insensitive\) to signal the use of the enum type\. Leading and trailing white space is allowed\. | 
+| projection\.columnName\.values |  `A,B,C,D,E,F,G,Unknown`  | Required\. A comma\-separated list of enumerated partition values for column columnName\. Any white space is considered part of an enum value\. | 
 
 **Note**  
 As a best practice we recommend limiting the use of `enum` based partition projections to a few dozen or less\. Although there is no specific limit for `enum` projections, the total size of your table’s metadata cannot exceed the AWS Glue limit of about 1MB when gzip compressed\. Note that this limit is shared across key parts of your table like column names, location, storage format, and others\. If you find yourself using more than a few dozen unique IDs in your `enum` projection, consider an alternative approach such as bucketing into a smaller number of unique values in a surrogate field\. By trading off cardinality, you can control the number of unique values in your `enum` field\. 
@@ -28,7 +28,7 @@ Use the integer type for partition columns whose possible values are interpretab
 
 | Property Name | Example Values | Description | 
 | --- | --- | --- | 
-| projection\.columnName\.type | `integer` | Required\. The projection type to use for column columnName\. The value must be integer \(case insensitive\) to signal the use of the integer type\. Leading and trailing white space is allowed\. | 
+| projection\.columnName\.type |  `integer`  | Required\. The projection type to use for column columnName\. The value must be integer \(case insensitive\) to signal the use of the integer type\. Leading and trailing white space is allowed\. | 
 | projection\.columnName\.range |  `0,10` `-1,8675309` `0001,9999`  | Required\. A two\-element comma\-separated list that provides the minimum and maximum range values to be returned by queries on the column columnName\. These values are inclusive, can be negative, and can have leading zeroes\. Leading and trailing white space is allowed\. | 
 | projection\.columnName\.interval |  `1` `5`  | Optional\. A positive integer that specifies the interval between successive partition values for the column columnName\. For example, a range value of "1,3" with an interval value of "1" produces the values 1, 2, and 3\. The same range value with an interval value of "2" produces the values 1 and 3, skipping 2\. Leading and trailing white space is allowed\. The default is 1\. | 
 | projection\.columnName\.digits |  `1` `5`  | Optional\. A positive integer that specifies the number of digits to include in the partition value's final representation for column columnName\. For example, a range value of "1,3" that has a digits value of "1" produces the values 1, 2, and 3\. The same range value with a digits value of "2" produces the values 01, 02, and 03\. Leading and trailing white space is allowed\. The default is no static number of digits and no leading zeroes\. | 
@@ -58,12 +58,13 @@ Use the injected type for partition columns with possible values that cannot be 
 It is important to keep in mind the following points:
 + Queries on injected columns fail if a filter expression is not provided for each injected column\.
 + Queries on an injected column fail if a filter expression on the column allows multiple values\.
++ Only columns of `string` type are supported\.
 
 
 ****  
 
 | Property Name | Value | Description | 
 | --- | --- | --- | 
-| projection\.columnName\.type | `injected` | Required\. The projection type to use for the column columnName\. The value specified must be injected \(case insensitive\)\. Leading and trailing white space is allowed\. | 
+| projection\.columnName\.type |  `injected`  | Required\. The projection type to use for the column columnName\. Only the string type is supported\. The value specified must be injected \(case insensitive\)\. Leading and trailing white space is allowed\. | 
 
 For more information, see [Injection](partition-projection-dynamic-id-partitioning.md#partition-projection-injection)\.

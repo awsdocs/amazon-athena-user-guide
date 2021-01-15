@@ -313,7 +313,7 @@ Returns an array of two points that represent the lower left and upper right cor
 SELECT ST_EnvelopeAsPts(ST_Point(61.56, -158.54))
 ```
 
-### `ST_ExteriorRing(geometry)`<a name="geospatial-functions-list-v2-st-exterior-ring"></a>
+### `ST_ExteriorRing(geometry)`<a name="geospatial-functions-list-v2-st-exteriorring"></a>
 
 Returns the geometry of the exterior ring of the input type `polygon`\. In Athena engine version 2, polygons are the only geometries accepted as inputs\. Examples:
 
