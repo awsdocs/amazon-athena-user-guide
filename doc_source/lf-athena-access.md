@@ -14,10 +14,10 @@ The following diagram shows how credential vending works in Athena on a query\-b
 
 1. A principal runs a `SELECT` query in Athena\.
 
-1. Athena analyzes the query and checks Lake Formation permissions to see if the principal has been granted access to the table, table partitions \(if applicable\), and table columns\.
+1. Athena analyzes the query and checks Lake Formation permissions to see if the principal has been granted access to the table and table columns\.
 
 1. If the principal has access, Athena requests credentials from Lake Formation\. If the principal *does not* have access, Athena issues an access denied error\.
 
-1. Lake Formation issues credentials to Athena to use when reading data from Amazon S3 and accessing metadata from the Data Catalog\.
+1. Lake Formation issues credentials to Athena to use when reading data from Amazon S3, along with the list of allowed columns\.
 
-1. Lake Formation returns query results to Athena\. After the query completes, Athena discards the credentials\.
+1. Athena uses the Lake Formation temporary credentials to query the data from Amazon S3\. After the query completes, Athena discards the credentials\.
