@@ -393,7 +393,7 @@ Next, you copy the Okta application ID\. You will require this later for the JDB
 
 1. Scroll down to the **App Embed Link** section\.
 
-1. From **Embed Link**, copy and securely save the Okta application ID portion of the URL\. The Okta application ID is the part of the URL after `amazon_aws_redshift/`\.  
+1. From **Embed Link**, copy and securely save the Okta application ID portion of the URL\. The Okta application ID is the part of the URL after `amazon_aws_redshift/` but before the next forward slash\. For example, if the URL contains `amazon_aws_redshift/aaa/bbb`, the application ID is `aaa`\.   
 ![\[Copy the ID of the Okta application.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-28.png)
 
 ## Step 6: Grant user and group permissions through AWS Lake Formation<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-6-grant-permissions-through-aws-lake-formation"></a>

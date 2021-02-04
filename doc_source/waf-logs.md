@@ -2,11 +2,15 @@
 
 AWS WAF logs include information about the traffic that is analyzed by your web ACL, such as the time that AWS WAF received the request from your AWS resource, detailed information about the request, and the action for the rule that each request matched\.
 
-You can enable access logging for AWS WAF logs, save them to Amazon S3, and query the logs in Athena\. For more information about enabling AWS WAF logs and about the log record structure, see [Logging Web ACL Traffic Information](https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the *AWS WAF Developer Guide*\.
+You can enable access logging for AWS WAF logs and save them to Amazon S3\. Make a note of the Amazon S3 bucket to which you save these logs, and you can create an Athena table for them and query them in Athena\. 
 
-Make a note of the Amazon S3 bucket to which you save these logs\.
-+  [Creating the Table for AWS WAF Logs](#create-waf-table) 
-+  [Example Queries for AWS WAF logs](#query-examples-waf-logs) 
+For more information about enabling AWS WAF logs and about the log record structure, see [Logging Web ACL Traffic Information](https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the *AWS WAF Developer Guide*\.
+
+For an example of how to aggregate AWS WAF logs into a central data lake repository and query them with Athena, see the AWS Big Data Blog post [Analyzing AWS WAF logs with Amazon ES, Amazon Athena, and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-aws-waf-logs-with-amazon-es-amazon-athena-and-amazon-quicksight/)\.
+
+**Topics**
++ [Creating the Table for AWS WAF Logs](#create-waf-table)
++ [Example Queries for AWS WAF Logs](#query-examples-waf-logs)
 
 ## Creating the Table for AWS WAF Logs<a name="create-waf-table"></a>
 

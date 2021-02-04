@@ -36,7 +36,12 @@ Currently, Athena supports only the first of these: the read\-optimized view\. Q
   + [Working With a Hudi Dataset](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hudi-work-with-dataset.html) in the [Amazon EMR Release Guide](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/)\.
   + [Writing Hudi Tables](https://hudi.apache.org/docs/0.5.1-writing_data.html) in the Apache Hudi documentation\.
 + Using MSCK REPAIR TABLE on Hudi tables in Athena is not supported\. If you need to load a Hudi table not created in AWS Glue, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\.
-+ Querying Hudi tables that have been registered with AWS Lake Formation is not supported\.
+
+## Video<a name="querying-hudi-videos"></a>
+
+The following video shows how you can use Amazon Athena to query the read\-optimized view of an Apache Hudi dataset in your Amazon S3\-based data lake\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/TVcreqxBaGA/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/TVcreqxBaGA)
 
 ## Creating Hudi Tables<a name="querying-hudi-in-athena-creating-hudi-tables"></a>
 
@@ -171,3 +176,7 @@ ALTER TABLE partition_mor ADD
   PARTITION (event_type = 'one') LOCATION 's3://bucket/folder/partition_mor/one/'
   PARTITION (event_type = 'two') LOCATION 's3://bucket/folder/partition_mor/two/'
 ```
+
+## See Also<a name="querying-hudi-see-also"></a>
+
+For information on using AWS Glue custom connectors and AWS Glue 2\.0 jobs to create an Apache Hudi table that you can query with Athena, see [Writing to Apache Hudi tables using AWS Glue Custom Connector](http://aws.amazon.com/blogs/big-data/writing-to-apache-hudi-tables-using-aws-glue-connector/) in the AWS Big Data Blog\.

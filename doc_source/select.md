@@ -14,7 +14,7 @@ SELECT [ ALL | DISTINCT ] select_expression [, ...]
 [ WHERE condition ]
 [ GROUP BY [ ALL | DISTINCT ] grouping_element [, ...] ]
 [ HAVING condition ]
-[ UNION [ ALL | DISTINCT ] union_query ]
+[ { UNION | INTERSECT | EXCEPT } [ ALL | DISTINCT ] select ]
 [ ORDER BY expression [ ASC | DESC ] [ NULLS FIRST | NULLS LAST] [, ...] ]
 [ LIMIT [ count | ALL ] ]
 ```
@@ -79,12 +79,13 @@ You can often use `UNION ALL` to achieve the same results as these `GROUP BY` op
 **\[ HAVING condition \]**  
 Used with aggregate functions and the `GROUP BY` clause\. Controls which groups are selected, eliminating groups that don't satisfy `condition`\. This filtering occurs after groups and aggregates are computed\.
 
-**\[ UNION \[ ALL \| DISTINCT \] union\_query\] \]**  
-Combines the results of more than one `SELECT` statement into a single query\. `ALL` or `DISTINCT` control which rows are included in the final result set\.   
+**\[ \{ UNION \| INTERSECT \| EXCEPT \} \[ ALL \| DISTINCT \] union\_query\] \]**  
+`UNION`, `INTERSECT`, and `EXCEPT` combine the results of more than one `SELECT` statement into a single query\. `ALL` or `DISTINCT` control the uniqueness of the rows included in the final result set\.   
+`UNION` combines the rows resulting from the first query with the rows resulting from the second query\. To eliminate duplicates, `UNION` builds a hash table, which consumes memory\. For better performance, consider using `UNION ALL` if your query does not require the elimination of duplicates\. Multiple `UNION` clauses are processed left to right unless you use parentheses to explicitly define the order of processing\.  
+`INTERSECT` returns only the rows that are present in the results of both the first and the second queries\.  
+`EXCEPT` returns the rows from the results of the first query, excluding the rows found by the second query\.  
 `ALL` causes all rows to be included, even if the rows are identical\.  
- `DISTINCT` causes only unique rows to be included in the combined result set\. `DISTINCT` is the default\.   
-To eliminate duplicates, `UNION` builds a hash table, which consumes memory\. For better performance, consider using `UNION ALL` if your query does not require the elimination of duplicates\.  
-Multiple `UNION` clauses are processed left to right unless you use parentheses to explicitly define the order of processing\.
+`DISTINCT` causes only unique rows to be included in the combined result set\.
 
 **\[ ORDER BY expression \[ ASC \| DESC \] \[ NULLS FIRST \| NULLS LAST\] \[, \.\.\.\] \]**  
 Sorts a result set by one or more output `expression`\.   

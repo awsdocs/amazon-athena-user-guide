@@ -8,7 +8,7 @@ Using the information collected by CloudTrail, you can determine the request tha
 
 To learn more about CloudTrail, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 
-You can also use Athena to query CloudTrail log files for insight\. For more information, see [Querying AWS CloudTrail Logs](cloudtrail-logs.md) and [CloudTrail SerDe](cloudtrail-serde.md)\.
+You can use Athena to query CloudTrail log files from Athena itself and from other AWS services\. For more information, see [Querying AWS CloudTrail Logs](cloudtrail-logs.md), [CloudTrail SerDe](cloudtrail-serde.md), and the AWS Big Data Blog post [Use CTAS statements with Amazon Athena to reduce cost and improve performance](http://aws.amazon.com/blogs/big-data/using-ctas-statements-with-amazon-athena-to-reduce-cost-and-improve-performance/), which uses CloudTrail to provide insight into Athena usage\.
 
 ## Athena Information in CloudTrail<a name="athena-info-in-cloudtrail"></a>
 

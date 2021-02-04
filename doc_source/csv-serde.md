@@ -109,6 +109,16 @@ WITH SERDEPROPERTIES (
 )
 ```
 
+### Ignoring Headers<a name="csv-serde-opencsvserde-ignoring-headers"></a>
+
+To ignore headers in your data when you define a table, you can use the `skip.header.line.count` table property, as in the following example\.
+
+```
+TBLPROPERTIES ("skip.header.line.count"="1")
+```
+
+For examples, see the `CREATE TABLE` statements in [Querying Amazon VPC Flow Logs](vpc-flow-logs.md) and [Querying Amazon CloudFront Logs](cloudfront-logs.md)\.
+
 ### Example<a name="example"></a>
 
 This example presumes data in CSV saved in `s3://mybucket/mycsv/` with the following contents:

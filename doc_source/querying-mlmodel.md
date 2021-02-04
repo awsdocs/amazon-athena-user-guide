@@ -38,7 +38,7 @@ USING FUNCTION ML_function_name(variable1 data_type[, variable2 data_type][,...]
 **SELECT \[\.\.\.\] ML\_function\_name\(expression\) \[\.\.\.\]**  
 The SELECT query that passes values to function variables and the SageMaker model to return a result\. `ML_function_name` specifies the function defined earlier in the query, followed by an `expression` that is evaluated to pass values\. Values that are passed and returned must match the corresponding data types specified for the function in the `USING FUNCTION` clause\.
 
-### Examples<a name="ml-examples"></a>
+### Example<a name="ml-examples"></a>
 
 The following example demonstrates a query using ML with Athena \(Preview\)\.
 
@@ -52,3 +52,19 @@ SELECT predict_customer_registration(age) AS probability_of_enrolling, customer_
      FROM "sampledb"."ml_test_dataset" 
      WHERE predict_customer_registration(age) < 0.5;
 ```
+
+## Customer Use Examples<a name="ml-videos"></a>
+
+The following videos showcase ways in which you can use SageMaker with Athena\.
+
+### Predicting Customer Churn<a name="ml-videos-predict-churn"></a>
+
+The following video shows how to combine Athena with the machine learning capabilities of Amazon SageMaker to predict customer churn\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/CUHbSpekRVg/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/CUHbSpekRVg)
+
+### Detecting Botnets<a name="ml-videos-detect-botnets"></a>
+
+The following video shows how one company uses Amazon Athena and Amazon SageMaker to detect botnets\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/0dUv-jCt2aw/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/0dUv-jCt2aw)

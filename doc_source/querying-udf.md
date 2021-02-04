@@ -16,6 +16,15 @@ You have two options for deploying a Lambda function for Athena UDFs\. You can d
 + **Lambda quotas** – Lambda quotas apply to UDFs\. For more information, see [AWS Lambda Quotas](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) in the *AWS Lambda Developer Guide*\.
 + **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the Athena Federated Query 
 
+## Video<a name="udf-videos"></a>
+
+Watch the following video to learn more about using UDFs in Athena\.
+
+**Video: Introducing User Defined Functions \(UDFs\) in Amazon Athena**  
+The following video shows how you can use UDFs in Amazon Athena to redact sensitive information\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/AxJ6jP4Pfmo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/AxJ6jP4Pfmo)
+
 ## UDF Query Syntax<a name="udf-query-syntax"></a>
 
 The `USING FUNCTION` clause specifies a UDF or multiple UDFs that can be referenced by a subsequent `SELECT` statement in the query\. You need the method name for the UDF and the name of the Lambda function that hosts the UDF\.
@@ -42,12 +51,12 @@ USING FUNCTION UDF_name(variable1 data_type[, variable2 data_type][,...]) RETURN
 **SELECT \[\.\.\.\] UDF\_name\(expression\) \[\.\.\.\]**  
 The SELECT query that passes values to the UDF and returns a result\. `UDF_name` specifies the UDF to use, followed by an `expression` that is evaluated to pass values\. Values that are passed and returned must match the corresponding data types specified for the UDF in the `USING FUNCTION` clause\.
 
-### Examples<a name="udf-examples"></a>
+## Examples<a name="udf-examples"></a>
 
 The following examples demonstrate queries using UDFs\. The Athena query examples are based on the [AthenaUDFHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-udfs/src/main/java/com/amazonaws/athena/connectors/udfs/AthenaUDFHandler.java) code in GitHub\.
 
 **Example – Compress and Decompress a String**  
-**Athena SQL**  
+**Compress**  
 The following example demonstrates using the `compress` UDF defined in a Lambda function named `MyAthenaUDFLambda`\.  
 
 ```
@@ -58,6 +67,8 @@ SELECT
      compress('StringToBeCompressed');
 ```
 The query result returns `ewLLinKzEsPyXdKdc7PLShKLS5OTQEAUrEH9w==`\.
+
+**Decompress**
 
 The following example demonstrates using the `decompress` UDF defined in the same Lambda function\.
 

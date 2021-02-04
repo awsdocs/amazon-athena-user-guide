@@ -82,6 +82,10 @@ For information on troubleshooting federated queries, see [Common\_Problems](htt
 
 NULL or incorrect data errors when you try read JSON data can be due to a number of causes\. To identify lines that are causing errors when you are using the OpenX SerDe, set `ignore.malformed.json` to `true`\. Malformed records will return as NULL\. For more information, see [I get errors when I try to read JSON data in Amazon Athena](http://aws.amazon.com/premiumsupport/knowledge-center/error-json-athena/) in the AWS Knowledge Center or watch the Knowledge Center [video](https://youtu.be/ME7Pv1qPFLM)\.
 
+### HIVE\_BAD\_DATA: Error parsing field value for field 0: java\.lang\.String cannot be cast to org\.openx\.data\.jsonserde\.json\.JSONObject<a name="troubleshooting-athena-hive-bad-data-openx-json-serde"></a>
+
+The [OpenX JSON SerDe](json-serde.md#openx-json-serde) throws this error when it fails to parse a column in an Athena query\. This can happen if you define a column as a `map` or `struct`, but the underlying data is actually a `string`, `int`, or other primitive type\.
+
 ### HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object \- JSONException: Duplicate key<a name="troubleshooting-athena-hive_cursor_error-row-is-not-a-valid-json-object---jsonexception-duplicate-key"></a>
 
 This error occurs when you use Athena to query AWS Config resources that have multiple tags with the same name in different case\. The solution is to run *CREATE TABLE* using *WITH SERDEPROPERTIES 'case\.insensitive'='false'* and map the names\. For information about `case.insensitive` and mapping, see [JSON SerDe Libraries](json-serde.md)\. For more information, see [How do I resolve "HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object \- JSONException: Duplicate key" when reading files from AWS Config in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/json-duplicate-key-error-athena-config/) in the AWS Knowledge Center\.

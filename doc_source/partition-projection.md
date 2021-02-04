@@ -46,11 +46,18 @@ The following considerations apply:
 + Because partition projection is a DML\-only feature, `SHOW PARTITIONS` does not list partitions that are projected by Athena but not registered in the AWS Glue catalog or external Hive metastore\. 
 + Views in Athena do not use projection configuration properties\.
 
+## Video<a name="partition-projection-video"></a>
+
+The following video shows how to use partition projection to improve the performance of your queries in Athena\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/iUD5pPpcyZk/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/iUD5pPpcyZk)
+
 **Topics**
 + [Pruning and Projection for Heavily Partitioned Tables](#partition-projection-pruning-vs-projection)
 + [Using Partition Projection](#partition-projection-using)
 + [Use Cases](#partition-projection-use-cases)
 + [Considerations and Limitations](#partition-projection-considerations-and-limitations)
++ [Video](#partition-projection-video)
 + [Setting up Partition Projection](partition-projection-setting-up.md)
 + [Supported Types for Partition Projection](partition-projection-supported-types.md)
 + [Dynamic ID Partitioning](partition-projection-dynamic-id-partitioning.md)

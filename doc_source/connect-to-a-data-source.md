@@ -29,3 +29,17 @@ Data source connectors might require access to the following resources to functi
 + **AWS Glue Data Catalog** – Connectivity and permissions are required if your connector uses Data Catalog for supplemental or primary metadata\.
 
 For the most up\-to\-date information about known issues and limitations, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the aws\-athena\-query\-federation GitHub repository\.
+
+## Videos<a name="connect-to-a-data-source-videos"></a>
+
+Watch the following videos to learn more about using Athena Federated Query\.
+
+**Video: Analyze Results of Federated Query in Amazon Athena in Amazon QuickSight**  
+The following video demonstrates how to analyze results of an Athena federated query in Amazon QuickSight\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/HyM5d0TmwAQ/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/HyM5d0TmwAQ)
+
+**Video: Game Analytics Pipeline**  
+The following video shows how to deploy a scalable serverless data pipeline to ingest, store, and analyze telemetry data from games and services using Amazon Athena federated queries\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/xcS-flUMVbs/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/xcS-flUMVbs)

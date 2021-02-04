@@ -10,3 +10,5 @@ Workgroups integrate with IAM, CloudWatch, and Amazon Simple Notification Servic
 **Topics**
 + [Using Workgroups for Running Queries](workgroups.md)
 + [Controlling Costs and Monitoring Queries with CloudWatch Metrics and Events](control-limits.md)
+
+See also the AWS Big Data Blog post [Separate queries and managing costs using Amazon Athena workgroups](http://aws.amazon.com/blogs/big-data/separating-queries-and-managing-costs-using-amazon-athena-workgroups/), which shows you how to use workgroups to separate workloads, control user access, and manage query usage and costs\.

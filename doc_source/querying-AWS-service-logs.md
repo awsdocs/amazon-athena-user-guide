@@ -1,6 +1,6 @@
 # Querying AWS Service Logs<a name="querying-AWS-service-logs"></a>
 
-This section includes several procedures for using Amazon Athena to query popular datasets, such as AWS CloudTrail logs, Amazon CloudFront logs, Classic Load Balancer logs, Application Load Balancer logs, Amazon VPC flow logs, andNetwork Load Balancer logs\.
+This section includes several procedures for using Amazon Athena to query popular datasets, such as AWS CloudTrail logs, Amazon CloudFront logs, Classic Load Balancer logs, Application Load Balancer logs, Amazon VPC flow logs, and Network Load Balancer logs\.
 
 The tasks in this section use the Athena console, but you can also use other tools that connect via JDBC\. For more information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md), the [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/athena/), or the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
 

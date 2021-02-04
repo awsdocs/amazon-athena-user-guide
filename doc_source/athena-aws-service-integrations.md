@@ -1,6 +1,21 @@
 # AWS Service Integrations with Athena<a name="athena-aws-service-integrations"></a>
 
-You can query data from other AWS services in Athena\. Athena leverages several AWS services\. To see the list of supported regions for each service, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
+You can use Athena to query data from the AWS services listed in this section\. To see the Regions that each service supports, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
+
+**AWS Services Integrated with Athena**
++ [AWS CloudFormation](#integ-ate-cfn)
++ [Amazon CloudFront](#integ-ate-cf)
++ [AWS CloudTrail](#integ-ate-ct)
++ [Elastic Load Balancing](#integ-ate-eb)
++ [AWS Glue Data Catalog](#integ-ate-gc)
++ [AWS Identity and Access Management (IAM)](#integ-ate-iam)
++ [Amazon QuickSight](#integ-ate-qs)
++ [Amazon S3 Inventory](#integ-ate-s3)
++ [AWS Step Functions](#integ-ate-sf)
++ [AWS Systems Manager Inventory](#integ-ate-sys)
++ [Amazon Virtual Private Cloud](#integ-ate-vpc)
+
+For information about each integration, see the following sections\.
 
 **AWS CloudFormation**    
 *Data Catalog*  
@@ -31,7 +46,7 @@ Query Classic Load Balancer logs to analyze and understand traffic patterns to a
 Reference topic: [Integration with AWS Glue](glue-athena.md)   
 Athena integrates with the AWS Glue Data Catalog, which offers a persistent metadata store for your data in Amazon S3\. This allows you to create tables and query data in Athena based on a central metadata store available throughout your AWS account and integrated with the ETL and data discovery features of AWS Glue\. For more information, see [Integration with AWS Glue](glue-athena.md) and [What is AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) in the *AWS Glue Developer Guide*\.
 
-**IAM**  
+**AWS Identity and Access Management \(IAM\)**  
 Reference topic: [Actions for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html)  
 You can use Athena API actions in IAM permission policies\. For more information, see [Actions for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html) and [Identity and Access Management in Athena](security-iam-athena.md)\.
 
@@ -45,7 +60,11 @@ You can use Amazon Athena to query Amazon S3 inventory using standard SQL\. You 
 
 **AWS Step Functions**  
 Reference topic: [Call Athena with Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/connect-athena.html) in the *AWS Step Functions Developer Guide*  
-Call Athena with AWS Step Functions\. AWS Step Functions can control certain AWS services directly using the [Amazon States Language](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)\. You can use Step Functions with Athena to start and stop query execution, get query results, run ad\-hoc or scheduled data queries, and retrieve results from data lakes in Amazon S3\. For more information, see the [AWS Step Functions Developer Guide](https://docs.aws.amazon.com/step-functions/latest/dg/)\.
+Call Athena with AWS Step Functions\. AWS Step Functions can control select AWS services directly using the [Amazon States Language](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)\. You can use Step Functions with Athena to start and stop query execution, get query results, run ad\-hoc or scheduled data queries, and retrieve results from data lakes in Amazon S3\. For more information, see the [AWS Step Functions Developer Guide](https://docs.aws.amazon.com/step-functions/latest/dg/)\.  
+**Video: Orchestrate Amazon Athena Queries using AWS Step Functions**  
+The following video demonstrates how to use Amazon Athena and AWS Step Functions to run a regularly scheduled Athena query and generate a corresponding report\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/rRr3QfIMTBo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/rRr3QfIMTBo)
 
 **AWS Systems Manager Inventory**  
 Reference topic: [Querying inventory data from multiple Regions and accounts](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-inventory-query.html) in the *AWS Systems Manager User Guide*  
