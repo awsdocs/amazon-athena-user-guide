@@ -60,11 +60,12 @@ You can use Amazon Athena to query Amazon S3 inventory using standard SQL\. You 
 
 **AWS Step Functions**  
 Reference topic: [Call Athena with Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/connect-athena.html) in the *AWS Step Functions Developer Guide*  
-Call Athena with AWS Step Functions\. AWS Step Functions can control select AWS services directly using the [Amazon States Language](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)\. You can use Step Functions with Athena to start and stop query execution, get query results, run ad\-hoc or scheduled data queries, and retrieve results from data lakes in Amazon S3\. For more information, see the [AWS Step Functions Developer Guide](https://docs.aws.amazon.com/step-functions/latest/dg/)\.  
+Call Athena with AWS Step Functions\. AWS Step Functions can control select AWS services directly using the [Amazon States Language](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)\. You can use Step Functions with Athena to start and stop query execution, get query results, run ad\-hoc or scheduled data queries, and retrieve results from data lakes in Amazon S3\. For more information, see the [AWS Step Functions Developer Guide](https://docs.aws.amazon.com/step-functions/latest/dg/)\.   
 **Video: Orchestrate Amazon Athena Queries using AWS Step Functions**  
 The following video demonstrates how to use Amazon Athena and AWS Step Functions to run a regularly scheduled Athena query and generate a corresponding report\.
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/rRr3QfIMTBo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/rRr3QfIMTBo)
+For an example that uses Step Functions and Amazon EventBridge to orchestrate , Athena, and Amazon QuickSight, see [Orchestrating an AWS Glue DataBrew job and Amazon Athena query with AWS Step Functions](http://aws.amazon.com/blogs/big-data/orchestrating-an-aws-glue-databrew-job-and-amazon-athena-query-with-aws-step-functions/) in the AWS Big Data Blog\.
 
 **AWS Systems Manager Inventory**  
 Reference topic: [Querying inventory data from multiple Regions and accounts](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-inventory-query.html) in the *AWS Systems Manager User Guide*  

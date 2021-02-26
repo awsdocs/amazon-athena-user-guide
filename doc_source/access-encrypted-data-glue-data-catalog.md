@@ -18,3 +18,5 @@ If the AWS Glue Data Catalog is encrypted, you must add the following actions to
    }
 }
 ```
+
+Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.

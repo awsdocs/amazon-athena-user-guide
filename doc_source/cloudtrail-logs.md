@@ -46,6 +46,9 @@ Using the highest level in the object hierarchy gives you the greatest flexibili
 ## Using the CloudTrail Console to Create an Athena Table for CloudTrail Logs<a name="create-cloudtrail-table-ct"></a>
 
 You can create a non\-partitioned Athena table for querying CloudTrail logs directly from the CloudTrail console\. Creating an Athena table from the CloudTrail console requires that you be logged in with an IAM user or role that has sufficient permissions to create tables in Athena\.
+
+**Note**  
+You cannot use the CloudTrail console to create an Athena table for organization trail logs\. Instead, create the table manually using the Athena console so that you can specify the correct storage location\. For information about organization trails, see [Creating a trail for an organization](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html) in the *AWS CloudTrail User Guide*\.
 + For information about setting up permissions for Athena, see [Setting Up](setting-up.md)\.
 + For information about creating a table with partitions, see [Creating the Table for CloudTrail Logs in Athena Using Manual Partitioning](#create-cloudtrail-table)\.
 

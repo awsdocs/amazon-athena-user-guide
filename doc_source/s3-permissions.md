@@ -1,6 +1,6 @@
 # Access to Amazon S3<a name="s3-permissions"></a>
 
-You can grant access to Amazon S3 locations using identity\-based policies, bucket resource policies, or both\. 
+You can grant access to Amazon S3 locations using identity\-based policies, bucket resource policies, or both\. Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 For detailed information and examples about how to grant Amazon S3 access, see the following resources:
 + [Example Walkthroughs: Managing Access](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access.html) in the *Amazon Simple Storage Service Developer Guide*\.

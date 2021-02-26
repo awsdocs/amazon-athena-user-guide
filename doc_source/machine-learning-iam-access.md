@@ -13,3 +13,5 @@ Replace `arn:aws:sagemaker:region:AWSAcctID:ModelEndpoint` in the example with t
             "Resource": "arn:aws:sagemaker:us-west-2:123456789012:workteam/public-crowd/default"
 }
 ```
+
+Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.

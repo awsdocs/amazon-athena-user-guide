@@ -7,7 +7,9 @@ You define resource\-level permissions in IAM identity\-based policies\.
 **Important**  
 This section discusses resource\-level permissions in IAM identity\-based policies\. These are different from resource\-based policies\. For more information about the differences, see [Identity\-Based Policies and Resource\-Based Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) in the *AWS Identity and Access Management User Guide*\.
 
-See the following topics for these tasks: 
+Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+
+See the following topics for the corresponding tasks: 
 
 
 | To perform this task | See the following topic | 

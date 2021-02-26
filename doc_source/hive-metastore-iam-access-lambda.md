@@ -27,6 +27,8 @@ For example, the following policy defines the permission for the spill location 
 }
 ```
 
+Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+
 ## Creating Lambda Functions<a name="hive-metastore-iam-access-lambda-creating-lambda-functions"></a>
 
 To create a Lambda function in your account, function development permissions or the `AWSLambdaFullAccess` role are required\. For more information, see [Identity\-based IAM Policies for AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/access-control-identity-based.html)\.

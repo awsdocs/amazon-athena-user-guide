@@ -6,4 +6,11 @@ Athena integrates with Amazon QuickSight for easy data visualization\. You can u
 
 Athena integrates with the AWS Glue Data Catalog, which offers a persistent metadata store for your data in Amazon S3\. This allows you to create tables and query data in Athena based on a central metadata store available throughout your AWS account and integrated with the ETL and data discovery features of AWS Glue\. For more information, see [Integration with AWS Glue](glue-athena.md) and [What is AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) in the *AWS Glue Developer Guide*\.
 
-For a list of AWS services that Athena leverages or integrates with, see [AWS Service Integrations with Athena](athena-aws-service-integrations.md)\.
+For a list of AWS services that Athena leverages or integrates with, see [AWS Service Integrations with Athena](athena-aws-service-integrations.md)\. 
+
+For more information about when to use Athena, consult the following resources:
++ [When to use Athena vs other big data services](http://aws.amazon.com/athena/faqs/#When_to_use_Athena_vs_other_big_data_services) 
++ [Amazon Athena Overview](http://aws.amazon.com/athena/) 
++ [Amazon Athena Features](http://aws.amazon.com/athena/features/) 
++ [Amazon Athena FAQs](http://aws.amazon.com/athena/faqs/)
++ [Amazon Athena Blog posts](http://aws.amazon.com/athena/resources/#Blog_posts) 

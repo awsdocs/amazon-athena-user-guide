@@ -4,6 +4,8 @@ Machine Learning \(ML\) with Amazon Athena \(Preview\) lets you use Athena to wr
 
 To use ML with Athena \(Preview\), you define an ML with Athena \(Preview\) function with the `USING FUNCTION` clause\. The function points to the SageMaker model endpoint that you want to use and specifies the variable names and data types to pass to the model\. Subsequent clauses in the query reference the function to pass values to the model\. The model runs inference based on the values that the query passes and then returns inference results\. For more information about SageMaker and how SageMaker endpoints work, see the [Amazon SageMaker Developer Guide](https://docs.aws.amazon.com/sagemaker/latest/dg/)\.
 
+For an example that uses ML with Athena \(Preview\) and SageMaker inference to detect an anomalous value in a result set, see the AWS Big Data Blog article [Detecting anomalous values by invoking the Amazon Athena machine learning inference function](http://aws.amazon.com/blogs/big-data/detecting-anomalous-values-by-invoking-the-amazon-athena-machine-learning-inference-function/)\.
+
 ## Considerations and Limitations<a name="considerations-and-limitations"></a>
 + **Available Regions** – The Athena ML feature is available in preview in the US East \(N\. Virginia\), Asia Pacific \(Mumbai\), Europe \(Ireland\), and US West \(Oregon\) Regions\. 
 + **AmazonAthenaPreviewFunctionality workgroup** – To use this feature in preview, you must create an Athena workgroup named `AmazonAthenaPreviewFunctionality` and join that workgroup\. For more information, see [Managing Workgroups](workgroups-create-update-delete.md)\.

@@ -5,9 +5,11 @@ The compression formats listed in this section are used for [CREATE TABLE](creat
 Athena supports the following compression formats:
 + **`SNAPPY`** – The default compression format for files in the Parquet data storage format\. 
 + **`ZLIB`** – The default compression format for files in the ORC data storage format\.
-+ **`LZO`**
++ **`LZO`** – Format that uses the Lempel–Ziv–Oberhumer algorithm\.
 + **`GZIP`** – Athena can query data in this format directly if the data files have the `.gz` extension\. No special directive is required in the `CREATE TABLE` statement\.
-+ **`BZIP2`**
++ **`BZIP2`** – Format that uses the Burrows\-Wheeler algorithm\.
+**Note**  
+In rare cases, a known issue in Athena engine version 1 can cause records to be silently dropped when the `BZIP2` format is used\. For this reason, use of the `BZIP2` format in Athena engine version 1 is not recommended\. 
 
 ## Specifying Compression Formats<a name="compression-formats-specifying"></a>
 

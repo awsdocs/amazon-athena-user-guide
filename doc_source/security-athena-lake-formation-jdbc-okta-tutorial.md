@@ -242,7 +242,9 @@ Next, you create an IAM role for AWS Lake Formation access\. You add two inline 
 1. On the **Review** page, for **Role name**, enter a name for the role \(for example, *Athena\-LakeFormation\-OktaRole*\), and then choose **Create role**\.  
 ![\[Enter a name for the IAM role.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-22.png)
 
-Next, you add inline policies that allow access to Lake Formation, AWS Glue APIs, and Athena query results in Amazon S3\.
+Next, you add inline policies that allow access to Lake Formation, AWS Glue APIs, and Athena query results in Amazon S3\. 
+
+Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 **To add an inline policy to the role for Lake Formation and AWS Glue**
 

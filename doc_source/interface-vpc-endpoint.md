@@ -31,6 +31,8 @@ You can create a policy for Amazon VPC endpoints for Athena to specify the follo
 
 For more information, see [Controlling Access to Services with VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *Amazon VPC User Guide*\.
 
+Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+
 **Example – VPC Endpoint Policy for Athena Actions**  
 The endpoint to which this policy is attached grants access to the listed `athena` actions to all principals in `workgroupA`\.  
 

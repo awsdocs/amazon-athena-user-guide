@@ -2,6 +2,8 @@
 
 Lake Formation vends credentials to query Amazon S3 data stores that are registered with Lake Formation\. If you previously used IAM policies to allow or deny permissions to read data locations in Amazon S3, you can use Lake Formation permissions instead\. However, other IAM permissions are still required\.
 
+Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+
 The following sections summarize the permissions required to use Athena to query data registered in Lake Formation\. For more information, see [Security in AWS Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/security.html) in the *AWS Lake Formation Developer Guide*\.
 
 **Topics**

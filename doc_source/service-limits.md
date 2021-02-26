@@ -6,7 +6,7 @@ The Service Quotas console provides information about Amazon Athena quotas\. Alo
 ## Queries<a name="service-limits-queries"></a>
 
 Your account has the following default query\-related quotas per AWS Region for Amazon Athena: 
-+ **DDL query quota** – 20 DDL active queries\. DDL queries include `CREATE TABLE` and `CREATE TABLE ADD PARTITION` queries\. 
++ **DDL query quota** – 20 DDL active queries\. DDL queries include `CREATE TABLE` and `ALTER TABLE ADD PARTITION` queries\. 
 + **DDL query timeout** – The DDL query timeout is 600 minutes\.
 + **DML query quota** – 25 DML active queries in the US East \(N\. Virginia\) Region; 20 DML active queries in all other Regions\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
 + **DML query timeout** – The DML query timeout is 30 minutes\.

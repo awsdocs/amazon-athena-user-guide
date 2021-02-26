@@ -2,7 +2,9 @@
 
 This section includes several procedures for using Amazon Athena to query popular datasets, such as AWS CloudTrail logs, Amazon CloudFront logs, Classic Load Balancer logs, Application Load Balancer logs, Amazon VPC flow logs, and Network Load Balancer logs\.
 
-The tasks in this section use the Athena console, but you can also use other tools that connect via JDBC\. For more information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md), the [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/athena/), or the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
+The tasks in this section use the Athena console, but you can also use other tools like the [Athena JDBC Driver](connect-with-jdbc.md), the [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/athena/), or the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
+
+For information about using AWS CloudFormation to automatically create AWS service log tables, partitions, and example queries in Athena, see [Automating AWS service logs table creation and querying them with Amazon Athena](http://aws.amazon.com/blogs/big-data/automating-aws-service-logs-table-creation-and-querying-them-with-amazon-athena/) in the AWS Big Data Blog\. For information on using a Python library for AWS Glue to create a common framework for processing AWS service logs and querying them in Athena, see [Easily query AWS service logs using Amazon Athena](http://aws.amazon.com/blogs/big-data/easily-query-aws-service-logs-using-amazon-athena/)\.
 
 The topics in this section assume that you have set up both an IAM user with appropriate permissions to access Athena and the Amazon S3 bucket where the data to query should reside\. For more information, see [Setting Up](setting-up.md) and [Getting Started](getting-started.md)\.
 

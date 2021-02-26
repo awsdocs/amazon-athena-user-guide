@@ -42,14 +42,17 @@ OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION 's3://my-query-log/json/';
 ```
 
-The following code example uses the `CROSS JOIN` function for the two tables created earlier\. Additionally, for both tables, it uses `ST_CONTAINS` and asks for counties whose boundaries include a geographical location of the earthquakes, specified with `ST_POINT`\. It then groups such counties by name, orders them by count, and returns them in descending order\.
+The following example query uses the `CROSS JOIN` function on the `counties` and `earthquake` tables\. The example uses `ST_CONTAINS` to query for counties whose boundaries include earthquake locations, which are specified with `ST_POINT`\. The query groups such counties by name, orders them by count, and returns them in descending order\. The query uses Athena engine version 2\.
+
+**Note**  
+In Athena engine version 2, functions like `ST_CONTAINS` no longer support the `VARBINARY` type as an input\. For this reason, the example uses the [`ST_GeomFromLegacyBinary(varbinary)`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geomfromlegacybinary) function to convert the `boundaryshape` binary value into a geometry\. If you are using Athena engine version 1, you do not need to do this conversion\. For more information, see [Changes to Geospatial Functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions) in the [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002) reference\.
 
 ```
 SELECT counties.name,
         COUNT(*) cnt
 FROM counties
 CROSS JOIN earthquakes
-WHERE ST_CONTAINS (counties.boundaryshape, ST_POINT(earthquakes.longitude, earthquakes.latitude))
+WHERE ST_CONTAINS (ST_GeomFromLegacyBinary(counties.boundaryshape), ST_POINT(earthquakes.longitude, earthquakes.latitude))
 GROUP BY  counties.name
 ORDER BY  cnt DESC
 ```

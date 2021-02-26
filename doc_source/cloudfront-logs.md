@@ -15,11 +15,9 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 
 ### To create the CloudFront table<a name="to-create-the-cf-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\.
+1. Copy and paste the following DDL statement into the Query Editor in the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\. For information about using the Query Editor, see [Getting Started](getting-started.md)\.
 
-   This query uses the [LazySimpleSerDe](lazy-simple-serde.md) by default and it is omitted\. 
-
-   The column `date` is escaped using backticks \(`\) because it is a reserved word in Athena\. For information, see [Reserved Keywords](reserved-words.md)\.
+   This query uses the default SerDe, [LazySimpleSerDe](lazy-simple-serde.md)\. The column `date` is escaped using backticks \(`\) because it is a reserved word in Athena\. For information, see [Reserved Keywords](reserved-words.md)\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS default.cloudfront_logs (

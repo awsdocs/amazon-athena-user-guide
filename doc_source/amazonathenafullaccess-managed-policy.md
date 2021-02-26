@@ -1,6 +1,6 @@
 # AmazonAthenaFullAccess Managed Policy<a name="amazonathenafullaccess-managed-policy"></a>
 
-The `AmazonAthenaFullAccess` managed policy grants full access to Athena\. 
+The `AmazonAthenaFullAccess` managed policy grants full access to Athena\. Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 Managed policy contents change, so the policy shown here may be out\-of\-date\. Check the IAM console for the most up\-to\-date policy\.
 

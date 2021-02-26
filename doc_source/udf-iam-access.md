@@ -1,6 +1,6 @@
 # Example IAM Permissions Policies to Allow Amazon Athena User Defined Functions \(UDF\)<a name="udf-iam-access"></a>
 
-The permission policy examples in this topic demonstrate required allowed actions and the resources for which they are allowed\. Examine these policies carefully and modify them according to your requirements before you attach similar permissions policies to IAM identities\.
+The permission policy examples in this topic demonstrate required allowed actions and the resources for which they are allowed\. Examine these policies carefully and modify them according to your requirements before you attach similar permissions policies to IAM identities\. Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 +  [Example Policy to Allow an IAM Principal to Run and Return Queries that Contain an Athena UDF Statement](#udf-using-iam) 
 +  [Example Policy to Allow an IAM Principal to Create an Athena UDF](#udf-creating-iam) 
 

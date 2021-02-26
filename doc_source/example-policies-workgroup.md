@@ -1,6 +1,6 @@
 # Workgroup Example Policies<a name="example-policies-workgroup"></a>
 
-This section includes example policies you can use to enable various actions on workgroups\.
+This section includes example policies you can use to enable various actions on workgroups\. Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 A workgroup is an IAM resource managed by Athena\. Therefore, if your workgroup policy uses actions that take `workgroup` as an input, you must specify the workgroup's ARN as follows:
 
