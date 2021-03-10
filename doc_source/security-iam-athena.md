@@ -19,6 +19,7 @@ The following topics provide more information about permissions for specific are
 + [Access to Encrypted Metadata in the Data Catalog](access-encrypted-data-glue-data-catalog.md)
 + [Cross\-account Access to S3 Buckets](cross-account-permissions.md)
 + [Access to Workgroups and Tags](workgroups-access.md)
++ [Allow Access to Prepared Statements](security-iam-athena-prepared-statements.md)
 + [Using CalledVia Context Keys](security-iam-athena-calledvia.md)
 + [Allow Access to an Athena Data Connector for External Hive Metastore](hive-metastore-iam-access.md)
 + [Allow Lambda Function Access to External Hive Metastores](hive-metastore-iam-access-lambda.md)

@@ -8,6 +8,7 @@ This section provides guidance for running Athena queries on common data sources
 + [Query Results and Query History](querying.md)
 + [Working with Views](views.md)
 + [Creating a Table from Query Results \(CTAS\)](ctas.md)
++ [Querying with Prepared Statements](querying-with-prepared-statements.md)
 + [Handling Schema Updates](handling-schema-updates-chapter.md)
 + [Querying Arrays](querying-arrays.md)
 + [Querying Geospatial Data](querying-geospatial-data.md)

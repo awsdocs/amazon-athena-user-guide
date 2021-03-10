@@ -10,11 +10,11 @@ When you create a VPC flow log, you can use the default format, or you can speci
 
 ## Creating the Table for VPC Flow Logs<a name="create-vpc-logs-table"></a>
 
-The following procedure creates an Amazon VPC table for VPC flow logs that use the default format\. If you create a flow log with a custom format, you must create a table with fields that match the fields that you specified when you created the flow log, in the same order that you specified them\.
+The following procedure creates an Amazon VPC table for VPC flow logs\. If you create a flow log with a custom format, you must create a table with fields that match the fields that you specified when you created the flow log in the same order that you specified them\.
 
 **To create the Amazon VPC table**
 
-1. Copy and paste the following DDL statement into the Athena console Query Editor:
+1. Copy and paste a DDL statement like the following into the Athena console Query Editor\. The following sample statement creates a table that has the columns for VPC flow logs versions 2 through 5 as documented in [Flow Log Records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records)\. If you use a different set of columns or order of columns, modify this sample `CREATE TABLE` statement accordingly\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS vpc_flow_logs (
@@ -31,7 +31,22 @@ The following procedure creates an Amazon VPC table for VPC flow logs that use t
      starttime int,
      endtime int,
      action string,
-     logstatus string
+     logstatus string,
+     vpcid string,
+     subnetid string,
+     instanceid string,
+     tcpflags int,
+     type string,
+     pktsrcaddr string,
+     pktdstaddr string,
+     region string,
+     azid string,
+     sublocationtype string,
+     sublocationid string,
+     pktsrcawsservice string,
+     pktdstawsservice string,
+     flowdirection string,
+     trafficpath string
    )
    PARTITIONED BY (`date` date)
    ROW FORMAT DELIMITED
@@ -100,4 +115,4 @@ ORDER BY packetcount DESC
 LIMIT 10;
 ```
 
-For more information, see the AWS Big Data blog post [Analyzing VPC Flow Logs with Amazon Kinesis Firehose, Athena, and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-vpc-flow-logs-with-amazon-kinesis-firehose-amazon-athena-and-amazon-quicksight/)\.
+For more information, see the AWS Big Data blog post [Analyzing VPC Flow Logs with Amazon Kinesis Firehose, Athena, and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-vpc-flow-logs-with-amazon-kinesis-firehose-amazon-athena-and-amazon-quicksight/)\. The blog post uses version 2 of the VPC flow logs\.

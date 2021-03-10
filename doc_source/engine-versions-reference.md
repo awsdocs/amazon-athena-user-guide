@@ -4,7 +4,7 @@
 
 ## Athena engine version 2<a name="engine-versions-reference-0002"></a>
 
-Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html), introduces the following changes\. Currently, Athena engine version 2 is supported in the Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Europe \(Ireland\), Europe \(London\), Europe \(Paris\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\) Regions\.
+Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html), introduces the following changes\. Currently, Athena engine version 2 is supported in the Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Canada \(Central\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Paris\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\) Regions\.
 + [Improvements and New Features](#engine-versions-reference-0002-improvements-and-new-features)
   + [Grouping, Join, and Subquery Improvements](#engine-versions-reference-0002-grouping-join-and-subquery-improvements)
   + [Datatype Enhancements](#engine-versions-reference-0002-datatype-related-improvements)

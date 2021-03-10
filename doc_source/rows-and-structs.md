@@ -307,6 +307,6 @@ This query returns two sites:
 +----------------+-------------------+
 | news.cnn.com   | politics |  241   |
 +----------------+-------------------+
-| aws.amazon.com | big data |  10    |
+| aws.amazon.com | bigdata |  10    |
 +----------------+-------------------+
 ```

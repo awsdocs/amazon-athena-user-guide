@@ -10,6 +10,7 @@ In the [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.co
 | [View the Workgroup's Details](#viewing-details-workgroups) | View the workgroup's details, such as its name, description, data usage limits, location of query results, and encryption\. You can also verify whether this workgroup enforces its settings, if Override client\-side settings is checked\. | 
 | [Delete a Workgroup](#deleting-workgroups) |  Delete a workgroup\. If you delete a workgroup, query history, saved queries, the workgroup's settings and per\-query data limit controls are deleted\. The workgroup\-wide data limit controls remain in CloudWatch, and you can delete them individually\. The primary workgroup cannot be deleted\.  | 
 | [Switch between Workgroups](#switching-workgroups) |  Switch between workgroups to which you have access\.   | 
+| [Copy a Saved Query between Workgroups](#copy-a-query-between-workgroups) | Copy a saved query between workgroups\. You might want to do this if, for example, you created a query in a preview workgroup and you want to make it available in a nonpreview workgroup\. | 
 | [Enable and Disable a Workgroup](#workgroups-enabled-disabled) |  Enable or disable a workgroup\. When a workgroup is disabled, its users cannot run queries, or create new named queries\. If you have access to it, you can still view metrics, data usage limit controls, workgroup's settings, query history, and saved queries\.  | 
 | [Specify a Workgroup in Which to Run Queries](#specify-wkgroup-to-athena-in-which-to-run-queries) |  Before you can run queries, you must specify to Athena which workgroup to use\. You must have permissions to the workgroup\.   | 
 
@@ -97,6 +98,28 @@ You can open up to ten query tabs within each workgroup\. When you switch betwee
 ![\[Switching workgroups screenshot.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-switch.png)
 
 1. Choose **Switch**\. The console shows the **Workgroup: <workgroup\_name>** tab with the name of the workgroup that you switched to\. You can now run queries in this workgroup\.
+
+## Copy a Saved Query between Workgroups<a name="copy-a-query-between-workgroups"></a>
+
+Currently, the Athena console does not have an option to to copy a saved query from one workgroup to another directly, but you can perform the same task manually by using the following procedure\.
+
+**To copy a saved query between workgroups**
+
+1. In the Athena console, from the workgroup that you want to copy the query from, choose the **Saved queries** tab\. 
+
+1. Choose the saved query that you want to copy\. If prompted **Are you sure you want to open this query?**, choose **Open query**\. Athena opens the query in the Query Editor\.
+
+1. In the Query Editor, select the query text, and then press **Ctrl\+C** to copy it\.
+
+1. [Switch](#switching-workgroups) to the destination workgroup, or [create a workgroup](#creating-workgroups), and then switch to it\.
+
+1. Open a new tab in the Query Editor, and then press **Ctrl\+V** to paste the text into the new tab\.
+
+1. In the Query Editor, choose **Save as** to save the query in the destination workgroup\.
+
+1. In the **Choose a name** dialog box, enter a name for the query and an optional description\.
+
+1. Choose **Save**\.
 
 ## Enable and Disable a Workgroup<a name="workgroups-enabled-disabled"></a>
 

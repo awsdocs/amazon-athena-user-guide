@@ -1,6 +1,6 @@
 # Geospatial Function Name Changes and New Functions in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes-and-new-functions"></a>
 
-This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. Currently, Athena engine version 2 is supported in the Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Europe \(Ireland\), Europe \(London\), Europe \(Paris\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\) Regions\. 
+This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. Currently, Athena engine version 2 is supported in the Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Canada \(Central\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Paris\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\) Regions\. 
 
 For information about other changes in Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 

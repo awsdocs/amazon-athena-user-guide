@@ -2,6 +2,8 @@
 
 Amazon Athena automatically stores query results and metadata information for each query that runs in a *query result location* that you can specify in Amazon S3\. If necessary, you can access the files in this location to work with them\. You can also download query result files directly from the Athena console\.
 
+To set up an Amazon S3 query result location for the first time, see [Specifying a Query Result Location Using the Athena Console](#query-results-specify-location-console)\.
+
 Output files are saved automatically for every query that runs regardless of whether the query itself was saved or not\. To access and view query output files, IAM principals \(users and roles\) need permission to the Amazon S3 [GetObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html) action for the query result location, as well as permission for the Athena [GetQueryResults](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html) action\. The query result location can be encrypted\. If the location is encrypted, users must have the appropriate key permissions to encrypt and decrypt the query result location\.
 
 **Important**  
@@ -119,10 +121,6 @@ Each workgroup configuration has an **Override client\-side settings** option th
 
 Before you can run a query, a query result bucket location in Amazon S3 must be specified, or you must use a workgroup that has specified a bucket and whose configuration overrides client settings\. If no query results location is specified, the query fails with an error\.
 
-Previously, if you ran a query without specifying a value for **Query result location**, and the query result location setting was not overridden by a workgroup, Athena created a default location for you\. The default location was `aws-athena-query-results-MyAcctID-MyRegion`, where *MyAcctID* was the AWS account ID of the IAM principal that ran the query, and *MyRegion* was the region where the query ran \(for example, `us-west-1`\.\)
-
-Now, before you can run an Athena query in a region in which your account hasn't used Athena previously, you must specify a query result location, or use a workgroup that overrides the query result location setting\. While Athena no longer creates a default query results location for you, previously created default `aws-athena-query-results-MyAcctID-MyRegion` locations remain valid and you can continue to use them\.
-
 **To specify a client\-side setting query result location using the Athena console**
 
 1. From the nagivation bar, choose **Settings**\.
@@ -136,6 +134,12 @@ Be sure to include the trailing slash\. Failing to include the trailing slash re
 
    If you are a member of a workgroup that specifies a query result location and overrides client\-side settings, the option to change the query result location is unavailable, as the following image shows:  
 ![\[The query result location setting is unavailable when a workgroup overrides client-side settings.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-client-side-settings-overridden.png)
+
+#### Previously Created Default Locations<a name="query-results-specify-location-previous-defaults"></a>
+
+Previously, if you ran a query without specifying a value for **Query result location**, and the query result location setting was not overridden by a workgroup, Athena created a default location for you\. The default location was `aws-athena-query-results-MyAcctID-MyRegion`, where *MyAcctID* was the AWS account ID of the IAM principal that ran the query, and *MyRegion* was the region where the query ran \(for example, `us-west-1`\.\)
+
+Now, before you can run an Athena query in a region in which your account hasn't used Athena previously, you must specify a query result location, or use a workgroup that overrides the query result location setting\. While Athena no longer creates a default query results location for you, previously created default `aws-athena-query-results-MyAcctID-MyRegion` locations remain valid and you can continue to use them\.
 
 ### Specifying a Query Result Location Using a Workgroup<a name="query-results-specify-location-workgroup"></a>
 
