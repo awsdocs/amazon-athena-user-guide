@@ -8,7 +8,6 @@ When running queries in Athena, keep in mind the following considerations and li
   + `CREATE TABLE LIKE` is not supported\.
   + `DESCRIBE INPUT` and `DESCRIBE OUTPUT` is not supported\.
   + `EXECUTE … USING` is not supported\.
-  + `EXPLAIN` statements are not supported\.
   + `MERGE` statements are not supported\.
   + `UPDATE` statements are not supported\.
 + **Presto federated connectors** – [Presto federated connectors](https://prestodb.io/docs/0.172/connector.html) are not supported\. Use Amazon Athena Federated Query to connect data sources\. For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
