@@ -25,5 +25,5 @@ The following topics provide more information about permissions for specific are
 + [Allow Lambda Function Access to External Hive Metastores](hive-metastore-iam-access-lambda.md)
 + [Allow Access to Athena Federated Query](federated-query-iam-access.md)
 + [Allow Access to Athena UDF](udf-iam-access.md)
-+ [Allowing Access for ML with Athena \(Preview\)](machine-learning-iam-access.md)
++ [Allowing Access for ML with Athena](machine-learning-iam-access.md)
 + [Enabling Federated Access to the Athena API](access-federation-saml.md)

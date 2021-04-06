@@ -1,12 +1,12 @@
 # Document History<a name="DocHistory"></a>
 
- **Latest documentation update: March 9, 2021\.** 
-
+**Latest documentation update: April 5, 2021\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added documentation for the Athena EXPLAIN statement feature\. | For more information, see [Using the EXPLAIN Statement in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\. | April 5, 2021 | 
 | Added pages on troubleshooting and performance tuning in Athena\. | For more information, see [Troubleshooting in Athena](troubleshooting-athena.md) and [Performance Tuning in Athena](performance-tuning.md)\. | December 30, 2020 | 
 | Added documentation for Athena engine versioning and Athena engine version 2\. | For more information, see [Athena Engine Versioning](engine-versions.md)\. | November 11, 2020 | 
 | Updated federated query documentation for general availability release\. | For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Using Athena with CalledVia Context Keys](security-iam-athena-calledvia.md)\. | November 11, 2020 | 

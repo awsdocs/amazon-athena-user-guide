@@ -16,8 +16,7 @@ For a list of data source connectors written and tested by Athena, see [Using At
 For information about writing your own data source connector, see [Example Athena Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-example) on GitHub\.
 
 ## Considerations and Limitations<a name="connect-to-a-data-source-considerations"></a>
-+ **Engine versions** – Athena Federated Query is supported only on Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\. 
-+ **Available Regions** – Currently, Athena Federated Query is generally available in the Asia Pacific \(Mumbai\), Asia Pacific \(Tokyo\), Europe \(Ireland\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\) Regions\. 
++ **Engine versions** – Athena Federated Query is supported only on Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 + **Views** – You cannot use views with federated data sources\.
 +  **Pricing** – For pricing information, see [Amazon Athena pricing](http://aws.amazon.com/athena/pricing/)\.
 

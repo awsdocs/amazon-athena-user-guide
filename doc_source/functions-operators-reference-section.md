@@ -9,5 +9,6 @@ Athena does not support all of Presto's features, and there are some significant
 **Topics**
 + [SELECT](select.md)
 + [INSERT INTO](insert-into.md)
++ [Using the EXPLAIN Statement in Athena](athena-explain-statement.md)
 + [Presto Functions in Amazon Athena](presto-functions.md)
 + [Supported Time Zones](athena-supported-time-zones.md)

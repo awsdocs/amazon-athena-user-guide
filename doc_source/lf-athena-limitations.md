@@ -9,7 +9,7 @@ Consider the following when using Athena to query data registered in Lake Format
 + [Use Athena Workgroups To Limit Access To Query History](#lf-athena-limitations-use-workgroups-to-limit-access-to-query-history)
 + [Cross\-Account Data Catalog Access](#lf-athena-limitations-cross-account-glue)
 + [CSE\-KMS Amazon S3 Registered With Lake Formation Cannot Be Queried in Athena](#lf-athena-limitations-cse-kms)
-+ [Partitioned Data Locations Registered with Lake Formation Must Be In Table Sub\-Directories](#lf-athena-limitations-partioned-data-locations)
++ [Partitioned Data Locations Registered with Lake Formation Must Be in Table Subdirectories](#lf-athena-limitations-partioned-data-locations)
 + [Create Table As Select \(CTAS\) Queries Require Amazon S3 Write Permissions](#lf-athena-limitations-ctas-queries)
 
 ## Column Metadata Visible To Unauthorized Users In Some Circumstances With Avro and Custom SerDe<a name="lf-athena-limitations-column-metadata"></a>
@@ -58,9 +58,9 @@ For steps, see [Cross\-account AWS Glue Data Catalog access with Amazon Athena](
 
 Amazon S3 data locations that are registered with Lake Formation and encrypted using client\-side encryption \(CSE\) with AWS KMS customer\-managed keys \(CSE\-KMS\) cannot be queried using Athena\. You still can use Athena to query CSE\-KMS encrypted Amazon S3 data locations that are not registered with Lake Formation and use IAM policies to allow or deny access\.
 
-## Partitioned Data Locations Registered with Lake Formation Must Be In Table Sub\-Directories<a name="lf-athena-limitations-partioned-data-locations"></a>
+## Partitioned Data Locations Registered with Lake Formation Must Be in Table Subdirectories<a name="lf-athena-limitations-partioned-data-locations"></a>
 
-Partitioned tables registered with Lake Formation must have partitioned data in directories that are sub\-directories of the table in Amazon S3\. For example, a table with the location `s3://mydata/mytable` and partitions `s3://mydata/mytable/dt=2019-07-11`, `s3://mydata/mytable/dt=2019-07-12`, and so on can be registered with Lake Formation and queried using Athena\. On the other hand, a table with the location `s3://mydata/mytable` and partitions located in `s3://mydata/dt=2019-07-11`, `s3://mydata/dt=2019-07-12`, and so on, cannot be registered with Lake Formation\. You can set up access for these tables using IAM permissions outside of Lake Formation to query them in Athena\. For more information, see [Partitioning Data](partitions.md)\.
+Partitioned tables registered with Lake Formation must have partitioned data in directories that are subdirectories of the table in Amazon S3\. For example, a table with the location `s3://mydata/mytable` and partitions `s3://mydata/mytable/dt=2019-07-11`, `s3://mydata/mytable/dt=2019-07-12`, and so on can be registered with Lake Formation and queried using Athena\. On the other hand, a table with the location `s3://mydata/mytable` and partitions located in `s3://mydata/dt=2019-07-11`, `s3://mydata/dt=2019-07-12`, and so on, cannot be registered with Lake Formation\. Because such partitions are not subdirectories of `s3://mydata/mytable`, they also cannot be read from Athena\.
 
 ## Create Table As Select \(CTAS\) Queries Require Amazon S3 Write Permissions<a name="lf-athena-limitations-ctas-queries"></a>
 

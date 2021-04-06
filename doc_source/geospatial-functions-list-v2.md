@@ -1,6 +1,6 @@
 # Geospatial Functions in Athena engine version 2<a name="geospatial-functions-list-v2"></a>
 
-This topic lists the ESRI geospatial functions that are supported in Athena engine version 2\. Currently, Athena engine version 2 is supported in the Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Canada \(Central\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Paris\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\) Regions\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\.
+This topic lists the ESRI geospatial functions that are supported in Athena engine version 2\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\.
 
 **Changes in Athena engine version 2**
 + The input and output types for some functions have changed\. Most notably, the `VARBINARY` type is no longer directly supported for input\. For more information, see [Changes to Geospatial Functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions)\.

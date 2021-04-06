@@ -29,7 +29,7 @@ The following identity\-based permissions policy allows actions that a user or o
                 "s3:GetBucketLocation"
             ],
             "Resource": [
-                "arn:aws:athena:*:MyAWSAcctId:workgroup/AmazonAthenaPreviewFunctionality",
+                "arn:aws:athena:*:MyAWSAcctId:workgroup/MyAthenaWorkGroup",
                 "arn:aws:s3:::MyQueryResultsBucket/*",
                 "arn:aws:lambda:*:MyAWSAcctId:function:OneAthenaLambdaFunction",
                 "arn:aws:lambda:*:MyAWSAcctId:function:AnotherAthenaLambdaFunction"
@@ -50,7 +50,7 @@ The following identity\-based permissions policy allows actions that a user or o
 
 | Allowed Actions | Explanation | 
 | --- | --- | 
-|  <pre>"athena:StartQueryExecution",<br /> "athena:GetQueryResults",<br /> "athena:GetWorkGroup",<br /> "athena:CancelQueryExecution",<br /> "athena:StopQueryExecution",<br /> "athena:GetQueryExecution",<br /></pre>  |  Athena permissions that are required to run queries in the `AmazonAthenaPreviewFunctionality` work group\.  | 
+|  <pre>"athena:StartQueryExecution",<br /> "athena:GetQueryResults",<br /> "athena:GetWorkGroup",<br /> "athena:CancelQueryExecution",<br /> "athena:StopQueryExecution",<br /> "athena:GetQueryExecution",<br /></pre>  |  Athena permissions that are required to run queries in the `MyAthenaWorkGroup` workgroup\.  | 
 |  <pre>"s3:PutObject",<br />"s3:GetObject",<br />"s3:AbortMultipartUpload"</pre>  |  `s3:PutObject` and `s3:AbortMultipartUpload` allow writing query results to all sub\-folders of the query results bucket as specified by the `arn:aws:s3:::MyQueryResultsBucket/*` resource identifier, where *MyQueryResultsBucket* is the Athena query results bucket\. For more information, see [Working with Query Results, Output Files, and Query History](querying.md)\. `s3:GetObject` allows reading of query results and query history for the resource specified as `arn:aws:s3:::MyQueryResultsBucket`, where *MyQueryResultsBucket* is the Athena query results bucket\. For more information, see [Working with Query Results, Output Files, and Query History](querying.md)\. `s3:GetObject` also allows reading from the resource specified as `"arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*"`, where *MyLambdaSpillPrefix* is specified in the configuration of the Lambda function or functions being invoked\.  | 
 |  <pre>"lambda:InvokeFunction"</pre>  | Allows queries to invoke the AWS Lambda functions specified in the Resource block\. For example, arn:aws:lambda:\*:MyAWSAcctId:function:MyAthenaLambdaFunction, where MyAthenaLambdaFunction specifies the name of a Lambda function to be invoked\. Multiple functions can be specified as shown in the example\. | 
 

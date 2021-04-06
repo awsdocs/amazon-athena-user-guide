@@ -2,12 +2,12 @@
 
 When running queries in Athena, keep in mind the following considerations and limitations:
 + **Stored procedures** – Stored procedures are not supported\.
-+ **Parameterized queries** – Parameterized queries are not supported\. However, you can create user\-defined functions that you can call in the body of a query\. For more information , see [Querying with User Defined Functions \(Preview\)](querying-udf.md)\.
++ **Parameterized queries** – Parameterized queries are not supported\. However, you can create user\-defined functions that you can call in the body of a query\. For more information , see [Querying with User Defined Functions](querying-udf.md)\.
 + **Maximum number of partitions** – The maximum number of partitions you can create with `CREATE TABLE AS SELECT` \(CTAS\) statements is 100\. For information, see [CREATE TABLE AS](create-table-as.md)\. For a workaround, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
 + **Unsupported statements** – The following statements are not supported:
-  + `PREPARED` statements are not supported\. You cannot run `EXECUTE` with `USING`\.
   + `CREATE TABLE LIKE` is not supported\.
   + `DESCRIBE INPUT` and `DESCRIBE OUTPUT` is not supported\.
+  + `EXECUTE … USING` is not supported\.
   + `EXPLAIN` statements are not supported\.
   + `MERGE` statements are not supported\.
   + `UPDATE` statements are not supported\.
@@ -17,6 +17,7 @@ When running queries in Athena, keep in mind the following considerations and li
 + **Amazon S3 Glacier storage** – Athena does not support querying the data in the [S3 Glacier](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier) or S3 Glacier Deep Archive storage classes\. Objects in the S3 Glacier storage class are ignored\. Objects in the S3 Glacier Deep Archive storage class that are queried result in the error message The operation is not valid for the object's storage class\. Data that is moved or transitioned to one of these classes are no longer readable or queryable by Athena even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class\.
 + **Amazon S3 access points** – You cannot use an Amazon S3 access point in a `LOCATION` clause\. However, as long the as the Amazon S3 bucket policy does not explicitly deny requests to objects not made through Amazon S3 access points, the objects should be accessible from Athena for requestors that have the right object access permissions\.
 + **Files treated as hidden** – Athena treats source files that start with an underscore \(`_`\) or a dot \(`.`\) as hidden\. To work around this limitation, rename the files\.
++ **Row or column size limitation** – The size of a single row or its columns cannot exceed 32 megabytes\. This limit can be exceeded when, for example, a row in a CSV or JSON file contains a single column of 100 megabytes\. Exceeding this limit can also produce the error message Line too long in text file\. To work around this limitation, make sure that the sum of the data of the columns in any row is less than 32MB\.
 
 ## Cross\-Regional Queries<a name="cross-region-limitations"></a>
 

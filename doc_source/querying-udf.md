@@ -1,86 +1,83 @@
-# Querying with User Defined Functions \(Preview\)<a name="querying-udf"></a>
+# Querying with User Defined Functions<a name="querying-udf"></a>
 
 User Defined Functions \(UDF\) in Amazon Athena allow you to create custom functions to process records or groups of records\. A UDF accepts parameters, performs work, and then returns a result\.
 
-To use a UDF in Athena, you write a `USING FUNCTION` clause before a `SELECT` statement in a SQL query\. The `SELECT` statement references the UDF and defines the variables that are passed to the UDF when the query runs\. The SQL query invokes a Lambda function using the Java runtime when it calls the UDF\. UDFs are defined within the Lambda function as methods in a Java deployment package\. Multiple UDFs can be defined in the same Java deployment package for a Lambda function\. You also specify the name of the Lambda function in the `USING FUNCTION` clause\.
+To use a UDF in Athena, you write a `USING EXTERNAL FUNCTION` clause before a `SELECT` statement in a SQL query\. The `SELECT` statement references the UDF and defines the variables that are passed to the UDF when the query runs\. The SQL query invokes a Lambda function using the Java runtime when it calls the UDF\. UDFs are defined within the Lambda function as methods in a Java deployment package\. Multiple UDFs can be defined in the same Java deployment package for a Lambda function\. You also specify the name of the Lambda function in the `USING EXTERNAL FUNCTION` clause\.
 
-You have two options for deploying a Lambda function for Athena UDFs\. You can deploy the function directly using Lambda, or you can use the AWS Serverless Application Repository\. To find existing Lambda functions for UDFs, you can search the public AWS Serverless Application Repository or your private repository and then deploy to Lambda\. You can also create or modify Java source code, package it into a JAR file, and deploy it using Lambda or the AWS Serverless Application Repository\. We provide example Java source code and packages to get you started\. For more information about Lambda, see [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\. For more information about AWS Serverless Application Repository, see the [AWS Serverless Application Repository Developer Guide](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/)\.
+You have two options for deploying a Lambda function for Athena UDFs\. You can deploy the function directly using Lambda, or you can use the AWS Serverless Application Repository\. To find existing Lambda functions for UDFs, you can search the public AWS Serverless Application Repository or your private repository and then deploy to Lambda\. You can also create or modify Java source code, package it into a JAR file, and deploy it using Lambda or the AWS Serverless Application Repository\. For example Java source code and packages to get you started, see [Creating and Deploying a UDF Using Lambda](#udf-creating-and-deploying)\. For more information about Lambda, see [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\. For more information about AWS Serverless Application Repository, see the [AWS Serverless Application Repository Developer Guide](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/)\.
+
+For an example that uses UDFs with Athena to translate and analyze text, see the AWS Machine Learning Blog article [Translate and analyze text using SQL functions with Amazon Athena, Amazon Translate, and Amazon Comprehend](http://aws.amazon.com/blogs/machine-learning/translate-and-analyze-text-using-sql-functions-with-amazon-athena-amazon-translate-and-amazon-comprehend/), or watch the [video](#udf-videos-xlate)\.
 
 ## Considerations and Limitations<a name="udf-considerations-limitations"></a>
-+ **Available Regions** – The Athena UDF feature is available in preview in the US East \(N\. Virginia\), Asia Pacific \(Mumbai\), Europe \(Ireland\), and US West \(Oregon\) Regions\. 
-+ **AmazonAthenaPreviewFunctionality workgroup** – To use this feature in preview, you must create an Athena workgroup named `AmazonAthenaPreviewFunctionality` and join that workgroup\. For more information, see [Managing Workgroups](workgroups-create-update-delete.md)\.
++ **Available Regions** – The Athena UDF feature is available in the Regions where Athena engine version 2 is supported\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 + **Built\-in Athena functions** – Built\-in Presto functions in Athena are designed to be highly performant\. We recommend that you use built\-in functions over UDFs when possible\. For more information about built\-in functions, see [Presto Functions in Amazon Athena](presto-functions.md)\.
-+ **Scalar UDFs only** – Athena only supports scalar UDFs, which process one row at a time and return a single column value\. Athena passes a batch of rows, potentially in parallel, to the UDF each time it invokes Lambda\. When designing UDFs and queries, be mindful of the potential impact to network traffic that this processing design can have\.
++ **Scalar UDFs only** – Athena only supports scalar UDFs, which process one row at a time and return a single column value\. Athena passes a batch of rows, potentially in parallel, to the UDF each time it invokes Lambda\. When designing UDFs and queries, be mindful of the potential impact to network traffic of this processing\.
 + **Java runtime only** – Currently, Athena UDFs support only the Java 8 runtime for Lambda\.
-+ **IAM permissions** – To run a query in Athena that contains a UDF query statement and to create UDF statements, the IAM principal running the query must be allowed to perform actions in addition to Athena functions\. For more information, see [Example IAM Permissions Policies to Allow Amazon Athena User Defined Functions \(UDF\)](udf-iam-access.md)\.
-+ **Lambda quotas** – Lambda quotas apply to UDFs\. For more information, see [AWS Lambda Quotas](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) in the *AWS Lambda Developer Guide*\.
-+ **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the Athena Federated Query 
++ **IAM permissions** – To run and create UDF query statements in Athena, the IAM principal running the query must be allowed to perform actions in addition to Athena functions\. For more information, see [Example IAM Permissions Policies to Allow Amazon Athena User Defined Functions \(UDF\)](udf-iam-access.md)\.
++ **Lambda quotas** – Lambda quotas apply to UDFs\. For more information, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) in the *AWS Lambda Developer Guide*\.
++ **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
 
-## Video<a name="udf-videos"></a>
+## Videos<a name="udf-videos"></a>
 
-Watch the following video to learn more about using UDFs in Athena\.
+Watch the following videos to learn more about using UDFs in Athena\.
 
 **Video: Introducing User Defined Functions \(UDFs\) in Amazon Athena**  
 The following video shows how you can use UDFs in Amazon Athena to redact sensitive information\.
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/AxJ6jP4Pfmo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/AxJ6jP4Pfmo)
 
+**Video: Translate, analyze, and redact text fields using SQL queries in Amazon Athena**  
+The following video shows how you can use UDFs in Amazon Athena together with other AWS services to translate and analyze text\.
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/Od7rXG-WMO4/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/Od7rXG-WMO4)
+
 ## UDF Query Syntax<a name="udf-query-syntax"></a>
 
-The `USING FUNCTION` clause specifies a UDF or multiple UDFs that can be referenced by a subsequent `SELECT` statement in the query\. You need the method name for the UDF and the name of the Lambda function that hosts the UDF\.
+The `USING EXTERNAL FUNCTION` clause specifies a UDF or multiple UDFs that can be referenced by a subsequent `SELECT` statement in the query\. You need the method name for the UDF and the name of the Lambda function that hosts the UDF\.
 
 ### Synopsis<a name="udf-synopsis"></a>
 
 ```
-USING FUNCTION UDF_name(variable1 data_type[, variable2 data_type][,...]) RETURNS data_type TYPE 
-     LAMBDA_INVOKE WITH (lambda_name = 'my_lambda_function')[, FUNCTION][, ...] SELECT  [...] UDF_name(expression) [...]
+USING EXTERNAL FUNCTION UDF_name(variable1 data_type[, variable2 data_type][,...])
+RETURNS data_type
+LAMBDA 'lambda_function'
+SELECT  [...] UDF_name(expression) [...]
 ```
+
+**Note**  
+This syntax is different from the preview version of UDFs in Amazon Athena\. For information on updating queries from the preview version, see the following section\.
+
+#### Updating Your Queries from Preview<a name="ml-synopsis-preview"></a>
+
+The following table shows the key differences between the preview syntax and the syntax in the current version\. To update your preview queries, make the changes noted in the table\.
+
+
+****  
+
+| Preview Syntax | Current Syntax | 
+| --- | --- | 
+| USING FUNCTION | USING EXTERNAL FUNCTION | 
+| RETURNS data\_type TYPE | RETURNS data\_type | 
+| LAMBDA\_INVOKE WITH \(lambda\_name = 'lambda\_function'\)  | LAMBDA 'lambda\_name' | 
 
 ### Parameters<a name="udf-parameters"></a>
 
-**USING FUNCTION UDF\_name\(variable1 data\_type\[, variable2 data\_type\]\[,\.\.\.\]\)**  
-*UDF\_name* specifies the name of the UDF, which must correspond to a Java method within the referenced Lambda function\. Each *variable data\_type* specifies a named variable with its corresponding data type, which the UDF can accept as input\. Specify *data\_type* as one of the supported Athena data types listed in the following table\. The data type must map to the corresponding Java data type\.      
+**USING EXTERNAL FUNCTION *UDF\_name*\(*variable1* *data\_type*\[, *variable2* *data\_type*\]\[,\.\.\.\]\)**  
+*UDF\_name* specifies the name of the UDF, which must correspond to a Java method within the referenced Lambda function\. Each *variable data\_type* specifies a named variable and its corresponding data type that the UDF accepts as input\. The *data\_type* must be one of the supported Athena data types listed in the following table and map to the corresponding Java data type\.      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/querying-udf.html)
 
-**RETURNS data\_type TYPE**  
+**RETURNS *data\_type***  
 `data_type` specifies the SQL data type that the UDF returns as output\. Athena data types listed in the table above are supported\.
 
-**LAMBDA\_INVOKE WITH \(lambda\_name = '*my\_lambda\_function*'\)**  
-*my\_lambda\_function* specifies the name of the Lambda function to be invoked when running the UDF\.
+**LAMBDA '*lambda\_function*'**  
+*lambda\_function* specifies the name of the Lambda function to be invoked when running the UDF\.
 
-**SELECT \[\.\.\.\] UDF\_name\(expression\) \[\.\.\.\]**  
-The SELECT query that passes values to the UDF and returns a result\. `UDF_name` specifies the UDF to use, followed by an `expression` that is evaluated to pass values\. Values that are passed and returned must match the corresponding data types specified for the UDF in the `USING FUNCTION` clause\.
+**SELECT \[\.\.\.\] *UDF\_name*\(*expression*\) \[\.\.\.\]**  
+The `SELECT` query that passes values to the UDF and returns a result\. *UDF\_name* specifies the UDF to use, followed by an *expression* that is evaluated to pass values\. Values that are passed and returned must match the corresponding data types specified for the UDF in the `USING EXTERNAL FUNCTION` clause\.
 
 ## Examples<a name="udf-examples"></a>
 
-The following examples demonstrate queries using UDFs\. The Athena query examples are based on the [AthenaUDFHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-udfs/src/main/java/com/amazonaws/athena/connectors/udfs/AthenaUDFHandler.java) code in GitHub\.
-
-**Example – Compress and Decompress a String**  
-**Compress**  
-The following example demonstrates using the `compress` UDF defined in a Lambda function named `MyAthenaUDFLambda`\.  
-
-```
-USING FUNCTION compress(col1 VARCHAR) 
-     RETURNS VARCHAR TYPE 
-     LAMBDA_INVOKE WITH (lambda_name = 'MyAthenaUDFLambda') 
-SELECT 
-     compress('StringToBeCompressed');
-```
-The query result returns `ewLLinKzEsPyXdKdc7PLShKLS5OTQEAUrEH9w==`\.
-
-**Decompress**
-
-The following example demonstrates using the `decompress` UDF defined in the same Lambda function\.
-
-```
-USING FUNCTION decompress(col1 VARCHAR) 
-     RETURNS VARCHAR TYPE 
-     LAMBDA_INVOKE WITH (lambda_name = 'MyAthenaUDFLambda') 
-SELECT 
-     decompress('ewLLinKzEsPyXdKdc7PLShKLS5OTQEAUrEH9w==');
-```
-
-The query result returns `StringToBeCompressed`\.
+For example queries based on the [AthenaUDFHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-udfs/src/main/java/com/amazonaws/athena/connectors/udfs/AthenaUDFHandler.java) code on GitHub, see the GitHub [Amazon Athena UDF Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-udfs) page\. 
 
 ## Creating and Deploying a UDF Using Lambda<a name="udf-creating-and-deploying"></a>
 
@@ -138,7 +135,7 @@ Add the following configurations to your Maven project `pom.xml` file\. For an e
 
 ```
 <properties>
-    <aws-athena-federation-sdk.version>2019.48.1</aws-athena-federation-sdk.version>
+    <aws-athena-federation-sdk.version>2021.6.1</aws-athena-federation-sdk.version>
 </properties>
 
 <dependencies>

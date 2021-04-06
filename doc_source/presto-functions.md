@@ -4,7 +4,7 @@ Athena supports some, but not all, of Presto's functions and features\. For info
 
 ## Athena engine version 2<a name="presto-functions-env2"></a>
 
-Athena engine version 2 is based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html)\. For information about related functions, operators, and expressions, see [Presto 0\.217 Functions and Operators](https://prestodb.io/docs/0.217/functions.html) and the following specific sections from the Presto documentation\.
+Athena engine version 2 is based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html)\. For information about related functions, operators, and expressions, see [Presto 0\.217 Functions and Operators](https://prestodb.io/docs/0.217/functions.html) and the following specific sections from the Presto documentation\. For the geospatial functions in Athena engine version 2, see [Geospatial Functions in Athena engine version 2](geospatial-functions-list-v2.md)\.
 + [Logical Operators](https://prestodb.io/docs/0.217/functions/logical.html)
 + [Comparison Functions and Operators](https://prestodb.io/docs/0.217/functions/comparison.html)
 + [Conditional Expressions](https://prestodb.io/docs/0.217/functions/conditional.html)
@@ -28,7 +28,7 @@ Athena engine version 2 is based on [Presto 0\.217](https://prestodb.io/docs/0.2
 
 ## Athena engine version 1<a name="presto-functions-env1"></a>
 
-Athena engine version 1 is based on [Presto 0\.172](https://prestodb.io/docs/0.172/index.html)\. For information about related functions, operators, and expressions, see [Presto 0\.172 Functions and Operators](https://prestodb.io/docs/0.172/functions.html) and the following specific sections from the Presto documentation\.
+Athena engine version 1 is based on [Presto 0\.172](https://prestodb.io/docs/0.172/index.html)\. For information about related functions, operators, and expressions, see [Presto 0\.172 Functions and Operators](https://prestodb.io/docs/0.172/functions.html) and the following specific sections from the Presto documentation\. For the geospatial functions in Athena engine version 1, see [Geospatial Functions in Athena engine version 1](geospatial-functions-list-v1.md)\.
 + [Logical Operators](https://prestodb.io/docs/0.172/functions/logical.html)
 + [Comparison Functions and Operators](https://prestodb.io/docs/0.172/functions/comparison.html)
 + [Conditional Expressions](https://prestodb.io/docs/0.172/functions/conditional.html)

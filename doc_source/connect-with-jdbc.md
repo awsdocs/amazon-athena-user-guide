@@ -1,6 +1,6 @@
 # Using Athena with the JDBC Driver<a name="connect-with-jdbc"></a>
 
-You can use a JDBC connection to connect Athena to business intelligence tools and other applications, such as [SQL Workbench](http://www.sql-workbench.eu/downloads.html)\. To do this, download, install, and configure the Athena JDBC driver, using the following links on Amazon S3\.
+You can use a JDBC connection to connect Athena to business intelligence tools and other applications, such as [SQL Workbench](http://www.sql-workbench.eu/downloads.html)\. To do this, download, install, and configure the Athena JDBC driver, using the following links on Amazon S3\. For permissions information, see [Access through JDBC and ODBC Connections](policy-actions.md)\.
 
 ## Links for Downloading the JDBC Driver<a name="download-the-jdbc-driver"></a>
 
