@@ -26,7 +26,7 @@ The steps for setting up a crawler depend on the options available in the Athena
 
 1. On the **Connection details** page, choose **Set up crawler in AWS Glue to retrieve schema information automatically**\.
 
-1. Click **Connect to AWS AWS Glue**\.
+1. Click **Connect to AWS Glue**\.
 
 1. On the **AWS Glue** console **Add crawler** page, follow the steps to create a crawler\. 
 

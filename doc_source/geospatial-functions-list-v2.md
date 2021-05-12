@@ -24,7 +24,7 @@ Use constructor functions to obtain binary representations of `point`, `line`, o
 Returns a varbinary data type that contains the WKB representation of the specified geometry\. Example:
 
 ```
-SELECT ST_AsBinary(ST_Point(61.56, -158.54))
+SELECT ST_AsBinary(ST_Point(-158.54, 61.56))
 ```
 
 ### `ST_AsText(geometry)`<a name="geospatial-functions-list-v2-st-geometry-astext"></a>
@@ -32,7 +32,7 @@ SELECT ST_AsBinary(ST_Point(61.56, -158.54))
 Converts each of the specified [geometry data types](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) to text\. Returns a value in a varchar data type, which is a WKT representation of the geometry data type\. Example:
 
 ```
-SELECT ST_AsText(ST_Point(61.56, -158.54))
+SELECT ST_AsText(ST_Point(-158.54, 61.56))
 ```
 
 ### `ST_GeomAsLegacyBinary(geometry)`<a name="geospatial-functions-list-v2-st-geomaslegacybinary"></a>
@@ -40,7 +40,7 @@ SELECT ST_AsText(ST_Point(61.56, -158.54))
 Returns an Athena engine version 1 varbinary from the specified geometry\. Example:
 
 ```
-SELECT ST_GeomAsLegacyBinary(ST_Point(61.56, -158.54)
+SELECT ST_GeomAsLegacyBinary(ST_Point(-158.54, 61.56)
 ```
 
 ### `ST_GeometryFromText(varchar)`<a name="geospatial-functions-list-v2-st-geometryfromtext"></a>
@@ -56,7 +56,7 @@ SELECT ST_GeometryFromText(ST_AsText(ST_Point(1, 2)))
 Returns a geometry type object from a WKB representation\. Example:
 
 ```
-SELECT ST_GeomFromBinary(ST_AsBinary(ST_Point(61.56, -158.54)))
+SELECT ST_GeomFromBinary(ST_AsBinary(ST_Point(-158.54, 61.56)))
 ```
 
 ### `ST_GeomFromLegacyBinary(varbinary)`<a name="geospatial-functions-list-v2-st-geomfromlegacybinary"></a>
@@ -64,7 +64,7 @@ SELECT ST_GeomFromBinary(ST_AsBinary(ST_Point(61.56, -158.54)))
 Returns a geometry type object from an Athena engine version 1 varbinary type\. Example:
 
 ```
-SELECT ST_GeomFromLegacyBinary(ST_GeomAsLegacyBinary(ST_Point(61.56, -158.54)))
+SELECT ST_GeomFromLegacyBinary(ST_GeomAsLegacyBinary(ST_Point(-158.54, 61.56)))
 ```
 
 ### `ST_LineFromText(varchar)`<a name="geospatial-functions-list-v2-st-linefromtext"></a>
@@ -80,7 +80,7 @@ SELECT ST_Line('linestring(1 1, 2 2, 3 3)')
 Returns a `LineString` geometry type formed from an array of point geometry types\. If there are fewer than two non\-empty points in the specified array, an empty `LineString` is returned\. Throws an exception if any element in the array is null, empty, or the same as the previous one\. The returned geometry may not be simple\. Depending on the input specfied, the returned geometry can self\-intersect or contain duplicate vertexes\. Example:
 
 ```
-SELECT ST_LineString(ARRAY[ST_Point(61.56, -158.54), ST_Point(61.56, -158.55)])
+SELECT ST_LineString(ARRAY[ST_Point(-158.54, 61.56), ST_Point(-158.55, 61.56)])
 ```
 
 ### `ST_MultiPoint(array(point))`<a name="geospatial-functions-list-v2-st-multipoint"></a>
@@ -88,7 +88,7 @@ SELECT ST_LineString(ARRAY[ST_Point(61.56, -158.54), ST_Point(61.56, -158.55)])
 Returns a `MultiPoint` geometry object formed from the specified points\. Returns null if the specified array is empty\. Throws an exception if any element in the array is null or empty\. The returned geometry may not be simple and can contain duplicate points if the specified array has duplicates\. Example:
 
 ```
-SELECT ST_MultiPoint(ARRAY[ST_Point(61.56, -158.54), ST_Point(61.56, -158.55)])
+SELECT ST_MultiPoint(ARRAY[ST_Point(-158.54, 61.56), ST_Point(-158.55, 61.56)])
 ```
 
 ### `ST_Point(double, double)`<a name="geospatial-functions-list-v2-st-point"></a>
@@ -110,7 +110,7 @@ SELECT ST_Point(longitude, latitude) FROM earthquakes LIMIT 1
 The following example uses specific longitude and latitude coordinates:
 
 ```
-SELECT ST_Point(61.56, -158.54)
+SELECT ST_Point(-158.54, 61.56)
 FROM earthquakes
 LIMIT 1
 ```
@@ -140,7 +140,7 @@ SELECT ST_Polygon('polygon ((1 1, 1 4, 4 4, 4 1))')
 Returns a geometry object from the specified spherical geography object\. Example:
 
 ```
-SELECT to_geometry(to_spherical_geography(ST_Point(61.56, -158.54)))
+SELECT to_geometry(to_spherical_geography(ST_Point(-158.54, 61.56)))
 ```
 
 ### `to_spherical_geography(geometry)`<a name="geospatial-functions-list-v2-to-spherical-geography"></a>
@@ -150,7 +150,7 @@ Returns a spherical geography object from the specified geometry\. Use this func
 Example:
 
 ```
-SELECT to_spherical_geography(ST_Point(61.56, -158.54))
+SELECT to_spherical_geography(ST_Point(-158.54, 61.56))
 ```
 
 ## Geospatial Relationship Functions<a name="geospatial-functions-list-v2-geospatial-relationships-functions"></a>
@@ -254,7 +254,7 @@ Use operation functions to perform operations on geometry data type values\. For
 Returns a geometry that represents the point set union of the specified geometries\. Example:
 
 ```
-SELECT geometry_union(ARRAY[ST_Point(61.56, -158.54), ST_Point(61.56, -158.55)])
+SELECT geometry_union(ARRAY[ST_Point(-158.54, 61.56), ST_Point(-158.55, 61.56)])
 ```
 
 ### `ST_Boundary(geometry)`<a name="geospatial-functions-list-v2-st-boundary"></a>
@@ -310,7 +310,7 @@ SELECT ST_Envelope(ST_Polygon('polygon((1  1, 1  4, 4  4, 4 1))'))
 Returns an array of two points that represent the lower left and upper right corners of a geometry's bounding rectangular polygon\. Returns null if the specified geometry is empty\. Example:
 
 ```
-SELECT ST_EnvelopeAsPts(ST_Point(61.56, -158.54))
+SELECT ST_EnvelopeAsPts(ST_Point(-158.54, 61.56))
 ```
 
 ### `ST_ExteriorRing(geometry)`<a name="geospatial-functions-list-v2-st-exteriorring"></a>
@@ -354,7 +354,7 @@ SELECT ST_AsText(ST_SymDifference(ST_Line('linestring(0 2, 2 2)'), ST_Line('line
 Returns a geometry data type that represents the point set union of the specified geometries\. Example:
 
 ```
-SELECT ST_Union(ST_Point(61.56, -158.54),ST_LineString(array[ST_Point(1,2), ST_Point(3,4)]))
+SELECT ST_Union(ST_Point(-158.54, 61.56),ST_LineString(array[ST_Point(1,2), ST_Point(3,4)]))
 ```
 
 ## Accessor Functions<a name="geospatial-functions-list-v2-accessors-functions"></a>
@@ -366,7 +366,7 @@ Accessor functions are useful to obtain values in types `varchar`, `bigint`, or 
 Returns, in a varchar data type, the reason why the specified geometry is not valid or not simple\. If the specified geometry is neither valid nor simple, returns the reason why it is not valid\. If the specified geometry is valid and simple, returns null\. Example:
 
 ```
-SELECT geometry_invalid_reason(ST_Point(61.56, -158.54))
+SELECT geometry_invalid_reason(ST_Point(-158.54, 61.56))
 ```
 
 ### `great_circle_distance(latitude1, longitude1, latitude2, longitude2)`<a name="geospatial-functions-list-v2-great-circle-distance"></a>
@@ -420,7 +420,7 @@ SELECT ST_AsText(ST_Centroid(ST_Envelope(ST_GeometryFromText('POINT (53 27)'))))
 Returns a geometry data type that is the smallest convex geometry that encloses all geometries in the specified input\. Example:
 
 ```
-SELECT ST_ConvexHull(ST_Point(61.56, -158.54))
+SELECT ST_ConvexHull(ST_Point(-158.54, 61.56))
 ```
 
 ### `ST_CoordDim(geometry)`<a name="geospatial-functions-list-v2-st-coordim"></a>
@@ -484,7 +484,7 @@ array[MULTIPOINT(0 0, 1 1),GEOMETRYCOLLECTION(MULTILINESTRING((2 2, 3 3)))]
 Returns, as a geometry data type, the geometry element at a specified integer index\. Indices start at 1\. If the specified geometry is a collection of geometries \(for example, a `GEOMETRYCOLLECTION` or `MULTI*` object\), returns the geometry at the specified index\. If the specified index is less than 1 or greater than the total number of elements in the collection, returns null\. To find the total number of elements, use [`ST_NumGeometries`](#geospatial-functions-list-v2-st-numgeometries)\. Singular geometries \(for example, `POINT`, `LINESTRING`, or `POLYGON`\), are treated as collections of one element\. Empty geometries are treated as empty collections\. Example:
 
 ```
-SELECT ST_GeometryN(ST_Point(61.56, -158.54),1)
+SELECT ST_GeometryN(ST_Point(-158.54, 61.56),1)
 ```
 
 ### `ST_GeometryType(geometry)`<a name="geospatial-functions-list-v2-st-geometrytype"></a>
@@ -492,7 +492,7 @@ SELECT ST_GeometryN(ST_Point(61.56, -158.54),1)
 Returns, as a varchar, the type of the geometry\. Example:
 
 ```
-SELECT ST_GeometryType(ST_Point(61.56, -158.54))
+SELECT ST_GeometryType(ST_Point(-158.54, 61.56))
 ```
 
 ### `ST_InteriorRingN(geometry, index)`<a name="geospatial-functions-list-v2-st-interiorringn"></a>

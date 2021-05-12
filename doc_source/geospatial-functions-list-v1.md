@@ -29,7 +29,7 @@ SELECT ST_GEOMETRY_FROM_TEXT(ST_GEOMETRY_TO_TEXT(ST_Point(1, 2)))
 Converts each of the specified [geometry data types](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) to text\. Returns a value in a varchar data type, which is a WKT representation of the geometry data type\. Example:
 
 ```
-SELECT ST_GEOMETRY_TO_TEXT(ST_POINT(61.56, -158.54))
+SELECT ST_GEOMETRY_TO_TEXT(ST_Point(-158.54, 61.56))
 ```
 
 ### `ST_LINE(varchar)`<a name="st-line-varchar"></a>
@@ -61,7 +61,7 @@ SELECT ST_POINT(longitude, latitude) FROM earthquakes LIMIT 1;
 Example\. This example uses specific longitude and latitude coordinates from `earthquakes.csv`:
 
 ```
-SELECT ST_POINT(61.56, -158.54)
+SELECT ST_Point(-158.54, 61.56)
 FROM earthquakes
 LIMIT 1;
 ```

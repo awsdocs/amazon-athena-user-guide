@@ -97,7 +97,7 @@ f1            s2
 
 ### Library Name<a name="library-name"></a>
 
-To use this SerDe, specify its fully qualified class name in `ROW FORMAT`\. Also specify the delimiters inside `SERDEPROPERTIES`, as follows:
+To use this SerDe, specify its fully qualified class name after `ROW FORMAT SERDE`\. Also specify the delimiters inside `SERDEPROPERTIES`, as follows:
 
 ```
 ...
@@ -129,7 +129,7 @@ This example presumes data in CSV saved in `s3://mybucket/mycsv/` with the follo
 "a","a1","abc3","ab4"
 ```
 
-Use a `CREATE TABLE` statement to create an Athena table based on the data, and reference the OpenCSVSerDe class in `ROW FORMAT`, also specifying SerDe properties for character separator, quote character, and escape character, as follows:
+Use a `CREATE TABLE` statement to create an Athena table based on the data\. Reference the OpenCSVSerDe class after `ROW FORMAT SERDE` and specify the character separator, quote character, and escape character in `WITH SERDEPROPERTIES`, as in the following example\.
 
 ```
 CREATE EXTERNAL TABLE myopencsvtable (

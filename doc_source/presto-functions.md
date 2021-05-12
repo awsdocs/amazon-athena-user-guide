@@ -19,7 +19,7 @@ Athena engine version 2 is based on [Presto 0\.217](https://prestodb.io/docs/0.2
 + [JSON Functions and Operators](https://prestodb.io/docs/0.217/functions/json.html)
 + [URL Functions](https://prestodb.io/docs/0.217/functions/url.html)
 + [Aggregate Functions](https://prestodb.io/docs/0.217/functions/aggregate.html)
-+ [Window Functions](https://prestodb.io/docs/0.217/functions/window.html)
++ [Window Functions](https://prestodb.io/docs/0.231/functions/window.html)
 + [Color Functions](https://prestodb.io/docs/0.217/functions/color.html)
 + [Array Functions and Operators](https://prestodb.io/docs/0.217/functions/array.html)
 + [Map Functions and Operators](https://prestodb.io/docs/0.217/functions/map.html)

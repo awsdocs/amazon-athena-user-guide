@@ -34,7 +34,7 @@ Athena Data Connector for External Hive Metastore includes support for catalog r
 Athena provides a reference implementation for the Lambda function that connects to external Hive metastores\. The reference implementation is provided on GitHub as an open source project at [Athena Hive Metastore](https://github.com/awslabs/aws-athena-hive-metastore)\.
 
 The reference implementation is available as the following two AWS SAM applications in the AWS Serverless Application Repository \(SAR\)\. You can use either of these applications in the SAR to create your own Lambda functions\.
-+ `AthenaHiveMetastoreFunction` – Uber Lambda function `.jar` file\.
++ `AthenaHiveMetastoreFunction` – Uber Lambda function `.jar` file\. An "uber" JAR \(also known as a fat JAR or JAR with dependencies\) is a `.jar` file that contains both a Java program and its dependencies in a single file\. 
 + `AthenaHiveMetastoreFunctionWithLayer` – Lambda layer and thin Lambda function `.jar` file\.
 
 ## Workflow<a name="connect-to-data-source-hive-workflow"></a>

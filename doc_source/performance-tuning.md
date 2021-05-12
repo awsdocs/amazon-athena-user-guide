@@ -110,4 +110,4 @@ For additional information on performance tuning in Athena, consider the followi
 + Read other [Athena posts in the AWS Big Data Blog](http://aws.amazon.com/blogs/big-data/tag/amazon-athena/) 
 + Visit the [Amazon Athena Forum](https://forums.aws.amazon.com/forum.jspa?forumID=242)
 + Consult the [Athena topics in the AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/#Amazon_Athena) 
-+ Contact AWS Support \(in the AWS console, click **Support**, **Support Center**\)
++ Contact AWS Support \(in the AWS Management Console, click **Support**, **Support Center**\)

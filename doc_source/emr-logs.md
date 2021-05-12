@@ -91,45 +91,39 @@ STORED AS INPUTFORMAT
   'org.apache.hadoop.mapred.TextInputFormat' 
 OUTPUTFORMAT 
  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-LOCATION
- 's3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6'
+LOCATION 's3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6'
 ```
 
 The following query statements then create table partitions based on sub\-directories for different log types that Amazon EMR creates in Amazon S3:
 
 ```
-ALTER TABLE mypartitionedemrlogs ADD 
-     PARTITION 
-     (logtype='containers') LOCATION
-     s3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/containers/
+ALTER TABLE mypartitionedemrlogs ADD
+     PARTITION (logtype='containers')
+     LOCATION 's3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/containers/'
 ```
 
 ```
-ALTER TABLE mypartitionedemrlogs ADD 
-     PARTITION 
-     (logtype='hadoop-mapreduce') LOCATION
-     s3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/hadoop-mapreduce/
+ALTER TABLE mypartitionedemrlogs ADD
+     PARTITION (logtype='hadoop-mapreduce')
+     LOCATION 's3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/hadoop-mapreduce/'
 ```
 
 ```
-ALTER TABLE mypartitionedemrlogs ADD 
-     PARTITION 
-     (logtype='hadoop-state-pusher') LOCATION
-     s3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/hadoop-state-pusher/
+ALTER TABLE mypartitionedemrlogs ADD
+     PARTITION (logtype='hadoop-state-pusher')
+     LOCATION 's3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/hadoop-state-pusher/'
 ```
 
 ```
-ALTER TABLE mypartitionedemrlogs ADD 
-     PARTITION 
-     (logtype='node') LOCATION
-     s3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/node/
+ALTER TABLE mypartitionedemrlogs ADD
+     PARTITION (logtype='node')
+     LOCATION 's3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/node/'
 ```
 
 ```
-ALTER TABLE mypartitionedemrlogs ADD 
-     PARTITION 
-     (logtype='steps') LOCATION
-     s3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/steps/
+ALTER TABLE mypartitionedemrlogs ADD
+     PARTITION (logtype='steps')
+     LOCATION 's3://aws-logs-123456789012-us-west-2/elasticmapreduce/j-2ABCDE34F5GH6/steps/'
 ```
 
 After you create the partitions, you can run a `SHOW PARTITIONS` query on the table to confirm:

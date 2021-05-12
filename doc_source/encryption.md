@@ -38,6 +38,16 @@ The following encryption options are not supported:
 
 To compare Amazon S3 encryption options, see [Protecting Data Using Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
+### Tools for Client\-Side Encryption<a name="encryption-client-side-tools"></a>
+
+ For client\-side encryption, note that two tools are available: 
++ [Amazon S3 Encryption Client](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3EncryptionClient.html) – This encrypts data for Amazon S3 only and is supported by Athena\.
++ [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/introduction.html) – The SDK can be used to encrypt data anywhere across AWS but is not directly supported by Athena\.
+
+These tools are not compatible, and data encrypted using one tool cannot be decrypted by the other\. Athena only supports the Amazon S3 Encryption Client directly\. If you use the SDK to encrypt your data, you can run queries from Athena, but the data is returned as encrypted text\. 
+
+If you want to use Athena to query data that has been encrypted with the AWS Encryption SDK, you must download and decrypt your data, and then encrypt it again using the Amazon S3 Encryption Client\.
+
 ## Permissions to Encrypted Data in Amazon S3<a name="permissions-for-encrypting-and-decrypting-data"></a>
 
 Depending on the type of encryption you use in Amazon S3, you may need to add permissions, also known as "Allow" actions, to your policies used in Athena:

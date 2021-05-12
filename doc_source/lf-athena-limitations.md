@@ -11,6 +11,7 @@ Consider the following when using Athena to query data registered in Lake Format
 + [CSE\-KMS Amazon S3 Registered With Lake Formation Cannot Be Queried in Athena](#lf-athena-limitations-cse-kms)
 + [Partitioned Data Locations Registered with Lake Formation Must Be in Table Subdirectories](#lf-athena-limitations-partioned-data-locations)
 + [Create Table As Select \(CTAS\) Queries Require Amazon S3 Write Permissions](#lf-athena-limitations-ctas-queries)
++ [The DESCRIBE Permission is Required on the Default Database](#lf-athena-limitations-describe-default)
 
 ## Column Metadata Visible To Unauthorized Users In Some Circumstances With Avro and Custom SerDe<a name="lf-athena-limitations-column-metadata"></a>
 
@@ -33,8 +34,8 @@ Athena query history exposes a list of saved queries and complete query strings\
 ## Cross\-Account Data Catalog Access<a name="lf-athena-limitations-cross-account-glue"></a>
 
 To access a data catalog in another account, you can use one of the following methods:
-+ Set up cross\-account access in Lake Formation\. 
-+ Use an Athena cross\-account [AWS Lambda](http://aws.amazon.com/lambda/) function to federate queries to the Data Catalog of your choice\.
++ Use Athena's cross\-account AWS Glue catalog feature to register the catalog in your account\. This capability is available only in Athena engine version 2 and is limited to same\-Region use between accounts\. For more information, see [Registering an AWS Glue Data Catalog from Another Account](data-sources-glue-cross-account.md) and [Cross\-Account Access to Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
++ Set up cross\-account access in Lake Formation\. For more information, see the following section\.
 
 ### Setting Up Cross\-Account Access in Lake Formation<a name="lf-athena-limitations-cross-account-glue-lf-xacct"></a>
 
@@ -42,17 +43,11 @@ AWS Lake Formation lets you use a single account to manage a central Data Catalo
 
 For more information, see the following resources in the AWS Lake Formation Developer Guide:
 
-[Cross\-Account Access](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-cross-account.html)
+ [Cross\-Account Access](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-cross-account.html) 
 
-[How Resource Links Work in Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/resource-links-about.html)
+ [How Resource Links Work in Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/resource-links-about.html) 
 
-[Cross\-Account CloudTrail Logging](https://docs.aws.amazon.com/lake-formation/latest/dg/cross-account-logging.html)
-
-### Using an Athena Cross\-Account Lambda Function<a name="lf-athena-limitations-cross-account-glue-lambda"></a>
-
-You can use Athena to [connect to an external Hive metastore](connect-to-data-source-hive.md)\. The Hive metastore functionality uses a Lambda function to federate queries to the Data Catalog of your choice\. This same functionality can proxy catalog queries to a Data Catalog in a different account\.
-
-For steps, see [Cross\-account AWS Glue Data Catalog access with Amazon Athena](http://aws.amazon.com/blogs/big-data/cross-account-aws-glue-data-catalog-access-with-amazon-athena/) in the AWS Big Data Blog\.
+ [Cross\-Account CloudTrail Logging](https://docs.aws.amazon.com/lake-formation/latest/dg/cross-account-logging.html) 
 
 ## CSE\-KMS Encrypted Amazon S3 Locations Registered With Lake Formation Cannot Be Queried in Athena<a name="lf-athena-limitations-cse-kms"></a>
 
@@ -65,3 +60,13 @@ Partitioned tables registered with Lake Formation must have partitioned data in 
 ## Create Table As Select \(CTAS\) Queries Require Amazon S3 Write Permissions<a name="lf-athena-limitations-ctas-queries"></a>
 
 Create Table As Statements \(CTAS\) require write access to the Amazon S3 location of tables\. To run CTAS queries on data registered with Lake Formation, Athena users must have IAM permissions to write to the table Amazon S3 locations in addition to the appropriate Lake Formation permissions to read the data locations\. For more information, see [Creating a Table from Query Results \(CTAS\)](ctas.md)\.
+
+## The DESCRIBE Permission is Required on the Default Database<a name="lf-athena-limitations-describe-default"></a>
+
+The Lake Formation [DESCRIBE](https://docs.aws.amazon.com/lake-formation/latest/dg/lf-permissions-reference.html#perm-describe) permission is required on the `default` database\. The following example AWS CLI command grants the `DESCRIBE` permission on the `default` database to the user `datalake_user1` in AWS account `111122223333`\.
+
+```
+aws lakeformation grant-permissions --principal DataLakePrincipalIdentifier=arn:aws:iam::111122223333:user/datalake_user1 --permissions "DESCRIBE" --resource '{ "Database": {"Name":"default"}}
+```
+
+For more information, see the [Lake Formation Permissions Reference](https://docs.aws.amazon.com/lake-formation/latest/dg/lf-permissions-reference.html) in the *AWS Lake Formation Developer Guide*\.

@@ -17,6 +17,7 @@ The topics in this section assume that you have set up both an IAM user with app
 + [Querying AWS Global Accelerator Flow Logs](querying-global-accelerator-flow-logs.md)
 + [Querying Amazon GuardDuty Findings](querying-guardduty.md)
 + [Querying Network Load Balancer Logs](networkloadbalancer-classic-logs.md)
++ [Querying Route 53 Resolver Logs](querying-r53-resolver-logs.md)
 + [Querying Amazon VPC Flow Logs](vpc-flow-logs.md)
 + [Querying AWS WAF Logs](waf-logs.md)
 

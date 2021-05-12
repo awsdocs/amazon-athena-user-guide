@@ -2,6 +2,9 @@
 
 Preparing to create federated queries is a two\-part process: deploying a Lambda function data source connector, and connecting the Lambda function to a data source\. In the first part, you give the Lambda function a name that you can later choose in the Athena console\. In the second part, you give the connector a name that you can reference in your SQL queries\.
 
+**Note**  
+To use the Athena Federated Query feature with AWS Secrets Manager, you must configure an Amazon VPC private endpoint for Secrets Manager\. For more information, see [Create a Secrets Manager VPC Private Endpoint](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html#vpc-endpoint-create) in the *AWS Secrets Manager User Guide*\.
+
 ## Part 1: Deploying a Data Source Connector<a name="connect-to-a-data-source-lambda-deploying"></a>
 
 To choose, name, and deploy a data source connector, you use the Athena and Lambda consoles in an integrated process\.

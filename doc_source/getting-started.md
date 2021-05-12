@@ -42,7 +42,56 @@ You first need to create a database in Athena\.
 
 ## Step 2: Create a Table<a name="step-2-create-a-table"></a>
 
-Now that you have a database, you're ready to run a statement to create a table\. The table will be based on Athena sample data in the location `s3://athena-examples-myregion/cloudfront/plaintext/`\. The statement that creates the table defines columns that map to the data, specifies how the data is delimited, and specifies the Amazon S3 location that contains the sample data\.
+Now that you have a database, you can create an Athena table for it\. The table that you create will be based on Athena sample data in the location `s3://athena-examples-myregion/cloudfront/plaintext/`\. 
+
+The sample log data is in tab\-separated values \(TSV\) format, which means that a tab character is used as a delimiter to separate the fields\. The data looks like the following example\. For readability, the tabs in the excerpt have been converted to spaces and the final field shortened\. 
+
+```
+2014-07-05 20:00:09 DFW3 4260 10.0.0.15 GET eabcd12345678.cloudfront.net /test-image-1.jpeg 200 - Mozilla/5.0[...]
+2014-07-05 20:00:09 DFW3 4252 10.0.0.15 GET eabcd12345678.cloudfront.net /test-image-2.jpeg 200 - Mozilla/5.0[...]
+2014-07-05 20:00:10 AMS1 4261 10.0.0.15 GET eabcd12345678.cloudfront.net /test-image-3.jpeg 200 - Mozilla/5.0[...]
+```
+
+To enable Athena to read this data, you run a `CREATE EXTERNAL TABLE` statement like the following\. The statement that creates the table defines columns that map to the data, specifies how the data is delimited, and specifies the Amazon S3 location that contains the sample data\. 
+
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS cloudfront_logs (
+  `Date` DATE,
+  Time STRING,
+  Location STRING,
+  Bytes INT,
+  RequestIP STRING,
+  Method STRING,
+  Host STRING,
+  Uri STRING,
+  Status INT,
+  Referrer STRING,
+  ClientInfo STRING
+  ) 
+  ROW FORMAT DELIMITED
+  FIELDS TERMINATED BY '\t'
+  LINES TERMINATED BY '\n'
+  LOCATION 's3://athena-examples-my-region/cloudfront/plaintext/';
+```
+
+The example creates a table called `cloudfront_logs` and specifies a name and data type for each field\. These fields will become the columns in the table\. Because `date` is a [reserved word](reserved-words.md#list-of-ddl-reserved-words), it is escaped with backtick \(`\) characters\. `ROW FORMAT DELIMITED` means that Athena will use a default library called [LazySimpleSerDe](lazy-simple-serde.md) to do the actual work of parsing the data\. The example also specifies that the fields are tab separated \(`FIELDS TERMINATED BY '\t'`\) and that each record in the file ends in a newline character \(`LINES TERMINATED BY '\n`\)\. Finally, the `LOCATION` clause specifies the path in Amazon S3 where the actual data to be read is located\. You can use a `CREATE TABLE` statement like this if you have your own tab or comma\-separated data\.
+
+Returning to our sample data, here is the full example data for the `ClientInfo` field that was previously shortened:
+
+```
+Mozilla/5.0%20(Android;%20U;%20Windows%20NT%205.1;%20en-US;%20rv:1.9.0.9)%20Gecko/2009040821%20IE/3.0.9
+```
+
+As you can see, this one field is multivalued\. If tabs are used as field delimiters, the separate components inside this field can't be broken out into separate columns\. To create columns from the values inside the field, you can use a regular expression \(regex\) that contains regex groups\. The regex groups that you specify become separate table columns\. The new `CREATE TABLE` statement will use syntax like the following, which instructs Athena to use the [Regex SerDe](regex-serde.md) library\.
+
+```
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+  WITH SERDEPROPERTIES ("input.regex" = "regular_expression")
+```
+
+Regular expressions can be useful for creating tables from complex CSV or TSV data but can be difficult to write and maintain\. Fortunately, there are other libraries that you can use for formats like JSON, Parquet, and ORC\. For more information, see [Supported SerDes and Data Formats](supported-serdes.md)\.
+
+Now you are ready to create the table in the Athena Query Editor\. You'll use the regex in a statement that is provided for you\.
 
 **To create a table**
 
@@ -51,7 +100,7 @@ Now that you have a database, you're ready to run a statement to create a table\
 1. Choose the plus \(**\+**\) sign in the Query Editor to create a tab with a new query\. You can have up to ten query tabs open at once\.  
 ![\[Choose the plus icon to create a new query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-new-query-tab.png)
 
-1. In the query pane, enter the following `CREATE TABLE` statement\. In the `LOCATION` statement at the end of the query, replace *myregion* with the AWS Region that you are currently using \(for example, `us-west-1`\)\. 
+1. In the query pane, enter the following `CREATE EXTERNAL TABLE` statement\. In the `LOCATION` statement at the end of the query, replace *myregion* with the AWS Region that you are currently using \(for example, `us-west-1`\)\. The regex expression makes it possible to break out the operating system, browser, and browser version information from the final tab\-separated field in the log data\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS cloudfront_logs (
@@ -68,7 +117,8 @@ Now that you have a database, you're ready to run a statement to create a table\
      os STRING,
      Browser STRING,
      BrowserVersion STRING
-     ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+     ) 
+     ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
      WITH SERDEPROPERTIES (
      "input.regex" = "^(?!#)([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+([^ ]+)\\s+[^\(]+[\(]([^\;]+).*\%20([^\/]+)[\/](.*)$"
      ) LOCATION 's3://athena-examples-myregion/cloudfront/plaintext/';

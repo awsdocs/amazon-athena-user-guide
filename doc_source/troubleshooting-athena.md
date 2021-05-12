@@ -196,7 +196,7 @@ The maximum query string length in Athena \(262,144 bytes\) is not an adjustable
 
 ### SYNTAX\_ERROR: Column cannot be resolved<a name="troubleshooting-athena-syntax_error-column-cannot-be-resolved"></a>
 
-This error can occur when you query a table created by an AWS AWS Glue crawler from a UTF\-8 encoded CSV file that has a byte order mark \(BOM\)\. AWS Glue doesn't recognize the BOMs and changes them to question marks, which Amazon Athena doesn't recognize\. The solution is to remove the question mark in Athena or in AWS Glue\. For more information, see [How do I resolve the syntax error "column cannot be resolved" in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-syntax-error-column-id/) in the AWS Knowledge Center\.
+This error can occur when you query a table created by an AWS Glue crawler from a UTF\-8 encoded CSV file that has a byte order mark \(BOM\)\. AWS Glue doesn't recognize the BOMs and changes them to question marks, which Amazon Athena doesn't recognize\. The solution is to remove the question mark in Athena or in AWS Glue\.
 
 ## Throttling Issues<a name="troubleshooting-athena-throttling-issues"></a>
 
@@ -244,4 +244,4 @@ The following AWS resources can also be of help:
 +  [Athena discussion forum](https://forums.aws.amazon.com/forum.jspa?forumID=242) 
 +  [Athena posts in the AWS Big Data Blog](http://aws.amazon.com/blogs/big-data/tag/amazon-athena/) 
 
-Troubleshooting often requires iterative query and discovery by an expert or from a community of helpers\. If you continue to experience issues after trying the suggestions on this page, contact AWS Support \(in the AWS console, click **Support**, **Support Center**\) or visit the [Amazon Athena Forum](https://forums.aws.amazon.com/forum.jspa?forumID=242)\.
+Troubleshooting often requires iterative query and discovery by an expert or from a community of helpers\. If you continue to experience issues after trying the suggestions on this page, contact AWS Support \(in the AWS Management Console, click **Support**, **Support Center**\) or visit the [Amazon Athena Forum](https://forums.aws.amazon.com/forum.jspa?forumID=242)\.

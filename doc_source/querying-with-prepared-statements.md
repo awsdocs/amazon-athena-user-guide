@@ -5,8 +5,9 @@ You can use the Athena parameterized query feature to prepare statements for rep
 ## Considerations and Limitations<a name="querying-with-prepared-statements-considerations-and-limitations"></a>
 + Prepared statements are workgroup\-specific, and prepared statement names must be unique within the workgroup\.
 + Parameterized queries are supported only in Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\.
-+ Currently, parameterized queries are supported only for `SELECT`, `INSERT INTO`, and `CTAS` statements\.
 + IAM permissions for prepared statements are required\. For more information, see [Allow Access to Prepared Statements](security-iam-athena-prepared-statements.md)\.
++ Currently, parameterized queries are supported only for `SELECT`, `INSERT INTO`, and `CTAS` statements\.
++ The current version of the [JDBC driver](connect-with-jdbc.md) supports prepared statements\. ODBC support is planned\.
 
 ## SQL Statements<a name="querying-with-prepared-statements-sql-statements"></a>
 

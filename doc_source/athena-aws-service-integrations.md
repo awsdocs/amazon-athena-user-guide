@@ -65,7 +65,7 @@ Call Athena with AWS Step Functions\. AWS Step Functions can control select AWS 
 The following video demonstrates how to use Amazon Athena and AWS Step Functions to run a regularly scheduled Athena query and generate a corresponding report\.
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/rRr3QfIMTBo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/rRr3QfIMTBo)
-For an example that uses Step Functions and Amazon EventBridge to orchestrate , Athena, and Amazon QuickSight, see [Orchestrating an AWS Glue DataBrew job and Amazon Athena query with AWS Step Functions](http://aws.amazon.com/blogs/big-data/orchestrating-an-aws-glue-databrew-job-and-amazon-athena-query-with-aws-step-functions/) in the AWS Big Data Blog\.
+For an example that uses Step Functions and Amazon EventBridge to orchestrate , Athena, and Amazon QuickSight, see [Orchestrating an job and Amazon Athena query with AWS Step Functions](http://aws.amazon.com/blogs/big-data/orchestrating-an-aws-glue-databrew-job-and-amazon-athena-query-with-aws-step-functions/) in the AWS Big Data Blog\.
 
 **AWS Systems Manager Inventory**  
 Reference topic: [Querying inventory data from multiple Regions and accounts](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-inventory-query.html) in the *AWS Systems Manager User Guide*  

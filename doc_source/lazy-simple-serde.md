@@ -20,7 +20,7 @@ For examples, see the `CREATE TABLE` statements in [Querying Amazon VPC Flow Log
 
 ## Examples<a name="examples"></a>
 
-The following examples show how to create tables in Athena from CSV and TSV, using the `LazySimpleSerDe`\. To deserialize custom\-delimited files using this SerDe, use the `FIELDS TERMINATED BY` clause to specify a single\-character delimiter, as in the following examples\. LazySimpleSerDe does not support multi\-character delimiters\.
+The following examples show how to use the `LazySimpleSerDe` to create tables in Athena from CSV and TSV data\. To deserialize custom\-delimited files using this SerDe, follow the pattern in the examples but use the `FIELDS TERMINATED BY` clause to specify a different single\-character delimiter\. LazySimpleSerDe does not support multi\-character delimiters\.
 +  [CSV Example](#csv-example) 
 +  [TSV Example](#tsv-example) 
 
@@ -173,9 +173,18 @@ LIMIT 10;
 
 ### TSV Example<a name="tsv-example"></a>
 
-This example presumes source data in TSV saved in `s3://mybucket/mytsv/`\. 
+Use a `CREATE TABLE` statement to create an Athena table from the TSV data stored in Amazon S3\. Use `ROW FORMAT DELIMITED` and specify the tab field delimiter, line separator, and escape character as follows:
 
-Use a `CREATE TABLE` statement to create an Athena table from the TSV data stored in Amazon S3\. Notice that this example does not reference any SerDe class in `ROW FORMAT` because it uses the LazySimpleSerDe, and it can be omitted\. The example specifies SerDe properties for character and line separators, and an escape character:
+```
+...
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\n'
+...
+```
+
+An example `CREATE TABLE` statement follows\.
 
 ```
 CREATE EXTERNAL TABLE flight_delays_tsv (

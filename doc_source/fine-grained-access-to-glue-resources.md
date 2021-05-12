@@ -7,9 +7,7 @@ You define resource\-level permissions in IAM identity\-based policies\.
 **Important**  
 This section discusses resource\-level permissions in IAM identity\-based policies\. These are different from resource\-based policies\. For more information about the differences, see [Identity\-Based Policies and Resource\-Based Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) in the *AWS Identity and Access Management User Guide*\.
 
-Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
-
-See the following topics for the corresponding tasks: 
+See the following topics for these tasks: 
 
 
 | To perform this task | See the following topic | 
@@ -27,7 +25,6 @@ See the following topics for the corresponding tasks:
 
 Consider the following limitations when using fine\-grained access control with the AWS Glue Data Catalog and Athena:
 + You can limit access only to databases and tables\. Fine\-grained access controls apply at the table level and you cannot limit access to individual partitions within a table\. For more information, see [Table Partitions and Versions in AWS Glue](#access-to-glue-resources-table-partitions-and-versions)\.
-+ Athena does not support cross\-account access to the AWS Glue Data Catalog\. 
 + The AWS Glue Data Catalog contains the following resources: `CATALOG`, `DATABASE`, `TABLE`, and `FUNCTION`\. 
 **Note**  
 From this list, resources that are common between Athena and the AWS Glue Data Catalog are `TABLE`, `DATABASE`, and `CATALOG` for each account\. `Function` is specific to AWS Glue\. For delete actions in Athena, you must include permissions to AWS Glue actions\. See [Fine\-Grained Policy Examples](#examples-fine-grained-table-database-policies)\.

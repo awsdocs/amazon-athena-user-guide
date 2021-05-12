@@ -123,7 +123,7 @@ Before you can run a query, a query result bucket location in Amazon S3 must be 
 
 **To specify a client\-side setting query result location using the Athena console**
 
-1. From the nagivation bar, choose **Settings**\.
+1. From the navigation bar, choose **Settings**\.
 
 1. For **Query result location**, enter the path to an existing Amazon S3 folder, including the trailing slash\.
 **Note**  

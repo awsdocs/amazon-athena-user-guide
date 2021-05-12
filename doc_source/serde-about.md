@@ -7,26 +7,24 @@ It is the SerDe you specify, and not the DDL, that defines the table schema\. In
 ## To Use a SerDe in Queries<a name="to-use-a-serde"></a>
 
 To use a SerDe when creating a table in Athena, use one of the following methods:
-+ Use DDL statements to describe how to read and write data to the table and do not specify a `ROW FORMAT`, as in this example\. This omits listing the actual SerDe type and the native `LazySimpleSerDe` is used by default\.
++ Specify `ROW FORMAT DELIMITED` and then use DDL statements to specify field delimiters, as in the following example\. When you specify `ROW FORMAT DELIMITED`, Athena uses the LazySimpleSerDe by default\.
 
-In general, Athena uses the `LazySimpleSerDe` if you do not specify a `ROW FORMAT`, or if you specify `ROW FORMAT DELIMITED`\.
+  ```
+  ROW FORMAT DELIMITED 
+  FIELDS TERMINATED BY ','
+  ESCAPED BY '\\'
+  COLLECTION ITEMS TERMINATED BY '|'
+  MAP KEYS TERMINATED BY ':'
+  ```
++ Use `ROW FORMAT SERDE` to explicitly specify the type of SerDe that Athena should use when it reads and writes data to the table\. The following example specifies the LazySimpleSerDe\. To specify the delimiters, use `WITH SERDEPROPERTIES`\. The properties specified by `WITH SERDEPROPERTIES` correspond to the separate statements \(like `FIELDS TERMINATED BY`\) in the `ROW FORMAT DELIMITED` example\.
 
-```
-ROW FORMAT
-DELIMITED FIELDS TERMINATED BY ','
-ESCAPED BY '\\'
-COLLECTION ITEMS TERMINATED BY '|'
-MAP KEYS TERMINATED BY ':'
-```
-+ Explicitly specify the type of SerDe Athena should use when it reads and writes data to the table\. Also, specify additional properties in `SERDEPROPERTIES`, as in this example\.
-
-```
-ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
-WITH SERDEPROPERTIES (
-'serialization.format' = ',',
-'field.delim' = ',',
-'collection.delim' = '|',
-'mapkey.delim' = ':',
-'escape.delim' = '\\'
-)
-```
+  ```
+  ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+  WITH SERDEPROPERTIES (
+  'serialization.format' = ',',
+  'field.delim' = ',',
+  'collection.delim' = '|',
+  'mapkey.delim' = ':',
+  'escape.delim' = '\\'
+  )
+  ```

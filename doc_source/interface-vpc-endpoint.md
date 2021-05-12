@@ -8,7 +8,7 @@ To use Athena through your VPC, you must connect from an instance that is inside
 
 Athena supports VPC endpoints in all AWS Regions where both [Amazon VPC](https://docs.aws.amazon.com/general/latest/gr/rande.html#vpc_region) and [Athena](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena) are available\.
 
-You can create an interface VPC endpoint to connect to Athena using the AWS console or AWS Command Line Interface \(AWS CLI\) commands\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)\.
+You can create an interface VPC endpoint to connect to Athena using the AWS Management Console or AWS Command Line Interface \(AWS CLI\) commands\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)\.
 
 After you create an interface VPC endpoint, if you enable [private DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#vpce-private-dns) hostnames for the endpoint, the default Athena endpoint \(https://athena\.*Region*\.amazonaws\.com\) resolves to your VPC endpoint\.
 

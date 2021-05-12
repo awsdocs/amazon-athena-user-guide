@@ -3,9 +3,7 @@
 A common Amazon Athena scenario is granting access to users in an account different from the bucket owner so that they can perform queries\. In this case, use a bucket policy to grant access\.
 
 **Note**  
-For information about using Athena to query a centralized Data Catalog, see the AWS Big Data blog post [Cross\-account AWS Glue Data Catalog access with Amazon Athena](http://aws.amazon.com/blogs/big-data/cross-account-aws-glue-data-catalog-access-with-amazon-athena/)\.
-
-Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+ For information about cross\-account access to AWS Glue data catalogs from Athena, see [Cross\-Account Access to Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 
 The following example bucket policy, created and applied to bucket `s3://my-athena-data-bucket` by the bucket owner, grants access to all users in account `123456789123`, which is a different account\.
 

@@ -52,7 +52,7 @@ If you signed up for AWS but have not created an IAM user for yourself, you can 
 
 1. Choose **Assign a custom password**\. Then type a password in the **Password** and **Confirm Password** fields\. When you are finished, choose **Apply**\.
 
-1. To sign in as this new IAM user, sign out of the AWS console, then use the following URL, where `your_aws_account_id` is your AWS account number without the hyphens \(for example, if your AWS account number is 1234\-5678\-9012, your AWS account ID is 123456789012\):
+1. To sign in as this new IAM user, sign out of the AWS Management Console, then use the following URL, where `your_aws_account_id` is your AWS account number without the hyphens \(for example, if your AWS account number is 1234\-5678\-9012, your AWS account ID is 123456789012\):
 
 ```
 https://*your_account_alias*.signin.aws.amazon.com/console/
