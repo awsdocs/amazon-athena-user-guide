@@ -86,7 +86,7 @@ To give the Borrower account role or user access to the Owner account's AWS Glue
                "Resource": [
                    "arn:aws:glue:us-east-1:999999999999:catalog",
                    "arn:aws:glue:us-east-1:999999999999:database/tpch1000",
-                   "arn:aws:glue:us-east-1:999999999999:table/tpch1000/customer"
+                   "arn:aws:glue:us-east-1:999999999999:table/tpch1000/customer",
                ]
            }
        ]
