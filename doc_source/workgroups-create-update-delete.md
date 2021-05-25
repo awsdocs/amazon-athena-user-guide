@@ -92,6 +92,8 @@ You can open up to ten query tabs within each workgroup\. When you switch betwee
 
 **To switch between workgroups**
 
+
+
 1. In the Athena console, choose the **Workgroup:<workgroup\_name>** tab\. A **Workgroups** panel displays\. 
 
 1. In the **Workgroups** panel, choose the workgroup that you want to switch to, and then choose **Switch workgroup**\.  

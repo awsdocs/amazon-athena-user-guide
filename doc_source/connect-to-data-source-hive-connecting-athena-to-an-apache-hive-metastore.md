@@ -55,7 +55,7 @@ The following procedure requires that you have permission to create a custom IAM
 
 1. Choose **Connect**\. This connects Athena to your Hive metastore catalog\.
 
-   The **Data sources** page shows a list of your connected catalogs, including the catalog that you just connected\. All registered catalogs are visible to all users in the same AWS account\.   
+   The **Data sources** page shows a list of your connected catalogs, including the catalog that you just connected\. All registered catalogs are visible to all users in the same Amazon Web Services account\.   
 ![\[The Data sources page shows your connected catalogs.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-to-data-source-hive-6.png)
 
 1. You can now use the **Catalog name** that you specified to reference the Hive metastore in your SQL queries\. In your SQL queries, use the following example syntax, replacing `hms-catalog-1` with the catalog name that you specified earlier\.

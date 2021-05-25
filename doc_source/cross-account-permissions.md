@@ -40,7 +40,7 @@ To grant access to a particular user in an account, replace the `Principal` key 
 
 ## Cross\-account Access to a Bucket Encrypted with a Custom AWS KMS Key<a name="cross-account-permissions-kms"></a>
 
-If you have an Amazon S3 bucket that is encrypted with a custom AWS Key Management Service \(AWS KMS\) key, you might need to grant access to it to users from another AWS account\.
+If you have an Amazon S3 bucket that is encrypted with a custom AWS Key Management Service \(AWS KMS\) key, you might need to grant access to it to users from another Amazon Web Services account\.
 
 Granting access to an AWS KMS\-encrypted bucket in Account A to a user in Account B requires the following permissions:
 + The bucket policy in Account A must grant access to Account B\.

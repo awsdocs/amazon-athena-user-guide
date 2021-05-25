@@ -23,6 +23,8 @@ You can manage tags for an individual workgroup directly from the **Workgroups**
 **Note**  
 If you want users to add tags when they create a workgroup in the console or pass in tags when they use the CreateWorkGroup action, make sure that you give the users IAM permissions to the TagResource and CreateWorkGroup actions\.
 
+
+
 **To add a tag when creating a new workgroup**
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.

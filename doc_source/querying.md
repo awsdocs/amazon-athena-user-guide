@@ -137,7 +137,7 @@ Be sure to include the trailing slash\. Failing to include the trailing slash re
 
 #### Previously Created Default Locations<a name="query-results-specify-location-previous-defaults"></a>
 
-Previously, if you ran a query without specifying a value for **Query result location**, and the query result location setting was not overridden by a workgroup, Athena created a default location for you\. The default location was `aws-athena-query-results-MyAcctID-MyRegion`, where *MyAcctID* was the AWS account ID of the IAM principal that ran the query, and *MyRegion* was the region where the query ran \(for example, `us-west-1`\.\)
+Previously, if you ran a query without specifying a value for **Query result location**, and the query result location setting was not overridden by a workgroup, Athena created a default location for you\. The default location was `aws-athena-query-results-MyAcctID-MyRegion`, where *MyAcctID* was the Amazon Web Services account ID of the IAM principal that ran the query, and *MyRegion* was the region where the query ran \(for example, `us-west-1`\.\)
 
 Now, before you can run an Athena query in a region in which your account hasn't used Athena previously, you must specify a query result location, or use a workgroup that overrides the query result location setting\. While Athena no longer creates a default query results location for you, previously created default `aws-athena-query-results-MyAcctID-MyRegion` locations remain valid and you can continue to use them\.
 
@@ -145,7 +145,7 @@ Now, before you can run an Athena query in a region in which your account hasn't
 
 You specify the query result location in a workgroup configuration using the AWS Management Console, the AWS CLI, or the Athena API\.
 
-When using the AWS CLI, specify the query result location using the `OutputLocation` parameter of the `--configuration` option when you run the [aws athena create\-work\-group](https://docs.aws.amazon.com/cli/latest/reference/athena/create-work-group.html) or [aws athena update\-work\-group](https://docs.aws.amazon.com/cli/latest/reference/athena/update-work-group.html) command\.
+When using the AWS CLI, specify the query result location using the `OutputLocation` parameter of the `--configuration` option when you run the [https://docs.aws.amazon.com/cli/latest/reference/athena/create-work-group.html](https://docs.aws.amazon.com/cli/latest/reference/athena/create-work-group.html) or [https://docs.aws.amazon.com/cli/latest/reference/athena/update-work-group.html](https://docs.aws.amazon.com/cli/latest/reference/athena/update-work-group.html) command\.
 
 **To specify the query result location for a workgroup using the Athena console**
 

@@ -9,7 +9,7 @@ Regardless of how the tables are created, the tables creation process registers 
 
 After you create a table, you can use [SQL SELECT](select.md) statements to query it, including getting [specific file locations for your source data](select.md#select-path)\. Your query results are stored in Amazon S3 in [the query result location that you specify](querying.md#query-results-specify-location)\.
 
-The AWS Glue Data Catalog is accessible throughout your AWS account\. Other AWS services can share the AWS Glue Data Catalog, so you can see databases and tables created throughout your organization using Athena and vice versa\. In addition, AWS Glue lets you automatically discover data schema and extract, transform, and load \(ETL\) data\.
+The AWS Glue Data Catalog is accessible throughout your Amazon Web Services account\. Other AWS services can share the AWS Glue Data Catalog, so you can see databases and tables created throughout your organization using Athena and vice versa\. In addition, AWS Glue lets you automatically discover data schema and extract, transform, and load \(ETL\) data\.
 + To create a table manually:
   + Use the Athena console to run the **Create Table Wizard**\.
   + Use the Athena console to write Hive DDL statements in the Query Editor\.

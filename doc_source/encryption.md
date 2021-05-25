@@ -58,6 +58,8 @@ Advanced key policy administrators can adjust key policies\. `kms:Decrypt` is th
 
   When using Athena to query datasets in Amazon S3 with a large number of objects that are encrypted with AWS KMS, AWS KMS may throttle query results\. This is more likely when there are a large number of small objects\. Athena backs off retry requests, but a throttling error might still occur\. In this case, you can increase your service quotas for AWS KMS\. For more information, see [Quotas](https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#requests-per-second) in the *AWS Key Management Service Developer Guide*\.
 
+For troubleshooting information about permissions when using Amazon S3 with Athena, see the [Permissions](troubleshooting-athena.md#troubleshooting-athena-permissions) section of the [Troubleshooting in Athena](troubleshooting-athena.md) topic\.
+
 ## Permissions to Encrypted Metadata in the AWS Glue Data Catalog<a name="glue-encryption"></a>
 
 If you [encrypt metadata in the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html), you must add `"kms:GenerateDataKey"`, `"kms:Decrypt"`, and `"kms:Encrypt"` actions to the policies you use for accessing Athena\. For information, see [Access to Encrypted Metadata in the AWS Glue Data Catalog](access-encrypted-data-glue-data-catalog.md)\.

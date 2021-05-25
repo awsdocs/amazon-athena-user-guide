@@ -8,13 +8,13 @@ For IAM\-specific information, see the links listed at the end of this section\.
 
 **To use the visual editor in the IAM console to create a data catalog policy**
 
-1. Sign in to the AWS Management Console and open the IAM console at [https://console.aws.amazon.com/iam/](https://console.aws.amazon.com/iam/)\. 
+1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
 1. In the navigation pane on the left, choose **Policies**, and then choose **Create policy**\.
 
 1. On the **Visual editor** tab, choose **Choose a service**\. Then choose Athena to add to the policy\.
 
-1. Choose **Select actions**, and then choose the actions to add to the policy\. The visual editor shows the actions available in Athena\. For more information, see [Actions, Resources, and Condition Keys for Amazon Athena](list_amazonathena.html) in the **\.
+1. Choose **Select actions**, and then choose the actions to add to the policy\. The visual editor shows the actions available in Athena\. For more information, see [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonathena.html) in the *Service Authorization Reference*\.
 
 1. Choose **add actions** to type a specific action or use wildcards \(\*\) to specify multiple actions\. 
 
@@ -34,8 +34,8 @@ For IAM\-specific information, see the links listed at the end of this section\.
 
 1. Attach this identity\-based policy to a user, a group, or role and specify the `datacatalog` resources they can access\.
 
-For more information, see the following topics in the ** and the *IAM User Guide*:
-+ [Actions, Resources, and Condition Keys for Amazon Athena](list_amazonathena.html)
+For more information, see the following topics in the *Service Authorization Reference* and the *IAM User Guide*:
++ [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonathena.html)
 + [Creating Policies with the Visual Editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor)
 + [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)
 + [Controlling Access to Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_controlling.html#access_controlling-resources)

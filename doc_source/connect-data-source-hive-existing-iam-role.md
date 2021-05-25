@@ -39,7 +39,7 @@ The function code for the Athena reference implementation is a Maven project loc
 
    `hms-lambda-func-1.0-SNAPSHOT-withdep.jar`
 
-   In the next section, you use the AWS Lambda console to upload this file to your AWS account\.
+   In the next section, you use the AWS Lambda console to upload this file to your Amazon Web Services account\.
 
 ## Create and Configure the Lambda Function in the AWS Lambda Console<a name="connect-data-source-hive-existing-iam-role-aws-lambda-console"></a>
 
@@ -104,7 +104,7 @@ When the console informs you that your function has been successfully created, y
      ```
      thrift://<host_name>:9083.
      ```
-   + **SPILL\_LOCATION** – Specify an Amazon S3 location in your AWS account to hold spillover metadata if the Lambda function response size exceeds 4MB\.  
+   + **SPILL\_LOCATION** – Specify an Amazon S3 location in your Amazon Web Services account to hold spillover metadata if the Lambda function response size exceeds 4MB\.  
 ![\[Specifying values for the Lambda function environment variables.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-data-source-hive-existing-iam-role-6.png)
 
 1. Choose **Save**\.

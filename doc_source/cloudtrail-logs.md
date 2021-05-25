@@ -1,6 +1,6 @@
 # Querying AWS CloudTrail Logs<a name="cloudtrail-logs"></a>
 
-AWS CloudTrail is a service that records AWS API calls and events for AWS accounts\. 
+AWS CloudTrail is a service that records AWS API calls and events for Amazon Web Services accounts\. 
 
 CloudTrail logs include details about any API calls made to your AWS services, including the console\. CloudTrail generates encrypted log files and stores them in Amazon S3\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\. 
 

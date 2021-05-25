@@ -40,7 +40,7 @@ CREATE DATABASE IF NOT EXISTS clickstreams
 
 ## Viewing Database Properties<a name="create-database-viewing-properties"></a>
 
-To view the database properties for a database that you create in AWSDataCatalog using `CREATE DATABASE`, you can use the AWS CLI command [aws glue get\-database](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/glue/get-database.html), as in the following example:
+To view the database properties for a database that you create in AWSDataCatalog using `CREATE DATABASE`, you can use the AWS CLI command [https://awscli.amazonaws.com/v2/documentation/api/latest/reference/glue/get-database.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/glue/get-database.html), as in the following example:
 
 ```
 aws glue get-database --name <your-database-name>

@@ -1,6 +1,6 @@
 # CloudTrail SerDe<a name="cloudtrail-serde"></a>
 
-AWS CloudTrail is a service that records AWS API calls and events for AWS accounts\. CloudTrail generates encrypted logs and stores them in Amazon S3\. You can use Athena to query these logs directly from Amazon S3, specifying the `LOCATION` of logs\.
+AWS CloudTrail is a service that records AWS API calls and events for Amazon Web Services accounts\. CloudTrail generates encrypted logs and stores them in Amazon S3\. You can use Athena to query these logs directly from Amazon S3, specifying the `LOCATION` of logs\.
 
 To query CloudTrail logs in Athena, create table from the logs and use the CloudTrail SerDe to deserialize the logs data\.
 

@@ -172,6 +172,48 @@ This issue can occur for a variety of reasons\. For possible causes and resoluti
 
 This can occur when you don't have permission to read the data in the bucket, permission to write to the results bucket, or the Amazon S3 path contains a Region endpoint like `us-east-1.amazonaws.com`\. For more information, see [When I run an Athena query, I get an "Access Denied" error](http://aws.amazon.com/premiumsupport/knowledge-center/access-denied-athena/) in the AWS Knowledge Center\.
 
+### Access Denied with Status Code: 403 error when running DDL queries on encrypted data in Amazon S3<a name="troubleshooting-athena-access-denied-error-when-querying-amazon-s3-encrypted"></a>
+
+When you may receive the error message Access Denied \(Service: Amazon S3; Status Code: 403; Error Code: AccessDenied; Request ID: *<request\_id>*\) if the following conditions are true:
+
+1. You run a DDL query like `ALTER TABLE ADD PARTITION` or `MSCK REPAIR TABLE`\.
+
+1. You have a bucket that has [default encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-bucket-encryption.html) configured to use `SSE-S3`\.
+
+1. The bucket also has a bucket policy like the following that forces `PutObject` requests to specify the `PUT` headers `"s3:x-amz-server-side-encryption": "true"` and `"s3:x-amz-server-side-encryption": "AES256"`\.
+
+   ```
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Deny",
+               "Principal": "*",
+               "Action": "s3:PutObject",
+               "Resource": "arn:aws:s3:::<resource-name>/*",
+               "Condition": {
+                   "Null": {
+                       "s3:x-amz-server-side-encryption": "true"
+                   }
+               }
+           },
+           {
+               "Effect": "Deny",
+               "Principal": "*",
+               "Action": "s3:PutObject",
+               "Resource": "arn:aws:s3:::<resource-name>/*",
+               "Condition": {
+                   "StringNotEquals": {
+                       "s3:x-amz-server-side-encryption": "AES256"
+                   }
+               }
+           }
+       ]
+   }
+   ```
+
+In a case like this, the recommended solution is to remove the bucket policy like the one above given that the bucket's default encryption is already present\.
+
 ### Access Denied with Status Code: 403 when querying an Amazon S3 bucket in another account<a name="troubleshooting-athena-access-denied-with-status-code-403-when-querying-an-amazon-s3-bucket-in-another-account"></a>
 
 This error can occur when you try to query logs written by another AWS service and the second account is the bucket owner but does not own the objects in the bucket\. For more information, see [I get the Amazon S3 Exception "Access Denied with Status Code: 403" in Amazon Athena when I query a bucket in another account](http://aws.amazon.com/premiumsupport/knowledge-center/athena-access-denied-status-code-403/) in the AWS Knowledge Center or watch the Knowledge Center [video](https://youtu.be/0j6U4gv2Os8)\.

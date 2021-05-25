@@ -2,7 +2,7 @@
 
  [AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) is a fully managed ETL \(extract, transform, and load\) AWS service\. One if its key abilities is to analyze and categorize data\. You can use AWS Glue crawlers to automatically infer database and table schema from your data in Amazon S3 and store the associated metadata in the AWS Glue Data Catalog\. 
 
-Athena uses the AWS Glue Data Catalog to store and retrieve table metadata for the Amazon S3 data in your AWS account\. The table metadata lets the Athena query engine know how to find, read, and process the data that you want to query\. 
+Athena uses the AWS Glue Data Catalog to store and retrieve table metadata for the Amazon S3 data in your Amazon Web Services account\. The table metadata lets the Athena query engine know how to find, read, and process the data that you want to query\. 
 
 To create database and table schema in the AWS Glue Data Catalog, you can run an AWS Glue crawler from within Athena on a data source, or you can run Data Definition Language \(DDL\) queries directly in the Athena Query Editor\. Then, using the database and table schema that you created, you can use Data Manipulation \(DML\) queries in Athena to query the data\.
 

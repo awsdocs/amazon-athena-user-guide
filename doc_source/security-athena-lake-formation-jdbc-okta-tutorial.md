@@ -4,7 +4,7 @@ This tutorial shows you how to configure Okta, AWS Lake Formation, AWS Identity 
 <a name="security-athena-lake-formation-jdbc-okta-tutorial-prerequisites"></a>
 **Prerequisites**  
 This tutorial assumes that you have done the following:
-+ Created an AWS account\. To create an account, visit the [Amazon Web Services home page](https://aws.amazon.com/)\.
++ Created an Amazon Web Services account\. To create an account, visit the [Amazon Web Services home page](https://aws.amazon.com/)\.
 + [Set up a query results location](querying.md#query-results-specify-location) for Athena in Amazon S3\.
 + [Registered an Amazon S3 data bucket location](https://docs.aws.amazon.com/lake-formation/latest/dg/register-data-lake.html) with Lake Formation\.
 + Defined a [database](https://docs.aws.amazon.com/glue/latest/dg/define-database.html) and [tables](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html) on the [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) that point to your data in Amazon S3\.
@@ -195,7 +195,7 @@ In this step, you use the AWS Identity and Access Management \(IAM\) console to 
 
 **To create an AWS SAML identity provider**
 
-1. Sign in to the **AWS account** **console** as **AWS account administrator** and navigate to the **IAM** console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\)\.
+1. Sign in to the **Amazon Web Services account** **console** as **Amazon Web Services account administrator** and navigate to the **IAM** console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\)\.
 
 1. In the navigation pane, choose **Identity providers**, and then click **Create Provider**\.  
 ![\[Creating an identity provider in the IAM console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-15.png)

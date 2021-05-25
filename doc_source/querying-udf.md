@@ -12,7 +12,7 @@ For an example that uses UDFs with Athena to translate and analyze text, see the
 + **Available Regions** – The Athena UDF feature is available in the Regions where Athena engine version 2 is supported\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 + **Built\-in Athena functions** – Built\-in Presto functions in Athena are designed to be highly performant\. We recommend that you use built\-in functions over UDFs when possible\. For more information about built\-in functions, see [Presto Functions in Amazon Athena](presto-functions.md)\.
 + **Scalar UDFs only** – Athena only supports scalar UDFs, which process one row at a time and return a single column value\. Athena passes a batch of rows, potentially in parallel, to the UDF each time it invokes Lambda\. When designing UDFs and queries, be mindful of the potential impact to network traffic of this processing\.
-+ **Java runtime only** – Currently, Athena UDFs support only the Java 8 runtime for Lambda\.
++ **Java runtime support** – Currently, Athena UDFs support the Java 8 and Java 11 runtimes for Lambda\. For more information, see [Building Lambda functions with Java](https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html) in the *AWS Lambda Developer Guide*\.
 + **IAM permissions** – To run and create UDF query statements in Athena, the IAM principal running the query must be allowed to perform actions in addition to Athena functions\. For more information, see [Example IAM Permissions Policies to Allow Amazon Athena User Defined Functions \(UDF\)](udf-iam-access.md)\.
 + **Lambda quotas** – Lambda quotas apply to UDFs\. For more information, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) in the *AWS Lambda Developer Guide*\.
 + **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
@@ -24,10 +24,16 @@ Watch the following videos to learn more about using UDFs in Athena\.
 **Video: Introducing User Defined Functions \(UDFs\) in Amazon Athena**  
 The following video shows how you can use UDFs in Amazon Athena to redact sensitive information\.
 
+**Note**  
+The syntax in this video is prerelease, but the concepts are the same\. Use Athena engine version 2 without the `AmazonAthenaPreviewFunctionality` workgroup and refer to the information later on this page for updated syntax\. 
+
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/AxJ6jP4Pfmo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/AxJ6jP4Pfmo)
 
 **Video: Translate, analyze, and redact text fields using SQL queries in Amazon Athena**  
 The following video shows how you can use UDFs in Amazon Athena together with other AWS services to translate and analyze text\.
+
+**Note**  
+The syntax in this video is prerelease, but the concepts are the same\. For the correct syntax, see the related blog post [Translate, redact, and analyze text using SQL functions with Amazon Athena, Amazon Translate, and Amazon Comprehend](http://aws.amazon.com/blogs/machine-learning/translate-and-analyze-text-using-sql-functions-with-amazon-athena-amazon-translate-and-amazon-comprehend/) on the *AWS Machine Learning Blog*\.
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/Od7rXG-WMO4/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/Od7rXG-WMO4)
 

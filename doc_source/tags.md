@@ -21,7 +21,7 @@ You can add tags when creating a new Athena workgroup or data catalog, or you ca
 
 Athena does not automatically assign tags to your resources\. You can edit tag keys and values, and you can remove tags from a resource at any time\. You can set the value of a tag to an empty string, but you can't set the value of a tag to null\. Do not add duplicate tag keys to the same resource\. If you do, Athena issues an error message\. If you use the TagResource action to tag a resource using an existing tag key, the new tag value overwrites the old value\.
 
-In IAM, you can control which users in your AWS account have permission to create, edit, remove, or list tags\. For more information, see [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
+In IAM, you can control which users in your Amazon Web Services account have permission to create, edit, remove, or list tags\. For more information, see [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
 
 For a complete list of Amazon Athena tag actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
 
@@ -42,4 +42,4 @@ Tags have the following restrictions:
 + Athena allows you to use letters, numbers, spaces represented in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
 + Tag keys and values are case\-sensitive\.
 + The `"aws:"` prefix in tag keys is reserved for AWS use\. You can't edit or delete tag keys with this prefix\. Tags with this prefix do not count against your per\-resource tags limit\.
-+ The tags you assign are available only to your AWS account\.
++ The tags you assign are available only to your Amazon Web Services account\.

@@ -43,3 +43,4 @@ Use the `CREATE TABLE AS SELECT` template to create a CTAS query from scratch\.
 1. Optionally, choose **Save as** to save the query\.
 
 See also [Examples of CTAS Queries](ctas-examples.md)\.
+

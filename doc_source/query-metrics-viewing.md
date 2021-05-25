@@ -47,14 +47,14 @@ If you just recently enabled metrics for the workgroup and/or there has been no 
 
 **To view metrics in the Amazon CloudWatch console**
 
-1. Open the Amazon CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch)\.
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Metrics**\.
 
 1. Select the `AWS/Athena` namespace\.
 
 **To view metrics with the CLI**
-+ Open a command prompt, and use the following command:
++ To list the metrics for Athena, open a command prompt, and use the following command:
 
   ```
   aws cloudwatch list-metrics --namespace "AWS/Athena"
@@ -62,7 +62,7 @@ If you just recently enabled metrics for the workgroup and/or there has been no 
 + To list all available metrics, use the following command:
 
   ```
-  aws cloudwatch list-metrics --namespace "AWS/Athena"
+  aws cloudwatch list-metrics"
   ```
 
 ## List of CloudWatch Metrics and Dimensions for Athena<a name="athena-cloudwatch-metrics-table"></a>

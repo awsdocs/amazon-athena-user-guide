@@ -107,3 +107,16 @@ You can create tables in Athena by using AWS Glue, the add table wizard, or by r
    ```
 
    After the table is created, you can run queries against your data\.
+
+## Showing Table Information<a name="creating-tables-showing-table-informationi"></a>
+
+ After you have created a table in Athena, you can choose the vertical three dots next to the table name in the Athena console to show information about the table and manage it\. 
+
+![\[Choose the vertical three dots next to the table name.\]](http://docs.aws.amazon.com/athena/latest/ug/images/creating-tables-kebab-menu.png)
++ **Preview table** – Shows the first 10 rows of all columns by running the `SELECT * FROM "database_name"."table_name" LIMIT 10` statement in the Athena Query Editor\.
++ **Show properties** – Displays table properties and, if the table has partitions, partition information on a second tab\.
+  + **Table properties** – Shows the table name, database name, time created, and whether the table has encrypted data\.
+  + **Partitions** – Lists the names of the table's partitions and their corresponding data types\. This tab displays only if the table has partitions\. 
++ **Delete table** – Displays a confirmation dialog box asking if you want to delete the table\. If you agree, runs the `DROP TABLE table_name` statement in the Athena Query Editor\.
++ **Load partitions** – Runs the `MSCK REPAIR TABLE table_name` statement in the Athena Query Editor\. This option is available only if the table has partitions\. 
++ **Generate Create Table DDL** – Generates a DDL statement that you can use to re\-create the table by running the `SHOW CREATE TABLE` *table\_name* statement in the Athena Query Editor\.

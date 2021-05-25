@@ -5,7 +5,7 @@ You can use Athena to query data from the AWS services listed in this section\. 
 **AWS Services Integrated with Athena**
 + [AWS CloudFormation](#integ-ate-cfn)
 + [Amazon CloudFront](#integ-ate-cf)
-+ [AWS CloudTrail](#integ-ate-ct)
++ [CloudTrail](#integ-ate-ct)
 + [Elastic Load Balancing](#integ-ate-eb)
 + [AWS Glue Data Catalog](#integ-ate-gc)
 + [AWS Identity and Access Management (IAM)](#integ-ate-iam)
@@ -32,7 +32,7 @@ Specify Athena workgroups using AWS CloudFormation\. Use Athena workgroups to is
 Reference topic: [Querying Amazon CloudFront Logs](cloudfront-logs.md)  
 Use Athena to query Amazon CloudFront\. For more information about using CloudFront, see the [Amazon CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/)\.
 
-**AWS CloudTrail**  
+**CloudTrail**  
 Reference topic: [Querying AWS CloudTrail Logs](cloudtrail-logs.md)  
 Using Athena with CloudTrail logs is a powerful way to enhance your analysis of AWS service activity\. For example, you can use queries to identify trends and further isolate activity by attribute, such as source IP address or user\. You can create tables for querying logs directly from the CloudTrail console, and use those tables to run queries in Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](cloudtrail-logs.md#create-cloudtrail-table-ct)\.
 
@@ -44,7 +44,7 @@ Query Classic Load Balancer logs to analyze and understand traffic patterns to a
 
 **AWS Glue Data Catalog**  
 Reference topic: [Integration with AWS Glue](glue-athena.md)   
-Athena integrates with the AWS Glue Data Catalog, which offers a persistent metadata store for your data in Amazon S3\. This allows you to create tables and query data in Athena based on a central metadata store available throughout your AWS account and integrated with the ETL and data discovery features of AWS Glue\. For more information, see [Integration with AWS Glue](glue-athena.md) and [What is AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) in the *AWS Glue Developer Guide*\.
+Athena integrates with the AWS Glue Data Catalog, which offers a persistent metadata store for your data in Amazon S3\. This allows you to create tables and query data in Athena based on a central metadata store available throughout your Amazon Web Services account and integrated with the ETL and data discovery features of AWS Glue\. For more information, see [Integration with AWS Glue](glue-athena.md) and [What is AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) in the *AWS Glue Developer Guide*\.
 
 **AWS Identity and Access Management \(IAM\)**  
 Reference topic: [Actions for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html)  
@@ -65,7 +65,7 @@ Call Athena with AWS Step Functions\. AWS Step Functions can control select AWS 
 The following video demonstrates how to use Amazon Athena and AWS Step Functions to run a regularly scheduled Athena query and generate a corresponding report\.
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/rRr3QfIMTBo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/rRr3QfIMTBo)
-For an example that uses Step Functions and Amazon EventBridge to orchestrate , Athena, and Amazon QuickSight, see [Orchestrating an job and Amazon Athena query with AWS Step Functions](http://aws.amazon.com/blogs/big-data/orchestrating-an-aws-glue-databrew-job-and-amazon-athena-query-with-aws-step-functions/) in the AWS Big Data Blog\.
+For an example that uses Step Functions and Amazon EventBridge to orchestrate AWS Glue DataBrew, Athena, and Amazon QuickSight, see [Orchestrating an AWS Glue DataBrew job and Amazon Athena query with AWS Step Functions](http://aws.amazon.com/blogs/big-data/orchestrating-an-aws-glue-databrew-job-and-amazon-athena-query-with-aws-step-functions/) in the AWS Big Data Blog\.
 
 **AWS Systems Manager Inventory**  
 Reference topic: [Querying inventory data from multiple Regions and accounts](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-inventory-query.html) in the *AWS Systems Manager User Guide*  

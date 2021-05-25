@@ -5,14 +5,14 @@ If you use the AWS Glue Data Catalog with Amazon Athena, you can define resource
 You define resource\-level permissions in IAM identity\-based policies\.
 
 **Important**  
-This section discusses resource\-level permissions in IAM identity\-based policies\. These are different from resource\-based policies\. For more information about the differences, see [Identity\-Based Policies and Resource\-Based Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) in the *AWS Identity and Access Management User Guide*\.
+This section discusses resource\-level permissions in IAM identity\-based policies\. These are different from resource\-based policies\. For more information about the differences, see [Identity\-Based Policies and Resource\-Based Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) in the *IAM User Guide*\.
 
 See the following topics for these tasks: 
 
 
 | To perform this task | See the following topic | 
 | --- | --- | 
-| Create an IAM policy that defines fine\-grained access to resources | [Creating IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the AWS Identity and Access Management User Guide\. | 
+| Create an IAM policy that defines fine\-grained access to resources | [Creating IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the IAM User Guide\. | 
 | Learn about IAM identity\-based policies used in AWS Glue | [ Identity\-Based Policies \(IAM Policies\)](https://docs.aws.amazon.com/glue/latest/dg/using-identity-based-policies.html) in the AWS Glue Developer Guide\.  | 
 
  **In this section** 

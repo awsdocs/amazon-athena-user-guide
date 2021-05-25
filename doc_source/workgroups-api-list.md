@@ -6,3 +6,4 @@ The following are some of the REST API operations used for Athena workgroups\. I
 +  [GetWorkGroup](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetWorkGroup.html) 
 +  [ListWorkGroups](https://docs.aws.amazon.com/athena/latest/APIReference/API_ListWorkGroups.html) 
 +  [UpdateWorkGroup](https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdateWorkGroup.html) 
+

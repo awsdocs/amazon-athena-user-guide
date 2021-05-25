@@ -4,7 +4,7 @@ Creates one or more partition columns for the table\. Each partition consists of
 
 In Athena, a table and its partitions must use the same data formats but their schemas may differ\. For more information, see [Updates in Tables with Partitions](updates-and-partitions.md)\.
 
-For information about the resource\-level permissions required in IAM policies \(including `glue:CreatePartition`\), see [AWS Glue API Permissions: Actions and Resources Reference](https://docs.aws.amazon.com/glue/latest/dg/api-permissions-reference.html) and [Fine\-Grained Access to Databases and Tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\.
+For information about the resource\-level permissions required in IAM policies \(including `glue:CreatePartition`\), see [AWS Glue API Permissions: Actions and Resources Reference](https://docs.aws.amazon.com/glue/latest/dg/api-permissions-reference.html) and [Fine\-Grained Access to Databases and Tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\. For troubleshooting information about permissions when using Athena, see the [Permissions](troubleshooting-athena.md#troubleshooting-athena-permissions) section of the [Troubleshooting in Athena](troubleshooting-athena.md) topic\.
 
 ## Synopsis<a name="synopsis"></a>
 
