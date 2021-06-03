@@ -12,7 +12,7 @@ CREATE EXTERNAL TABLE [IF NOT EXISTS]
  [CLUSTERED BY (col_name, col_name, ...) INTO num_buckets BUCKETS]
  [ROW FORMAT row_format]
  [STORED AS file_format] 
- [WITH SERDEPROPERTIES (...)] ]
+ [WITH SERDEPROPERTIES (...)]
  [LOCATION 's3://bucket_name/[folder]/']
  [TBLPROPERTIES ( ['has_encrypted_data'='true | false',] ['classification'='aws_glue_classification',] property_name=property_value [, ...] ) ]
 ```
