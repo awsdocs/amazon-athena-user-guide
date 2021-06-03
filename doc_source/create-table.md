@@ -50,7 +50,7 @@ Non\-string data types cannot be cast to `STRING` in Athena; cast them to `VARCH
 + `BINARY` \(for data in Parquet\)
 + Date and time types
 + `DATE` A date in ISO format, such as `YYYY-MM-DD`\. For example, `DATE '2008-09-15'`\.
-+ `TIMESTAMP` Date and time instant in a `java.sql.Timestamp` compatible format, such as `yyyy-MM-dd HH:mm:ss[.f...]`\. For example, `TIMESTAMP '2008-09-15 03:04:05.324'`\. This format uses the session time zone\.
++ `TIMESTAMP` Date and time instant in a [https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html](https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html) compatible format, such as `yyyy-MM-dd HH:mm:ss[.f...]`\. For example, `TIMESTAMP '2008-09-15 03:04:05.324'`\. 
 + `ARRAY` < data\_type >
 + `MAP` < primitive\_type, data\_type >
 + `STRUCT` < col\_name : data\_type \[COMMENT col\_comment\] \[, \.\.\.\] >

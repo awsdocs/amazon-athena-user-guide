@@ -2,7 +2,7 @@
 
 When running queries in Athena, keep in mind the following considerations and limitations:
 + **Stored procedures** – Stored procedures are not supported\.
-+ **Parameterized queries** – Parameterized queries are not supported\. However, you can create user\-defined functions that you can call in the body of a query\. For more information , see [Querying with User Defined Functions](querying-udf.md)\.
++ **Parameterized queries** – Parameterized queries are not supported in Athena engine version 1 but are supported in Athena engine version 2\. For more information, see [Querying with Prepared Statements](querying-with-prepared-statements.md)\.
 + **Maximum number of partitions** – The maximum number of partitions you can create with `CREATE TABLE AS SELECT` \(CTAS\) statements is 100\. For information, see [CREATE TABLE AS](create-table-as.md)\. For a workaround, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
 + **Unsupported statements** – The following statements are not supported:
   + `CREATE TABLE LIKE` is not supported\.

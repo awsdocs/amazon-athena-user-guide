@@ -5,10 +5,10 @@ You can use Athena to query data from the AWS services listed in this section\. 
 **AWS Services Integrated with Athena**
 + [AWS CloudFormation](#integ-ate-cfn)
 + [Amazon CloudFront](#integ-ate-cf)
-+ [CloudTrail](#integ-ate-ct)
++ [AWS CloudTrail](#integ-ate-ct)
 + [Elastic Load Balancing](#integ-ate-eb)
 + [AWS Glue Data Catalog](#integ-ate-gc)
-+ [AWS Identity and Access Management (IAM)](#integ-ate-iam)
++ [AWS Identity and Access Management \(IAM\)](#integ-ate-iam)
 + [Amazon QuickSight](#integ-ate-qs)
 + [Amazon S3 Inventory](#integ-ate-s3)
 + [AWS Step Functions](#integ-ate-sf)
@@ -32,7 +32,7 @@ Specify Athena workgroups using AWS CloudFormation\. Use Athena workgroups to is
 Reference topic: [Querying Amazon CloudFront Logs](cloudfront-logs.md)  
 Use Athena to query Amazon CloudFront\. For more information about using CloudFront, see the [Amazon CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/)\.
 
-**CloudTrail**  
+**AWS CloudTrail**  
 Reference topic: [Querying AWS CloudTrail Logs](cloudtrail-logs.md)  
 Using Athena with CloudTrail logs is a powerful way to enhance your analysis of AWS service activity\. For example, you can use queries to identify trends and further isolate activity by attribute, such as source IP address or user\. You can create tables for querying logs directly from the CloudTrail console, and use those tables to run queries in Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](cloudtrail-logs.md#create-cloudtrail-table-ct)\.
 

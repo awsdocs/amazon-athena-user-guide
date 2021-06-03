@@ -18,3 +18,7 @@ If you use AWS Glue with Athena, and have encrypted the AWS Glue Data Catalog, y
 
 **Important**  
 If you create and use workgroups, make sure your policies include appropriate access to workgroup actions\. For detailed information, see [ IAM Policies for Accessing Workgroups](workgroups-iam-policy.md) and [Workgroup Example Policies](example-policies-workgroup.md)\. 
+
+**Topics**
++ [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md)
++ [AWSQuicksightAthenaAccess Managed Policy](awsquicksightathenaaccess-managed-policy.md)

@@ -1,6 +1,6 @@
 # Integration with AWS Glue<a name="glue-athena"></a>
 
- [AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) is a fully managed ETL \(extract, transform, and load\) AWS service\. One if its key abilities is to analyze and categorize data\. You can use AWS Glue crawlers to automatically infer database and table schema from your data in Amazon S3 and store the associated metadata in the AWS Glue Data Catalog\. 
+ [AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) is a fully managed ETL \(extract, transform, and load\) AWS service\. One of its key abilities is to analyze and categorize data\. You can use AWS Glue crawlers to automatically infer database and table schema from your data in Amazon S3 and store the associated metadata in the AWS Glue Data Catalog\. 
 
 Athena uses the AWS Glue Data Catalog to store and retrieve table metadata for the Amazon S3 data in your Amazon Web Services account\. The table metadata lets the Athena query engine know how to find, read, and process the data that you want to query\. 
 
