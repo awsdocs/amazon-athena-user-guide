@@ -37,7 +37,7 @@ You can use the Query Editor in the Athena console to create and query a table f
      transport string,
      srcids struct<
        instance: string,
-       resolverEndpoint: string
+       resolver_endpoint: string
        >
     )
         
