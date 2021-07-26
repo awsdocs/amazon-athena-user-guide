@@ -38,8 +38,8 @@ To collect logs and save them to Amazon S3, enable CloudTrail from the AWS Manag
 Note the destination Amazon S3 bucket where you save the logs\. Replace the `LOCATION` clause with the path to the CloudTrail log location and the set of objects with which to work\. The example uses a `LOCATION` value of logs for a particular account, but you can use the degree of specificity that suits your application\.
 
 For example:
-+ To analyze data from multiple accounts, you can roll back the `LOCATION` specifier to indicate all `AWSLogs` by using `LOCATION 's3://MyLogFiles/AWSLogs/`\.
-+ To analyze data from a specific date, account, and Region, use `LOCATION `s3://MyLogFiles/123456789012/CloudTrail/us-east-1/2016/03/14/'.` 
++ To analyze data from multiple accounts, you can roll back the `LOCATION` specifier to indicate all `AWSLogs` by using `LOCATION 's3://MyLogFiles/AWSLogs/'`\.
++ To analyze data from a specific date, account, and Region, use `LOCATION 's3://MyLogFiles/123456789012/CloudTrail/us-east-1/2016/03/14/'.` 
 
 Using the highest level in the object hierarchy gives you the greatest flexibility when you query using Athena\.
 
@@ -58,11 +58,8 @@ You cannot use the CloudTrail console to create an Athena table for organization
 
 1. In the navigation pane, choose **Event history**\. 
 
-1. Do one of the following:
-   + If you are using the newer CloudTrail console, choose **Create Athena table**\.  
+1. Choose **Create Athena table**\.  
 ![\[Choose Create Athena table\]](http://docs.aws.amazon.com/athena/latest/ug/images/cloudtrail-logs-create-athena-table.png)
-   + If you are using the older CloudTrail console, choose **Run advanced queries in Amazon Athena**\.  
-![\[Choose Run advanced queries in Amazon Athena.\]](http://docs.aws.amazon.com/athena/latest/ug/images/cloudtrail-logs-create-athena-table-older-console.png)
 
 1. For **Storage location**, use the down arrow to select the Amazon S3 bucket where log files are stored for the trail to query\.
 **Note**  
@@ -154,7 +151,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
 
 Because CloudTrail logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena partition projection feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
 
-The following example `CREATE TABLE` statement automatically uses partition projection on CloudTrail logs from a specified date until the present for a single AWS region\. In the `LOCATION` and `storage.location.template` clauses, replace the *bucket*, *account\-id*, and *aws\-region* placeholders with correspondingly identical values\. For `projection.timestamp.range`, replace *2020*/*01*/*01* with the starting date that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\.
+The following example `CREATE TABLE` statement automatically uses partition projection on CloudTrail logs from a specified date until the present for a single AWS Region\. In the `LOCATION` and `storage.location.template` clauses, replace the *bucket*, *account\-id*, and *aws\-region* placeholders with correspondingly identical values\. For `projection.timestamp.range`, replace *2020*/*01*/*01* with the starting date that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\.
 
 ```
 CREATE EXTERNAL TABLE cloudtrail_logs_pp(

@@ -1,6 +1,6 @@
 # Document History<a name="DocHistory"></a>
 
-**Latest documentation update: June 3, 2021\.**  
+**Latest documentation update: July 26, 2021\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
@@ -61,7 +61,7 @@ We update the documentation frequently to address your feedback\. The following 
 | Added support for Asia Pacific \(Sydney\)\. | Added support for Asia Pacific \(Sydney\)\. For a list of supported regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.  | September 25, 2017 | 
 | Added a section to this guide for querying AWS Service logs and different types of data, including maps, arrays, nested data, and data containing JSON\. | Added examples for [Querying AWS Service Logs](querying-AWS-service-logs.md) and for querying different types of data in Athena\. For information, see [Running SQL Queries Using Amazon Athena](querying-athena-tables.md)\. | September 5, 2017 | 
 | Added support for AWS Glue Data Catalog\. | Added integration with the AWS Glue Data Catalog and a migration wizard for updating from the Athena managed data catalog to the AWS Glue Data Catalog\. For more information, see [Integration with AWS Glue](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html) and [AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html)\. | August 14, 2017 | 
-| Added support for Grok SerDe\. | Added support for Grok SerDe, which provides easier pattern matching for records in unstructured text files such as logs\. For more information, see [Grok SerDe](https://docs.aws.amazon.com/athena/latest/ug/grok.html)\. Added keyboard shortcuts to scroll through query history using the console \(CTRL \+ ???/??? using Windows, CMD \+ ???/??? using Mac\)\. | August 4, 2017 | 
+| Added support for Grok SerDe\. | Added support for Grok SerDe, which provides easier pattern matching for records in unstructured text files such as logs\. For more information, see [Grok SerDe](https://docs.aws.amazon.com/athena/latest/ug/grok.html)\. Added keyboard shortcuts to scroll through query history using the console\. | August 4, 2017 | 
 | Added support for Asia Pacific \(Tokyo\)\. | Added support for Asia Pacific \(Tokyo\) and Asia Pacific \(Singapore\)\. For a list of supported regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\. | June 22, 2017 | 
 | Added support for Europe \(Ireland\)\. | Added support for Europe \(Ireland\)\. For more information, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\. | June 8, 2017 | 
 | Added an Amazon Athena API and AWS CLI support\. | Added an Amazon Athena API and AWS CLI support for Athena\. Updated JDBC driver to version 1\.1\.0\. | May 19, 2017 | 

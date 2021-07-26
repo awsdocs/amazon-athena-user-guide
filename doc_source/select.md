@@ -62,19 +62,43 @@ The `from_item` can be either:
   +  `ON join_condition | USING (join_column [, ...])` Where using `join_condition` allows you to specify column names for join keys in multiple tables, and using `join_column` requires `join_column` to exist in both tables\.
 
 **\[ WHERE condition \]**  
-Filters results according to the `condition` you specify\.
+Filters results according to the `condition` you specify, where `condition` generally has the following syntax\.  
+
+```
+column_name operator value [[[AND | OR] column_name operator value] ...]
+```
+The *operator* can be one of the comparators `=`, `>`, `<`, `>=`, `<=`, `<>`, `!=`\.   
+The following subquery expressions can also be used in the `WHERE` clause\.  
++ `[NOT] BETWEEN integer_A AND integer_B` – Specifies a range between two integers, as in the following example\. If the column datatype is `varchar`, the column must be cast to integer first\.
+
+  ```
+  SELECT DISTINCT processid FROM "webdata"."impressions"
+  WHERE cast(processid as int) BETWEEN 1500 and 1800
+  ORDER BY processid
+  ```
++ `[NOT] LIKE value` – Searches for the pattern specified\. Use the percent sign \(`%`\) as a wildcard character, as in the following example\.
+
+  ```
+  SELECT * FROM "webdata"."impressions"
+  WHERE referrer LIKE '%.org'
+  ```
++ `[NOT] IN (value[, value[, ...])` – Specifies a list of possible values for a column, as in the following example\.
+
+  ```
+  SELECT * FROM "webdata"."impressions"
+  WHERE referrer IN ('example.com','example.net','example.org')
+  ```
 
 **\[ GROUP BY \[ ALL \| DISTINCT \] grouping\_expressions \[, \.\.\.\] \]**  
 Divides the output of the `SELECT` statement into rows with matching values\.  
  `ALL` and `DISTINCT` determine whether duplicate grouping sets each produce distinct output rows\. If omitted, `ALL` is assumed\.   
-`grouping_expressions` allow you to perform complex grouping operations\.  
-The `grouping_expressions` element can be any function, such as `SUM`, `AVG`, or `COUNT`, performed on input columns, or be an ordinal number that selects an output column by position, starting at one\.   
+`grouping_expressions` allow you to perform complex grouping operations\. You can use complex grouping operations to perform analysis that requires aggregation on multiple sets of columns in a single query\.  
+The `grouping_expressions` element can be any function, such as `SUM`, `AVG`, or `COUNT`, performed on input columns\.   
 `GROUP BY` expressions can group output by input column names that don't appear in the output of the `SELECT` statement\.   
 All output expressions must be either aggregate functions or columns present in the `GROUP BY` clause\.   
- You can use a single query to perform analysis that requires aggregating multiple column sets\.   
-These complex grouping operations don't support expressions comprising input columns\. Only column names or ordinals are allowed\.   
-You can often use `UNION ALL` to achieve the same results as these `GROUP BY` operations, but queries that use `GROUP BY` have the advantage of reading the data one time, whereas `UNION ALL` reads the underlying data three times and may produce inconsistent results when the data source is subject to change\.   
-`GROUP BY CUBE` generates all possible grouping sets for a given set of columns\. `GROUP BY ROLLUP` generates all possible subtotals for a given set of columns\.
+You can use a single query to perform analysis that requires aggregating multiple column sets\.   
+Athena supports complex aggregations using `GROUPING SETS`, `CUBE` and `ROLLUP`\. `GROUP BY GROUPING SETS` specifies multiple lists of columns to group on\. `GROUP BY CUBE` generates all possible grouping sets for a given set of columns\. `GROUP BY ROLLUP` generates all possible subtotals for a given set of columns\. Complex grouping operations do not support grouping on expressions composed of input columns\. Only column names are allowed\.   
+You can often use `UNION ALL` to achieve the same results as these `GROUP BY` operations, but queries that use `GROUP BY` have the advantage of reading the data one time, whereas `UNION ALL` reads the underlying data three times and may produce inconsistent results when the data source is subject to change\. 
 
 **\[ HAVING condition \]**  
 Used with aggregate functions and the `GROUP BY` clause\. Controls which groups are selected, eliminating groups that don't satisfy `condition`\. This filtering occurs after groups and aggregates are computed\.
@@ -97,7 +121,7 @@ The default null ordering is `NULLS LAST`, regardless of ascending or descending
 **LIMIT \[ count \| ALL \]**  
 Restricts the number of rows in the result set to `count`\. `LIMIT ALL` is the same as omitting the `LIMIT` clause\. If the query has no `ORDER BY` clause, the results are arbitrary\.
 
-**TABLESAMPLE BERNOULLI \| SYSTEM \(percentage\)**  
+**TABLESAMPLE \[ BERNOULLI \| SYSTEM \] \(percentage\)**  
 Optional operator to select rows from a table based on a sampling method\.  
  `BERNOULLI` selects each row to be in the table sample with a probability of `percentage`\. All physical blocks of the table are scanned, and certain rows are skipped based on a comparison between the sample `percentage` and a random value calculated at runtime\.   
 With `SYSTEM`, the table is divided into logical segments of data, and the table is sampled at this granularity\.   

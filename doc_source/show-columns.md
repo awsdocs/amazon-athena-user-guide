@@ -1,15 +1,43 @@
 # SHOW COLUMNS<a name="show-columns"></a>
 
-Lists the columns in the schema for a base table or a view\. To use a `SELECT` statement to show columns, see [Listing or Searching Columns for a Specified Table or View](querying-glue-catalog.md#querying-glue-catalog-listing-columns)\.
+Lists the names of the columns a specified table or view\. To view additional column metadata \(such as data type\), see [Listing or Searching Columns for a Specified Table or View](querying-glue-catalog.md#querying-glue-catalog-listing-columns)\.
 
 ## Synopsis<a name="synopsis"></a>
 
 ```
-SHOW COLUMNS IN table_name|view_name
+SHOW COLUMNS (FROM|IN) database_name.table_name
 ```
+
+```
+SHOW COLUMNS (FROM|IN) table_name [(FROM|IN) database_name]
+```
+
+The `FROM` and `IN` keywords can be used interchangeably\. If *table\_name* or *database\_name* has special characters like hyphens, surround the name with backquotes \(for example, ``my-database`.`my-table``\)\. Do not surround the *table\_name* or *database\_name* with single or double quotes\. Currently, the use of `LIKE` and pattern matching expressions is not supported\.
 
 ## Examples<a name="examples"></a>
 
+The following equivalent examples show the columns from the `orders` table in the `customers` database\. The first two examples assume that `customers` is the current database\.
+
 ```
-SHOW COLUMNS IN clicks;
+SHOW COLUMNS FROM orders
+```
+
+```
+SHOW COLUMNS IN orders
+```
+
+```
+SHOW COLUMNS FROM customers.orders
+```
+
+```
+SHOW COLUMNS IN customers.orders
+```
+
+```
+SHOW COLUMNS FROM orders FROM customers
+```
+
+```
+SHOW COLUMNS IN orders IN customers
 ```

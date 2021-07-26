@@ -5,6 +5,7 @@ To explore and visualize your data with business intelligence tools, download, i
 **Topics**
 + [Using Athena with the JDBC Driver](connect-with-jdbc.md)
 + [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)
++ [Power BI Connector](connect-with-odbc-and-power-bi.md)
 
 See also the following AWS Knowledge Center and AWS Big Data Blog topics:
 + [How can I use my IAM role credentials or switch to another IAM role when connecting to Athena using the JDBC driver?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-iam-jdbc-driver/) 

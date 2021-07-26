@@ -6,8 +6,7 @@ You can use the Athena parameterized query feature to prepare statements for rep
 + Prepared statements are workgroup\-specific, and prepared statement names must be unique within the workgroup\.
 + Parameterized queries are supported only in Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\.
 + IAM permissions for prepared statements are required\. For more information, see [Allow Access to Prepared Statements](security-iam-athena-prepared-statements.md)\.
-+ Currently, parameterized queries are supported only for `SELECT`, `INSERT INTO`, and `CTAS` statements\.
-+ The current version of the [JDBC driver](connect-with-jdbc.md) supports prepared statements\. ODBC support is planned\.
++ Currently, parameterized queries are supported only for `SELECT`, `INSERT INTO`, `CTAS`, and `UNLOAD` statements\.
 
 ## SQL Statements<a name="querying-with-prepared-statements-sql-statements"></a>
 
@@ -20,7 +19,7 @@ The following sections provide additional detail about each of these statements\
 
 ### PREPARE<a name="querying-with-prepared-statements-prepare"></a>
 
-Prepares a statement to be run at a later time\. Prepared statements are saved in the current workgroup with the name that you specify\. The statement can include parameters in place of literals to be replaced when the query is run\. Parameters to be replaced by values are represented by question marks\.
+Prepares a statement to be run at a later time\. Prepared statements are saved in the current workgroup with the name that you specify\. The statement can include parameters in place of literals to be replaced when the query is run\. Parameters to be replaced by values are denoted by question marks\.
 
 #### Syntax<a name="querying-with-prepared-statements-prepare-syntax"></a>
 
@@ -38,9 +37,9 @@ The following table describes these parameters\.
 | statement\_name | The name of the statement to be prepared\. The name must be unique within the workgroup\. | 
 | statement | A SELECT, CTAS, or INSERT INTO query\. | 
 
-#### Examples<a name="querying-with-prepared-statements-prepare-examples"></a>
+#### PREPARE Examples<a name="querying-with-prepared-statements-prepare-examples"></a>
 
-The following examples show the use of the `PREPARE` statement\.
+The following examples show the use of the `PREPARE` statement\. Question marks denote the values to be supplied by the `EXECUTE` statement when the query is run\.
 
 ```
 PREPARE my_select1 FROM
@@ -50,6 +49,11 @@ SELECT * FROM nation
 ```
 PREPARE my_select2 FROM
 SELECT * FROM "my_database"."my_table" WHERE year = ?
+```
+
+```
+PREPARE my_select3 FROM
+SELECT order FROM orders WHERE productid = ? and quantity < ?
 ```
 
 ```
@@ -72,7 +76,7 @@ EXECUTE statement_name [USING value1 [ ,value2, ... ] ]
 
 *statement\_name* is the name of the prepared statement\. *value1* and *value2* are the values to be specified for the parameters in the statement\.
 
-#### Examples<a name="querying-with-prepared-statements-execute-examples"></a>
+#### EXECUTE Examples<a name="querying-with-prepared-statements-execute-examples"></a>
 
 The following example runs the `my_select1` prepared statement, which contains no parameters\.
 
@@ -80,15 +84,16 @@ The following example runs the `my_select1` prepared statement, which contains n
 EXECUTE my_select1
 ```
 
-The following example prepares and executes a query that has two parameters\.
+The following example runs the `my_select2` prepared statement, which contains a single parameter\.
 
 ```
-PREPARE my_select2 FROM
-SELECT order FROM orders WHERE productid = ? and quantity < ?
+EXECUTE my_select2 USING 2012
 ```
 
+The following example runs the `my_select3` prepared statement, which has two parameters\.
+
 ```
-EXECUTE my_select2 USING 346078, 12
+EXECUTE my_select3 USING 346078, 12
 ```
 
 The following example supplies a string value for a parameter in the prepared statement `my_insert`\.

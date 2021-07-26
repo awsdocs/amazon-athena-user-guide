@@ -25,7 +25,7 @@ Watch the following videos to learn more about using UDFs in Athena\.
 The following video shows how you can use UDFs in Amazon Athena to redact sensitive information\.
 
 **Note**  
-The syntax in this video is prerelease, but the concepts are the same\. Use Athena engine version 2 without the `AmazonAthenaPreviewFunctionality` workgroup and refer to the information later on this page for updated syntax\. 
+The syntax in this video is prerelease, but the concepts are the same\. Use Athena engine version 2 without the `AmazonAthenaPreviewFunctionality` workgroup\. 
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/AxJ6jP4Pfmo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/AxJ6jP4Pfmo)
 
@@ -50,22 +50,6 @@ LAMBDA 'lambda_function'
 SELECT  [...] UDF_name(expression) [...]
 ```
 
-**Note**  
-This syntax is different from the preview version of UDFs in Amazon Athena\. For information on updating queries from the preview version, see the following section\.
-
-#### Updating Your Queries from Preview<a name="ml-synopsis-preview"></a>
-
-The following table shows the key differences between the preview syntax and the syntax in the current version\. To update your preview queries, make the changes noted in the table\.
-
-
-****  
-
-| Preview Syntax | Current Syntax | 
-| --- | --- | 
-| USING FUNCTION | USING EXTERNAL FUNCTION | 
-| RETURNS data\_type TYPE | RETURNS data\_type | 
-| LAMBDA\_INVOKE WITH \(lambda\_name = 'lambda\_function'\)  | LAMBDA 'lambda\_name' | 
-
 ### Parameters<a name="udf-parameters"></a>
 
 **USING EXTERNAL FUNCTION *UDF\_name*\(*variable1* *data\_type*\[, *variable2* *data\_type*\]\[,\.\.\.\]\)**  
@@ -73,7 +57,7 @@ The following table shows the key differences between the preview syntax and the
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/querying-udf.html)
 
 **RETURNS *data\_type***  
-`data_type` specifies the SQL data type that the UDF returns as output\. Athena data types listed in the table above are supported\.
+`data_type` specifies the SQL data type that the UDF returns as output\. Athena data types listed in the table above are supported\. For the `DECIMAL` data type, use the syntax `RETURNS DECIMAL(precision, scale)` where *precision* and *scale* are integers\.
 
 **LAMBDA '*lambda\_function*'**  
 *lambda\_function* specifies the name of the Lambda function to be invoked when running the UDF\.

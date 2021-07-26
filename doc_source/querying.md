@@ -93,6 +93,9 @@ The command returns output similar to the following\. For descriptions of each o
 
 You can download the query results CSV file from the query pane immediately after you run a query, or using the query **History**\.
 
+**Note**  
+Athena query result files are data files that contain information that can be configured by individual users\. Some programs that read and analyze this data can potentially interpret some of the data as commands \(CSV injection\)\. For this reason, when you import query results CSV data to a spreadsheet program, that program might warn you about security concerns\. To keep your system secure, you should always choose to disable links or macros from downloaded query results\.
+
 **To download the query results file of the most recent query**
 
 1. Enter your query in the query editor and then choose **Run query**\.

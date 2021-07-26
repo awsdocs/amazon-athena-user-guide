@@ -12,7 +12,7 @@ The permissions required to run Athena queries include the following:
 The following topics provide more information about permissions for specific areas of Athena\.
 
 **Topics**
-+ [Managed Policies for User Access](managed-policies.md)
++ [AWS managed policies](managed-policies.md)
 + [Access through JDBC and ODBC Connections](policy-actions.md)
 + [Access to Amazon S3](s3-permissions.md)
 + [Cross\-account Access to S3 Buckets](cross-account-permissions.md)

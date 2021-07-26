@@ -8,4 +8,4 @@ For detailed information and examples about how to grant Amazon S3 access, see t
 + [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\.
 
 **Note**  
-Athena does not support restricting or allowing access to Amazon S3 resources based on the `aws:SourceIp` condition key\. 
+Athena does not support restricting or allowing access to Amazon S3 resources based on the `aws:SourceIp`, `aws:SourceVpc`, or `aws:SourceVpce` condition keys\.

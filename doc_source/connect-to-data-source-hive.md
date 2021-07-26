@@ -80,7 +80,7 @@ Prebuilt and custom data connectors might require access to the following resour
 + **Athena** – Access is required to check query status and prevent overscan\.
 + **AWS Glue** – Access is required if your connector uses AWS Glue for supplemental or primary metadata\.
 + **AWS Key Management Service**
-+ **Policies** – Hive metastore, Athena Query Federation, and UDFs require policies in addition to the [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md)\. For more information, see [Identity and Access Management in Athena](security-iam-athena.md)\.
++ **Policies** – Hive metastore, Athena Query Federation, and UDFs require policies in addition to the [AWS managed policy: AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy)\. For more information, see [Identity and Access Management in Athena](security-iam-athena.md)\.
 
 ### Spill Location in Amazon S3<a name="connect-to-data-source-hive-spill-location"></a>
 

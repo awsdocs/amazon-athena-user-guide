@@ -5,18 +5,18 @@
 ## Athena engine version 2<a name="engine-versions-reference-0002"></a>
 
 Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html), introduces the following changes\. Currently, Athena engine version 2 is available in all Regions where Athena is supported, including Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), AWS GovCloud \(US\-East\), AWS GovCloud \(US\-West\), Canada \(Central\), China \(Beijing\), China \(Ningxia\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Milan\), Europe \(Paris\), Europe \(Stockholm\), Middle East \(Bahrain\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\)\.
-+ [Improvements and New Features](#engine-versions-reference-0002-improvements-and-new-features)
-  + [Grouping, Join, and Subquery Improvements](#engine-versions-reference-0002-grouping-join-and-subquery-improvements)
-  + [Datatype Enhancements](#engine-versions-reference-0002-datatype-related-improvements)
-  + [Added Functions](#engine-versions-reference-0002-added-functions)
-  + [Performance Improvements](#engine-versions-reference-0002-improvements-performance)
-  + [JSON\-Related Improvements](#engine-versions-reference-0002-improvements-json-related-improvements)
-+ [ Breaking Changes](#engine-versions-reference-0002-breaking-changes)
-  + [Bug Fixes](#engine-versions-reference-0002-bug-fixes)
-  + [Changes to Geospatial Functions](#engine-versions-reference-0002-changes-to-geospatial-functions)
-  + [ANSI SQL Compliance](#engine-versions-reference-0002-ansi-sql-compliance)
-  + [Replaced Functions](#engine-versions-reference-0002-replaced-functions)
-  + [Limits](#engine-versions-reference-0002-limits)
++  [Improvements and New Features](#engine-versions-reference-0002-improvements-and-new-features) 
+  +  [Grouping, Join, and Subquery Improvements](#engine-versions-reference-0002-grouping-join-and-subquery-improvements) 
+  +  [Datatype Enhancements](#engine-versions-reference-0002-datatype-related-improvements) 
+  +  [Added Functions](#engine-versions-reference-0002-added-functions) 
+  +  [Performance Improvements](#engine-versions-reference-0002-improvements-performance) 
+  +  [JSON\-Related Improvements](#engine-versions-reference-0002-improvements-json-related-improvements) 
++  [ Breaking Changes](#engine-versions-reference-0002-breaking-changes) 
+  +  [Bug Fixes](#engine-versions-reference-0002-bug-fixes) 
+  +  [Changes to Geospatial Functions](#engine-versions-reference-0002-changes-to-geospatial-functions) 
+  +  [ANSI SQL Compliance](#engine-versions-reference-0002-ansi-sql-compliance) 
+  +  [Replaced Functions](#engine-versions-reference-0002-replaced-functions) 
+  +  [Limits](#engine-versions-reference-0002-limits) 
 
 ### Improvements and New Features<a name="engine-versions-reference-0002-improvements-and-new-features"></a>
 + **Federated queries** – Federated queries are supported in Athena engine version 2\. For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\. 
@@ -69,59 +69,59 @@ For more information about each function, visit the corresponding link to the Pr
 
 ##### Aggregate Functions<a name="engine-versions-reference-0002-aggregate-functions"></a>
 
-[reduce\_agg\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#reduce_agg)
+ [reduce\_agg\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#reduce_agg) 
 
 ##### Array Functions and Operators<a name="engine-versions-reference-0002-array-functions-and-operators"></a>
 
 [array\_sort\(\)](https://prestodb.io/docs/0.217/functions/array.html#array_sort) \- Variant of this function added that takes a Lambda function as a comparator\.
 
-[ngrams\(\)](https://prestodb.io/docs/0.217/functions/array.html#ngrams)
+ [ngrams\(\)](https://prestodb.io/docs/0.217/functions/array.html#ngrams) 
 
 ##### Binary Functions and Operators<a name="engine-versions-reference-0002-binary-functions-and-operators"></a>
 
-[from\_big\_endian\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#from_big_endian_32)
+ [from\_big\_endian\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#from_big_endian_32) 
 
-[from\_ieee754\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#from_ieee754_32)
+ [from\_ieee754\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#from_ieee754_32) 
 
-[from\_ieee754\_64\(\)](https://prestodb.io/docs/0.217/functions/binary.html#from_ieee754_64)
+ [from\_ieee754\_64\(\)](https://prestodb.io/docs/0.217/functions/binary.html#from_ieee754_64) 
 
-[hmac\_md5\(\)](https://prestodb.io/docs/0.217/functions/binary.html#hmac_md5)
+ [hmac\_md5\(\)](https://prestodb.io/docs/0.217/functions/binary.html#hmac_md5) 
 
-[hmac\_sha1\(\)](https://prestodb.io/docs/0.217/functions/binary.html#hmac_sha1)
+ [hmac\_sha1\(\)](https://prestodb.io/docs/0.217/functions/binary.html#hmac_sha1) 
 
-[hmac\_sha256\(\)](https://prestodb.io/docs/0.217/functions/binary.html#hmac_sha256)
+ [hmac\_sha256\(\)](https://prestodb.io/docs/0.217/functions/binary.html#hmac_sha256) 
 
-[hmac\_sha512\(\)](https://prestodb.io/docs/0.217/functions/binary.html#hmac_sha512)
+ [hmac\_sha512\(\)](https://prestodb.io/docs/0.217/functions/binary.html#hmac_sha512) 
 
-[spooky\_hash\_v2\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#spooky_hash_v2_32)
+ [spooky\_hash\_v2\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#spooky_hash_v2_32) 
 
-[spooky\_hash\_v2\_64\(\)](https://prestodb.io/docs/0.217/functions/binary.html#spooky_hash_v2_64)
+ [spooky\_hash\_v2\_64\(\)](https://prestodb.io/docs/0.217/functions/binary.html#spooky_hash_v2_64) 
 
-[to\_big\_endian\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#to_big_endian_32)
+ [to\_big\_endian\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#to_big_endian_32) 
 
-[to\_ieee754\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#to_ieee754_32)
+ [to\_ieee754\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#to_ieee754_32) 
 
-[to\_ieee754\_64\(\)](https://prestodb.io/docs/0.217/functions/binary.html#to_ieee754_64)
+ [to\_ieee754\_64\(\)](https://prestodb.io/docs/0.217/functions/binary.html#to_ieee754_64) 
 
 ##### Date and Time Functions and Operators<a name="engine-versions-reference-0002-date-and-time-functions-and-operators"></a>
 
-[millisecond\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#millisecond)
+ [millisecond\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#millisecond) 
 
-[parse\_duration\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#parse_duration)
+ [parse\_duration\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#parse_duration) 
 
-[to\_milliseconds\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#to_milliseconds)
+ [to\_milliseconds\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#to_milliseconds) 
 
 ##### Map Functions and Operators<a name="engine-versions-reference-0002-map-functions-and-operators"></a>
 
-[multimap\_from\_entries\(\)](https://prestodb.io/docs/0.217/functions/map.html#multimap_from_entries)
+ [multimap\_from\_entries\(\)](https://prestodb.io/docs/0.217/functions/map.html#multimap_from_entries) 
 
 ##### Mathematical Functions and Operators<a name="engine-versions-reference-0002-mathematical-functions-and-operators"></a>
 
-[inverse\_normal\_cdf\(\)](https://prestodb.io/docs/0.217/functions/math.html#inverse_normal_cdf)
+ [inverse\_normal\_cdf\(\)](https://prestodb.io/docs/0.217/functions/math.html#inverse_normal_cdf) 
 
-[wilson\_interval\_lower\(\)](https://prestodb.io/docs/0.217/functions/math.html#wilson_interval_lower)
+ [wilson\_interval\_lower\(\)](https://prestodb.io/docs/0.217/functions/math.html#wilson_interval_lower) 
 
-[wilson\_interval\_upper\(\)](https://prestodb.io/docs/0.217/functions/math.html#wilson_interval_upper)
+ [wilson\_interval\_upper\(\)](https://prestodb.io/docs/0.217/functions/math.html#wilson_interval_upper) 
 
 ##### Quantile Digest Functions<a name="engine-versions-reference-0002-quantile-digest-functions"></a>
 
@@ -129,9 +129,9 @@ For more information about each function, visit the corresponding link to the Pr
 
 ##### String Functions and Operators<a name="engine-versions-reference-0002-string-functions-and-operators"></a>
 
-[hamming\_distance\(\)](https://prestodb.io/docs/0.217/functions/string.html#hamming_distance)
+ [hamming\_distance\(\)](https://prestodb.io/docs/0.217/functions/string.html#hamming_distance) 
 
-[split\_to\_multimap\(\)](https://prestodb.io/docs/0.217/functions/string.html#split_to_multimap)
+ [split\_to\_multimap\(\)](https://prestodb.io/docs/0.217/functions/string.html#split_to_multimap) 
 
 #### Performance Improvements<a name="engine-versions-reference-0002-improvements-performance"></a>
 
@@ -143,7 +143,7 @@ Performance of the following features has improved in Athena engine version 2\.
 + **Filter and projection operations** – Filter and projection operations are now always processed by columns if possible\. The engine automatically takes advantage of dictionary encodings where effective\.
 + **Gathering exchanges** – Improved performance for queries with gathering exchanges\.
 + **Global aggregations** – Improved performance for some queries that perform filtered global aggregations\.
-+ **GROUPING SETS, CUBE, ROLLUP** – Improved performance for queries involving `GROUPING SETS`, `CUBE` or `ROLLUP`\.
++ **GROUPING SETS, CUBE, ROLLUP** – Improved performance for queries involving `GROUPING SETS`, `CUBE` or `ROLLUP`, which you can use to aggregate multiple sets of columns in a single query\.
 + **Highly selective filters** – Improved the performance of queries with highly selective filters\.
 + ** JOIN and AGGREGATE operations** – The performance of `JOIN` and `AGGREGATE` operations has been enhanced\.
 + **LIKE** – Improved the performance of queries that use `LIKE` predicates on the columns of `information_schema` tables\.
@@ -192,18 +192,18 @@ Performance of the following features has improved in Athena engine version 2\.
 
 #### JSON\-Related Improvements<a name="engine-versions-reference-0002-improvements-json-related-improvements"></a>
 
-**Map Functions**
+ **Map Functions** 
 + Improved performance of map subscript from `O(n)` to `O(1)` in all cases\. Previously, only maps produced by certain functions and readers took advantage of this improvement\.
 + Added the `map_from_entries()` and `map_entries()` functions\.
 
-**Casting**
+ **Casting** 
 + Added ability to cast to `JSON` from `REAL`, `TINYINT` or `SMALLINT`\.
 + You can now cast `JSON` to `ROW` even if the `JSON` does not contain every field in the `ROW`\.
 + Improved performance of `CAST(json_parse(...) AS ...)`\.
 + Improved the performance of casting from `JSON` to `ARRAY` or `MAP` types\.
 
-**New JSON Functions**
-+ [is\_json\_scalar\(\)](https://prestodb.io/docs/0.217/functions/json.html#is_json_scalar)
+ **New JSON Functions** 
++  [is\_json\_scalar\(\)](https://prestodb.io/docs/0.217/functions/json.html#is_json_scalar) 
 
 ### Breaking Changes<a name="engine-versions-reference-0002-breaking-changes"></a>
 
@@ -250,6 +250,7 @@ The following syntax and behavioral issues have been corrected to follow the ANS
 + **Grouped aggregation semantics** – Grouped aggregations use `IS NOT DISTINCT FROM` semantics rather than equality semantics\. Grouped aggregations now return correct results and show improved performance when grouping on `NaN` floating point values\. Grouping on map, list, and row types that contain nulls is supported\.
 + **Types with quotation marks are no longer allowed** – In accordance with the ANSI SQL standard, data types can no longer be enclosed in quotation marks\. For example, `SELECT "date" '2020-02-02'` is no longer a valid query\. Instead, use the syntax `SELECT date '2020-02-02'`\.
 + **Anonymous row field access** – Anonymous row fields can no longer be accessed by using the syntax \[`.field0, .field1, ...`\]\.
++ **Complex grouping operations** – The complex grouping operations `GROUPING SETS`, `CUBE`, and `ROLLUP` do not support grouping on expressions composed of input columns\. Only column names are allowed\.
 
 #### Replaced Functions<a name="engine-versions-reference-0002-replaced-functions"></a>
 

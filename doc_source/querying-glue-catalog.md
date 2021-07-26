@@ -152,6 +152,8 @@ The following table shows sample results\.
 
 You can list all columns for a table, all columns for a view, or search for a column by name in a specified database and table\.
 
+To list the columns, use a `SELECT *` query\. In the `FROM` clause, specify `information_schema.columns`\. In the `WHERE` clause, use `table_schema='database_name'` to specify the database and `table_name = 'table_name'` to specify the table or view that has the columns that you want to list\.
+
 **Example – Listing All Columns for a Specified Table**  
 The following example query lists all columns for the table `rdspostgresqldb1_public_account`\.  
 

@@ -48,9 +48,24 @@ CREATE EXTERNAL TABLE impressions (
 )   
 PARTITIONED BY (dt string)
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
-with serdeproperties ( 'paths'='requestbegintime, adid, impressionid, referrer, useragent, usercookie, ip' )
+WITH SERDEPROPERTIES ( 'paths'='requestbegintime, adid, impressionid, referrer, useragent, usercookie, ip' )
 LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 ```
+
+### Specifying timestamp formats with the Hive JSON SerDe<a name="hive-json-serde-timestamp-formats"></a>
+
+To parse timestamp values from string, you can use the `timestamp.formats` parameter in `SERDEPROPERTIES` to specify a comma\-separated list of one or more timestamp patterns, as in the following example:
+
+```
+...
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+WITH SERDEPROPERTIES ("timestamp.formats"="yyyy-MM-dd'T'HH:mm:ss.SSS'Z',yyyy-MM-dd'T'HH:mm:ss")
+...
+```
+
+For more information, see [Timestamps](https://cwiki.apache.org/confluence/display/hive/languagemanual+types#LanguageManualTypes-TimestampstimestampTimestamps) in the Apache Hive documentation\.
+
+### Loading the table for querying<a name="hive-json-serde-loading-the-table"></a>
 
 After you create the table, run [MSCK REPAIR TABLE](msck-repair-table.md) to load the table and make it queryable from Athena:
 
@@ -60,7 +75,7 @@ MSCK REPAIR TABLE impressions
 
 ## OpenX JSON SerDe<a name="openx-json-serde"></a>
 
-In addition to the `paths` property that defines the columns in the table, the OpenX JSON SerDe has the following optional properties that can be useful for addressing inconsistencies in data\.
+In addition to the `paths` property for the columns in the table, the OpenX JSON SerDe has the following optional properties that can be useful for addressing inconsistencies in data\.
 
 **ignore\.malformed\.json**  
 Optional\. When set to `TRUE`, lets you skip malformed JSON syntax\. The default is `FALSE`\.

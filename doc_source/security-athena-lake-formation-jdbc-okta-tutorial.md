@@ -45,10 +45,7 @@ In this step, you use the Okta console to perform the following tasks:
 
 1. After you activate your Okta account, log in as administrative user to the assigned Okta domain\.
 
-1. If you are in the **Developer Console**, use the option on the top left of the page to choose the **Classic UI**\.  
-![\[Choose the classic UI.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-1.png)
-
-1. In the **Classic UI**, choose **Directory**, and then choose **People**\.
+1. In the left navigation pane, choose **Directory**, and then choose **People**\.
 
 1. Choose **Add Person** to add a new user who will access Athena through the JDBC driver\.  
 ![\[Choose Add Person.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-3.png)
@@ -70,7 +67,7 @@ In the following procedure, you provide access for two Okta groups through the A
 
 **To add Okta groups**
 
-1. From the Okta classic UI, choose **Directory**, and then choose **Groups**\.
+1. In the Okta navigation pane, choose **Directory**, and then choose **Groups**\.
 
 1. On the **Groups** page, choose **Add Group**\.  
 ![\[Choose Add Group.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-4c.png)
@@ -86,8 +83,7 @@ In the following procedure, you provide access for two Okta groups through the A
 
 1. Enter the required information\.
    + For **Name**, enter *lf\-developer*\.
-   + For **Group Description**, enter *Developers*\.  
-![\[Adding a "Developers" Okta group.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-4e.png)
+   + For **Group Description**, enter *Developers*\.
 
 1. Choose **Add Group**\.
 
@@ -109,7 +105,7 @@ Now that you have two users and two groups, you are ready to add a user to each 
 
 1. Choose **Save**\.
 
-1. Choose **Back to Groups**, or choose **Directory**, and then choose **Groups**\.
+1. Choose **Back to Group**, or choose **Directory**, and then choose **Groups**\.
 
 1. Choose the **lf\-business\-analyst** group\.
 
@@ -117,7 +113,7 @@ Now that you have two users and two groups, you are ready to add a user to each 
 
 1. Add the **athena\-ba\-user** to the **Members** list of the **lf\-business\-analyst** group, and then choose **Save**\. 
 
-1. Choose **Back to Groups**, or choose **Directory**, **Groups**\.
+1. Choose **Back to Group**, or choose **Directory**, **Groups**\.
 
    The **Groups** page now shows that each group has one Okta user\.  
 ![\[One user has been added to each Okta group in the Okta console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-4j.png)
@@ -132,12 +128,11 @@ In this step, you use the Okta developer console to perform the following tasks:
 
 **To add an application for SAML authentication**
 
-1. From the menu, choose **Applications** so that you can configure an Okta application for SAML authentication to Athena\.
+1. In the Okta navigation pane, choose **Applications**, **Applications** so that you can configure an Okta application for SAML authentication to Athena\.
 
-1. Click **Add Application**\.  
-![\[Click Add Application.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-6.png)
+1. Click **Browse App Catalog**\.
 
-1. In the search box, search for **Redshift**\.
+1. In the search box, enter **Redshift**\.
 
 1. Choose **Amazon Web Services Redshift**\. The Okta application in this tutorial uses the existing SAML integration for Amazon Redshift\.  
 ![\[Choose Amazon Web Services Redshift.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-7.png)
@@ -152,7 +147,9 @@ Now that you have created an Okta application, you can assign it to the users an
 
 **To assign the application to users and groups**
 
-1. On the application **Assignments** tab, choose **Assign**, **Assign to People**\.  
+1. On the **Applications** page, choose the **Athena\-LakeFormation\-Okta** application\.
+
+1. On the **Assignments** tab, choose **Assign**, **Assign to People**\.  
 ![\[Choose Assign, Assign to People.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-10.png)
 
 1. In the **Assign Athena\-LakeFormation\-Okta to People** dialog box, find the **athena\-okta\-user** user that you created previously\.
@@ -160,13 +157,11 @@ Now that you have created an Okta application, you can assign it to the users an
 1. Choose **Assign** to assign the user to the application\.  
 ![\[Choose Assign.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-11.png)
 
-1. Choose **Save and Go Back**\.  
-![\[Choose Save and Go Back.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-12.png)
+1. Choose **Save and Go Back**\.
 
 1. Choose **Done**\.
 
-1. On the **Assignments** tab for the **Athena\-LakeFormation\-Okta** application, choose **Assign**, **Assign to Groups**\.   
-![\[Choose Assign to Groups.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-12a.png)
+1. On the **Assignments** tab for the **Athena\-LakeFormation\-Okta** application, choose **Assign**, **Assign to Groups**\. 
 
 1. For **lf\-business\-analyst**, choose **Assign** to assign the **Athena\-LakeFormation\-Okta** application to the **lf\-business\-analyst** group, and then choose **Done**\.  
 ![\[Assigning an Okta application to an Okta user group.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-12b.png)
@@ -354,18 +349,17 @@ In this step, you return to the Okta developer console and perform the following
 
 1. Sign into the Okta developer console\.
 
-1. Choose the **Applications** tab, and then choose the `Athena-LakeFormation-Okta` application\.  
-![\[Choose the Athena-LakeFormation-Okta application.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-23.png)
+1. Choose the **Applications** tab, and then choose the `Athena-LakeFormation-Okta` application\.
 
 1. Choose on the **Sign On** tab for the application, and then choose **Edit**\.  
 ![\[Edit the Okta application.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-24.png)
 
-1. Expand **Attributes \(optional\)**\.
-
-1. Under **Attribute Statements \(optional\)**, add the following attribute:
-   + For **Name**, enter **https://lakeformation\.amazon\.com/SAML/Attributes/Username**\.
-   + For **Value**, enter **user\.login**  
+1. Choose **Attributes \(optional\)** to expand it\.  
 ![\[Adding a user Lake Formation URL attribute to the Okta application.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-25.png)
+
+1. For **Attribute Statements \(optional\)**, add the following attribute:
+   + For **Name**, enter **https://lakeformation\.amazon\.com/SAML/Attributes/Username**\.
+   + For **Value**, enter **user\.login**
 
 1. Under **Group Attribute Statements \(optional\)**, add the following attribute:
    + For **Name**, enter **https://lakeformation\.amazon\.com/SAML/Attributes/Groups**\.
@@ -628,8 +622,6 @@ Next, you return to the Okta console to add the `athena-ba-user` to the `lf-deve
 **To add the athena\-ba\-user to the lf\-developer group**
 
 1. Sign in to the Okta console as an administrative user of the assigned Okta domain\.
-
-1. Switch to the **Classic UI**\.
 
 1. Choose **Directory**, and then choose **Groups**\.
 

@@ -2,7 +2,7 @@
 
 To invoke a Lambda function in your account, you must create a role that has the following permissions:
 + `AWSLambdaVPCAccessExecutionRole` – An [AWS Lambda Execution Role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) permission to manage elastic network interfaces that connect your function to a VPC\. Ensure that you have a sufficient number of network interfaces and IP addresses available\.
-+ `AmazonAthenaFullAccess` – The [AmazonAthenaFullAccess](amazonathenafullaccess-managed-policy.md) managed policy grants full access to Athena\.
++ `AmazonAthenaFullAccess` – The [AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy) managed policy grants full access to Athena\.
 + An Amazon S3 policy to allow the Lambda function to write to S3 and to allow Athena to read from S3\.
 
 For example, the following policy defines the permission for the spill location `s3:\\mybucket\spill`\.
@@ -37,7 +37,7 @@ Because Athena uses the AWS Serverless Application Repository to create Lambda f
 
 ## Catalog Registration and Metadata API Operations<a name="hive-metastore-iam-access-lambda-catalog-registration-and-metadata-api-operations"></a>
 
-For access to catalog registration API and metadata API operations, use the [AmazonAthenaFullAccess managed policy](amazonathenafullaccess-managed-policy.md)\. If you do not use this policy, add the following API operations to your Athena policies:
+For access to catalog registration API and metadata API operations, use the [AmazonAthenaFullAccess managed policy](managed-policies.md#amazonathenafullaccess-managed-policy)\. If you do not use this policy, add the following API operations to your Athena policies:
 
 ```
         {

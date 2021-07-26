@@ -17,7 +17,7 @@ The following sections summarize the permissions required to use Athena to query
 
 ## Identity\-Based Permissions For Lake Formation and Athena<a name="lf-athena-user-permissions-identity-based"></a>
 
-Anyone using Athena to query data registered with Lake Formation must have an IAM permissions policy that allows the `lakeformation:GetDataAccess` action\. The [AmazonAthenaFullAccess Managed Policy](amazonathenafullaccess-managed-policy.md) allows this action\. If you use inline policies, be sure to update permissions policies to allow this action\.
+Anyone using Athena to query data registered with Lake Formation must have an IAM permissions policy that allows the `lakeformation:GetDataAccess` action\. The [AWS managed policy: AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy) allows this action\. If you use inline policies, be sure to update permissions policies to allow this action\.
 
 In Lake Formation, a *data lake administrator* has permissions to create metadata objects such as databases and tables, grant Lake Formation permissions to other users, and register new Amazon S3 locations\. To register new locations, permissions to the service\-linked role for Lake Formation are required\. For more information, see [Create a Data Lake Administrator](https://docs.aws.amazon.com/lake-formation/latest/dg/getting-started-setup.html#create-data-lake-admin) and [Service\-Linked Role Permissions for Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html#service-linked-role-permissions) in the *AWS Lake Formation Developer Guide*\.
 

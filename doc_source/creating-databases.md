@@ -15,3 +15,5 @@ A database in Athena is a logical grouping for tables you create in it\. Creatin
 **Note**  
 Currently, the database menu can show and filter a maximum of 1000 databases regardless of the type of data catalog used\. This is a limitation of the Athena console, not an account limit\. The number of databases that can be displayed and filtered is not user configurable\.  
 ![\[Choosing a database in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/catalogdashboard.png)
+
+For information on controlling permissions to Athena databases, see [Fine\-Grained Access to Databases and Tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\.

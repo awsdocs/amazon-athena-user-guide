@@ -3,7 +3,7 @@
 + To aggregate multiple rows within an array, use `array_agg`\. For information, see [Creating Arrays from Subqueries](creating-arrays-from-subqueries.md)\.
 
 **Note**  
-`ORDER BY` is not supported for aggregation functions, for example, you cannot use it within `array_agg(x)`\.
+`ORDER BY` is supported for aggregation functions starting in Athena engine version 2\.
 
 ```
 WITH

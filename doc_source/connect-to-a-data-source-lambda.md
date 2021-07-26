@@ -28,9 +28,13 @@ To choose, name, and deploy a data source connector, you use the Athena and Lamb
 
 1. Choose **Next**\.
 
-1. For **Lambda function**, choose **Configure new function**\. The function page for the connector that you chose opens in the Lambda console\. The page includes detailed information about the connector\.
+1. For **Lambda function**, choose **Configure new AWS Lambda function**\. The function page for the connector that you chose opens in the Lambda console\. The page includes detailed information about the connector\.
 
-1. Under **Application settings**, enter the required information\. At a minimum, this includes:
+1. Under **Application settings**, read the description for each application setting carefully, and then enter values that correspond to your requirements\.
+**Note**  
+The application settings that you see vary depending on the connector for your data source\. The Amazon Redshift, MySQL, and PostgreSQL options use the Amazon Athena connector for JDBC\-compliant data sources\. For more information, see [Amazon Athena Lambda JDBC Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-jdbc) on GitHub\.
+
+    The minimum required settings include:
    + **AthenaCatalogName** – A name for the Lambda function that indicates the data source that it targets, such as `cloudwatchlogs`\.
    + **SpillBucket** – An Amazon S3 bucket in your account to store data that exceeds Lambda function response size limits\.
 

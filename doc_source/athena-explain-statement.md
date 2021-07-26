@@ -6,7 +6,6 @@ The `EXPLAIN` statement shows the logical or distributed execution plan of a spe
 
 The `EXPLAIN` statement in Athena has the following limitations\.
 + Because `EXPLAIN` queries do not scan any data, Athena does not charge for them\. However, because `EXPLAIN` queries make calls to AWS Glue to retrieve table metadata, you may incur charges from Glue if the calls go above the [free tier limit for Glue](http://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23analytics&all-free-tier.q=glue&all-free-tier.q_operator=AND)\.
-+ Currently, the `EXPLAIN` statement is not supported for the JDBC or ODBC drivers\.
 + Athena does not support `EXPLAIN ANALYZE`, which collects runtime statistics\.
 
 ## Syntax – Athena engine version 1<a name="athena-explain-statement-syntax-athena-engine-version-1"></a>

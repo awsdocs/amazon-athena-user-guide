@@ -45,7 +45,7 @@ The following considerations apply:
 + Queries for values that are beyond the range bounds defined for partition projection do not return an error\. Instead, the query runs, but returns zero rows\. For example, if you have time\-related data that starts in 2020 and is defined as `'projection.timestamp.range'='2020/01/01,NOW'`, a query like `SELECT * FROM table-name WHERE timestamp = '2019/02/02'` will complete successfully, but return zero rows\.
 + Partition projection is usable only when the table is queried through Athena\. If the same table is read through another service such as Amazon Redshift Spectrum or Amazon EMR, the standard partition metadata is used\.
 + Because partition projection is a DML\-only feature, `SHOW PARTITIONS` does not list partitions that are projected by Athena but not registered in the AWS Glue catalog or external Hive metastore\. 
-+ Views in Athena do not use projection configuration properties\.
++ Athena does not use the table properties of views as configuration for partition projection\. To work around this limitation, configure and enable partition projection in the table properties for the tables that the views reference\.
 
 ## Video<a name="partition-projection-video"></a>
 

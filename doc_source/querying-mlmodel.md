@@ -28,22 +28,6 @@ SAGEMAKER 'sagemaker_endpoint'
 SELECT ml_function_name()
 ```
 
-**Note**  
-This syntax is different from the preview version of ML with Athena\. For information on updating queries from the preview version, see the following section\.
-
-#### Updating Your Queries from Preview<a name="ml-synopsis-preview"></a>
-
-The following table shows the key differences between the preview syntax and the syntax in the current version\. To update your preview queries, make the changes noted in the table\.
-
-
-****  
-
-| Preview Syntax | Current Syntax | 
-| --- | --- | 
-| USING FUNCTION | USING EXTERNAL FUNCTION | 
-| RETURNS data\_type TYPE | RETURNS data\_type | 
-| SAGEMAKER\_INVOKE\_ENDPOINT WITH \(sagemaker\_endpoint = 'endpoint'\)  | SAGEMAKER 'endpoint' | 
-
 ### Parameters<a name="udf-parameters"></a>
 
 **USING EXTERNAL FUNCTION *ml\_function\_name* \(*variable1* *data\_type*\[, *variable2* *data\_type*\]\[,\.\.\.\]\)**  
