@@ -192,31 +192,23 @@ In this step, you use the AWS Identity and Access Management \(IAM\) console to 
 
 1. Sign in to the **Amazon Web Services account** **console** as **Amazon Web Services account administrator** and navigate to the **IAM** console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\)\.
 
-1. In the navigation pane, choose **Identity providers**, and then click **Create Provider**\.  
-![\[Creating an identity provider in the IAM console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-15.png)
+1. In the navigation pane, choose **Identity providers**, and then click **Add provider**\.
 
-1. On the **Configure Provider** screen, enter the following information:
-   + For Provider Type, choose SAML\.
-   + For **Provider Name**, enter `AthenaLakeFormationOkta`\.
-   + For **Metadata Document**, choose the identity provider \(IdP\) metadata XML file that you downloaded\.  
-![\[Configuring a SAML identity provider.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-16.png)
+1. On the **Configure provider** screen, enter the following information:
+   + For **Provider type**, choose **SAML**\.
+   + For **Provider name**, enter `AthenaLakeFormationOkta`\.
+   + For **Metadata document**, use the **Choose file** option to upload the identity provider \(IdP\) metadata XML file that you downloaded\.
 
-1. Choose **Next Step**\.
-
-1. On the **Verify Provider Information** page, choose **Create**\.  
-![\[Choose Create.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-17.png)
-
-   In the IAM console, the **AthenaLakeFormationOkta** provider that you created appears in the list of identity providers\.  
-![\[Identity provider created in the IAM console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-18.png)
+1. Choose **Add provider**\.
 
 Next, you create an IAM role for AWS Lake Formation access\. You add two inline policies to the role\. One policy provides permissions to access Lake Formation and the AWS Glue APIs\. The other policy provides access to Athena and the Athena query results location in Amazon S3\.
 
 **To create an IAM role for AWS Lake Formation access**
 
-1. In the IAM console navigation pane, choose **Roles**, and then choose **Create role**\.  
-![\[Creating an IAM role.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-19.png)
+1. In the IAM console navigation pane, choose **Roles**, and then choose **Create role**\.
 
-1. On the **Create role** page, perform the following steps:
+1. On the **Create role** page, perform the following steps:  
+![\[Configuring an IAM role to use SAML 2.0.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-20.png)
 
    1. For **Select type of trusted entity**, choose **SAML 2\.0 Federation\.**
 
@@ -224,8 +216,7 @@ Next, you create an IAM role for AWS Lake Formation access\. You add two inline 
 
    1. For **SAML provider**, select the option **Allow programmatic and AWS Management Console access**\.
 
-   1. Choose **Next: Permissions**\.  
-![\[Configuring an IAM role to use SAML 2.0.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-20.png)
+   1. Choose **Next: Permissions**\.
 
 1. On the **Attach Permissions policies** page, for **Filter policies**, enter **Athena**\.
 

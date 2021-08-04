@@ -20,6 +20,16 @@ Use the following tips to decide whether to partition and/or to configure bucket
 
 To conclude, you can partition and use bucketing for storing results of the same CTAS query\. These techniques for writing data do not exclude each other\. Typically, the columns you use for bucketing differ from those you use for partitioning\. 
 
-For example, if your dataset has columns `department`, `sales_quarter`, and `ts` \(for storing `timestamp` type data\), you can partition your CTAS query results by `department` and `sales_quarter`\. These columns have relatively low cardinality of values: a limited number of departments and sales quarters\. Also, for partitions, it does not matter if some records in your dataset have null or no values assigned for these columns\. What matters is that data with the same characteristics, such as data from the same department, will be in one partition that you can query in Athena\. 
+For example, if your dataset has columns `department`, `sales_quarter`, and `customer_id` \(integer type\), you can partition your CTAS query results by `department` and `sales_quarter`\. These columns have relatively low cardinality of values: a limited number of departments and sales quarters\. Also, for partitions, it does not matter if some records in your dataset have null or no values assigned for these columns\. What matters is that data with the same characteristics, such as data from the same department, will be in one partition that you can query in Athena\. 
 
-At the same time, because all of your data has `timestamp` type values stored in a `ts` column, you can configure bucketing for the same query results by the column `ts`\. This column has high cardinality\. You can store its data in more than one bucket in Amazon S3\. Consider an opposite scenario: if you don't create buckets for timestamp type data and run a query for particular date or time values, then you would have to scan a very large amount of data stored in a single location in Amazon S3\. Instead, if you configure buckets for storing your date\- and time\-related results, you can only scan and query buckets that have your value and avoid long\-running queries that scan a large amount of data\. 
+At the same time, because all of your data has integer type values stored in the column `customer_id`, you can configure bucketing for the same query results by the column `customer_id`\. This column has high cardinality\. You can store its data in more than one bucket in Amazon S3\. Consider an opposite scenario: if you don't create buckets for the column `customer_id` and run a query for particular customer ID values, then you would have to scan a very large amount of data stored in a single location in Amazon S3\. Instead, if you configure buckets for storing your ID\-related results, you can only scan and query buckets that have your value and avoid long\-running queries that scan a large amount of data\. 
+
+## Data Types Supported for Filtering on Bucketed Columns<a name="bucketing-data-types-supported-for-filtering"></a>
+
+You can reduce the amount of data scanned by adding filters on bucketed columns that have certain data types\. Athena supports such filtering only on bucketed columns with the following data types:
++ `TINYINT`
++ `SMALLINT`
++ `INT`
++ `BIGINT`
++ `BOOLEAN`
++ `STRING`

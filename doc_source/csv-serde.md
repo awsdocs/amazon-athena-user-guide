@@ -1,14 +1,12 @@
 # OpenCSVSerDe for Processing CSV<a name="csv-serde"></a>
 
-When you create a table from CSV data in Athena, determine what types of values it contains:
-+ If data contains values enclosed in double quotes \(`"`\), you can use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\. In the following sections, note the behavior of this SerDe with `STRING` data types\.
-+ If data does not contain values enclosed in double quotes \(`"`\), you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\.
+When you create an Athena table for CSV data, determine the SerDe to use what types of values it contains:
++ If your data contains values enclosed in double quotes \(`"`\), you can use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\. If your data does not contain values enclosed in double quotes \(`"`\), you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\.
++  If your data has UNIX numeric `TIMESTAMP` values \(for example, `1579059880000`\), use the OpenCSVSerDe\. If your data uses the `java.sql.Timestamp` format, use the LazySimpleSerDe\.
 
 ## CSV SerDe \(OpenCSVSerDe\)<a name="csv-serde-opencsvserde"></a>
 
-The [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) behaves as follows:
-+ Converts all column type values to `STRING`\.
-+ To recognize data types other than `STRING`, relies on the Presto parser and converts the values from `STRING` into those data types if it can recognize them\.
+The [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) has the following characteristics for string data:
 + Uses double quotes \(`"`\) as the default quote character, and allows you to specify separator, quote, and escape characters, such as: 
 
   ```
@@ -16,27 +14,21 @@ The [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) 
   ```
 + Cannot escape `\t` or `\n` directly\. To escape them, use `"escapeChar" = "\\"`\. See the example in this topic\.
 + Does not support embedded line breaks in CSV files\.
-+ Does not support empty fields in columns defined as a numeric data type\.
 
-**Note**  
-When you use Athena with OpenCSVSerDe, the SerDe converts all column types to `STRING`\. Next, the parser in Athena parses the values from `STRING` into actual types based on what it finds\. For example, it parses the values into `BOOLEAN`, `BIGINT`, `INT`, and `DOUBLE` data types when it can discern them\. If the values are in `TIMESTAMP` in the UNIX format, Athena parses them as `TIMESTAMP`\. If the values are in `TIMESTAMP` in Hive format, Athena parses them as `INT`\. `DATE` type values are also parsed as `INT`\.   
- To further convert columns to the desired type in a table, you can [create a view](views.md) over the table and use `CAST` to convert to the desired type\.
-
-For data types *other* than `STRING`, when the parser in Athena can recognize them, this SerDe behaves as follows:
-+ Recognizes `BOOLEAN`, `BIGINT`, `INT`, and `DOUBLE` data types and parses them without changes\. The parser does not recognize empty or null values in columns defined as a numeric data type, leaving them as the default data type of `STRING`\. The workaround is to declare the column as `STRING` and then `CAST` it in a `SELECT` query or view\.
-+ Recognizes the `TIMESTAMP` type if it is specified in the UNIX numeric format, such as `1564610311`\.
-+ Does not support `TIMESTAMP` in the JDBC\-compliant `java.sql.Timestamp` format, such as `"YYYY-MM-DD HH:MM:SS.fffffffff"` \(9 decimal place precision\)\. If you are processing CSV data from Hive, use the UNIX numeric format\.
-+ Recognizes the `DATE` type if it is specified in the UNIX numeric format, such as `1562112000`\.
-+ Does not support `DATE` in another format\. If you are processing CSV data from Hive, use the UNIX numeric format\.
-
-**Note**  
-For information about using the `TIMESTAMP` and `DATE` columns when they are not specified in the UNIX numeric format, see the article [When I query a table in Amazon Athena, the TIMESTAMP result is empty](https://aws.amazon.com/premiumsupport/knowledge-center/query-table-athena-timestamp-empty/) in the [AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
+For data types other than `STRING`, the OpenCSVSerDe behaves as follows:
++ Recognizes `BOOLEAN`, `BIGINT`, `INT`, and `DOUBLE` data types\. 
++ Does not recognize empty or null values in columns defined as a numeric data type, leaving them as `string`\. One workaround is to create the column with the null values as `string` and then use `CAST` to convert the field in a query to a numeric data type, supplying a default value of `0` for nulls\. For more information, see [When I query CSV data in Athena, I get the error HIVE\_BAD\_DATA: Error parsing field value](http://aws.amazon.com/premiumsupport/knowledge-center/athena-hive-bad-data-error-csv/) in the AWS Knowledge Center\.
++ For columns specified with the `timestamp` data type in your `CREATE TABLE` statement, recognizes `TIMESTAMP` data if it is specified in the UNIX numeric format in milliseconds, such as `1579059880000`\. 
+  + The OpenCSVSerDe does not support `TIMESTAMP` in the JDBC\-compliant `java.sql.Timestamp` format, such as `"YYYY-MM-DD HH:MM:SS.fffffffff"` \(9 decimal place precision\)\.
++ For columns specified with the `DATE` data type in your `CREATE TABLE` statement, recognizes values as dates if the values represent the number of days that elapsed since January 1, 1970\. For example, the value `18276` in a column with the `date` data type renders as `2020-01-15` when queried\. In this UNIX format, each day is considered to have 86,400 seconds\.
+  + The OpenCSVSerDe does not support `DATE` in any other format directly\. To process timestamp data in other formats, you can define the column as `string` and then use time conversion functions to return the desired results in your `SELECT` query\. For more information, see the article [When I query a table in Amazon Athena, the TIMESTAMP result is empty](https://aws.amazon.com/premiumsupport/knowledge-center/query-table-athena-timestamp-empty/) in the [AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
++ To further convert columns to the desired type in a table, you can [create a view](views.md) over the table and use `CAST` to convert to the desired type\.
 
 **Example: Using the TIMESTAMP type and DATE type specified in the UNIX numeric format\.**  
-Consider the following test data:  
+Consider the following three columns of comma\-separated data\. The values in each column are enclosed in double quotes\.  
 
 ```
-"unixvalue creationdate 18276 creationdatetime 1579146280000","18276","1579146280000"
+"unixvalue creationdate 18276 creationdatetime 1579059880000","18276","1579059880000"
 ```
 The following statement creates a table in Athena from the specified Amazon S3 bucket location\.  
 
@@ -47,18 +39,18 @@ CREATE EXTERNAL TABLE IF NOT EXISTS testtimestamp1(
  `creationdatetime` timestamp
  )
  ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
- LOCATION 's3://<location>'
+ LOCATION 's3://DOC-EXAMPLE-BUCKET'
 ```
 Next, run the following query:   
 
 ```
-select * from testtimestamp1
+SELECT * FROM testtimestamp1
 ```
 The query returns the following result, showing the date and time data:  
 
 ```
-        profile_id       creationdate       creationdatetime
-1       unixvalue creationdate 18276 creationdatetime 1579146280000       2020-01-15       2020-01-16 03:44:40.000
+profile_id                                                        creationdate     creationdatetime
+unixvalue creationdate 18276 creationdatetime 1579146280000       2020-01-15       2020-01-15 03:44:40.000
 ```
 
 **Example: Escaping `\t` or `\n`**  
@@ -76,12 +68,12 @@ f1 string,
 s2 string) 
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' 
 WITH SERDEPROPERTIES ("separatorChar" = ",", "escapeChar" = "\\") 
-LOCATION 's3://user-test-region/dataset/test1/'
+LOCATION 's3://DOC-EXAMPLE-BUCKET/dataset/test1/'
 ```
 Next, run the following query:   
 
 ```
-select * from test1;
+SELECT * FROM test1;
 ```
 It returns this result, correctly escaping `\t` or `\n`:  
 
@@ -121,7 +113,7 @@ For examples, see the `CREATE TABLE` statements in [Querying Amazon VPC Flow Log
 
 ### Example<a name="example"></a>
 
-This example presumes data in CSV saved in `s3://mybucket/mycsv/` with the following contents:
+This example presumes data in CSV saved in `s3://DOC-EXAMPLE-BUCKET/mycsv/` with the following contents:
 
 ```
 "a1","a2","a3","a4"
@@ -145,7 +137,7 @@ WITH SERDEPROPERTIES (
    'escapeChar' = '\\'
    )
 STORED AS TEXTFILE
-LOCATION 's3://location/of/csv/';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/mycsv/';
 ```
 
 Query all values in the table:
@@ -163,6 +155,3 @@ a1       a2      a3      a4
 1        2       abc     def
 a        a1      abc3    ab4
 ```
-
-**Note**  
-The flight table data comes from [Flights](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&amp;DB_Short_Name=On-Time) provided by US Department of Transportation, [Bureau of Transportation Statistics](http://www.transtats.bts.gov/)\. Desaturated from original\.

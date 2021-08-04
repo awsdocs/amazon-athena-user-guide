@@ -47,7 +47,7 @@ When you work with Amazon S3 buckets, remember the following points:
 
 ## Per Account API Call Quotas<a name="service-limits-api-calls"></a>
 
-In all Regions except US East \(N\. Virginia\), Athena APIs have the following default quotas for the number of calls to the API per account \(not per query\):
+Athena APIs have the following default quotas for the number of calls to the API per account \(not per query\):
 
 
 | API Name | Default Number of Calls per Second | Burst Capacity | 
@@ -58,19 +58,7 @@ In all Regions except US East \(N\. Virginia\), Athena APIs have the following d
 | StartQueryExecution, StopQueryExecution | 20 | up to 80 | 
 | GetQueryExecution, GetQueryResults | 100 | up to 200 | 
 
-**US East \(N\. Virginia\) Region**  
-In the US East \(N\. Virginia\) Region, Athena APIs have the following default quotas for the number of calls to the API per account \(not per query\):
-
-
-| API Name | Default Number of Calls per Second | Burst Capacity | 
-| --- | --- | --- | 
-| BatchGetNamedQuery, ListNamedQueries, ListQueryExecutions  | 5 | up to 10 | 
-| CreateNamedQuery, DeleteNamedQuery, GetNamedQuery | 5 | up to 20 | 
-| BatchGetQueryExecution | 5 | up to 10 | 
-| StartQueryExecution, StopQueryExecution | 5 | up to 20 | 
-| GetQueryExecution, GetQueryResults | 25 | up to 50 | 
-
-For example, in most Regions, you can make up to 20 calls per second for `StartQueryExecution`\. In addition, if this API is not called for 4 seconds, your account accumulates a *burst capacity* of up to 80 calls\. In this case, your application can make up to 80 calls to this API in burst mode\.
+For example, you can make up to 20 calls per second for `StartQueryExecution`\. In addition, if this API is not called for 4 seconds, your account accumulates a *burst capacity* of up to 80 calls\. In this case, your application can make up to 80 calls to this API in burst mode\.
 
 If you use any of these APIs and exceed the default quota for the number of calls per second, or the burst capacity in your account, the Athena API issues an error similar to the following: ""ClientError: An error occurred \(ThrottlingException\) when calling the *<API\_name>* operation: Rate exceeded\." Reduce the number of calls per second, or the burst capacity for the API for this account\. To request a quota increase, contact AWS Support\. Open the [AWS Support Center](https://console.aws.amazon.com/support/home#/) page, sign in if necessary, and choose **Create case**\. Choose **Service limit increase**\. Complete and submit the form\.
 

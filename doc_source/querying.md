@@ -129,9 +129,13 @@ Before you can run a query, a query result bucket location in Amazon S3 must be 
 
 **To specify a client\-side setting query result location using the Athena console**
 
+1. [Switch](workgroups-create-update-delete.md#switching-workgroups) to the workgroup for which you want to specify a query results location\. The name of the default workgroup is **primary**\.
+
 1. From the navigation bar, choose **Settings**\.
 
-1. For **Query result location**, enter the path to an existing Amazon S3 folder, including the trailing slash\.
+1. For **Query result location and encryption**, do one of the following:
+   + Choose **Select**, and then choose a path to an existing Amazon S3 folder\.
+   + Enter a path to an Amazon S3 folder, including the trailing slash\. If the bucket or folder does not exist, Athena creates it for you when you first run a query\.
 **Note**  
 Be sure to include the trailing slash\. Failing to include the trailing slash results in the error Invalid S3 folder location\.
 
