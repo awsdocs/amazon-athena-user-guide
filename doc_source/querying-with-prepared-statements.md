@@ -64,6 +64,13 @@ FROM cities_world
 WHERE country = ?
 ```
 
+```
+PREPARE my_unload FROM
+UNLOAD (SELECT * FROM table1 WHERE productid < ?)
+TO 's3://my_output_bucket/'
+WITH (format='PARQUET')
+```
+
 ### EXECUTE<a name="querying-with-prepared-statements-execute"></a>
 
 Runs a prepared statement\. Values for parameters are specified in the `USING` clause\.
@@ -100,6 +107,12 @@ The following example supplies a string value for a parameter in the prepared st
 
 ```
 EXECUTE my_insert USING 'usa'
+```
+
+The following example supplies a numerical value for the `productid` parameter in the prepared statement `my_unload`\.
+
+```
+EXECUTE my_unload USING 12
 ```
 
 ### DEALLOCATE PREPARE<a name="querying-with-prepared-statements-deallocate-prepare"></a>
