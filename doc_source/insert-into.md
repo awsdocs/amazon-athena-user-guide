@@ -57,15 +57,13 @@ Athena writes files to source data locations in Amazon S3 as a result of the `IN
 
 If a `CTAS` or `INSERT INTO` statement fails, it is possible that orphaned data are left in the data location\. Because Athena does not delete any data \(even partial data\) from your bucket, you might be able to read this partial data in subsequent queries\. To locate orphaned files for inspection or deletion, you can use the data manifest file that Athena provides to track the list of files to be written\. For more information, see [Identifying Query Output Files](querying.md#querying-identifying-output-files) and [DataManifestLocation](https://docs.aws.amazon.com/athena/latest/APIReference/API_QueryExecutionStatistics.html#athena-Type-QueryExecutionStatistics-DataManifestLocation)\.
 
-## <a name="insert-into-select"></a>
-
-### INSERT INTO\.\.\.SELECT<a name="insert-into-select.title"></a>
+## INSERT INTO\.\.\.SELECT<a name="insert-into-select"></a>
 
 Specifies the query to run on one table, `source_table`, which determines rows to insert into a second table, `destination_table`\. If the `SELECT` query specifies columns in the `source_table`, the columns must precisely match those in the `destination_table`\.
 
 For more information about `SELECT` queries, see [SELECT](select.md)\.
 
-#### Synopsis<a name="insert-into-select-synopsis"></a>
+### Synopsis<a name="insert-into-select-synopsis"></a>
 
 ```
 INSERT INTO destination_table 
@@ -73,7 +71,7 @@ SELECT select_query
 FROM source_table_or_view
 ```
 
-#### Examples<a name="insert-into-select-examples"></a>
+### Examples<a name="insert-into-select-examples"></a>
 
 Select all rows in the `vancouver_pageviews` table and insert them into the `canada_pageviews` table:
 
@@ -103,14 +101,14 @@ FROM cities_world
     WHERE country='usa'
 ```
 
-### INSERT INTO\.\.\.VALUES<a name="insert-into-values"></a>
+## INSERT INTO\.\.\.VALUES<a name="insert-into-values"></a>
 
 Inserts rows into an existing table by specifying columns and values\. Specified columns and associated data types must precisely match the columns and data types in the destination table\.
 
 **Important**  
 We do not recommend inserting rows using `VALUES` because Athena generates files for each `INSERT` operation\. This can cause many small files to be created and degrade the table's query performance\. To identify files that an `INSERT` query creates, examine the data manifest file\. For more information, see [Working with Query Results, Output Files, and Query History](querying.md)\.
 
-#### Synopsis<a name="insert-into-values-synopsis"></a>
+### Synopsis<a name="insert-into-values-synopsis"></a>
 
 ```
 INSERT INTO destination_table [(col1,col2,...)] 
@@ -119,7 +117,7 @@ VALUES (col1value,col2value,...)[,
        ...]
 ```
 
-#### Examples<a name="insert-into-values-examples"></a>
+### Examples<a name="insert-into-values-examples"></a>
 
 In the following examples, the cities table has three columns: `id`, `city`, `state`, `state_motto`\. The `id` column is type `INT` and all other columns are type `VARCHAR`\.
 

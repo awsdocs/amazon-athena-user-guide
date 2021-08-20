@@ -1,11 +1,12 @@
 # Document History<a name="DocHistory"></a>
 
-**Latest documentation update: August 5, 2021\.**  
+**Latest documentation update: August 19, 2021\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added documentation for the Athena UNLOAD statement\. | Use the UNLOAD statement to write query the results from a SELECT statement to the Apache Parquet, ORC, Apache Avro, and JSON formats\. For more information, see [UNLOAD](unload.md)\. | August 5, 2021 | 
 | Added documentation for the Athena EXPLAIN statement feature\. | For more information, see [Using the EXPLAIN Statement in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\. | April 5, 2021 | 
 | Added pages on troubleshooting and performance tuning in Athena\. | For more information, see [Troubleshooting in Athena](troubleshooting-athena.md) and [Performance Tuning in Athena](performance-tuning.md)\. | December 30, 2020 | 
 | Added documentation for Athena engine versioning and Athena engine version 2\. | For more information, see [Athena Engine Versioning](engine-versions.md)\. | November 11, 2020 | 
@@ -48,7 +49,7 @@ We update the documentation frequently to address your feedback\. The following 
 |  Updated the documentation for querying Amazon Virtual Private Cloud flow logs, which can be stored directly in Amazon S3 in a GZIP format\.  Updated examples for querying ALB logs\.  |  Updated the documentation for querying Amazon Virtual Private Cloud flow logs, which can be stored directly in Amazon S3 in a GZIP format\. For information, see [Querying Amazon VPC Flow Logs](vpc-flow-logs.md)\. Updated examples for querying ALB logs\. For information, see [Querying Application Load Balancer Logs](application-load-balancer-logs.md)\.  | August 7, 2018 | 
 | Added support for views\. Added guidelines for schema manipulations for various data storage formats\.  |  Added support for views\. For information, see [Working with Views](views.md)\. Updated this guide with guidance on handling schema updates for various data storage formats\. For information, see [Handling Schema Updates](handling-schema-updates-chapter.md)\.  | June 5, 2018 | 
 |  Increased default query concurrency limits from five to twenty\. |  You can submit and run up to twenty `DDL` queries and twenty `SELECT` queries at a time\. For information, see [Service Quotas](service-limits.md)\.   | May 17, 2018 | 
-| Added query tabs, and an ability to configure auto\-complete in the Query Editor\.  |  Added query tabs, and an ability to configure auto\-complete in the Query Editor\. For information, see [Using the Console](accessing-Athena.md#console-Athena)\.  | May 8, 2018 | 
+| Added query tabs, and an ability to configure auto\-complete in the Query Editor\.  |  Added query tabs, and an ability to configure auto\-complete in the Query Editor\. For information, see [Using the Console](accessing-athena.md#console-athena)\.  | May 8, 2018 | 
 | Released the JDBC driver version 2\.0\.2\. |  Released the new version of the JDBC driver \(version 2\.0\.2\)\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.  | April 19, 2018 | 
 |  Added auto\-complete for typing queries in the Athena console\.  |  Added auto\-complete for typing queries in the Athena console\.  | April 6, 2018 | 
 |   Added an ability to create Athena tables for CloudTrail log files directly from the CloudTrail console\.   |   Added an ability to automatically create Athena tables for CloudTrail log files directly from the CloudTrail console\. For information, see [Using the CloudTrail Console to Create an Athena Table for CloudTrail Logs ](cloudtrail-logs.md#create-cloudtrail-table-ct)\.  | March 15, 2018 | 

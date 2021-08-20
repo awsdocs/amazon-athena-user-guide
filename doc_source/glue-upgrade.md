@@ -39,31 +39,36 @@ If you have customer\-managed or inline IAM policies associated with Athena user
 
 ```
 {
-  "Effect":"Allow",
-  "Action":[
-    "glue:CreateDatabase",
-    "glue:DeleteDatabase",
-    "glue:GetDatabase",
-    "glue:GetDatabases",
-    "glue:UpdateDatabase",
-    "glue:CreateTable",
-    "glue:DeleteTable",
-    "glue:BatchDeleteTable",
-    "glue:UpdateTable",
-    "glue:GetTable",
-    "glue:GetTables",
-    "glue:BatchCreatePartition",
-    "glue:CreatePartition",
-    "glue:DeletePartition",
-    "glue:BatchDeletePartition",
-    "glue:UpdatePartition",
-    "glue:GetPartition",
-    "glue:GetPartitions",
-    "glue:BatchGetPartition"
-  ],
-  "Resource":[
-    "*"
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "glue:CreateDatabase",
+                "glue:DeleteDatabase",
+                "glue:GetDatabase",
+                "glue:GetDatabases",
+                "glue:UpdateDatabase",
+                "glue:CreateTable",
+                "glue:DeleteTable",
+                "glue:BatchDeleteTable",
+                "glue:UpdateTable",
+                "glue:GetTable",
+                "glue:GetTables",
+                "glue:BatchCreatePartition",
+                "glue:CreatePartition",
+                "glue:DeletePartition",
+                "glue:BatchDeletePartition",
+                "glue:UpdatePartition",
+                "glue:GetPartition",
+                "glue:GetPartitions",
+                "glue:BatchGetPartition"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
 }
 ```
 

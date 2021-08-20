@@ -46,7 +46,7 @@ The endpoint to which this policy is attached grants access to the listed `athen
       "athena:RunQuery",
       "athena:GetQueryExecution",
       "athena:GetQueryResults",
-      "athena:CancelQueryExecution",
+      "athena:StopQueryExecution",
       "athena:ListWorkGroups",
       "athena:GetWorkGroup",
       "athena:TagResource"

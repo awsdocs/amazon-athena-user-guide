@@ -28,6 +28,7 @@ The `AmazonAthenaFullAccess` policy is grouped into the following sets of permis
 + **`s3`** – Allows the principal to write and read query results from Amazon S3, to read publically available Athena data examples that reside in Amazon S3, and to list buckets\. This is required so that the principal can use Athena to work with Amazon S3\.
 + **`sns`** – Allows principals to list Amazon SNS topics and get topic attributes\. This enables principals to use Amazon SNS topics with Athena for monitoring and alert purposes\.
 + **`cloudwatch`** – Allows principals to create, read, and delete CloudWatch alarms\. For more information, see [Controlling Costs and Monitoring Queries with CloudWatch Metrics and Events](control-limits.md)\.
++ **`lakeformation`** – Allows principals to request temporary credentials to access data in a data lake location that is registered with Lake Formation\. For more information, see [Underlying Data Access Control](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html) in the *AWS Lake Formation Developer Guide*\.
 
 ```
 {
@@ -127,6 +128,15 @@ The `AmazonAthenaFullAccess` policy is grouped into the following sets of permis
             "Resource": [
                 "*"
             ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lakeformation:GetDataAccess"
+            ],
+            "Resource": [
+                "*"
+            ]
         }
     ]
 }
@@ -142,6 +152,7 @@ The `AWSQuicksightAthenaAccess` policy is grouped into the following sets of per
 + **`athena`** – Allows the principal to run queries on Athena resources\.
 + **`glue`** – Allows principals access to AWS Glue databases, tables, and partitions\. This is required so that the principal can use the AWS Glue Data Catalog with Athena\.
 + **`s3`** – Allows the principal to write and read query results from Amazon S3\.
++ **`lakeformation`** – Allows principals to request temporary credentials to access data in a data lake location that is registered with Lake Formation\. For more information, see [Underlying Data Access Control](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html) in the *AWS Lake Formation Developer Guide*\.
 
 ```
 {
@@ -151,22 +162,21 @@ The `AWSQuicksightAthenaAccess` policy is grouped into the following sets of per
             "Effect": "Allow",
             "Action": [
                 "athena:BatchGetQueryExecution",
-                "athena:CancelQueryExecution",
-                "athena:GetCatalogs",
-                "athena:GetExecutionEngine",
-                "athena:GetExecutionEngines",
-                "athena:GetNamespace",
-                "athena:GetNamespaces",
                 "athena:GetQueryExecution",
-                "athena:GetQueryExecutions",
                 "athena:GetQueryResults",
                 "athena:GetQueryResultsStream",
-                "athena:GetTable",
-                "athena:GetTables",
                 "athena:ListQueryExecutions",
-                "athena:RunQuery",
                 "athena:StartQueryExecution",
-                "athena:StopQueryExecution"
+                "athena:StopQueryExecution",
+                "athena:ListWorkGroups",
+                "athena:ListEngineVersions",
+                "athena:GetWorkGroup",
+                "athena:GetDataCatalog",
+                "athena:GetDatabase",
+                "athena:GetTableMetadata",
+                "athena:ListDataCatalogs",
+                "athena:ListDatabases",
+                "athena:ListTableMetadata"
             ],
             "Resource": [
                 "*"
@@ -214,6 +224,15 @@ The `AWSQuicksightAthenaAccess` policy is grouped into the following sets of per
             ],
             "Resource": [
                 "arn:aws:s3:::aws-athena-query-results-*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lakeformation:GetDataAccess"
+            ],
+            "Resource": [
+                "*"
             ]
         }
     ]

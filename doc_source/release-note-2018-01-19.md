@@ -23,6 +23,6 @@ Major updates for this release, including the community\-contributed fixes, incl
 +  Added the [https://prestodb.io/docs/0.172/functions/binary.html#xxhash64](https://prestodb.io/docs/0.172/functions/binary.html#xxhash64) and [https://prestodb.io/docs/0.172/functions/binary.html#to_big_endian_64](https://prestodb.io/docs/0.172/functions/binary.html#to_big_endian_64) functions\. 
 + Added support for escaping double quotes or backslashes using a backslash with a JSON path subscript to the [https://prestodb.io/docs/0.172/functions/json.html#json_extract](https://prestodb.io/docs/0.172/functions/json.html#json_extract) and [https://prestodb.io/docs/0.172/functions/json.html#json_extract_scalar](https://prestodb.io/docs/0.172/functions/json.html#json_extract_scalar) functions\. This changes the semantics of any invocation using a backslash, as backslashes were previously treated as normal characters\.
 
-For a complete list of functions and operators, see [SQL Queries, Functions, and Operators](functions-operators-reference-section.md) in this guide, and [Presto 0\.172 Functions]( https://prestodb.io/docs/0.172/functions.html)\. 
+For a complete list of functions and operators, see [SQL Queries, Functions, and Operators](functions-operators-reference-section.md) in this guide, and [Presto 0\.172 Functions](https://prestodb.io/docs/0.172/functions.html)\. 
 
 Athena does not support all of Presto's features\. For more information, see [Limitations](other-notable-limitations.md)\.

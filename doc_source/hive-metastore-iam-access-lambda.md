@@ -40,6 +40,9 @@ Because Athena uses the AWS Serverless Application Repository to create Lambda f
 For access to catalog registration API and metadata API operations, use the [AmazonAthenaFullAccess managed policy](managed-policies.md#amazonathenafullaccess-managed-policy)\. If you do not use this policy, add the following API operations to your Athena policies:
 
 ```
+{
+    "Version": "2012-10-17",
+    "Statement": [
         {
             "Effect": "Allow",
             "Action": [
@@ -57,6 +60,8 @@ For access to catalog registration API and metadata API operations, use the [Ama
                 "*"
             ]
         }
+    ]
+}
 ```
 
 ## Cross Region Lambda Invocation<a name="hive-metastore-iam-access-lambda-cross-region-invocation"></a>
@@ -141,13 +146,18 @@ For example, add the following policy to the Amazon S3 bucket policy in the acco
 
 ```
 {
-  "Sid": "Stmt1234567890123",
-  "Effect": "Allow",
-  "Principal": {
-     "AWS": "arn:aws:iam::444455556666:user/perf1-test"
-  },
-  "Action": "s3:GetObject",
-  "Resource": "arn:aws:s3:::athena-test/lambda/dataset/*"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1234567890123",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::444455556666:user/perf1-test"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::athena-test/lambda/dataset/*"
+        }
+    ]
 }
 ```
 

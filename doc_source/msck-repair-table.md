@@ -38,10 +38,17 @@ After you run `MSCK REPAIR TABLE`, if Athena does not add the partitions to the 
 + Make sure that the Amazon S3 path is in lower case instead of camel case \(for example, `userid` instead of `userId`\)\.
 + **Query timeouts** – `MSCK REPAIR TABLE` is best used when creating a table for the first time or when there is uncertainty about parity between data and partition metadata\. If you use `MSCK REPAIR TABLE` to add new partitions frequently \(for example, on a daily basis\) and are experiencing query timeouts, consider using [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\.
 + **Partitions missing from filesystem** – If you delete a partition manually in Amazon S3 and then run `MSCK REPAIR TABLE`, you may receive the error message Partitions missing from filesystem\. This occurs because `MSCK REPAIR TABLE` doesn't remove stale partitions from table metadata\. To remove the deleted partitions from table metadata, run [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md) instead\. Note that [SHOW PARTITIONS](show-partitions.md) similarly lists only the partitions in metadata, not the partitions in the file system\.
++ **"NullPointerException Name is null" error**
+
+  If you use the AWS Glue [CreateTable](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateTable.html) API operation or the AWS CloudFormation [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) template to create a table for use in Athena without specifying the `TableType` property and then run a DDL query like `SHOW CREATE TABLE` or `MSCK REPAIR TABLE`, you can receive the error message FAILED: NullPointerException Name is null\. 
+
+  To resolve the error, specify a value for the [TableInput](https://docs.aws.amazon.com/glue/latest/webapi/API_TableInput.html) `TableType` attribute as part of the AWS Glue `CreateTable` API call or [AWS CloudFormation template](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html)\. Possible values for `TableType` include `EXTERNAL_TABLE` or `VIRTUAL_VIEW`\.
+
+  This requirement applies only when you create a table using the AWS Glue `CreateTable` API operation or the `AWS::Glue::Table` template\. If you create a table for Athena by using a DDL statement or an AWS Glue crawler, the `TableType` property is defined for you automatically\. 
 
 The following sections provide some additional detail\.
 
-### Allow glue:BatchCreatePartition in the IAM policy<a name="msck-repair-table-troubleshooting-allow-gluebatchcreatepartition-in-the-IAM-policy"></a>
+### Allow glue:BatchCreatePartition in the IAM policy<a name="msck-repair-table-troubleshooting-allow-gluebatchcreatepartition-in-the-policy"></a>
 
 Review the IAM policies attached to the user or role that you're using to run `MSCK REPAIR TABLE`\. When you [use the AWS Glue Data Catalog with Athena](glue-athena.md), the IAM policy must allow the `glue:BatchCreatePartition` action\. For an example of an IAM policy that allows the `glue:BatchCreatePartition` action, see [AWS managed policy: AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy)\.
 

@@ -20,9 +20,9 @@ The following policy is attached to IAM principals in addition to the [AWS manag
                 "lambda:InvokeFunction"
             ],
             "Resource": [
-                "arn:aws:lambda:*:MyAWSAcctId:function:MyAthenaLambdaFunction",
-                "arn:aws:lambda:*:MyAWSAcctId:function:AnotherAthenaLambdaFunction",
-                "arn:aws:lambda:*:MyAWSAcctId:layer:MyAthenaLambdaLayer:*"
+                "arn:aws:lambda:*:111122223333:function:MyAthenaLambdaFunction",
+                "arn:aws:lambda:*:111122223333:function:AnotherAthenaLambdaFunction",
+                "arn:aws:lambda:*:111122223333:layer:MyAthenaLambdaLayer:*"
             ]
         },
         {
@@ -73,7 +73,7 @@ The following policy is attached to IAM principals in addition to the [AWS manag
                 "lambda:PutFunctionConcurrency",
                 "lambda:DeleteFunctionConcurrency"
             ],
-            "Resource": "arn:aws:lambda:*:MyAWSAcctId: function: MyAthenaLambdaFunctionsPrefix*"
+            "Resource": "arn:aws:lambda:*:111122223333: function: MyAthenaLambdaFunctionsPrefix*"
         }
     ]
 }

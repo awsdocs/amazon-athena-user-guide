@@ -249,8 +249,6 @@ Whenever you use IAM policies, make sure that you follow IAM best practices\. Fo
            "Effect": "Allow",
            "Action": [
                "lakeformation:GetDataAccess",
-               "lakeformation:GetMetadataAccess",
-               "glue:GetUnfiltered*",
                "glue:GetTable",
                "glue:GetTables",
                "glue:GetDatabase",

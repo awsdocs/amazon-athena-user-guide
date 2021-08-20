@@ -54,13 +54,10 @@ The following policy allows full access to the single specific data catalog reso
          "Action":[
             "athena:ListDataCatalogs",
             "athena:ListWorkGroups",
-            "athena:GetExecutionEngine",
-            "athena:GetExecutionEngines",
-            "athena:GetNamespace",
-            "athena:GetCatalogs",
-            "athena:GetNamespaces",
-            "athena:GetTables",
-            "athena:GetTable"
+            "athena:GetDatabase",
+            "athena:ListDatabases",
+            "athena:ListTableMetadata",
+            "athena:GetTableMetadata"
          ],
          "Resource":"*"
       },
@@ -140,16 +137,21 @@ In the following policy, a user is allowed to create, delete, obtain details, an
 
 ```
 {
-   "Effect":"Allow",
-   "Action":[
-      "athena:CreateDataCatalog",
-      "athena:GetDataCatalog",
-      "athena:DeleteDataCatalog",
-      "athena:UpdateDataCatalog"
-   ],
-   "Resource":[
-      "arn:aws:athena:us-east-1:123456789012:datacalog/datacatalogA"
-   ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:CreateDataCatalog",
+                "athena:GetDataCatalog",
+                "athena:DeleteDataCatalog",
+                "athena:UpdateDataCatalog"
+            ],
+            "Resource": [
+                "arn:aws:athena:us-east-1:123456789012:datacatalog/datacatalogA"
+            ]
+        }
+    ]
 }
 ```
 
@@ -158,11 +160,16 @@ The following policy allows all users to list all data catalogs:
 
 ```
 {
-   "Effect":"Allow",
-   "Action":[
-      "athena:ListDataCatalogs"
-   ],
-   "Resource":"*"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:ListDataCatalogs"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
 
@@ -171,13 +178,18 @@ The following policy allows metadata operations on data catalogs:
 
 ```
 {
-   "Effect":"Allow",
-   "Action":[
-      "athena:GetDatabase",
-      "athena:GetTableMetadata",
-      "athena:ListDatabases",
-      "athena:ListTableMetadata"
-   ],
-   "Resource":"*"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:GetDatabase",
+                "athena:GetTableMetadata",
+                "athena:ListDatabases",
+                "athena:ListTableMetadata"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```

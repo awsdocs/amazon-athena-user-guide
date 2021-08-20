@@ -2,7 +2,7 @@
 
 Published on *2019\-03\-05*
 
-Amazon Athena is now available in the Canada \(Central\) Region\. For a list of supported Regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\. Released the new version of the ODBC driver with support for Athena workgroups\. For more information, see the [ODBC Driver Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/release-notes.txt )\.
+Amazon Athena is now available in the Canada \(Central\) Region\. For a list of supported Regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\. Released the new version of the ODBC driver with support for Athena workgroups\. For more information, see the [ODBC Driver Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/release-notes.txt)\.
 
 To download the ODBC driver version 1\.0\.5 and its documentation, see [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\. For information about this version, see the [ODBC Driver Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/release-notes.txt)\. 
 

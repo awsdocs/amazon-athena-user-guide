@@ -15,36 +15,39 @@ The following IAM policy allows you to run queries and interact with tags for th
             "Effect": "Allow",
             "Action": [
                 "athena:ListWorkGroups",
-                "athena:GetExecutionEngine",
-                "athena:GetExecutionEngines",
-                "athena:GetNamespace",
-                "athena:GetCatalogs",
-                "athena:GetNamespaces",
-                "athena:GetTables",
-                "athena:GetTable"
+                "athena:ListEngineVersions",
+                "athena:ListDataCatalogs",
+                "athena:ListDatabases",
+                "athena:GetDatabase",
+                "athena:ListTableMetadata",
+                "athena:GetTableMetadata"
             ],
             "Resource": "*"
         },
         {
             "Effect": "Allow",
             "Action": [
-                "athena:StartQueryExecution",
-                "athena:GetQueryResults",
-                "athena:DeleteNamedQuery",
-                "athena:GetNamedQuery",
-                "athena:ListQueryExecutions",
-                "athena:StopQueryExecution",
-                "athena:GetQueryResultsStream",
-                "athena:GetQueryExecutions",
-                "athena:ListNamedQueries",
-                "athena:CreateNamedQuery",
-                "athena:GetQueryExecution",
-                "athena:BatchGetNamedQuery",
-                "athena:BatchGetQueryExecution", 
                 "athena:GetWorkGroup",
                 "athena:TagResource",
                 "athena:UntagResource",
-                "athena:ListTagsForResource" 
+                "athena:ListTagsForResource",
+                "athena:StartQueryExecution",
+                "athena:GetQueryExecution",
+                "athena:BatchGetQueryExecution",
+                "athena:ListQueryExecutions",
+                "athena:StopQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryResultsStream",
+                "athena:CreateNamedQuery",
+                "athena:GetNamedQuery",
+                "athena:BatchGetNamedQuery",
+                "athena:ListNamedQueries",
+                "athena:DeleteNamedQuery",
+                "athena:CreatePreparedStatement",
+                "athena:GetPreparedStatement",
+                "athena:ListPreparedStatements",
+                "athena:UpdatePreparedStatement",
+                "athena:DeletePreparedStatement"
             ],
             "Resource": "arn:aws:athena:us-east-1:123456789012:workgroup/workgroupA"
         }
@@ -57,33 +60,43 @@ Tags that are associated with a resource like a workgroup are referred to as res
 
 ```
 {
-    "Effect": "Deny",
-    "Action": [
-        "athena:StartQueryExecution",
-        "athena:GetQueryResults",
-        "athena:DeleteNamedQuery",
-        "athena:UpdateWorkGroup",
-        "athena:GetNamedQuery",
-        "athena:ListQueryExecutions",
-        "athena:GetWorkGroup",
-        "athena:StopQueryExecution",
-        "athena:GetQueryResultsStream",
-        "athena:GetQueryExecutions",
-        "athena:ListNamedQueries",
-        "athena:CreateNamedQuery",
-        "athena:GetQueryExecution",
-        "athena:BatchGetNamedQuery",
-        "athena:BatchGetQueryExecution",
-        "athena:TagResource",
-        "athena:UntagResource",
-        "athena:ListTagsForResource"
-    ],
-    "Resource": "arn:aws:athena:us-east-1:123456789012:workgroup/*",
-    "Condition": {
-        "StringEquals": {
-            "aws:ResourceTag/stack": "production"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Action": [
+                "athena:GetWorkGroup",
+                "athena:UpdateWorkGroup",
+                "athena:DeleteWorkGroup",
+                "athena:TagResource",
+                "athena:UntagResource",
+                "athena:ListTagsForResource",
+                "athena:StartQueryExecution",
+                "athena:GetQueryExecution",
+                "athena:BatchGetQueryExecution",
+                "athena:ListQueryExecutions",
+                "athena:StopQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryResultsStream",
+                "athena:CreateNamedQuery",
+                "athena:GetNamedQuery",
+                "athena:BatchGetNamedQuery",
+                "athena:ListNamedQueries",
+                "athena:DeleteNamedQuery",
+                "athena:CreatePreparedStatement",
+                "athena:GetPreparedStatement",
+                "athena:ListPreparedStatements",
+                "athena:UpdatePreparedStatement",
+                "athena:DeletePreparedStatement"
+            ],
+            "Resource": "arn:aws:athena:us-east-1:123456789012:workgroup/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/stack": "production"
+                }
+            }
         }
-    }
+    ]
 }
 ```
 
@@ -93,21 +106,26 @@ If you want to allow IAM users to pass in tags as part of a `CreateWorkGroup` op
 
 ```
 {
-    "Effect": "Allow",
-    "Action": [
-        "athena:CreateWorkGroup",
-        "athena:TagResource"
-    ],
-    "Resource": "arn:aws:athena:us-east-1:123456789012:workgroup/*",
-    "Condition": {
-        "StringEquals": {
-            "aws:RequestTag/costcenter": [
-                "1",
-                "2",
-                "3"
-            ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:CreateWorkGroup",
+                "athena:TagResource"
+            ],
+            "Resource": "arn:aws:athena:us-east-1:123456789012:workgroup/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestTag/costcenter": [
+                        "1",
+                        "2",
+                        "3"
+                    ]
+                }
+            }
         }
-    }
+    ]
 }
 ```
 
@@ -118,65 +136,63 @@ The following IAM policy allows you to interact with tags for the data catalog n
 
 ```
 {
-   "Version":"2012-10-17",
-   "Statement":[
-      {
-         "Effect":"Allow",
-         "Action":[
-            "athena:ListWorkGroups",
-            "athena:ListDataCatalogs",
-            "athena:GetExecutionEngine",
-            "athena:GetExecutionEngines",
-            "athena:GetNamespace",
-            "athena:GetNamespaces",
-            "athena:GetTables",
-            "athena:GetTable"
-         ],
-         "Resource":"*"
-      },
-      {
-         "Effect":"Allow",
-         "Action":[
-            "athena:StartQueryExecution",
-            "athena:GetQueryResults",
-            "athena:DeleteNamedQuery",
-            "athena:GetNamedQuery",
-            "athena:ListQueryExecutions",
-            "athena:StopQueryExecution",
-            "athena:GetQueryResultsStream",
-            "athena:GetQueryExecutions",
-            "athena:ListNamedQueries",
-            "athena:CreateNamedQuery",
-            "athena:GetQueryExecution",
-            "athena:BatchGetNamedQuery",
-            "athena:BatchGetQueryExecution",
-            "athena:GetWorkGroup",
-            "athena:TagResource",
-            "athena:UntagResource",
-            "athena:ListTagsForResource"
-         ],
-         "Resource": [
-            "arn:aws:athena:us-east-1:123456789012:workgroup/*"
-         ]
-      },
-      {
-        "Effect":"Allow",
-        "Action":[
-            "athena:CreateDataCatalog",
-            "athena:DeleteDataCatalog",
-            "athena:GetDataCatalog",
-            "athena:GetDatabase",
-            "athena:GetTableMetadata",
-            "athena:ListDatabases",
-            "athena:ListTableMetadata",
-            "athena:UpdateDataCatalog",
-            "athena:TagResource",
-            "athena:UntagResource",
-            "athena:ListTagsForResource"
-        ],
-        "Resource":"arn:aws:athena:us-east-1:123456789012:datacatalog/datacatalogA"
-      }
-   ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:ListWorkGroups",
+                "athena:ListEngineVersions",
+                "athena:ListDataCatalogs",
+                "athena:ListDatabases",
+                "athena:GetDatabase",
+                "athena:ListTableMetadata",
+                "athena:GetTableMetadata"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:GetWorkGroup",
+                "athena:TagResource",
+                "athena:UntagResource",
+                "athena:ListTagsForResource",
+                "athena:StartQueryExecution",
+                "athena:GetQueryExecution",
+                "athena:BatchGetQueryExecution",
+                "athena:ListQueryExecutions",
+                "athena:StopQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryResultsStream",
+                "athena:CreateNamedQuery",
+                "athena:GetNamedQuery",
+                "athena:BatchGetNamedQuery",
+                "athena:ListNamedQueries",
+                "athena:DeleteNamedQuery"
+            ],
+            "Resource": [
+                "arn:aws:athena:us-east-1:123456789012:workgroup/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:CreateDataCatalog",
+                "athena:GetDataCatalog",
+                "athena:UpdateDataCatalog",
+                "athena:DeleteDataCatalog",
+                "athena:ListDatabases",
+                "athena:GetDatabase",
+                "athena:ListTableMetadata",
+                "athena:GetTableMetadata",
+                "athena:TagResource",
+                "athena:UntagResource",
+                "athena:ListTagsForResource"
+            ],
+            "Resource": "arn:aws:athena:us-east-1:123456789012:datacatalog/datacatalogA"
+        }
+    ]
 }
 ```
 
@@ -185,27 +201,32 @@ You can use resource tags to write policy blocks that deny specific actions on d
 
 ```
 {
-   "Effect":"Deny",
-   "Action":[
-      "athena:CreateDataCatalog",
-      "athena:DeleteDataCatalog",
-      "athena:GetDataCatalog",
-      "athena:GetDatabase",
-      "athena:GetTableMetadata",
-      "athena:ListDatabases",
-      "athena:ListTableMetadata",
-      "athena:UpdateDataCatalog",
-      "athena:StartQueryExecution",
-      "athena:TagResource",
-      "athena:UntagResource",
-      "athena:ListTagsForResource"
-   ],
-   "Resource":"arn:aws:athena:us-east-1:123456789012:datacatalog/*",
-   "Condition":{
-      "StringEquals":{
-         "aws:ResourceTag/stack":"production"
-      }
-   }
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Action": [
+                "athena:CreateDataCatalog",
+                "athena:GetDataCatalog",
+                "athena:UpdateDataCatalog",
+                "athena:DeleteDataCatalog",
+                "athena:GetDatabase",
+                "athena:ListDatabases",
+                "athena:GetTableMetadata",
+                "athena:ListTableMetadata",
+                "athena:StartQueryExecution",
+                "athena:TagResource",
+                "athena:UntagResource",
+                "athena:ListTagsForResource"
+            ],
+            "Resource": "arn:aws:athena:us-east-1:123456789012:datacatalog/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/stack": "production"
+                }
+            }
+        }
+    ]
 }
 ```
 
@@ -215,20 +236,25 @@ If you want to allow IAM users to pass in tags as part of a `CreateDataCatalog` 
 
 ```
 {
-   "Effect":"Allow",
-   "Action":[
-      "athena:CreateDataCatalog",
-      "athena:TagResource"
-   ],
-   "Resource":"arn:aws:athena:us-east-1:123456789012:datacatalog/*",
-   "Condition":{
-      "StringEquals":{
-         "aws:RequestTag/costcenter":[
-            "1",
-            "2",
-            "3"
-         ]
-      }
-   }
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:CreateDataCatalog",
+                "athena:TagResource"
+            ],
+            "Resource": "arn:aws:athena:us-east-1:123456789012:datacatalog/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestTag/costcenter": [
+                        "1",
+                        "2",
+                        "3"
+                    ]
+                }
+            }
+        }
+    ]
 }
 ```

@@ -1,8 +1,8 @@
-# Accessing Amazon Athena<a name="accessing-Athena"></a>
+# Accessing Amazon Athena<a name="accessing-athena"></a>
 
  You can access Amazon Athena using the AWS Management Console, the Amazon Athena API, or the AWS CLI\.
 
-## Using the Console<a name="console-Athena"></a>
+## Using the Console<a name="console-athena"></a>
 
 You can use the AWS Management Console for Amazon Athena to do the following:
 + Create or select a database\. 

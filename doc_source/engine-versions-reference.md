@@ -4,7 +4,7 @@
 
 ## Athena engine version 2<a name="engine-versions-reference-0002"></a>
 
-Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html), introduces the following changes\. Currently, Athena engine version 2 is available in all Regions where Athena is supported, including Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), AWS GovCloud \(US\-East\), AWS GovCloud \(US\-West\), Canada \(Central\), China \(Beijing\), China \(Ningxia\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Milan\), Europe \(Paris\), Europe \(Stockholm\), Middle East \(Bahrain\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\)\.
+Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html), introduces the following changes\. Currently, Athena engine version 2 is available in all Regions where Athena is supported, including Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Mumbai\), Asia Pacific \(Osaka\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), AWS GovCloud \(US\-East\), AWS GovCloud \(US\-West\), Canada \(Central\), China \(Beijing\), China \(Ningxia\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Milan\), Europe \(Paris\), Europe \(Stockholm\), Middle East \(Bahrain\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\)\.
 +  [Improvements and New Features](#engine-versions-reference-0002-improvements-and-new-features) 
   +  [Grouping, Join, and Subquery Improvements](#engine-versions-reference-0002-grouping-join-and-subquery-improvements) 
   +  [Datatype Enhancements](#engine-versions-reference-0002-datatype-related-improvements) 
@@ -212,6 +212,7 @@ Breaking changes include bug fixes, changes to geospatial functions, replaced fu
 #### Bug Fixes<a name="engine-versions-reference-0002-bug-fixes"></a>
 
 The following changes correct behavioral issues that caused queries to run successfully, but with inaccurate results\.
++ **fixed\_len\_byte\_array Parquet columns are now accepted as DECIMAL** – Queries on Parquet columns of type `fixed_len_byte_array` succeed and return correct values if they are annotated as `DECIMAL` in the Parquet Schema\. Queries on `fixed_len_byte_array` columns without the `DECIMAL` annotation fail with an error\. Previously, queries on `fixed_len_byte_array` columns without the DECIMAL annotation succeeded but returned incomprehensible values\. 
 + **json\_parse\(\) no longer ignores trailing characters** – Previously, inputs such as `[1,2]abc` would successfully parse as `[1,2]`\. Using trailing characters now produces the error message Cannot convert '\[1, 2\]abc' to JSON\.
 + **round\(\) decimal precision corrected** – `round(x, d)` now correctly rounds `x` when `x` is a DECIMAL or when `x` is a DECIMAL with scale 0 and `d` is a negative integer\. Previously, no rounding occurred in these cases\.
 + **round\(x, d\) and truncate\(x, d\)** – The parameter `d` in the signature of functions `round(x, d)` and `truncate(x, d)` is now of type `INTEGER`\. Previously, `d` could be of type `BIGINT`\.
@@ -219,6 +220,7 @@ The following changes correct behavioral issues that caused queries to run succe
 + **map\_from\_entries\(\) raises an error with null entries ** – `map_from_entries()` now raises an error when the input array contains a null entry\. Queries that construct a map by passing `NULL` as a value now fail\.
 + **Tables** – Tables that have unsupported partition types can no longer be created\.
 + **Improved numerical stability in statistical functions ** – The numerical stability for the statistical functions `corr()`, `covar_samp()`, `regr_intercept()`, and `regr_slope()` has been improved\.
++ **TIMESTAMP precision defined in Parquet is now respected** – The precision of `TIMESTAMP` values and the precision defined for the `TIMESTAMP` column in the Parquet schema must now match\. Non\-matching precisions result in incorrect timestamps\. 
 + **Time zone information** – Time zone information is now calculated using the [java\.time](https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html) package of the Java 1\.8 SDK\.
 + **SUM of INTERVAL\_DAY\_TO\_SECOND and INTERVAL\_YEAR\_TO\_MONTH datatypes ** – You can no longer use `SUM(NULL)` directly\. In order to use `SUM(NULL)`, cast `NULL` to a data type like `BIGINT`, `DECIMAL`, `REAL`, `DOUBLE`, `INTERVAL_DAY_TO_SECOND` or `INTERVAL_YEAR_TO_MONTH`\.
 

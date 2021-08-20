@@ -108,7 +108,7 @@ You can create tables in Athena by using AWS Glue, the add table wizard, or by r
 
    After the table is created, you can run queries against your data\.
 
-## Showing Table Information<a name="creating-tables-showing-table-informationi"></a>
+## Showing Table Information<a name="creating-tables-showing-table-information"></a>
 
  After you have created a table in Athena, you can choose the vertical three dots next to the table name in the Athena console to show information about the table and manage it\. 
 
@@ -120,3 +120,7 @@ You can create tables in Athena by using AWS Glue, the add table wizard, or by r
 + **Delete table** – Displays a confirmation dialog box asking if you want to delete the table\. If you agree, runs the `DROP TABLE table_name` statement in the Athena Query Editor\.
 + **Load partitions** – Runs the `MSCK REPAIR TABLE table_name` statement in the Athena Query Editor\. This option is available only if the table has partitions\. 
 + **Generate Create Table DDL** – Generates a DDL statement that you can use to re\-create the table by running the `SHOW CREATE TABLE` *table\_name* statement in the Athena Query Editor\.
+**Note**  
+If you use the AWS Glue [CreateTable](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateTable.html) API operation or the AWS CloudFormation [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) template to create a table for use in Athena without specifying the `TableType` property and then run a DDL query like `SHOW CREATE TABLE` or `MSCK REPAIR TABLE`, you can receive the error message FAILED: NullPointerException Name is null\.   
+To resolve the error, specify a value for the [TableInput](https://docs.aws.amazon.com/glue/latest/webapi/API_TableInput.html) `TableType` attribute as part of the AWS Glue `CreateTable` API call or [AWS CloudFormation template](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html)\. Possible values for `TableType` include `EXTERNAL_TABLE` or `VIRTUAL_VIEW`\.  
+This requirement applies only when you create a table using the AWS Glue `CreateTable` API operation or the `AWS::Glue::Table` template\. If you create a table for Athena by using a DDL statement or an AWS Glue crawler, the `TableType` property is defined for you automatically\. 

@@ -52,7 +52,7 @@ If you set `projection.enabled` to `true` but fail to configure one or more part
 
 When you edit table properties in AWS Glue, you can also specify a custom Amazon S3 path template for the projected partitions\. A custom template enables Athena to properly map partition values to custom Amazon S3 file locations that do not follow a typical `.../column=value/...` pattern\. 
 
-Using a custom template is optional\. However, if you use a custom template, the template must contain a placeholder for each partition column\.
+Using a custom template is optional\. However, if you use a custom template, the template must contain a placeholder for each partition column\. Templated locations must end with a forward slash so that the partitioned data files live in a "folder" per partition\.
 
 **To specify a custom partition location template**
 
@@ -60,7 +60,7 @@ Using a custom template is optional\. However, if you use a custom template, the
 
    1. For **Key**, enter `storage.location.template`\.
 
-   1. For **Value**, specify a location that includes a placeholder for every partition column\.
+   1. For **Value**, specify a location that includes a placeholder for every partition column\. Make sure that each placeholder \(and the S3 path itself\) is terminated by a single forward slash\.
 
       The following example template values assume a table with partition columns `a`, `b`, and `c`\.
 

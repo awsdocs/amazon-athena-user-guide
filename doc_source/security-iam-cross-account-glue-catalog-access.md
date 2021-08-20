@@ -42,15 +42,24 @@ To grant AWS Glue access from the Owner account \(999999999999\) to the Borrower
 
    ```
    {
-     "Version" : "2012-10-17",
-     "Statement" : [ {
-       "Effect" : "Allow",
-       "Principal" : {
-         "AWS" : [ "arn:aws:iam::666666666666:user/username", "arn:aws:iam::666666666666:role/rolename" ]
-       },
-       "Action" : "glue:*",
-       "Resource" : [ "arn:aws:glue:us-east-1:999999999999:catalog", "arn:aws:glue:us-east-1:999999999999:database/tpch1000", "arn:aws:glue:us-east-1:999999999999:table/tpch1000/customer" ]
-     } ]
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Principal": {
+                   "AWS": [
+                       "arn:aws:iam::666666666666:user/username",
+                       "arn:aws:iam::666666666666:role/rolename"
+                   ]
+               },
+               "Action": "glue:*",
+               "Resource": [
+                   "arn:aws:glue:us-east-1:999999999999:catalog",
+                   "arn:aws:glue:us-east-1:999999999999:database/tpch1000",
+                   "arn:aws:glue:us-east-1:999999999999:table/tpch1000/customer"
+               ]
+           }
+       ]
    }
    ```
 

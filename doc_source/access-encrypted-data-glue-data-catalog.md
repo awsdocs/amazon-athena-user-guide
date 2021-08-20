@@ -14,7 +14,7 @@ If the AWS Glue Data Catalog is encrypted, you must add the following actions to
            "kms:Decrypt",  
            "kms:Encrypt"
       ],
-     "Resource": "(arn of key being used to encrypt the catalog)"
+     "Resource": "(arn of the key used to encrypt the catalog)"
    }
 }
 ```

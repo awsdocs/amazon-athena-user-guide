@@ -58,14 +58,16 @@ You can configure AWS Network Firewall logging for traffic that you forward to y
 The following query shows the count of requests evaluated by AWS Network Firewall that have unique source and destination IP pairs\.
 
 ```
-SELECT COUNT(*) AS
-  count,
-  event.src_ip,
-  event.src_port,
-  event.dest_ip,
-  event.dest_port
+SELECT COUNT(*) AS count,
+       event.src_ip,
+       event.src_port,
+       event.dest_ip,
+       event.dest_port
 FROM anf_logs
-GROUP BY event.src_ip, event.dest_ip
-ORDER BY count DESC
+GROUP BY event.src_ip,
+         event.src_port,
+         event.dest_ip,
+         event.dest_port
+ORDER BY COUNT DESC
 LIMIT 100
 ```

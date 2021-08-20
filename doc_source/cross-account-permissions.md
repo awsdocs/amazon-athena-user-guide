@@ -89,21 +89,24 @@ The following procedures describe how to grant each of these permissions\.
 
    ```
    {
-      "Sid": "Allow use of the key",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": [
-          "arn:aws:iam::111122223333:role/role_name",
-        ]
-      },
-      "Action": [
-        "kms:Encrypt",
-        "kms:Decrypt",
-        "kms:ReEncrypt*",
-        "kms:GenerateDataKey*",
-        "kms:DescribeKey"
-      ],
-      "Resource": "*"
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Sid": "AllowUseOfTheKey",
+               "Effect": "Allow",
+               "Principal": {
+                   "AWS": "arn:aws:iam::111122223333:role/role_name"
+               },
+               "Action": [
+                   "kms:Encrypt",
+                   "kms:Decrypt",
+                   "kms:ReEncrypt*",
+                   "kms:GenerateDataKey*",
+                   "kms:DescribeKey"
+               ],
+               "Resource": "*"
+           }
+       ]
    }
    ```
 
@@ -154,7 +157,7 @@ The following procedures describe how to grant each of these permissions\.
 **Note**  
 If the IAM user or role in Account B already has [administrator access](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html), then you don't need to grant access to the key from the user's IAM policies\.
 
-   The following example statement grants the IAM user access to use the key `arn:aws:kms:example-region-1:123456789098:key/111aa2bb-333c-4d44-5555-a111bb2c33dd`\.
+   The following example statement grants the IAM user access to use the key `arn:aws:kms:us-west-2:123456789098:key/111aa2bb-333c-4d44-5555-a111bb2c33dd`\.
 
    ```
    {
@@ -170,7 +173,7 @@ If the IAM user or role in Account B already has [administrator access](https://
            "kms:ReEncrypt*"
          ],
          "Effect": "Allow",
-         "Resource": "arn:aws:kms:example-region-1:123456789098:key/111aa2bb-333c-4d44-5555-a111bb2c33dd"
+         "Resource": "arn:aws:kms:us-west-2:123456789098:key/111aa2bb-333c-4d44-5555-a111bb2c33dd"
        }
      ]
    }

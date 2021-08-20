@@ -26,15 +26,20 @@ Athena requires the caller to have `lambda:InvokeFunction` permissions in order 
 
 ```
 {
-    "Sid": "VisualEditor3",
-    "Effect": "Allow",
-    "Action": "lambda:InvokeFunction",
-    "Resource": "arn:aws:lambda:us-east-1:MyAWSAcctId:function:OneAthenaLambdaFunction",
-    "Condition": {
-        "ForAnyValue:StringEquals": { 
-            "aws:CalledVia": "athena.amazonaws.com"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:us-east-1:111122223333:function:OneAthenaLambdaFunction",
+            "Condition": {
+                "ForAnyValue:StringEquals": {
+                    "aws:CalledVia": "athena.amazonaws.com"
+                }
+            }
         }
-    }
+    ]
 }
 ```
 
@@ -53,14 +58,13 @@ The following example shows the addition of the previous statement to a policy t
                 "s3:GetObject", 
                 "athena:StartQueryExecution", 
                 "s3:AbortMultipartUpload",  
-                "athena:CancelQueryExecution", 
                 "athena:StopQueryExecution", 
                 "athena:GetQueryExecution", 
                 "athena:GetQueryResults", 
                 "s3:ListMultipartUploadParts" 
             ], 
             "Resource": [ 
-                "arn:aws:athena:*:MyAWSAcctId:workgroup/WorkGroupName",
+                "arn:aws:athena:*:111122223333:workgroup/WorkGroupName",
                 "arn:aws:s3:::MyQueryResultsBucket/*", 
                 "arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*"
             ] 
@@ -86,8 +90,8 @@ The following example shows the addition of the previous statement to a policy t
             "Effect": "Allow",
             "Action": "lambda:InvokeFunction",
             "Resource": [
-                "arn:aws:lambda:*:MyAWSAcctId:function:OneAthenaLambdaFunction", 
-                "arn:aws:lambda:*:MyAWSAcctId:function:AnotherAthenaLambdaFunction"
+                "arn:aws:lambda:*:111122223333:function:OneAthenaLambdaFunction", 
+                "arn:aws:lambda:*:111122223333:function:AnotherAthenaLambdaFunction"
             ], 
             "Condition": {
                 "ForAnyValue:StringEquals": { 

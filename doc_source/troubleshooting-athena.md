@@ -224,6 +224,14 @@ You can retrieve a role's temporary credentials to authenticate the [JDBC connec
 
 ## Query Syntax Issues<a name="troubleshooting-athena-query-syntax-issues"></a>
 
+### FAILED: NullPointerException Name is null<a name="troubleshooting-athena-nullpointerexception-name-is-null"></a>
+
+If you use the AWS Glue [CreateTable](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateTable.html) API operation or the AWS CloudFormation [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) template to create a table for use in Athena without specifying the `TableType` property and then run a DDL query like `SHOW CREATE TABLE` or `MSCK REPAIR TABLE`, you can receive the error message FAILED: NullPointerException Name is null\. 
+
+To resolve the error, specify a value for the [TableInput](https://docs.aws.amazon.com/glue/latest/webapi/API_TableInput.html) `TableType` attribute as part of the AWS Glue `CreateTable` API call or [AWS CloudFormation template](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html)\. Possible values for `TableType` include `EXTERNAL_TABLE` or `VIRTUAL_VIEW`\.
+
+This requirement applies only when you create a table using the AWS Glue `CreateTable` API operation or the `AWS::Glue::Table` template\. If you create a table for Athena by using a DDL statement or an AWS Glue crawler, the `TableType` property is defined for you automatically\. 
+
 ### Function not registered<a name="troubleshooting-athena-function-not-registered"></a>
 
 This error occurs when you try to use a function that Athena doesn't support\. For a list of functions that Athena supports, see [Presto Functions in Amazon Athena](presto-functions.md) or run the `SHOW FUNCTIONS` statement in the Query Editor\. You can also write your own [user defined function \(UDF\)](querying-udf.md)\. For more information, see [How do I resolve the "function not registered" syntax error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-syntax-function-not-registered/) in the AWS Knowledge Center\.

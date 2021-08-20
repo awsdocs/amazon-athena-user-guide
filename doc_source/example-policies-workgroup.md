@@ -56,31 +56,34 @@ The following policy allows full access to the single specific workgroup resourc
             "Action": [
                 "athena:ListEngineVersions",
                 "athena:ListWorkGroups",
-                "athena:GetExecutionEngine",
-                "athena:GetExecutionEngines",
-                "athena:GetNamespace",
-                "athena:GetCatalogs",
-                "athena:GetNamespaces",
-                "athena:GetTables",
-                "athena:GetTable"
+                "athena:ListDataCatalogs",
+                "athena:ListDatabases",
+                "athena:GetDatabase",
+                "athena:ListTableMetadata",
+                "athena:GetTableMetadata"
             ],
             "Resource": "*"
         },
         {
             "Effect": "Allow",
             "Action": [
-                "athena:StartQueryExecution",
-                "athena:GetQueryResults",
-                "athena:DeleteNamedQuery",
-                "athena:GetNamedQuery",
-                "athena:ListQueryExecutions",
-                "athena:StopQueryExecution",
-                "athena:GetQueryResultsStream",
-                "athena:ListNamedQueries",
-                "athena:CreateNamedQuery",
+                "athena:BatchGetQueryExecution",
                 "athena:GetQueryExecution",
+                "athena:ListQueryExecutions",
+                "athena:StartQueryExecution",
+                "athena:StopQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryResultsStream",
+                "athena:CreateNamedQuery",
+                "athena:GetNamedQuery",
                 "athena:BatchGetNamedQuery",
-                "athena:BatchGetQueryExecution"
+                "athena:ListNamedQueries",
+                "athena:DeleteNamedQuery",
+                "athena:CreatePreparedStatement",
+                "athena:GetPreparedStatement",
+                "athena:ListPreparedStatements",
+                "athena:UpdatePreparedStatement",
+                "athena:DeletePreparedStatement"
             ],
             "Resource": [
                 "arn:aws:athena:us-east-1:123456789012:workgroup/workgroupA"
@@ -112,33 +115,37 @@ In the following policy, a user is allowed to run queries in the specified `work
        {
             "Effect": "Allow",
             "Action": [
+                "athena:ListEngineVersions",
                 "athena:ListWorkGroups",
-                "athena:GetExecutionEngine",
-                "athena:GetExecutionEngines",
-                "athena:GetNamespace",
-                "athena:GetCatalogs",
-                "athena:GetNamespaces",
-                "athena:GetTables",
-                "athena:GetTable"
+                "athena:ListDataCatalogs",
+                "athena:ListDatabases",
+                "athena:GetDatabase",
+                "athena:ListTableMetadata",
+                "athena:GetTableMetadata"
             ],
             "Resource": "*"
         },
         {
             "Effect": "Allow",
             "Action": [
-                "athena:StartQueryExecution",
-                "athena:GetQueryResults",
-                "athena:DeleteNamedQuery",
-                "athena:GetNamedQuery",
-                "athena:ListQueryExecutions",
-                "athena:StopQueryExecution",
-                "athena:GetQueryResultsStream",
-                "athena:ListNamedQueries",
-                "athena:CreateNamedQuery",
+                "athena:GetWorkGroup", 
+                "athena:BatchGetQueryExecution",
                 "athena:GetQueryExecution",
+                "athena:ListQueryExecutions",
+                "athena:StartQueryExecution",
+                "athena:StopQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryResultsStream",
+                "athena:CreateNamedQuery",
+                "athena:GetNamedQuery",
                 "athena:BatchGetNamedQuery",
-                "athena:BatchGetQueryExecution", 
-                "athena:GetWorkGroup" 
+                "athena:ListNamedQueries",
+                "athena:DeleteNamedQuery",
+                "athena:CreatePreparedStatement",
+                "athena:GetPreparedStatement",
+                "athena:ListPreparedStatements",
+                "athena:UpdatePreparedStatement",
+                "athena:DeletePreparedStatement"
             ],
             "Resource": [
                 "arn:aws:athena:us-east-1:123456789012:workgroup/workgroupA"
@@ -149,12 +156,12 @@ In the following policy, a user is allowed to run queries in the specified `work
 ```
 
 **Example Policy for Running Queries in the Primary Workgroup**  
-In the following example, we use the policy that allows a particular user to run queries in the primary workgroup\.   
-We recommend that you add this policy to all users who are otherwise configured to run queries in their designated workgroups\. Adding this policy to their workgroup user policies is useful in case their designated workgroup is deleted or is disabled\. In this case, they can continue running queries in the primary workgroup\.
-To allow users in your account to run queries in the primary workgroup, add the following policy to a resource section of the [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access)\.  
+You can modify the preceding example to allow a particular user to also run queries in the primary workgroup\.   
+We recommend that you add the primary workgroup resource for all users who are otherwise configured to run queries in their designated workgroups\. Adding this resource to their workgroup user policies is useful in case their designated workgroup is deleted or is disabled\. In this case, they can continue running queries in the primary workgroup\.
+To allow users in your account to run queries in the primary workgroup, add a line that contains the ARN of the primary workgroup to the resource section of the [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access), as in the following example\.  
 
 ```
-"arn:aws:athena:us-east-1:123456789012:workgroup/primary"
+arn:aws:athena:us-east-1:123456789012:workgroup/primary"
 ```
 
 **Example Policy for Management Operations on a Specified Workgroup**  
@@ -192,11 +199,16 @@ The following policy allows all users to list all workgroups:
 
 ```
 {
-    "Effect": "Allow",
-    "Action": [
-        "athena:ListWorkGroups"
-    ],
-    "Resource": "*"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:ListWorkGroups"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
 
@@ -205,13 +217,18 @@ In this policy, a user is allowed to run queries in the workgroup:
 
 ```
 {
-    "Effect": "Allow",
-    "Action": [
-        "athena:StartQueryExecution",
-        "athena:StopQueryExecution"
-    ],
-    "Resource": [
-        "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:StartQueryExecution",
+                "athena:StopQueryExecution"
+            ],
+            "Resource": [
+                "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
+            ]
+        }
     ]
 }
 ```
@@ -221,14 +238,18 @@ In the following policy, a user has permissions to create, delete, and obtain in
 
 ```
 {
-    "Effect": "Allow",
-    "Action": [
-        "athena:CreateNamedQuery",
-        "athena:GetNamedQuery",
-        "athena:DeleteNamedQuery"
-    ],
-    "Resource": [
-        "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "athena:CreateNamedQuery",
+                "athena:GetNamedQuery",
+                "athena:DeleteNamedQuery"
+            ],
+            "Resource": [
+                "arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"            ]
+        }
     ]
 }
 ```

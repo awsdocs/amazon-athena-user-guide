@@ -45,7 +45,7 @@ The following example IAM policy grants permissions to manage and run prepared s
                 "athena:ListPreparedStatements"
             ],
             "Resource": [
-                "arn:aws:athena:*:<account-id>:workgroup/<workgroup-name>"
+                "arn:aws:athena:*:111122223333:workgroup/<workgroup-name>"
             ]
         }
     ]
