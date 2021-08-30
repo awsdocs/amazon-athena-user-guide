@@ -37,7 +37,7 @@ view_2016_flights_dfw
 **Example – show the names of all tables in `sampledb` that include the word "flights"**  
 
 ```
-SHOW TABLES IN sampledb '*flights*'
+SHOW TABLES IN sampledb '.*flights.*'
 ```
 Results  
 
@@ -50,7 +50,7 @@ view_2016_flights_dfw
 **Example – show the names of all tables in `sampledb` that end in the word "logs"**  
 
 ```
-SHOW TABLES IN sampledb '*logs'
+SHOW TABLES IN sampledb '.*logs'
 ```
 Results  
 
