@@ -57,7 +57,7 @@ WITH NO DATA;
 
 **Example: Specifying Data Storage and Compression Formats**  
 The following example uses a CTAS query to create a new table with Parquet data from a source table in a different format\. You can specify `PARQUET`, `ORC`, `AVRO`, `JSON`, and `TEXTFILE` in a similar way\.   
-This example also specifies compression as `SNAPPY`\. If omitted, GZIP is used\. GZIP and SNAPPY are the supported compression formats for CTAS query results stored in Parquet and ORC\.   
+This example also specifies compression as `SNAPPY`\. For Parquet, possible compression values are `GZIP` or `SNAPPY`, and the default is `GZIP`\. For ORC, possible compression values are `LZ4`, `SNAPPY`, `ZLIB`, or `ZSTD`, and the default is `ZLIB`\. JSON and TEXTFILE formats use `GZIP`\.  
 
 ```
 CREATE TABLE new_table
@@ -67,7 +67,7 @@ WITH (
 AS SELECT *
 FROM old_table;
 ```
-The following example is similar, but it stores the CTAS query results in ORC and uses the `orc_compression` parameter to specify the compression format\. If you omit the compression format, Athena uses GZIP by default\.  
+The following example is similar, but it stores the CTAS query results in ORC and uses the `orc_compression` parameter to specify the compression format\. If you omit the compression format, Athena uses `ZLIB` as the default for ORC\.  
 
 ```
 CREATE TABLE new_table

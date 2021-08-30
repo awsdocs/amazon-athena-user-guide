@@ -34,15 +34,15 @@ For queries that require resources beyond existing limits, you can either optimi
 
 ### Data Size<a name="performance-tuning-data-size"></a>
 
-**Avoid single large files** – Single files are loaded into a single node for processing\. If your file size is extremely large, try to break up the file into smaller files and use partitions to organize them\.
+**Avoid single large files** – If your file size is extremely large, try to break up the file into smaller files and use partitions to organize them\.
 
 **Read a smaller amount of data at once** – Scanning a large amount of data at one time can slow down the query and increase cost\. Use partitions or filters to limit the files to be scanned\.
 
 **Avoid having too many columns** – The message GENERIC\_INTERNAL\_ERROR: io\.airlift\.bytecode\.CompilationException can occur when Athena fails to compile the query to bytecode\. This exception is usually caused by having too many columns in the query\. Reduce the number of the columns in the query or create subqueries and use a `JOIN` that retrieves a smaller amount of data\.
 
-**Avoid large query outputs** – Because query results are written to Amazon S3 by a single Athena node, a large amount of output data can slow performance\. To work around this, try using [CTAS](create-table-as.md) to create a new table with the result of the query or [INSERT INTO](insert-into.md) to append new results into an existing table\.
+**Avoid large query outputs** – A large amount of output data can slow performance\. To work around this, try using [CTAS](create-table-as.md) to create a new table with the result of the query or [INSERT INTO](insert-into.md) to append new results into an existing table\.
 
-**Avoid CTAS queries with a large output** – Because output data is written by a single node, CTAS queries can also use a large amount of memory\. If you are outputting large amount of data, try separating the task into smaller queries\.
+**Avoid CTAS queries with a large output** – CTAS queries can also use a large amount of memory\. If you are outputting large amount of data, try separating the task into smaller queries\.
 
 ** If possible, avoid having a large number of small files** – Amazon S3 has a [limit](https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance.html) of 5500 requests per second\. Athena queries share the same limit\. If you need to scan millions of small objects in a single query, your query can be easily throttled by Amazon S3\. To avoid excessive scanning, use AWS Glue ETL to periodically compact your files or partition the table and add partition key filters\. For more information, see [Reading Input Files in Larger Groups](https://docs.aws.amazon.com/glue/latest/dg/grouping-input-files.html) in the AWS Glue Developer Guide or [How can I configure an AWS Glue ETL job to output larger files?](http://aws.amazon.com/premiumsupport/knowledge-center/glue-job-output-large-files/) in the AWS Knowledge Center\.
 
@@ -52,7 +52,7 @@ For queries that require resources beyond existing limits, you can either optimi
 + Use filters to reduce the amount of data to be scanned\.
 + Whenever possible, add a `LIMIT` clause\.
 
-** Avoid referring to many views and tables in a single query** – Because queries with many views and/or tables must load a large amount of data to a single node, out of memory errors can occur\. If possible, avoid referring to an excessive number of views or tables in a single query\.
+** Avoid referring to many views and tables in a single query** – Because queries with many views and/or tables must load a large amount of data, out of memory errors can occur\. If possible, avoid referring to an excessive number of views or tables in a single query\.
 
 **Avoid large JSON strings** – If data is stored in a single JSON string and the size of the JSON data is large, out of memory errors can occur when the JSON data is processed\.
 

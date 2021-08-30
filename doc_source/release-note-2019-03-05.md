@@ -18,6 +18,6 @@ This driver version lets you use [Athena API workgroup actions](workgroups-api-l
 
 For more information, see:
 + [Using Workgroups for Running Queries](workgroups.md) and [Workgroup Example Policies](example-policies-workgroup.md)\.
-+ [Tagging Resources](tags.md) and [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
++ [Tagging Athena Resources](tags.md) and [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
 
 If you use the JDBC driver or the AWS SDK, upgrade to the latest version of the driver and SDK, both of which already include support for workgroups and tags in Athena\. For more information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.

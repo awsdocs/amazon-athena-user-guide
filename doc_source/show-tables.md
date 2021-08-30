@@ -14,7 +14,7 @@ SHOW TABLES [IN database_name] ['regular_expression']
 Specifies the `database_name` from which tables will be listed\. If omitted, the database from the current context is assumed\.
 
 **\['regular\_expression'\]**  
-Filters the list of tables to those that match the `regular_expression` you specify\. Only the wildcard `*`, which indicates any character, or `|`, which indicates a choice between characters, can be used\.
+Filters the list of tables to those that match the `regular_expression` you specify\. To indicate any character in `AWSDataCatalog` tables, you can use the `*` or `.*` wildcard expression\. For Apache Hive databases, use the `.*` wildcard expression\. To indicate a choice between characters, use the `|` character\.
 
 ## Examples<a name="examples"></a>
 
@@ -37,7 +37,7 @@ view_2016_flights_dfw
 **Example – show the names of all tables in `sampledb` that include the word "flights"**  
 
 ```
-SHOW TABLES IN sampledb '.*flights.*'
+SHOW TABLES IN sampledb '*flights*'
 ```
 Results  
 
@@ -50,7 +50,7 @@ view_2016_flights_dfw
 **Example – show the names of all tables in `sampledb` that end in the word "logs"**  
 
 ```
-SHOW TABLES IN sampledb '.*logs'
+SHOW TABLES IN sampledb '*logs'
 ```
 Results  
 

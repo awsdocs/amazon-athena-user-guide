@@ -3,7 +3,7 @@
 You can run queries in Amazon Athena on encrypted data in Amazon S3 in the same Region and across a limited number of Regions\. You can also encrypt the query results in Amazon S3 and the data in the AWS Glue Data Catalog\.
 
 You can encrypt the following assets in Athena:
-+ The results of all queries in Amazon S3, which Athena stores in a location known as the Amazon S3 results location\. You can encrypt query results stored in Amazon S3 whether the underlying dataset is encrypted in Amazon S3 or not\. For information, see [Encrypting Query Results Stored in Amazon S3](encrypting-query-results-stored-in-s3.md)\.
++ The results of all queries in Amazon S3, which Athena stores in a location known as the Amazon S3 results location\. You can encrypt query results stored in Amazon S3 whether the underlying dataset is encrypted in Amazon S3 or not\. For information, see [Encrypting Athena Query Results Stored in Amazon S3Encrypting Athena query results when using JDBC or ODBC](encrypting-query-results-stored-in-s3.md)\.
 + The data in the AWS Glue Data Catalog\. For information, see [Permissions to Encrypted Metadata in the AWS Glue Data Catalog](#glue-encryption)\.
 
 **Note**  
@@ -13,7 +13,7 @@ The setup for querying an encrypted dataset in Amazon S3 and the options in Athe
 + [Supported Amazon S3 Encryption Options](#encryption-options-S3-and-Athena)
 + [Permissions to Encrypted Data in Amazon S3](#permissions-for-encrypting-and-decrypting-data)
 + [Permissions to Encrypted Metadata in the AWS Glue Data Catalog](#glue-encryption)
-+ [Encrypting Query Results Stored in Amazon S3](encrypting-query-results-stored-in-s3.md)
++ [Encrypting Athena Query Results Stored in Amazon S3](encrypting-query-results-stored-in-s3.md)
 + [Creating Tables Based on Encrypted Datasets in Amazon S3](creating-tables-based-on-encrypted-datasets-in-s3.md)
 
 ## Supported Amazon S3 Encryption Options<a name="encryption-options-S3-and-Athena"></a>
@@ -33,7 +33,7 @@ For more information about AWS KMS encryption with Amazon S3, see [What is AWS K
 
 The following encryption options are not supported:
 + SSE with customer\-provided keys \(SSE\-C\)\.
-+ Client\-side encryption using a client\-side master key\.
++ Client\-side encryption using a client\-side managed key\.
 + Asymmetric keys\.
 
 To compare Amazon S3 encryption options, see [Protecting Data Using Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.

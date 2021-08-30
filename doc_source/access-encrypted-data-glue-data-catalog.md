@@ -1,4 +1,4 @@
-# Access to Encrypted Metadata in the AWS Glue Data Catalog<a name="access-encrypted-data-glue-data-catalog"></a>
+# Access from Athena to Encrypted Metadata in the AWS Glue Data Catalog<a name="access-encrypted-data-glue-data-catalog"></a>
 
 If you use the AWS Glue Data Catalog with Amazon Athena, you can enable encryption in the AWS Glue Data Catalog using the AWS Glue console or the API\. For information, see [Encrypting Your Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html) in the *AWS Glue Developer Guide*\.
 

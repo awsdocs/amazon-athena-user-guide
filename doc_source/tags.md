@@ -1,4 +1,4 @@
-# Tagging Resources<a name="tags"></a>
+# Tagging Athena Resources<a name="tags"></a>
 
 A tag consists of a key and a value, both of which you define\. When you tag an Athena resource, you assign custom metadata to it\. You can use tags to categorize your AWS resources in different ways; for example, by purpose, owner, or environment\. In Athena, workgroups and data catalogs are taggable resources\. For example, you can create a set of tags for workgroups in your account that helps you track workgroup owners, or identify workgroups by their purpose\. We recommend that you that you use [AWS tagging best practices](https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf) to create a consistent set of tags to meet your organization requirements\.
 

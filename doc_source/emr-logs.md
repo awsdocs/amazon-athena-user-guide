@@ -76,7 +76,7 @@ WHERE regexp_like("$PATH",'2019-07-23-10')
 
 ## Creating and Querying a Partitioned Table Based on Amazon EMR Logs<a name="emr-create-table-partitioned"></a>
 
-These examples use the same log location to create an Athena table, but the table is partitioned, and a partition is then created for each log location\. For more information, see [Partitioning Data](partitions.md)\.
+These examples use the same log location to create an Athena table, but the table is partitioned, and a partition is then created for each log location\. For more information, see [Partitioning Data in Athena](partitions.md)\.
 
 The following query creates the partitioned table named `mypartitionedemrlogs`:
 

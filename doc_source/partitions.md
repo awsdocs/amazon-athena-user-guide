@@ -1,4 +1,4 @@
-# Partitioning Data<a name="partitions"></a>
+# Partitioning Data in Athena<a name="partitions"></a>
 
 By partitioning your data, you can restrict the amount of data scanned by each query, thus improving performance and reducing cost\. Athena leverages Apache Hive for [partitioning](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterPartition) data\. You can partition your data by any key\. A common practice is to partition the data based on time, often leading to a multi\-level partitioning scheme\. For example, a customer who has data coming in every hour might decide to partition by year, month, date, and hour\. Another customer, who has data coming from many different sources but loaded one time per day, may partition by a data source identifier and date\.
 

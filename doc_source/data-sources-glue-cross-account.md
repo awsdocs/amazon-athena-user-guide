@@ -14,7 +14,7 @@ The following procedure shows you how to use the Athena console to configure an 
 
 1. Choose **Connect data source**\.
 
-1. Choose **Next**\.
+1. Accept the defaults, and then choose **Next**\.
 
 1. Choose **AWS Glue Data Catalog in another account**\.
 

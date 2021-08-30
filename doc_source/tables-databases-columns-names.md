@@ -2,11 +2,9 @@
 
 Use these tips for naming items in Athena\.
 
-## Table names and table column names in Athena must be lowercase<a name="table-names-and-table-column-names-in-ate-must-be-lowercase"></a>
+## Use lower case for table names and table column names in Athena<a name="table-names-and-table-column-names-in-ate-must-be-lowercase"></a>
 
-If you are interacting with Apache Spark, then your table names and table column names must be lowercase\. Athena is case\-insensitive and turns table names and column names to lower case, but Spark requires lowercase table and column names\.
-
-Queries with mixedCase column names, such as `profileURI`, or upper case column names do not work\.
+Athena accepts mixed case in DDL and DML queries, but lower cases the names when it executes the query\. For this reason, avoid using mixed case for table or column names, and do not rely on casing alone in Athena to distinguish such names\. For example, if you use a DDL statement to create a column named `Castle`, the column created will be lowercased to `castle`\. If you then specify the column name in a DML query as `Castle` or `CASTLE`, Athena will lowercase the name for you to run the query, but display the column heading using the casing that you chose in the query\.
 
 ## Special characters<a name="ate-table-database-and-column-names-special-characters"></a>
 
