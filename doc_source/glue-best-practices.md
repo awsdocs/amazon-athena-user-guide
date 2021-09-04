@@ -47,7 +47,7 @@ AWS Glue crawlers can be set up to run on a schedule or on demand\. For more inf
 
 If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually run an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_crawler.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue-crawler.png)
 
 ### Using Multiple Data Sources with Crawlers<a name="schema-crawlers-data-sources"></a>
 

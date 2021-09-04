@@ -20,10 +20,10 @@ Creating a workgroup requires permissions to `CreateWorkgroup` API actions\. See
 
 **To create a workgroup in the console**
 
-1. In the Athena console, choose the **Workgroup:<workgroup\_name>** tab\. A **Workgroups** panel displays\. 
+1. In the Athena console, choose the **Workgroup:<workgroup\_name>** tab\. The **Workgroups** panel displays\. 
 
 1. In the **Workgroups** panel, choose **Create workgroup**\.   
-![\[The screenshot that shows how to create a workgroup.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wkg-create.png)
+![\[Choose Create workgroup.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wkg-create.png)
 
 1. In the **Create workgroup** dialog box, fill in the fields as follows:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/workgroups-create-update-delete.html)
@@ -41,8 +41,7 @@ Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. S
 
 **To edit a workgroup in the console**
 
-1. In the Athena console, choose the **Workgroup:<workgroup\_name>** tab\. A **Workgroups** panel displays, listing all of the workgroups in the account\.   
-![\[Workgroups list\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-list.png)
+1. In the Athena console, choose the **Workgroup:<workgroup\_name>** tab\. A **Workgroups** panel displays, listing all of the workgroups in the account\. 
 
 1. In the **Workgroups** panel, choose the workgroup that you want to edit\. The **View details** panel for the workgroup displays, with the **Overview** tab selected\. 
 
@@ -58,7 +57,7 @@ Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. S
 For each workgroup, you can view its details\. The details include the workgroup's name, description, whether it is enabled or disabled, and the settings used for queries that run in the workgroup, which include the location of the query results and encryption configuration\. If a workgroup has data usage limits, they are also displayed\.
 
 **To view the workgroup's details**
-+ In the **Workgroups** panel, choose the workgroup that you want to edit\. The **View details** panel for the workgroup displays, with the **Overview** tab selected\. The workgroup details display, as in the following example:  
++ In the **Workgroups** panel, select the workgroup that you want to edit, and then choose **View details**\. The details panel for the workgroup displays with the **Overview** tab selected, as in the following image\.  
 ![\[The workgroup details screen.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-details-overview.png)
 
 ## Delete a Workgroup<a name="deleting-workgroups"></a>
@@ -96,10 +95,9 @@ You can open up to ten query tabs within each workgroup\. When you switch betwee
 
 1. In the Athena console, choose the **Workgroup:<workgroup\_name>** tab\. A **Workgroups** panel displays\. 
 
-1. In the **Workgroups** panel, choose the workgroup that you want to switch to, and then choose **Switch workgroup**\.  
-![\[Switching workgroups screenshot.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-switch.png)
+1. In the **Workgroups** panel, choose the workgroup that you want to switch to, and then choose **Switch workgroup**\.
 
-1. Choose **Switch**\. The console shows the **Workgroup: <workgroup\_name>** tab with the name of the workgroup that you switched to\. You can now run queries in this workgroup\.
+   The console shows the **Workgroup** tab with the name of the workgroup that you switched to\. You can now run queries in this workgroup\.
 
 ## Copy a Saved Query between Workgroups<a name="copy-a-query-between-workgroups"></a>
 

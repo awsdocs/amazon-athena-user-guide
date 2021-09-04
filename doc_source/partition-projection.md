@@ -30,7 +30,7 @@ Partition projection is most easily configured when your partitions follow a pre
 + **Integers** – Any continuous sequence of integers such as `[1, 2, 3, 4, ..., 1000]` or `[0500, 0550, 0600, ..., 2500]`\.
 + **Dates** – Any continuous sequence of dates or datetimes such as `[20200101, 20200102, ..., 20201231]` or `[1-1-2020 00:00:00, 1-1-2020 01:00:00, ..., 12-31-2020 23:00:00]`\.
 + **Enumerated values** – A finite set of enumerated values such as airport codes or AWS Regions\.
-+ **AWS service logs** – AWS service logs typically have a known structure whose partition scheme you can specify in AWS Glue and that Athena can therefore use for partition projection\. For an example, see [Amazon Kinesis Data Firehose Example](partition-projection-kinesis-firehose-example.md)\.
++ **AWS service logs** – AWS service logs typically have a known structure whose partition scheme you can specify in AWS Glue and that Athena can therefore use for partition projection\.
 
 ### Customizing the Partition Path Template<a name="partition-projection-custom-s3-storage-locations"></a>
 
@@ -62,4 +62,3 @@ The following video shows how to use partition projection to improve the perform
 + [Setting up Partition Projection](partition-projection-setting-up.md)
 + [Supported Types for Partition Projection](partition-projection-supported-types.md)
 + [Dynamic ID Partitioning](partition-projection-dynamic-id-partitioning.md)
-+ [Amazon Kinesis Data Firehose Example](partition-projection-kinesis-firehose-example.md)

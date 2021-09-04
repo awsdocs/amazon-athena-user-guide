@@ -192,6 +192,8 @@ ALTER TABLE elb_logs_raw_native_part ADD PARTITION (dt='2015-01-01') location 's
 
 To remove a partition, use [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md)\.
 
-### Additional Resources<a name="partitions-additional-resources"></a>
+## Additional Resources<a name="partitions-additional-resources"></a>
 + You can use CTAS and INSERT INTO to partition a dataset\. For more information, see [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\.
 + You can automate adding partitions by using the [JDBC driver](connect-with-jdbc.md)\. 
++ You can use partition projection in Athena to speed up query processing of highly partitioned tables and automate partition management\. For more information, see [Partition Projection with Amazon Athena](partition-projection.md)\.
++ Kinesis Data Firehose now partitions data for you dynamically, so you no longer need to use partitioning in Athena for better performance on Firehose data\. For more information, see the AWS What's New post [Introducing Dynamic Partitioning in Amazon Kinesis Data Firehose](http://aws.amazon.com/about-aws/whats-new/2021/08/introducing-dynamic-partitioning-amazon-kinesis-data-firehose/) and [Dynamic Partitioning in Kinesis Data Firehose](https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html) in the *Amazon Kinesis Data Firehose Developer Guide*\.

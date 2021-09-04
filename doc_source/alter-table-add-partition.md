@@ -54,3 +54,8 @@ ALTER TABLE orders ADD
   PARTITION (dt = '2016-05-14', country = 'IN') LOCATION 's3://mystorage/path/to/INDIA_14_May_2016/'
   PARTITION (dt = '2016-05-15', country = 'IN') LOCATION 's3://mystorage/path/to/INDIA_15_May_2016/';
 ```
+
+```
+ALTER TABLE flights_parquet ADD IF NOT EXISTS
+  PARTITION (year = '2021')
+```

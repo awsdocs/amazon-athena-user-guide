@@ -74,10 +74,6 @@ If you have customer\-managed or inline IAM policies associated with Athena user
 
 ## Step 3 \- Choose Upgrade in the Athena Console<a name="upgrade-step3"></a>
 
-After you make the required IAM policy updates, choose **Upgrade** in the Athena console\. Athena moves your metadata to the AWS Glue Data Catalog\. The upgrade takes only a few minutes\. After you upgrade, the Athena console has a link to open the AWS Glue Catalog Manager from within Athena\.
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_post_migration.png)
+After you make the required IAM policy updates, choose **Upgrade** in the Athena console\. Athena moves your metadata to the AWS Glue Data Catalog\. The upgrade takes only a few minutes\.
 
 When you create a table using the console, you can create a table using an AWS Glue crawler\. For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/create-table-choices-glue.png)

@@ -6,7 +6,7 @@ Setting up partition projection in a table's properties is a two\-step process:
 
 1. Enable partition projection for the table\.
 
-This section shows how to set these table properties for AWS Glue\. To set them, you can use the AWS Glue console, Athena [CREATE TABLE](create-table.md) queries, or [AWS Glue API](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api.html) operations\. The following procedure shows how to set the properties in the AWS Glue console\. For an example that uses a `CREATE TABLE` statement, see the [Amazon Kinesis Data Firehose Example](partition-projection-kinesis-firehose-example.md)\.
+This section shows how to set these table properties for AWS Glue\. To set them, you can use the AWS Glue console, Athena [CREATE TABLE](create-table.md) queries, or [AWS Glue API](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api.html) operations\. The following procedure shows how to set the properties in the AWS Glue console\.
 
 **To configure and enable partition projection using the AWS Glue console**
 

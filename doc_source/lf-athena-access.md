@@ -8,13 +8,9 @@ The following diagram illustrates the flow described above\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/lake-formation-athena.png)
 
-
-
-
-
 The following diagram shows how credential vending works in Athena on a query\-by\-query basis for a hypothetical `SELECT` query on a table with an Amazon S3 location registered in Lake Formation:
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/lake_formation_athena_security_aws.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/lake-formation-athena-security.png)
 
 1. A principal runs a `SELECT` query in Athena\.
 
