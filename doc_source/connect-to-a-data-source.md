@@ -18,6 +18,7 @@ For information about writing your own data source connector, see [Example Athen
 ## Considerations and Limitations<a name="connect-to-a-data-source-considerations"></a>
 + **Engine versions** – Athena Federated Query is supported only on Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 + **Views** – You cannot use views with federated data sources\.
++ **Write operations** – Write operations like [INSERT INTO](insert-into.md) are not supported\. Attempting to do so may result in the error message This operation is currently not supported for external catalogs\.
 +  **Pricing** – For pricing information, see [Amazon Athena pricing](http://aws.amazon.com/athena/pricing/)\.
 
   **JDBC driver** – To use the JDBC driver with federated queries or an [external Hive metastore](connect-to-data-source-hive.md), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. For information about the JDBC driver, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\. 

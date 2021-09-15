@@ -4,7 +4,7 @@ This topic provides general information and specific suggestions for improving t
 
 ## Physical Limits<a name="performance-tuning-physical-limits"></a>
 
-In general, Athena limits the runtime of each query to 30 minutes\. Queries that run beyond this limit are automatically cancelled without charge\. If a query runs out of memory or a node crashes during processing, errors like the following can occur:
+By default, Athena [limits](service-limits.md) the runtime of DML queries to 30 minutes and DDL queries to 600 minutes\. Queries that run beyond these limits are automatically cancelled without charge\. If a query runs out of memory or a node crashes during processing, errors like the following can occur:
 
 ```
 INTERNAL_ERROR_QUERY_ENGINE
@@ -86,7 +86,7 @@ For queries that require resources beyond existing limits, you can either optimi
 
 **To add new partitions frequently, use `ALTER TABLE ADD PARTITION`** – If you use `MSCK REPAIR TABLE` to add new partitions frequently \(for example, on a daily basis\) and are experiencing query timeouts, consider using [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\. `MSCK REPAIR TABLE` is best used when creating a table for the first time or when there is uncertainty about parity between data and partition metadata\.
 
-**Avoid using coalesce\(\)in a WHERE clause with partitioned columns** – Under some circumstances, using the [coalesce\(\)](https://prestodb.io/docs/0.217/functions/conditional.html#coalesce) or other functions in a `WHERE` clause against partitioned columns might result in reduced performance\. If this occurs, try rewriting your query to provide the same functionality without using `coalesce()`\.
+**Avoid using coalesce\(\) in a WHERE clause with partitioned columns** – Under some circumstances, using the [coalesce\(\)](https://prestodb.io/docs/0.217/functions/conditional.html#coalesce) or other functions in a `WHERE` clause against partitioned columns might result in reduced performance\. If this occurs, try rewriting your query to provide the same functionality without using `coalesce()`\.
 
 ### Window Functions<a name="performance-tuning-window-functions"></a>
 

@@ -27,6 +27,10 @@ You can run an `INSERT` query on tables created from data with the following for
 
 `INSERT INTO` is not supported on bucketed tables\. For more information, see [Bucketing vs Partitioning](bucketing-vs-partitioning.md)\.
 
+### Federated Queries Not Supported<a name="insert-into-federated-queries-not-supported"></a>
+
+`INSERT INTO` is not supported for federated queries\. Attempting to do so may result in the error message This operation is currently not supported for external catalogs\. For information about federated queries, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
+
 ### Partitioning<a name="insert-into-limitations-partitioning"></a>
 
 Consider the points in this section when using parititioning with `INSERT INTO` or `CREATE TABLE AS SELECT` queries\.
