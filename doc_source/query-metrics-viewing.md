@@ -17,7 +17,7 @@ These metrics have the following dimensions:
 + `QueryType` – `DML` or `DDL`
 + `WorkGroup` – name of the workgroup
 
-For more information, see the [List of CloudWatch Metrics and Dimensions for Athena](#athena-cloudwatch-metrics-table) later in this topic\.
+For more information, see the [List of CloudWatch Metrics and Dimensions for Athena](#athena-cloudwatch-metrics-table) later in this topic\. For information about Athena usage metrics, see [Monitoring Athena Usage Metrics](monitoring-athena-usage-metrics.md)\.
 
 **To view query metrics for a workgroup in the console**
 

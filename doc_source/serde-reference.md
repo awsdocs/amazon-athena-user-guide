@@ -5,4 +5,3 @@ Athena supports several SerDe libraries for parsing data from different data for
 **Topics**
 + [Using a SerDe](serde-about.md)
 + [Supported SerDes and Data Formats](supported-serdes.md)
-+ [Compression Formats](compression-formats.md)

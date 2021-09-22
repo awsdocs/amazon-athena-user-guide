@@ -56,23 +56,34 @@ WITH NO DATA;
 ```
 
 **Example: Specifying Data Storage and Compression Formats**  
-The following example uses a CTAS query to create a new table with Parquet data from a source table in a different format\. You can specify `PARQUET`, `ORC`, `AVRO`, `JSON`, and `TEXTFILE` in a similar way\.   
-This example also specifies compression as `SNAPPY`\. For Parquet, possible compression values are `GZIP` or `SNAPPY`, and the default is `GZIP`\. For ORC, possible compression values are `LZ4`, `SNAPPY`, `ZLIB`, or `ZSTD`, and the default is `ZLIB`\. JSON and TEXTFILE formats use `GZIP`\.  
+You can use a CTAS query to create a new table in Parquet format from a source table in a different storage format\.   
+Use the `format` property to specify `ORC`, `AVRO`, `JSON`, or `TEXTFILE` as the storage format for the new table\.   
+For the `PARQUET`, `ORC`, `TEXTFILE`, and `JSON` storage formats, use the `write_compression` property to specify the compression format for the new table's data\. For information about the compression formats that each file format supports, see [Athena Compression Support](compression-formats.md)\.  
+The following example specifies that data in the table `new_table` be stored in Parquet format and use Snappy compression\. The default compression for Parquet is `GZIP`\.  
 
 ```
 CREATE TABLE new_table
 WITH (
       format = 'Parquet',
-      parquet_compression = 'SNAPPY')
+      write_compression = 'SNAPPY')
 AS SELECT *
 FROM old_table;
 ```
-The following example is similar, but it stores the CTAS query results in ORC and uses the `orc_compression` parameter to specify the compression format\. If you omit the compression format, Athena uses `ZLIB` as the default for ORC\.  
+The following example specifies that data in the table `new_table` be stored in ORC format using Snappy compression\. The default compression for ORC is ZLIB\.  
 
 ```
 CREATE TABLE new_table
 WITH (format = 'ORC',
-      orc_compression = 'SNAPPY')
+      write_compression = 'SNAPPY')
+AS SELECT *
+FROM old_table ;
+```
+The following example specifies that data in the table `new_table` be stored in textfile format using Snappy compression\. The default compression for both the textfile and JSON formats is GZIP\.  
+
+```
+CREATE TABLE new_table
+WITH (format = 'TEXTFILE',
+      write_compression = 'SNAPPY')
 AS SELECT *
 FROM old_table ;
 ```

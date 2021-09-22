@@ -53,18 +53,25 @@ If you do not use the `external_location` property to specify a location and you
 ```
 s3://<query-results-location-setting>/<Unsaved-or-query-name>/<year>/<month/<date>/tables/<query-id>/
 ```  
-`format = [format]`  
-The data format for the CTAS query results, such as `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE`\. For example, `WITH (format = 'PARQUET')`\. If omitted, `PARQUET` is used by default\. The name of this parameter, `format`, must be listed in lowercase, or your CTAS query will fail\.  
+`format = [storage_format]`  
+The storage format for the CTAS query results, such as `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE`\. For example, `WITH (format = 'PARQUET')`\. If omitted, `PARQUET` is used by default\. The name of this parameter, `format`, must be listed in lowercase, or your CTAS query will fail\.  
 `partitioned_by = ARRAY[ col_name[,…] ]`  
 Optional\. An array list of columns by which the CTAS table will be partitioned\. Verify that the names of partitioned columns are listed last in the list of columns in the `SELECT` statement\.   
 `bucketed_by = ARRAY[ bucket_name[,…] ]`  
 An array list of buckets to bucket data\. If omitted, Athena does not bucket your data in this query\.  
 `bucket_count = [int]`  
 The number of buckets for bucketing your data\. If omitted, Athena does not bucket your data\.  
-`orc_compression = [format]`  
-The compression type to use for ORC data\. For example, `WITH (orc_compression = 'ZLIB')`\. If omitted, GZIP compression is used by default for ORC and other data storage formats supported by CTAS\.  
-`parquet_compression = [format]`  
-The compression type to use for Parquet data\. For example, `WITH (parquet_compression = 'SNAPPY')`\. If omitted, GZIP compression is used by default for Parquet and other data storage formats supported by CTAS\.  
+`write_compression = [compression_format]`  
+The compression type to use for any storage format that allows compression to be specified\. The `compression_format` value specifies the compression to be used when the data is written to the table\. You can specify compression for the `TEXTFILE`, `JSON`, `PARQUET`, and `ORC` file formats\.   
+For example, if the `format` property specifies `PARQUET` as the storage format, the value for `write_compression` specifies the compression format for Parquet\. In this case, specifying a value for `write_compression` is equivalent to specifying a value for `parquet_compression`\.   
+Similarly, if the `format` property specifies `ORC` as the storage format, the value for `write_compression` specifies the compression format for ORC\. In this case, specifying a value for `write_compression` is equivalent to specifying a value for `orc_compression`\.   
+Multiple compression format table properties cannot be specified in the same CTAS query\. For example, you cannot specify both `write_compression` and `parquet_compression` in the same query\. The same applies for `write_compression` and `orc_compression`\. For information about the compression types that are supported for each file format, see [Athena Compression Support](compression-formats.md)\.  
+`orc_compression = [compression_format]`  
+The compression type to use for the `ORC` file format when `ORC` data is written to the table\. For example, `WITH (orc_compression = 'ZLIB')`\. Chunks within the `ORC` file \(except the `ORC` Postscript\) are compressed using the compression that you specify\. If omitted, ZLIB compression is used by default for `ORC`\.  
+For consistency, we recommend that you use the `write_compression` property instead of `orc_compression`\. Use the `format` property to specify the storage format as `ORC`, and then use the `write_compression` property to specify the compression format that `ORC` will use\.   
+`parquet_compression = [compression_format]`  
+The compression type to use for the Parquet file format when Parquet data is written to the table\. For example, `WITH (parquet_compression = 'SNAPPY')`\. This compression is applied to column chunks within the Parquet files\. If omitted, GZIP compression is used by default for Parquet\.  
+For consistency, we recommend that you use the `write_compression` property instead of `parquet_compression`\. Use the `format` property to specify the storage format as `PARQUET`, and then use the `write_compression` property to specify the compression format that `PARQUET` will use\.   
 `field_delimiter = [delimiter]`  
 Optional and specific to text\-based data storage formats\. The single\-character field delimiter for files in CSV, TSV, and text files\. For example, `WITH (field_delimiter = ',')`\. Currently, multicharacter field delimiters are not supported for CTAS queries\. If you don't specify a field delimiter, `\001` is used by default\.
 

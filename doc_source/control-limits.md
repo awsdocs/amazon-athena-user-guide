@@ -17,4 +17,5 @@ The following video shows how to create custom dashboards and set alarms and tri
 + [Enabling CloudWatch Query Metrics](athena-cloudwatch-metrics-enable.md)
 + [Monitoring Athena Queries with CloudWatch Metrics](query-metrics-viewing.md)
 + [Monitoring Athena Queries with CloudWatch Events](athena-cloudwatch-events.md)
++ [Monitoring Usage Metrics](monitoring-athena-usage-metrics.md)
 + [Setting Data Usage Control Limits](workgroups-setting-control-limits-cloudwatch.md)

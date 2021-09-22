@@ -311,6 +311,23 @@ FROM test_dataset
 GROUP BY five_minutes_ts,"clientip"
 ```
 
+**Count the number of X\-Forwarded\-For IP in the last 10 days**  
+The following query filters the request headers and counts the number of X\-Forwarded\-For IP in the last 10 days\.
+
+```
+WITH test_dataset AS
+  (SELECT header
+   FROM waf_logs
+   CROSS JOIN UNNEST (httprequest.headers) AS t(header)
+   WHERE from_unixtime("timestamp"/1000) > now() - interval '10' DAY) 
+SELECT header.value AS ip,
+       count(*) AS COUNT 
+FROM test_dataset 
+WHERE header.name='X-Forwarded-For' 
+GROUP BY header.value 
+ORDER BY COUNT DESC
+```
+
 For more information about date and time functions, see [Date and Time Functions and Operators](https://prestodb.io/docs/0.217/functions/datetime.html) in the Presto documentation\.
 
 ### Working with Blocked Requests and Addresses<a name="query-examples-waf-logs-blocked-requests"></a>

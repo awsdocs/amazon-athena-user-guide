@@ -114,7 +114,7 @@ Athena requires the Java TIMESTAMP format\. For more information, see [When I qu
 
 ### Store Athena query output in a format other than CSV<a name="troubleshooting-athena-store-athena-query-output-in-a-format-other-than-csv"></a>
 
-Currently, Athena outputs files in CSV format only, but you can work around this limitation by using a CTAS query and configuring the `format` [table property](create-table-as.md#ctas-table-properties)\. For more information, see [How can I store an Athena query output in a format other than CSV, such as a compressed format?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-query-output-different-format/) in the AWS Knowledge Center\.
+By default, Athena outputs files in CSV format only\. To output the results of a `SELECT` query in a different format, you can use the `UNLOAD` statement\. For more information, see [UNLOAD](unload.md)\. You can also use a CTAS query that uses the `format` [table property](create-table-as.md#ctas-table-properties) to configure the output format\. Unlike `UNLOAD`, the CTAS technique requires the creation of a table\. For more information, see [How can I store an Athena query output in a format other than CSV, such as a compressed format?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-query-output-different-format/) in the AWS Knowledge Center\.
 
 ### The S3 location provided to save your query results is invalid<a name="troubleshooting-athena-the-s3-location-provided-to-save-your-query-results-is-invalid"></a>
 
@@ -236,6 +236,21 @@ This requirement applies only when you create a table using the AWS Glue `Create
 
 This error occurs when you try to use a function that Athena doesn't support\. For a list of functions that Athena supports, see [Presto Functions in Amazon Athena](presto-functions.md) or run the `SHOW FUNCTIONS` statement in the Query Editor\. You can also write your own [user defined function \(UDF\)](querying-udf.md)\. For more information, see [How do I resolve the "function not registered" syntax error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-syntax-function-not-registered/) in the AWS Knowledge Center\.
 
+### GENERIC\_INTERNAL\_ERROR Exceptions<a name="troubleshooting-athena-generic-internal-error"></a>
+
+`GENERIC_INTERNAL_ERROR` exceptions can have a variety of causes, including the following:
++ **GENERIC\_INTERNAL\_ERROR: null** – You might see this exception under either of the following conditions:
+  + You have a schema mismatch between the data type of a column in table definition and the actual data type of the dataset\.
+  + You are running a `CREATE TABLE AS SELECT` \(CTAS\) query with inaccurate syntax\.
++ **GENERIC\_INTERNAL\_ERROR: parent builder is null** – You might see this exception when you query a table with columns of data type `array`, and you are using the OpenCSVSerDe library\. The OpenCSVSerde format doesn't support the `array` data type\.
++ **GENERIC\_INTERNAL\_ERROR: Value exceeds MAX\_INT** – You might see this exception when the source data column is defined with the data type `INT` and has a numeric value greater than 2,147,483,647\.
++ **GENERIC\_INTERNAL\_ERROR: Value exceeds MAX\_BYTE** – You might see this exception when the source data column has a numeric value exceeding the allowable size for the data type `BYTE`\. The data type `BYTE` is equivalent to `TINYINT`\. `TINYINT` is an 8\-bit signed integer in two’s complement format with a minimum value of \-128 and a maximum value of 127\.
++ **GENERIC\_INTERNAL\_ERROR: Number of partition values does not match number of filters** – You might see this exception if you have inconsistent partitions on Amazon Simple Storage Service\(Amazon S3\) data\. You might have inconsistent partitions under either of the following conditions:
+  + Partitions on Amazon S3 have changed \(example: new partitions were added\)\.
+  + The number of partition columns in the table do not match those in the partition metadata\.
+
+For more detailed information about each of these errors, see [How do I resolve the error "GENERIC\_INTERNAL\_ERROR" when I query a table in Amazon Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-generic-internal-error/) in the AWS Knowledge Center\.
+
 ### Number of matching groups doesn't match the number of columns<a name="troubleshooting-athena-number-of-matching-groups-doesnt-match-the-number-of-columns"></a>
 
 This error occurs when you use the [Regex SerDe](regex-serde.md) in a CREATE TABLE statement and the number of regex matching groups doesn't match the number of columns that you specified for the table\. For more information, see [How do I resolve the RegexSerDe error "Number of matching groups doesn't match the number of columns" in Amazon Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/regexserde-error-athena-matching-groups/) in the AWS Knowledge Center\.
@@ -285,7 +300,7 @@ The following pages provide additional information for troubleshooting issues wi
 + [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)
 + [Data Types in Amazon Athena](data-types.md)
 + [Supported SerDes and Data Formats](supported-serdes.md)
-+ [Compression Formats](compression-formats.md)
++ [Athena Compression Support](compression-formats.md)
 + [Reserved Keywords](reserved-words.md)
 + [Troubleshooting Workgroups](workgroups-troubleshooting.md)
 

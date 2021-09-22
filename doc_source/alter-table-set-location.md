@@ -8,7 +8,7 @@ Changes the location for the table named `table_name`, and optionally a partitio
 ALTER TABLE table_name [ PARTITION (partition_spec) ] SET LOCATION 'new location'
 ```
 
-## Parameters<a name="parameters"></a>
+## Parameters<a name="alter-table-set-location-parameters"></a>
 
 **PARTITION \(partition\_spec\)**  
 Specifies the partition with parameters `partition_spec` whose location you want to change\. The `partition_spec` specifies a column name/value combination in the form `partition_col_name = partition_col_value`\.
@@ -16,7 +16,7 @@ Specifies the partition with parameters `partition_spec` whose location you want
 **SET LOCATION 'new location'**  
 Specifies the new location, which must be an Amazon S3 location\. For information about syntax, see [Table Location in Amazon S3](tables-location-format.md)\.
 
-## Examples<a name="examples"></a>
+## Examples<a name="alter-table-set-location-examples"></a>
 
 ```
 ALTER TABLE customers PARTITION (zip='98040', state='WA') SET LOCATION 's3://mystorage/custdata/';

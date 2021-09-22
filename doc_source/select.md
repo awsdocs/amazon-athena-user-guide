@@ -16,6 +16,7 @@ SELECT [ ALL | DISTINCT ] select_expression [, ...]
 [ HAVING condition ]
 [ { UNION | INTERSECT | EXCEPT } [ ALL | DISTINCT ] select ]
 [ ORDER BY expression [ ASC | DESC ] [ NULLS FIRST | NULLS LAST] [, ...] ]
+[ OFFSET count [ ROW | ROWS ] ]
 [ LIMIT [ count | ALL ] ]
 ```
 
@@ -117,6 +118,9 @@ When the clause contains multiple expressions, the result set is sorted accordin
 Each `expression` may specify output columns from `SELECT` or an ordinal number for an output column by position, starting at one\.  
  `ORDER BY` is evaluated as the last step after any `GROUP BY` or `HAVING` clause\. `ASC` and `DESC` determine whether results are sorted in ascending or descending order\.   
 The default null ordering is `NULLS LAST`, regardless of ascending or descending sort order\.
+
+**\[ OFFSET count \[ ROW \| ROWS \] \]**  
+Use the `OFFSET` clause to discard a number of leading rows from the result set\. If the `ORDER BY` clause is present, the `OFFSET` clause is evaluated over a sorted result set, and the set remains sorted after the skipped rows are discarded\. If the query has no `ORDER BY` clause, it is arbitrary which rows are discarded\. If the count specified by `OFFSET` equals or exceeds the size of the result set, the final result is empty\. 
 
 **LIMIT \[ count \| ALL \]**  
 Restricts the number of rows in the result set to `count`\. `LIMIT ALL` is the same as omitting the `LIMIT` clause\. If the query has no `ORDER BY` clause, the results are arbitrary\.
