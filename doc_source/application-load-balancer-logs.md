@@ -28,7 +28,7 @@ The following `CREATE TABLE` statement includes the recently added `classificati
                request_processing_time double,
                target_processing_time double,
                response_processing_time double,
-               elb_status_code string,
+               elb_status_code int,
                target_status_code string,
                received_bytes bigint,
                sent_bytes bigint,
