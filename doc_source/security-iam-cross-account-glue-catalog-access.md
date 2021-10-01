@@ -164,8 +164,7 @@ In some cases you might want to quickly perform testing against a cross\-account
 To explicitly reference a catalog without registration, use the syntax in the following example:
 
 ```
-SELECT * 
-FROM \"glue:arn:aws:glue:us-east-1:999999999999:catalog\".tpch1000.customer
+SELECT * FROM "glue:arn:aws:glue:us-east-1:999999999999:catalog".tpch1000.customer
 ```
 
 Use the format "`glue:<arn>`", where `<arn>` is the [AWS Glue Data Catalog ARN](https://docs.aws.amazon.com/glue/latest/dg/glue-specifying-resource-arns.html#data-catalog-resource-arns) that you want to use\. In the example, Athena uses this syntax to dynamically point to account 999999999999's AWS Glue data catalog as if you had separately created a `DataCatalog` object for it\.

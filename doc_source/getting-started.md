@@ -59,6 +59,9 @@ The sample log data is in tab\-separated values \(TSV\) format, which means that
 
 To enable Athena to read this data, you could run a `CREATE EXTERNAL TABLE` statement like the following\. The statement that creates the table defines columns that map to the data, specifies how the data is delimited, and specifies the Amazon S3 location that contains the sample data\. 
 
+**Note**  
+For the `LOCATION` clause, specify an Amazon S3 folder location, not a specific file\. Athena scans all of the files in the folder that you specify\. 
+
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS cloudfront_logs (
   `Date` DATE,

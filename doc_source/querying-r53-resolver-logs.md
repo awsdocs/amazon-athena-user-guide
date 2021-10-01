@@ -47,7 +47,7 @@ You can use the Query Editor in the Athena console to create and query a table f
 
    Because Resolver query log data is in JSON format, the CREATE TABLE statement uses a [JSON SerDe library](json-serde.md) to analyze the data\.
 **Note**  
-The SerDe expects each JSON record in the logs in Amazon S3 to be on a single line of text with no line termination characters separating the fields in the record\. If the log JSON text is in pretty print format, you may receive the error message HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object when you attempt to query the table after you create it\.
+The SerDe expects each JSON document to be on a single line of text with no line termination characters separating the fields in the record\. If the JSON text is in pretty print format, you may receive an error message like HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object or HIVE\_CURSOR\_ERROR: JsonParseException: Unexpected end\-of\-input: expected close marker for OBJECT when you attempt to query the table after you create it\. For more information, see [JSON Data Files](https://github.com/rcongiu/Hive-JSON-Serde#json-data-files) in the OpenX SerDe documentation on GitHub\. 
 
 1. Choose **Run query**\. The statement creates an Athena table named `r53_rlogs` whose columns represent each of the fields in your Resolver log data\.
 

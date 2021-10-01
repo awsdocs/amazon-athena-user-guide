@@ -90,6 +90,10 @@ The [OpenX JSON SerDe](json-serde.md#openx-json-serde) throws this error when it
 
 This error occurs when you use Athena to query AWS Config resources that have multiple tags with the same name in different case\. The solution is to run *CREATE TABLE* using *WITH SERDEPROPERTIES 'case\.insensitive'='false'* and map the names\. For information about `case.insensitive` and mapping, see [JSON SerDe Libraries](json-serde.md)\. For more information, see [How do I resolve "HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object \- JSONException: Duplicate key" when reading files from AWS Config in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/json-duplicate-key-error-athena-config/) in the AWS Knowledge Center\.
 
+### HIVE\_CURSOR\_ERROR messages with pretty\-printed JSON<a name="troubleshooting-athena-json-serde-hive-cursor-error"></a>
+
+The [Hive JSON SerDe](json-serde.md#hive-json-serde) and [OpenX JSON SerDe](json-serde.md#openx-json-serde) libraries expect each JSON document to be on a single line of text with no line termination characters separating the fields in the record\. If the JSON text is in pretty print format, you may receive an error message like HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object or HIVE\_CURSOR\_ERROR: JsonParseException: Unexpected end\-of\-input: expected close marker for OBJECT when you attempt to query the table after you create it\. For more information, see [JSON Data Files](https://github.com/rcongiu/Hive-JSON-Serde#json-data-files) in the OpenX SerDe documentation on GitHub\.
+
 ### Multiple JSON records return a SELECT COUNT of 1<a name="troubleshooting-athena-multiple-json-records-return-a-select-count-of-1"></a>
 
 If you're using the [OpenX JSON SerDe](json-serde.md#openx-json-serde), make sure that the records are separated by a newline character\. For more information, see [The SELECT COUNT query in Amazon Athena returns only one record even though the input JSON file has multiple records](http://aws.amazon.com/premiumsupport/knowledge-center/select-count-query-athena-json-records/) in the AWS Knowledge Center\.

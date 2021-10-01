@@ -49,7 +49,7 @@ The following procedure requires that you have permission to create a custom IAM
    A new **Lambda function ARN** entry shows the ARN of your Lambda function\.  
 ![\[Lambda function ARN.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-to-data-source-hive-5.png)
 
-1. For **Catalog name**, enter a unique name that you will use in your SQL queries to reference the data source\. The name can be up to 127 characters long and must be unique within your account\. It cannot be changed after creation\. Valid characters are a\-z, A\-z, 0\-9, \_\(underscore\), @\(ampersand\), and \-\(hyphen\)\. The names `awsdatacatalog`, `hive`, `jmx`, and `system` are reserved by Athena and cannot be used for custom catalog names\.
+1. For **Catalog name**, enter a unique name that you will use in your SQL queries to reference the data source\. The name can be up to 127 characters long and must be unique within your account\. It cannot be changed after creation\. Valid characters are a\-z, A\-z, 0\-9, \_ \(underscore\), @ \(at sign\), and \- \(hyphen\)\. The names `awsdatacatalog`, `hive`, `jmx`, and `system` are reserved by Athena and cannot be used for custom catalog names\.
 
 1. \(Optional\) For **Description**, enter text that describes your data catalog\.
 

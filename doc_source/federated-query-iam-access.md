@@ -106,10 +106,10 @@ The following identity\-based permissions policy allows actions that a user or o
                 "lambda:GetPolicy"
             ],
             "Resource": [
-                "arn:aws:lambda:*:MyAWSAcctId:function:MyAthenaLambdaFunctionsPrefix*",
+                "arn:aws:lambda:*:111122223333:function:MyAthenaLambdaFunctionsPrefix*",
                 "arn:aws:s3:::awsserverlessrepo-changesets-1iiv3xa62ln3m/*",
-                "arn:aws:iam::*:role/*",
-                "arn:aws:iam::MyAWSAcctId:policy/*"
+                "arn:aws:iam::*:role/RoleName",
+                "arn:aws:iam::111122223333:policy/*"
             ]
         },
         {
@@ -140,11 +140,11 @@ The following identity\-based permissions policy allows actions that a user or o
             "Effect": "Allow",
             "Action": "cloudformation:*",
             "Resource": [
-                "arn:aws:cloudformation:*:MyAWSAcctId:stack/aws-serverless-repository-MyCFStackPrefix*/*",
-                "arn:aws:cloudformation:*:MyAWSAcctId:stack/serverlessrepo-MyCFStackPrefix*/*",
+                "arn:aws:cloudformation:*:111122223333:stack/aws-serverless-repository-MyCFStackPrefix*/*",
+                "arn:aws:cloudformation:*:111122223333:stack/serverlessrepo-MyCFStackPrefix*/*",
                 "arn:aws:cloudformation:*:*:transform/Serverless-*",
-                "arn:aws:cloudformation:*:MyAWSAcctId:stackset/aws-serverless-repository-MyCFStackPrefix*:*",
-                "arn:aws:cloudformation:*:MyAWSAcctId:stackset/serverlessrepo-MyCFStackPrefix*:*"
+                "arn:aws:cloudformation:*:111122223333:stackset/aws-serverless-repository-MyCFStackPrefix*:*",
+                "arn:aws:cloudformation:*:111122223333:stackset/serverlessrepo-MyCFStackPrefix*:*"
             ]
         },
         {

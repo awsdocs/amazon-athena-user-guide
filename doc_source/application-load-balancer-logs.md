@@ -56,7 +56,7 @@ The following `CREATE TABLE` statement includes the recently added `classificati
                WITH SERDEPROPERTIES (
                'serialization.format' = '1',
                'input.regex' = 
-           '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) ([^ ]*) (- |[^ ]*)\" \"([^\"]*)\" ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" ([-.0-9]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^ ]*)\" \"([^\s]+?)\" \"([^\s]+)\" \"([^ ]*)\" \"([^ ]*)\"')
+           '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) (.*) (- |[^ ]*)\" \"([^\"]*)\" ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" ([-.0-9]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^ ]*)\" \"([^\s]+?)\" \"([^\s]+)\" \"([^ ]*)\" \"([^ ]*)\"')
                LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/';
    ```
 
@@ -85,6 +85,13 @@ WHERE user_agent LIKE '%Safari%'
 LIMIT 10;
 ```
 
+The following query shows records that have ELB status code values greater than or equal to 500\.
+
+```
+SELECT * FROM alb_logs
+WHERE elb_status_code >= 500
+```
+
 The following example shows how to parse the logs by `datetime`:
 
 ```
@@ -97,3 +104,4 @@ GROUP BY client_ip;
 ```
 + For more information and examples, see the AWS Knowledge Center article [How do I analyze my Application Load Balancer access logs using Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/)\.
 + For more information about partitioning ALB logs with Athena, see [athena\-add\-partition](https://github.com/buzzsurfr/athena-add-partition) on GitHub\.
++ For information about Elastic Load Balancing HTTP status codes, see [Troubleshoot your Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html) in the *User Guide for Application Load Balancers*\.
