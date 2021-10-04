@@ -260,6 +260,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Using Earlier Version JDBC Drivers](connect-with-previous-jdbc.md)
    + [Service Quotas](service-limits.md)
 + [Release Notes](release-notes.md)
+   + [October 4, 2021](release-note-2021-10-04.md)
    + [September 16, 2021](release-note-2021-09-16.md)
    + [September 15, 2021](release-note-2021-09-15.md)
    + [August 31, 2021](release-note-2021-08-31.md)
