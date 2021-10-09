@@ -238,7 +238,7 @@ WITH test_dataset AS
     CROSS JOIN UNNEST(httprequest.headers) AS t(header) WHERE day >= '2021/03/01'
     AND day < '2021/03/31')
 SELECT COUNT(*) referer_count 
-FROM DATASET 
+FROM test_dataset 
 WHERE LOWER(header.name)='referer' AND header.value LIKE '%amazon%'
 ```
 
