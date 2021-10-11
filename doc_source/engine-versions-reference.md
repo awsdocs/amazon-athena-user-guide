@@ -257,7 +257,7 @@ The following syntax and behavioral issues have been corrected to follow the ANS
 #### Replaced Functions<a name="engine-versions-reference-0002-replaced-functions"></a>
 
 The following functions are no longer supported and have been replaced by syntax that produces the same results\.
-+ **information\_schema\.\_\_internal\_partitions\_\_** – The usage of `__internal_partitions__` is no longer supported\. For equivalent syntax, use `SELECT * FROM "<table_name>$partitions"` or `SHOW PARTITIONS`\. For more information, see [Listing Partitions for a Specific Table](querying-glue-catalog.md#querying-glue-catalog-listing-partitions)\.
++ **information\_schema\.\_\_internal\_partitions\_\_** – The usage of `__internal_partitions__` is no longer supported in Athena engine version 2\. For equivalent syntax, use `SELECT * FROM "<table_name>$partitions"` or `SHOW PARTITIONS`\. For more information, see [Listing Partitions for a Specific Table](querying-glue-catalog.md#querying-glue-catalog-listing-partitions)\.
 + **Replaced geospatial functions** – For a list of geospatial functions whose names have changed, see [Geospatial Function Name Changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
 
 #### Limits<a name="engine-versions-reference-0002-limits"></a>

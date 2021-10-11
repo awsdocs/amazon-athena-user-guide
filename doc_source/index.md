@@ -75,6 +75,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Setting up Partition Projection](partition-projection-setting-up.md)
       + [Supported Types for Partition Projection](partition-projection-supported-types.md)
       + [Dynamic ID Partitioning](partition-projection-dynamic-id-partitioning.md)
+      + [Amazon Kinesis Data Firehose Example](partition-projection-kinesis-firehose-example.md)
 + [Creating a Table from Query Results (CTAS)](ctas.md)
    + [Considerations and Limitations for CTAS Queries](considerations-ctas.md)
    + [Running CTAS Queries in the Console](ctas-console.md)

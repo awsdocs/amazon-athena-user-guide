@@ -23,3 +23,42 @@ Replaces existing columns with the column names and datatypes specified\.
 ## Notes<a name="alter-table-replace-columns-notes"></a>
 + To see the change in table columns in the Athena Query Editor navigation pane after you run `ALTER TABLE REPLACE COLUMNS`, manually refresh the table list in the editor, and then expand the table again\.
 + `ALTER TABLE REPLACE COLUMNS` does not work for columns with the `date` datatype\. To workaround this issue, use the `timestamp` datatype in the table instead\.
+
+## Example<a name="alter-table-replace-columns-example"></a>
+
+In the following example, the table `names_cities`, which was created using the [LazySimpleSerDe](lazy-simple-serde.md), has three columns named `col1`, `col2`, and `col3`\. All columns are of type `string`\. To show the columns in the table, the following command uses the [SHOW COLUMNS](show-columns.md) statement\.
+
+```
+SHOW COLUMNS IN names_cities
+```
+
+Result of the query:
+
+```
+col1
+col2
+col3
+```
+
+The following `ALTER TABLE REPLACE COLUMNS` command replaces the column names with `first_name`, `last_name`, and `city`\. The underlying source data is not affected\.
+
+```
+ALTER TABLE names_cities
+REPLACE COLUMNS (first_name string, last_name string, city string)
+```
+
+To test the result, `SHOW COLUMNS` is run again\.
+
+```
+SHOW COLUMNS IN names_cities
+```
+
+Result of the query:
+
+```
+first_name
+last_name
+city
+```
+
+Another way to show the new column names is to [preview the table](creating-tables.md#creating-tables-showing-table-information) in the Athena Query Editor or run your own `SELECT` query\.

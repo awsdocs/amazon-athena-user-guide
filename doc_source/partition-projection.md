@@ -62,3 +62,4 @@ The following video shows how to use partition projection to improve the perform
 + [Setting up Partition Projection](partition-projection-setting-up.md)
 + [Supported Types for Partition Projection](partition-projection-supported-types.md)
 + [Dynamic ID Partitioning](partition-projection-dynamic-id-partitioning.md)
++ [Amazon Kinesis Data Firehose Example](partition-projection-kinesis-firehose-example.md)

@@ -119,7 +119,7 @@ The SerDe expects each JSON document to be on a single line of text with no line
 
 Because AWS WAF logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena partition projection feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
 
-The following example `CREATE TABLE` statement automatically uses partition projection on AWS WAF logs from a specified date until the present for a single AWS region\. In the `LOCATION` and `storage.location.template` clauses, replace the *bucket* and *folder* placeholders with values that identify the Amazon S3 bucket location of your AWS WAF logs\. For `projection.day.range`, replace *2021*/*01*/*01* with the starting date that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\.
+The following example `CREATE TABLE` statement automatically uses partition projection on AWS WAF logs from a specified date until the present for a single AWS region\. In the `LOCATION` and `storage.location.template` clauses, replace the *bucket* and *folder* placeholders with values that identify the Amazon S3 bucket location of your AWS WAF logs\. For `projection.datehour.range`, replace *2021*/*01*/*01*/*00* with the starting date and hour that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\.
 
 ```
 CREATE EXTERNAL TABLE `waf_logs`(
@@ -205,7 +205,7 @@ CREATE EXTERNAL TABLE `waf_logs`(
 )
 PARTITIONED BY
 (
- day STRING
+ datehour STRING
 )
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
@@ -214,12 +214,12 @@ LOCATION 's3://bucket/folder/'
 TBLPROPERTIES
 (
  "projection.enabled" = "true",
- "projection.day.type" = "date",
- "projection.day.range" = "2021/01/01,NOW",
- "projection.day.format" = "yyyy/MM/dd",
- "projection.day.interval" = "1",
- "projection.day.interval.unit" = "DAYS",
- "storage.location.template" = "s3://bucket/folder/${day}"
+ "projection.datehour.type" = "date",
+ "projection.datehour.range" = "2021/01/01/00,NOW",
+ "projection.datehour.format" = "yyyy/MM/dd/HH",
+ "projection.datehour.interval" = "1",
+ "projection.datehour.interval.unit" = "HOURS",
+ "storage.location.template" = "s3://bucket/folder/${datehour}"
 )
 ```
 
