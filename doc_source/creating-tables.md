@@ -108,6 +108,12 @@ You can create tables in Athena by using AWS Glue, the add table wizard, or by r
 
    After the table is created, you can run queries against your data\.
 
+### Sample Database and Table<a name="creating-tables-sampledb-and-table"></a>
+
+In the old Athena console experience, Athena creates a sample database and table for you when you use Athena in a Region for the first time\. The `sampledb` database and `elb_logs` table are created from sample data in the Athena examples folder for the Region \(for example, `s3://athena-examples-eu-west-1/elb/plaintext/`\)\. The sample database and table support the interactive tutorial available from the menu of the old console\. 
+
+![\[Sample database and table\]](http://docs.aws.amazon.com/athena/latest/ug/images/old-console-sampledb-table-tutorial.png)
+
 ## Showing Table Information<a name="creating-tables-showing-table-information"></a>
 
  After you have created a table in Athena, you can choose the vertical three dots next to the table name in the Athena console to show information about the table and manage it\. 

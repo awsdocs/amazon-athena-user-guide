@@ -60,7 +60,7 @@ FROM "nlb_tls_logs"
 GROUP BY  cert_arn;
 ```
 
-The following query shows how many users are using the older TLS version:
+The following query shows how many users are using a TLS version earlier than 1\.3:
 
 ```
 SELECT tls_protocol_version,
@@ -68,7 +68,7 @@ SELECT tls_protocol_version,
          num_connections,
          client_ip
 FROM "nlb_tls_logs"
-WHERE tls_protocol_version < 'tlsv12'
+WHERE tls_protocol_version < 'tlsv13'
 GROUP BY tls_protocol_version, client_ip;
 ```
 
@@ -79,4 +79,17 @@ SELECT *
 FROM "nlb_tls_logs"
 ORDER BY  tls_handshake_time_ms DESC 
 LIMIT 10;
+```
+
+Use the following query to identify and count which TLS protocol versions and cipher suites have been negotiated in the past 30 days\.
+
+```
+SELECT tls_cipher_suite,
+         tls_protocol_version,
+         COUNT(*) AS ct
+FROM "nlb_tls_logs"
+WHERE from_iso8601_timestamp(time) > current_timestamp - interval '30' day
+        AND NOT tls_protocol_version = '-'
+GROUP BY tls_cipher_suite, tls_protocol_version
+ORDER BY ct DESC;
 ```

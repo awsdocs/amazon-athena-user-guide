@@ -17,3 +17,9 @@ Currently, the database menu can show and filter a maximum of 1000 databases reg
 ![\[Choosing a database in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/catalogdashboard.png)
 
 For information on controlling permissions to Athena databases, see [Fine\-Grained Access to Databases and Tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\.
+
+## Sample Database and Table<a name="creating-databases-sampledb-and-table"></a>
+
+In the old Athena console experience, Athena creates a sample database and table for you when you use Athena in a Region for the first time\. The `sampledb` database and `elb_logs` table are created from sample data in the Athena examples folder for the Region \(for example, `s3://athena-examples-eu-west-1/elb/plaintext/`\)\. The sample database and table support the interactive tutorial available from the menu of the old console\. 
+
+![\[Sample database and table\]](http://docs.aws.amazon.com/athena/latest/ug/images/old-console-sampledb-table-tutorial.png)
