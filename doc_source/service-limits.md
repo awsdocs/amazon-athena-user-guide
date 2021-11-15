@@ -15,7 +15,7 @@ These are soft quotas; you can use the [Athena Service Quotas](https://console.a
 
 Athena processes queries by assigning resources based on the overall service load and the number of incoming requests\. Your queries may be temporarily queued before they run\. Asynchronous processes pick up the queries from queues and run them on physical resources as soon as the resources become available and for as long as your account configuration permits\.
 
-A DML or DDL query quota includes both running and queued queries\. For example, if you are using the default DML quota and your total of running and queued queries exceeds 25, query 26 will result in a "too many queries" error\. 
+A DML or DDL query quota includes both running and queued queries\. For example, if you are using the default DML quota and your total of running and queued queries exceeds 25, query 26 will result in a "TooManyRequestsException" error\. 
 
 ### Query String Length<a name="service-limits-query-string-length"></a>
 
