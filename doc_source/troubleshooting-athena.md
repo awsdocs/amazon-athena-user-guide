@@ -43,17 +43,21 @@ This error can occur in the following scenarios:
 + The data type defined in the table doesn't match the source data, or a single field contains different types of data\. For suggested resolutions, see [My Amazon Athena query fails with the error "HIVE\_BAD\_DATA: Error parsing field value for field X: For input string: "12312845691""](http://aws.amazon.com/premiumsupport/knowledge-center/athena-hive-bad-data-parsing-field-value/) in the AWS Knowledge Center\.
 + Null values are present in an integer field\. One workaround is to create the column with the null values as `string` and then use `CAST` to convert the field in a query, supplying a default value of `0` for nulls\. For more information, see [When I query CSV data in Athena, I get the error "HIVE\_BAD\_DATA: Error parsing field value '' for field X: For input string: """](http://aws.amazon.com/premiumsupport/knowledge-center/athena-hive-bad-data-error-csv/) in the AWS Knowledge Center\.
 
-### HIVE\_CURSOR\_ERROR: Unexpected end of input stream<a name="troubleshooting-athena-hive_cursor_error-unexpected-end-of-input-stream"></a>
+### HIVE\_CANNOT\_OPEN\_SPLIT: Error opening Hive split s3://*bucket\-name*<a name="troubleshooting-athena-hive_cannot_open_split-error-opening-hive-split-s3bucket-name"></a>
 
-This message indicates the file is either corrupted or empty\. Check the integrity of the file and rerun the query\.
+This error can occur when you query an Amazon S3 bucket prefix that has a large number of objects\. For more information, see [How do I resolve the "HIVE\_CANNOT\_OPEN\_SPLIT: Error opening Hive split s3://awsdoc\-example\-bucket/: Slow Down" error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/hive-cannot-open-split-503-athena/) in the AWS Knowledge Center\.
 
 ### HIVE\_CURSOR\_ERROR: com\.amazonaws\.services\.s3\.model\.AmazonS3Exception: The specified key does not exist<a name="troubleshooting-athena-hive_cursor_error-com.amazonaws.services.s3.model.amazons3exception-the-specified-key-does-not-exist"></a>
 
 This error usually occurs when a file is removed when a query is running\. Either rerun the query, or check your workflow to see if another job or process is modifying the files when the query is running\.
 
-### HIVE\_CANNOT\_OPEN\_SPLIT: Error opening Hive split s3://*bucket\-name*<a name="troubleshooting-athena-hive_cannot_open_split-error-opening-hive-split-s3bucket-name"></a>
+### HIVE\_CURSOR\_ERROR: Unexpected end of input stream<a name="troubleshooting-athena-hive_cursor_error-unexpected-end-of-input-stream"></a>
 
-This error can occur when you query an Amazon S3 bucket prefix that has a large number of objects\. For more information, see [How do I resolve the "HIVE\_CANNOT\_OPEN\_SPLIT: Error opening Hive split s3://awsdoc\-example\-bucket/: Slow Down" error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/hive-cannot-open-split-503-athena/) in the AWS Knowledge Center\.
+This message indicates the file is either corrupted or empty\. Check the integrity of the file and rerun the query\.
+
+### HIVE\_FILESYSTEM\_ERROR: Incorrect fileSize *1234567* for file<a name="troubleshooting-athena-hive_filesystem_error-incorrect-file-size"></a>
+
+This message can occur when a file has changed between query planning and query execution\. It usually occurs when a file on Amazon S3 is replaced in\-place \(for example, a `PUT` is performed on a key where an object already exists\)\. Athena does not support deleting or replacing the contents of a file when a query is running\. To avoid this error, schedule jobs that overwrite or delete files at times when queries do not run, or only write data to new files or partitions\.
 
 ### HIVE\_UNKNOWN\_ERROR: Unable to create input format<a name="troubleshooting-athena-hive_unknown_error-unable-to-create-input-format"></a>
 
