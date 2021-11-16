@@ -1,27 +1,16 @@
-# Using the EXPLAIN Statement in Athena<a name="athena-explain-statement"></a>
+# Using EXPLAIN and EXPLAIN ANALYZE in Athena<a name="athena-explain-statement"></a>
 
-The `EXPLAIN` statement shows the logical or distributed execution plan of a specified SQL statement, or validates the SQL statement\. You can output the results in text format or in a data format for rendering into a graph\.
+The `EXPLAIN` statement shows the logical or distributed execution plan of a specified SQL statement, or validates the SQL statement\. You can output the results in text format or in a data format for rendering into a graph\. 
+
+The `EXPLAIN ANALYZE` statement shows both the distributed execution plan of a specified SQL statement and the computational cost of each operation in a SQL query\. You can output the results in text or JSON format\. 
 
 ## Considerations and Limitations<a name="athena-explain-statement-considerations-and-limitations"></a>
 
-The `EXPLAIN` statement in Athena has the following limitations\.
+The `EXPLAIN` and `EXPLAIN ANALYZE` statements in Athena have the following limitations\.
 + Because `EXPLAIN` queries do not scan any data, Athena does not charge for them\. However, because `EXPLAIN` queries make calls to AWS Glue to retrieve table metadata, you may incur charges from Glue if the calls go above the [free tier limit for Glue](http://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23analytics&all-free-tier.q=glue&all-free-tier.q_operator=AND)\.
-+ Athena does not support `EXPLAIN ANALYZE`, which collects runtime statistics\.
++ Because `EXPLAIN ANALYZE` queries are executed, they do scan data, and Athena charges for the amount of data scanned\.
 
-## Syntax – Athena engine version 1<a name="athena-explain-statement-syntax-athena-engine-version-1"></a>
-
-```
-EXPLAIN [ ( option [, ...]) ] statement
-```
-
-*option* can be one of the following:
-
-```
-FORMAT { TEXT | GRAPHVIZ }
-TYPE { LOGICAL | DISTRIBUTED | VALIDATE }
-```
-
-## Syntax – Athena engine version 2<a name="athena-explain-statement-syntax-athena-engine-version-2"></a>
+## EXPLAIN Syntax<a name="athena-explain-statement-syntax-athena-engine-version-2"></a>
 
 ```
 EXPLAIN [ ( option [, ...]) ] statement
@@ -34,13 +23,40 @@ FORMAT { TEXT | GRAPHVIZ | JSON }
 TYPE { LOGICAL | DISTRIBUTED | VALIDATE | IO }
 ```
 
-The `IO` type provides information about the tables and schemas that the query reads\. `IO` is supported only in Athena engine version 2 and can be returned only in JSON format\.
+If the `FORMAT` option is not specified, the output defaults to `TEXT` format\. The `IO` type provides information about the tables and schemas that the query reads\. `IO` is supported only in Athena engine version 2 and can be returned only in JSON format\.
 
-## Examples<a name="athena-explain-statement-examples"></a>
+## EXPLAIN ANALYZE Syntax<a name="athena-explain-analyze-statement"></a>
 
-The following examples progress from the more straightforward to the more complex\. Example results are in text format\.
+In addition to the output included in `EXPLAIN`, `EXPLAIN ANALYZE` output also includes runtime statistics for the specified query such as CPU usage, the number of rows input, and the number of rows output\.
 
-### Example 1\. Use the EXPLAIN statement to show a text query plan<a name="athena-explain-statement-example-text-query-plan"></a>
+```
+EXPLAIN ANALYZE [ ( option [, ...]) ] statement
+```
+
+*option* can be one of the following:
+
+```
+FORMAT { TEXT | JSON }
+```
+
+If the `FORMAT` option is not specified, the output defaults to `TEXT` format\. Because all queries for `EXPLAIN ANALYZE` are `DISTRIBUTED`, the `TYPE` option is not available for `EXPLAIN ANALYZE`\. 
+
+*statement* can be one of the following:
+
+```
+SELECT
+CREATE TABLE AS SELECT
+INSERT
+UNLOAD
+```
+
+## EXPLAIN Examples<a name="athena-explain-statement-examples"></a>
+
+The following examples for `EXPLAIN` progress from the more straightforward to the more complex\.
+
+### EXPLAIN Example 1\. Use the EXPLAIN statement to show a query plan in text format<a name="athena-explain-statement-example-text-query-plan"></a>
+
+In the following example, `EXPLAIN` shows the execution plan for a `SELECT` query on Elastic Load Balancing logs\. The format defaults to text output\.
 
 ```
 EXPLAIN 
@@ -64,7 +80,7 @@ analyzePartitionValues=Optional.empty}] => [[request_timestamp, elb_name, reques
                 elb_name := elb_name:string:1:REGULAR
 ```
 
-### Example 2\. Use the EXPLAIN statement to graph a query plan<a name="athena-explain-statement-example-graph-a-query-plan"></a>
+### EXPLAIN Example 2\. Use the EXPLAIN statement to graph a query plan<a name="athena-explain-statement-example-graph-a-query-plan"></a>
 
 ```
 EXPLAIN (FORMAT GRAPHVIZ)
@@ -85,16 +101,24 @@ Query Plan
 digraph logical_plan {
 subgraph cluster_graphviz_plan {
 label = "SINGLE"
-plannode_1[label="{Output[c_custkey, o_orderkey, o_orderstatus]}", style="rounded, filled", shape=record, fillcolor=white];
-plannode_2[label="{ExchangeNode[GATHER]|\"c_custkey\", \"o_orderstatus\", \"o_orderkey\"}", style="rounded, filled", shape=record, fillcolor=gold];
+plannode_1[label="{Output[c_custkey, o_orderkey, o_orderstatus]}", style="rounded, filled", shape=record,\
+  fillcolor=white];
+plannode_2[label="{ExchangeNode[GATHER]|\"c_custkey\", \"o_orderstatus\", \"o_orderkey\"}", style="rounded,\
+  filled", shape=record, fillcolor=gold];
 plannode_3[label="{InnerJoin}", style="rounded, filled", shape=record, fillcolor=orange];
-plannode_4[label="{Filter|(\"c_custkey\" = 5566684)}", style="rounded, filled", shape=record, fillcolor=yellow];
-plannode_5[label="{TableScan[awsdatacatalog:HiveTableHandle\{schemaName=tpch100, tableName=customer, analyzePartitionValues=Optional.empty\}]}", style="rounded, filled", shape=record, fillcolor=deepskyblue];
-plannode_6[label="{ExchangeNode[GATHER]|\"o_orderstatus\", \"o_orderkey\"}", style="rounded, filled", shape=record, fillcolor=gold];
-plannode_7[label="{ExchangeNode[REPLICATE]|\"o_orderstatus\", \"o_orderkey\"}", style="rounded, filled", shape=record, fillcolor=gold];
+plannode_4[label="{Filter|(\"c_custkey\" = 5566684)}", style="rounded, filled", shape=record,\
+  fillcolor=yellow];
+plannode_5[label="{TableScan[awsdatacatalog:HiveTableHandle\{schemaName=tpch100, tableName=customer,\
+  analyzePartitionValues=Optional.empty\}]}", style="rounded, filled", shape=record, fillcolor=deepskyblue];
+plannode_6[label="{ExchangeNode[GATHER]|\"o_orderstatus\", \"o_orderkey\"}", style="rounded, filled",\
+  shape=record, fillcolor=gold];
+plannode_7[label="{ExchangeNode[REPLICATE]|\"o_orderstatus\", \"o_orderkey\"}", style="rounded, filled",\
+  shape=record, fillcolor=gold];
 plannode_8[label="{Project}", style="rounded, filled", shape=record, fillcolor=bisque];
-plannode_9[label="{Filter|(\"o_custkey\" = 5566684)}", style="rounded, filled", shape=record, fillcolor=yellow];
-plannode_10[label="{TableScan[awsdatacatalog:HiveTableHandle\{schemaName=tpch100, tableName=orders, analyzePartitionValues=Optional.empty\}]}", style="rounded, filled", shape=record, fillcolor=deepskyblue];
+plannode_9[label="{Filter|(\"o_custkey\" = 5566684)}", style="rounded, filled", shape=record,\
+  fillcolor=yellow];
+plannode_10[label="{TableScan[awsdatacatalog:HiveTableHandle\{schemaName=tpch100, tableName=orders,\
+  analyzePartitionValues=Optional.empty\}]}", style="rounded, filled", shape=record, fillcolor=deepskyblue];
 }
 plannode_1, plannode_2;
 plannode_2, plannode_3;
@@ -112,7 +136,7 @@ To see the query plan visually, use the open source [Graphviz](https://graphviz.
 
 ![\[Graph of the query plan rendered by the Graphviz tool.\]](http://docs.aws.amazon.com/athena/latest/ug/images/athena-explain-statement-1.png)
 
-### Example 3\. Use the EXPLAIN statement to verify partition pruning<a name="athena-explain-statement-example-verify-partition-pruning"></a>
+### EXPLAIN Example 3\. Use the EXPLAIN statement to verify partition pruning<a name="athena-explain-statement-example-verify-partition-pruning"></a>
 
 When you use a filtering predicate on a partitioned key to query a partitioned table, the query engine applies the predicate to the partitioned key to reduce the amount of data read\.
 
@@ -184,7 +208,7 @@ analyzePartitionValues=Optional.empty}] => [[o_orderkey, o_custkey, o_orderdate]
 
 The bold text in the result shows that the predicate `o_orderdate = '1995'` was applied on the `PARTITION_KEY`\.
 
-### Example 4\. Use an EXPLAIN query to check the join order and join type<a name="athena-explain-statement-example-check-join-order-and-type"></a>
+### EXPLAIN Example 4\. Use an EXPLAIN query to check the join order and join type<a name="athena-explain-statement-example-check-join-order-and-type"></a>
 
 The following `EXPLAIN` query checks the `SELECT` statement's join order and join type\. Use a query like this to examine query memory usage so that you can reduce the chances of getting an `EXCEEDED_LOCAL_MEMORY_LIMIT` error\.
 
@@ -257,7 +281,7 @@ JOIN tpch100.customer c -- the filtered results of tpch100.customer are distribu
 WHERE c.c_custkey = 123
 ```
 
-### Example 5\. Use an EXPLAIN query to remove predicates that have no effect<a name="athena-explain-statement-example-remove-unneeded-predicates"></a>
+### EXPLAIN Example 5\. Use an EXPLAIN query to remove predicates that have no effect<a name="athena-explain-statement-example-remove-unneeded-predicates"></a>
 
 You can use an `EXPLAIN` query to check the effectiveness of filtering predicates\. You can use the results to remove predicates that have no effect, as in the following example\.
 
@@ -297,9 +321,208 @@ Because the results show that the predicate `AND c.c_custkey BETWEEN 1000 AND 20
 
 For information about the terms used in the results of `EXPLAIN` queries, see [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\.
 
+## EXPLAIN ANALYZE Examples<a name="athena-explain-analyze-examples"></a>
+
+The following examples show example `EXPLAIN ANALYZE` queries and outputs\.
+
+### EXPLAIN ANALYZE Example 1\. Use EXPLAIN ANALYZE to show a query plan and computational cost in text format<a name="athena-explain-analyze-example-cflogs-text"></a>
+
+In the following example, `EXPLAIN ANALYZE` shows the execution plan and computational costs for a `SELECT` query on CloudFront logs\. The format defaults to text output\.
+
+```
+EXPLAIN ANALYZE SELECT FROM cloudfront_logs LIMIT 10
+```
+
+#### Results<a name="athena-explain-analyze-example-cflogs-text-results"></a>
+
+```
+ Fragment 1
+     CPU: 24.60ms, Input: 10 rows (1.48kB); per task: std.dev.: 0.00, Output: 10 rows (1.48kB)
+     Output layout: [date, time, location, bytes, requestip, method, host, uri, status, referrer,\
+       os, browser, browserversion]
+Limit[10] => [[date, time, location, bytes, requestip, method, host, uri, status, referrer, os,\
+  browser, browserversion]]
+             CPU: 1.00ms (0.03%), Output: 10 rows (1.48kB)
+             Input avg.: 10.00 rows, Input std.dev.: 0.00%
+LocalExchange[SINGLE] () => [[date, time, location, bytes, requestip, method, host, uri, status, referrer, os,\
+ browser, browserversion]]
+                 CPU: 0.00ns (0.00%), Output: 10 rows (1.48kB)
+                 Input avg.: 0.63 rows, Input std.dev.: 387.30%
+RemoteSource[2] => [[date, time, location, bytes, requestip, method, host, uri, status, referrer, os,\
+  browser, browserversion]]
+                     CPU: 1.00ms (0.03%), Output: 10 rows (1.48kB)
+                     Input avg.: 0.63 rows, Input std.dev.: 387.30%
+
+ Fragment 2
+     CPU: 3.83s, Input: 998 rows (147.21kB); per task: std.dev.: 0.00, Output: 20 rows (2.95kB)
+     Output layout: [date, time, location, bytes, requestip, method, host, uri, status, referrer, os,\
+       browser, browserversion]
+LimitPartial[10] => [[date, time, location, bytes, requestip, method, host, uri, status, referrer, os,\
+  browser, browserversion]]
+             CPU: 5.00ms (0.13%), Output: 20 rows (2.95kB)
+             Input avg.: 166.33 rows, Input std.dev.: 141.42%
+TableScan[awsdatacatalog:HiveTableHandle{schemaName=default, tableName=cloudfront_logs,\
+  analyzePartitionValues=Optional.empty}, 
+grouped = false] => [[date, time, location, bytes, requestip, method, host, uri, st
+                 CPU: 3.82s (99.82%), Output: 998 rows (147.21kB)
+                 Input avg.: 166.33 rows, Input std.dev.: 141.42%
+                 LAYOUT: default.cloudfront_logs
+                 date := date:date:0:REGULAR
+                 referrer := referrer:string:9:REGULAR
+                 os := os:string:10:REGULAR
+                 method := method:string:5:REGULAR
+                 bytes := bytes:int:3:REGULAR
+                 browser := browser:string:11:REGULAR
+                 host := host:string:6:REGULAR
+                 requestip := requestip:string:4:REGULAR
+                 location := location:string:2:REGULAR
+                 time := time:string:1:REGULAR
+                 uri := uri:string:7:REGULAR
+                 browserversion := browserversion:string:12:REGULAR
+                 status := status:int:8:REGULAR
+```
+
+### EXPLAIN ANALYZE Example 2\. Use EXPLAIN ANALYZE to show a query plan in JSON format<a name="athena-explain-analyze-example-cflogs-json"></a>
+
+The following example shows the execution plan and computational costs for a `SELECT` query on CloudFront logs\. The example specifies JSON as the output format\.
+
+```
+EXPLAIN ANALYZE (FORMAT JSON) SELECT * FROM cloudfront_logs LIMIT 10
+```
+
+#### Results<a name="athena-explain-analyze-example-cflogs-json-results"></a>
+
+```
+{ 
+    "fragments": [{ 
+        "id": "1", 
+ 
+        "stageStats": { 
+            "totalCpuTime": "3.31ms", 
+            "inputRows": "10 rows", 
+            "inputDataSize": "1514B", 
+            "stdDevInputRows": "0.00", 
+            "outputRows": "10 rows", 
+            "outputDataSize": "1514B" 
+        }, 
+        "outputLayout": "date, time, location, bytes, requestip, method, host,\
+           uri, status, referrer, os, browser, browserversion", 
+ 
+        "logicalPlan": { 
+            "1": [{ 
+                "name": "Limit", 
+                "identifier": "[10]", 
+                "outputs": ["date", "time", "location", "bytes", "requestip", "method", "host",\
+                  "uri", "status", "referrer", "os", "browser", "browserversion"], 
+                "details": "", 
+                "distributedNodeStats": { 
+                    "nodeCpuTime": "0.00ns", 
+                    "nodeOutputRows": 10, 
+                    "nodeOutputDataSize": "1514B", 
+                    "operatorInputRowsStats": [{ 
+                        "nodeInputRows": 10.0, 
+                        "nodeInputRowsStdDev": 0.0 
+                    }] 
+                }, 
+                "children": [{ 
+                    "name": "LocalExchange", 
+                    "identifier": "[SINGLE] ()", 
+                    "outputs": ["date", "time", "location", "bytes", "requestip", "method", "host",\
+                      "uri", "status", "referrer", "os", "browser", "browserversion"], 
+                    "details": "", 
+                    "distributedNodeStats": { 
+                        "nodeCpuTime": "0.00ns", 
+                        "nodeOutputRows": 10, 
+                        "nodeOutputDataSize": "1514B", 
+                        "operatorInputRowsStats": [{ 
+                            "nodeInputRows": 0.625, 
+                            "nodeInputRowsStdDev": 387.2983346207417 
+                        }] 
+                    }, 
+                    "children": [{ 
+                        "name": "RemoteSource", 
+                        "identifier": "[2]", 
+                        "outputs": ["date", "time", "location", "bytes", "requestip", "method", "host",\
+                          "uri", "status", "referrer", "os", "browser", "browserversion"], 
+                        "details": "", 
+                        "distributedNodeStats": { 
+                            "nodeCpuTime": "0.00ns", 
+                            "nodeOutputRows": 10, 
+                            "nodeOutputDataSize": "1514B", 
+                            "operatorInputRowsStats": [{ 
+                                "nodeInputRows": 0.625, 
+                                "nodeInputRowsStdDev": 387.2983346207417 
+                            }] 
+                        }, 
+                        "children": [] 
+                    }] 
+                }] 
+            }] 
+        } 
+    }, { 
+        "id": "2", 
+ 
+        "stageStats": { 
+            "totalCpuTime": "1.62s", 
+            "inputRows": "500 rows", 
+            "inputDataSize": "75564B", 
+            "stdDevInputRows": "0.00", 
+            "outputRows": "10 rows", 
+            "outputDataSize": "1514B" 
+        }, 
+        "outputLayout": "date, time, location, bytes, requestip, method, host, uri, status,\
+           referrer, os, browser, browserversion", 
+ 
+        "logicalPlan": { 
+            "1": [{ 
+                "name": "LimitPartial", 
+                "identifier": "[10]", 
+                "outputs": ["date", "time", "location", "bytes", "requestip", "method", "host", "uri",\
+                  "status", "referrer", "os", "browser", "browserversion"], 
+                "details": "", 
+                "distributedNodeStats": { 
+                    "nodeCpuTime": "0.00ns", 
+                    "nodeOutputRows": 10, 
+                    "nodeOutputDataSize": "1514B", 
+                    "operatorInputRowsStats": [{ 
+                        "nodeInputRows": 83.33333333333333, 
+                        "nodeInputRowsStdDev": 223.60679774997897 
+                    }] 
+                }, 
+                "children": [{ 
+                    "name": "TableScan", 
+                    "identifier": "[awsdatacatalog:HiveTableHandle{schemaName=default,\
+                       tableName=cloudfront_logs, analyzePartitionValues=Optional.empty},\
+                       grouped = false]", 
+                    "outputs": ["date", "time", "location", "bytes", "requestip", "method", "host", "uri",\
+                       "status", "referrer", "os", "browser", "browserversion"], 
+                    "details": "LAYOUT: default.cloudfront_logs\ndate := date:date:0:REGULAR\nreferrer :=\
+                       referrer: string:9:REGULAR\nos := os:string:10:REGULAR\nmethod := method:string:5:\
+                       REGULAR\nbytes := bytes:int:3:REGULAR\nbrowser := browser:string:11:REGULAR\nhost :=\
+                       host:string:6:REGULAR\nrequestip := requestip:string:4:REGULAR\nlocation :=\
+                       location:string:2:REGULAR\ntime := time:string:1: REGULAR\nuri := uri:string:7:\
+                       REGULAR\nbrowserversion := browserversion:string:12:REGULAR\nstatus :=\
+                       status:int:8:REGULAR\n", 
+                    "distributedNodeStats": { 
+                        "nodeCpuTime": "1.62s", 
+                        "nodeOutputRows": 500, 
+                        "nodeOutputDataSize": "75564B", 
+                        "operatorInputRowsStats": [{ 
+                            "nodeInputRows": 83.33333333333333, 
+                            "nodeInputRowsStdDev": 223.60679774997897 
+                        }] 
+                    }, 
+                    "children": [] 
+                }] 
+            }] 
+        } 
+    }] 
+}
+```
+
 ## Additional Resources<a name="athena-explain-statement-additional-resources"></a>
 
 For additional information about `EXPLAIN` queries, see the following resources\.
-+ Presto 0\.172 [https://prestodb.io/docs/0.172/sql/explain.html](https://prestodb.io/docs/0.172/sql/explain.html) documentation
 + Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain.html](https://prestodb.io/docs/0.217/sql/explain.html) documentation
++ Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain-analyze.html](https://prestodb.io/docs/0.217/sql/explain-analyze.html) documentation
 + [Explain the `EXPLAIN`](https://youtu.be/GcS02yTNwC0?t=1222) video on YouTube \(20:18\)

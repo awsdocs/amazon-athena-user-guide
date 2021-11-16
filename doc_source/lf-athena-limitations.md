@@ -25,7 +25,7 @@ For data registered with Lake Formation, an Athena user can create a `VIEW` only
 
 ## Athena Query Results Location In Amazon S3 Not Registered With Lake Formation<a name="lf-athena-limitations-query-results-location"></a>
 
-The query results locations in Amazon S3 for Athena cannot be registered with Lake Formation\. Lake Formation permissions do not limit access to these locations\. Unless you limit access, Athena users can access query result files and metadata when they do not have Lake Formation permissions for the data\. To avoid this, we recommend that you use workgroups to specify the location for query results and align workgroup membership with Lake Formation permissions\. You can then use IAM permissions policies to limit access to query results locations\. For more information about query results, see [Working with Query Results, Output Files, and Query History](querying.md)\.
+The query results locations in Amazon S3 for Athena cannot be registered with Lake Formation\. Lake Formation permissions do not limit access to these locations\. Unless you limit access, Athena users can access query result files and metadata when they do not have Lake Formation permissions for the data\. To avoid this, we recommend that you use workgroups to specify the location for query results and align workgroup membership with Lake Formation permissions\. You can then use IAM permissions policies to limit access to query results locations\. For more information about query results, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\.
 
 ## Use Athena Workgroups To Limit Access To Query History<a name="lf-athena-limitations-use-workgroups-to-limit-access-to-query-history"></a>
 
@@ -34,7 +34,7 @@ Athena query history exposes a list of saved queries and complete query strings\
 ## Cross\-Account Data Catalog Access<a name="lf-athena-limitations-cross-account-glue"></a>
 
 To access a data catalog in another account, you can use one of the following methods:
-+ Use Athena's cross\-account AWS Glue catalog feature to register the catalog in your account\. This capability is available only in Athena engine version 2 and is limited to same\-Region use between accounts\. For more information, see [Registering an AWS Glue Data Catalog from Another Account](data-sources-glue-cross-account.md) and [Cross\-Account Access to Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
++ Use Athena's cross\-account AWS Glue catalog feature to register the catalog in your account\. This capability is available only in Athena engine version 2 and is limited to same\-Region use between accounts\. For more information, see [Registering an AWS Glue Data Catalog from Another Account](data-sources-glue-cross-account.md) and [Cross\-Account Access to AWS Glue Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 + Set up cross\-account access in Lake Formation\. For more information, see the following section\.
 
 ### Setting Up Cross\-Account Access in Lake Formation<a name="lf-athena-limitations-cross-account-glue-lf-xacct"></a>

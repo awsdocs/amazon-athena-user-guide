@@ -6,7 +6,7 @@ Athena uses the AWS Glue Data Catalog to store and retrieve table metadata for t
 
 To create database and table schema in the AWS Glue Data Catalog, you can run an AWS Glue crawler from within Athena on a data source, or you can run Data Definition Language \(DDL\) queries directly in the Athena Query Editor\. Then, using the database and table schema that you created, you can use Data Manipulation \(DML\) queries in Athena to query the data\.
 
-You can register an AWS Glue Data Catalog from an account other than your own\. After you configure the required IAM permissions for AWS Glue, you can use Athena to run cross\-account queries\. For more information, see [Cross\-Account Access to Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
+You can register an AWS Glue Data Catalog from an account other than your own\. After you configure the required IAM permissions for AWS Glue, you can use Athena to run cross\-account queries\. For more information, see [Cross\-Account Access to AWS Glue Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 
 For more information about the AWS Glue Data Catalog, see [Populating the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) in the *AWS Glue Developer Guide*\.
 

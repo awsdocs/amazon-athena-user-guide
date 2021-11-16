@@ -15,5 +15,6 @@ The Athena JDBC and ODBC drivers support SAML 2\.0\-based authentication, includ
 For more information, see the installation and configuration guides for the respective drivers, downloable in PDF format from the [JDBC](connect-with-jdbc.md) and [ODBC](connect-with-odbc.md) driver pages\. For additional related information, see the following:
 + [Enabling Federated Access to the Athena API](access-federation-saml.md)
 + [Using Lake Formation and the Athena JDBC and ODBC Drivers for Federated Access to Athena](security-athena-lake-formation-jdbc.md)
++  [Configuring Single Sign\-On Using ODBC, SAML 2\.0, and the Okta Identity Provider](okta-saml-sso.md)
 
 For information about the latest versions of the JDBC and ODBC drivers and their documentation, see [Using Athena with the JDBC Driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.

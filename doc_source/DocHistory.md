@@ -1,13 +1,13 @@
 # Document History<a name="DocHistory"></a>
 
-**Latest documentation update: October 18, 2021\.**  
+**Latest documentation update: November 12, 2021\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
 | Added documentation for the Athena UNLOAD statement\. | Use the UNLOAD statement to write query the results from a SELECT statement to the Apache Parquet, ORC, Apache Avro, and JSON formats\. For more information, see [UNLOAD](unload.md)\. | August 5, 2021 | 
-| Added documentation for the Athena EXPLAIN statement feature\. | For more information, see [Using the EXPLAIN Statement in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\. | April 5, 2021 | 
+| Added documentation for the Athena EXPLAIN statement feature\. | For more information, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\. | April 5, 2021 | 
 | Added pages on troubleshooting and performance tuning in Athena\. | For more information, see [Troubleshooting in Athena](troubleshooting-athena.md) and [Performance Tuning in Athena](performance-tuning.md)\. | December 30, 2020 | 
 | Added documentation for Athena engine versioning and Athena engine version 2\. | For more information, see [Athena Engine Versioning](engine-versions.md)\. | November 11, 2020 | 
 | Updated federated query documentation for general availability release\. | For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Using Athena with CalledVia Context Keys](security-iam-athena-calledvia.md)\. | November 11, 2020 | 
@@ -31,7 +31,7 @@ We update the documentation frequently to address your feedback\. The following 
 | Updated security topic on encryption to note that Athena does not support asymmetric keys\. | Athena supports only symmetric keys for reading and writing data\. For more information, see [Supported Amazon S3 Encryption Options](encryption.md#encryption-options-S3-and-Athena)\. | January 8, 2020 | 
 | Added information on cross\-account access to an Amazon S3 buckets that are encrypted with a custom AWS KMS key\.  | For more information, see [Cross\-account Access to a Bucket Encrypted with a Custom AWS KMS Key](cross-account-permissions.md#cross-account-permissions-kms)\. | December 13, 2019 | 
 |  Added documentation for federated queries, external Hive metastores, machine learning, and user defined functions\. Added new CloudWatch metrics\.  | For more information, see the following topics: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/DocHistory.html)  | November 26, 2019 | 
-| Added section for new INSERT INTO command and updated query result location information for supporting data manifest files\. | For more information, see [INSERT INTO](insert-into.md) and [Working with Query Results, Output Files, and Query History](querying.md)\. | September 18, 2019 | 
+| Added section for new INSERT INTO command and updated query result location information for supporting data manifest files\. | For more information, see [INSERT INTO](insert-into.md) and [Working with Query Results, Recent Queries, and Output Files](querying.md)\. | September 18, 2019 | 
 |  Added section for interface VPC endpoints \(PrivateLink\) support\. Updated JDBC drivers\. Updated information on enriched VPC flow logs\.  |  For more information, see [Connect to Amazon Athena Using an Interface VPC Endpoint](interface-vpc-endpoint.md), [Querying Amazon VPC Flow Logs](vpc-flow-logs.md), and [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.  |  September 11, 2019  | 
 |  Added section on integrating with AWS Lake Formation\.  |  For more information, see [Using Athena to Query Data Registered With AWS Lake Formation](security-athena-lake-formation.md)\.  |  June 26, 2019  | 
 |  Updated Security section for consistency with other AWS services\.  |  For more information, see [Amazon Athena Security](security.md)\.  |  June 26, 2019  | 

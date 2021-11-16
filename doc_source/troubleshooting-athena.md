@@ -70,7 +70,7 @@ This error is caused by a parquet schema mismatch\. A column that has a non\-pri
 
 ### The S3 location provided to save your query results is invalid\.<a name="troubleshooting-athena-the-s3-location-provided-to-save-your-query-results-is-invalid."></a>
 
-Make sure that you have specified a valid S3 location for your query results\. For more information, see [Specifying a Query Result Location](querying.md#query-results-specify-location) in the [Working with Query Results, Output Files, and Query History](querying.md) topic\.
+Make sure that you have specified a valid S3 location for your query results\. For more information, see [Specifying a Query Result Location](querying.md#query-results-specify-location) in the [Working with Query Results, Recent Queries, and Output Files](querying.md) topic\.
 
 ## Federated Queries<a name="troubleshooting-athena-federated-queries"></a>
 

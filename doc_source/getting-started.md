@@ -12,27 +12,30 @@ The tutorial uses live resources, so you are charged for the queries that you ru
 
 You first need to create a database in Athena\.
 
-**To create a database**
+**To create an Athena database**
 
-1. Open the Athena console\.
+1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. If this is your first time visiting the Athena console in your current AWS Region, choose **Get Started** to open the Query Editor\. If it isn't your first time, the Athena Query Editor opens\.
+1. If this is your first time to visit the Athena console in your current AWS Region, choose **Explore the query editor** to open the query editor\. Otherwise, Athena opens in the query editor\.
 
-1. Choose the link to **set up a query result location in Amazon S3**\.  
-![\[Choose set up a query result location.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-set-up-query-location.png)
+1. Choose **View Settings** to set up a query result location in Amazon S3\.  
+![\[Choose View Settings.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-view-settings.png)
 
-1. In the **Settings** dialog box, do one of the following:
-   + Choose the **Select** folder icon, choose the Amazon S3 bucket that you created in your current Region, and then choose **Select**\.
-   + In the **Query result location** text box, enter the path to the bucket that you created in Amazon S3 for your query results\. Prefix the path with `s3://` and add a forward slash to the end of the path\.  
+1. On the **Settings** tab, choose **Manage**\.  
+![\[Choose Manage.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-manage.png)
+
+1. For **Manage settings**, do one of the following:
+   + In the **Location of query result** box, enter the path to the bucket that you created in Amazon S3 for your query results\. Prefix the path with `s3://`\.
+   + Choose **Browse S3**, choose the Amazon S3 bucket that you created for your current Region, and then choose **Choose**\.  
 ![\[Specify a location in Amazon S3 to receive query results from Athena.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-setting-results-location.png)
 
 1. Choose **Save**\.
 
-   If you ever need to return to the **Settings** dialog box, choose the **Settings** option at the top of the Athena console\.  
-![\[Use the Settings option to specify the query results location.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-settings.png)
+1. Choose **Editor** to switch to the query editor\.  
+![\[Choose Editor.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-editor.png)
 
-1. On the right of the navigation pane, you can use the Athena Query Editor to enter and run queries and statements\.  
-![\[The query pane in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-query-pane.png)
+1. On the right of the navigation pane, you can use the Athena query editor to enter and run queries and statements\.  
+![\[The query editor in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-query-editor.png)
 
 1. To create a database named `mydatabase`, enter the following CREATE DATABASE statement\.
 
@@ -40,10 +43,10 @@ You first need to create a database in Athena\.
    CREATE DATABASE mydatabase
    ```
 
-1. Choose **Run Query** or press **Ctrl\+ENTER**\.
+1. Choose **Run** or press **Ctrl\+ENTER**\.
 
-1. In the navigation pane on the left, from the **Database** list, choose `mydatabase` to make it your current database\.  
-![\[From the Athena console navigation pane, choose the database that you created.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-database.png)
+1. From the **Database** list on the left, choose `mydatabase` to make it your current database\.  
+![\[Choose the database that you created.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-database.png)
 
 ## Step 2: Create a Table<a name="step-2-create-a-table"></a>
 
@@ -99,13 +102,16 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
 
 Regular expressions can be useful for creating tables from complex CSV or TSV data but can be difficult to write and maintain\. Fortunately, there are other libraries that you can use for formats like JSON, Parquet, and ORC\. For more information, see [Supported SerDes and Data Formats](supported-serdes.md)\.
 
-Now you are ready to create the table in the Athena Query Editor\. The `CREATE TABLE` statement and regex are provided for you\.
+Now you are ready to create the table in the Athena query editor\. The `CREATE TABLE` statement and regex are provided for you\.
 
-**To create a table**
+**To create a table in Athena**
 
-1. For **Database**, make sure that `mydatabase` is selected\.
+1. In the navigation pane, for **Database**, make sure that `mydatabase` is selected\.
 
-1. Choose the plus \(**\+**\) sign in the Query Editor to create a tab with a new query\. You can have up to ten query tabs open at once\.  
+1. To give yourself more room in the query editor, you can choose the arrow icon to collapse the navigation pane\.  
+![\[Choose the arrow to collapse the navigation pane.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-collapse-nav-pane.png)
+
+1. To create a tab for a new query, choose the plus \(**\+**\) sign in the query editor\. You can have up to ten query tabs open at once\.  
 ![\[Choose the plus icon to create a new query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-new-query-tab.png)
 
 1. In the query pane, enter the following `CREATE EXTERNAL TABLE` statement\. The regex breaks out the operating system, browser, and browser version information from the `ClientInfo` field in the log data\.
@@ -134,10 +140,9 @@ Now you are ready to create the table in the Athena Query Editor\. The `CREATE T
 
 1. In the `LOCATION` statement, replace *myregion* with the AWS Region that you are currently using \(for example, `us-west-1`\)\. 
 
-1. Choose **Run Query**\.
+1. Choose **Run**\.
 
-   The table `cloudfront_logs` is created and appears under the list of **Tables** for the `mydatabase` database\.  
-![\[Table created in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-cf-logs-table-created.png)
+   The table `cloudfront_logs` is created and appears under the list of **Tables** for the `mydatabase` database\.
 
 ## Step 3: Query Data<a name="step-3-query-data"></a>
 
@@ -148,27 +153,27 @@ Now that you have the `cloudfront_logs` table created in Athena based on the dat
 1. Choose the plus \(**\+**\) sign to open a new query tab and enter the following SQL statement in the query pane\.
 
    ```
-   SELECT os, COUNT(*) count
-   FROM cloudfront_logs
-   WHERE date BETWEEN date '2014-07-05' AND date '2014-08-05'
-   GROUP BY os;
+   SELECT os, COUNT(*) count 
+   FROM cloudfront_logs 
+   WHERE date BETWEEN date '2014-07-05' AND date '2014-08-05' 
+   GROUP BY os
    ```
 
-1. Choose **Run Query**\.
+1. Choose **Run**\.
 
    The results look like the following:  
-![\[Viewing query results in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/results.png)
+![\[Viewing query results in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-query-results.png)
 
-1. You can save the results of the query to a `.csv` file by choosing the download icon on the **Results** pane\.  
+1. To save the results of the query to a `.csv` file, choose **Download results**\.  
 ![\[Downloading query results in CSV format.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-query-results-download-csv.png)
 
-1. Choose the **History** tab above the Query Editor to view your previous queries\.  
-![\[Choose History to view previous queries.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-history.png)
+1. To view or run previous queries, choose the **Recent queries** tab\.  
+![\[Choose Recent queries to view previous queries.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-recent-queries.png)
 
-1. Choose **Download results** to download the results of a previous query\. Query history is retained for 45 days\.  
-![\[Viewing query history in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-history-tab.png)
+1. To download the results of a previous query from the **Recent queries** tab, select the query, and then choose **Download results**\. Queries are retained for 45 days\.  
+![\[Viewing and downloading recent queries in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-recent-queries-tab-download.png)
 
-   For more information, see [Working with Query Results, Output Files, and Query History](querying.md)\.
+   For more information, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\.
 
 ## Connecting to Other Data Sources<a name="getting-started-other-data-sources"></a>
 

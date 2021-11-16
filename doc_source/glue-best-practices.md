@@ -27,12 +27,14 @@ Under the hood, Athena uses Presto to process DML statements and Hive to process
 ## Database, Table, and Column Names<a name="schema-names"></a>
 
 When you create schema in AWS Glue to query in Athena, consider the following:
-+ A database name cannot be longer than 252 characters\.
++ A database name cannot be longer than 255 characters\.
 + A table name cannot be longer than 255 characters\.
-+ A column name cannot be longer than 128 characters\.
++ A column name cannot be longer than 255 characters\.
 + The only acceptable characters for database names, table names, and column names are lowercase letters, numbers, and the underscore character\.
 
-You can use the AWS Glue Catalog Manager to rename columns, but at this time table names and database names cannot be changed using the AWS Glue console\. To correct database names, you need to create a new database and copy tables to it \(in other words, copy the metadata to a new entity\)\. You can follow a similar process for tables\. You can use the AWS Glue SDK or AWS CLI to do this\.
+For more information, see [Databases](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-databases.html) and [Tables](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html) in the *AWS Glue Developer Guide*\.
+
+You can use the AWS Glue Catalog Manager to rename columns, but not table names or database names\. To change a database name, you must create a new database and copy tables from the old database to it \(in other words, copy the metadata to a new entity\)\. You can follow a similar process for tables\. You can use the AWS Glue SDK or AWS CLI to do this\.
 
 ## Using AWS Glue Crawlers<a name="schema-crawlers"></a>
 

@@ -5,9 +5,7 @@ Setting up workgroups involves creating them and establishing permissions for th
 **Note**  
 Use these tasks for setting up workgroups when you begin to use them for the first time\. If your Athena account already uses workgroups, each account's user requires permissions to run queries in one or more workgroups in the account\. Before you run queries, check your IAM policy to see which workgroups you can access, adjust your policy if needed, and [switch](workgroups-create-update-delete.md#switching-workgroups) to a workgroup you intend to use\.
 
-By default, if you have not created any workgroups, all queries in your account run in the primary workgroup:
-
-![\[The screenshot of the primary workgroup being used.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-primary.png)
+By default, if you have not created any workgroups, all queries in your account run in the primary workgroup\.
 
 Workgroups display in the Athena console in the **Workgroup:*<workgroup\_name>*** tab\. The console lists the workgroup that you have switched to\. When you run queries, they run in this workgroup\. You can run queries in the workgroup in the console, or by using the API operations, the command line interface, or a client application through the JDBC or ODBC driver\. When you have access to a workgroup, you can view workgroup's settings, metrics, and data usage control limits\. Additionally, you can have permissions to edit the settings and data usage control limits\.
 

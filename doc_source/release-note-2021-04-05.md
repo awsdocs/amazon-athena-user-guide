@@ -6,7 +6,7 @@ Published on 2021\-04\-05
 
 You can now use the `EXPLAIN` statement in Athena to view the execution plan for your SQL queries\.
 
-For more information, see [Using the EXPLAIN Statement in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\.
+For more information, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\.
 
 ## SageMaker Machine Learning Models in SQL Queries<a name="release-note-2021-04-05-machine-learning"></a>
 

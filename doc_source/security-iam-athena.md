@@ -17,7 +17,7 @@ The following topics provide more information about permissions for specific are
 + [Access to Amazon S3](s3-permissions.md)
 + [Cross\-account Access to S3 Buckets](cross-account-permissions.md)
 + [Fine\-Grained Access to Databases and Tables in AWS Glue](fine-grained-access-to-glue-resources.md)
-+ [Cross\-Account Access to Data Catalogs](security-iam-cross-account-glue-catalog-access.md)
++ [Cross\-Account Access to AWS Glue Data Catalogs](security-iam-cross-account-glue-catalog-access.md)
 + [Access to Encrypted Metadata in the Data Catalog](access-encrypted-data-glue-data-catalog.md)
 + [Access to Workgroups and Tags](workgroups-access.md)
 + [Allow Access to Prepared Statements](security-iam-athena-prepared-statements.md)

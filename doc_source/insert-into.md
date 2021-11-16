@@ -110,7 +110,7 @@ FROM cities_world
 Inserts rows into an existing table by specifying columns and values\. Specified columns and associated data types must precisely match the columns and data types in the destination table\.
 
 **Important**  
-We do not recommend inserting rows using `VALUES` because Athena generates files for each `INSERT` operation\. This can cause many small files to be created and degrade the table's query performance\. To identify files that an `INSERT` query creates, examine the data manifest file\. For more information, see [Working with Query Results, Output Files, and Query History](querying.md)\.
+We do not recommend inserting rows using `VALUES` because Athena generates files for each `INSERT` operation\. This can cause many small files to be created and degrade the table's query performance\. To identify files that an `INSERT` query creates, examine the data manifest file\. For more information, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\.
 
 ### Synopsis<a name="insert-into-values-synopsis"></a>
 

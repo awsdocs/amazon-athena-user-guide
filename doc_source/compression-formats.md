@@ -3,6 +3,18 @@
 Athena supports a variety of compression formats for reading and writing data, including reading from a table that uses multiple compression formats\. For example, Athena can successfully read the data in a table that uses Parquet file format when some Parquet files are compressed with Snappy and other Parquet files are compressed with GZIP\. The same principle applies for ORC, Textfile, and JSON storage formats\.
 
 Athena supports the following compression formats:
++ **BZIP2** – Format that uses the Burrows\-Wheeler algorithm\.
+**Note**  
+In rare cases, a known issue in Athena engine version 1 can cause records to be silently dropped when the BZIP2 format is used\. For this reason, use of the BZIP2 format in Athena engine version 1 is not recommended\.
++ **DEFLATE** – Compression algorithm based on [LZSS](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Storer%E2%80%93Szymanski) and [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding)\. [Deflate](https://en.wikipedia.org/wiki/Deflate) is relevant only for the Avro file format\.
++ **GZIP** – Compression algorithm based on Deflate\. GZIP is the default write compression format for files in the Parquet and Textfile storage formats\. Files in the `tar.gz` format are not supported\.
++ **LZ4** – This member of the Lempel\-Ziv 77 \(LZ7\) family also focuses on compression and decompression speed rather than maximum compression of data\. LZ4 has the following framing formats:
+  + **LZ4 Raw/Unframed** – An unframed, standard implementation of the LZ4 block compression format\. For more information, see the [LZ4 Block Format Description](https://github.com/lz4/lz4/blob/dev/doc/lz4_Block_format.md) on GitHub\.
+  + **LZ4 Framed** – The usual framing implementation of LZ4\. For more information, see the [LZ4 Frame Format Description](https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md) on GitHub\.
+  + **LZ4 Hadoop\-Compatible** – The Apache Hadoop implementation of LZ4\. This implementation wraps LZ4 compression with the [BlockCompressorStream\.java](https://github.com/apache/hadoop/blob/f67237cbe7bc48a1b9088e990800b37529f1db2a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/compress/BlockCompressorStream.java) class\.
++ **LZO** – Format that uses the Lempel–Ziv–Oberhumer algorithm, which focuses on high compression and decompression speed rather than the maximum compression of data\. LZO has two implementations:
+  + **Standard LZO** – For more information, see the LZO [abstract](http://www.oberhumer.com/opensource/lzo/#abstract) on the Oberhumer website\.
+  + **LZO Hadoop\-Compatible** – This implementation wraps the LZO algorithm with the [BlockCompressorStream\.java](https://github.com/apache/hadoop/blob/f67237cbe7bc48a1b9088e990800b37529f1db2a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/compress/BlockCompressorStream.java) class\.
 + **SNAPPY** – Compression algorithm that is part of the Lempel\-Ziv 77 \(LZ7\) family\. Snappy focuses on high compression and decompression speed rather than the maximum compression of data\.
 
   Some implementations of Snappy allow for framing\. Framing enables decompression of streaming or file data that cannot be entirely maintained in memory\. The following framing implementations are relevant for Athena:
@@ -11,31 +23,24 @@ Athena supports the following compression formats:
   + **Snappy Hadoop\-Compatible** – The framing implementation of Snappy that the Apache Hadoop Project uses\. For more information, see [BlockCompressorStream\.java](https://github.com/apache/hadoop/blob/f67237cbe7bc48a1b9088e990800b37529f1db2a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/compress/BlockCompressorStream.java) on GitHub\.
 
   For information about the Snappy framing methods that Athena supports for each file format, see the table later on this page\.
-+ **LZO** – Format that uses the Lempel–Ziv–Oberhumer algorithm, which focuses on high compression and decompression speed rather than the maximum compression of data\. LZO has two implementations:
-  + **Standard LZO** – For more information, see the LZO [abstract](http://www.oberhumer.com/opensource/lzo/#abstract) on the Oberhumer website\.
-  + **LZO Hadoop\-Compatible** – This implementation wraps the LZO algorithm with the [BlockCompressorStream\.java](https://github.com/apache/hadoop/blob/f67237cbe7bc48a1b9088e990800b37529f1db2a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/compress/BlockCompressorStream.java) class\.
-+ **LZ4** – This member of the Lempel\-Ziv 77 \(LZ7\) family also focuses on compression and decompression speed rather than maximum compression of data\. LZ4 has the following framing formats:
-  + **LZ4 Raw/Unframed** – An unframed, standard implementation of the LZ4 block compression format\. For more information, see the [LZ4 Block Format Description](https://github.com/lz4/lz4/blob/dev/doc/lz4_Block_format.md) on GitHub\.
-  + **LZ4 Framed** – The usual framing implementation of LZ4\. For more information, see the [LZ4 Frame Format Description](https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md) on GitHub\.
-  + **LZ4 Hadoop\-Compatible** – The Apache Hadoop implementation of LZ4\. This implementation wraps LZ4 compression with the [BlockCompressorStream\.java](https://github.com/apache/hadoop/blob/f67237cbe7bc48a1b9088e990800b37529f1db2a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/io/compress/BlockCompressorStream.java) class\.
-+ **DEFLATE** – Compression algorithm based on [LZSS](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Storer%E2%80%93Szymanski) and [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding)\. [Deflate](https://en.wikipedia.org/wiki/Deflate) is relevant only for the Avro file format\.
 + **ZLIB** – Based on Deflate, ZLIB is the default write compression format for files in the ORC data storage format\. For more information, see the [zlib](https://github.com/madler/zlib) page on GitHub\.
-+ **GZIP** – Compression algorithm based on Deflate\. GZIP is the default write compression format for files in the Parquet and Textfile storage formats\.
-+ **BZIP2** – Format that uses the Burrows\-Wheeler algorithm\.
-**Note**  
-In rare cases, a known issue in Athena engine version 1 can cause records to be silently dropped when the BZIP2 format is used\. For this reason, use of the BZIP2 format in Athena engine version 1 is not recommended\.
 
-The following table summarizes the compression format support in Athena for each storage file format\.
+## Compression Support in Athena by File Format<a name="compression-support-by-file-format"></a>
+
+The following table summarizes the compression format support in Athena for each storage file format\. Textfile format includes TSV, CSV, JSON, and custom SerDes for text\.
 
 
 ****  
 
-| Storage File Format | SNAPPY | GZIP | LZO | LZ4 | BZIP2 | ZLIB | DEFLATE | 
-| --- | --- | --- | --- | --- | --- | --- | --- | 
-| Parquet | Yes \(raw/unframed\) | Yes | Yes | No | No | No | No | 
-| ORC | Yes \(raw/unframed\) | No | No | Yes \(raw/unframed\) | No | Yes | No | 
-| Avro | Raw/unframed read support\. Write not supported\. | No | No | No | Read support only\. Write not supported\. | No | Yes | 
-| Textfile \(TSV, CSV, JSON, custom serde for textfile\) | Yes \(Hadoop\-compatible framing\) | Yes | LZO Hadoop\-compatible read support\. No write support for LZO\. | LZ4 Hadoop\-compatible read support\. No write support for LZ4\. | Yes | No | No | 
+|  | Avro | ORC | Parquet | Textfile | 
+| --- | --- | --- | --- | --- | 
+| BZIP2 | Read support only\. Write not supported\. | No | No | Yes | 
+| DEFLATE | Yes | No | No | No | 
+| GZIP | No | No | Yes | Yes | 
+| LZ4 | No | Yes \(raw/unframed\) | No | Hadoop\-compatible read support\. No write support\. | 
+| LZO | No | No | Yes | Hadoop\-compatible read support\. No write support \. | 
+| SNAPPY | Raw/unframed read support\. Write not supported\. | Yes \(raw/unframed\) | Yes \(raw/unframed\) | Yes \(Hadoop\-compatible framing\) | 
+| ZLIB | No | Yes | No | No | 
 
 ## Specifying Compression Formats<a name="compression-support-specifying-compression-formats"></a>
 

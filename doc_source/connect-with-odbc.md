@@ -13,35 +13,35 @@ Download the Amazon Athena ODBC driver License Agreement, ODBC drivers, and ODBC
 
 | Driver Version | Download Link | 
 | --- | --- | 
-| ODBC 1\.1\.12 for Windows 32\-bit | [Windows 32 bit ODBC Driver 1\.1\.12](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.12.1000/Windows/Simba+Athena+1.1+32-bit.msi) | 
-| ODBC 1\.1\.12 for Windows 64\-bit | [Windows 64 bit ODBC Driver 1\.1\.12](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.12.1000/Windows/Simba+Athena+1.1+64-bit.msi) | 
+| ODBC 1\.1\.13 for Windows 32\-bit | [Windows 32 bit ODBC Driver 1\.1\.13](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.13.1000/Windows/Simba+Athena+1.1.13_32-bit.msi) | 
+| ODBC 1\.1\.13 for Windows 64\-bit | [Windows 64 bit ODBC Driver 1\.1\.13](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.13.1000/Windows/Simba+Athena+1.1.13_64-bit.msi) | 
 
 ### Linux<a name="connect-with-odbc-linux"></a>
 
 
 | Driver Version | Download Link | 
 | --- | --- | 
-| ODBC 1\.1\.12 for Linux 32\-bit | [Linux 32 bit ODBC Driver 1\.1\.12](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.12.1000/Linux/simbaathena-1.1.12.1000-1.el7.i686.rpm) | 
-| ODBC 1\.1\.12 for Linux 64\-bit | [Linux 64 bit ODBC Driver 1\.1\.12](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.12.1000/Linux/simbaathena-1.1.12.1000-1.el7.x86_64.rpm) | 
+| ODBC 1\.1\.13 for Linux 32\-bit | [Linux 32 bit ODBC Driver 1\.1\.13](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.13.1000/Linux/simbaathena-1.1.13.1000-1.el7.i686.rpm) | 
+| ODBC 1\.1\.13 for Linux 64\-bit | [Linux 64 bit ODBC Driver 1\.1\.13](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.13.1000/Linux/simbaathena-1.1.13.1000-1.el7.x86_64.rpm) | 
 
 ### OSX<a name="connect-with-odbc-osx"></a>
 
 
 | Driver Version | Download Link | 
 | --- | --- | 
-| ODBC 1\.1\.12 for OSX | [OSX ODBC Driver 1\.1\.12](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.12.1000/OSX/SimbaAthena1.1.12.1000.dmg) | 
+| ODBC 1\.1\.13 for OSX | [OSX ODBC Driver 1\.1\.13](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.13.1000/OSX/SimbaAthena1.1.13.1000.dmg) | 
 
 ### Documentation<a name="connect-with-odbc-driver-documentation"></a>
 
 
 | Driver Version | Download Link | 
 | --- | --- | 
-| Documentation for ODBC 1\.1\.12 | [ODBC Driver Installation and Configuration Guide version 1\.1\.12](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.12.1000/docs/Simba+Athena+ODBC+Connector+Install+and+Configuration+Guide.pdf) | 
-| Release Notes for ODBC 1\.1\.12 | [ODBC Driver Release Notes version 1\.1\.12](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.12.1000/docs/release-notes.txt) | 
+| Documentation for ODBC 1\.1\.13 | [ODBC Driver Installation and Configuration Guide version 1\.1\.13](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.13.1000/docs/Simba+Athena+ODBC+Connector+Install+and+Configuration+Guide.pdf) | 
+| Release Notes for ODBC 1\.1\.13 | [ODBC Driver Release Notes version 1\.1\.13](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.13.1000/docs/release-notes.txt) | 
 
 ## Migration from the Previous Version of the ODBC Driver<a name="migration-from-previous-odbc-driver"></a>
 
-The current ODBC driver version 1\.1\.12 is a drop\-in replacement of the previous version of the ODBC driver version 1\.0\.5\. It is also backward compatible with the ODBC driver version 1\.0\.3, if you use the following required steps to make sure that the driver runs\. 
+The current ODBC driver version 1\.1\.13 is a drop\-in replacement of the previous versions of the ODBC driver\. It is also backward compatible with the ODBC driver version 1\.0\.3, if you use the following required steps to make sure that the driver runs\. 
 
 **Important**  
 To use the ODBC driver versions 1\.0\.3 and greater, follow these requirements:   

@@ -15,7 +15,7 @@ These are soft quotas; you can use the [Athena Service Quotas](https://console.a
 
 Athena processes queries by assigning resources based on the overall service load and the number of incoming requests\. Your queries may be temporarily queued before they run\. Asynchronous processes pick up the queries from queues and run them on physical resources as soon as the resources become available and for as long as your account configuration permits\.
 
-A DML or DDL query quota includes both running and queued queries\. For example, if you are using the default DML quota and your total of running and queued queries exceeds 25, query 26 will result in a "TooManyRequestsException" error\. 
+A DML or DDL query quota includes both running and queued queries\. For example, if you are using the default DML quota and your total of running and queued queries exceeds 25, query 26 will result in a TooManyRequestsException error\. 
 
 ### Query String Length<a name="service-limits-query-string-length"></a>
 
@@ -33,6 +33,7 @@ When you work with Athena workgroups, remember the following points:
 
 ## Databases, Tables, and Partitions<a name="service-limits-glue"></a>
 + If you are using the AWS Glue Data Catalog with Athena, see [AWS Glue Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/glue.html) for service quotas on tables, databases, and partitions – for example, the maximum number of databases or tables per account\. 
+  + Although Athena supports querying AWS Glue tables that have 10 million partitions, Athena cannot read more than 1 million partitions in a single scan\.
 + If you are not using AWS Glue Data Catalog, the number of partitions per table is 20,000\. You can [request a quota increase](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/glue/quotas)\.
 
 **Note**  

@@ -12,6 +12,6 @@ For information about DDL statements, see [DDL Statements](language-reference.md
 + [SELECT](select.md)
 + [INSERT INTO](insert-into.md)
 + [UNLOAD](unload.md)
-+ [Using the EXPLAIN Statement in Athena](athena-explain-statement.md)
++ [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md)
 + [Presto Functions in Amazon Athena](presto-functions.md)
 + [Supported Time Zones](athena-supported-time-zones.md)

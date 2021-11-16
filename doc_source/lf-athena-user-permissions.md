@@ -29,7 +29,7 @@ For more information, see [Granting Lake Formation Permissions](https://docs.aws
 
 ## Amazon S3 Permissions For Athena Query Results Locations<a name="lf-athena-user-permissions-query-results-locations"></a>
 
-The query results locations in Amazon S3 for Athena cannot be registered with Lake Formation\. Lake Formation permissions do not limit access to these locations\. Unless you limit access, Athena users can access query result files and metadata when they do not have Lake Formation permissions for the data\. To avoid this, we recommend that you use workgroups to specify the location for query results and align workgroup membership with Lake Formation permissions\. You can then use IAM permissions policies to limit access to query results locations\. For more information about query results, see [Working with Query Results, Output Files, and Query History](querying.md)\.
+The query results locations in Amazon S3 for Athena cannot be registered with Lake Formation\. Lake Formation permissions do not limit access to these locations\. Unless you limit access, Athena users can access query result files and metadata when they do not have Lake Formation permissions for the data\. To avoid this, we recommend that you use workgroups to specify the location for query results and align workgroup membership with Lake Formation permissions\. You can then use IAM permissions policies to limit access to query results locations\. For more information about query results, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\.
 
 ## Athena Workgroup Memberships To Query History<a name="lf-athena-user-permissions-workgroup-memberships-query-history"></a>
 

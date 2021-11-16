@@ -4,7 +4,7 @@
 
 ## Athena engine version 2<a name="engine-versions-reference-0002"></a>
 
-Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html), introduces the following changes\. Currently, Athena engine version 2 is available in all Regions where Athena is supported, including Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Mumbai\), Asia Pacific \(Osaka\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), AWS GovCloud \(US\-East\), AWS GovCloud \(US\-West\), Canada \(Central\), China \(Beijing\), China \(Ningxia\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Milan\), Europe \(Paris\), Europe \(Stockholm\), Middle East \(Bahrain\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\)\.
+Athena engine version 2 introduces the following changes\. Currently, Athena engine version 2 is available in all Regions where Athena is supported, including Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Mumbai\), Asia Pacific \(Osaka\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), AWS GovCloud \(US\-East\), AWS GovCloud \(US\-West\), Canada \(Central\), China \(Beijing\), China \(Ningxia\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Milan\), Europe \(Paris\), Europe \(Stockholm\), Middle East \(Bahrain\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\)\.
 +  [Improvements and New Features](#engine-versions-reference-0002-improvements-and-new-features) 
   +  [Grouping, Join, and Subquery Improvements](#engine-versions-reference-0002-grouping-join-and-subquery-improvements) 
   +  [Datatype Enhancements](#engine-versions-reference-0002-datatype-related-improvements) 
@@ -19,13 +19,17 @@ Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/d
   +  [Limits](#engine-versions-reference-0002-limits) 
 
 ### Improvements and New Features<a name="engine-versions-reference-0002-improvements-and-new-features"></a>
++ **EXPLAIN** and **EXPLAIN ANALYZE** – You can use the `EXPLAIN` statement in Athena to view the execution plan for your SQL queries\. Use `EXPLAIN ANALYZE` to view the distributed execution plan for your SQL queries and the cost of each operation\. For more information, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md)\.
 + **Federated queries** – Federated queries are supported in Athena engine version 2\. For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\. 
 + **Geospatial functions** – More than 25 geospatial functions have been added\. For more information, see [New Geospatial Functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
 + **Nested schema** – Support has been added for reading nested schema, which reduces cost\.
++ **Prepared statements** – Use prepared statements for repeated execution of the same query with different query parameters\. A prepared statement contains placeholder parameters whose values you pass at runtime\. Prepared statements help prevent SQL injection attacks\. For more information, see [Querying with Prepared Statements](querying-with-prepared-statements.md)\.
 + **Schema evolution support** – Schema evolution support has been added for data in Parquet format\.
   + Added support for reading array, map, or row type columns from partitions where the partition schema is different from the table schema\. This can occur when the table schema was updated after the partition was created\. The changed column types must be compatible\. For row types, trailing fields may be added or dropped, but the corresponding fields \(by ordinal\) must have the same name\.
   + ORC files can now have struct columns with missing fields\. This allows the table schema to be changed without rewriting the ORC files\.
   + ORC struct columns are now mapped by name rather than ordinal\. This correctly handles missing or extra struct fields in the ORC file\.
++ **SQL OFFSET** – The SQL `OFFSET` clause is now supported in `SELECT` statements\. For more information, see [SELECT](select.md)\.
++ **UNLOAD statement** – You can use the `UNLOAD` statement to write the output of a `SELECT` query to the PARQUET, ORC, AVRO, and JSON formats\. For more information, see [UNLOAD](unload.md)\.
 
 #### Grouping, Join, and Subquery Improvements<a name="engine-versions-reference-0002-grouping-join-and-subquery-improvements"></a>
 + **Complex grouping** – Added support for complex grouping operations\.
@@ -47,6 +51,8 @@ Athena engine version 2, which is based on [Presto 0\.217](https://prestodb.io/d
 + **Time subtraction** – Implemented subtraction for all `TIME` and `TIMESTAMP` types\.
 + **Unicode** – Added support for escaped Unicode sequences in string literals\.
 + **VARBINARY concatenation** – Added support for concatenation of `VARBINARY` values\.
+
+  **Window value functions** – Window value functions now support `IGNORE NULLS` and `RESPECT NULLS`\.
 
 ##### Additional Input Types for Functions<a name="engine-versions-reference-0002-additional-input-datatypes-for-functions"></a>
 
@@ -138,19 +144,23 @@ For more information about each function, visit the corresponding link to the Pr
 Performance of the following features has improved in Athena engine version 2\.
 
 ##### Query Performance<a name="engine-versions-reference-0002-improvements-performance-query"></a>
++ **Broadcast join performance** – Improved broadcast join performance by applying dynamic partition pruning in the worker node\. 
 + **Bucketed tables** – Improved performance for writing to bucketed tables when the data being written is already partitioned appropriately \(for example, when the output is from a bucketed join\)\.
 + **DISTINCT** – Improved performance for some queries that use `DISTINCT`\.
+
+  **Dynamic filtering and partition pruning** – Improvements increase performance and reduce the amount of data scanned in queries\. 
 + **Filter and projection operations** – Filter and projection operations are now always processed by columns if possible\. The engine automatically takes advantage of dictionary encodings where effective\.
 + **Gathering exchanges** – Improved performance for queries with gathering exchanges\.
 + **Global aggregations** – Improved performance for some queries that perform filtered global aggregations\.
 + **GROUPING SETS, CUBE, ROLLUP** – Improved performance for queries involving `GROUPING SETS`, `CUBE` or `ROLLUP`, which you can use to aggregate multiple sets of columns in a single query\.
 + **Highly selective filters** – Improved the performance of queries with highly selective filters\.
-+ ** JOIN and AGGREGATE operations** – The performance of `JOIN` and `AGGREGATE` operations has been enhanced\.
++ **JOIN and AGGREGATE operations** – The performance of `JOIN` and `AGGREGATE` operations has been enhanced\.
 + **LIKE** – Improved the performance of queries that use `LIKE` predicates on the columns of `information_schema` tables\.
 + **ORDER BY and LIMIT** – Improved plans, performance, and memory usage for queries involving `ORDER BY` and `LIMIT` to avoid unnecessary data exchanges\.
 + **ORDER BY** – `ORDER BY` operations are now distributed by default, enabling larger `ORDER BY` clauses to be used\.
 + **ROW type conversions** – Improved performance when converting between `ROW` types\.
 + **Structural types** – Improved performance of queries that process structural types and contain scan, joins, aggregations, or table writes\.
++ **Table scans** – An optimization rule has been introducted to avoid duplicate table scans in certain cases\.
 + **UNION** – Improved performance for `UNION` queries\.
 
 ##### Query Planning Performance<a name="engine-versions-reference-0002-improvements-performance-query-planning"></a>
@@ -158,12 +168,14 @@ Performance of the following features has improved in Athena engine version 2\.
 + **Predicate evaluations** – Improved predicate evaluation performance during predicate pushdown in planning\.
 + **Predicate pushdown support for casting** – Support predicate pushdown for the *<column>* `IN` *<values list>* predicate where values in the values list require casting to match the type of column\.
 + **Predicate inference and pushdown** – Predicate inference and pushdown extended for queries that use a *<symbol>* `IN` *<subquery>* predicate\.
++ **Timeouts** – Fixed a bug that could in rare cases cause query planning timeouts\.
 
 ##### Join Performance<a name="engine-versions-reference-0002-improvements-performance-join"></a>
 + **Joins with map columns** – Improved the performance of joins and aggregations that include map columns\.
 + **Joins with solely non\-equality conditions** – Improved the performance of joins with only non\-equality conditions by using a nested loop join instead of a hash join\.
 + **Outer joins** – The join distribution type is now automatically selected for queries involving outer joins\.
 + **Range over a function joins** – Improved performance of joins where the condition is a range over a function \(for example, `a JOIN b ON b.x < f(a.x) AND b.x > g(a.x)`\)\.
++ **Spill\-to\-disk** – Fixed spill\-to\-disk related bugs and memory issues to enhance performance and reduce memory errors in `JOIN` operations\.
 
 ##### Subquery Performance<a name="engine-versions-reference-0002-improvements-performance-subquery"></a>
 + **Correlated EXISTS subqueries** – Improved performance of correlated `EXISTS` subqueries\.

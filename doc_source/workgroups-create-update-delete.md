@@ -93,11 +93,11 @@ You can open up to ten query tabs within each workgroup\. When you switch betwee
 
 
 
-1. In the Athena console, choose the **Workgroup:<workgroup\_name>** tab\. A **Workgroups** panel displays\. 
+1. In the Athena console, use the **Workgroup** option to choose a workgroup\. 
 
-1. In the **Workgroups** panel, choose the workgroup that you want to switch to, and then choose **Switch workgroup**\.
+1. If the **Workgroup *workgroup\-name* settings** dialog box appears, choose **Acknowledge**\.
 
-   The console shows the **Workgroup** tab with the name of the workgroup that you switched to\. You can now run queries in this workgroup\.
+   The **Workgroup** option shows the name of the workgroup that you switched to\. You can now run queries in this workgroup\.
 
 ## Copy a Saved Query between Workgroups<a name="copy-a-query-between-workgroups"></a>
 
