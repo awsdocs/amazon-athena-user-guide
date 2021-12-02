@@ -197,6 +197,6 @@ For more information about using `SELECT` statements in Athena, see the followin
 | Running queries in Athena | [Running SQL Queries Using Amazon Athena](querying-athena-tables.md) | 
 | Using SELECT to create a table | [Creating a Table from Query Results \(CTAS\)](ctas.md) | 
 | Inserting data from a SELECT query into another table | [INSERT INTO](insert-into.md) | 
-| Using built\-in functions in SELECT statements | [Presto Functions in Amazon Athena](presto-functions.md) | 
+| Using built\-in functions in SELECT statements | [Functions in Amazon Athena](presto-functions.md) | 
 | Using user defined functions in SELECT statements | [Querying with User Defined Functions](querying-udf.md) | 
 | Querying Data Catalog metadata | [Querying AWS Glue Data Catalog](querying-glue-catalog.md) | 

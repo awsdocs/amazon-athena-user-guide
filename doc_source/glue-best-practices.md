@@ -16,6 +16,7 @@ Under the hood, Athena uses Presto to process DML statements and Hive to process
 ** [Working with CSV Files](#schema-csv) **  
   +  [CSV Data Enclosed in Quotes](#schema-csv-quotes) 
   +  [CSV Files with Headers](#schema-csv-headers) 
++ ** [AWS Glue Partition Indexing and Filtering](#glue-best-practices-partition-index)**
 + **[Working with Geospatial Data](#schema-geospatial)**
 +   
 ** [Using AWS Glue Jobs for ETL with Athena](#schema-classifier) **  
@@ -170,6 +171,28 @@ The following example shows a function in an AWS Glue script that writes out a d
 ```
 glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://MYBUCKET/MYTABLEDATA/"}, format = "csv", format_options = {"writeHeader": False}, transformation_ctx = "datasink2")
 ```
+
+## AWS Glue Partition Indexing and Filtering<a name="glue-best-practices-partition-index"></a>
+
+When Athena queries partitioned tables, it retrieves and filters the available table partitions to the subset relevant to your query\. As new data and partitions are added, more time is required to process the partitions, and query runtime can increase\. If you have a table with a large number of partitions that grows over time, consider using AWS Glue partition indexing and filtering\. Partition indexing allows Athena to optimize partition processing and improve query performance on highly partitioned tables\. Setting up partition filtering in a table's properties is a two\-step process:
+
+1. Creating a partition index in AWS Glue\.
+
+1. Enabling partition filtering for the table\.
+
+### Creating a Partition Index<a name="glue-best-practices-partition-index-creating"></a>
+
+For steps on creating a partition index in AWS Glue, see [Working with Partition Indexes](https://docs.aws.amazon.com/glue/latest/dg/partition-indexes.html) in the AWS Glue Developer Guide\. For the limitations on partition indexes in AWS Glue, see the [About Partition Indexes](https://docs.aws.amazon.com/glue/latest/dg/partition-indexes.html#partition-index-1) section on that page\.
+
+### Enabling Partition Filtering<a name="glue-best-practices-partition-filtering-enabling"></a>
+
+To enable partition filtering for the table, you must set a new table property in AWS Glue\. For steps on how to set table properties in AWS Glue, refer to the [Setting up Partition Projection](https://docs.aws.amazon.com/athena/latest/ug/partition-projection-setting-up.html) page\. When you edit the table details in AWS Glue, add the following key\-value pair to the **Table properties** section:
++ For **Key**, add `partition_filtering.enabled`
++ For **Value**, add `true`
+
+You can disable partition filtering on this table at any time by setting the `partition_filtering.enabled` value to `false`\.
+
+After you complete the above steps, you can return to the Athena console to query the data\.
 
 ## Working with Geospatial Data<a name="schema-geospatial"></a>
 

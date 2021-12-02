@@ -10,7 +10,7 @@ You can register an AWS Glue Data Catalog from an account other than your own\. 
 
 For more information about the AWS Glue Data Catalog, see [Populating the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) in the *AWS Glue Developer Guide*\.
 
-Separate charges apply to AWS Glue\. For more information, see [AWS Glue Pricing](https://aws.amazon.com/glue/pricing) and [Are there separate charges for AWS Glue?](glue-faq.md#faq-pricing) For more information about the benefits of using AWS Glue with Athena, see [Why should I upgrade to theAWS Glue Data Catalog?](glue-faq.md#faq-benefits) 
+Separate charges apply to AWS Glue\. For more information, see [AWS Glue Pricing](https://aws.amazon.com/glue/pricing) and [Are there separate charges for AWS Glue?](glue-faq.md#faq-pricing) For more information about the benefits of using AWS Glue with Athena, see [Why should I upgrade to the AWS Glue Data Catalog?](glue-faq.md#faq-benefits) 
 
 **Topics**
 + [Using AWS Glue to Connect to Data Sources in Amazon S3](data-sources-glue.md)

@@ -32,28 +32,27 @@ Athena table names are case\-insensitive; however, if you work with Apache Spark
 **\[ \( col\_name data\_type \[COMMENT col\_comment\] \[, \.\.\.\] \) \]**  
 Specifies the name for each column to be created, along with the column's data type\. Column names do not allow special characters other than underscore `(_)`\. If `col_name` begins with an underscore, enclose the column name in backticks, for example ``_mycolumn``\.   
 The `data_type` value can be any of the following:  
-+ `BOOLEAN`\. Values are `true` and `false`\.
-+ `TINYINT`\. A 8\-bit signed integer in two’s complement format, with a minimum value of \-2^7 and a maximum value of 2^7\-1\.
-+ `SMALLINT`\. A 16\-bit signed integer in two’s complement format, with a minimum value of \-2^15 and a maximum value of 2^15\-1\.
-+ `INT`\. In Data Definition Language \(DDL\) queries like `CREATE TABLE`, use the `INT` keyword to represent an integer\. In other queries, use the keyword `INTEGER`, where `INTEGER` is represented as a 32\-bit signed value in two's complement format, with a minimum value of\-2^31 and a maximum value of 2^31\-1\. In the JDBC driver, `INTEGER` is returned, to ensure compatibility with business analytics applications\.
-+ `BIGINT`\. A 64\-bit signed integer in two’s complement format, with a minimum value of \-2^63 and a maximum value of 2^63\-1\.
-+ `DOUBLE`
-+ `FLOAT`
-+ `DECIMAL [ (precision, scale) ]`, where `precision` is the total number of digits, and `scale` \(optional\) is the number of digits in fractional part, the default is 0\. For example, use these type definitions: `DECIMAL(11,5)`, `DECIMAL(15)`\. 
++ `boolean` – Values are `true` and `false`\.
++ `tinyint` – A 8\-bit signed integer in two’s complement format, with a minimum value of \-2^7 and a maximum value of 2^7\-1\.
++ `smallint` – A 16\-bit signed integer in two’s complement format, with a minimum value of \-2^15 and a maximum value of 2^15\-1\.
++ `int` – In Data Definition Language \(DDL\) queries like `CREATE TABLE`, use the `int` keyword to represent an integer\. In other queries, use the keyword `integer`, where `integer` is represented as a 32\-bit signed value in two's complement format, with a minimum value of\-2^31 and a maximum value of 2^31\-1\. In the JDBC driver, `integer` is returned, to ensure compatibility with business analytics applications\.
++ `bigint` – A 64\-bit signed integer in two’s complement format, with a minimum value of \-2^63 and a maximum value of 2^63\-1\.
++ `double` – A 64\-bit signed double\-precision floating point number\. The range is 4\.94065645841246544e\-324d to 1\.79769313486231570e\+308d, positive or negative\. `double` follows the IEEE Standard for Floating\-Point Arithmetic \(IEEE 754\)\.
++ `float` – A 32\-bit signed single\-precision floating point number\. The range is 1\.40129846432481707e\-45 to 3\.40282346638528860e\+38, positive or negative\. `float` follows the IEEE Standard for Floating\-Point Arithmetic \(IEEE 754\)\. Equivalent to the `real` in Presto\. In Athena, use `float` in DDL statements like `CREATE TABLE` and `real` in SQL functions like `SELECT CAST`\. The AWS Glue crawler returns values in `float`, and Athena translates `real` and `float` types internally \(see the [June 5, 2018](release-note-2018-06-05.md) release notes\)\.
++ `decimal [ (precision, scale) ]`, where `precision` is the total number of digits, and `scale` \(optional\) is the number of digits in fractional part, the default is 0\. For example, use these type definitions: `decimal(11,5)`, `decimal(15)`\. The maximum value for *precision* is 38, and the maximum value for *scale* is 38\.
 
-  To specify decimal values as literals, such as when selecting rows with a specific decimal value in a query DDL expression, specify the `DECIMAL` type definition, and list the decimal value as a literal \(in single quotes\) in your query, as in this example: `decimal_value = DECIMAL '0.12'`\.
-+ `CHAR`\. Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
-+ `VARCHAR`\. Variable length character data, with a specified length between 1 and 65535, such as `varchar(10)`\. For more information, see [VARCHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-varchar)\. 
-+ `STRING`\. A string literal enclosed in single or double quotes\.
+  To specify decimal values as literals, such as when selecting rows with a specific decimal value in a query DDL expression, specify the `decimal` type definition, and list the decimal value as a literal \(in single quotes\) in your query, as in this example: `decimal_value = decimal '0.12'`\.
++ `char` – Fixed length character data, with a specified length between 1 and 255, such as `char(10)`\. For more information, see [CHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-char)\.
++ `varchar` – Variable length character data, with a specified length between 1 and 65535, such as `varchar(10)`\. For more information, see [VARCHAR Hive Data Type](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-varchar)\. 
++ `string` – A string literal enclosed in single or double quotes\.
 **Note**  
-Non\-string data types cannot be cast to `STRING` in Athena; cast them to `VARCHAR` instead\.
-+ `BINARY` \(for data in Parquet\)
-+ Date and time types
-+ `DATE` A date in ISO format, such as `YYYY-MM-DD`\. For example, `DATE '2008-09-15'`\. An exception is the OpenCSVSerDe, which uses the number of days elapsed since January 1, 1970\. For more information, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
-+ `TIMESTAMP` Date and time instant in a [https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html](https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html) compatible format up to a maximum resolution of milliseconds, such as `yyyy-MM-dd HH:mm:ss[.f...]`\. For example, `TIMESTAMP '2008-09-15 03:04:05.324'`\. An exception is the OpenCSVSerDe, which uses `TIMESTAMP` data in the UNIX numeric format \(for example, `1579059880000`\)\. For more information, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
-+ `ARRAY` < data\_type >
-+ `MAP` < primitive\_type, data\_type >
-+ `STRUCT` < col\_name : data\_type \[COMMENT col\_comment\] \[, \.\.\.\] >
+Non\-string data types cannot be cast to `string` in Athena; cast them to `varchar` instead\.
++ `binary` – \(for data in Parquet\)
++ `date` – A date in ISO format, such as `YYYY-MM-DD`\. For example, `date '2008-09-15'`\. An exception is the OpenCSVSerDe, which uses the number of days elapsed since January 1, 1970\. For more information, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
++ `timestamp` – Date and time instant in a [https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html](https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html) compatible format up to a maximum resolution of milliseconds, such as `yyyy-MM-dd HH:mm:ss[.f...]`\. For example, `timestamp '2008-09-15 03:04:05.324'`\. An exception is the OpenCSVSerDe, which uses `TIMESTAMP` data in the UNIX numeric format \(for example, `1579059880000`\)\. For more information, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
++ `array` < data\_type >
++ `map` < primitive\_type, data\_type >
++ `struct` < col\_name : data\_type \[comment col\_comment\] \[, \.\.\.\] >
 
 **\[COMMENT table\_comment\]**  
 Creates the `comment` table property and populates it with the `table_comment` you specify\.

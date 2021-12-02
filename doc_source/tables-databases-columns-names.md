@@ -6,6 +6,8 @@ Use these tips for naming items in Athena\.
 
 Athena accepts mixed case in DDL and DML queries, but lower cases the names when it executes the query\. For this reason, avoid using mixed case for table or column names, and do not rely on casing alone in Athena to distinguish such names\. For example, if you use a DDL statement to create a column named `Castle`, the column created will be lowercased to `castle`\. If you then specify the column name in a DML query as `Castle` or `CASTLE`, Athena will lowercase the name for you to run the query, but display the column heading using the casing that you chose in the query\.
 
+Database, table, and column names must be less than or equal to 255 characters long\.
+
 ## Special characters<a name="ate-table-database-and-column-names-special-characters"></a>
 
 Special characters other than underscore \(\_\) are not supported\. For more information, see the Apache Hive [LanguageManual DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL) documentation\.

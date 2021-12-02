@@ -3,6 +3,13 @@
 Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 **Topics**
++ [November 30, 2021](release-note-2021-11-30.md)
++ [November 26, 2021](release-note-2021-11-26.md)
++ [November 24, 2021](release-note-2021-11-24.md)
++ [November 22, 2021](release-note-2021-11-22.md)
++ [November 18, 2021](release-note-2021-11-18.md)
++ [November 17, 2021](release-note-2021-11-17.md)
++ [November 16, 2021](release-note-2021-11-16.md)
 + [November 12, 2021](release-note-2021-11-12.md)
 + [November 2, 2021](release-note-2021-11-02.md)
 + [October 29, 2021](release-note-2021-10-29.md)

@@ -2,13 +2,19 @@
 
 Amazon Virtual Private Cloud flow logs capture information about the IP traffic going to and from network interfaces in a VPC\. Use the logs to investigate network traffic patterns and identify threats and risks across your VPC network\.
 
+To query your Amazon VPC flow logs, you have two options:
+
+****
++ **** – Use the Athena integration feature in the to generate an AWS CloudFormation template that creates an Athena database, workgroup, and flow logs table with partitioning for you\. The template also creates a set of [predefined flow log queries](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-athena.html#predefined-queries) that you can use to obtain insights about the traffic flowing through your VPC\.
+
+  For information about this approach, see [Query flow logs using Amazon Athena](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-athena.html) in the *Amazon VPC User Guide*\.
++ **Amazon Athena console** – Create your tables and queries directly in the Athena console\. For more information, read this page\.
+
+## Creating and Querying a Table for VPC Flow Logs<a name="create-vpc-logs-table"></a>
+
 Before you begin querying the logs in Athena, [enable VPC flow logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets you query directly\. 
 
 When you create a VPC flow log, you can use the default format or specify a custom format\. Use a custom format when you want to specify the fields to return in the flow log and the order in which the fields appear\. For more information, see [Flow Log Records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in the *Amazon VPC User Guide*\.
-+  [Creating the Table for VPC Flow Logs](#create-vpc-logs-table) 
-+  [Example Queries for Amazon VPC Flow Logs](#query-examples-vpc-logs) 
-
-## Creating and Querying a Table for VPC Flow Logs<a name="create-vpc-logs-table"></a>
 
 The following procedure creates an Amazon VPC table for VPC flow logs\. If you create a flow log with a custom format, you must create a table with fields that match the fields that you specified when you created the flow log in the same order that you specified them\.
 
@@ -144,7 +150,6 @@ tcpflags int,
 type string,
 pktsrcaddr string,
 pktdstaddr string,
-region string,
 azid string,
 sublocationtype string,
 sublocationid string,

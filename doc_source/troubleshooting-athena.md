@@ -242,7 +242,7 @@ This requirement applies only when you create a table using the AWS Glue `Create
 
 ### Function not registered<a name="troubleshooting-athena-function-not-registered"></a>
 
-This error occurs when you try to use a function that Athena doesn't support\. For a list of functions that Athena supports, see [Presto Functions in Amazon Athena](presto-functions.md) or run the `SHOW FUNCTIONS` statement in the Query Editor\. You can also write your own [user defined function \(UDF\)](querying-udf.md)\. For more information, see [How do I resolve the "function not registered" syntax error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-syntax-function-not-registered/) in the AWS Knowledge Center\.
+This error occurs when you try to use a function that Athena doesn't support\. For a list of functions that Athena supports, see [Functions in Amazon Athena](presto-functions.md) or run the `SHOW FUNCTIONS` statement in the Query Editor\. You can also write your own [user defined function \(UDF\)](querying-udf.md)\. For more information, see [How do I resolve the "function not registered" syntax error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-syntax-function-not-registered/) in the AWS Knowledge Center\.
 
 ### GENERIC\_INTERNAL\_ERROR Exceptions<a name="troubleshooting-athena-generic-internal-error"></a>
 

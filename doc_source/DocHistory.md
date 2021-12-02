@@ -1,11 +1,12 @@
 # Document History<a name="DocHistory"></a>
 
-**Latest documentation update: November 16, 2021\.**  
+**Latest documentation update: November 18, 2021\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added documentation for cross\-account federated queries\. | You can use the cross\-account federated query feature to query data sources in another account\. For information on setting up permissions to enable this feature, see [Enabling Cross\-Account Federated Queries](xacct-fed-query-enable.md)\. | November 12, 2021 | 
 | Added documentation for the Athena UNLOAD statement\. | Use the UNLOAD statement to write query the results from a SELECT statement to the Apache Parquet, ORC, Apache Avro, and JSON formats\. For more information, see [UNLOAD](unload.md)\. | August 5, 2021 | 
 | Added documentation for the Athena EXPLAIN statement feature\. | For more information, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\. | April 5, 2021 | 
 | Added pages on troubleshooting and performance tuning in Athena\. | For more information, see [Troubleshooting in Athena](troubleshooting-athena.md) and [Performance Tuning in Athena](performance-tuning.md)\. | December 30, 2020 | 
