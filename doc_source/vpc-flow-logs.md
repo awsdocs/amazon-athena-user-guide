@@ -270,7 +270,7 @@ To return the first 100 access log entries in chronological order for a specifie
 SELECT *
 FROM test_table_vpclogs
 WHERE day >= '2021/02/01' AND day < '2021/02/28'
-ORDER BY TIME ASC
+ORDER BY day ASC
 LIMIT 100
 ```
 
