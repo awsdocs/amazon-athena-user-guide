@@ -5,7 +5,7 @@ Amazon Athena uses [AWS Identity and Access Management \(IAM\)](https://docs.aws
 Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 The permissions required to run Athena queries include the following:
-+ Amazon S3 locations where the underlying data to query is stored\. For more information, see [Identity and access management in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html) in the *Amazon Simple Storage Service Developer Guide*\.
++ Amazon S3 locations where the underlying data to query is stored\. For more information, see [Identity and access management in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html) in the *Amazon Simple Storage Service User Guide*\.
 + Metadata and resources that you store in the AWS Glue Data Catalog, such as databases and tables, including additional actions for encrypted metadata\. For more information, see [Setting up IAM Permissions for AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/getting-started-access.html) and [Setting Up Encryption in AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/set-up-encryption.html) in the *AWS Glue Developer Guide*\.
 + Athena API actions\. For a list of API actions in Athena, see [Actions](https://docs.aws.amazon.com/athena/latest/APIReference/API_Operations.html) in the *Amazon Athena API Reference*\.
 

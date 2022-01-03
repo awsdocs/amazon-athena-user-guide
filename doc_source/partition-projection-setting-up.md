@@ -30,7 +30,7 @@ This section shows how to set these table properties for AWS Glue\. To set them,
 
 1. Following the guidance in [Supported Types for Partition Projection](partition-projection-supported-types.md), add additional key\-value pairs according to your configuration requirements\.
 
-   The following example table configuration configures the `year` column for partition projection, restricting the values that can be returned to a range from 2000 through 2016\.  
+   The following example table configuration configures the `year` column for partition projection, restricting the values that can be returned to a range from 2010 through 2016\.  
 ![\[Configuring partition projection for a partition column in the AWS Glue console table properties.\]](http://docs.aws.amazon.com/athena/latest/ug/images/partition-projection-3.png)
 
 1. Add a key\-value pair to enable partition projection\. For **Key**, enter `projection.enabled`, and for its **Value**, enter `true`\.  
@@ -42,7 +42,7 @@ You can disable partition projection on this table at any time by setting `proje
 
 1. In the Athena Query Editor, test query the columns that you configured for the table\.
 
-   The following example query uses `SELECT DISTINCT` to return the unique values from the `year` column\. The database contains data from 1987 to 2016, but the `projection.year.range` property restricts the values returned to the years 2000 to 2016\.  
+   The following example query uses `SELECT DISTINCT` to return the unique values from the `year` column\. The database contains data from 1987 to 2016, but the `projection.year.range` property restricts the values returned to the years 2010 to 2016\.  
 ![\[Querying a column that uses partition projection.\]](http://docs.aws.amazon.com/athena/latest/ug/images/partition-projection-5.png)
 **Note**  
 If you set `projection.enabled` to `true` but fail to configure one or more partition columns, you receive an error message like the following:  

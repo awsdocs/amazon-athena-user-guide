@@ -1,6 +1,6 @@
 # Monitoring Athena Queries with CloudWatch Metrics<a name="query-metrics-viewing"></a>
 
-Athena publishes query\-related metrics to Amazon CloudWatch, when **Publish to CloudWatch** is selected\. You can create custom dashboards, set alarms and triggers on metrics in CloudWatch, or use pre\-populated dashboards directly from the Athena console\. 
+Athena publishes query\-related metrics to Amazon CloudWatch, when the [publish query metrics to CloudWatch](athena-cloudwatch-metrics-enable.md) option is selected\. You can create custom dashboards, set alarms and triggers on metrics in CloudWatch, or use pre\-populated dashboards directly from the Athena console\. 
 
 When you enable query metrics for queries in workgroups, the metrics are displayed within the **Metrics** tab in the **Workgroups** panel, for each workgroup in the Athena console\.
 
@@ -23,35 +23,33 @@ For more information, see the [List of CloudWatch Metrics and Dimensions for Ath
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Choose the **Workgroup:*<name>*** tab\.
+1. If the console navigation pane is not visible, choose the expansion menu on the left\.  
+![\[Choose the expansion menu.\]](http://docs.aws.amazon.com/athena/latest/ug/images/polaris-nav-pane-expansion.png)
 
-   To view a workgroup's metrics, you don't need to switch to it and can remain in another workgroup\. You do need to select the workgroup from the list\. You also must have permissions to view its metrics\.
+1. In the navigation pane, choose **Workgroups**\.
 
-1. Select the workgroup from the list, and then choose **View details**\. If you have permissions, the workgroup's details display in the **Overview** tab\.
-
-1. Choose the **Metrics** tab\.   
-![\[Choose the Metrics tab on the details page for a workgroup in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-metrics.png)
+1. Choose the workgroup that you want from the list, and then choose the **Metrics** tab\. 
 
    The metrics dashboard displays\.
 **Note**  
 If you just recently enabled metrics for the workgroup and/or there has been no recent query activity, the graphs on the dashboard may be empty\. Query activity is retrieved from CloudWatch depending on the interval that you specify in the next step\. 
 
-1. Choose the metrics interval that Athena should use to fetch the query metrics from CloudWatch, or specify a custom interval\.  
+1. In the **Metrics** section, choose the metrics interval that Athena should use to fetch the query metrics from CloudWatch, or specify a custom interval\.  
 ![\[Specifying the metrics retrieval interval for a workgroup in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-custom-interval.png)
 
 1. To refresh the displayed metrics, choose the refresh icon\.  
 ![\[Choose the refresh icon.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-refresh-metrics.png)
 
-1. Click the down arrow next to the refresh icon to choose the **Auto refresh** option and a refresh interval for the metrics display\.  
+1. Click the arrow next to the refresh icon to choose how frequently you want the metrics display to be updated\.  
 ![\[Choosing a refresh interval for the workgroup metrics display in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/wg-choose-refresh-interval.png)
 
 **To view metrics in the Amazon CloudWatch console**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Metrics**\.
+1. In the navigation pane, choose **Metrics**, **All metrics**\.
 
-1. Select the `AWS/Athena` namespace\.
+1. Select the **AWS/Athena** namespace\.
 
 **To view metrics with the CLI**
 + To list the metrics for Athena, open a command prompt, and use the following command:

@@ -29,14 +29,16 @@ You can use the CloudWatch console to see a graph of Athena usage metrics and co
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Metrics**\.
+1. In the navigation pane, choose **Metrics**, **All metrics**\.
 
-1. On the **All metrics** tab, choose **Usage**, and then choose **By AWS Resource**\.
+1. If you are in the **AWS/Athena**, namespace, choose **All**\.
+
+1. Choose **Usage**, and then choose **By AWS Resource**\.
 
    The list of service quota usage metrics appears\.
 
 1. Select the check box that is next to **Athena** and **ActiveQueryCount**\.
 
-   The graph displays your current usage of that AWS resource\.
+   The graph above displays your current usage of the AWS resource\.
 
 For information on adding service quotas to the graph and setting an alarm that notifies you if you approach the service quota, see [Visualizing your service quotas and setting alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Quotas-Visualize-Alarms.html) in the *Amazon CloudWatch User Guide*\. For information about setting usage limits per workgroup, see [Setting Data Usage Control Limits](workgroups-setting-control-limits-cloudwatch.md)\.

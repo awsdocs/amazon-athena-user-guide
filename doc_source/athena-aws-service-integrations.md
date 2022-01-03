@@ -55,8 +55,8 @@ Reference topic: [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena
 Athena integrates with Amazon QuickSight for easy data visualization\. You can use Athena to generate reports or to explore data with business intelligence tools or SQL clients connected with a JDBC or an ODBC driver\. For more information about Amazon QuickSight, see [What is Amazon QuickSight](https://docs.aws.amazon.com/quicksight/latest/user/welcome.html) in the *Amazon QuickSight User Guide*\. For information about using JDBC and ODBC drivers with Athena, see [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena-bi-tools-jdbc-odbc.md)\.
 
 **Amazon S3 Inventory**  
-Reference topic: [Querying inventory with Athena](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html#storage-inventory-athena-query) in the *Amazon Simple Storage Service Developer Guide*  
-You can use Amazon Athena to query Amazon S3 inventory using standard SQL\. You can use Amazon S3 inventory to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. For more information, see [Amazon S3 inventory](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html) in the *Amazon Simple Storage Service Developer Guide*\.
+Reference topic: [Querying inventory with Athena](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html#storage-inventory-athena-query) in the *Amazon Simple Storage Service User Guide*  
+You can use Amazon Athena to query Amazon S3 inventory using standard SQL\. You can use Amazon S3 inventory to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. For more information, see [Amazon S3 inventory](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html) in the *Amazon Simple Storage Service User Guide*\.
 
 **AWS Step Functions**  
 Reference topic: [Call Athena with Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/connect-athena.html) in the *AWS Step Functions Developer Guide*  

@@ -5,21 +5,21 @@ Amazon Virtual Private Cloud flow logs capture information about the IP traffic 
 To query your Amazon VPC flow logs, you have two options:
 
 ****
-+ **** – Use the Athena integration feature in the to generate an AWS CloudFormation template that creates an Athena database, workgroup, and flow logs table with partitioning for you\. The template also creates a set of [predefined flow log queries](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-athena.html#predefined-queries) that you can use to obtain insights about the traffic flowing through your VPC\.
++ **Amazon VPC Console** – Use the Athena integration feature in the Amazon VPC Console to generate an AWS CloudFormation template that creates an Athena database, workgroup, and flow logs table with partitioning for you\. The template also creates a set of [predefined flow log queries](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-athena.html#predefined-queries) that you can use to obtain insights about the traffic flowing through your VPC\.
 
   For information about this approach, see [Query flow logs using Amazon Athena](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-athena.html) in the *Amazon VPC User Guide*\.
 + **Amazon Athena console** – Create your tables and queries directly in the Athena console\. For more information, read this page\.
 
 ## Creating and Querying Tables for VPC Flow Logs<a name="create-vpc-logs-table"></a>
 
-Before you begin querying the logs in Athena, [enable VPC flow logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets yrccou query directly\. 
+Before you begin querying the logs in Athena, [enable VPC flow logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets you query directly\. 
 
 When you create a VPC flow log, you can use the default format or specify a custom format\. Use a custom format when you want to specify the fields to return in the flow log and the order in which the fields appear\. For more information, see [Flow Log Records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in the *Amazon VPC User Guide*\.
 
 ### Common Consideratons<a name="vpc-flow-logs-common-considerations"></a>
 
 When you create tables in Athena for Amazon VPC flow logs, remember the following points:
-+ Athena allows column access by name or by index\. By default, in Athena, Parquet will access columns by name\. For more information, see [Handling Schema Updates](handling-schema-updates-chapter.md)\.
++ By default, in Athena, Parquet will access columns by name\. For more information, see [Handling Schema Updates](handling-schema-updates-chapter.md)\.
 + Use the names in the flow log records for the column names in Athena\. The names of the columns in the Athena schema should exactly match the field names in the Amazon VPC flow logs, with the following differences: 
   + Replace the hyphens in the Amazon VPC log field names with underscores in the Athena column names\. In Athena, the only acceptable characters for database names, table names, and column names are lowercase letters, numbers, and the underscore character\. For more information, see [Database, Table, and Column Names](glue-best-practices.md#schema-names)\.
   + Escape the flow log record names that are [reserved keywords](reserved-words.md) in Athena by enclosing them with backticks\. 
@@ -62,7 +62,7 @@ The following procedure creates an Amazon VPC table for Amazon VPC flow logs\. I
      `pkt_src_aws_service` string, 
      `pkt_dst_aws_service` string, 
      `flow_direction` string, 
-     `traffic_path` int) 
+     `traffic_path` int 
    )
    PARTITIONED BY (`date` date)
    ROW FORMAT DELIMITED
@@ -111,8 +111,8 @@ The following query lists all of the rejected TCP connections and uses the newly
 SELECT day_of_week(date) AS
   day,
   date,
-  interfaceid,
-  sourceaddress,
+  interface_id,
+  srcaddr,
   action,
   protocol
 FROM vpc_flow_logs
@@ -125,10 +125,10 @@ To see which one of your servers is receiving the highest number of HTTPS reques
 ```
 SELECT SUM(numpackets) AS
   packetcount,
-  destinationaddress
+  dstaddr
 FROM vpc_flow_logs
-WHERE destinationport = 443 AND date > current_date - interval '7' day
-GROUP BY destinationaddress
+WHERE dstport = 443 AND date > current_date - interval '7' day
+GROUP BY dstaddr
 ORDER BY packetcount DESC
 LIMIT 10;
 ```

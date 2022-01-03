@@ -18,7 +18,7 @@ For more information about data source connectors, see the following topics:
 + [Athena AWS CMDB Connector](athena-prebuilt-data-connectors-cmdb.md)
 + [Amazon Athena DocumentDB Connector](athena-prebuilt-data-connectors-docdb.md)
 + [Amazon Athena DynamoDB Connector](athena-prebuilt-data-connectors-dynamodb.md)
-+ [Amazon Athena Elasticsearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)
++ [Amazon Athena OpenSearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)
 + [Amazon Athena HBase Connector](athena-prebuilt-data-connectors-hbase.md)
 + [Amazon Athena Connector for JDBC\-Compliant Data Sources \(PostgreSQL, MySQL, and Amazon Redshift\)](athena-prebuilt-data-connectors-jdbc.md)
 + [Amazon Athena Neptune Connector](athena-prebuilt-data-connectors-neptune.md)

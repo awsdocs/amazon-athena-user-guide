@@ -114,6 +114,9 @@ Now you are ready to create the table in the Athena query editor\. The `CREATE T
 1. To create a tab for a new query, choose the plus \(**\+**\) sign in the query editor\. You can have up to ten query tabs open at once\.  
 ![\[Choose the plus icon to create a new query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-new-query-tab.png)
 
+1. To close one or more query tabs, choose the arrow next to the plus sign\. To close all tabs at once, choose the arrow, and then choose **Close all tabs**\.  
+![\[Choose the arrow icon to close one or more query tabs.\]](http://docs.aws.amazon.com/athena/latest/ug/images/close-all-query-editor-tabs.png)
+
 1. In the query pane, enter the following `CREATE EXTERNAL TABLE` statement\. The regex breaks out the operating system, browser, and browser version information from the `ClientInfo` field in the log data\.
 
    ```

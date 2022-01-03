@@ -36,7 +36,7 @@ The following encryption options are not supported:
 + Client\-side encryption using a client\-side managed key\.
 + Asymmetric keys\.
 
-To compare Amazon S3 encryption options, see [Protecting Data Using Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
+To compare Amazon S3 encryption options, see [Protecting Data Using Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html) in the *Amazon Simple Storage Service User Guide*\.
 
 ### Tools for Client\-Side Encryption<a name="encryption-client-side-tools"></a>
 

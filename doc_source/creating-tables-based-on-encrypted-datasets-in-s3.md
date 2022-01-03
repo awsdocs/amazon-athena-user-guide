@@ -26,9 +26,9 @@ To indicate that the dataset is encrypted in Amazon S3, perform one of the follo
      'has_encrypted_data'='true')
   ```
 + Use the [JDBC driver](connect-with-jdbc.md) and set the `TBLPROPERTIES` value as shown in the previous example when you use `statement.executeQuery()` to run the [CREATE TABLE](create-table.md) statement\. 
-+ When you use the Athena console [**Add table** wizard](creating-tables.md#to-create-a-table-using-the-wizard) and specify a table location, select the **Encrypted data set** option\.  
-![\[Select Encrypted data set in the Add table wizard\]](http://docs.aws.amazon.com/athena/latest/ug/images/add-table-wizard-encrypted-option.png)
++ When you use the Athena console to [create a table using a form](data-sources-glue.md#data-sources-glue-manual-table) and specify the table location, select the **Encrypted data set** option\.  
+![\[Select Encrypted data set in the add table form\]](http://docs.aws.amazon.com/athena/latest/ug/images/add-table-form-encrypted-option.png)
 
-In the Athena console **Tables** list, the encrypted table shows an encryption icon\.
+In the Athena console list of tables, encrypted tables display a key\-shaped icon\.
 
 ![\[Encrypted table icon\]](http://docs.aws.amazon.com/athena/latest/ug/images/tables-list-encrypted-table-icon.png)

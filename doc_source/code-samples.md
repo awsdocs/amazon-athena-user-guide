@@ -372,7 +372,7 @@ public class CreateNamedQueryExample {
 
         final String USAGE = "\n" +
                 "Usage:\n" +
-                "    CreateNamedQueryExample <name>\n\n" +
+                "    <name>\n\n" +
                 "Where:\n" +
                 "    name - the name of the Amazon Athena query. \n\n" ;
 
@@ -439,7 +439,7 @@ public class DeleteNamedQueryExample {
 
         final String USAGE = "\n" +
                 "Usage:\n" +
-                "    DeleteNamedQueryExample <name>\n\n" +
+                "    <name>\n\n" +
                 "Where:\n" +
                 "    name - the name of the Amazon Athena query. \n\n" ;
 
@@ -491,7 +491,7 @@ public class DeleteNamedQueryExample {
     }
         return null;
     }
-}
+   }
 ```
 
 ## List Named Queries<a name="list-named-queries"></a>

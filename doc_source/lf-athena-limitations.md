@@ -7,6 +7,7 @@ Consider the following when using Athena to query data registered in Lake Format
 + [Working With Lake Formation Permissions To Views](#lf-athena-limitations-permissions-to-views)
 + [Athena Query Results Location In Amazon S3 Not Registered With Lake Formation](#lf-athena-limitations-query-results-location)
 + [Use Athena Workgroups To Limit Access To Query History](#lf-athena-limitations-use-workgroups-to-limit-access-to-query-history)
++ [Use the AmazonAthenaLakeFormation Workgroup for Row\- or Cell\-Level Filtering](#lf-athena-limitations-lf-workgroup)
 + [Cross\-Account Data Catalog Access](#lf-athena-limitations-cross-account-glue)
 + [CSE\-KMS Amazon S3 Registered With Lake Formation Cannot Be Queried in Athena](#lf-athena-limitations-cse-kms)
 + [Partitioned Data Locations Registered with Lake Formation Must Be in Table Subdirectories](#lf-athena-limitations-partioned-data-locations)
@@ -30,6 +31,10 @@ The query results locations in Amazon S3 for Athena cannot be registered with La
 ## Use Athena Workgroups To Limit Access To Query History<a name="lf-athena-limitations-use-workgroups-to-limit-access-to-query-history"></a>
 
 Athena query history exposes a list of saved queries and complete query strings\. Unless you use workgroups to separate access to query histories, Athena users who are not authorized to query data in Lake Formation are able to view query strings run on that data, including column names, selection criteria, and so on\. We recommend that you use workgroups to separate query histories, and align Athena workgroup membership with Lake Formation permissions to limit access\. For more information, see [Using Workgroups to Control Query Access and Costs](manage-queries-control-costs-with-workgroups.md)\.
+
+## Use the AmazonAthenaLakeFormation Workgroup for Row\- or Cell\-Level Filtering<a name="lf-athena-limitations-lf-workgroup"></a>
+
+Query operations for tables that use [row\-level or cell\-level filtering](https://docs.aws.amazon.com/lake-formation/latest/dg/data-filtering.html) must be performed from the **AmazonAthenaLakeFormation** workgroup\. You create this workgroup in Athena\. The workgroup must be configured to use Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\. For information about creating workgroups, see [Create a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
 
 ## Cross\-Account Data Catalog Access<a name="lf-athena-limitations-cross-account-glue"></a>
 

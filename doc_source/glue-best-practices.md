@@ -39,7 +39,7 @@ You can use the AWS Glue Catalog Manager to rename columns, but not table names 
 
 ## Using AWS Glue Crawlers<a name="schema-crawlers"></a>
 
-AWS Glue crawlers help discover and register the schema for datasets in the AWS Glue Data Catalog\. The crawlers go through your data, and inspect portions of it to determine the schema\. In addition, the crawler can detect and register partitions\. For more information, see [Cataloging Data with a Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\.
+AWS Glue crawlers help discover the schema for datasets and register them as tables in the AWS Glue Data Catalog\. The crawlers go through your data and determine the schema\. In addition, the crawler can detect and register partitions\. For more information, see [Defining Crawlers](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\. Tables from data that were successfully crawled can be queried from Athena\.
 
 **Note**  
 Athena does not recognize [exclude patterns](https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude) that you specify for an AWS Glue crawler\. For example, if you have an Amazon S3 bucket that contains both `.csv` and `.json` files and you exclude the `.json` files from the crawler, Athena queries both groups of files\. To avoid this, place the files that you want to exclude in a different location\. 
@@ -49,8 +49,6 @@ Athena does not recognize [exclude patterns](https://docs.aws.amazon.com/glue/la
 AWS Glue crawlers can be set up to run on a schedule or on demand\. For more information, see [Time\-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html) in the *AWS Glue Developer Guide*\.
 
 If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually run an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue-crawler.png)
 
 ### Using Multiple Data Sources with Crawlers<a name="schema-crawlers-data-sources"></a>
 
@@ -74,23 +72,26 @@ To have the AWS Glue crawler create two separate tables, set the crawler to have
 
 1. Sign in to the AWS Management Console and open the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/)\.
 
-1. Choose **Crawlers**, select your crawler, and then choose **Action**, **Edit crawler**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_add_data_store0.png)
+1. Choose **Crawlers**, select your crawler, and then choose **Action**, **Edit crawler**\.
 
 1. Under **Add information about your crawler**, choose additional settings as appropriate, and then choose **Next**\.
 
-1. Under **Add a data store**, change **Include path** to the table\-level directory\. For instance, given the example above, you would change it from `s3://bucket01/folder1 to s3://bucket01/folder1/table1/`\. Choose **Next**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_add_data_store1.png)
+1. Under **Specify crawler source type**, choose additional settings as appropriate, and then choose **Next**\.
 
-1. For **Add another data store**, choose **Yes**, **Next**\.
+1. Under **Add a data store**, change **Include path** to the table\-level directory\. For instance, given the example above, you would change it from `s3://bucket01/folder1 to s3://bucket01/folder1/table1/`\.
+
+1. Choose **Next**\.
+
+1. For **Add another data store**, choose **Yes**, and then choose **Next**\.
 
 1. For **Include path**, enter your other table\-level directory \(for example, `s3://bucket01/folder1/table2/`\) and choose **Next**\.
 
-   1. Repeat steps 3\-5 for any additional table\-level directories, and finish the crawler configuration\.
+1. Repeat the steps to add any additional table\-level directories, and finish the crawler configuration\.
 
-The new values for **Include locations** appear under data stores as follows:
-
+   On the final screen, the new values for **Include locations** appear under **Data stores**, as in the following image:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_add_data_store2.png)
+
+1.  Choose **Finish**\. 
 
 ### Syncing Partition Schema to Avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"<a name="schema-syncing"></a>
 
@@ -125,7 +126,7 @@ To run a query in Athena on a table created from a CSV file that has quoted valu
 
 1. In the AWS Glue console navigation pane, choose **Tables**\.
 
-1. Choose the table that you want to edit, and then choose **Edit table**\.
+1. Choose the table that you want to edit, and then choose **Action**, **Edit table details**\.
 
 1. In the **Edit table details** dialog box, make the following changes:
    + For **Serde serialization lib**, enter `org.apache.hadoop.hive.serde2.OpenCSVSerde`\.
@@ -134,6 +135,8 @@ To run a query in Athena on a table created from a CSV file that has quoted valu
      + For `quoteChar`, enter a double quote \(**"**\)\.
      + For `separatorChar`, enter a comma \(**,**\)\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_edit_serde.png)
+
+1. Choose **Apply**\.
 
 For more information, see [Viewing and Editing Table Details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
 

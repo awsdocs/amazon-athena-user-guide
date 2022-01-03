@@ -24,5 +24,5 @@ The topics in this section assume that you have set up both an IAM user with app
 
 For information about querying Amazon S3 logs, see the following topics:
 + [How do I analyze my Amazon S3 server access logs using Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/analyze-logs-athena/) in the AWS Knowledge Center
-+ [Querying Amazon S3 access logs for requests using Amazon Athena](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-s3-access-logs-to-identify-requests.html#querying-s3-access-logs-for-requests) in the Amazon Simple Storage Service Developer Guide
-+ [Using AWS CloudTrail to identify Amazon S3 requests](https://docs.aws.amazon.com/AmazonS3/latest/dev/cloudtrail-request-identification.html) in the Amazon Simple Storage Service Developer Guide
++ [Querying Amazon S3 access logs for requests using Amazon Athena](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-s3-access-logs-to-identify-requests.html#querying-s3-access-logs-for-requests) in the Amazon Simple Storage Service User Guide
++ [Using AWS CloudTrail to identify Amazon S3 requests](https://docs.aws.amazon.com/AmazonS3/latest/dev/cloudtrail-request-identification.html) in the Amazon Simple Storage Service User Guide

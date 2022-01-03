@@ -10,7 +10,7 @@ The examples in this section assume that you have configured and deployed the At
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. In the Athena Query Editor, create a SQL query that uses the following syntax in the `FROM` clause\.
+1. In the Athena query editor, create a SQL query that uses the following syntax in the `FROM` clause\.
 
    ```
    MyCloudwatchCatalog.database_name.table_name       

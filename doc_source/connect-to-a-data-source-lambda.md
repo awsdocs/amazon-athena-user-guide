@@ -1,6 +1,6 @@
 # Deploying a Connector and Connecting to a Data Source<a name="connect-to-a-data-source-lambda"></a>
 
-Preparing to create federated queries is a two\-part process: deploying a Lambda function data source connector, and connecting the Lambda function to a data source\. In the first part, you give the Lambda function a name that you can later choose in the Athena console\. In the second part, you give the connector a name that you can reference in your SQL queries\.
+Preparing to create federated queries is a two\-part process: deploying a Lambda function data source connector, and connecting the Lambda function to a data source\. In this process, you give the Lambda function a name that you can later choose in the Athena console and give the connector a name that you can reference in your SQL queries\.
 
 **Note**  
 To use the Athena Federated Query feature with AWS Secrets Manager, you must configure an Amazon VPC private endpoint for Secrets Manager\. For more information, see [Create a Secrets Manager VPC Private Endpoint](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html#vpc-endpoint-create) in the *AWS Secrets Manager User Guide*\.
@@ -16,56 +16,53 @@ To choose, name, and deploy a data source connector, you use the Athena and Lamb
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. Do one of the following:
-   + In the Query Editor navigation pane, choose **Connect data source**\.  
-![\[Choose Connect data source in the navigation pane.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-to-a-data-source-nav-pane.png)
-   + Choose the **Data sources** tab, and then choose **Connect data source**\.  
-![\[On the Data sources tab, choose Connect data source.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-to-a-data-source-data-sources-tab.png)
+1. If the console navigation pane is not visible, choose the expansion menu on the left\.  
+![\[Choose the expansion menu.\]](http://docs.aws.amazon.com/athena/latest/ug/images/polaris-nav-pane-expansion.png)
 
-1. On the **Connect data source** page, choose **Query a data source**\.
+1. In the navigation pane, choose **Data sources**\.
 
-1. For **Choose a data source**, choose the data source that you want to query with Athena, such as **Amazon CloudWatch Logs**\.
+1. On the **Data sources** page, choose **Connect data source**\.
 
-1. Choose **Next**\.
+1. For **Data source selection**, choose the data source that you want Athena to query, considering the following guidelines:
+   + Choose a federated query option that corresponds to your data source\. Athena has prebuilt data source connectors that you can configure for sources including MySQL, Amazon DocumentDB, and PostgreSQL\.
+   + Choose **S3 \- Apache Hive metastore** to query data sets in Amazon S3 that use an Apache Hive metastore\. For more information about this option, see [Connecting Athena to an Apache Hive Metastore](connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore.md)\.
+   + Choose **Custom data source** if you want to create your own data source connector for use with Athena\. For information about writing a data source connector, see [Writing a Data Source Connector Using the Athena Query Federation SDK](connect-data-source-federation-sdk.md)\.
+   + Choose **S3 \- AWS Glue Data Catalog** if you want to query data in Amazon S3 and you are not using an Apache Hive metastore or one of the other federated query data source options on this page\. Athena uses the AWS Glue Data Catalog to store metadata and schema information for data sources in Amazon S3\. This is the default \(non\-federated\) option\. For more information, see [Using AWS Glue to Connect to Data Sources in Amazon S3](data-sources-glue.md)\.
 
-1. For **Lambda function**, choose **Configure new AWS Lambda function**\. The function page for the connector that you chose opens in the Lambda console\. The page includes detailed information about the connector\.
+   This tutorial chooses **Amazon CloudWatch Logs** as the federated data source\.
+
+1. For **Data source name**, enter the name that you want to use in your SQL statements when you query the data source from Athena \(for example, `CloudWatchLogs`\)\. The name can be up to 127 characters and must be unique within your account\. It cannot be changed after you create it\. Valid characters are a\-z, A\-Z, 0\-9, \_ \(underscore\), @ \(at sign\) and \- \(hyphen\)\. The names `awsdatacatalog`, `hive`, `jmx`, and `system` are reserved by Athena and cannot be used for data source names\. 
+
+1. For **Lambda function**, choose **Create a new Lambda function**, and then choose **Create a new Lambda function in AWS Lambda**\. The function page for the connector that you chose opens in the Lambda console\. The page includes detailed information about the connector\.
 
 1. Under **Application settings**, read the description for each application setting carefully, and then enter values that correspond to your requirements\.
 **Note**  
 The application settings that you see vary depending on the connector for your data source\. The Amazon Redshift, MySQL, and PostgreSQL options use the Amazon Athena connector for JDBC\-compliant data sources\. For more information, see [Amazon Athena Lambda JDBC Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-jdbc) on GitHub\.
 
     The minimum required settings include:
-   + **AthenaCatalogName** – A name for the Lambda function that indicates the data source that it targets, such as `cloudwatchlogs`\.
+   + **AthenaCatalogName** – A name for the Lambda function in lower case that indicates the data source that it targets, such as `cloudwatchlogs`\.
    + **SpillBucket** – An Amazon S3 bucket in your account to store data that exceeds Lambda function response size limits\.
 
-1. Select **I acknowledge that this app creates custom IAM roles**\. For more information, choose the **Info** link\.
+1. Select **I acknowledge that this app creates custom IAM roles and resource policies**\. For more information, choose the **Info** link\.
 
 1. Choose **Deploy**\. The **Resources** section of the Lambda console shows the deployment status of the connector and informs you when the deployment is complete\.
 
-## Part 2: Connecting to a Data Source<a name="connect-to-a-data-source-lambda-connecting"></a>
+## Part 2: Connecting to the Data Source<a name="connect-to-a-data-source-lambda-connecting"></a>
 
-After you deploy the data source connector to your account, you can connect it to a data source\.
+After you deploy the data source connector to your account, you can connect Athena to it\.
 
-**To connect to a data source using a connector that you have deployed to your account**
+**To connect Athena to a data source using a connector that you have deployed to your account**
 
-1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
+1. Return to the **Connect data sources** page of the Athena console\.
 
-1. Choose **Connect data source**\.
+1. In the **Lambda function** section, choose **Use an existing Lambda function**\.
 
-   Do one of the following:
-   + In the Query Editor navigation pane, choose **Connect data source**\.
-   + Choose the **Data sources** tab, and then choose **Connect data source**\.
+1. Choose the refresh icon next to the Lambda function search box\.
 
-1. Choose **Query a data source**\.
+1. Choose the name of the function that you just created in the Lambda console\. The ARN of the Lambda function displays\.
 
-1. Choose the data source for the connector that you just deployed, such as **Amazon CloudWatch Logs**\. If you used the Athena Query Federation SDK to create your own connector and have deployed it to your account, choose **All other data sources**\.
+1. \(Optional\) For **Tags**, add key\-value pairs to associate with this data source\. For more information about tags, see [Tagging Athena Resources](tags.md)\.
 
-1. Choose **Next**\.
-
-1. For **Choose Lambda function**, choose the function that you named\. The Lambda function's ARN is displayed\.
-
-1. For **Catalog name**, enter a unique name to use for the data source in your SQL queries, such as `cloudwatchlogs`\. The name can be up to 127 characters and must be unique within your account\. It cannot be changed after creation\. Valid characters are a\-z, A\-z, 0\-9, \_ \(underscore\), @ \(at sign\) and \- \(hyphen\)\. The names `awsdatacatalog`, `hive`, `jmx`, and `system` are reserved by Athena and cannot be used for custom catalog names\. 
-
-1. Choose **Connect**\. The **Data sources** page now shows your connector in the list of catalog names\. You can now use the connector in your queries\. 
+1. Choose **Connect data source**\. The **Data sources** page shows your connector in the list of data sources\. You can now use the connector in your queries\. 
 
    For information about writing queries with data connectors, see [Writing Federated Queries](writing-federated-queries.md)\.

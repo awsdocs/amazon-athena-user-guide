@@ -13,8 +13,8 @@ STORED AS INPUTFORMAT ...
 OUTPUTFORMAT ...
 LOCATION s3://bucketname/folder/
 ```
-+ For information about naming buckets, see [Bucket Restrictions and Limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) in the *Amazon Simple Storage Service Developer Guide*\.
-+ For information about using folders in Amazon S3, see [Using Folders](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/using-folders.html) in the *Amazon Simple Storage Service Console User Guide\.* 
++ For information about naming buckets, see [Bucket Restrictions and Limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) in the *Amazon Simple Storage Service User Guide*\.
++ For information about using folders in Amazon S3, see [Using Folders](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/using-folders.html) in the *Amazon Simple Storage Service User Guide\.* 
 
 The `LOCATION` in Amazon S3 specifies *all* of the files representing your table\. 
 

@@ -1,5 +1,5 @@
-# Amazon Athena Elasticsearch Connector<a name="athena-prebuilt-data-connectors-elasticsearch"></a>
+# Amazon Athena OpenSearch Connector<a name="athena-prebuilt-data-connectors-elasticsearch"></a>
 
-The Amazon Athena Elasticsearch connector enables Amazon Athena to communicate with your Elasticsearch instances so that you can use SQL to query your Elasticsearch data\. This connector works with the Amazon Elasticsearch Service or any Elasticsearch\-compatible endpoint that is configured with Elasticsearch version 7\.0 or higher\.
+The Amazon Athena OpenSearch connector enables Amazon Athena to communicate with your OpenSearch instances so that you can use SQL to query your OpenSearch data\. This connector works with the Amazon OpenSearch Service or any OpenSearch\-compatible endpoint that is configured with OpenSearch version 7\.0 or higher\.
 
-For information about configuration options, databases and tables, data types, deployment, and performance considerations, see [Amazon Athena Elasticsearch Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-elasticsearch) on GitHub\.
+For information about configuration options, databases and tables, data types, deployment, and performance considerations, see [Amazon Athena OpenSearch Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-elasticsearch) on GitHub\.

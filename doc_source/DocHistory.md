@@ -1,6 +1,6 @@
 # Document History<a name="DocHistory"></a>
 
-**Latest documentation update: December 2, 2021\.**  
+**Latest documentation update: December 9, 2021\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
@@ -13,7 +13,7 @@ We update the documentation frequently to address your feedback\. The following 
 | Added documentation for Athena engine versioning and Athena engine version 2\. | For more information, see [Athena Engine Versioning](engine-versions.md)\. | November 11, 2020 | 
 | Updated federated query documentation for general availability release\. | For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Using Athena with CalledVia Context Keys](security-iam-athena-calledvia.md)\. | November 11, 2020 | 
 | Added documentation for using the JDBC driver with Lake Formation for federated access to Athena\. | For more information, see [Using Lake Formation and the Athena JDBC and ODBC Drivers for Federated Access to Athena](security-athena-lake-formation-jdbc.md) and [Tutorial: Configuring Federated Access for Okta Users to Athena Using Lake Formation and JDBC](security-athena-lake-formation-jdbc-okta-tutorial.md)\. | September 25, 2020 | 
-| Added documentation for the Amazon Athena Elasticsearch data connector\. | For more information, see [Amazon Athena Elasticsearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)\. | July 21, 2020 | 
+| Added documentation for the Amazon Athena OpenSearch data connector\. | For more information, see [Amazon Athena OpenSearch Connector](athena-prebuilt-data-connectors-elasticsearch.md)\. | July 21, 2020 | 
 | Added documentation for querying Hudi datasets\. | For more information, see [Using Athena to Query Apache Hudi Datasets](querying-hudi.md)\. | July 9, 2020 | 
 | Added documentation on querying Apache web server logs and IIS web server logs stored in Amazon S3\. | For more information, see [Querying Apache Logs Stored in Amazon S3](querying-apache-logs.md) and [Querying Internet Information Server \(IIS\) Logs Stored in Amazon S3](querying-iis-logs.md)\. | July 8, 2020 | 
 | The Amazon Athena User Guide is now available in Kindle format\. | The Kindle ebook is free of charge\. For more information, see [Amazon Athena: User Guide Kindle Edition](http://www.amazon.com/dp/B08BF4RZV4), or choose the Kindle link at the top of any page in the online version of the [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/)\. | June 18, 2020 | 

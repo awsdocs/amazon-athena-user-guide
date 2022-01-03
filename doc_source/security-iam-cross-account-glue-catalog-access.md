@@ -155,7 +155,7 @@ Instead of using the fully qualified syntax, the Borrower can also specify the c
 + If the Borrower account uses an Athena query to write new data to a table in the Owner account, the Owner will not automatically have access to this data in Amazon S3, even though the table exists in the Owner's account\. This is because the Borrower is the object owner of the information in Amazon S3 unless otherwise configured\. To grant the Owner access to the data, set the permissions on the objects accordingly as an additional step\.
 + Certain cross\-account DDL operations like [MSCK REPAIR TABLE](msck-repair-table.md) require Amazon S3 permissions\. For example, if the Borrower account is performing a cross\-account `MSCK REPAIR` operation against a table in the Owner account that has its data in an Owner account S3 bucket, that bucket must grant permissions to the Borrower for the query to succeed\.
 
-For information about granting bucket permissions, see [How do I set ACL bucket permissions?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/set-bucket-permissions.html) in the *Amazon Simple Storage Service Console User Guide*\.
+For information about granting bucket permissions, see [How do I set ACL bucket permissions?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/set-bucket-permissions.html) in the *Amazon Simple Storage Service User Guide*\.
 
 ## Using a Catalog Dynamically<a name="security-iam-cross-account-glue-catalog-access-dynamic-catalogs"></a>
 

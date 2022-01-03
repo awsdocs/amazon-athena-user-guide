@@ -88,8 +88,8 @@ After permissions are in place, you can use the **Data sources** page in the Ath
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-1. If you are using the new console experience and the navigation pane is not visible, choose the expansion menu on the left\.  
-![\[Choose the expansion menu.\]](http://docs.aws.amazon.com/athena/latest/ug/images/xacct-fed-query-enable-1.png)
+1. If the console navigation pane is not visible, choose the expansion menu on the left\.  
+![\[Choose the expansion menu.\]](http://docs.aws.amazon.com/athena/latest/ug/images/polaris-nav-pane-expansion.png)
 
 1. Choose **Data sources**\.
 

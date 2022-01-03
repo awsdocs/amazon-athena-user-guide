@@ -24,7 +24,7 @@ In rare cases, a known issue in Athena engine version 1 can cause records to be 
 
   For information about the Snappy framing methods that Athena supports for each file format, see the table later on this page\.
 + **ZLIB** – Based on Deflate, ZLIB is the default write compression format for files in the ORC data storage format\. For more information, see the [zlib](https://github.com/madler/zlib) page on GitHub\.
-+  **ZSTANDARD** – The [Zstandard real\-time data compression algorithm](http://facebook.github.io/zstd/) is a fast compression algorithm that provides high compression ratios\. The Zstandard library is provided as open source software using a BSD license\. Athena supports reading and writing ZStandard compressed ORC, Parquet, and textfile data\. When writing ZStandard compressed data, Athena uses ZStandard compression level 3\. 
++  **ZSTD** – The [Zstandard real\-time data compression algorithm](http://facebook.github.io/zstd/) is a fast compression algorithm that provides high compression ratios\. The Zstandard library is provided as open source software using a BSD license\. Athena supports reading and writing ZStandard compressed ORC, Parquet, and textfile data\. When writing ZStandard compressed data, Athena uses ZStandard compression level 3\. 
 
 ## Compression Support in Athena by File Format<a name="compression-support-by-file-format"></a>
 
@@ -42,7 +42,7 @@ The following table summarizes the compression format support in Athena for each
 | LZO | No | No | Yes | Hadoop\-compatible read support\. No write support \. | 
 | SNAPPY | Raw/unframed read support\. Write not supported\. | Yes \(raw/unframed\) | Yes \(raw/unframed\) | Yes \(Hadoop\-compatible framing\) | 
 | ZLIB | No | Yes | No | No | 
-| ZSTANDARD | No | Yes | Yes | Yes | 
+| ZSTD | No | Yes | Yes | Yes | 
 
 ## Specifying Compression Formats<a name="compression-support-specifying-compression-formats"></a>
 
@@ -51,6 +51,7 @@ When you write CREATE TABLE or CTAS statements, you can specify compression prop
 + For CREATE TABLE, see [ALTER TABLE SET TBLPROPERTIES](alter-table-set-tblproperties.md) for a list of compression table properties\.
 
 ## Notes and Resources<a name="compression-support-notes-and-resources"></a>
++ Currently, uppercase file extensions such as `.GZ` or `.BZIP2` are not recognized by Athena\. Avoid using datasets with uppercase file extensions, or rename the data file extensions to lowercase\.
 + For data in CSV, TSV, and JSON, Athena determines the compression type from the file extension\. If no file extension is present, Athena treats the data as uncompressed plain text\. If your data is compressed, make sure the file name includes the compression extension, such as `gz`\.
 + The ZIP file format is not supported\.
 + For querying Amazon Kinesis Data Firehose logs from Athena, supported formats include GZIP compression or ORC files with SNAPPY compression\.

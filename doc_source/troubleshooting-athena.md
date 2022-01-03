@@ -29,9 +29,9 @@ Athena does not maintain concurrent validation for CTAS\. Make sure that there i
 
 Athena treats sources files that start with an underscore \(\_\) or a dot \(\.\) as hidden\. To work around this limitation, rename the files\.
 
-### Athena cannot read files stored in the Glacier storage class<a name="troubleshooting-athena-athena-cannot-read-files-stored-in-the-glacier-storage-class"></a>
+### Athena cannot read files stored in Amazon S3 Glacier<a name="troubleshooting-athena-athena-cannot-read-files-stored-in-the-glacier-storage-class"></a>
 
-To work around this issue, copy the restored objects back into Amazon S3\. For more information, see [Considerations and Limitations for SQL Queries in Amazon Athena](other-notable-limitations.md)\.
+Athena does not support querying the data in the [S3 Glacier](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier) or S3 Glacier Deep Archive storage classes\. Objects in the S3 Glacier storage class are ignored\. Objects in the S3 Glacier Deep Archive storage class that are queried result in the error message The operation is not valid for the object's storage class\. Data that is moved or transitioned to one of these classes are no longer readable or queryable by Athena even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class, or use the storage class instead, which is queryable by Athena\. For more information, see [Amazon S3 Glacier Instant Retrieval storage class](http://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/)\.
 
 ### Athena reads files that I excluded from the AWS Glue crawler<a name="troubleshooting-athena-athena-reads-files-that-i-excluded-from-the-glue-crawler"></a>
 
@@ -314,7 +314,7 @@ The following pages provide additional information for troubleshooting issues wi
 
 The following AWS resources can also be of help:
 +  [Athena topics in the AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/#Amazon_Athena) 
-+  [Athena discussion forum](https://forums.aws.amazon.com/forum.jspa?forumID=242) 
++  [Amazon Athena questions on AWS re:Post](https://repost.aws/tags/TA78iVOM7gR62_QqDe2-CmiA/amazon-athena)
 +  [Athena posts in the AWS Big Data Blog](http://aws.amazon.com/blogs/big-data/tag/amazon-athena/) 
 
-Troubleshooting often requires iterative query and discovery by an expert or from a community of helpers\. If you continue to experience issues after trying the suggestions on this page, contact AWS Support \(in the AWS Management Console, click **Support**, **Support Center**\) or visit the [Amazon Athena Forum](https://forums.aws.amazon.com/forum.jspa?forumID=242)\.
+Troubleshooting often requires iterative query and discovery by an expert or from a community of helpers\. If you continue to experience issues after trying the suggestions on this page, contact AWS Support \(in the AWS Management Console, click **Support**, **Support Center**\) or ask a question on [AWS re:Post](https://repost.aws/tags/TA78iVOM7gR62_QqDe2-CmiA/amazon-athena) using the **Amazon Athena** tag\.
