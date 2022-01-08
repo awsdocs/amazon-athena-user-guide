@@ -2,7 +2,7 @@
 
 To help ensure secure and reliable transactions, Athena supports read operations using [AWS Lake Formation governed tables](https://docs.aws.amazon.com/lake-formation/latest/dg/governed-tables-main.html)\. The security features help ensure that your users have access only to the data in your Amazon S3 based data lakes to which they're authorized\. The ACID features help ensure that queries are reliable in the face of complex changes to the underlying data\.
 
-Use Lake Formation data filtering to secure the tables in your Amazon S3 data lake by granting permissions at the column, row, and cell levels\. These permissions are enforced when Athena users query your data\. This fine level of control means that you can grant users access to sensitive information without using course\-grained masking that would otherwise impede their analyses\.
+Use Lake Formation data filtering to secure the tables in your Amazon S3 data lake by granting permissions at the column, row, and cell levels\. These permissions are enforced when Athena users query your data\. This fine level of control means that you can grant users access to sensitive information without using coarse\-grained masking that would otherwise impede their analyses\.
 
 Governed tables in AWS Lake Formation provide the following capabilities:
 + **ACID transactions** – Read and write to and from multiple tables in your Amazon S3 data lake using ACID \(atomic, consistent, isolated, and durable\) transactions\. You can commit or cancel a transaction, or Lake Formation cancels the transaction if it finds an error\. In Athena, governed table queries are read\-only\.
