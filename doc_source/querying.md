@@ -54,8 +54,8 @@ When using the AWS CLI, specify the query result location using the `OutputLocat
 
 **To specify the query result location for a workgroup using the Athena console**
 
-1. If the navigation pane is not visible in the Athena console, choose the expansion menu on the left\.  
-![\[Choose the expansion menu.\]](http://docs.aws.amazon.com/athena/latest/ug/images/xacct-fed-query-enable-1.png)
+1. If the console navigation pane is not visible, choose the expansion menu on the left\.  
+![\[Choose the expansion menu.\]](http://docs.aws.amazon.com/athena/latest/ug/images/polaris-nav-pane-expansion.png)
 
 1. In the navigation pane, choose **Workgroups**\.
 

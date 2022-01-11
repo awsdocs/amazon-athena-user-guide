@@ -1,6 +1,9 @@
 # JSON SerDe Libraries<a name="json-serde"></a>
 
-In Athena, you can use two SerDe libraries to deserialize JSON data\. Deserialization converts the JSON data so that it can be serialized \(written out\) into a different format like Parquet or ORC\. 
+In Athena, you can use two SerDe libraries to deserialize JSON data\. Deserialization converts the JSON data so that it can be serialized \(written out\) into a different format like Parquet or ORC\.
+
+**Note**  
+Athena expects JSON data to be on a single line \(not formatted\), with records separated by a new line character\.
 + The native [Hive JSON SerDe](#hive-json-serde)
 + The [OpenX JSON SerDe](#openx-json-serde) 
 
@@ -20,7 +23,7 @@ Use one of the following:
 
 ## Hive JSON SerDe<a name="hive-json-serde"></a>
 
-The Hive JSON SerDe is commonly used to process JSON data like events\. These events are represented as blocks of JSON\-encoded text separated by a new line\. The Hive JSON SerDe does not allow duplicate keys in `map` or `struct` key names\.
+The Hive JSON SerDe is commonly used to process JSON data like events\. These events are represented as single\-line strings of JSON\-encoded text separated by a new line\. The Hive JSON SerDe does not allow duplicate keys in `map` or `struct` key names\.
 
 **Note**  
 The SerDe expects each JSON document to be on a single line of text with no line termination characters separating the fields in the record\. If the JSON text is in pretty print format, you may receive an error message like HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object or HIVE\_CURSOR\_ERROR: JsonParseException: Unexpected end\-of\-input: expected close marker for OBJECT when you attempt to query the table after you create it\. For more information, see [JSON Data Files](https://github.com/rcongiu/Hive-JSON-Serde#json-data-files) in the OpenX SerDe documentation on GitHub\. 

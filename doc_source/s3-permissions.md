@@ -17,6 +17,10 @@ For each access point that you create, Amazon S3 generates an alias that represe
 
 For more information, see [Table Location in Amazon S3](tables-location-format.md) and [Using access points](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html) in the *Amazon S3 User Guide*\.
 
+## Using CalledVia Context Keys<a name="s3-permissions-calledvia"></a>
+
+For added security, you can use the [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-calledvia](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-calledvia) global condition context key\. The `aws:CalledVia` key contains an ordered list of each service in the chain that made requests on the principal's behalf\. By specifying the Athena service principal name `athena.amazonaws.com` for the `aws:CalledVia` context key, you can limit requests to only those made from Athena\. For more information, see [Using Athena with CalledVia Context Keys](security-iam-athena-calledvia.md)\.
+
 ## Additional Resources<a name="s3-permissions-additional-resources"></a>
 
 For detailed information and examples about how to grant Amazon S3 access, see the following resources:
