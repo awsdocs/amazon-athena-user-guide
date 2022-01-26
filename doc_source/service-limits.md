@@ -5,17 +5,17 @@ The Service Quotas console provides information about Amazon Athena quotas\. Alo
 
 ## Queries<a name="service-limits-queries"></a>
 
-Your account has the following default query\-related quotas per AWS Region for Amazon Athena: 
-+ **DDL query quota** – 20 DDL active queries\. DDL queries include `CREATE TABLE` and `ALTER TABLE ADD PARTITION` queries\. 
-+ **DDL query timeout** – The DDL query timeout is 600 minutes\.
-+ **DML query quota** – 25 DML active queries in the US East \(N\. Virginia\) Region; 20 DML active queries in all other Regions\. DML queries include `SELECT` and `CREATE TABLE AS` \(CTAS\) queries\.
-+ **DML query timeout** – The DML query timeout is 30 minutes\.
+Your account has the following query\-related quotas for Amazon Athena\. For details, see the [Amazon Athena endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/athena.html#amazon-athena-limits) page of the AWS General Reference\.
++ **Active DDL queries** – The number of active DDL queries\. DDL queries include `CREATE TABLE` and `ALTER TABLE ADD PARTITION` queries\. 
++ **DDL query timeout** – The maximum amount of time in minutes a DDL query can run before it gets cancelled\.
++ **Active DML queries** – The number of active DML queries\. DML queries include `SELECT`, `CREATE TABLE AS` \(CTAS\), and `INSERT INTO` queries\. The specific quotas vary by AWS Region\.
++ **DML query timeout** – The maximum amount of time in minutes a DML query can run before it gets cancelled\.
 
 These are soft quotas; you can use the [Athena Service Quotas](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) console to request a quota increase\.
 
 Athena processes queries by assigning resources based on the overall service load and the number of incoming requests\. Your queries may be temporarily queued before they run\. Asynchronous processes pick up the queries from queues and run them on physical resources as soon as the resources become available and for as long as your account configuration permits\.
 
-A DML or DDL query quota includes both running and queued queries\. For example, if you are using the default DML quota and your total of running and queued queries exceeds 25, query 26 will result in a TooManyRequestsException error\. 
+A DML or DDL query quota includes both running and queued queries\. For example, if your DML query quota is 25 and your total of running and queued queries is 26, query 26 will result in a TooManyRequestsException error\. 
 
 ### Query String Length<a name="service-limits-query-string-length"></a>
 
