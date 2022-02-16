@@ -15,14 +15,14 @@ Where `<workgroup-name>` is the name of your workgroup\. For example, for workgr
 ```
 
 For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about IAM policies, see [Creating Policies with the Visual Editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) in the *IAM User Guide*\. For more information about creating IAM policies for workgroups, see [Workgroup IAM Policies](workgroups-iam-policy.md)\.
-+ [Example Policy for Full Access to All Workgroups](#example1-full-access-all-wkgs)
-+ [Example Policy for Full Access to a Specified Workgroup](#example2-full-access-this-wkg)
-+ [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access)
-+ [Example Policy for Running Queries in the Primary Workgroup](#example4-run-in-primary-access)
-+ [Example Policy for Management Operations on a Specified Workgroup](#example5-manage-wkgs-access)
-+ [Example Policy for Listing Workgroups](#example6-list-all-wkgs-access)
-+ [Example Policy for Running and Stopping Queries in a Specific Workgroup](#example7-run-queries-access)
-+ [Example Policy for Working with Named Queries in a Specific Workgroup](#example8-named-queries-access)
++  [Example Policy for Full Access to All Workgroups](#example1-full-access-all-wkgs) 
++  [Example Policy for Full Access to a Specified Workgroup](#example2-full-access-this-wkg) 
++  [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access) 
++  [Example Policy for Running Queries in the Primary Workgroup](#example4-run-in-primary-access) 
++  [Example Policy for Management Operations on a Specified Workgroup](#example5-manage-wkgs-access) 
++  [Example Policy for Listing Workgroups](#example6-list-all-wkgs-access) 
++  [Example Policy for Running and Stopping Queries in a Specific Workgroup](#example7-run-queries-access) 
++  [Example Policy for Working with Named Queries in a Specific Workgroup](#example8-named-queries-access) 
 
 **Example Policy for Full Access to All Workgroups**  
 The following policy allows full access to all workgroup resources that might exist in the account\. We recommend that you use this policy for those users in your account that must administer and manage workgroups for all other users\.  

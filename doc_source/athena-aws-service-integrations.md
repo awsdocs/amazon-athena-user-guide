@@ -1,8 +1,8 @@
-# AWS Service Integrations with Athena<a name="athena-aws-service-integrations"></a>
+# AWS service integrations with Athena<a name="athena-aws-service-integrations"></a>
 
 You can use Athena to query data from the AWS services listed in this section\. To see the Regions that each service supports, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
 
-**AWS Services Integrated with Athena**
+**AWS services integrated with Athena**
 + [AWS CloudFormation](#integ-ate-cfn)
 + [Amazon CloudFront](#integ-ate-cf)
 + [AWS CloudTrail](#integ-ate-ct)

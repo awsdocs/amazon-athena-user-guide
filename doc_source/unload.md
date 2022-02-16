@@ -15,6 +15,7 @@ When you use the `UNLOAD` statement in Athena, keep in mind the following points
 + **Encryption** – `UNLOAD` output files are encrypted according to the encryption configuration used for Amazon S3\. To set up encryption configuration to encrypt your `UNLOAD` result, you can use the [EncryptionConfiguration API](https://docs.aws.amazon.com/athena/latest/APIReference/API_EncryptionConfiguration.html)\.
 + **Prepared statements** – `UNLOAD` can be used with prepared statements\. For information about prepared statements in Athena, see [Querying with Prepared Statements](querying-with-prepared-statements.md)\.
 + **Service quotas** – UNLOAD uses DML query quotas\. For quota information, see [Service Quotas](service-limits.md)\.
++ **Expected bucket owner** – The expected bucket owner setting does not apply to the destination Amazon S3 location specfied in the `UNLOAD` query\. The expected bucket owner setting applies only to the Amazon S3 output location that you specify for Athena query results\. For more information, see [Specifying a Query Result Location Using the Athena Console](querying.md#query-results-specify-location-console)\.
 
 ## Syntax<a name="unload-syntax"></a>
 

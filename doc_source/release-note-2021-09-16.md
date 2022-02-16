@@ -17,6 +17,4 @@ Athena announces the following new features and improvements\.
 + Removed an inconsistent error message\.
 + Improved broadcast join performance by applying dynamic partition pruning in the worker node\.
 + For federated queries:
-  + Added date and timestamp support for the [Federated JDBC connector](https://docs.aws.amazon.com/athena/latest/ug/athena-prebuilt-data-connectors-jdbc.html)\.
-  + Columns containing unsupported datatypes no longer get dropped in the Federated JDBC connector\.
   + Altered configuration to reduce the occurrence of `CONSTRAINT_VIOLATION` errors in federated queries\.

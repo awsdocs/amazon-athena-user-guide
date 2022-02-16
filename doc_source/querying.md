@@ -40,6 +40,10 @@ Before you can run a query, a query result bucket location in Amazon S3 must be 
 **Note**  
 If you are using a workgroup that specifies a query result location for all users of the workgroup, the option to change the query result location is unavailable\.
 
+1. \(Optional\) For **Expected bucket owner**, enter the ID of the AWS account that you expect to be the owner of the output location bucket\. This is an added security measure\. If the account ID of the bucket owner does not match the ID that you specify here, attempts to output to the bucket will fail\. For in\-depth information, see [Verifying bucket ownership with bucket owner condition](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-owner-condition.html) in the *Amazon S3 User Guide*\.
+**Note**  
+The expected bucket owner setting applies only to the Amazon S3 output location that you specify for Athena query results\. It does not apply to other Amazon S3 locations like data source locations in external Amazon S3 buckets, `CTAS` and `INSERT INTO` destination table locations, `UNLOAD` statement output locations, operations to spill buckets for federated queries, or `SELECT` queries run against a table in another account\.
+
 #### Previously Created Default Locations<a name="query-results-specify-location-previous-defaults"></a>
 
 Previously in Athena, if you ran a query without specifying a value for **Query result location**, and the query result location setting was not overridden by a workgroup, Athena created a default location for you\. The default location was `aws-athena-query-results-MyAcctID-MyRegion`, where *MyAcctID* was the Amazon Web Services account ID of the IAM principal that ran the query, and *MyRegion* was the region where the query ran \(for example, `us-west-1`\.\)
@@ -66,6 +70,10 @@ When using the AWS CLI, specify the query result location using the `OutputLocat
 1. For **Query result location and encryption**, do one of the following:
    + In the **Location of query result** box, enter the path to a bucket in Amazon S3 for your query results\. Prefix the path with `s3://`\.
    + Choose **Browse S3**, choose the Amazon S3 bucket for your current Region that you want to use, and then choose **Choose**\.
+
+1. \(Optional\) For **Expected bucket owner**, enter the ID of the AWS account that you expect to be the owner of the output location bucket\. This is an added security measure\. If the account ID of the bucket owner does not match the ID that you specify here, attempts to output to the bucket will fail\. For in\-depth information, see [Verifying bucket ownership with bucket owner condition](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-owner-condition.html) in the *Amazon S3 User Guide*\.
+**Note**  
+The expected bucket owner setting applies only to the Amazon S3 output location that you specify for Athena query results\. It does not apply to other Amazon S3 locations like data source locations in external Amazon S3 buckets, `CTAS` and `INSERT INTO` destination table locations, `UNLOAD` statement output locations, operations to spill buckets for federated queries, or `SELECT` queries run against a table in another account\.
 
 1. If you want to require all users of the workgroup to use the query results location that you specified, scroll down to the **Settings** section and select **Override client\-side settings**\.
 

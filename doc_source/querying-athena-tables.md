@@ -15,7 +15,7 @@ This section provides guidance for running Athena queries on common data sources
 + [Querying JSON](querying-JSON.md)
 + [Using ML with Athena](querying-mlmodel.md)
 + [Querying with UDFs](querying-udf.md)
-+ [Querying AWS Service Logs](querying-AWS-service-logs.md)
++ [Querying AWS service logs](querying-AWS-service-logs.md)
 + [Querying AWS Glue Data Catalog](querying-glue-catalog.md)
 + [Querying Web Server Logs](querying-web-server-logs.md)
 

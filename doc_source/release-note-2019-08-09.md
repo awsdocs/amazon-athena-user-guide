@@ -4,6 +4,6 @@ Published on 2019\-12\-17
 
 Amazon Athena now supports enforcing [AWS Lake Formation](https://aws.amazon.com/lake-formation/) policies for fine\-grained access control to new or existing databases, tables, and columns defined in the [AWS Glue Data Catalog](https://aws.amazon.com/glue/) for data stored in Amazon S3\.
 
-You can use this feature in the following AWS regions: US East \(Ohio\), US East \(N\. Virginia\), US West \(Oregon\), Asia Pacific \(Tokyo\), and Europe \(Ireland\)\. There are no additional charges to use this feature\.
+You can use this feature in the following AWS Regions: US East \(Ohio\), US East \(N\. Virginia\), US West \(Oregon\), Asia Pacific \(Tokyo\), and Europe \(Ireland\)\. There are no additional charges to use this feature\.
 
 For more information about using this feature, see [Using Athena to Query Data Registered With AWS Lake Formation](security-athena-lake-formation.md)\. For more information about AWS Lake Formation, see [AWS Lake Formation](https://aws.amazon.com/lake-formation/)\.

@@ -16,6 +16,7 @@ The Athena team has gathered the following troubleshooting information from cust
 + [Views](#troubleshooting-athena-views)
 + [Workgroups](#troubleshooting-athena-workgroups)
 + [Additional Resources](#troubleshooting-athena-additional-resources)
++ [Athena Error Catalog](error-reference.md)
 
 ## CREATE TABLE AS SELECT \(CTAS\)<a name="troubleshooting-athena-create-table-as-select-ctas"></a>
 
@@ -302,6 +303,7 @@ For information on troubleshooting workgroup issues, see [Troubleshooting Workgr
 ## Additional Resources<a name="troubleshooting-athena-additional-resources"></a>
 
 The following pages provide additional information for troubleshooting issues with Amazon Athena\.
++ [Athena Error Catalog](error-reference.md)
 + [Service Quotas](service-limits.md)
 + [Considerations and Limitations for SQL Queries in Amazon Athena](other-notable-limitations.md)
 + [Unsupported DDL](unsupported-ddl.md)

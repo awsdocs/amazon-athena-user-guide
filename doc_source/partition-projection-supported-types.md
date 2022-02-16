@@ -57,7 +57,7 @@ Use the injected type for partition columns with possible values that cannot be 
 
 It is important to keep in mind the following points:
 + Queries on injected columns fail if a filter expression is not provided for each injected column\.
-+ Queries on an injected column fail if a filter expression on the column allows multiple values\.
++ Queries with multiple values for a filter expression on an injected column succeed only if the values are disjunct\.
 + Only columns of `string` type are supported\.
 
 

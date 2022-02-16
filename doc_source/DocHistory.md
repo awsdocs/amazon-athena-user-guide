@@ -1,11 +1,13 @@
 # Document History<a name="DocHistory"></a>
 
-**Latest documentation update: January 21, 2022\.**  
+**Latest documentation update: February 8, 2022\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added documentation for Lake Formation governed tables support\. | You can use Athena to read Lake Formation governed tables\. Use Lake Formation governed tables to secure your tables in Amazon S3 by granting permissions at the column, row, and cell levels\. For more information, see [Using Governed Tables](lf-governed-tables.md)\. | November 30, 2021 | 
+| Added preview documentation for Apache Iceberg support\. | Athena supports read, time travel, and write queries for Apache Iceberg tables that use the Apache Parquet format for data and the AWS Glue catalog for their metastore\. For more information, see [Using Iceberg Tables](querying-iceberg.md)\. | November 26, 2021 | 
 | Added documentation for cross\-account federated queries\. | You can use the cross\-account federated query feature to query data sources in another account\. For information on setting up permissions to enable this feature, see [Enabling Cross\-Account Federated Queries](xacct-fed-query-enable.md)\. | November 12, 2021 | 
 | Added documentation for the Athena UNLOAD statement\. | Use the UNLOAD statement to write query the results from a SELECT statement to the Apache Parquet, ORC, Apache Avro, and JSON formats\. For more information, see [UNLOAD](unload.md)\. | August 5, 2021 | 
 | Added documentation for the Athena EXPLAIN statement feature\. | For more information, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\. | April 5, 2021 | 
@@ -61,7 +63,7 @@ We update the documentation frequently to address your feedback\. The following 
 | Added support for Europe \(Frankfurt\)\. | Added support for Europe \(Frankfurt\)\. For a list of supported regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\. | October 19, 2017 | 
 | Added support for named Athena queries with AWS CloudFormation\. | Added support for creating named Athena queries with AWS CloudFormation\. For more information, see [AWS::Athena::NamedQuery](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-named-query.html) in the AWS CloudFormation User Guide\. | October 3, 2017 | 
 | Added support for Asia Pacific \(Sydney\)\. | Added support for Asia Pacific \(Sydney\)\. For a list of supported regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.  | September 25, 2017 | 
-| Added a section to this guide for querying AWS Service logs and different types of data, including maps, arrays, nested data, and data containing JSON\. | Added examples for [Querying AWS Service Logs](querying-AWS-service-logs.md) and for querying different types of data in Athena\. For information, see [Running SQL Queries Using Amazon Athena](querying-athena-tables.md)\. | September 5, 2017 | 
+| Added a section to this guide for querying AWS service logs and different types of data, including maps, arrays, nested data, and data containing JSON\. | Added examples for [Querying AWS service logs](querying-AWS-service-logs.md) and for querying different types of data in Athena\. For information, see [Running SQL Queries Using Amazon Athena](querying-athena-tables.md)\. | September 5, 2017 | 
 | Added support for AWS Glue Data Catalog\. | Added integration with the AWS Glue Data Catalog and a migration wizard for updating from the Athena managed data catalog to the AWS Glue Data Catalog\. For more information, see [Integration with AWS Glue](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html) and [AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html)\. | August 14, 2017 | 
 | Added support for Grok SerDe\. | Added support for Grok SerDe, which provides easier pattern matching for records in unstructured text files such as logs\. For more information, see [Grok SerDe](https://docs.aws.amazon.com/athena/latest/ug/grok.html)\. Added keyboard shortcuts to scroll through query history using the console\. | August 4, 2017 | 
 | Added support for Asia Pacific \(Tokyo\)\. | Added support for Asia Pacific \(Tokyo\) and Asia Pacific \(Singapore\)\. For a list of supported regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\. | June 22, 2017 | 

@@ -4,7 +4,7 @@ AWS WAF logs include information about the traffic that is analyzed by your web 
 
 You can enable access logging for AWS WAF logs and save them to Amazon S3\. Make a note of the Amazon S3 bucket to which you save these logs, and you can create an Athena table for them and query them in Athena\. 
 
-For more information about enabling AWS WAF logs and about the log record structure, see [Logging web ACL traffic information](https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the *AWS WAF Developer Guide*\.
+For more information about enabling AWS WAF logs and about the log record structure, see [Logging and monitoring web ACL traffic](https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the *AWS WAF Developer Guide*\.
 
 For an example of how to aggregate AWS WAF logs into a central data lake repository and query them with Athena, see the AWS Big Data Blog post [Analyzing AWS WAF logs with OpenSearch Service, Amazon Athena, and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-aws-waf-logs-with-amazon-es-amazon-athena-and-amazon-quicksight/)\.
 
@@ -17,7 +17,7 @@ For an example of how to aggregate AWS WAF logs into a central data lake reposit
 
 ### To create the AWS WAF table<a name="to-create-the-waf-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\.
+1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\. For information about individual log fields, see [Log Fields](https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html) in the *AWS WAF Developer Guide*\.
 
    This query uses the [OpenX JSON SerDe](json-serde.md#openx-json-serde)\. The table format and the SerDe are suggested by the AWS Glue crawler when it analyzes AWS WAF logs\.
 **Note**  
@@ -72,14 +72,27 @@ The SerDe expects each JSON document to be on a single line of text with no line
      `ratebasedrulelist` array<
                            struct<
                              ratebasedruleid:string,
+                             ratebasedrulename:string,
                              limitkey:string,
+                             limitvalue:string,
                              maxrateallowed:int
                                  >
                               >,
      `nonterminatingmatchingrules` array<
                                      struct<
                                        ruleid:string,
-                                       action:string
+                                       action:string,
+                                       rulematchdetails:array<
+                                           struct<
+                                               conditiontype:string,
+                                               location:string,
+                                               matcheddata:array<string>
+                                                 >
+                                               >,
+                                       captcharesponse:struct<
+                                                       responsecode:string,
+                                                       solvetimestamp:bigint
+                                                             >
                                            >
                                         >,
      `requestheadersinserted` string,
@@ -103,14 +116,19 @@ The SerDe expects each JSON document to be on a single line of text with no line
                 struct<
                   name:string
                       >
-                     >
+                     >,
+     `captcharesponse` struct<
+                           responsecode:string,
+                           solvetimestamp:bigint,
+                           failurereason:string
+                       >
    )
    ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
    WITH SERDEPROPERTIES (
-    'paths'='action,formatVersion,httpRequest,httpSourceId,httpSourceName,labels,nonTerminatingMatchingRules,rateBasedRuleList,requestHeadersInserted,responseCodeSent,ruleGroupList,terminatingRuleId,terminatingRuleMatchDetails,terminatingRuleType,timestamp,webaclId')
+    'paths'='action,formatVersion,httpRequest,httpSourceId,httpSourceName,labels,nonTerminatingMatchingRules,rateBasedRuleList,requestHeadersInserted,responseCodeSent,ruleGroupList,terminatingRuleId,terminatingRuleMatchDetails,terminatingRuleType,timestamp,webaclId,captchaResponse')
    STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-   LOCATION 's3://athenawaflogs/WebACL/'
+   LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/'
    ```
 
 1. Run the `CREATE EXTERNAL TABLE` statement in the Athena console Query Editor\. This registers the `waf_logs` table and makes the data in it available for queries from Athena\.

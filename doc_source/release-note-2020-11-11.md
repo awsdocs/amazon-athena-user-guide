@@ -35,7 +35,6 @@ To process federated queries, Athena uses Athena Data Source Connectors that run
 + [DynamoDB](athena-prebuilt-data-connectors-dynamodb.md)
 + [Elasticsearch](athena-prebuilt-data-connectors-elasticsearch.md)
 + [HBase](athena-prebuilt-data-connectors-hbase.md)
-+ [JDBC\-compliant data sources](athena-prebuilt-data-connectors-jdbc.md)
 + [Neptune](athena-prebuilt-data-connectors-neptune.md)
 + [Redis](athena-prebuilt-data-connectors-redis.md)
 + [Timestream](athena-prebuilt-data-connectors-timestream.md)

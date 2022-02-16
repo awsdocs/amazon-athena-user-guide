@@ -1,8 +1,9 @@
 # CREATE TABLE AS<a name="create-table-as"></a>
 
-Creates a new table populated with the results of a [SELECT](select.md) query\. To create an empty table, use [CREATE TABLE](create-table.md)\.
+Creates a new table populated with the results of a [SELECT](select.md) query\. To create an empty table, use [CREATE TABLE](create-table.md)\. For additional information about `CREATE TABLE AS` beyond the scope of this reference topic, see [Creating a Table from Query Results \(CTAS\)](ctas.md)\.
 
-For additional information about `CREATE TABLE AS` beyond the scope of this reference topic, see [Creating a Table from Query Results \(CTAS\)](ctas.md)\.
+**Note**  
+For CTAS statements, the expected bucket owner setting does not apply to the destination table location in Amazon S3\. The expected bucket owner setting applies only to the Amazon S3 output location that you specify for Athena query results\. For more information, see [Specifying a Query Result Location Using the Athena Console](querying.md#query-results-specify-location-console)\.
 
 **Topics**
 + [Synopsis](#synopsis)

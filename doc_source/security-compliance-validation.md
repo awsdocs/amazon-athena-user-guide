@@ -2,7 +2,7 @@
 
 Third\-party auditors assess the security and compliance of Amazon Athena as part of multiple AWS compliance programs\. These include SOC, PCI, FedRAMP, and others\.
 
-For a list of AWS services in scope of specific compliance programs, see [AWS Services in Scope by Compliance Program](http://aws.amazon.com/compliance/services-in-scope/)\. For general information, see [AWS Compliance Programs](http://aws.amazon.com/compliance/programs/)\.
+For a list of AWS services in scope of specific compliance programs, see [AWS services in scope by compliance program](http://aws.amazon.com/compliance/services-in-scope/)\. For general information, see [AWS Compliance Programs](http://aws.amazon.com/compliance/programs/)\.
 
 You can download third\-party audit reports using AWS Artifact\. For more information, see [Downloading Reports in AWS Artifact](https://docs.aws.amazon.com/artifact/latest/ug/downloading-documents.html)\.
 

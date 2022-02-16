@@ -23,4 +23,3 @@ For more information about these and other changes, and to download the new driv
 
 Athena announces the following features and improvements\.
 + A new optimization rule has been introduced to avoid duplicate table scans in certain cases\.
-+ Fixed the LambdaFunctionException: class not found bug in the [Athena JDBC federated connector](athena-prebuilt-data-connectors-jdbc.md)\.
