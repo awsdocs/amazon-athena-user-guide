@@ -30,7 +30,7 @@ Specify Athena workgroups using AWS CloudFormation\. Use Athena workgroups to is
 
 **Amazon CloudFront**  
 Reference topic: [Querying Amazon CloudFront Logs](cloudfront-logs.md)  
-Use Athena to query Amazon CloudFront\. For more information about using CloudFront, see the [Amazon CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/)\.
+Use Athena to query Amazon CloudFront logs\. For more information about using CloudFront, see the [Amazon CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/)\.
 
 **AWS CloudTrail**  
 Reference topic: [Querying AWS CloudTrail Logs](cloudtrail-logs.md)  
