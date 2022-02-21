@@ -28,6 +28,27 @@ Non\-string data types cannot be cast to `string` in Athena; cast them to `varch
 + **`binary`** – Used for data in Parquet\.
 + **`date`** – A date in ISO format, such as `YYYY-MM-DD`\. For example, `date '2008-09-15'`\. An exception is the OpenCSVSerDe, which uses the number of days elapsed since January 1, 1970\. For more information, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
 + **`timestamp`** – Date and time instant in a [https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html](https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html) compatible format up to a maximum resolution of milliseconds, such as `yyyy-MM-dd HH:mm:ss[.f...]`\. For example, `timestamp '2008-09-15 03:04:05.324'`\. An exception is the OpenCSVSerDe, which uses `timestamp` data in the UNIX numeric format \(for example, `1579059880000`\)\. For more information, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
-+ **`array`**`<data_type>`
-+ **`map`**`<primitive_type, data_type>`
-+ **`struct`**`<col_name : data_type [comment col_comment] , ...>`
++ **`array`**`<data_type>` – An array of the given component type\.
+
+  Example
+
+  ```
+  CREATE TABLE table array_table (c1 array<integer>) LOCATION '...';
+  INSERT INTO array_table values(ARRAY[1,2,3]);
+  ```
++ **`map`**`<primitive_type, data_type>` – A map between the given component types\.
+
+  Example
+
+  ```
+  CREATE TABLE map_table(c1 map<string, integer>) LOCATION '...';
+  INSERT INTO map_table values(MAP(ARRAY['foo', 'bar'], ARRAY[1, 2]));
+  ```
++ **`struct`**`<col_name : data_type [comment col_comment] , ...>` – A collection of elements of different component types\.
+
+  Example
+
+  ```
+  CREATE TABLE struct_table(c1 struct<name:varchar(10), age:integer>) LOCATION '...';
+  INSERT INTO struct_table SELECT CAST(ROW('Bob', 38) AS ROW(name VARCHAR(10), age INTEGER));
+  ```
