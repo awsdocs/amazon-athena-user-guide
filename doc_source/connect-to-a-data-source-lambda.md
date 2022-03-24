@@ -42,6 +42,8 @@ The application settings that you see vary depending on the connector for your d
     The minimum required settings include:
    + **AthenaCatalogName** – A name for the Lambda function in lower case that indicates the data source that it targets, such as `cloudwatchlogs`\.
    + **SpillBucket** – An Amazon S3 bucket in your account to store data that exceeds Lambda function response size limits\.
+**Note**  
+Spilled data is not reused in subsequent executions and can be safely deleted after 12 hours\. Athena does not delete this data for you\. To manage these objects, consider adding an object lifecycle policy that deletes old data from your Amazon S3 spill bucket\. For more information, see [Managing your storage lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html) in the *Amazon S3 User Guide*\.
 
 1. Select **I acknowledge that this app creates custom IAM roles and resource policies**\. For more information, choose the **Info** link\.
 

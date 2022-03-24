@@ -50,6 +50,14 @@ When you write CREATE TABLE or CTAS statements, you can specify compression prop
 + For CTAS, see [CTAS Table Properties](create-table-as.md#ctas-table-properties)\. For examples, see [Examples of CTAS Queries](ctas-examples.md)\.
 + For CREATE TABLE, see [ALTER TABLE SET TBLPROPERTIES](alter-table-set-tblproperties.md) for a list of compression table properties\.
 
+## Specifying No Compression<a name="compression-support-specifying-no-compression"></a>
+
+CTAS and CREATE TABLE statements support writing uncompressed files\. To write uncompressed files, use the following syntax: 
++ CTAS – In a `WITH` clause, specify the `write_compression = NONE` property\.
++ CREATE TABLE \(textfile or JSON\) – In `TBLPROPERTIES`, specify `write.compression = NONE`\.
++ CREATE TABLE \(Parquet\) – In `TBLPROPERTIES`, specify `parquet.compression = UNCOMPRESSED`\.
++ CREATE TABLE \(ORC\) – In `TBLPROPERTIES`, specify `orc.compress = NONE`\.
+
 ## Notes and Resources<a name="compression-support-notes-and-resources"></a>
 + Currently, uppercase file extensions such as `.GZ` or `.BZIP2` are not recognized by Athena\. Avoid using datasets with uppercase file extensions, or rename the data file extensions to lowercase\.
 + For data in CSV, TSV, and JSON, Athena determines the compression type from the file extension\. If no file extension is present, Athena treats the data as uncompressed plain text\. If your data is compressed, make sure the file name includes the compression extension, such as `gz`\.

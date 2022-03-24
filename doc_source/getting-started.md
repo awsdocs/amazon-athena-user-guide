@@ -178,6 +178,10 @@ Now that you have the `cloudfront_logs` table created in Athena based on the dat
 
    For more information, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\.
 
+## Saving Your Queries<a name="getting-started-saved-queries-tab"></a>
+
+You can save the queries that you create or edit in the query editor with a name\. Athena stores these queries on the **Saved queries** tab\. You can use the **Saved queries** tab to recall, run, rename, or delete your saved queries\. For more information, see [Using saved queries](saved-queries.md)\.
+
 ## Connecting to Other Data Sources<a name="getting-started-other-data-sources"></a>
 
 This tutorial used a data source in Amazon S3 in CSV format\. For information about using Athena with AWS Glue, see [Using AWS Glue to Connect to Data Sources in Amazon S3](data-sources-glue.md)\. You can also connect Athena to a variety of data sources by using ODBC and JDBC drivers, external Hive metastores, and Athena data source connectors\. For more information, see [Connecting to Data Sources](work-with-data-stores.md)\.

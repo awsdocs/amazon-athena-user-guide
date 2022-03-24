@@ -7,6 +7,7 @@ This section provides guidance for running Athena queries on common data sources
 **Topics**
 + [Query Results and Recent Queries](querying.md)
 + [Working with Views](views.md)
++ [Using saved queries](saved-queries.md)
 + [Querying with Prepared Statements](querying-with-prepared-statements.md)
 + [Handling Schema Updates](handling-schema-updates-chapter.md)
 + [Querying Arrays](querying-arrays.md)

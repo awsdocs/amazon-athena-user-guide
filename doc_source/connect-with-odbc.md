@@ -1,6 +1,6 @@
 # Connecting to Amazon Athena with ODBC<a name="connect-with-odbc"></a>
 
-Download the Amazon Athena ODBC driver License Agreement, ODBC drivers, and ODBC documentation using the following links\. For permissions information, see [Access through JDBC and ODBC Connections](policy-actions.md)\.
+Download the Amazon Athena ODBC driver License Agreement, ODBC drivers, and ODBC documentation using the following links\. For information about the ODBC connection string, see the ODBC Driver Installation and Configuration Guide PDF file, downloadable from this page\. For permissions information, see [Access through JDBC and ODBC Connections](policy-actions.md)\.
 
 ## Amazon Athena ODBC Driver License Agreement<a name="atelong-odbc-driver-license-agreement"></a>
 

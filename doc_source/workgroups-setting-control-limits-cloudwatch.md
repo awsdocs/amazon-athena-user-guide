@@ -27,7 +27,7 @@ You can create only one per\-query control limit in a workgroup and it applies t
 
 1. In the navigation pane, choose **Workgroups**\.
 
-1. Choose the workgroup from the list\.
+1. Choose the name of the workgroup from the list\.
 
 1. On the **Data usage controls** tab, in the **Per query data usage control** section, choose **Manage**\. 
 
@@ -41,7 +41,7 @@ These are limits imposed by the console for data usage controls within workgroup
 
 1. Choose **Save**\.<a name="configure-control-limit-per-workgroup"></a>
 
-**To create a per\-workgroup data usage alert**
+**To create or edit a per\-workgroup data usage alert**
 
 You can set multiple alert thresholds when queries running in a workgroup scan a specified amount of data within a specific period\. Alerts are implemented using Amazon CloudWatch alarms and apply to all queries in the workgroup\. When a threshold is reached, you can have Amazon SNS send an email to users that you specify\. Queries are not automatically cancelled when a threshold is reached\.
 
@@ -51,15 +51,17 @@ You can set multiple alert thresholds when queries running in a workgroup scan a
 
 1. In the navigation pane, choose **Workgroups**\.
 
-1. Choose the workgroup from the list\.
+1. Choose the name of the workgroup from the list\.
 
 1. Choose **Edit** to edit the workgroup's settings\.
 
-1. Choose **Workgroup data usage alerts** to create a new alert or edit an existing alert\.
+1. Scroll down to and expand **Workgroup data usage alerts \- optional**\.
+
+1. Choose **Add alert**\.
 
 1. For **Data usage threshold configuration**, specify values as follows:
    + For **Data threshold**, specify a number, and then select a unit value from the drop\-down list\.
    + **For Time period**, choose a time period from the drop\-down list\.
    + For **SNS topic selection**, choose an Amazon SNS topic from the drop\-down list\. Or, choose **Create SNS topic** to go directly to the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home), create the Amazon SNS topic, and set up a subscription for it for one of the users in your Athena account\. For more information, see [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html) in the *Amazon Simple Notification Service Getting Started Guide*\. 
 
-1. Choose **Add alert** if you are creating a new alert, or **Save** if you edited an existing alert\.
+1. Choose **Add alert** if you are creating a new alert, or **Save** to save an existing alert\.

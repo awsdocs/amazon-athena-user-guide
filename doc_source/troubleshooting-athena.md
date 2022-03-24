@@ -24,6 +24,10 @@ The Athena team has gathered the following troubleshooting information from cust
 
 Athena does not maintain concurrent validation for CTAS\. Make sure that there is no duplicate CTAS statement for the same location at the same time\. Even if a CTAS or INSERT INTO statement fails, orphaned data can be left in the data location specified in the statement\.
 
+### HIVE\_TOO\_MANY\_OPEN\_PARTITIONS<a name="troubleshooting-athena-ctas-hive-too-many-open-partitions"></a>
+
+When you use a CTAS statement to create a table with more than 100 partitions, you may receive the error HIVE\_TOO\_MANY\_OPEN\_PARTITIONS: Exceeded limit of 100 open writers for partitions/buckets\. To work around this limitation, you can use a CTAS statement and a series of `INSERT INTO` statements that create or insert up to 100 partitions each\. For more information, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
+
 ## Data File Issues<a name="troubleshooting-athena-data-file-issues"></a>
 
 ### Athena cannot read hidden files<a name="troubleshooting-athena-athena-cannot-read-hidden-files"></a>
@@ -171,9 +175,21 @@ If the schema of a partition differs from the schema of the table, a query can f
 
 This error can occur when no partitions were defined in the `CREATE TABLE` statement\. For more information, see [How can I troubleshoot the error "FAILED: SemanticException table is not partitioned but partition spec exists" in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-failed-semanticexception-table/) in the AWS Knowledge Center\.
 
+### Zero Byte `_$folder$` Files<a name="troubleshooting-athena-alter-table-add-partition-zero-byte-folder-files"></a>
+
+If you run an `ALTER TABLE ADD PARTITION` statement and mistakenly specify a partition that already exists and an incorrect Amazon S3 location, zero byte placeholder files of the format `partition_value_$folder$` are created in Amazon S3\. You must remove these files manually\.
+
+To prevent this from happening, use the `ADD IF NOT EXISTS` syntax in your `ALTER TABLE ADD PARTITION` statement, like this:
+
+```
+ALTER TABLE table_name ADD IF NOT EXISTS PARTITIION […]
+```
+
 ### Zero records returned from partitioned data<a name="troubleshooting-athena-zero-records-returned-from-partitioned-data"></a>
 
 This issue can occur for a variety of reasons\. For possible causes and resolutions, see [I created a table in Amazon Athena with defined partitions, but when I query the table, zero records are returned](http://aws.amazon.com/premiumsupport/knowledge-center/athena-empty-results/) in the AWS Knowledge Center\.
+
+See also [HIVE\_TOO\_MANY\_OPEN\_PARTITIONS](#troubleshooting-athena-ctas-hive-too-many-open-partitions)\.
 
 ## Permissions<a name="troubleshooting-athena-permissions"></a>
 

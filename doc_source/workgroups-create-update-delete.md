@@ -7,7 +7,7 @@ In the [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.co
 | --- | --- | 
 |  [Create a Workgroup](#creating-workgroups)  |  Create a new workgroup\.  | 
 |  [Edit a Workgroup](#editing-workgroups)  | Edit a workgroup and change its settings\. You cannot change a workgroup's name, but you can create a new workgroup with the same settings and a different name\. | 
-|  [View the Workgroup's Details](#viewing-details-workgroups)  | View the workgroup's details, such as its name, description, data usage limits, location of query results, expected query results bucket owner, and encryption\. You can also verify whether this workgroup enforces its settings, if Override client\-side settings is checked\. | 
+| [View the Workgroup's Details](#viewing-details-workgroups) | View the workgroup's details, such as its name, description, data usage limits, location of query results, expected query results bucket owner, encryption, and control of objects written to the query results bucket\. You can also verify whether this workgroup enforces its settings, if Override client\-side settings is checked\. | 
 |  [Delete a Workgroup](#deleting-workgroups)  |  Delete a workgroup\. If you delete a workgroup, query history, saved queries, the workgroup's settings and per\-query data limit controls are deleted\. The workgroup\-wide data limit controls remain in CloudWatch, and you can delete them individually\. The primary workgroup cannot be deleted\.  | 
 |  [Switch Workgroups](#switching-workgroups)  |  Switch between workgroups to which you have access\.   | 
 |  [Copy a Saved Query between Workgroups](#copy-a-query-between-workgroups)  | Copy a saved query between workgroups\. You might want to do this if, for example, you created a query in a preview workgroup and you want to make it available in a nonpreview workgroup\. | 
@@ -55,7 +55,7 @@ Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. S
 
 ## View the Workgroup's Details<a name="viewing-details-workgroups"></a>
 
-For each workgroup, you can view its details\. The details include the workgroup's name, description, whether it is enabled or disabled, and the settings used for queries that run in the workgroup, which include the location of the query results and encryption configuration\. If a workgroup has data usage limits, they are also displayed\.
+For each workgroup, you can view its details\. The details include the workgroup's name, description, whether it is enabled or disabled, and the settings used for queries that run in the workgroup, which include the location of the query results, expected bucket owner, encryption, and control of objects written to the query results bucket\. If a workgroup has data usage limits, they are also displayed\.
 
 **To view the workgroup's details**
 

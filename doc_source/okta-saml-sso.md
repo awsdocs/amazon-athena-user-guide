@@ -68,10 +68,10 @@ Now that your application has been created, you can obtain its login URL and oth
 1. Choose **View Setup Instructions**\.  
 ![\[Choose View Setup Instructions.\]](http://docs.aws.amazon.com/athena/latest/ug/images/okta-saml-sso-7.png)
 
-1. On the **How to Configure SAML 2\.0 for Athena SSO** page, find the URL for **Identity Provider Issuer**\. This is your login URL\. Some places in the Okta dashboard refer to this URL as the **SAML issuer ID**\.  
-![\[The value for Identity Provider Issuer is you login URL.\]](http://docs.aws.amazon.com/athena/latest/ug/images/okta-saml-sso-8.png)
+1. On the **How to Configure SAML 2\.0 for Athena SSO** page, find the URL for **Identity Provider Issuer**\. Some places in the Okta dashboard refer to this URL as the **SAML issuer ID**\.  
+![\[The value for Identity Provider Issuer.\]](http://docs.aws.amazon.com/athena/latest/ug/images/okta-saml-sso-8.png)
 
-1. Copy or store the **Identity Provider Issuer** URL\. 
+1. Copy or store the value for **Identity Provider Single Sign\-On URL**\. 
 
    In the next section, when you configure the ODBC connection, you will provide this value as the **Login URL** connection parameter for the browser SAML plugin\.
 

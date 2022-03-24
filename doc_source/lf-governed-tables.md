@@ -23,6 +23,15 @@ Support for Lake Formation governed tables in Athena has the following limitatio
 + **AmazonAthenaLakeFormation workgroup** – Query operations must be performed from the **AmazonAthenaLakeFormation** workgroup\. You create this workgroup in Athena\. The workgroup must be configured to use Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\. For information about creating workgroups, see [Create a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
 +  **Automatic compaction** – The Lake Formation automatic compaction feature is not manageable from Athena\. 
 + **GetQueryStatistics permission required** – Athena users must add the `lakeformation:GetQueryStatistics` permission in IAM\.
++ **Limited DDL statements** – Governed tables do not support the following DDL statements:
+  + [ALTER TABLE ADD COLUMNS](alter-table-add-columns.md)
+  + [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)
+  + [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md) 
+  + [ALTER TABLE RENAME PARTITION](alter-table-rename-partition.md)
+  + [ALTER TABLE REPLACE COLUMNS](alter-table-replace-columns.md)
+  + [ALTER TABLE SET LOCATION](alter-table-set-location.md)
+  + [MSCK REPAIR TABLE](msck-repair-table.md)
+  + [SHOW PARTITIONS](show-partitions.md)
 
 ## Getting Started<a name="lf-governed-tables-getting-started"></a>
 

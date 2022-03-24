@@ -1,11 +1,12 @@
 # Document History<a name="DocHistory"></a>
 
-**Latest documentation update: February 21, 2022\.**  
+**Latest documentation update: March 24, 2022\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+| Added documentation for saved queries\. | You can use the saved queries feature in Athena to save, recall, edit, and rename your queries\. For more information, see [Using saved queries](saved-queries.md) in this guide and [UpdateNamedQuery](https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdateNamedQuery.html) in the Amazon Athena API Reference\. | February 28, 2022 | 
 | Added documentation for Lake Formation governed tables support\. | You can use Athena to read Lake Formation governed tables\. Use Lake Formation governed tables to secure your tables in Amazon S3 by granting permissions at the column, row, and cell levels\. For more information, see [Using Governed Tables](lf-governed-tables.md)\. | November 30, 2021 | 
 | Added preview documentation for Apache Iceberg support\. | Athena supports read, time travel, and write queries for Apache Iceberg tables that use the Apache Parquet format for data and the AWS Glue catalog for their metastore\. For more information, see [Using Iceberg Tables](querying-iceberg.md)\. | November 26, 2021 | 
 | Added documentation for cross\-account federated queries\. | You can use the cross\-account federated query feature to query data sources in another account\. For information on setting up permissions to enable this feature, see [Enabling Cross\-Account Federated Queries](xacct-fed-query-enable.md)\. | November 12, 2021 | 

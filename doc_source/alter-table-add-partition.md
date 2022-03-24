@@ -59,3 +59,13 @@ ALTER TABLE orders ADD
 ALTER TABLE flights_parquet ADD IF NOT EXISTS
   PARTITION (year = '2021')
 ```
+
+## Zero Byte `_$folder$` Files<a name="alter-table-add-partition-zero-byte-folder-files"></a>
+
+If you run an `ALTER TABLE ADD PARTITION` statement and mistakenly specify a partition that already exists and an incorrect Amazon S3 location, zero byte placeholder files of the format `partition_value_$folder$` are created in Amazon S3\. You must remove these files manually\.
+
+To prevent this from happening, use the `ADD IF NOT EXISTS` syntax in your `ALTER TABLE ADD PARTITION` statement, like this:
+
+```
+ALTER TABLE table_name ADD IF NOT EXISTS PARTITIION […]
+```

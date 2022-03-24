@@ -1,6 +1,8 @@
 # Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions<a name="ctas-insert-into"></a>
 
-You can create up to 100 partitions per query with a `CREATE TABLE AS SELECT` \([CTAS](ctas.md)\) query\. Similarly, you can add a maximum of 100 partitions to a destination table with an [INSERT INTO](https://docs.aws.amazon.com/athena/latest/ug/insert-into.html) statement\. To work around these limitations, you can use a CTAS statement and a series of `INSERT INTO` statements that create or insert up to 100 partitions each\.
+You can create up to 100 partitions per query with a `CREATE TABLE AS SELECT` \([CTAS](ctas.md)\) query\. Similarly, you can add a maximum of 100 partitions to a destination table with an [INSERT INTO](https://docs.aws.amazon.com/athena/latest/ug/insert-into.html) statement\. 
+
+If you exceed this limitation, you may receive the error message HIVE\_TOO\_MANY\_OPEN\_PARTITIONS: Exceeded limit of 100 open writers for partitions/buckets\. To work around this limitation, you can use a CTAS statement and a series of `INSERT INTO` statements that create or insert up to 100 partitions each\.
 
 The example in this topic uses a database called `tpch100` whose data resides in the Amazon S3 bucket location s3://*<my\-tpch\-bucket>*/\.
 
@@ -189,6 +191,6 @@ The example in this topic uses a database called `tpch100` whose data resides in
    */
    ```
 
-1. Continue using `INSERT INTO` statements that add no more than 100 partitions each\. Continue until you reach the number of partitions that you require\.
+1. Continue using `INSERT INTO` statements that read and add no more than 100 partitions each\. Continue until you reach the number of partitions that you require\.
 **Important**  
 When setting the `WHERE` condition, be sure that the queries don't overlap\. Otherwise, some partitions might have duplicated data\.

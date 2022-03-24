@@ -9,6 +9,7 @@ An Application Load Balancer is a load balancing option for Elastic Load Balanci
 
 ## Prerequisites<a name="application-load-balancer-logs-prerequisites"></a>
 + [Enable access logging](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#enable-access-logging) so that Application Load Balancer logs can be saved to your Amazon S3 bucket\.
++ A database to hold the table that you will create for Athena\. To create a database, you can use the Athena or AWS Glue console\. For more information, see [Creating Databases in Athena](creating-databases.md) in this guide or [Working with Databases on the AWS Glue Console](https://docs.aws.amazon.com/glue/latest/dg/console-databases.html) in the *AWS Glue Developer Guide*\. 
 
 ## Creating the Table for ALB Logs<a name="create-alb-table"></a>
 

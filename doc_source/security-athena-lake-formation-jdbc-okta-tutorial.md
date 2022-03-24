@@ -381,6 +381,9 @@ Next, you copy the Okta application ID\. You will require this later for the JDB
 1. From **Embed Link**, copy and securely save the Okta application ID portion of the URL\. The Okta application ID is the part of the URL after `amazon_aws_redshift/` but before the next forward slash\. For example, if the URL contains `amazon_aws_redshift/aaa/bbb`, the application ID is `aaa`\.   
 ![\[Copy the ID of the Okta application.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-28.png)
 
+**Note**  
+The embed link cannot be used to log directly into the Athena console to view databases\. The Lake Formation permissions for SAML users and groups are recognized only when you use the JDBC or ODBC driver to submit queries to Athena\. To view the databases, you can use the SQL Workbench/J tool, which uses the JDBC driver to connect to Athena\. The SQL Workbench/J tool is covered in [Step 7: Verify access through the Athena JDBC client](#security-athena-lake-formation-jdbc-okta-tutorial-step-7-verify-access-through-athena-jdbc-client)\.
+
 ## Step 6: Grant user and group permissions through AWS Lake Formation<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-6-grant-permissions-through-aws-lake-formation"></a>
 
 In this step, you use the Lake Formation console to grant permissions on a table to the SAML user and group\. You perform the following tasks:

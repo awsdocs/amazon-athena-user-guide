@@ -56,6 +56,14 @@ WHERE
 
 In the example, Athena projects only a single partition for any given query\. This avoids the need to store and act upon millions or billions of virtual partitions only to find one partition and read from it\.
 
+The following example shows a query that uses multiple injected values for a column:
+
+```
+SELECT * FROM logs
+WHERE service IN ('kafka' OR 'SQS' OR 'email' OR ...)
+AND datehour >= '2020/01/01/00'
+```
+
 ## Bucketing<a name="partition-projection-bucketing"></a>
 
 In the bucketing technique, you use a fixed set of bucket values rather than the entire set of identifiers for your partitioning\. If you can map an identifier to a bucket, you can use this mapping in your queries\. You still benefit as when you partition on the identifiers themselves\.

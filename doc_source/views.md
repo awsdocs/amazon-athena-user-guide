@@ -1,6 +1,6 @@
 # Working with Views<a name="views"></a>
 
-A view in Amazon Athena is a logical, not a physical table\. The query that defines a view runs each time the view is referenced in a query\.
+A view in Amazon Athena is a logical table, not a physical table\. The query that defines a view runs each time the view is referenced in a query\.
 
 You can create a view from a `SELECT` query and then reference this view in future queries\. For more information, see [CREATE VIEW](create-view.md)\.
 
