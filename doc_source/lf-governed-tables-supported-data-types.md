@@ -3,6 +3,7 @@
 Governed tables currently support the following data types:
 
 ```
+array 
 bigint 
 boolean 
 char 
@@ -11,14 +12,12 @@ decimal
 double 
 float 
 integer 
-list 
 long 
 map 
 smallint 
 string 
 struct 
 timestamp 
-tinyint  
 varchar
 ```
 

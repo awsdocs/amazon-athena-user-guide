@@ -1,11 +1,6 @@
 # Supported Data Types<a name="querying-iceberg-supported-data-types"></a>
 
-
-|  | 
-| --- |
-| The Apache Iceberg feature in Athena is in preview release and is subject to change\. To avoid potential data loss or corruption, do not use this preview on production datasets\. | 
-
-In preview, Athena can query Iceberg tables that contain the following data types:
+Athena can query Iceberg tables that contain the following data types:
 
 ```
 binary
@@ -23,7 +18,7 @@ struct
 timestamp without time zone
 ```
 
-For more information about Iceberg table types, see the [schemas page for Iceberg](https://iceberg.apache.org/#schemas/) in the Apache documentation\.
+For more information about Iceberg table types, see the [schemas page for Iceberg](https://iceberg.apache.org/docs/latest/schemas/) in the Apache documentation\.
 
 The following table shows the relationship between Athena data types and Iceberg table data types\.
 

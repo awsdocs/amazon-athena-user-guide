@@ -18,7 +18,7 @@ The setup for querying an encrypted dataset in Amazon S3 and the options in Athe
 
 ## Supported Amazon S3 Encryption Options<a name="encryption-options-S3-and-Athena"></a>
 
-Athena supports the following encryption options for datasets and query results in Amazon S3\. Cross\-regional support is limited to certain Regions\. For more information, see [Cross\-Regional Queries](other-notable-limitations.md#cross-region-limitations)\.
+Athena supports the following encryption options for datasets and query results in Amazon S3\.
 
 
 | Encryption Type | Description | Cross\-Region Support | 

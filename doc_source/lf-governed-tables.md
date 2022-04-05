@@ -20,23 +20,14 @@ For more information about governed tables, see [Managing Governed Tables](https
 
 Support for Lake Formation governed tables in Athena has the following limitations:
 + **Read and create governed table operations only** – Only read and create governed table operations are supported\. Delete, insert into, and update operations on Lake Formation governed tables are not supported from Athena\.
-+ **AmazonAthenaLakeFormation workgroup** – Query operations must be performed from the **AmazonAthenaLakeFormation** workgroup\. You create this workgroup in Athena\. The workgroup must be configured to use Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\. For information about creating workgroups, see [Create a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
 +  **Automatic compaction** – The Lake Formation automatic compaction feature is not manageable from Athena\. 
 + **GetQueryStatistics permission required** – Athena users must add the `lakeformation:GetQueryStatistics` permission in IAM\.
-+ **Limited DDL statements** – Governed tables do not support the following DDL statements:
-  + [ALTER TABLE ADD COLUMNS](alter-table-add-columns.md)
-  + [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)
-  + [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md) 
-  + [ALTER TABLE RENAME PARTITION](alter-table-rename-partition.md)
-  + [ALTER TABLE REPLACE COLUMNS](alter-table-replace-columns.md)
-  + [ALTER TABLE SET LOCATION](alter-table-set-location.md)
-  + [MSCK REPAIR TABLE](msck-repair-table.md)
-  + [SHOW PARTITIONS](show-partitions.md)
++ **Error when querying certain nested columns on an empty dataset** – Currently, querying columns of the form `Array<Struct<Array<data_type>>>` on an empty dataset produces the error GENERIC\_INTERNAL\_ERROR: Exception while processing column\.
++ **Views** – You cannot use views with governed tables\.
 
 ## Getting Started<a name="lf-governed-tables-getting-started"></a>
 
-To get started using Lake Formation governed tables in Athena, perform the following steps:
+To get started using Lake Formation governed tables in Athena, perform the following step:
++ **Create a governed table** – To create a governed table from the Athena console, specify the table property `'table_type'='LAKEFORMATION_GOVERNED'` in your `CREATE TABLE` statement\. You can also use the AWS Lake Formation console, AWS Glue API, or AWS Command Line Interface \(AWS CLI\) to create one or more governed tables\.
 
-1. **Create the AmazonAthenaLakeFormation workgroup** – Create a workgroup called **AmazonAthenaLakeFormation**\. You must use the `AmazonAthenaLakeFormation` workgroup to run queries against Lake Formation governed tables\.
-
-1. **Create a governed table** – To create a governed table from the Athena console, specify the table property `'table_type'='LAKEFORMATION_GOVERNED'` in your `CREATE TABLE` statement\. You can also use the AWS Lake Formation console, AWS Glue API, or AWS Command Line Interface \(AWS CLI\) to create one or more governed tables\. For more information, see [Creating Governed Tables](https://docs.aws.amazon.com/lake-formation/latest/dg/create-gov-table.html) in the *AWS Lake Formation Developer Guide*\. To register the Amazon S3 objects before you query them, call the Lake Formation `UpdateTableObjects` operation within a transaction\.
+  For more information, see [Creating Governed Tables](https://docs.aws.amazon.com/lake-formation/latest/dg/create-gov-table.html) in the *AWS Lake Formation Developer Guide*\. To register the Amazon S3 objects before you query them, call the Lake Formation `UpdateTableObjects` operation within a transaction\.

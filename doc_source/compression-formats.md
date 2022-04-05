@@ -52,9 +52,8 @@ When you write CREATE TABLE or CTAS statements, you can specify compression prop
 
 ## Specifying No Compression<a name="compression-support-specifying-no-compression"></a>
 
-CTAS and CREATE TABLE statements support writing uncompressed files\. To write uncompressed files, use the following syntax: 
-+ CTAS – In a `WITH` clause, specify the `write_compression = NONE` property\.
-+ CREATE TABLE \(textfile or JSON\) – In `TBLPROPERTIES`, specify `write.compression = NONE`\.
+CREATE TABLE statements support writing uncompressed files\. To write uncompressed files, use the following syntax: 
++ CREATE TABLE \(text file or JSON\) – In `TBLPROPERTIES`, specify `write.compression = NONE`\.
 + CREATE TABLE \(Parquet\) – In `TBLPROPERTIES`, specify `parquet.compression = UNCOMPRESSED`\.
 + CREATE TABLE \(ORC\) – In `TBLPROPERTIES`, specify `orc.compress = NONE`\.
 

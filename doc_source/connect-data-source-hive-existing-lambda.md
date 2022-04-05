@@ -11,23 +11,25 @@ After you have deployed a Lambda data source connector like `AthenaHiveMetastore
 
 1. Choose **Data sources**\.
 
-1. On the **Data sources** page, choose **Connect data source**\.
+1. On the **Data sources** page, choose **Create data source**\.
 
-1. On the **Connect data sources** page, for **Data source selection**, choose **S3 \- Apache Hive metastore**\.
+1. On the **Choose a data source** page, for **Data sources**, choose **S3 \- Apache Hive metastore**\.
+
+1. Choose **Next**\.
 
 1. In the **Data source details** section, for **Data source name**, enter the name that you want to use in your SQL statements when you query the data source from Athena \(for example, `MyHiveMetastore`\)\. The name can be up to 127 characters and must be unique within your account\. It cannot be changed after you create it\. Valid characters are a\-z, A\-Z, 0\-9, \_ \(underscore\), @ \(at sign\) and \- \(hyphen\)\. The names `awsdatacatalog`, `hive`, `jmx`, and `system` are reserved by Athena and cannot be used for data source names\. 
 
-1. In the **Lambda function** section, make sure that **Use an existing Lambda function** is selected\.
-
-1. Choose the refresh icon next to the **Choose or enter a Lambda function** box\.
-
-1. Choose the function that you deployed from the Lambda console\. The ARN of the Lambda function displays\.
+1. In the **Connection details** section, use the **Select or enter a Lambda function** box to choose the name of the function that you just created\. The ARN of the Lambda function displays\.
 
 1. \(Optional\) For **Tags**, add key\-value pairs to associate with this data source\. For more information about tags, see [Tagging Athena Resources](tags.md)\.
 
-1. Choose **Connect data source**\. The **Data sources** page shows your Hive metastore in the list of data sources\.
+1. Choose **Next**\.
 
-1. You can now use the **Data source name** that you specified to reference the Hive metastore in your SQL queries\.
+1. On the **Review and create** page, review the data source details, and then choose **Create data source**\. 
+
+1. The **Data source details** section of the page for your data source shows information about your new connector\.
+
+   You can now use the **Data source name** that you specified to reference the Hive metastore in your SQL queries in Athena\.
 
    In your SQL queries, use the following example syntax, replacing `ehms-catalog` with the data source name that you specified earlier\.
 

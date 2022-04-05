@@ -146,3 +146,7 @@ This query returns:
 | Amy  | 15    |
 +--------------+
 ```
+
+## Considerations and Limitations<a name="flattening-arrays-considerations"></a>
++ `CROSS JOIN` does not generate a Cartesian product if the main \(`FROM`\) table has an empty array or `NULL` on the specified column\.
++ Currently, `UNNEST` can be used only with `CROSS JOIN` and does not support other `JOIN` types \(for example, `LEFT JOIN UNNEST`\)\.

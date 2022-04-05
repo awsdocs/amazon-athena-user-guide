@@ -189,14 +189,14 @@ The following procedure creates an Amazon VPC table for Amazon VPC flow logs in 
    OUTPUTFORMAT 
      'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
    LOCATION
-     's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/aws-account-id={account_id}/aws-service=vpcflowlogs/aws-region={region_code}/'
+     's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/{account_id}/vpcflowlogs/{region_code}/'
    TBLPROPERTIES (
      'EXTERNAL'='true', 
      'skip.header.line.count'='1'
      )
    ```
 
-1. Modify the `LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/aws-account-id={account_id}/aws-service=vpcflowlogs/aws-region={region_code}/'` to point to the Amazon S3 bucket that contains your log data\.
+1. Modify the `LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/{account_id}/vpcflowlogs/{region_code}/' ` to point to the Amazon S3 bucket that contains your log data\.
 
 1. Run the query in Athena console\.
 

@@ -10,16 +10,18 @@ To deploy an Athena data source connector for Hive, you can use the [AWS Serverl
 
 1. Select the option **Show apps that create custom IAM roles or resource policies**\.
 
-1. In the search box, type the name of one of the following connectors\. The two applications have the same functionality and differ only in their implementation\. You can use either one to create a Lambda function that connects Athena to your Hive metastore\.
+1. In the search box, enter **Hive**\. The connectors that appear include the following two:
    + **AthenaHiveMetastoreFunction** – Uber Lambda function `.jar` file\.
    + **AthenaHiveMetastoreFunctionWithLayer** – Lambda layer and thin Lambda function `.jar` file\.
 
-1. Choose the name of the connector\.   
+    The two applications have the same functionality and differ only in their implementation\. You can use either one to create a Lambda function that connects Athena to your Hive metastore\.
+
+1. Choose the name of the connector that you want to use\. This tutorial uses **AthenaHiveMetastoreFunction**\.  
 ![\[Choose the name of the Athena data source connector for Hive.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-data-source-sar-hive-1.png)
 
 1. Under **Application settings**, enter the parameters for your Lambda function\.
    + **LambdaFuncName** – Provide a name for the function\. For example, **myHiveMetastore**\.
-   + **SpillLocation** – Specify an Amazon S3 location in this account to hold spillover metadata if the Lambda function reponse size exceeds 4MB\.
+   + **SpillLocation** – Specify an Amazon S3 location in this account to hold spillover metadata if the Lambda function response size exceeds 4MB\.
    + **HMSUris** – Enter the URI of your Hive metastore host that uses the Thrift protocol at port 9083\. Use the syntax `thrift://<host_name>:9083`\.
    + **LambdaMemory** – Specify a value from 128MB to 3008MB\. The Lambda function is allocated CPU cycles proportional to the amount of memory that you configure\. The default is 1024\.
    + **LambdaTimeout** – Specify the maximum permissible Lambda invocation run time in seconds from 1 to 900 \(900 seconds is 15 minutes\)\. The default is 300 seconds \(5 minutes\)\.

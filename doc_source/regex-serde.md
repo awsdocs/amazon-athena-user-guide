@@ -4,7 +4,7 @@ The Regex SerDe uses a regular expression \(regex\) to deserialize data by extra
 
 If a row in the data does not match the regex, then all columns in the row are returned as `NULL`\. If a row matches the regex but has fewer groups than expected, the missing groups are `NULL`\. If a row in the data matches the regex but has more columns than groups in the regex, the additional columns are ignored\. 
 
-For more information, see [Class RegexSerDe](https://hive.apache.org/javadocs/r1.2.2/api/org/apache/hadoop/hive/serde2/RegexSerDe.html) in the Apache Hive documentation\.
+For more information, see [Class RegexSerDe](https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r1.2.2/api/org/apache/hadoop/hive/serde2/RegexSerDe.html) in the Apache Hive documentation\.
 
 ## SerDe Name<a name="serde-name"></a>
 

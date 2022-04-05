@@ -18,27 +18,3 @@ When running queries in Athena, keep in mind the following considerations and li
   Data that is moved or transitioned to one of these classes are no longer readable or queryable by Athena even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class\. Alternatively, you can use the Amazon S3 Glacier Instant Retrieval storage class, which is queryable by Athena\. For more information, see [Amazon S3 Glacier Instant Retrieval storage class](http://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/)\.
 + **Files treated as hidden** – Athena treats source files that start with an underscore \(`_`\) or a dot \(`.`\) as hidden\. To work around this limitation, rename the files\.
 + **Row or column size limitation** – The size of a single row or its columns cannot exceed 32 megabytes\. This limit can be exceeded when, for example, a row in a CSV or JSON file contains a single column of 100 megabytes\. Exceeding this limit can also produce the error message Line too long in text file\. To work around this limitation, make sure that the sum of the data of the columns in any row is less than 32MB\.
-
-## Cross\-Regional Queries<a name="cross-region-limitations"></a>
-
-Athena supports queries across only the following Regions\. Queries across other Regions may produce the error message InvalidToken: The provided token is malformed or otherwise invalid\.
-
-
-| Region Name | Region Code | 
-| --- | --- | 
-| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
-| Asia Pacific \(Seoul\) | ap\-northeast\-2 | 
-| Asia Pacific \(Mumbai\) | ap\-south\-1 | 
-| Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
-| Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
-| Canada \(Central\) | ca\-central\-1 | 
-| Europe \(Frankfurt\) | eu\-central\-1 | 
-| Europe \(Stockholm\) | eu\-north\-1 | 
-| Europe \(Ireland\) | eu\-west\-1 | 
-| Europe \(London\) | eu\-west\-2 | 
-| Europe \(Paris\) | eu\-west\-3 | 
-| South America \(São Paulo\) | sa\-east\-1 | 
-| US East \(N\. Virginia\) | us\-east\-1 | 
-| US East \(Ohio\) | us\-east\-2 | 
-| US West \(N\. California\) | us\-west\-1 | 
-| US West \(Oregon\) | us\-west\-2 | 

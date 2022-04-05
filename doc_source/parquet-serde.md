@@ -9,7 +9,7 @@ To convert data into Parquet format, you can use [CREATE TABLE AS SELECT \(CTAS\
 
 ## Library Name<a name="library-name"></a>
 
-Athena uses this class when it needs to deserialize data stored in Parquet: [org\.apache\.hadoop\.hive\.ql\.io\.parquet\.serde\.ParquetHiveSerDe](https://hive.apache.org/javadocs/r1.2.2/api/org/apache/hadoop/hive/ql/io/parquet/serde/ParquetHiveSerDe.html)\. 
+Athena uses the following class when it needs to deserialize data stored in Parquet: `org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe`
 
 ## Example: Querying a File Stored in Parquet<a name="example-querying-a-file-stored-in-parquet"></a>
 

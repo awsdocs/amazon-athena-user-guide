@@ -5,8 +5,7 @@ Published on 2022\-03\-18
 Athena announces the following fixes and improvements\.
 + **Dynamic filtering** – [Dynamic filtering](release-note-2021-07-30.md) has been improved for integer columns by efficiently applying the filter to each record of a corresponding table\. 
 + **Iceberg** – Fixed an issue that caused failures when writing Iceberg Parquet files larger than 2GB\. 
-+ **Uncompressed output** – [CREATE TABLE AS SELECT](create-table-as.md) \(CTAS\) and [CREATE TABLE](create-table.md) statements now support writing uncompressed files\. To write uncompressed files, use the following syntax: 
-  + CTAS – In a `WITH` clause, specify the `write_compression = NONE` property\.
++ **Uncompressed output** – [CREATE TABLE](create-table.md) statements now support writing uncompressed files\. To write uncompressed files, use the following syntax: 
   + CREATE TABLE \(text file or JSON\) – In `TBLPROPERTIES`, specify `write.compression = NONE`\.
   + CREATE TABLE \(Parquet\) – In `TBLPROPERTIES`, specify `parquet.compression = UNCOMPRESSED`\.
   + CREATE TABLE \(ORC\) – In `TBLPROPERTIES`, specify `orc.compress = NONE`\.

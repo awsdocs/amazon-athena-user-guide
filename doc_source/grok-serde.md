@@ -52,7 +52,7 @@ In the following example, you create a query for Log4j logs\. The example logs h
 
 ```
 2017-09-12 12:10:34,972 INFO  - processType=AZ, processId=ABCDEFG614B6F5E49, status=RUN,
-threadId=123:amqListenerContainerPool23[P:AJ|ABCDE9614B6F5E49||2017-09-12T12:10:11.172-0700],
+threadId=123:amqListenerContainerPool23P:AJ|ABCDE9614B6F5E49||2017-09-12T12:10:11.172-0700],
 executionTime=7290, tenantId=12456, userId=123123f8535f8d76015374e7a1d87c3c, shard=testapp1,
 jobId=12312345e5e7df0015e777fb2e03f3c, messageType=REAL_TIME_SYNC,
 action=receive, hostname=1.abc.def.com
