@@ -67,7 +67,7 @@ This section describes table properties that you can specify as key\-value pairs
 |  |  | 
 | --- |--- |
 | Description | File compression codec | 
-| Allowed property values | gzip | 
+| Allowed property values | gzip, snappy, zstd | 
 | Default value | gzip | 
 
 ***write\_target\_data\_file\_size\_bytes***

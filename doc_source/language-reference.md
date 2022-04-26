@@ -20,7 +20,7 @@ Athena does not support all DDL statements, and there are some differences betwe
 + [CREATE TABLE](create-table.md)
 + [CREATE TABLE AS](create-table-as.md)
 + [CREATE VIEW](create-view.md)
-+ [DESCRIBE TABLE](describe-table.md)
++ [DESCRIBE](describe-table.md)
 + [DESCRIBE VIEW](describe-view.md)
 + [DROP DATABASE](drop-database.md)
 + [DROP TABLE](drop-table.md)

@@ -19,7 +19,7 @@ For an example of how to aggregate AWS WAF logs into a central data lake reposit
 
 1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\. For information about individual log fields, see [Log Fields](https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html) in the *AWS WAF Developer Guide*\.
 
-   This query uses the [OpenX JSON SerDe](json-serde.md#openx-json-serde)\. The table format and the SerDe are suggested by the AWS Glue crawler when it analyzes AWS WAF logs\.
+   This query uses the [OpenX JSON SerDe](openx-json-serde.md)\. The table format and the SerDe are suggested by the AWS Glue crawler when it analyzes AWS WAF logs\.
 **Note**  
 The SerDe expects each JSON document to be on a single line of text with no line termination characters separating the fields in the record\. If the JSON text is in pretty print format, you may receive an error message like HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object or HIVE\_CURSOR\_ERROR: JsonParseException: Unexpected end\-of\-input: expected close marker for OBJECT when you attempt to query the table after you create it\. For more information, see [JSON Data Files](https://github.com/rcongiu/Hive-JSON-Serde#json-data-files) in the OpenX SerDe documentation on GitHub\. 
 

@@ -1,0 +1,5 @@
+# Amazon Athena Oracle Connector<a name="athena-prebuilt-data-connectors-oracle"></a>
+
+The Amazon Athena connector for Oracle enables Amazon Athena to run SQL queries on data stored in Oracle running on\-premises or on EC2 or RDS\. You can also use the connector to query data on [Oracle Exadata](https://www.oracle.com/engineered-systems/exadata/)\. For information about configuration options, data types support, and other considerations, see [Amazon Athena Oracle Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-oracle/) on [GitHub](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors)\.
+
+Before you use this connector, you must set up a VPC and a security group\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.

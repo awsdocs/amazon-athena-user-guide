@@ -1,0 +1,5 @@
+# Amazon Athena Cloudera Impala Connector<a name="athena-prebuilt-data-connectors-cloudera-impala"></a>
+
+The Amazon Athena Cloudera Impala connector enables Athena to run SQL queries on the [Cloudera Impala](https://www.cloudera.com/products/open-source/apache-hadoop/impala.html) Hadoop distribution\. The connector transforms your Athena SQL queries to their equivalent Impala syntax\. For information about configuration options, data type support, and other considerations, see [Amazon Athena Cloudera Impala Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-cloudera-impala/) on [GitHub](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors)\.
+
+Before you use this connector, you must set up a VPC and a security group\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.

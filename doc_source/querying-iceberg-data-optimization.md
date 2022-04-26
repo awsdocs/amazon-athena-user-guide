@@ -13,10 +13,12 @@ The `REWRITE DATA` compaction action rewrites data files into a more optimized l
 The following syntax summary shows how to optimize data layout for an Iceberg table\.
 
 ```
-OPTIMIZE [db_name.]table_name REWRITE DATA
-  USING BIN_PACK
+OPTIMIZE [db_name.]table_name REWRITE DATA USING BIN_PACK
   [WHERE predicate]
 ```
+
+**Note**  
+Currently, a known issue causes this statement to fail when a newline character separates `DATA` and `USING`\. To work around this issue, make sure that `DATA USING` is on the same line\.
 
 The compaction action is charged by the amount of data scanned during the rewrite process\. The `REWRITE DATA` action uses predicates to select for files that contain matching rows\. If any row in the file matches the predicate, the file is selected for optimization\. Thus, to control the number of files affected by the compaction operation, you can specify a `WHERE` clause\.
 
@@ -29,8 +31,7 @@ To control the size of the files to be selected for compaction and the resulting
 The following example merges delete files into data files and produces files near the targeted file size where the value of `catalog` is `c1`\.
 
 ```
-OPTIMIZE iceberg_table REWRITE DATA
-  USING BIN_PACK
+OPTIMIZE iceberg_table REWRITE DATA USING BIN_PACK
   WHERE catalog = 'c1'
 ```
 

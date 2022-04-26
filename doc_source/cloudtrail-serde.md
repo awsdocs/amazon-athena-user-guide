@@ -4,7 +4,7 @@ AWS CloudTrail is a service that records AWS API calls and events for Amazon Web
 
 To query CloudTrail logs in Athena, create table from the logs and use the CloudTrail SerDe to deserialize the logs data\.
 
-In addition to using the CloudTrail SerDe, instances exist where you need to use a different SerDe or to extract data from JSON\. Certain fields in CloudTrail logs are STRING values that may have a variable data format, which depends on the service\. As a result, the CloudTrail SerDe is unable to predictably deserialize them\. To query the following fields, identify the data pattern and then use a different SerDe, such as the [OpenX JSON SerDe](json-serde.md#openx-json-serde)\. Alternatively, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\. 
+In addition to using the CloudTrail SerDe, instances exist where you need to use a different SerDe or to extract data from JSON\. Certain fields in CloudTrail logs are STRING values that may have a variable data format, which depends on the service\. As a result, the CloudTrail SerDe is unable to predictably deserialize them\. To query the following fields, identify the data pattern and then use a different SerDe, such as the [OpenX JSON SerDe](openx-json-serde.md)\. Alternatively, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\. 
 +  `requestParameters` 
 +  `responseElements` 
 +  `additionalEventData` 

@@ -7,7 +7,7 @@ Consider the following when using Athena to query data registered in Lake Format
 + [Working With Lake Formation Permissions To Views](#lf-athena-limitations-permissions-to-views)
 + [Athena Query Results Location In Amazon S3 Not Registered With Lake Formation](#lf-athena-limitations-query-results-location)
 + [Use Athena Workgroups To Limit Access To Query History](#lf-athena-limitations-use-workgroups-to-limit-access-to-query-history)
-+ [Cross\-Account Data Catalog Access](#lf-athena-limitations-cross-account-glue)
++ [Cross\-Account Access](#lf-athena-limitations-cross-account)
 + [CSE\-KMS Amazon S3 Registered With Lake Formation Cannot Be Queried in Athena](#lf-athena-limitations-cse-kms)
 + [Partitioned Data Locations Registered with Lake Formation Must Be in Table Subdirectories](#lf-athena-limitations-partioned-data-locations)
 + [Create Table As Select \(CTAS\) Queries Require Amazon S3 Write Permissions](#lf-athena-limitations-ctas-queries)
@@ -21,7 +21,7 @@ This occurs when column metadata is stored in table properties for tables using 
 
 ## Working With Lake Formation Permissions To Views<a name="lf-athena-limitations-permissions-to-views"></a>
 
-For data registered with Lake Formation, an Athena user can create a `VIEW` only if they have Lake Formation permissions to the tables, columns, and source Amazon S3 data locations on which the `VIEW` is based\. After a `VIEW` is created in Athena, Lake Formation permissions can be applied to the `VIEW`\. Column\-level permissions are not available for a `VIEW`\. Users who have Lake Formation permissions to a `VIEW` but do not have permissions to the table and columns on which the view was based are not able to use the `VIEW` to query data\. However, users with this mix of permissions are able to use statements like `DESCRIBE VIEW`, `SHOW CREATE VIEW`, and `SHOW COLUMNS` to see `VIEW` metadata\. For this reason, be sure to align Lake Formation permissions for each `VIEW` with underlying table permissions\. Cell filters defined on a table do not apply to a `VIEW` for that table\.
+For data registered with Lake Formation, an Athena user can create a `VIEW` only if they have Lake Formation permissions to the tables, columns, and source Amazon S3 data locations on which the `VIEW` is based\. After a `VIEW` is created in Athena, Lake Formation permissions can be applied to the `VIEW`\. Column\-level permissions are not available for a `VIEW`\. Users who have Lake Formation permissions to a `VIEW` but do not have permissions to the table and columns on which the view was based are not able to use the `VIEW` to query data\. However, users with this mix of permissions are able to use statements like `DESCRIBE VIEW`, `SHOW CREATE VIEW`, and `SHOW COLUMNS` to see `VIEW` metadata\. For this reason, be sure to align Lake Formation permissions for each `VIEW` with underlying table permissions\. Cell filters defined on a table do not apply to a `VIEW` for that table\. For more information about setting up permissions for shared views across accounts, see [Cross\-Account Data Catalog Access](#lf-athena-limitations-cross-account)\.
 
 ## Athena Query Results Location In Amazon S3 Not Registered With Lake Formation<a name="lf-athena-limitations-query-results-location"></a>
 
@@ -31,17 +31,61 @@ The query results locations in Amazon S3 for Athena cannot be registered with La
 
 Athena query history exposes a list of saved queries and complete query strings\. Unless you use workgroups to separate access to query histories, Athena users who are not authorized to query data in Lake Formation are able to view query strings run on that data, including column names, selection criteria, and so on\. We recommend that you use workgroups to separate query histories, and align Athena workgroup membership with Lake Formation permissions to limit access\. For more information, see [Using Workgroups to Control Query Access and Costs](manage-queries-control-costs-with-workgroups.md)\.
 
-## Cross\-Account Data Catalog Access<a name="lf-athena-limitations-cross-account-glue"></a>
+## Cross\-Account Data Catalog Access<a name="lf-athena-limitations-cross-account"></a>
 
-To access a data catalog in another account, you can use one of the following methods:
-+ Use Athena's cross\-account AWS Glue catalog feature to register the catalog in your account\. This capability is available only in Athena engine version 2 and is limited to same\-Region use between accounts\. For more information, see [Registering an AWS Glue Data Catalog from Another Account](data-sources-glue-cross-account.md) and [Cross\-Account Access to AWS Glue Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
-+ Set up cross\-account access in Lake Formation\. For more information, see the following section\.
+To access a data catalog in another account, you can use Athena's cross\-account AWS Glue feature or set up cross\-account access in Lake Formation\.
+
+### Athena Cross\-Account Data Catalog Access<a name="lf-athena-limitations-cross-account-glue"></a>
+
+You can use Athena's cross\-account AWS Glue catalog feature to register the catalog in your account\. This capability is available only in Athena engine version 2 and is limited to same\-Region use between accounts\. For more information, see [Registering an AWS Glue Data Catalog from Another Account](data-sources-glue-cross-account.md)\.
+
+If the Data Catalog to be shared has a resource policy configured in AWS Glue, it must be updated to allow access to the AWS Resource Access Manager and grant permissions to Account B to use Account A's Data Catalog, as in the following example\. 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [{
+        "Effect": "Allow",
+        "Principal": {
+            "Service": "ram.amazonaws.com"
+        },
+        "Action": "glue:ShareResource",
+        "Resource": [
+          "arn:aws:glue:<REGION>:<ACCOUNT-A>:table/*/*", 
+          "arn:aws:glue:<REGION>:<ACCOUNT-A>:database/*", 
+          "arn:aws:glue:<REGION>:<ACCOUNT-A>:catalog"
+        ]
+    }, 
+    {
+        "Effect": "Allow",
+        "Principal": {
+            "AWS": "arn:aws:iam::<ACCOUNT-B>:root"
+        },
+        "Action": "glue:*",
+        "Resource": [
+          "arn:aws:glue:<REGION>:<ACCOUNT-A>:table/*/*", 
+          "arn:aws:glue:<REGION>:<ACCOUNT-A>:database/*", 
+          "arn:aws:glue:<REGION>:<ACCOUNT-A>:catalog"
+        ]
+    }
+    ]
+}
+```
+
+For more information, see [Cross\-Account Access to AWS Glue Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 
 ### Setting Up Cross\-Account Access in Lake Formation<a name="lf-athena-limitations-cross-account-glue-lf-xacct"></a>
 
-AWS Lake Formation lets you use a single account to manage a central Data Catalog\. You can use this feature to implement [cross\-account access](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-cross-account.html) to Data Catalog metadata and underlying data\. For example, an owner account can grant another \(recipient\) account `SELECT` permission on a table\. For a shared database or table to appear in the Athena Query Editor, you [create a resource link](https://docs.aws.amazon.com/lake-formation/latest/dg/resource-links-about.html) in Lake Formation to the shared database or table\. For a shared view, the name of the resource link must match the name of the resource in the owner account\. When the recipient account in Lake Formation queries the owner's table, [CloudTrail](https://docs.aws.amazon.com/lake-formation/latest/dg/cross-account-logging.html) adds the data access event to the logs for both the recipient account and the owner account\.
+AWS Lake Formation lets you use a single account to manage a central Data Catalog\. You can use this feature to implement [cross\-account access](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-cross-account.html) to Data Catalog metadata and underlying data\. For example, an owner account can grant another \(recipient\) account `SELECT` permission on a table\. 
 
-For more information, see the following resources in the AWS Lake Formation Developer Guide:
+For a shared database or table to appear in the Athena Query Editor, you [create a resource link](https://docs.aws.amazon.com/lake-formation/latest/dg/resource-links-about.html) in Lake Formation to the shared database or table\. When the recipient account in Lake Formation queries the owner's table, [CloudTrail](https://docs.aws.amazon.com/lake-formation/latest/dg/cross-account-logging.html) adds the data access event to the logs for both the recipient account and the owner account\.
+
+For shared views, keep in mind the following points:
++ Queries are run on target resource links, not on the source table or view, and then the output is shared to the target account\.
++ It is not sufficient to share only the view\. All the tables that are involved in creating the view must be part of the cross\-account share\.
++ The name of the resource link created on the shared resources must match the name of the resource in the owner account\. If the name does not match, an error message like Failed analyzing stored view 'awsdatacatalog\.*my\-lf\-resource\-link*\.*my\-lf\-view*': line 3:3: Schema *schema\_name* does not exist occurs\.
+
+For more information about cross\-account access in Lake Formation, see the following resources in the *AWS Lake Formation Developer Guide*:
 
  [Cross\-Account Access](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-cross-account.html) 
 

@@ -1,4 +1,4 @@
-# Athena AWS CMDB Connector<a name="athena-prebuilt-data-connectors-cmdb"></a>
+# Amazon Athena AWS CMDB Connector<a name="athena-prebuilt-data-connectors-cmdb"></a>
 
 The Amazon Athena AWS CMDB connector enables Amazon Athena to communicate with various AWS services so that you can query them with SQL\.
 

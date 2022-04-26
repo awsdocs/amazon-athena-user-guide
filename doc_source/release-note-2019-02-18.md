@@ -26,7 +26,7 @@ Made the following changes:
   + Support for the `ConvertDotsInJsonKeysToUnderscores` property\. When set to `TRUE`, it allows the SerDe to replace the dots in key names with underscores\. For example, if the JSON dataset contains a key with the name `"a.b"`, you can use this property to define the column name to be `"a_b"` in Athena\. The default is `FALSE`\. By default, Athena does not allow dots in column names\.
   + Support for the `case.insensitive` property\. By default, Athena requires that all keys in your JSON dataset use lowercase\. Using `WITH SERDE PROPERTIES ("case.insensitive"= FALSE;)` allows you to use case\-sensitive key names in your data\. The default is `TRUE`\. When set to `TRUE`, the SerDe converts all uppercase columns to lowercase\. 
 
-  For more information, see [OpenX JSON SerDe](json-serde.md#openx-json-serde)\.
+  For more information, see [OpenX JSON SerDe](openx-json-serde.md)\.
 + Fixed an issue where Athena returned `"access denied"` error messages, when it processed Amazon S3 objects that were archived to Glacier by Amazon S3 lifecycle policies\. As a result of fixing this issue, Athena ignores objects transitioned to the `GLACIER` storage class\. Athena does not support querying data from the `GLACIER` storage class\. 
 
    For more information, see [Requirements for Tables in Athena and Data in Amazon S3](creating-tables.md#s3-considerations) and [Transitioning to the GLACIER Storage Class \(Object Archival\) ](https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html#before-deciding-to-archive-objects) in the *Amazon Simple Storage Service User Guide*\.

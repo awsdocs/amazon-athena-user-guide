@@ -53,4 +53,4 @@ Underlying source data in Amazon S3 and metadata in the Data Catalog that is reg
 
 To query an Amazon S3 data location in a different account, a resource\-based IAM policy \(bucket policy\) must allow access to the location\. For more information, see [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\.
 
-For information about accessing a Data Catalog in another account, see [Cross\-Account Data Catalog Access](lf-athena-limitations.md#lf-athena-limitations-cross-account-glue)\.
+For information about accessing a Data Catalog in another account, see [Athena Cross\-Account Data Catalog Access](lf-athena-limitations.md#lf-athena-limitations-cross-account-glue)\.

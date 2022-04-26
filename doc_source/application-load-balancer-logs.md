@@ -5,6 +5,7 @@ An Application Load Balancer is a load balancing option for Elastic Load Balanci
 **Topics**
 + [Prerequisites](#application-load-balancer-logs-prerequisites)
 + [Creating the Table for ALB Logs](#create-alb-table)
++ [Creating the Table for ALB Logs in Athena Using Partition Projection](#create-alb-table-partition-projection)
 + [Example Queries for ALB Logs](#query-alb-logs-examples)
 
 ## Prerequisites<a name="application-load-balancer-logs-prerequisites"></a>
@@ -58,10 +59,76 @@ The following `CREATE TABLE` statement includes the recently added `classificati
                'serialization.format' = '1',
                'input.regex' = 
            '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) (.*) (- |[^ ]*)\" \"([^\"]*)\" ([A-Z0-9-_]+) ([A-Za-z0-9.-]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" ([-.0-9]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^ ]*)\" \"([^\s]+?)\" \"([^\s]+)\" \"([^ ]*)\" \"([^ ]*)\"')
-               LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/';
+               LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/'
    ```
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `alb_logs` table, making the data in it ready for you to issue queries\.
+
+## Creating the Table for ALB Logs in Athena Using Partition Projection<a name="create-alb-table-partition-projection"></a>
+
+Because ALB logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena partition projection feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
+
+The following example `CREATE TABLE` statement automatically uses partition projection on ALB logs from a specified date until the present for a single AWS region\. The statement is based on the example in the previous section but adds `PARTITIONED BY` and `TBLPROPERTIES` clauses to enable partition projection\. In the `LOCATION` and `storage.location.template` clauses, replace the placeholders with values that identify the Amazon S3 bucket location of your ALB logs\. For `projection.day.range`, replace *2022*/*01*/*01* with the starting date that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\.
+
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS alb_logs (
+            type string,
+            time string,
+            elb string,
+            client_ip string,
+            client_port int,
+            target_ip string,
+            target_port int,
+            request_processing_time double,
+            target_processing_time double,
+            response_processing_time double,
+            elb_status_code int,
+            target_status_code string,
+            received_bytes bigint,
+            sent_bytes bigint,
+            request_verb string,
+            request_url string,
+            request_proto string,
+            user_agent string,
+            ssl_cipher string,
+            ssl_protocol string,
+            target_group_arn string,
+            trace_id string,
+            domain_name string,
+            chosen_cert_arn string,
+            matched_rule_priority string,
+            request_creation_time string,
+            actions_executed string,
+            redirect_url string,
+            lambda_error_reason string,
+            target_port_list string,
+            target_status_code_list string,
+            classification string,
+            classification_reason string
+            )
+            PARTITIONED BY
+            (
+             day STRING
+            )
+            ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+            WITH SERDEPROPERTIES (
+            'serialization.format' = '1',
+            'input.regex' = 
+        '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) (.*) (- |[^ ]*)\" \"([^\"]*)\" ([A-Z0-9-_]+) ([A-Za-z0-9.-]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" ([-.0-9]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^ ]*)\" \"([^\s]+?)\" \"([^\s]+)\" \"([^ ]*)\" \"([^ ]*)\"')
+            LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/'
+            TBLPROPERTIES
+            (
+             "projection.enabled" = "true",
+             "projection.day.type" = "date",
+             "projection.day.range" = "2022/01/01,NOW",
+             "projection.day.format" = "yyyy/MM/dd",
+             "projection.day.interval" = "1",
+             "projection.day.interval.unit" = "DAYS",
+             "storage.location.template" = "s3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/${day}"
+            )
+```
+
+For more information about partition projection, see [Partition Projection with Amazon Athena](partition-projection.md)\.
 
 ## Example Queries for ALB Logs<a name="query-alb-logs-examples"></a>
 
@@ -103,6 +170,13 @@ WHERE parse_datetime(time,'yyyy-MM-dd''T''HH:mm:ss.SSSSSS''Z')
      AND parse_datetime('2018-05-31-00:00:00','yyyy-MM-dd-HH:mm:ss') 
 GROUP BY client_ip;
 ```
+
+The following query queries the table that uses partition projection for all ALB logs from the specified day\.
+
+```
+SELECT * 
+FROM alb_logs 
+WHERE day = '2022/02/12'
+```
 + For more information and examples, see the AWS Knowledge Center article [How do I analyze my Application Load Balancer access logs using Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/)\.
-+ For more information about partitioning ALB logs with Athena, see [athena\-add\-partition](https://github.com/buzzsurfr/athena-add-partition) on GitHub\.
 + For information about Elastic Load Balancing HTTP status codes, see [Troubleshoot your Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html) in the *User Guide for Application Load Balancers*\.

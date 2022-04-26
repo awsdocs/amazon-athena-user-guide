@@ -86,6 +86,7 @@ Specifies the file format for table data\. If omitted, `TEXTFILE` is the default
 + ORC
 + PARQUET
 + AVRO
++ ION
 + INPUTFORMAT input\_format\_classname OUTPUTFORMAT output\_format\_classname
 
 **\[LOCATION 's3://bucket\_name/\[folder\]/'\]**  

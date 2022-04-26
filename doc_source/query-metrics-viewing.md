@@ -71,7 +71,7 @@ If you've enabled CloudWatch metrics in Athena, it sends the following metrics t
 | Metric Name | Description | 
 | --- | --- | 
 | EngineExecutionTime |  The number of milliseconds that the query took to run\.  | 
-| ProcessedBytes |  The number of bytes that Athena scanned per DML query\. For queries that were canceled \(either by the users, or automatically, if they reached the limit\), this includes the amount of data scanned before the cancellation time\. This metric is not reported for DDL or CTAS queries\.  | 
+| ProcessedBytes |  The number of bytes that Athena scanned per DML query\. For queries that were canceled \(either by the users, or automatically, if they reached the limit\), this includes the amount of data scanned before the cancellation time\. This metric is not reported for DDL queries\.  | 
 | QueryPlanningTime | The number of milliseconds that Athena took to plan the query processing flow\. This includes the time spent retrieving table partitions from the data source\. Note that because the query engine performs the query planning, query planning time is a subset of EngineExecutionTime\. | 
 | QueryQueueTime | The number of milliseconds that the query was in the query queue waiting for resources\. Note that if transient errors occur, the query can be automatically added back to the queue\. | 
 | ServiceProcessingTime | Number of milliseconds that Athena took to process the query results after the query engine finished running the query\. | 

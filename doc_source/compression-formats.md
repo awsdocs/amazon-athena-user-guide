@@ -1,13 +1,13 @@
 # Athena Compression Support<a name="compression-formats"></a>
 
-Athena supports a variety of compression formats for reading and writing data, including reading from a table that uses multiple compression formats\. For example, Athena can successfully read the data in a table that uses Parquet file format when some Parquet files are compressed with Snappy and other Parquet files are compressed with GZIP\. The same principle applies for ORC, Textfile, and JSON storage formats\.
+Athena supports a variety of compression formats for reading and writing data, including reading from a table that uses multiple compression formats\. For example, Athena can successfully read the data in a table that uses Parquet file format when some Parquet files are compressed with Snappy and other Parquet files are compressed with GZIP\. The same principle applies for ORC, text file, and JSON storage formats\.
 
 Athena supports the following compression formats:
 + **BZIP2** – Format that uses the Burrows\-Wheeler algorithm\.
 **Note**  
 In rare cases, a known issue in Athena engine version 1 can cause records to be silently dropped when the BZIP2 format is used\. For this reason, use of the BZIP2 format in Athena engine version 1 is not recommended\.
 + **DEFLATE** – Compression algorithm based on [LZSS](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Storer%E2%80%93Szymanski) and [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding)\. [Deflate](https://en.wikipedia.org/wiki/Deflate) is relevant only for the Avro file format\.
-+ **GZIP** – Compression algorithm based on Deflate\. GZIP is the default write compression format for files in the Parquet and Textfile storage formats\. Files in the `tar.gz` format are not supported\.
++ **GZIP** – Compression algorithm based on Deflate\. GZIP is the default write compression format for files in the Parquet and text file storage formats\. Files in the `tar.gz` format are not supported\.
 + **LZ4** – This member of the Lempel\-Ziv 77 \(LZ7\) family also focuses on compression and decompression speed rather than maximum compression of data\. LZ4 has the following framing formats:
   + **LZ4 Raw/Unframed** – An unframed, standard implementation of the LZ4 block compression format\. For more information, see the [LZ4 Block Format Description](https://github.com/lz4/lz4/blob/dev/doc/lz4_Block_format.md) on GitHub\.
   + **LZ4 Framed** – The usual framing implementation of LZ4\. For more information, see the [LZ4 Frame Format Description](https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md) on GitHub\.
@@ -24,25 +24,26 @@ In rare cases, a known issue in Athena engine version 1 can cause records to be 
 
   For information about the Snappy framing methods that Athena supports for each file format, see the table later on this page\.
 + **ZLIB** – Based on Deflate, ZLIB is the default write compression format for files in the ORC data storage format\. For more information, see the [zlib](https://github.com/madler/zlib) page on GitHub\.
-+  **ZSTD** – The [Zstandard real\-time data compression algorithm](http://facebook.github.io/zstd/) is a fast compression algorithm that provides high compression ratios\. The Zstandard library is provided as open source software using a BSD license\. Athena supports reading and writing ZStandard compressed ORC, Parquet, and textfile data\. When writing ZStandard compressed data, Athena uses ZStandard compression level 3\. 
++  **ZSTD** – The [Zstandard real\-time data compression algorithm](http://facebook.github.io/zstd/) is a fast compression algorithm that provides high compression ratios\. The Zstandard library is provided as open source software using a BSD license\. Athena supports reading and writing ZStandard compressed ORC, Parquet, and text file data\. When writing ZStandard compressed data, Athena uses ZStandard compression level 3\. 
 
 ## Compression Support in Athena by File Format<a name="compression-support-by-file-format"></a>
 
-The following table summarizes the compression format support in Athena for each storage file format\. Textfile format includes TSV, CSV, JSON, and custom SerDes for text\.
+The following table summarizes the compression format support in Athena for each storage file format\. Text file format includes TSV, CSV, JSON, and custom SerDes for text\.
 
 
 ****  
 
-|  | Avro | ORC | Parquet | Textfile | 
-| --- | --- | --- | --- | --- | 
-| BZIP2 | Read support only\. Write not supported\. | No | No | Yes | 
-| DEFLATE | Yes | No | No | No | 
-| GZIP | No | No | Yes | Yes | 
-| LZ4 | No | Yes \(raw/unframed\) | No | Hadoop\-compatible read support\. No write support\. | 
-| LZO | No | No | Yes | Hadoop\-compatible read support\. No write support \. | 
-| SNAPPY | Raw/unframed read support\. Write not supported\. | Yes \(raw/unframed\) | Yes \(raw/unframed\) | Yes \(Hadoop\-compatible framing\) | 
-| ZLIB | No | Yes | No | No | 
-| ZSTD | No | Yes | Yes | Yes | 
+|  | Avro | Ion | ORC | Parquet | Text file | 
+| --- | --- | --- | --- | --- | --- | 
+| BZIP2 | Read support only\. Write not supported\. | Yes | No | No | Yes | 
+| DEFLATE | Yes | No | No | No | No | 
+| GZIP | No | Yes | No | Yes | Yes | 
+| LZ4 | No | Hadoop\-compatible read support\. No write support\. | Yes \(raw/unframed\) | No | Hadoop\-compatible read support\. No write support\. | 
+| LZO | No | Hadoop\-compatible read support\. No write support\. | No | Yes | Hadoop\-compatible read support\. No write support\. | 
+| SNAPPY | Raw/unframed read support\. Write not supported\. | Yes \(Hadoop\-compatible framing\) | Yes \(raw/unframed\) | Yes \(raw/unframed\) | Yes \(Hadoop\-compatible framing\) | 
+| ZLIB | No | No | Yes | No | No | 
+| ZSTD | No | Yes | Yes | Yes | Yes | 
+| NONE | Yes | Yes | Yes | Yes | Yes | 
 
 ## Specifying Compression Formats<a name="compression-support-specifying-compression-formats"></a>
 

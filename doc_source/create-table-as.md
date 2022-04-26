@@ -31,6 +31,9 @@ If you plan to create a query with partitions, specify the names of partitioned 
 **\[ WITH \[ NO \] DATA \]**  
 If `WITH NO DATA` is used, a new empty table with the same schema as the original table is created\.
 
+**Note**  
+To include column headers in your query result output, you can use a simple `SELECT` query instead of a CTAS query\. You can retrieve the results from your query results location or download the results directly using the Athena console\. For more information, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\. 
+
 ## CTAS Table Properties<a name="ctas-table-properties"></a>
 
 Each CTAS table in Athena has a list of optional CTAS table properties that you specify using `WITH (property_name = expression [, ...] )`\. For information about using these parameters, see [Examples of CTAS Queries](ctas-examples.md)\.
@@ -55,7 +58,7 @@ If you do not use the `external_location` property to specify a location and you
 s3://<query-results-location-setting>/<Unsaved-or-query-name>/<year>/<month/<date>/tables/<query-id>/
 ```  
 `format = [storage_format]`  
-The storage format for the CTAS query results, such as `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE`\. For example, `WITH (format = 'PARQUET')`\. If omitted, `PARQUET` is used by default\. The name of this parameter, `format`, must be listed in lowercase, or your CTAS query will fail\.  
+The storage format for the CTAS query results, such as `ORC`, `PARQUET`, `AVRO`, `JSON`, `ION`, or `TEXTFILE`\. For example, `WITH (format = 'PARQUET')`\. If omitted, `PARQUET` is used by default\. The name of this parameter, `format`, must be listed in lowercase, or your CTAS query will fail\.  
 `partitioned_by = ARRAY[ col_name[,…] ]`  
 Optional\. An array list of columns by which the CTAS table will be partitioned\. Verify that the names of partitioned columns are listed last in the list of columns in the `SELECT` statement\.   
 `bucketed_by = ARRAY[ bucket_name[,…] ]`  

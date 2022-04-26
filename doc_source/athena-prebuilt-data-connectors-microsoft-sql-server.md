@@ -1,0 +1,5 @@
+# Amazon Athena Microsoft SQL Server Connector<a name="athena-prebuilt-data-connectors-microsoft-sql-server"></a>
+
+The Amazon Athena connector for [Microsoft SQL Server](https://docs.microsoft.com/en-us/sql/?view=sql-server-ver15) enables Amazon Athena to run SQL queries on data stored in Microsoft SQL Server\. For information about configuration options, data type support, and other considerations, see [Amazon Athena Microsoft SQL Server Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-sqlserver/) on [GitHub](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors)\.
+
+Before you use this connector, you must set up a VPC and a security group\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.

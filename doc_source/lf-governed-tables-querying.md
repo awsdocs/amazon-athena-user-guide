@@ -72,7 +72,7 @@ FOR SYSTEM_TIME AS OF TIMESTAMP '2020-01-01 10:00:00'
 
 ```
 SELECT * FROM governed_table 
-FOR SYSTEM_TIME AS OF (current_timestamp – interval '1' day)
+FOR SYSTEM_TIME AS OF (current_timestamp - interval '1' day)
 ```
 
 ### Version Travel Queries<a name="lf-governed-tables-example-syntax-version-travel"></a>
