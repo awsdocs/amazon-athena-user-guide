@@ -1,4 +1,4 @@
-# Other Athena Operations on Iceberg Tables<a name="querying-iceberg-additional-operations"></a>
+# Other Athena operations on Iceberg tables<a name="querying-iceberg-additional-operations"></a>
 
 ## Database level operations<a name="querying-iceberg-additional-operations-database-level-operations"></a>
 

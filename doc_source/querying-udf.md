@@ -1,23 +1,23 @@
-# Querying with User Defined Functions<a name="querying-udf"></a>
+# Querying with user defined functions<a name="querying-udf"></a>
 
 User Defined Functions \(UDF\) in Amazon Athena allow you to create custom functions to process records or groups of records\. A UDF accepts parameters, performs work, and then returns a result\.
 
 To use a UDF in Athena, you write a `USING EXTERNAL FUNCTION` clause before a `SELECT` statement in a SQL query\. The `SELECT` statement references the UDF and defines the variables that are passed to the UDF when the query runs\. The SQL query invokes a Lambda function using the Java runtime when it calls the UDF\. UDFs are defined within the Lambda function as methods in a Java deployment package\. Multiple UDFs can be defined in the same Java deployment package for a Lambda function\. You also specify the name of the Lambda function in the `USING EXTERNAL FUNCTION` clause\.
 
-You have two options for deploying a Lambda function for Athena UDFs\. You can deploy the function directly using Lambda, or you can use the AWS Serverless Application Repository\. To find existing Lambda functions for UDFs, you can search the public AWS Serverless Application Repository or your private repository and then deploy to Lambda\. You can also create or modify Java source code, package it into a JAR file, and deploy it using Lambda or the AWS Serverless Application Repository\. For example Java source code and packages to get you started, see [Creating and Deploying a UDF Using Lambda](#udf-creating-and-deploying)\. For more information about Lambda, see [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\. For more information about AWS Serverless Application Repository, see the [AWS Serverless Application Repository Developer Guide](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/)\.
+You have two options for deploying a Lambda function for Athena UDFs\. You can deploy the function directly using Lambda, or you can use the AWS Serverless Application Repository\. To find existing Lambda functions for UDFs, you can search the public AWS Serverless Application Repository or your private repository and then deploy to Lambda\. You can also create or modify Java source code, package it into a JAR file, and deploy it using Lambda or the AWS Serverless Application Repository\. For example Java source code and packages to get you started, see [Creating and deploying a UDF using Lambda](#udf-creating-and-deploying)\. For more information about Lambda, see [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\. For more information about AWS Serverless Application Repository, see the [AWS Serverless Application Repository Developer Guide](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/)\.
 
 For an example that uses UDFs with Athena to translate and analyze text, see the AWS Machine Learning Blog article [Translate and analyze text using SQL functions with Amazon Athena, Amazon Translate, and Amazon Comprehend](http://aws.amazon.com/blogs/machine-learning/translate-and-analyze-text-using-sql-functions-with-amazon-athena-amazon-translate-and-amazon-comprehend/), or watch the [video](#udf-videos-xlate)\.
 
-## Considerations and Limitations<a name="udf-considerations-limitations"></a>
+## Considerations and limitations<a name="udf-considerations-limitations"></a>
 + **Available Regions** – The Athena UDF feature is available in the Regions where Athena engine version 2 is supported\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 + **Built\-in Athena functions** – Built\-in Presto functions in Athena are designed to be highly performant\. We recommend that you use built\-in functions over UDFs when possible\. For more information about built\-in functions, see [Functions in Amazon Athena](presto-functions.md)\.
 + **Scalar UDFs only** – Athena only supports scalar UDFs, which process one row at a time and return a single column value\. Athena passes a batch of rows, potentially in parallel, to the UDF each time it invokes Lambda\. When designing UDFs and queries, be mindful of the potential impact to network traffic of this processing\.
 + **UDF handler functions use abbreviated format** – Use abbreviated format \(not full format\), for your UDF functions \(for example, `package.Class` instead of `package.Class::method`\)\. 
 + **UDF methods must be lowercase** – UDF methods must be in lowercase; camel case is not permitted\. 
 + **Java runtime support** – Currently, Athena UDFs support the Java 8 and Java 11 runtimes for Lambda\. For more information, see [Building Lambda functions with Java](https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html) in the *AWS Lambda Developer Guide*\.
-+ **IAM permissions** – To run and create UDF query statements in Athena, the IAM principal running the query must be allowed to perform actions in addition to Athena functions\. For more information, see [Example IAM Permissions Policies to Allow Amazon Athena User Defined Functions \(UDF\)](udf-iam-access.md)\.
++ **IAM permissions** – To run and create UDF query statements in Athena, the IAM principal running the query must be allowed to perform actions in addition to Athena functions\. For more information, see [Example IAM permissions policies to allow Amazon Athena User Defined Functions \(UDF\)](udf-iam-access.md)\.
 + **Lambda quotas** – Lambda quotas apply to UDFs\. For more information, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) in the *AWS Lambda Developer Guide*\.
-+ **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
++ **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
 
 ## Videos<a name="udf-videos"></a>
 
@@ -39,7 +39,7 @@ The syntax in this video is prerelease, but the concepts are the same\. For the 
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/Od7rXG-WMO4/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/Od7rXG-WMO4)
 
-## UDF Query Syntax<a name="udf-query-syntax"></a>
+## UDF query syntax<a name="udf-query-syntax"></a>
 
 The `USING EXTERNAL FUNCTION` clause specifies a UDF or multiple UDFs that can be referenced by a subsequent `SELECT` statement in the query\. You need the method name for the UDF and the name of the Lambda function that hosts the UDF\.
 
@@ -69,27 +69,27 @@ The `SELECT` query that passes values to the UDF and returns a result\. *UDF\_na
 
 ## Examples<a name="udf-examples"></a>
 
-For example queries based on the [AthenaUDFHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-udfs/src/main/java/com/amazonaws/athena/connectors/udfs/AthenaUDFHandler.java) code on GitHub, see the GitHub [Amazon Athena UDF Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-udfs) page\. 
+For example queries based on the [AthenaUDFHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-udfs/src/main/java/com/amazonaws/athena/connectors/udfs/AthenaUDFHandler.java) code on GitHub, see the GitHub [Amazon Athena UDF connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-udfs) page\. 
 
-## Creating and Deploying a UDF Using Lambda<a name="udf-creating-and-deploying"></a>
+## Creating and deploying a UDF using Lambda<a name="udf-creating-and-deploying"></a>
 
 To create a custom UDF, you create a new Java class by extending the `UserDefinedFunctionHandler` class\. The source code for the [UserDefinedFunctionHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-federation-sdk/src/main/java/com/amazonaws/athena/connector/lambda/handlers/UserDefinedFunctionHandler.java) in the SDK is available on GitHub in the awslabs/aws\-athena\-query\-federation/athena\-federation\-sdk [repository](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-federation-sdk), along with [example UDF implementations](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-udfs) that you can examine and modify to create a custom UDF\.
 
 The steps in this section demonstrate writing and building a custom UDF Jar file using [Apache Maven](https://maven.apache.org/index.html) from the command line and a deploy\.
 
 **Topics**
-+ [Clone the SDK and Prepare Your Development Environment](#udf-create-install-sdk-prep-environment)
-+ [Create your Maven Project](#create-maven-project)
-+ [Add Dependencies and Plugins to Your Maven Project](#udf-add-maven-dependencies)
-+ [Write Java Code for the UDFs](#udf-write-java)
-+ [Build the JAR File](#udf-create-package-jar)
++ [Clone the SDK and prepare your development environment](#udf-create-install-sdk-prep-environment)
++ [Create your Maven project](#create-maven-project)
++ [Add dependencies and plugins to your Maven project](#udf-add-maven-dependencies)
++ [Write Java code for the UDFs](#udf-write-java)
++ [Build the JAR file](#udf-create-package-jar)
 + [Deploy the JAR to AWS Lambda](#udf-create-deploy)
 
-### Clone the SDK and Prepare Your Development Environment<a name="udf-create-install-sdk-prep-environment"></a>
+### Clone the SDK and prepare your development environment<a name="udf-create-install-sdk-prep-environment"></a>
 
 Before you begin, make sure that git is installed on your system using `sudo yum install git -y`\.
 
-**To install the AWS Query Federation SDK**
+**To install the AWS query federation SDK**
 + Enter the following at the command line to clone the SDK repository\. This repository includes the SDK, examples and a suite of data source connectors\. For more information about data source connectors, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
 
   ```
@@ -110,7 +110,7 @@ If you are working on a development machine that already has Apache Maven, the A
 **Important**  
 If you skip this step, you will get errors later about the AWS CLI or AWS SAM build tool not being able to publish your Lambda function\.
 
-### Create your Maven Project<a name="create-maven-project"></a>
+### Create your Maven project<a name="create-maven-project"></a>
 
 Run the following command to create your Maven project\. Replace *groupId* with the unique ID of your organization, and replace *my\-athena\-udf* with the name of your application For more information, see [How do I make my first Maven project?](https://maven.apache.org/guides/getting-started/index.html#How_do_I_make_my_first_Maven_project) in Apache Maven documentation\.
 
@@ -121,7 +121,7 @@ mvn -B archetype:generate \
 -DartifactId=my-athena-udfs
 ```
 
-### Add Dependencies and Plugins to Your Maven Project<a name="udf-add-maven-dependencies"></a>
+### Add dependencies and plugins to your Maven project<a name="udf-add-maven-dependencies"></a>
 
 Add the following configurations to your Maven project `pom.xml` file\. For an example, see the [pom\.xml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-udfs/pom.xml) file in GitHub\.
 
@@ -170,7 +170,7 @@ Add the following configurations to your Maven project `pom.xml` file\. For an e
 </build>
 ```
 
-### Write Java Code for the UDFs<a name="udf-write-java"></a>
+### Write Java code for the UDFs<a name="udf-write-java"></a>
 
 Create a new class by extending [UserDefinedFunctionHandler\.java](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-federation-sdk/src/main/java/com/amazonaws/athena/connector/lambda/handlers/UserDefinedFunctionHandler.java)\. Write your UDFs inside the class\.
 
@@ -270,7 +270,7 @@ public class MyUserDefinedFunctions
 }
 ```
 
-### Build the JAR File<a name="udf-create-package-jar"></a>
+### Build the JAR file<a name="udf-create-package-jar"></a>
 
 Run `mvn clean install` to build your project\. After it successfully builds, a JAR file is created in the `target` folder of your project named `artifactId-version.jar`, where *artifactId* is the name you provided in the Maven project, for example, `my-athena-udfs`\.
 
@@ -284,7 +284,7 @@ You have two options to deploy your code to Lambda:
 
 When you deploy your JAR file to the AWS Serverless Application Repository, you create an AWS SAM template YAML file that represents the architecture of your application\. You then specify this YAML file and an Amazon S3 bucket where artifacts for your application are uploaded and made available to the AWS Serverless Application Repository\. The procedure below uses the [publish\.sh](https://github.com/awslabs/aws-athena-query-federation/blob/master/tools/publish.sh) script located in the `athena-query-federation/tools` directory of the Athena Query Federation SDK that you cloned earlier\.
 
-For more information and requirements, see [Publishing Applications](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-publishing-applications.html) in the *AWS Serverless Application Repository Developer Guide*, [AWS SAM Template Concepts](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-basics.html) in the *AWS Serverless Application Model Developer Guide*, and [Publishing Serverless Applications Using the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html)\.
+For more information and requirements, see [Publishing applications](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-publishing-applications.html) in the *AWS Serverless Application Repository Developer Guide*, [AWS SAM template concepts](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-basics.html) in the *AWS Serverless Application Model Developer Guide*, and [Publishing serverless applications using the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html)\.
 
 The following example demonstrates parameters in a YAML file\. Add similar parameters to your YAML file and save it in your project directory\. See [athena\-udf\.yaml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-udfs/athena-udfs.yaml) in GitHub for a full example\.
 
@@ -345,7 +345,7 @@ For example, if your bucket location is `s3://mybucket/mysarapps/athenaudf` and 
 
    You can now use the method names defined in your Lambda function JAR file as UDFs in Athena\.
 
-#### Option 2: Creating a Lambda Function Directly<a name="udf-create-deploy-lambda"></a>
+#### Option 2: Creating a Lambda function directly<a name="udf-create-deploy-lambda"></a>
 
 You can also create a Lambda function directly using the console or AWS CLI\. The following example demonstrates using the Lambda `create-function` CLI command\. 
 

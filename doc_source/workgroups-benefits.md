@@ -1,4 +1,4 @@
-# Benefits of Using Workgroups<a name="workgroups-benefits"></a>
+# Benefits of using workgroups<a name="workgroups-benefits"></a>
 
 Workgroups allow you to:
 

@@ -18,7 +18,7 @@ Filters the list of tables to those that match the `regular_expression` you spec
 
 ## Examples<a name="examples"></a>
 
-**Example – show all of the tables in the database `sampledb`**  
+**Example – Show all of the tables in the database `sampledb`**  
 
 ```
 SHOW TABLES IN sampledb
@@ -34,7 +34,7 @@ flights_parquet
 view_2016_flights_dfw
 ```
 
-**Example – show the names of all tables in `sampledb` that include the word "flights"**  
+**Example – Show the names of all tables in `sampledb` that include the word "flights"**  
 
 ```
 SHOW TABLES IN sampledb '*flights*'
@@ -47,7 +47,7 @@ flights_parquet
 view_2016_flights_dfw
 ```
 
-**Example – show the names of all tables in `sampledb` that end in the word "logs"**  
+**Example – Show the names of all tables in `sampledb` that end in the word "logs"**  
 
 ```
 SHOW TABLES IN sampledb '*logs'

@@ -1,4 +1,4 @@
-# Enabling CloudWatch Query Metrics<a name="athena-cloudwatch-metrics-enable"></a>
+# Enabling CloudWatch query metrics<a name="athena-cloudwatch-metrics-enable"></a>
 
 When you create a workgroup in the console, the setting for publishing query metrics to CloudWatch is selected by default\.
 

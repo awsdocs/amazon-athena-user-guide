@@ -1,4 +1,4 @@
-# Configuring Single Sign\-On Using ODBC, SAML 2\.0, and the Okta Identity Provider<a name="okta-saml-sso"></a>
+# Configuring single sign\-on using ODBC, SAML 2\.0, and the Okta Identity Provider<a name="okta-saml-sso"></a>
 
 To connect to data sources, you can use Amazon Athena with identity providers \(IdPs\) like PingOne, Okta, OneLogin, and others\. Starting with Athena ODBC driver version 1\.1\.13 and Athena JDBC driver version 2\.0\.25, a browser SAML plugin is included that you can configure to work with any SAML 2\.0 provider\. This topic shows you how to configure the Amazon Athena ODBC driver and the browser\-based SAML plugin to add single sign\-on \(SSO\) capability using the Okta identity provider\.
 
@@ -9,7 +9,7 @@ Completing the steps in this tutorial requires the following:
 + An IAM Role that you want to use with SAML\. For more information, see [Creating a role for SAML 2\.0 federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_saml.html) in the *IAM User Guide*\.
 + An Okta account\. For information, visit [okta\.com](https://www.okta.com/)\.
 
-## Creating an App Integration in Okta<a name="okta-saml-sso-creating-an-app-integration-in-okta"></a>
+## Creating an app integration in Okta<a name="okta-saml-sso-creating-an-app-integration-in-okta"></a>
 
 First, use the Okta dashboard to create and configure a SAML 2\.0 app for single sign\-on to Athena\.
 
@@ -52,7 +52,7 @@ First, use the Okta dashboard to create and configure a SAML 2\.0 app for single
 
    When Okta creates the application, it also creates your login URL, which you will retrieve next\.
 
-## Getting the Login URL from the Okta Dashboard<a name="okta-saml-sso-getting-the-login-url-from-the-okta-dashboard"></a>
+## Getting the login URL from the Okta dashboard<a name="okta-saml-sso-getting-the-login-url-from-the-okta-dashboard"></a>
 
 Now that your application has been created, you can obtain its login URL and other metadata from the Okta dashboard\.
 
@@ -75,7 +75,7 @@ Now that your application has been created, you can obtain its login URL and oth
 
    In the next section, when you configure the ODBC connection, you will provide this value as the **Login URL** connection parameter for the browser SAML plugin\.
 
-## Configuring the Browser SAML ODBC Connection to Athena<a name="okta-saml-sso-configuring-the-browser-saml-odbc-connection-to-athena"></a>
+## Configuring the browser SAML ODBC connection to Athena<a name="okta-saml-sso-configuring-the-browser-saml-odbc-connection-to-athena"></a>
 
 Now you are ready to configure the browser SAML connection to Athena using the ODBC Data Sources program in Windows\.
 

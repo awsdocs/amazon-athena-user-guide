@@ -1,14 +1,14 @@
-# Working with Tags on Workgroups in the Console<a name="tags-console"></a>
+# Working with tags on workgroups in the console<a name="tags-console"></a>
 
 Using the Athena console, you can see which tags are in use by each workgroup in your account\. You can view tags by workgroup only\. You can also use the Athena console to apply, edit, or remove tags from one workgroup at a time\.
 
 You can search workgroups using the tags you created\.
 
 **Topics**
-+ [Displaying Tags for Individual Workgroups](#tags-display)
-+ [Adding and Deleting Tags on an Individual Workgroup](#tags-add-delete)
++ [Displaying tags for individual workgroups](#tags-display)
++ [Adding and deleting tags on an individual workgroup](#tags-add-delete)
 
-## Displaying Tags for Individual Workgroups<a name="tags-display"></a>
+## Displaying tags for individual workgroups<a name="tags-display"></a>
 
 **To display tags for an individual workgroup in the Athena console**
 
@@ -23,7 +23,7 @@ You can search workgroups using the tags you created\.
    + Choose the **Tags** tab\. If the list of tags is long, use the search box\.
    + Choose **Edit**, and then scroll down to the **Tags** section\.
 
-## Adding and Deleting Tags on an Individual Workgroup<a name="tags-add-delete"></a>
+## Adding and deleting tags on an individual workgroup<a name="tags-add-delete"></a>
 
 You can manage tags for an individual workgroup directly from the **Workgroups** tab\.
 
@@ -36,9 +36,9 @@ If you want users to add tags when they create a workgroup in the console or pas
 
 1. On the navigation menu, choose **Workgroups**\.
 
-1. Choose **Create workgroup** and fill in the values as needed\. For detailed steps, see [Create a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
+1. Choose **Create workgroup** and fill in the values as needed\. For detailed steps, see [Create a workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
 
-1. In the **Tags** section, add one or more tags by specifying keys and values\. Do not add duplicate tag keys at the same time to the same workgroup\. If you do, Athena issues an error message\. For more information, see [Tag Restrictions](tags.md#tag-restrictions)\.
+1. In the **Tags** section, add one or more tags by specifying keys and values\. Do not add duplicate tag keys at the same time to the same workgroup\. If you do, Athena issues an error message\. For more information, see [Tag restrictions](tags.md#tag-restrictions)\.
 
 1. When you are done, choose **Create workgroup**\.
 
@@ -54,7 +54,7 @@ If you want users to add tags when they create a workgroup in the console or pas
    + Choose the **Tags** tab, and then choose **Manage tags**\. 
    + Choose **Edit**, and then scroll down to the **Tags** section\.
 
-1. Specify a key and value for each tag\. For more information, see [Tag Restrictions](tags.md#tag-restrictions)\.
+1. Specify a key and value for each tag\. For more information, see [Tag restrictions](tags.md#tag-restrictions)\.
 
 1. Choose **Save**\.
 

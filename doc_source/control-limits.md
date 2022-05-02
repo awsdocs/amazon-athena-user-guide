@@ -1,4 +1,4 @@
-# Controlling Costs and Monitoring Queries with CloudWatch Metrics and Events<a name="control-limits"></a>
+# Controlling costs and monitoring queries with CloudWatch metrics and events<a name="control-limits"></a>
 
 Workgroups allow you to set data usage control limits per query or per workgroup, set up alarms when those limits are exceeded, and publish query metrics to CloudWatch\.
 
@@ -14,8 +14,8 @@ The following video shows how to create custom dashboards and set alarms and tri
 
 **Topics**
 + [Video](#athena-cloudwatch-metrics-video)
-+ [Enabling CloudWatch Query Metrics](athena-cloudwatch-metrics-enable.md)
-+ [Monitoring Athena Queries with CloudWatch Metrics](query-metrics-viewing.md)
-+ [Monitoring Athena Queries with CloudWatch Events](athena-cloudwatch-events.md)
-+ [Monitoring Usage Metrics](monitoring-athena-usage-metrics.md)
-+ [Setting Data Usage Control Limits](workgroups-setting-control-limits-cloudwatch.md)
++ [Enabling CloudWatch query metrics](athena-cloudwatch-metrics-enable.md)
++ [Monitoring Athena queries with CloudWatch metrics](query-metrics-viewing.md)
++ [Monitoring Athena queries with CloudWatch events](athena-cloudwatch-events.md)
++ [Monitoring usage metrics](monitoring-athena-usage-metrics.md)
++ [Setting data usage control limits](workgroups-setting-control-limits-cloudwatch.md)

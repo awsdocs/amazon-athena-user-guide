@@ -1,4 +1,4 @@
-# Setting up Workgroups<a name="workgroups-procedure"></a>
+# Setting up workgroups<a name="workgroups-procedure"></a>
 
 Setting up workgroups involves creating them and establishing permissions for their usage\. First, decide which workgroups your organization needs, and create them\. Next, set up IAM workgroup policies that control user access and actions on a `workgroup` resource\. Users with access to these workgroups can now run queries in them\.
 
@@ -9,7 +9,7 @@ By default, if you have not created any workgroups, all queries in your account 
 
 Athena displays the current workgroup in the **Workgroup** option on the upper right of the console\. You can use this option to switch workgroups\. When you run queries, they run in the current workgroup\. You can run queries in the context of a workgroup in the console, through API operations, through the command line interface, or through a client application by using the JDBC or ODBC driver\. When you have access to a workgroup, you can view the workgroup's settings, metrics, and data usage control limits\. With additional permissions, you can edit the settings and data usage control limits\.
 
-**To Set Up Workgroups**
+**To set up workgroups**
 
 1.  Decide which workgroups to create\. For example, you can decide the following:
    + Who can run queries in each workgroup, and who owns workgroup configuration\. This determines IAM policies you create\. For more information, see [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\.
@@ -18,9 +18,9 @@ Athena displays the current workgroup in the **Workgroup** option on the upper r
    + Specify the ID of the AWS account that you expect to be the owner of the output location bucket\. This is an optional added security measure\. If the account ID of the bucket owner does not match the ID that you specify here, attempts to output to the bucket will fail\. For more information, see [Verifying bucket ownership with bucket owner condition](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-owner-condition.html) in the *Amazon S3 User Guide*\. This setting does not apply to CTAS, INSERT INTO, or UNLOAD statements\.
    + Which encryption settings are required, and which workgroups have queries that must be encrypted\. We recommend that you create separate workgroups for encrypted and non\-encrypted queries\. That way, you can enforce encryption for a workgroup that applies to all queries that run in it\. For more information, see [Encrypting Query Results Stored in Amazon S3](encrypting-query-results-stored-in-s3.md)\.
 
-1. Create workgroups as needed, and add tags to them\. For steps, see [Create a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\. 
+1. Create workgroups as needed, and add tags to them\. For steps, see [Create a workgroup](workgroups-create-update-delete.md#creating-workgroups)\. 
 
-1. Create IAM policies for your users, groups, or roles to enable their access to workgroups\. The policies establish the workgroup membership and access to actions on a `workgroup` resource\. For detailed steps, see [ IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. For example JSON policies, see [Workgroup Example Policies](workgroups-access.md)\.
+1. Create IAM policies for your users, groups, or roles to enable their access to workgroups\. The policies establish the workgroup membership and access to actions on a `workgroup` resource\. For detailed steps, see [ IAM policies for accessing workgroups](workgroups-iam-policy.md)\. For example JSON policies, see [Workgroup Example Policies](workgroups-access.md)\.
 
 1. Set workgroup settings\. Specify a location in Amazon S3 for query results and optionally specify the expected bucket owner, encryption settings, and control of objects written to the query results bucket\. You can enforce workgroup settings\. For more information, see [workgroup settings](workgroups-settings.md)\.
 **Important**  
@@ -31,4 +31,4 @@ While queries continue to run, automation built based on availability of results
 
 1. Configure cost control limits, also known as data usage control limits, for queries and workgroups\. To notify you when a threshold is breached, create an Amazon SNS topic and configure subscriptions\. For detailed steps, see [Setting Data Usage Control Limits](workgroups-setting-control-limits-cloudwatch.md) and [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html) in the *Amazon Simple Notification Service Getting Started Guide*\.
 
-1. Switch to the workgroup so that you can run queries\.To run queries, switch to the appropriate workgroup\. For detailed steps, see [Specify a Workgroup in Which to Run Queries](workgroups-create-update-delete.md#specify-wkgroup-to-athena-in-which-to-run-queries)\.
+1. Switch to the workgroup so that you can run queries\.To run queries, switch to the appropriate workgroup\. For detailed steps, see [Specify a workgroup in which to run queries](workgroups-create-update-delete.md#specify-wkgroup-to-athena-in-which-to-run-queries)\.

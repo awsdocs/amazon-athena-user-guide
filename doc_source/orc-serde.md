@@ -1,10 +1,10 @@
 # ORC SerDe<a name="orc-serde"></a>
 
-## SerDe Name<a name="serde-name"></a>
+## SerDe name<a name="serde-name"></a>
 
  [OrcSerDe](https://hive.apache.org/javadocs/r1.2.2/api/org/apache/hadoop/hive/ql/io/orc/OrcSerde.html) 
 
-## Library Name<a name="library-name"></a>
+## Library name<a name="library-name"></a>
 
 This library uses the Apache Hive SerDe [class](https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/io/orc/OrcSerde.java) for data in the ORC format\. It passes the object from ORC to the reader and from ORC to the writer\. 
 

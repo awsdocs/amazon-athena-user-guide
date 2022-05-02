@@ -1,5 +1,5 @@
-# Amazon Athena Azure Data Lake Storage \(ADLS\) Gen2 Connector<a name="athena-prebuilt-data-connectors-adls-gen2"></a>
+# Amazon Athena Azure Data Lake Storage \(ADLS\) Gen2 connector<a name="athena-prebuilt-data-connectors-adls-gen2"></a>
 
-The Amazon Athena connector for [Azure Data Lake Storage \(ADLS\) Gen2](https://docs.microsoft.com/en-us/azure/databricks/data/data-sources/azure/adls-gen2/) enables Amazon Athena to run SQL queries on data stored on ADLS\. For information about configuration options, data type support, and other considerations, see [Amazon Athena Azure Data Lake Storage Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-datalakegen2/) on [GitHub](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors)\.
+The Amazon Athena connector for [Azure Data Lake Storage \(ADLS\) Gen2](https://docs.microsoft.com/en-us/azure/databricks/data/data-sources/azure/adls-gen2/) enables Amazon Athena to run SQL queries on data stored on ADLS\. For information about configuration options, data type support, and other considerations, see [Amazon Athena Azure Data Lake Storage connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-datalakegen2/) on [GitHub](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors)\.
 
 Before you use this connector, you must set up a VPC and a security group\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.

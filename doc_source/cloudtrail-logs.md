@@ -1,4 +1,4 @@
-# Querying AWS CloudTrail Logs<a name="cloudtrail-logs"></a>
+# Querying AWS CloudTrail logs<a name="cloudtrail-logs"></a>
 
 AWS CloudTrail is a service that records AWS API calls and events for Amazon Web Services accounts\. 
 
@@ -6,34 +6,34 @@ CloudTrail logs include details about any API calls made to your AWS services, i
 
 Using Athena with CloudTrail logs is a powerful way to enhance your analysis of AWS service activity\. For example, you can use queries to identify trends and further isolate activity by attributes, such as source IP address or user\.
 
-A common application is to use CloudTrail logs to analyze operational activity for security and compliance\. For information about a detailed example, see the AWS Big Data Blog post, [Analyze Security, Compliance, and Operational Activity Using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.
+A common application is to use CloudTrail logs to analyze operational activity for security and compliance\. For information about a detailed example, see the AWS Big Data Blog post, [Analyze security, compliance, and operational activity using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.
 
 You can use Athena to query these log files directly from Amazon S3, specifying the `LOCATION` of log files\. You can do this one of two ways:
 + By creating tables for CloudTrail log files directly from the CloudTrail console\.
 + By manually creating tables for CloudTrail log files in the Athena console\.
 
 **Topics**
-+ [Understanding CloudTrail Logs and Athena Tables](#create-cloudtrail-table-understanding)
-+ [Using the CloudTrail Console to Create an Athena Table for CloudTrail Logs](#create-cloudtrail-table-ct)
-+ [Creating the Table for CloudTrail Logs in Athena Using Manual Partitioning](#create-cloudtrail-table)
-+ [Creating the Table for CloudTrail Logs in Athena Using Partition Projection](#create-cloudtrail-table-partition-projection)
-+ [Querying Nested Fields](#cloudtrail-logs-nested-fields)
-+ [Example Query](#query-examples-cloudtrail-logs)
-+ [Tips for Querying CloudTrail Logs](#tips-for-querying-cloudtrail-logs)
++ [Understanding CloudTrail logs and Athena tables](#create-cloudtrail-table-understanding)
++ [Using the CloudTrail console to create an Athena table for CloudTrail logs](#create-cloudtrail-table-ct)
++ [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)
++ [Creating the table for CloudTrail logs in Athena using partition projection](#create-cloudtrail-table-partition-projection)
++ [Querying nested fields](#cloudtrail-logs-nested-fields)
++ [Example query](#query-examples-cloudtrail-logs)
++ [Tips for querying CloudTrail logs](#tips-for-querying-cloudtrail-logs)
 
-## Understanding CloudTrail Logs and Athena Tables<a name="create-cloudtrail-table-understanding"></a>
+## Understanding CloudTrail logs and Athena tables<a name="create-cloudtrail-table-understanding"></a>
 
 Before you begin creating tables, you should understand a little more about CloudTrail and how it stores data\. This can help you create the tables that you need, whether you create them from the CloudTrail console or from Athena\.
 
 CloudTrail saves logs as JSON text files in compressed gzip format \(\*\.json\.gzip\)\. The location of the log files depends on how you set up trails, the AWS Region or Regions in which you are logging, and other factors\. 
 
 For more information about where logs are stored, the JSON structure, and the record file contents, see the following topics in the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html):
-+  [Finding Your CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html) 
-+  [CloudTrail Log File Examples](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-examples.html) 
-+ [CloudTrail Record Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)
-+  [CloudTrail Event Reference](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference.html) 
++  [Finding your CloudTrail log files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html) 
++  [CloudTrail Log File examples](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-examples.html) 
++ [CloudTrail record contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)
++  [CloudTrail event reference](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference.html) 
 
-To collect logs and save them to Amazon S3, enable CloudTrail from the AWS Management Console\. For more information, see [Creating a Trail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html) in the *AWS CloudTrail User Guide*\.
+To collect logs and save them to Amazon S3, enable CloudTrail from the AWS Management Console\. For more information, see [Creating a trail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html) in the *AWS CloudTrail User Guide*\.
 
 Note the destination Amazon S3 bucket where you save the logs\. Replace the `LOCATION` clause with the path to the CloudTrail log location and the set of objects with which to work\. The example uses a `LOCATION` value of logs for a particular account, but you can use the degree of specificity that suits your application\.
 
@@ -43,14 +43,14 @@ For example:
 
 Using the highest level in the object hierarchy gives you the greatest flexibility when you query using Athena\.
 
-## Using the CloudTrail Console to Create an Athena Table for CloudTrail Logs<a name="create-cloudtrail-table-ct"></a>
+## Using the CloudTrail console to create an Athena table for CloudTrail logs<a name="create-cloudtrail-table-ct"></a>
 
 You can create a non\-partitioned Athena table for querying CloudTrail logs directly from the CloudTrail console\. Creating an Athena table from the CloudTrail console requires that you be logged in with an IAM user or role that has sufficient permissions to create tables in Athena\.
 
 **Note**  
 You cannot use the CloudTrail console to create an Athena table for organization trail logs\. Instead, create the table manually using the Athena console so that you can specify the correct storage location\. For information about organization trails, see [Creating a trail for an organization](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html) in the *AWS CloudTrail User Guide*\.
-+ For information about setting up permissions for Athena, see [Setting Up](setting-up.md)\.
-+ For information about creating a table with partitions, see [Creating the Table for CloudTrail Logs in Athena Using Manual Partitioning](#create-cloudtrail-table)\.
++ For information about setting up permissions for Athena, see [Setting up](setting-up.md)\.
++ For information about creating a table with partitions, see [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\.
 
 **To create an Athena table for a CloudTrail trail using the CloudTrail console**
 
@@ -67,7 +67,7 @@ To find the name of the bucket that is associated with a trail, choose **Trails*
 
 1. Choose **Create table**\. The table is created with a default name that includes the name of the Amazon S3 bucket\.
 
-## Creating the Table for CloudTrail Logs in Athena Using Manual Partitioning<a name="create-cloudtrail-table"></a>
+## Creating the table for CloudTrail logs in Athena using manual partitioning<a name="create-cloudtrail-table"></a>
 
 You can manually create tables for CloudTrail log files in the Athena console, and then run queries in Athena\.
 
@@ -77,9 +77,9 @@ You can manually create tables for CloudTrail log files in the Athena console, a
 
 1. Modify `s3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/` to point to the Amazon S3 bucket that contains your log data\.
 
-1. Verify that fields are listed correctly\. For more information about the full list of fields in a CloudTrail record, see [CloudTrail Record Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
+1. Verify that fields are listed correctly\. For more information about the full list of fields in a CloudTrail record, see [CloudTrail record contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
 
-   In this example, the fields `requestparameters`, `responseelements`, and `additionaleventdata` are listed as type `STRING` in the query, but are `STRUCT` data type used in JSON\. Therefore, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data from JSON](extracting-data-from-JSON.md)\. For performance improvements, this example partitions the data by Region, year, month, and day\.
+   In this example, the fields `requestparameters`, `responseelements`, and `additionaleventdata` are listed as type `STRING` in the query, but are `STRUCT` data type used in JSON\. Therefore, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\. For performance improvements, this example partitions the data by Region, year, month, and day\.
 
    ```
    CREATE EXTERNAL TABLE cloudtrail_logs (
@@ -124,8 +124,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
    readonly STRING,
    recipientaccountid STRING,
    serviceeventdetails STRING,
-   sharedeventid STRING,
-   vpcendpointid STRING
+   sharedeventid STRING
    )
    PARTITIONED BY (region string, year string, month string, day string)
    ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
@@ -147,7 +146,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
       LOCATION 's3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/us-east-1/2019/02/01/'
    ```
 
-## Creating the Table for CloudTrail Logs in Athena Using Partition Projection<a name="create-cloudtrail-table-partition-projection"></a>
+## Creating the table for CloudTrail logs in Athena using partition projection<a name="create-cloudtrail-table-partition-projection"></a>
 
 Because CloudTrail logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena partition projection feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
 
@@ -197,7 +196,7 @@ CREATE EXTERNAL TABLE cloudtrail_logs_pp(
     recipientAccountId STRING,
     serviceEventDetails STRING,
     sharedEventID STRING,
-    vpcEndpointId STRING
+    vpcendpointid STRING
   )
 PARTITIONED BY (
    `timestamp` string)
@@ -216,9 +215,9 @@ TBLPROPERTIES (
   'storage.location.template'='s3://bucket/AWSLogs/account-id/CloudTrail/aws-region/${timestamp}')
 ```
 
-For more information about partition projection, see [Partition Projection with Amazon Athena](partition-projection.md)\.
+For more information about partition projection, see [Partition projection with Amazon Athena](partition-projection.md)\.
 
-## Querying Nested Fields<a name="cloudtrail-logs-nested-fields"></a>
+## Querying nested fields<a name="cloudtrail-logs-nested-fields"></a>
 
 Because the `userIdentity` and `resources` fields are nested data types, querying them requires special treatment\.
 
@@ -268,9 +267,9 @@ WHERE eventname = 'DeleteBucket'
 ORDER BY eventtime
 ```
 
-For more information about unnesting, see [Filtering Arrays](filtering-arrays.md)\.
+For more information about unnesting, see [Filtering arrays](filtering-arrays.md)\.
 
-## Example Query<a name="query-examples-cloudtrail-logs"></a>
+## Example query<a name="query-examples-cloudtrail-logs"></a>
 
 The following example shows a portion of a query that returns all anonymous \(unsigned\) requests from the table created for CloudTrail event logs\. This query selects those requests where `useridentity.accountid` is anonymous, and `useridentity.arn` is not specified:
 
@@ -285,15 +284,15 @@ WHERE
     requestparameters LIKE '%[your bucket name ]%';
 ```
 
-For more information, see the AWS Big Data blog post [Analyze Security, Compliance, and Operational Activity Using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.
+For more information, see the AWS Big Data blog post [Analyze security, compliance, and operational activity using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.
 
-## Tips for Querying CloudTrail Logs<a name="tips-for-querying-cloudtrail-logs"></a>
+## Tips for querying CloudTrail logs<a name="tips-for-querying-cloudtrail-logs"></a>
 
 To explore the CloudTrail logs data, use these tips:
-+ Before querying the logs, verify that your logs table looks the same as the one in [Creating the Table for CloudTrail Logs in Athena Using Manual Partitioning](#create-cloudtrail-table)\. If it is not the first table, delete the existing table using the following command: `DROP TABLE cloudtrail_logs;`\.
++ Before querying the logs, verify that your logs table looks the same as the one in [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\. If it is not the first table, delete the existing table using the following command: `DROP TABLE cloudtrail_logs;`\.
 + After you drop the existing table, re\-create it\. For more information, see [Creating the Table for CloudTrail Logs](#create-cloudtrail-table)\.
 
-  Verify that fields in your Athena query are listed correctly\. For information about the full list of fields in a CloudTrail record, see [CloudTrail Record Contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
+  Verify that fields in your Athena query are listed correctly\. For information about the full list of fields in a CloudTrail record, see [CloudTrail record contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
 
   If your query includes fields in JSON formats, such as `STRUCT`, extract data from JSON\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\. 
 

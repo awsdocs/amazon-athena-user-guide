@@ -1,4 +1,4 @@
-# Using Iceberg Tables<a name="querying-iceberg"></a>
+# Using Iceberg tables<a name="querying-iceberg"></a>
 
 Athena supports read, time travel, write, and DDL queries for Apache Iceberg tables that use the Apache Parquet format for data and the AWS Glue catalog for their metastore\.
 
@@ -6,10 +6,10 @@ Athena supports read, time travel, write, and DDL queries for Apache Iceberg tab
 
 For more information about Apache Iceberg, see [https://iceberg\.apache\.org/](https://iceberg.apache.org/)\.
 
-## Considerations and Limitations<a name="querying-iceberg-considerations-and-limitations"></a>
+## Considerations and limitations<a name="querying-iceberg-considerations-and-limitations"></a>
 
 Athena support for Iceberg tables has the following limitations:
-+ **Tables with AWS Glue catalog only** – Only Iceberg tables created against the AWS Glue catalog based on specifications defined by the [open source Glue Catalog implementation](https://iceberg.apache.org/docs/latest/aws/#glue-catalog) are supported from Athena\.
++ **Tables with AWS Glue catalog only** – Only Iceberg tables created against the AWS Glue catalog based on specifications defined by the [open source glue catalog implementation](https://iceberg.apache.org/docs/latest/aws/#glue-catalog) are supported from Athena\.
 + **Table locking support by AWS Glue only** – Unlike the open source Glue catalog implementation, which supports plug\-in custom locking, Athena supports AWS Glue optimistic locking only\. Using Athena to modify an Iceberg table with any other lock implementation will cause potential data loss and break transactions\.
 + **Parquet files only** – Currently, Athena supports Iceberg tables in Parquet file format only\. ORC and AVRO are not supported\.
 + **Iceberg v2 tables** – Athena only creates and operates on Iceberg v2 tables\. For the difference between v1 and v2 tables, see [Format version changes](https://iceberg.apache.org/spec/#appendix-e-format-version-changes) in the Apache Iceberg documentation\.
@@ -27,12 +27,12 @@ Athena support for Iceberg tables has the following limitations:
 If you would like Athena to support a particular feature, send feedback to [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\.
 
 **Topics**
-+ [Considerations and Limitations](#querying-iceberg-considerations-and-limitations)
-+ [Creating Iceberg Tables](querying-iceberg-creating-tables.md)
-+ [Managing Iceberg Tables](querying-iceberg-managing-tables.md)
-+ [Evolving Iceberg Table Schema](querying-iceberg-evolving-table-schema.md)
-+ [Querying Iceberg Table Data and Performing Time Travel](querying-iceberg-table-data.md)
-+ [Updating Iceberg Table Data](querying-iceberg-updating-iceberg-table-data.md)
-+ [Optimizing Iceberg Tables](querying-iceberg-data-optimization.md)
-+ [Supported Data Types](querying-iceberg-supported-data-types.md)
-+ [Other Athena Operations on Iceberg Tables](querying-iceberg-additional-operations.md)
++ [Considerations and limitations](#querying-iceberg-considerations-and-limitations)
++ [Creating Iceberg tables](querying-iceberg-creating-tables.md)
++ [Managing Iceberg tables](querying-iceberg-managing-tables.md)
++ [Evolving Iceberg table schema](querying-iceberg-evolving-table-schema.md)
++ [Querying Iceberg table data and performing time travel](querying-iceberg-table-data.md)
++ [Updating Iceberg table data](querying-iceberg-updating-iceberg-table-data.md)
++ [Optimizing Iceberg tables](querying-iceberg-data-optimization.md)
++ [Supported data types](querying-iceberg-supported-data-types.md)
++ [Other Athena operations on Iceberg tables](querying-iceberg-additional-operations.md)

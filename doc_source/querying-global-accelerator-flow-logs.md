@@ -1,8 +1,8 @@
-# Querying AWS Global Accelerator Flow Logs<a name="querying-global-accelerator-flow-logs"></a>
+# Querying AWS Global Accelerator flow logs<a name="querying-global-accelerator-flow-logs"></a>
 
-You can use AWS Global Accelerator to create accelerators that direct network traffic to optimal endpoints over the AWS global network\. For more information about Global Accelerator, see [What Is AWS Global Accelerator](https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html)\.
+You can use AWS Global Accelerator to create accelerators that direct network traffic to optimal endpoints over the AWS global network\. For more information about Global Accelerator, see [What is AWS Global Accelerator](https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html)\.
 
-Global Accelerator flow logs enable you to capture information about the IP address traffic going to and from network interfaces in your accelerators\. Flow log data is published to Amazon S3, where you can retrieve and view your data\. For more information, see [Flow Logs in AWS Global Accelerator](https://docs.aws.amazon.com/global-accelerator/latest/dg/monitoring-global-accelerator.flow-logs.html)\.
+Global Accelerator flow logs enable you to capture information about the IP address traffic going to and from network interfaces in your accelerators\. Flow log data is published to Amazon S3, where you can retrieve and view your data\. For more information, see [Flow logs in AWS Global Accelerator](https://docs.aws.amazon.com/global-accelerator/latest/dg/monitoring-global-accelerator.flow-logs.html)\.
 
 You can use Athena to query your Global Accelerator flow logs by creating a table that specifies their location in Amazon S3\.
 
@@ -58,7 +58,7 @@ You can use Athena to query your Global Accelerator flow logs by creating a tabl
    LOCATION 's3://your_log_bucket/prefix/AWSLogs/account_id/globalaccelerator/region_code/YYYY/MM/dd';
    ```
 
-## Example Queries for AWS Global Accelerator Flow Logs<a name="querying-global-accelerator-flow-logs-examples"></a>
+## Example queries for AWS Global Accelerator flow logs<a name="querying-global-accelerator-flow-logs-examples"></a>
 
 **Example – List the requests that pass through a specific edge location**  
 The following example query lists requests that passed through the LHR edge location\. Use the `LIMIT` operator to limit the number of logs to query at one time\.  

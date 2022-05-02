@@ -1,8 +1,8 @@
-# Querying Classic Load Balancer Logs<a name="elasticloadbalancer-classic-logs"></a>
+# Querying Classic Load Balancer logs<a name="elasticloadbalancer-classic-logs"></a>
 
 Use Classic Load Balancer logs to analyze and understand traffic patterns to and from Elastic Load Balancing instances and backend applications\. You can see the source of traffic, latency, and bytes that have been transferred\.
 
-Before you analyze the Elastic Load Balancing logs, configure them for saving in the destination Amazon S3 bucket\. For more information, see [Enable Access Logs for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html)\.
+Before you analyze the Elastic Load Balancing logs, configure them for saving in the destination Amazon S3 bucket\. For more information, see [Enable access logs for your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html)\.
 + [Create the table for Elastic Load Balancing logs](#create-elb-table)
 + [Elastic Load Balancing Example Queries](#query-elb-classic-example)
 
@@ -37,6 +37,7 @@ Before you analyze the Elastic Load Balancing logs, configure them for saving in
    WITH SERDEPROPERTIES (
     'serialization.format' = '1',
     'input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$'
+   )
    LOCATION 's3://your_log_bucket/prefix/AWSLogs/AWS_account_ID/elasticloadbalancing/';
    ```
 
@@ -44,7 +45,7 @@ Before you analyze the Elastic Load Balancing logs, configure them for saving in
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `elb_logs` table, making the data in it ready for queries\. For more information, see [Elastic Load Balancing Example Queries](#query-elb-classic-example)
 
-## Elastic Load Balancing Example Queries<a name="query-elb-classic-example"></a>
+## Elastic Load Balancing example queries<a name="query-elb-classic-example"></a>
 
 Use a query similar to the following example\. It lists the backend application servers that returned a `4XX` or `5XX` error response code\. Use the `LIMIT` operator to limit the number of logs to query at a time\.
 
@@ -72,4 +73,4 @@ GROUP BY backend_ip, elb_name
 LIMIT 100;
 ```
 
-For more information, see [Analyzing Data in S3 using Athena](http://aws.amazon.com/blogs/big-data/analyzing-data-in-s3-using-amazon-athena/)\.
+For more information, see [Analyzing data in S3 using Athena](http://aws.amazon.com/blogs/big-data/analyzing-data-in-s3-using-amazon-athena/)\.

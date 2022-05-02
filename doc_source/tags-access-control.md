@@ -1,10 +1,10 @@
-# Tag\-Based IAM Access Control Policies<a name="tags-access-control"></a>
+# Tag\-based IAM access control policies<a name="tags-access-control"></a>
 
 Having tags allows you to write an IAM policy that includes the `Condition` block to control access to a resource based on its tags\. 
 
-## Tag Policy Examples for Workgroups<a name="tag-policy-examples-workgroups"></a>
+## Tag policy examples for workgroups<a name="tag-policy-examples-workgroups"></a>
 
-**Example 1\. Basic Tagging Policy**  
+**Example 1\. basic tagging policy**  
 The following IAM policy allows you to run queries and interact with tags for the workgroup named `workgroupA`:  
 
 ```
@@ -55,7 +55,7 @@ The following IAM policy allows you to run queries and interact with tags for th
 }
 ```
 
-**Example 2: Policy Block that Denies Actions on a Workgroup Based on a Tag Key and Tag Value Pair**  
+**Example 2: Policy block that denies actions on a workgroup based on a tag key and tag value pair**  
 Tags that are associated with a resource like a workgroup are referred to as resource tags\. Resource tags let you write policy blocks like the following that deny the listed actions on any workgroup tagged with a key\-value pair like `stack`, `production`\.  
 
 ```
@@ -100,7 +100,7 @@ Tags that are associated with a resource like a workgroup are referred to as res
 }
 ```
 
-**Example 3\. Policy Block that Restricts Tag\-Changing Action Requests to Specified Tags**  
+**Example 3\. policy block that restricts tag\-changing action requests to specified tags**  
 Tags that are passed in as parameters to operations that change tags \(for example, `TagResource`, `UntagResource`, or `CreateWorkGroup` with tags\) are referred to as request tags\. The following example policy block allows the `CreateWorkGroup` operation only if one of the tags passed has the key `costcenter` and the value `1`, `2`, or `3`\.  
 If you want to allow IAM users to pass in tags as part of a `CreateWorkGroup` operation, make sure that you give the users permissions to the `TagResource` and `CreateWorkGroup` actions\.
 
@@ -129,9 +129,9 @@ If you want to allow IAM users to pass in tags as part of a `CreateWorkGroup` op
 }
 ```
 
-## Tag Policy Examples for Data Catalogs<a name="tag-policy-examples-data-catalogs"></a>
+## Tag policy examples for data catalogs<a name="tag-policy-examples-data-catalogs"></a>
 
-**Example 1\. Basic Tagging Policy**  
+**Example 1\. basic tagging policy**  
 The following IAM policy allows you to interact with tags for the data catalog named `datacatalogA`:  
 
 ```
@@ -196,7 +196,7 @@ The following IAM policy allows you to interact with tags for the data catalog n
 }
 ```
 
-**Example 2: Policy Block that Denies Actions on a Data Catalog Based on a Tag Key and Tag Value Pair**  
+**Example 2: Policy block that denies actions on a Data Catalog based on a tag key and tag value pair**  
 You can use resource tags to write policy blocks that deny specific actions on data catalogs that are tagged with specific tag key\-value pairs\. The following example policy denies actions on data catalogs that have the tag key\-value pair `stack`, `production`\.  
 
 ```
@@ -230,7 +230,7 @@ You can use resource tags to write policy blocks that deny specific actions on d
 }
 ```
 
-**Example 3\. Policy Block that Restricts Tag\-Changing Action Requests to Specified Tags**  
+**Example 3\. policy block that restricts tag\-changing action requests to specified tags**  
 Tags that are passed in as parameters to operations that change tags \(for example, `TagResource`, `UntagResource`, or `CreateDataCatalog` with tags\) are referred to as request tags\. The following example policy block allows the `CreateDataCatalog` operation only if one of the tags passed has the key `costcenter` and the value `1`, `2`, or `3`\.  
 If you want to allow IAM users to pass in tags as part of a `CreateDataCatalog` operation, make sure that you give the users permissions to the `TagResource` and `CreateDataCatalog` actions\.
 

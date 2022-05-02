@@ -1,4 +1,4 @@
-# Data Catalog Example Policies<a name="datacatalogs-example-policies"></a>
+# Data Catalog example policies<a name="datacatalogs-example-policies"></a>
 
 This section includes example policies you can use to enable various actions on data catalogs\.
 
@@ -14,7 +14,7 @@ The `<datacatalog-name>` is the name of your data catalog\. For example, for a d
 "Resource": ["arn:aws:athena:us-east-1:123456789012:datacatalog/test_datacatalog"]
 ```
 
-For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about IAM policies, see [Creating Policies with the Visual Editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) in the *IAM User Guide*\. For more information about creating IAM policies for workgroups, see [ IAM Policies for Accessing Data Catalogs](datacatalogs-iam-policy.md)\.
+For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about IAM policies, see [Creating policies with the visual editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) in the *IAM User Guide*\. For more information about creating IAM policies for workgroups, see [ IAM policies for accessing data catalogs](datacatalogs-iam-policy.md)\.
 + [Example Policy for Full Access to All Data Catalogs](#datacatalog-policy-full-access-to-all-data-catalogs)
 + [Example Policy for Full Access to a Specified Data Catalog](#datacatalog-policy-full-access-to-a-specified-catalog)
 + [Example Policy for Querying a Specified Data Catalog](#datacatalog-policy-querying-a-specified-data-catalog)
@@ -22,7 +22,7 @@ For a complete list of Amazon Athena actions, see the API action names in the [A
 + [Example Policy for Listing Data Catalogs](#datacatalog-policy-listing-data-catalogs)
 + [Example Policy for Metadata Operations on Data Catalogs](#datacatalog-policy-metadata-operations)
 
-**Example Policy for Full Access to All Data Catalogs**  
+**Example policy for full access to all data catalogs**  
 The following policy allows full access to all data catalog resources that might exist in the account\. We recommend that you use this policy for those users in your account that must administer and manage data catalogs for all other users\.  
 
 ```
@@ -42,7 +42,7 @@ The following policy allows full access to all data catalog resources that might
 }
 ```
 
-**Example Policy for Full Access to a Specified Data Catalog**  
+**Example policy for full access to a specified Data Catalog**  
 The following policy allows full access to the single specific data catalog resource, named `datacatalogA`\. You could use this policy for users with full control over a particular data catalog\.  
 
 ```
@@ -103,7 +103,7 @@ The following policy allows full access to the single specific data catalog reso
 }
 ```
 
-**Example Policy for Querying a Specified Data Catalog**  
+**Example policy for querying a specified Data Catalog**  
 In the following policy, a user is allowed to run queries on the specified `datacatalogA`\. The user is not allowed to perform management tasks for the data catalog itself, such as updating or deleting it\.   
 
 ```
@@ -132,7 +132,7 @@ In the following policy, a user is allowed to run queries on the specified `data
 }
 ```
 
-**Example Policy for Management Operations on a Specified Data Catalog**  
+**Example policy for management operations on a specified Data Catalog**  
 In the following policy, a user is allowed to create, delete, obtain details, and update a data catalog `datacatalogA`\.   
 
 ```
@@ -155,7 +155,7 @@ In the following policy, a user is allowed to create, delete, obtain details, an
 }
 ```
 
-**Example Policy for Listing Data Catalogs**  
+**Example policy for listing data catalogs**  
 The following policy allows all users to list all data catalogs:  
 
 ```
@@ -173,7 +173,7 @@ The following policy allows all users to list all data catalogs:
 }
 ```
 
-**Example Policy for Metadata Operations on Data Catalogs**  
+**Example policy for metadata operations on data catalogs**  
 The following policy allows metadata operations on data catalogs:  
 
 ```

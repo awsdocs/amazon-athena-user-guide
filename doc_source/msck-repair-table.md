@@ -9,7 +9,7 @@ When you add physical partitions, the metadata in the catalog becomes inconsiste
 **Note**  
 `MSCK REPAIR TABLE` only adds partitions to metadata; it does not remove them\. To remove partitions from metadata after the partitions have been manually deleted in Amazon S3, run the command `ALTER TABLE table-name DROP PARTITION`\. For more information see [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md)\. 
 
-## Considerations and Limitations<a name="msck-repair-table-considerations"></a>
+## Considerations and limitations<a name="msck-repair-table-considerations"></a>
 
 When using `MSCK REPAIR TABLE`, keep in mind the following points:
 + It is possible it will take some time to add all partitions\. If this operation times out, it will be in an incomplete state where only a few partitions are added to the catalog\. You should run `MSCK REPAIR TABLE` on the same table until all partitions are added\. For more information, see [Partitioning Data](partitions.md)\. 
@@ -33,11 +33,11 @@ MSCK REPAIR TABLE orders;
 
 After you run `MSCK REPAIR TABLE`, if Athena does not add the partitions to the table in the AWS Glue Data Catalog, check the following:
 + Make sure that the AWS Identity and Access Management \(IAM\) user or role has a policy that allows the `glue:BatchCreatePartition` action\.
-+ Make sure that the IAM user or role has a policy with sufficient permissions to access Amazon S3, including the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html) action\. For an example of which Amazon S3 actions to allow, see the example bucket policy in [Cross\-account Access in Athena to Amazon S3 Buckets](cross-account-permissions.md)\.
++ Make sure that the IAM user or role has a policy with sufficient permissions to access Amazon S3, including the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html) action\. For an example of which Amazon S3 actions to allow, see the example bucket policy in [Cross\-account access in Athena to Amazon S3 buckets](cross-account-permissions.md)\.
 + Make sure that the Amazon S3 path is in lower case instead of camel case \(for example, `userid` instead of `userId`\)\.
 + **Query timeouts** – `MSCK REPAIR TABLE` is best used when creating a table for the first time or when there is uncertainty about parity between data and partition metadata\. If you use `MSCK REPAIR TABLE` to add new partitions frequently \(for example, on a daily basis\) and are experiencing query timeouts, consider using [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\.
 + **Partitions missing from filesystem** – If you delete a partition manually in Amazon S3 and then run `MSCK REPAIR TABLE`, you may receive the error message Partitions missing from filesystem\. This occurs because `MSCK REPAIR TABLE` doesn't remove stale partitions from table metadata\. To remove the deleted partitions from table metadata, run [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md) instead\. Note that [SHOW PARTITIONS](show-partitions.md) similarly lists only the partitions in metadata, not the partitions in the file system\.
-+ **"NullPointerException Name is null" error**
++ **"NullPointerException name is null" error**
 
   If you use the AWS Glue [CreateTable](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateTable.html) API operation or the AWS CloudFormation [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) template to create a table for use in Athena without specifying the `TableType` property and then run a DDL query like `SHOW CREATE TABLE` or `MSCK REPAIR TABLE`, you can receive the error message FAILED: NullPointerException Name is null\. 
 

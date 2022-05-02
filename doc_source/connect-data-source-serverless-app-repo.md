@@ -1,11 +1,11 @@
-# Using the AWS Serverless Application Repository to Deploy a Data Source Connector<a name="connect-data-source-serverless-app-repo"></a>
+# Using the AWS Serverless Application Repository to deploy a data source connector<a name="connect-data-source-serverless-app-repo"></a>
 
 To deploy a data source connector, you can use the [AWS Serverless Application Repository](https://aws.amazon.com/serverless/serverlessrepo/) instead of starting with the Athena console\. Use the AWS Serverless Application Repository to find the connector that you want to use, provide the parameters that the connector requires, and then deploy the connector to your account\. Then, after you deploy the connector, you use the Athena console to make the data source available to Athena\.
 
-## Deploying the Connector to Your Account<a name="connect-data-source-serverless-app-repo-deploying"></a>
+## Deploying the connector to Your Account<a name="connect-data-source-serverless-app-repo-deploying"></a>
 
 **Note**  
-To use the Amazon Athena Federated Query feature, set your workgroup to Athena engine version 2\. For steps, see [Changing Athena Engine Versions](engine-versions-changing.md)\.
+To use the Amazon Athena Federated Query feature, set your workgroup to Athena engine version 2\. For steps, see [Changing Athena engine versions](engine-versions-changing.md)\.
 
 **To use the AWS Serverless Application Repository to deploy a data source connector to your account**
 
@@ -15,11 +15,11 @@ To use the Amazon Athena Federated Query feature, set your workgroup to Athena e
 
 1. Select the option **Show apps that create custom IAM roles or resource policies**\.
 
-1. In the search box, type the name of the connector\. For a list of prebuilt Athena data connectors, see [Using Athena Data Source Connectors](athena-prebuilt-data-connectors.md)\.
+1. In the search box, type the name of the connector\. For a list of prebuilt Athena data connectors, see [Using Athena data source connectors](athena-prebuilt-data-connectors.md)\.
 
 1. Choose the name of the connector\. Choosing a connector opens the Lambda function's **Application details** page in the AWS Lambda console\.
 
-1. On the right side of the details page, for **Application settings**, fill in the required information\. The minimum required settings include the following\. For information about the remaining configurable options for data connectors built by Athena, see the corresponding [Available Connectors](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors) topic on GitHub\.
+1. On the right side of the details page, for **Application settings**, fill in the required information\. The minimum required settings include the following\. For information about the remaining configurable options for data connectors built by Athena, see the corresponding [Available connectors](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors) topic on GitHub\.
    + **AthenaCatalogName** – A name for the Lambda function in lower case that indicates the data source that it targets, such as `cloudwatchlogs`\.
    + **SpillBucket** – Specify an Amazon S3 bucket in your account to receive data from any large response payloads that exceed Lambda function response size limits\.
 
@@ -27,7 +27,7 @@ To use the Amazon Athena Federated Query feature, set your workgroup to Athena e
 
 1. At the bottom right of the **Application settings** section, choose **Deploy\.** When the deployment is complete, the Lambda function appears in the **Resources** section in the Lambda console\.
 
-## Making the Connector Available in Athena<a name="connect-data-source-serverless-app-repo-making-the-connector-available-in-athena"></a>
+## Making the connector available in Athena<a name="connect-data-source-serverless-app-repo-making-the-connector-available-in-athena"></a>
 
 Now you are ready to use the Athena console to make the data source connector available to Athena\.
 
@@ -50,7 +50,7 @@ Now you are ready to use the Athena console to make the data source connector av
 
 1. In the **Connection details** section, use the **Select or enter a Lambda function** box to choose the name of the function that you just created\. The ARN of the Lambda function displays\.
 
-1. \(Optional\) For **Tags**, add key\-value pairs to associate with this data source\. For more information about tags, see [Tagging Athena Resources](tags.md)\.
+1. \(Optional\) For **Tags**, add key\-value pairs to associate with this data source\. For more information about tags, see [Tagging Athena resources](tags.md)\.
 
 1. Choose **Next**\.
 
@@ -58,4 +58,4 @@ Now you are ready to use the Athena console to make the data source connector av
 
 1. The **Data source details** section of the page for your data source shows information about your new connector\. You can now use the connector in your Athena queries\. 
 
-   For information about writing queries with data connectors, see [Writing Federated Queries](writing-federated-queries.md)\.
+   For information about writing queries with data connectors, see [Writing federated queries](writing-federated-queries.md)\.

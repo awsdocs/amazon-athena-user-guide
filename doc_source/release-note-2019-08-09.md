@@ -6,4 +6,4 @@ Amazon Athena now supports enforcing [AWS Lake Formation](https://aws.amazon.com
 
 You can use this feature in the following AWS Regions: US East \(Ohio\), US East \(N\. Virginia\), US West \(Oregon\), Asia Pacific \(Tokyo\), and Europe \(Ireland\)\. There are no additional charges to use this feature\.
 
-For more information about using this feature, see [Using Athena to Query Data Registered With AWS Lake Formation](security-athena-lake-formation.md)\. For more information about AWS Lake Formation, see [AWS Lake Formation](https://aws.amazon.com/lake-formation/)\.
+For more information about using this feature, see [Using Athena to query data registered with AWS Lake Formation](security-athena-lake-formation.md)\. For more information about AWS Lake Formation, see [AWS Lake Formation](https://aws.amazon.com/lake-formation/)\.

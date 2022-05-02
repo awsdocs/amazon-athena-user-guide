@@ -7,5 +7,5 @@ Athena announces the following engine feature enhancements\.
 + **UNION queries** – Performance improvement and data scan reduction for certain `UNION` queries that scan the same table multiple times\.
 + **Disjunct queries** – Performance improvement for queries that have only disjunct values for each partition column on the filter\.
 + **Partition projection enhancements**
-  + Multiple disjunct values are now allowed on the filter condition for columns of the `injected` type\. For more information, see [Injected Type](partition-projection-supported-types.md#partition-projection-injected-type)\.
+  + Multiple disjunct values are now allowed on the filter condition for columns of the `injected` type\. For more information, see [Injected type](partition-projection-supported-types.md#partition-projection-injected-type)\.
   + Performance improvement for columns of string\-based types like `CHAR` or `VARCHAR` that have only disjunct values on the filter\.

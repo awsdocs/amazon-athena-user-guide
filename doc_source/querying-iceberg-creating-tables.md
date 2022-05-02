@@ -1,8 +1,8 @@
-# Creating Iceberg Tables<a name="querying-iceberg-creating-tables"></a>
+# Creating Iceberg tables<a name="querying-iceberg-creating-tables"></a>
 
 Athena creates Iceberg v2 tables\. For the difference between v1 and v2 tables, see [Format version changes](https://iceberg.apache.org/spec/#appendix-e-format-version-changes) in the Apache Iceberg documentation\.
 
-Athena `CREATE TABLE` creates an Iceberg table with no data\. You can query a table from external systems such as Apache Spark directly if the table uses the [Iceberg open source Glue catalog](https://iceberg.apache.org/docs/latest/aws/#glue-catalog)\. You do not have to create an external table\.
+Athena `CREATE TABLE` creates an Iceberg table with no data\. You can query a table from external systems such as Apache Spark directly if the table uses the [Iceberg open source glue catalog](https://iceberg.apache.org/docs/latest/aws/#glue-catalog)\. You do not have to create an external table\.
 
 **Warning**  
 Running `CREATE EXTERNAL TABLE` results in the error message External keyword not supported for table type ICEBERG\. 
@@ -44,11 +44,11 @@ The following table shows the available partition transform functions\.
 
 Athena supports Iceberg's hidden partitioning\. For more information, see [Iceberg's hidden partitioning](https://iceberg.apache.org/docs/latest/partitioning/#icebergs-hidden-partitioning) in the Apache Iceberg documentation\.
 
-## Table Properties<a name="querying-iceberg-table-properties"></a>
+## Table properties<a name="querying-iceberg-table-properties"></a>
 
-This section describes table properties that you can specify as key\-value pairs in the `TBLPROPERTIES` clause of the `CREATE TABLE` statement\. Athena allows only a predefined list of key\-value pairs in the table properties for creating or altering Iceberg tables\. The following tables show the table properties that you can specify\. For more information about the compaction options, see [Optimizing Iceberg Tables](querying-iceberg-data-optimization.md) in this documentation\. If you would like Athena to support a specific open source table configuration property, send feedback to [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\. 
+This section describes table properties that you can specify as key\-value pairs in the `TBLPROPERTIES` clause of the `CREATE TABLE` statement\. Athena allows only a predefined list of key\-value pairs in the table properties for creating or altering Iceberg tables\. The following tables show the table properties that you can specify\. For more information about the compaction options, see [Optimizing Iceberg tables](querying-iceberg-data-optimization.md) in this documentation\. If you would like Athena to support a specific open source table configuration property, send feedback to [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\. 
 
-***format***
+***Format***
 
 
 ****  
@@ -125,7 +125,7 @@ This section describes table properties that you can specify as key\-value pairs
 | Allowed property values | A positive number\. Must be less than 50\. | 
 | Default value | 2 | 
 
-## Example CREATE TABLE Statement<a name="querying-iceberg-example-create-table-statement"></a>
+## Example CREATE TABLE statement<a name="querying-iceberg-example-create-table-statement"></a>
 
 The following example creates an Iceberg table that has three columns\.
 

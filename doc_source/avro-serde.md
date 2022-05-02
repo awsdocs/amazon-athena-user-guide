@@ -1,10 +1,10 @@
 # Avro SerDe<a name="avro-serde"></a>
 
-## SerDe Name<a name="serde-name"></a>
+## SerDe name<a name="serde-name"></a>
 
  [Avro SerDe](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe) 
 
-## Library Name<a name="library-name"></a>
+## Library name<a name="library-name"></a>
 
  [org\.apache\.hadoop\.hive\.serde2\.avro\.AvroSerDe](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe) 
 
@@ -14,7 +14,7 @@ Athena does not support using `avro.schema.url` to specify table schema for secu
 
  `java -jar avro-tools-1.8.2.jar getschema my_data.avro` 
 
-The `avro-tools-<version>.jar` file is located in the `java` subdirectory of your installed Avro release\. To download Avro, see [Apache Avro Releases](http://avro.apache.org/releases.html#Download)\. To download Apache Avro Tools directly, see the [Apache Avro Tools Maven Repository](https://mvnrepository.com/artifact/org.apache.avro/avro-tools)\.
+The `avro-tools-<version>.jar` file is located in the `java` subdirectory of your installed Avro release\. To download Avro, see [Apache Avro releases](http://avro.apache.org/releases.html#Download)\. To download Apache Avro Tools directly, see the [Apache Avro tools Maven repository](https://mvnrepository.com/artifact/org.apache.avro/avro-tools)\.
 
 After you obtain the schema, use a `CREATE TABLE` statement to create an Athena table based on underlying Avro data stored in Amazon S3\. To specify the Avro SerDe, use `ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'`\. As demonstrated in the following example, you must specify the schema using the `WITH SERDEPROPERTIES` clause in addition to specifying the column names and corresponding data types for the table\.
 

@@ -1,4 +1,4 @@
-# Examples: Geospatial Queries<a name="geospatial-example-queries"></a>
+# Examples: Geospatial queries<a name="geospatial-example-queries"></a>
 
 The examples in this topic create two tables from sample data available on GitHub and query the tables based on the data\. The sample data, which are for illustration purposes only and are not guaranteed to be accurate, are in the following files:
 + **[https://github.com/Esri/gis-tools-for-hadoop/blob/master/samples/data/earthquake-data/earthquakes.csv](https://github.com/Esri/gis-tools-for-hadoop/blob/master/samples/data/earthquake-data/earthquakes.csv)** – Lists earthquakes that occurred in California\. The example `earthquakes` table uses fields from this data\.
@@ -45,7 +45,7 @@ LOCATION 's3://my-query-log/json/';
 The following example query uses the `CROSS JOIN` function on the `counties` and `earthquake` tables\. The example uses `ST_CONTAINS` to query for counties whose boundaries include earthquake locations, which are specified with `ST_POINT`\. The query groups such counties by name, orders them by count, and returns them in descending order\. The query uses Athena engine version 2\.
 
 **Note**  
-In Athena engine version 2, functions like `ST_CONTAINS` no longer support the `VARBINARY` type as an input\. For this reason, the example uses the [`ST_GeomFromLegacyBinary(varbinary)`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geomfromlegacybinary) function to convert the `boundaryshape` binary value into a geometry\. If you are using Athena engine version 1, you do not need to do this conversion\. For more information, see [Changes to Geospatial Functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions) in the [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002) reference\.
+In Athena engine version 2, functions like `ST_CONTAINS` no longer support the `VARBINARY` type as an input\. For this reason, the example uses the [`ST_GeomFromLegacyBinary(varbinary)`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geomfromlegacybinary) function to convert the `boundaryshape` binary value into a geometry\. If you are using Athena engine version 1, you do not need to do this conversion\. For more information, see [Changes to geospatial functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions) in the [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002) reference\.
 
 ```
 SELECT counties.name,
@@ -97,7 +97,7 @@ This query returns:
 +------------------------+
 ```
 
-## Additional Resources<a name="geospatial-example-queries-additional-resources"></a>
+## Additional resources<a name="geospatial-example-queries-additional-resources"></a>
 
 For additional examples of geospatial queries, see the following blog posts:
 + [Querying OpenStreetMap with Amazon Athena](https://aws.amazon.com/blogs/big-data/querying-openstreetmap-with-amazon-athena/)

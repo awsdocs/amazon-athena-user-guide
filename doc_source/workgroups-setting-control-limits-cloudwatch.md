@@ -1,4 +1,4 @@
-# Setting Data Usage Control Limits<a name="workgroups-setting-control-limits-cloudwatch"></a>
+# Setting data usage control limits<a name="workgroups-setting-control-limits-cloudwatch"></a>
 
  Athena allows you to set two types of cost controls: per\-query limit and per\-workgroup limit\. For each workgroup, you can set only one per\-query limit and multiple per\-workgroup limits\.
 + The **per\-query control limit** specifies the total amount of data scanned per query\. If any query that runs in the workgroup exceeds the limit, it is canceled\. You can create only one per\-query control limit in a workgroup and it applies to each query that runs in it\. Edit the limit if you need to change it\. For detailed steps, see [To create a per\-query data usage control](#configure-control-limit-per-query)\.
@@ -8,7 +8,7 @@
 
   Other actions you can take:
   + Invoke a Lambda function\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda-as-subscriber.html) in the *Amazon Simple Notification Service Developer Guide*\.
-  + Disable the workgroup to stop any further queries from running\. For steps, see [Enable and Disable a Workgroup](workgroups-create-update-delete.md#workgroups-enabled-disabled)\.
+  + Disable the workgroup to stop any further queries from running\. For steps, see [Enable and disable a workgroup](workgroups-create-update-delete.md#workgroups-enabled-disabled)\.
 
 The per\-query and per\-workgroup limits are independent of each other\. A specified action is taken whenever either limit is exceeded\. If two or more users run queries at the same time in the same workgroup, it is possible that each query does not exceed any of the specified limits, but the total sum of data scanned exceeds the data usage limit per workgroup\. In this case, an Amazon SNS alarm is sent to the user\. <a name="configure-control-limit-per-query"></a>
 
@@ -16,7 +16,7 @@ The per\-query and per\-workgroup limits are independent of each other\. A speci
 
 The per\-query control limit specifies the total amount of data scanned per query\. If any query that runs in the workgroup exceeds the limit, it is canceled\. Canceled queries are charged according to [Amazon Athena pricing](https://aws.amazon.com/athena/pricing/)\.
 **Note**  
-In the case of canceled or failed queries, Athena may have already written partial results to Amazon S3\. In such cases, Athena does not delete partial results from the Amazon S3 prefix where results are stored\. You must remove the Amazon S3 prefix with partial results\. Athena uses Amazon S3 multipart uploads to write data Amazon S3\. We recommend that you set the bucket lifecycle policy to end multipart uploads in cases when queries fail\. For more information, see [Aborting Incomplete Multipart Uploads Using a Bucket Lifecycle Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the *Amazon Simple Storage Service User Guide*\.
+In the case of canceled or failed queries, Athena may have already written partial results to Amazon S3\. In such cases, Athena does not delete partial results from the Amazon S3 prefix where results are stored\. You must remove the Amazon S3 prefix with partial results\. Athena uses Amazon S3 multipart uploads to write data Amazon S3\. We recommend that you set the bucket lifecycle policy to end multipart uploads in cases when queries fail\. For more information, see [Aborting incomplete multipart uploads using a bucket lifecycle policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the *Amazon Simple Storage Service User Guide*\.
 
 You can create only one per\-query control limit in a workgroup and it applies to each query that runs in it\. Edit the limit if you need to change it\. 
 

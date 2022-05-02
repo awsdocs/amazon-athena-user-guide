@@ -1,4 +1,4 @@
-# Filtering Arrays<a name="filtering-arrays"></a>
+# Filtering arrays<a name="filtering-arrays"></a>
 
 Create an array from a collection of rows if they match the filter criteria\.
 
@@ -50,7 +50,7 @@ This query returns:
 +--------------+
 ```
 
-## The `filter` Function<a name="filtering-arrays-filter-function"></a>
+## The `filter` function<a name="filtering-arrays-filter-function"></a>
 
 ```
  filter(ARRAY [list_of_values], boolean_function)

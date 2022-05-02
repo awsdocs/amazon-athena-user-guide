@@ -1,4 +1,4 @@
-# Configure Athena to Use a Deployed Hive Metastore Connector<a name="connect-data-source-hive-existing-lambda"></a>
+# Configure Athena to use a deployed Hive metastore connector<a name="connect-data-source-hive-existing-lambda"></a>
 
 After you have deployed a Lambda data source connector like `AthenaHiveMetastoreFunction` to your account, you can configure Athena to use it\. To do so, you create a data source name that refers to your external Hive metastore to use in your Athena queries\.
 
@@ -21,7 +21,7 @@ After you have deployed a Lambda data source connector like `AthenaHiveMetastore
 
 1. In the **Connection details** section, use the **Select or enter a Lambda function** box to choose the name of the function that you just created\. The ARN of the Lambda function displays\.
 
-1. \(Optional\) For **Tags**, add key\-value pairs to associate with this data source\. For more information about tags, see [Tagging Athena Resources](tags.md)\.
+1. \(Optional\) For **Tags**, add key\-value pairs to associate with this data source\. For more information about tags, see [Tagging Athena resources](tags.md)\.
 
 1. Choose **Next**\.
 
@@ -37,4 +37,4 @@ After you have deployed a Lambda data source connector like `AthenaHiveMetastore
    SELECT * FROM ehms-catalog.CustomerData.customers 
    ```
 
-1. To view, edit, or delete the data sources that you create, see [Managing Data Sources](data-sources-managing.md)\.
+1. To view, edit, or delete the data sources that you create, see [Managing data sources](data-sources-managing.md)\.

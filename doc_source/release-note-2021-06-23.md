@@ -8,4 +8,4 @@ Released JDBC 2\.0\.23 and ODBC 1\.1\.10 drivers for Athena\. Both drivers offer
 
 The JDBC release also adds support for Active Directory Federation Services 2019 and a custom endpoint override option for AWS STS\. The ODBC release fixes an issue with IAM profile credentials\. 
 
-For more information and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC Driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+For more information and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.

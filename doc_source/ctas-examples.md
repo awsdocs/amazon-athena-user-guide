@@ -1,4 +1,4 @@
-# Examples of CTAS Queries<a name="ctas-examples"></a>
+# Examples of CTAS queries<a name="ctas-examples"></a>
 
 Use the following examples to create CTAS queries\. For information about the CTAS syntax, see [CREATE TABLE AS](create-table-as.md)\.
 
@@ -12,7 +12,7 @@ In this section:
 + [Example: Creating Partitioned Tables](#ctas-example-partitioned)
 + [Example: Creating Bucketed and Partitioned Tables](#ctas-example-bucketed)
 
-**Example: Duplicating a Table by Selecting All Columns**  
+**Example: Duplicating a table by selecting all columns**  
 The following example creates a table by copying all columns from a table:  
 
 ```
@@ -29,7 +29,7 @@ FROM old_table
 WHERE condition;
 ```
 
-**Example: Selecting Specific Columns from One or More Tables**  
+**Example: Selecting specific columns from one or more tables**  
 The following example creates a new query that runs on a set of columns from another table:  
 
 ```
@@ -45,7 +45,7 @@ SELECT column_1, column_2, ... column_n
 FROM old_table_1, old_table_2, ... old_table_n;
 ```
 
-**Example: Creating an Empty Copy of an Existing Table**  
+**Example: Creating an empty copy of an existing table**  
 The following example uses `WITH NO DATA` to create a new table that is empty and has the same schema as the original table:  
 
 ```
@@ -55,10 +55,10 @@ FROM old_table
 WITH NO DATA;
 ```
 
-**Example: Specifying Data Storage and Compression Formats**  
+**Example: Specifying data storage and compression formats**  
 You can use a CTAS query to create a new table in Parquet format from a source table in a different storage format\.   
 Use the `format` property to specify `ORC`, `AVRO`, `JSON`, or `TEXTFILE` as the storage format for the new table\.   
-For the `PARQUET`, `ORC`, `TEXTFILE`, and `JSON` storage formats, use the `write_compression` property to specify the compression format for the new table's data\. For information about the compression formats that each file format supports, see [Athena Compression Support](compression-formats.md)\.  
+For the `PARQUET`, `ORC`, `TEXTFILE`, and `JSON` storage formats, use the `write_compression` property to specify the compression format for the new table's data\. For information about the compression formats that each file format supports, see [Athena compression support](compression-formats.md)\.  
 The following example specifies that data in the table `new_table` be stored in Parquet format and use Snappy compression\. The default compression for Parquet is `GZIP`\.  
 
 ```
@@ -88,7 +88,7 @@ AS SELECT *
 FROM old_table ;
 ```
 
-**Example: Writing Query Results to a Different Format**  
+**Example: Writing query results to a different format**  
 The following CTAS query selects all records from `old_table`, which could be stored in CSV or another format, and creates a new table with underlying data saved to Amazon S3 in ORC format:   
 
 ```
@@ -100,7 +100,7 @@ AS SELECT *
 FROM old_table;
 ```
 
-**Example: Creating Unpartitioned Tables**  
+**Example: Creating unpartitioned tables**  
 The following examples create tables that are not partitioned\. The table data is stored in different formats\. Some of these examples specify the external location\.   
 The following example creates a CTAS query that stores the results as a text file:  
 
@@ -150,8 +150,8 @@ AS SELECT key1, name1, comment1
 FROM table1;
 ```
 
-**Example: Creating Partitioned Tables**  
-The following examples show `CREATE TABLE AS SELECT` queries for partitioned tables in different storage formats, using `partitioned_by`, and other properties in the `WITH` clause\. For syntax, see [CTAS Table Properties](create-table-as.md#ctas-table-properties)\. For more information about choosing the columns for partitioning, see [Bucketing vs Partitioning](bucketing-vs-partitioning.md)\.  
+**Example: Creating partitioned tables**  
+The following examples show `CREATE TABLE AS SELECT` queries for partitioned tables in different storage formats, using `partitioned_by`, and other properties in the `WITH` clause\. For syntax, see [CTAS table properties](create-table-as.md#ctas-table-properties)\. For more information about choosing the columns for partitioning, see [Bucketing vs partitioning](bucketing-vs-partitioning.md)\.  
 List partition columns at the end of the list of columns in the `SELECT` statement\. You can partition by more than one column, and have up to 100 unique partition and bucket combinations\. For example, you can have 100 partitions if no buckets are specified\.
 
 ```
@@ -174,9 +174,9 @@ AS select name1, address1, comment1, key1
 FROM table1;
 ```
 
-**Example: Creating Bucketed and Partitioned Tables**  
-The following example shows a `CREATE TABLE AS SELECT` query that uses both partitioning and bucketing for storing query results in Amazon S3\. The table results are partitioned and bucketed by different columns\. Athena supports a maximum of 100 unique bucket and partition combinations\. For example, if you create a table with five buckets, 20 partitions with five buckets each are supported\. For syntax, see [CTAS Table Properties](create-table-as.md#ctas-table-properties)\.  
-For information about choosing the columns for bucketing, see [Bucketing vs Partitioning](bucketing-vs-partitioning.md)\.  
+**Example: Creating bucketed and partitioned tables**  
+The following example shows a `CREATE TABLE AS SELECT` query that uses both partitioning and bucketing for storing query results in Amazon S3\. The table results are partitioned and bucketed by different columns\. Athena supports a maximum of 100 unique bucket and partition combinations\. For example, if you create a table with five buckets, 20 partitions with five buckets each are supported\. For syntax, see [CTAS table properties](create-table-as.md#ctas-table-properties)\.  
+For information about choosing the columns for bucketing, see [Bucketing vs partitioning](bucketing-vs-partitioning.md)\.  
 
 ```
 CREATE TABLE ctas_avro_bucketed 

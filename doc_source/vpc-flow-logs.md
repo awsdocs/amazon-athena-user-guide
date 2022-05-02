@@ -1,4 +1,4 @@
-# Querying Amazon VPC Flow Logs<a name="vpc-flow-logs"></a>
+# Querying Amazon VPC flow logs<a name="vpc-flow-logs"></a>
 
 Amazon Virtual Private Cloud flow logs capture information about the IP traffic going to and from network interfaces in a VPC\. Use the logs to investigate network traffic patterns and identify threats and risks across your VPC network\.
 
@@ -10,27 +10,27 @@ To query your Amazon VPC flow logs, you have two options:
   For information about this approach, see [Query flow logs using Amazon Athena](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-athena.html) in the *Amazon VPC User Guide*\.
 + **Amazon Athena console** – Create your tables and queries directly in the Athena console\. For more information, read this page\.
 
-## Creating and Querying Tables for VPC Flow Logs<a name="create-vpc-logs-table"></a>
+## Creating and querying tables for VPC flow logs<a name="create-vpc-logs-table"></a>
 
 Before you begin querying the logs in Athena, [enable VPC flow logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets you query directly\. 
 
-When you create a VPC flow log, you can use the default format or specify a custom format\. Use a custom format when you want to specify the fields to return in the flow log and the order in which the fields appear\. For more information, see [Flow Log Records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in the *Amazon VPC User Guide*\.
+When you create a VPC flow log, you can use the default format or specify a custom format\. Use a custom format when you want to specify the fields to return in the flow log and the order in which the fields appear\. For more information, see [Flow log records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in the *Amazon VPC User Guide*\.
 
-### Common Considerations<a name="vpc-flow-logs-common-considerations"></a>
+### Common considerations<a name="vpc-flow-logs-common-considerations"></a>
 
 When you create tables in Athena for Amazon VPC flow logs, remember the following points:
-+ By default, in Athena, Parquet will access columns by name\. For more information, see [Handling Schema Updates](handling-schema-updates-chapter.md)\.
++ By default, in Athena, Parquet will access columns by name\. For more information, see [Handling schema updates](handling-schema-updates-chapter.md)\.
 + Use the names in the flow log records for the column names in Athena\. The names of the columns in the Athena schema should exactly match the field names in the Amazon VPC flow logs, with the following differences: 
-  + Replace the hyphens in the Amazon VPC log field names with underscores in the Athena column names\. In Athena, the only acceptable characters for database names, table names, and column names are lowercase letters, numbers, and the underscore character\. For more information, see [Database, Table, and Column Names](glue-best-practices.md#schema-names)\.
+  + Replace the hyphens in the Amazon VPC log field names with underscores in the Athena column names\. In Athena, the only acceptable characters for database names, table names, and column names are lowercase letters, numbers, and the underscore character\. For more information, see [Database, table, and column names](glue-best-practices.md#schema-names)\.
   + Escape the flow log record names that are [reserved keywords](reserved-words.md) in Athena by enclosing them with backticks\. 
 
-### CREATE TABLE Statement for Amazon VPC Flow Logs<a name="vpc-flow-logs-create-table-statement"></a>
+### CREATE TABLE statement for Amazon VPC flow logs<a name="vpc-flow-logs-create-table-statement"></a>
 
 The following procedure creates an Amazon VPC table for Amazon VPC flow logs\. If you create a flow log with a custom format, you must create a table with fields that match the fields that you specified when you created the flow log in the same order that you specified them\.
 
 **To create an Athena table for Amazon VPC flow logs**
 
-1. Enter a DDL statement like the following into the Athena console query editor, following the guidelines in the [Common Considerations](#vpc-flow-logs-common-considerations) section\. The sample statement creates a table that has the columns for Amazon VPC flow logs versions 2 through 5 as documented in [Flow Log Records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records)\. If you use a different set of columns or order of columns, modify the statement accordingly\.
+1. Enter a DDL statement like the following into the Athena console query editor, following the guidelines in the [Common considerations](#vpc-flow-logs-common-considerations) section\. The sample statement creates a table that has the columns for Amazon VPC flow logs versions 2 through 5 as documented in [Flow log records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records)\. If you use a different set of columns or order of columns, modify the statement accordingly\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS `vpc_flow_logs` (
@@ -72,10 +72,10 @@ The following procedure creates an Amazon VPC table for Amazon VPC flow logs\. I
    ```
 
    Note the following points:
-   + The query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\. In this query, fields are terminated by a space\.
+   + The query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and custom\-delimited files](lazy-simple-serde.md)\. In this query, fields are terminated by a space\.
    + The `PARTITIONED BY` clause uses the `date` type\. This makes it possible to use mathematical operators in queries to select what's older or newer than a certain date\.
 **Note**  
-Because `date` is a reserved keyword in DDL statements, it is escaped by backtick characters\. For more information, see [Reserved Keywords](reserved-words.md)\.
+Because `date` is a reserved keyword in DDL statements, it is escaped by backtick characters\. For more information, see [Reserved keywords](reserved-words.md)\.
    + For a VPC flow log with a custom format, modify the fields to match the fields that you specified when you created the flow log\.
 
 1. Modify the `LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/{account_id}/vpcflowlogs/{region_code}/'` to point to the Amazon S3 bucket that contains your log data\.
@@ -92,7 +92,7 @@ This query creates a single partition only, for a date that you specify\. To aut
    LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/{account_id}/vpcflowlogs/{region_code}/YYYY/MM/dd';
    ```
 
-#### Example Queries for the vpc\_flow\_logs Table<a name="query-examples-vpc-logs"></a>
+#### Example queries for the vpc\_flow\_logs table<a name="query-examples-vpc-logs"></a>
 
 Use the query editor in the Athena console to run SQL statements on the table that you create\. You can save the queries, view previous queries, or download query results in CSV format\. In the following examples, replace `vpc_flow_logs` with the name of your table\. Modify the column values and other variables according to your requirements\.
 
@@ -133,13 +133,13 @@ ORDER BY packetcount DESC
 LIMIT 10;
 ```
 
-### Creating Tables for Flow Logs in Apache Parquet Format<a name="vpc-flow-logs-parquet"></a>
+### Creating tables for flow logs in Apache Parquet format<a name="vpc-flow-logs-parquet"></a>
 
 The following procedure creates an Amazon VPC table for Amazon VPC flow logs in Apache Parquet format\.
 
 **To create an Athena table for Amazon VPC flow logs in Parquet format**
 
-1. Enter a DDL statement like the following into the Athena console query editor, following the guidelines in the [Common Considerations](#vpc-flow-logs-common-considerations) section\. The sample statement creates a table that has the columns for Amazon VPC flow logs versions 2 through 5 as documented in [Flow Log Records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in Parquet format, Hive partitioned hourly\. If you do not have hourly partitions, remove `hour` from the `PARTITIONED BY` clause\.
+1. Enter a DDL statement like the following into the Athena console query editor, following the guidelines in the [Common considerations](#vpc-flow-logs-common-considerations) section\. The sample statement creates a table that has the columns for Amazon VPC flow logs versions 2 through 5 as documented in [Flow log records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in Parquet format, Hive partitioned hourly\. If you do not have hourly partitions, remove `hour` from the `PARTITIONED BY` clause\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS vpc_flow_logs_parquet (
@@ -210,7 +210,7 @@ The following procedure creates an Amazon VPC table for Amazon VPC flow logs in 
 
 For more information about using Athena to query Amazon VPC flow logs in Parquet format, see the post [Optimize performance and reduce costs for network analytics with VPC Flow Logs in Apache Parquet format](http://aws.amazon.com/blogs/big-data/optimize-performance-and-reduce-costs-for-network-analytics-with-vpc-flow-logs-in-apache-parquet-format/) in the *AWS Big Data Blog*\.
 
-### Creating and Querying a Table for Amazon VPC Flow Logs Using Partition Projection<a name="vpc-flow-logs-partition-projection"></a>
+### Creating and querying a table for Amazon VPC flow logs using partition projection<a name="vpc-flow-logs-partition-projection"></a>
 
 Use a `CREATE TABLE` statement like the following to create a table, partition the table, and populate the partitions automatically by using [partition projection](partition-projection.md)\. Replace the table name `test_table_vpclogs` in the example with the name of your table\. Edit the `LOCATION` clause to specify the Amazon S3 bucket that contains your Amazon VPC log data\.
 
@@ -264,7 +264,7 @@ TBLPROPERTIES
 )
 ```
 
-#### Example Queries for test\_table\_vpclogs<a name="query-examples-vpc-logs-pp"></a>
+#### Example queries for test\_table\_vpclogs<a name="query-examples-vpc-logs-pp"></a>
 
 The following example queries query the `test_table_vpclogs` created by the preceding `CREATE TABLE` statement\. Replace `test_table_vpclogs` in the queries with the name of your own table\. Modify the column values and other variables according to your requirements\.
 
@@ -348,6 +348,6 @@ WHERE dstaddr = '10.0.1.14'
   AND day < '2021/01/31'
 ```
 
-### Additional Resources<a name="query-examples-vpc-logs-additional-resources"></a>
+### Additional resources<a name="query-examples-vpc-logs-additional-resources"></a>
 
-For more information, see the AWS Big Data blog post [Analyzing VPC Flow Logs with Amazon Kinesis Firehose, Athena, and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-vpc-flow-logs-with-amazon-kinesis-firehose-amazon-athena-and-amazon-quicksight/)\. The blog post uses version 2 of the VPC flow logs\.
+For more information about using Athena to analyze VPC flow logs, see the AWS Big Data blog post [Analyzing VPC flow logs using Amazon Athena and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-vpc-flow-logs-using-amazon-athena-and-amazon-quicksight/)\.

@@ -1,14 +1,14 @@
-# LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files<a name="lazy-simple-serde"></a>
+# LazySimpleSerDe for CSV, TSV, and custom\-delimited files<a name="lazy-simple-serde"></a>
 
 Specifying this SerDe is optional\. This is the SerDe for data in CSV, TSV, and custom\-delimited formats that Athena uses by default\. This SerDe is used if you don't specify any SerDe and only specify `ROW FORMAT DELIMITED`\. Use this SerDe if your data does not have values enclosed in quotes\.
 
 For reference documentation about the LazySimpleSerDe, see the [Hive SerDe](https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide#DeveloperGuide-HiveSerDe) section of the Apache Hive Developer Guide\.
 
-## Library Name<a name="library-name"></a>
+## Library name<a name="library-name"></a>
 
 The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`\. For information about the LazySimpleSerDe class, see [LazySimpleSerDe](https://hive.apache.org/javadocs/r2.1.1/api/org/apache/hadoop/hive/serde2/lazy/LazySimpleSerDe.html)\. 
 
-## Ignoring Headers<a name="lazy-simple-serde-ignoring-headers"></a>
+## Ignoring headers<a name="lazy-simple-serde-ignoring-headers"></a>
 
 To ignore headers in your data when you define a table, you can use the `skip.header.line.count` table property, as in the following example\.
 
@@ -16,7 +16,7 @@ To ignore headers in your data when you define a table, you can use the `skip.he
 TBLPROPERTIES ("skip.header.line.count"="1")
 ```
 
-For examples, see the `CREATE TABLE` statements in [Querying Amazon VPC Flow Logs](vpc-flow-logs.md) and [Querying Amazon CloudFront Logs](cloudfront-logs.md)\.
+For examples, see the `CREATE TABLE` statements in [Querying Amazon VPC flow logs](vpc-flow-logs.md) and [Querying Amazon CloudFront logs](cloudfront-logs.md)\.
 
 ## Examples<a name="examples"></a>
 
@@ -30,7 +30,7 @@ Replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the reg
 **Note**  
 The flight table data comes from [Flights](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&amp;DB_Short_Name=On-Time) provided by US Department of Transportation, [Bureau of Transportation Statistics](http://www.transtats.bts.gov/)\. Desaturated from original\.
 
-### CSV Example<a name="csv-example"></a>
+### CSV example<a name="csv-example"></a>
 
 Use the `CREATE TABLE` statement to create an Athena table from the underlying data in CSV stored in Amazon S3\.
 
@@ -171,7 +171,7 @@ ORDER BY 3 DESC
 LIMIT 10;
 ```
 
-### TSV Example<a name="tsv-example"></a>
+### TSV example<a name="tsv-example"></a>
 
 Use a `CREATE TABLE` statement to create an Athena table from the TSV data stored in Amazon S3\. Use `ROW FORMAT DELIMITED` and specify the tab field delimiter, line separator, and escape character as follows:
 

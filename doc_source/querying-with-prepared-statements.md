@@ -1,14 +1,14 @@
-# Querying with Prepared Statements<a name="querying-with-prepared-statements"></a>
+# Querying with prepared statements<a name="querying-with-prepared-statements"></a>
 
 You can use the Athena parameterized query feature to prepare statements for repeated execution of the same query with different query parameters\. A prepared statement contains parameter placeholders whose values are supplied at execution time\. Prepared statements enable Athena queries to take parameters directly and help to prevent SQL injection attacks\.
 
-## Considerations and Limitations<a name="querying-with-prepared-statements-considerations-and-limitations"></a>
+## Considerations and limitations<a name="querying-with-prepared-statements-considerations-and-limitations"></a>
 + Prepared statements are workgroup\-specific, and prepared statement names must be unique within the workgroup\.
-+ Parameterized queries are supported only in Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\.
-+ IAM permissions for prepared statements are required\. For more information, see [Allow Access to Prepared Statements](security-iam-athena-prepared-statements.md)\.
++ Parameterized queries are supported only in Athena engine version 2\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
++ IAM permissions for prepared statements are required\. For more information, see [Allow access to prepared statements](security-iam-athena-prepared-statements.md)\.
 + Currently, parameterized queries are supported only for `SELECT`, `INSERT INTO`, `CTAS`, and `UNLOAD` statements\.
 
-## SQL Statements<a name="querying-with-prepared-statements-sql-statements"></a>
+## SQL statements<a name="querying-with-prepared-statements-sql-statements"></a>
 
 You can use the `PREPARE`, `EXECUTE` and `DEALLOCATE PREPARE` SQL statements to run parameterized queries in the Athena console Query Editor\.
 + To specify parameters where you would normally use literal values, use question marks in the `PREPARE` statement\.
@@ -37,7 +37,7 @@ The following table describes these parameters\.
 | statement\_name | The name of the statement to be prepared\. The name must be unique within the workgroup\. | 
 | statement | A SELECT, CTAS, or INSERT INTO query\. | 
 
-#### PREPARE Examples<a name="querying-with-prepared-statements-prepare-examples"></a>
+#### PREPARE examples<a name="querying-with-prepared-statements-prepare-examples"></a>
 
 The following examples show the use of the `PREPARE` statement\. Question marks denote the values to be supplied by the `EXECUTE` statement when the query is run\.
 
@@ -83,7 +83,7 @@ EXECUTE statement_name [USING value1 [ ,value2, ... ] ]
 
 *statement\_name* is the name of the prepared statement\. *value1* and *value2* are the values to be specified for the parameters in the statement\.
 
-#### EXECUTE Examples<a name="querying-with-prepared-statements-execute-examples"></a>
+#### EXECUTE examples<a name="querying-with-prepared-statements-execute-examples"></a>
 
 The following example runs the `my_select1` prepared statement, which contains no parameters\.
 

@@ -1,4 +1,4 @@
-# Using CTAS and INSERT INTO to Create Amazon Ion Tables<a name="ion-serde-using-ctas-and-insert-into-to-create-ion-tables"></a>
+# Using CTAS and INSERT INTO to create Amazon Ion tables<a name="ion-serde-using-ctas-and-insert-into-to-create-ion-tables"></a>
 
 You can use the `CREATE TABLE AS SELECT` \(CTAS\) and `INSERT INTO` statements to copy or insert data from a table into a new table in Amazon Ion format in Athena\.
 
@@ -20,7 +20,7 @@ AS SELECT * from existing_table
 
 For more information about Amazon Ion specific properties in the CTAS `WITH` clause, see the following section\.
 
-## CTAS WITH Clause Amazon Ion Properties<a name="ion-serde-ctas-with-clause-properties"></a>
+## CTAS WITH clause Amazon Ion properties<a name="ion-serde-ctas-with-clause-properties"></a>
 
 In a CTAS query, you can use the `WITH` clause to specify the Amazon Ion format and optionally specify the Amazon Ion encoding and/or write compression algorithm to use\.
 
@@ -52,6 +52,6 @@ The following example specifies that the CTAS query write its output in Amazon I
 ```
 WITH (format='ION', write_compression = 'ZSTD')       
 ```
-For information about using compression in Athena, see [Athena Compression Support](compression-formats.md)\. 
+For information about using compression in Athena, see [Athena compression support](compression-formats.md)\. 
 
-For information about other CTAS properties in Athena, see [CTAS Table Properties](create-table-as.md#ctas-table-properties)\.
+For information about other CTAS properties in Athena, see [CTAS table properties](create-table-as.md#ctas-table-properties)\.

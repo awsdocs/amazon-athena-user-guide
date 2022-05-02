@@ -1,20 +1,20 @@
-# Querying Application Load Balancer Logs<a name="application-load-balancer-logs"></a>
+# Querying Application Load Balancer logs<a name="application-load-balancer-logs"></a>
 
 An Application Load Balancer is a load balancing option for Elastic Load Balancing that enables traffic distribution in a microservices deployment using containers\. Querying Application Load Balancer logs allows you to see the source of traffic, latency, and bytes transferred to and from Elastic Load Balancing instances and backend applications\. For more information, see [Access logs for your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html) in the *User Guide for Application Load Balancers*\.
 
 **Topics**
 + [Prerequisites](#application-load-balancer-logs-prerequisites)
-+ [Creating the Table for ALB Logs](#create-alb-table)
-+ [Creating the Table for ALB Logs in Athena Using Partition Projection](#create-alb-table-partition-projection)
-+ [Example Queries for ALB Logs](#query-alb-logs-examples)
++ [Creating the table for ALB logs](#create-alb-table)
++ [Creating the table for ALB logs in Athena using partition projection](#create-alb-table-partition-projection)
++ [Example queries for ALB logs](#query-alb-logs-examples)
 
 ## Prerequisites<a name="application-load-balancer-logs-prerequisites"></a>
 + [Enable access logging](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#enable-access-logging) so that Application Load Balancer logs can be saved to your Amazon S3 bucket\.
-+ A database to hold the table that you will create for Athena\. To create a database, you can use the Athena or AWS Glue console\. For more information, see [Creating Databases in Athena](creating-databases.md) in this guide or [Working with Databases on the AWS Glue Console](https://docs.aws.amazon.com/glue/latest/dg/console-databases.html) in the *AWS Glue Developer Guide*\. 
++ A database to hold the table that you will create for Athena\. To create a database, you can use the Athena or AWS Glue console\. For more information, see [Creating databases in Athena](creating-databases.md) in this guide or [Working with databases on the AWS glue console](https://docs.aws.amazon.com/glue/latest/dg/console-databases.html) in the *AWS Glue Developer Guide*\. 
 
-## Creating the Table for ALB Logs<a name="create-alb-table"></a>
+## Creating the table for ALB logs<a name="create-alb-table"></a>
 
-1. Copy and paste the following `CREATE TABLE` statement into the Athena console\. Replace the values in `LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/'` with those corresponding to your Amazon S3 bucket location\. For information about each field, see [Access Log Entries](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format) in the *User Guide for Application Load Balancers*\. 
+1. Copy and paste the following `CREATE TABLE` statement into the Athena console\. Replace the values in `LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/'` with those corresponding to your Amazon S3 bucket location\. For information about each field, see [Access log entries](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format) in the *User Guide for Application Load Balancers*\. 
 **Note**  
 The following `CREATE TABLE` statement includes the recently added `classification` and `classification_reason` columns\. To create a table for Application Load Balancer access logs that do not contain these entries, remove these two columns from the `CREATE TABLE` statement and modify the regex accordingly\.
 
@@ -64,7 +64,7 @@ The following `CREATE TABLE` statement includes the recently added `classificati
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `alb_logs` table, making the data in it ready for you to issue queries\.
 
-## Creating the Table for ALB Logs in Athena Using Partition Projection<a name="create-alb-table-partition-projection"></a>
+## Creating the table for ALB logs in Athena using partition projection<a name="create-alb-table-partition-projection"></a>
 
 Because ALB logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena partition projection feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
 
@@ -128,9 +128,9 @@ CREATE EXTERNAL TABLE IF NOT EXISTS alb_logs (
             )
 ```
 
-For more information about partition projection, see [Partition Projection with Amazon Athena](partition-projection.md)\.
+For more information about partition projection, see [Partition projection with Amazon Athena](partition-projection.md)\.
 
-## Example Queries for ALB Logs<a name="query-alb-logs-examples"></a>
+## Example queries for ALB logs<a name="query-alb-logs-examples"></a>
 
 The following query counts the number of HTTP GET requests received by the load balancer grouped by the client IP address:
 
@@ -179,4 +179,4 @@ FROM alb_logs
 WHERE day = '2022/02/12'
 ```
 + For more information and examples, see the AWS Knowledge Center article [How do I analyze my Application Load Balancer access logs using Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-analyze-access-logs/)\.
-+ For information about Elastic Load Balancing HTTP status codes, see [Troubleshoot your Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html) in the *User Guide for Application Load Balancers*\.
++ For information about Elastic Load Balancing HTTP status codes, see [Troubleshoot your application load balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html) in the *User Guide for Application Load Balancers*\.

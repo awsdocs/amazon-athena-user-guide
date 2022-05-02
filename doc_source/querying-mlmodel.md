@@ -6,14 +6,14 @@ To use ML with Athena, you define an ML with Athena function with the `USING EXT
 
 For an example that uses ML with Athena and SageMaker inference to detect an anomalous value in a result set, see the AWS Big Data Blog article [Detecting anomalous values by invoking the Amazon Athena machine learning inference function](http://aws.amazon.com/blogs/big-data/detecting-anomalous-values-by-invoking-the-amazon-athena-machine-learning-inference-function/)\.
 
-## Considerations and Limitations<a name="considerations-and-limitations"></a>
+## Considerations and limitations<a name="considerations-and-limitations"></a>
 + **Available Regions** – The Athena ML feature is feature is available in the Regions where Athena engine version 2 is supported\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
-+ **SageMaker model endpoint must accept and return `text/csv`** – For more information about data formats, see [Common Data Formats for Inference](https://docs.aws.amazon.com/sagemaker/latest/dg/cdf-inference.html) in the *Amazon SageMaker Developer Guide*\.
-+ **SageMaker endpoint scaling** – Make sure that the referenced SageMaker model endpoint is sufficiently scaled up for Athena calls to the endpoint\. For more information, see [Automatically Scale SageMaker Models](https://docs.aws.amazon.com/sagemaker/latest/dg/endpoint-auto-scaling.html) in the *Amazon SageMaker Developer Guide* and [CreateEndpointConfig](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html) in the *Amazon SageMaker API Reference*\.
-+ **IAM permissions** – To run a query that specifies an ML with Athena function, the IAM principal running the query must be allowed to perform the `sagemaker:InvokeEndpoint` action for the referenced SageMaker model endpoint\. For more information, see [Allowing Access for ML with Athena](machine-learning-iam-access.md)\.
++ **SageMaker model endpoint must accept and return `text/csv`** – For more information about data formats, see [Common data formats for inference](https://docs.aws.amazon.com/sagemaker/latest/dg/cdf-inference.html) in the *Amazon SageMaker Developer Guide*\.
++ **SageMaker endpoint scaling** – Make sure that the referenced SageMaker model endpoint is sufficiently scaled up for Athena calls to the endpoint\. For more information, see [Automatically scale SageMaker models](https://docs.aws.amazon.com/sagemaker/latest/dg/endpoint-auto-scaling.html) in the *Amazon SageMaker Developer Guide* and [CreateEndpointConfig](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html) in the *Amazon SageMaker API Reference*\.
++ **IAM permissions** – To run a query that specifies an ML with Athena function, the IAM principal running the query must be allowed to perform the `sagemaker:InvokeEndpoint` action for the referenced SageMaker model endpoint\. For more information, see [Allowing access for ML with Athena](machine-learning-iam-access.md)\.
 + **ML with Athena functions cannot be used in `GROUP BY` clauses directly**
 
-## ML with Athena Syntax<a name="ml-syntax"></a>
+## ML with Athena syntax<a name="ml-syntax"></a>
 
 The `USING EXTERNAL FUNCTION` clause specifies an ML with Athena function or multiple functions that can be referenced by a subsequent `SELECT` statement in the query\. You define the function name, variable names, and data types for the variables and return values\.
 
@@ -57,17 +57,17 @@ SELECT predict_customer_registration(age) AS probability_of_enrolling, customer_
      WHERE predict_customer_registration(age) < 0.5;
 ```
 
-## Customer Use Examples<a name="ml-videos"></a>
+## Customer use examples<a name="ml-videos"></a>
 
 The following videos, which use the Preview version of Machine Learning \(ML\) with Amazon Athena, showcase ways in which you can use SageMaker with Athena\.
 
-### Predicting Customer Churn<a name="ml-videos-predict-churn"></a>
+### Predicting customer churn<a name="ml-videos-predict-churn"></a>
 
 The following video shows how to combine Athena with the machine learning capabilities of Amazon SageMaker to predict customer churn\.
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/CUHbSpekRVg/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/CUHbSpekRVg)
 
-### Detecting Botnets<a name="ml-videos-detect-botnets"></a>
+### Detecting botnets<a name="ml-videos-detect-botnets"></a>
 
 The following video shows how one company uses Amazon Athena and Amazon SageMaker to detect botnets\.
 

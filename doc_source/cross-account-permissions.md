@@ -1,9 +1,9 @@
-# Cross\-account Access in Athena to Amazon S3 Buckets<a name="cross-account-permissions"></a>
+# Cross\-account access in Athena to Amazon S3 buckets<a name="cross-account-permissions"></a>
 
 A common Amazon Athena scenario is granting access to users in an account different from the bucket owner so that they can perform queries\. In this case, use a bucket policy to grant access\.
 
 **Note**  
- For information about cross\-account access to AWS Glue data catalogs from Athena, see [Cross\-Account Access to AWS Glue Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
+ For information about cross\-account access to AWS Glue data catalogs from Athena, see [Cross\-account access to AWS Glue data catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 
 The following example bucket policy, created and applied to bucket `s3://my-athena-data-bucket` by the bucket owner, grants access to all users in account `123456789123`, which is a different account\.
 
@@ -38,7 +38,7 @@ The following example bucket policy, created and applied to bucket `s3://my-athe
 
 To grant access to a particular user in an account, replace the `Principal` key with a key that specifies the user instead of `root`\. For example, for user profile `Dave`, use `arn:aws:iam::123456789123:user/Dave`\.
 
-## Cross\-account Access to a Bucket Encrypted with a Custom AWS KMS Key<a name="cross-account-permissions-kms"></a>
+## Cross\-account access to a bucket encrypted with a custom AWS KMS key<a name="cross-account-permissions-kms"></a>
 
 If you have an Amazon S3 bucket that is encrypted with a custom AWS Key Management Service \(AWS KMS\) key, you might need to grant access to it to users from another Amazon Web Services account\.
 
@@ -49,7 +49,7 @@ Granting access to an AWS KMS\-encrypted bucket in Account A to a user in Accoun
 
 The following procedures describe how to grant each of these permissions\.
 
-**To grant access to the bucket in Account A to the user in Account B**
+**To grant access to the bucket in account a to the user in account b**
 + From Account A, [review the S3 bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/add-bucket-policy.html) and confirm that there is a statement that allows access from the account ID of Account B\.
 
   For example, the following bucket policy allows `s3:GetObject` access to the account ID 111122223333:
@@ -76,7 +76,7 @@ The following procedures describe how to grant each of these permissions\.
   }
   ```
 
-**To grant access to the user in Account B from the AWS KMS key policy in Account A**
+**To grant access to the user in account b from the AWS KMS key policy in account a**
 
 1. In the AWS KMS key policy for Account A, grant the user in Account B permissions to the following actions:
    +  `kms:Encrypt` 
@@ -124,7 +124,7 @@ The following procedures describe how to grant each of these permissions\.
 
    1.  Add Account B's account ID as an external account with access to the key\.
 
-**To grant access to the bucket and the key in Account A from the IAM User Policy in Account B**
+**To grant access to the bucket and the key in account a from the IAM user policy in account b**
 
 1. From Account B, open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -179,8 +179,8 @@ If the IAM user or role in Account B already has [administrator access](https://
    }
    ```
 
-For instructions on how to add or correct the IAM user's permissions, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html)\.
+For instructions on how to add or correct the IAM user's permissions, see [Changing permissions for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html)\.
 
-## Cross\-account Access to Bucket Objects<a name="cross-account-permissions-objects"></a>
+## Cross\-account access to bucket objects<a name="cross-account-permissions-objects"></a>
 
-Objects that are uploaded by an account \(Account C\) other than the bucket's owning account \(Account A\) might require explicit object\-level ACLs that grant read access to the querying account \(Account B\)\. To avoid this requirement, Account C should assume a role in Account A before it places objects in Account A’s bucket\. For more information, see [How can I provide cross\-account access to objects that are in Amazon S3 buckets?](https://aws.amazon.com/premiumsupport/knowledge-center/cross-account-access-s3/)\.
+Objects that are uploaded by an account \(Account C\) other than the bucket's owning account \(Account A\) might require explicit object\-level ACLs that grant read access to the querying account \(Account B\)\. To avoid this requirement, Account C should assume a role in Account A before it places objects in Account A's bucket\. For more information, see [How can I provide cross\-account access to objects that are in Amazon S3 buckets?](https://aws.amazon.com/premiumsupport/knowledge-center/cross-account-access-s3/)\.

@@ -11,16 +11,16 @@ To obtain AWS Glue Catalog metadata, you query the `information_schema` database
  You cannot use `CREATE VIEW` to create a view on the `information_schema` database\. 
 
 **Topics**
-+ [Listing Databases and Searching a Specified Database](#querying-glue-catalog-querying-available-databases-including-rdbms)
-+ [Listing Tables in a Specified Database and Searching for a Table by Name](#querying-glue-catalog-listing-tables)
-+ [Listing Partitions for a Specific Table](#querying-glue-catalog-listing-partitions)
-+ [Listing or Searching Columns for a Specified Table or View](#querying-glue-catalog-listing-columns)
++ [Listing databases and searching a specified database](#querying-glue-catalog-querying-available-databases-including-rdbms)
++ [Listing tables in a specified database and searching for a table by name](#querying-glue-catalog-listing-tables)
++ [Listing partitions for a specific table](#querying-glue-catalog-listing-partitions)
++ [Listing or searching columns for a specified table or view](#querying-glue-catalog-listing-columns)
 
-## Listing Databases and Searching a Specified Database<a name="querying-glue-catalog-querying-available-databases-including-rdbms"></a>
+## Listing databases and searching a specified database<a name="querying-glue-catalog-querying-available-databases-including-rdbms"></a>
 
 The examples in this section show how to list the databases in metadata by schema name\.
 
-**Example – Listing Databases**  
+**Example – Listing databases**  
 The following example query lists the databases from the `information_schema.schemata` table\.  
 
 ```
@@ -41,7 +41,7 @@ The following table shows sample results\.
 | 9 | athena\_db\_test | 
 | 10 | athena\_ddl\_db | 
 
-**Example – Searching a Specified Database**  
+**Example – Searching a specified database**  
 In the following example query, `rdspostgresql` is a sample database\.  
 
 ```
@@ -58,11 +58,11 @@ The following table shows sample results\.
 | --- | --- | 
 | 1 | rdspostgresql | 
 
-## Listing Tables in a Specified Database and Searching for a Table by Name<a name="querying-glue-catalog-listing-tables"></a>
+## Listing tables in a specified database and searching for a table by name<a name="querying-glue-catalog-listing-tables"></a>
 
 To list metadata for tables, you can query by table schema or by table name\.
 
-**Example – Listing Tables by Schema**  
+**Example – Listing tables by schema**  
 The following query lists tables that use the `rdspostgresql` table schema\.  
 
 ```
@@ -81,7 +81,7 @@ The following table shows a sample result\.
 | --- | --- | --- | --- | 
 | 1 | rdspostgresql | rdspostgresqldb1\_public\_account | BASE TABLE | 
 
-**Example – Searching for a Table by Name**  
+**Example – Searching for a table by name**  
 The following query obtains metadata information for the table `athena1`\.  
 
 ```
@@ -100,7 +100,7 @@ The following table shows a sample result\.
 | --- | --- | --- | --- | 
 | 1 | default | athena1 | BASE TABLE | 
 
-## Listing Partitions for a Specific Table<a name="querying-glue-catalog-listing-partitions"></a>
+## Listing partitions for a specific table<a name="querying-glue-catalog-listing-partitions"></a>
 
 You can use `SHOW PARTITIONS table_name` to list the partitions for a specified table, as in the following example\.
 
@@ -110,7 +110,7 @@ SHOW PARTITIONS cloudtrail_logs_test2
 
 You can also use a metadata query to list the partition numbers and partition values for a specific table\. The syntax that you use depends on the Athena engine version\.
 
-**Example – Querying the Partitions for a Table in Athena engine version 2**  
+**Example – Querying the partitions for a table in Athena engine version 2**  
 The following example query lists the partitions for the table `cloudtrail_logs_test2` using Athena engine version 2\.  
 
 ```
@@ -121,13 +121,13 @@ The following table shows sample results\.
 
 ****  
 
-|  | table\_catalog | table\_schema | table\_name | year | month | day | 
+|  | table\_catalog | table\_schema | table\_name | Year | Month | Day | 
 | --- | --- | --- | --- | --- | --- | --- | 
 | 1 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 2020 | 08 | 10 | 
 | 2 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 2020 | 08 | 11 | 
 | 3 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 2020 | 08 | 12 | 
 
-**Example – Querying the Partitions for a Table in Athena engine version 1**  
+**Example – Querying the partitions for a table in Athena engine version 1**  
 The following example query lists the partitions for the table `cloudtrail_logs_test2` using Athena engine version 1\.  
 
 ```
@@ -148,13 +148,13 @@ The following table shows sample results\.
 | 2 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 1 | month | 09 | 
 | 3 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 1 | day | 30 | 
 
-## Listing or Searching Columns for a Specified Table or View<a name="querying-glue-catalog-listing-columns"></a>
+## Listing or searching columns for a specified table or view<a name="querying-glue-catalog-listing-columns"></a>
 
 You can list all columns for a table, all columns for a view, or search for a column by name in a specified database and table\.
 
 To list the columns, use a `SELECT *` query\. In the `FROM` clause, specify `information_schema.columns`\. In the `WHERE` clause, use `table_schema='database_name'` to specify the database and `table_name = 'table_name'` to specify the table or view that has the columns that you want to list\.
 
-**Example – Listing All Columns for a Specified Table**  
+**Example – Listing all columns for a specified table**  
 The following example query lists all columns for the table `rdspostgresqldb1_public_account`\.  
 
 ```
@@ -168,7 +168,7 @@ The following table shows sample results\.
 
 ****  
 
-|  | table\_catalog | table\_schema | table\_name | column\_name | ordinal\_position | column\_default | is\_nullable | data\_type | comment | extra\_info | 
+|  | table\_catalog | table\_schema | table\_name | column\_name | ordinal\_position | column\_default | is\_nullable | data\_type | Comment | extra\_info | 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | 
 | 1 | awsdatacatalog | rdspostgresql | rdspostgresqldb1\_public\_account | password | 1 |  | YES | varchar |  |  | 
 | 2 | awsdatacatalog | rdspostgresql | rdspostgresqldb1\_public\_account | user\_id | 2 |  | YES | integer |  |  | 
@@ -177,7 +177,7 @@ The following table shows sample results\.
 | 5 | awsdatacatalog | rdspostgresql | rdspostgresqldb1\_public\_account | email | 5 |  | YES | varchar |  |  | 
 | 6 | awsdatacatalog | rdspostgresql | rdspostgresqldb1\_public\_account | username | 6 |  | YES | varchar |  |  | 
 
-**Example – Listing the Columns for a Specified View**  
+**Example – Listing the columns for a specified view**  
 The following example query lists all the columns in the `default` database for the view `arrayview`\.  
 
 ```
@@ -191,7 +191,7 @@ The following table shows sample results\.
 
 ****  
 
-|  | table\_catalog | table\_schema | table\_name | column\_name | ordinal\_position | column\_default | is\_nullable | data\_type | comment | extra\_info | 
+|  | table\_catalog | table\_schema | table\_name | column\_name | ordinal\_position | column\_default | is\_nullable | data\_type | Comment | extra\_info | 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | 
 | 1 | awsdatacatalog | default | arrayview | searchdate | 1 |  | YES | varchar |  |  | 
 | 2 | awsdatacatalog | default | arrayview | sid | 2 |  | YES | varchar |  |  | 
@@ -201,7 +201,7 @@ The following table shows sample results\.
 | 6 | awsdatacatalog | default | arrayview | sump | 6 |  | YES | varchar |  |  | 
 | 7 | awsdatacatalog | default | arrayview | journeymaparray | 7 |  | YES | array\(varchar\) |  |  | 
 
-**Example – Searching for a Column by Name in a Specified Database and Table**  
+**Example – Searching for a column by name in a specified database and table**  
 The following example query searches for metadata for the `sid` column in the `arrayview` view of the `default` database\.  
 
 ```
@@ -216,6 +216,6 @@ The following table shows a sample result\.
 
 ****  
 
-|  | table\_catalog | table\_schema | table\_name | column\_name | ordinal\_position | column\_default | is\_nullable | data\_type | comment | extra\_info | 
+|  | table\_catalog | table\_schema | table\_name | column\_name | ordinal\_position | column\_default | is\_nullable | data\_type | Comment | extra\_info | 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | 
 | 1 | awsdatacatalog | default | arrayview | sid | 2 |  | YES | varchar |  |  | 

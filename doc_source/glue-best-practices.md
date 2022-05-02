@@ -1,4 +1,4 @@
-# Best Practices When Using Athena with AWS Glue<a name="glue-best-practices"></a>
+# Best practices when using Athena with AWS Glue<a name="glue-best-practices"></a>
 
 When using Athena with the AWS Glue Data Catalog, you can use AWS Glue to create databases and tables \(schema\) to be queried in Athena, or you can use Athena to create schema and then use them in AWS Glue and related services\. This topic provides considerations and best practices when using either method\.
 
@@ -16,8 +16,8 @@ Under the hood, Athena uses Presto to process DML statements and Hive to process
 ** [Working with CSV Files](#schema-csv) **  
   +  [CSV Data Enclosed in Quotes](#schema-csv-quotes) 
   +  [CSV Files with Headers](#schema-csv-headers) 
-+ ** [AWS Glue Partition Indexing and Filtering](#glue-best-practices-partition-index)**
-+ **[Working with Geospatial Data](#schema-geospatial)**
++ ** [AWS Glue partition indexing and filtering](#glue-best-practices-partition-index)**
++ **[Working with geospatial data](#schema-geospatial)**
 +   
 ** [Using AWS Glue Jobs for ETL with Athena](#schema-classifier) **  
   +  [Creating Tables Using Athena for AWS Glue ETL Jobs](#schema-etl-tables) 
@@ -25,7 +25,7 @@ Under the hood, Athena uses Presto to process DML statements and Hive to process
   +  [Converting SMALLINT and TINYINT Datatypes to INT When Converting to ORC](#schema-etl-orc) 
   +  [Automating AWS Glue Jobs for ETL](#schema-etl-automate) 
 
-## Database, Table, and Column Names<a name="schema-names"></a>
+## Database, table, and column names<a name="schema-names"></a>
 
 When you create schema in AWS Glue to query in Athena, consider the following:
 + A database name cannot be longer than 255 characters\.
@@ -40,20 +40,20 @@ If you use an [AWS::Glue::Database](https://docs.aws.amazon.com/AWSCloudFormatio
 
 You can use the AWS Glue Catalog Manager to rename columns, but not table names or database names\. To change a database name, you must create a new database and copy tables from the old database to it \(in other words, copy the metadata to a new entity\)\. You can follow a similar process for tables\. You can use the AWS Glue SDK or AWS CLI to do this\.
 
-## Using AWS Glue Crawlers<a name="schema-crawlers"></a>
+## Using AWS Glue crawlers<a name="schema-crawlers"></a>
 
-AWS Glue crawlers help discover the schema for datasets and register them as tables in the AWS Glue Data Catalog\. The crawlers go through your data and determine the schema\. In addition, the crawler can detect and register partitions\. For more information, see [Defining Crawlers](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\. Tables from data that were successfully crawled can be queried from Athena\.
+AWS Glue crawlers help discover the schema for datasets and register them as tables in the AWS Glue Data Catalog\. The crawlers go through your data and determine the schema\. In addition, the crawler can detect and register partitions\. For more information, see [Defining crawlers](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\. Tables from data that were successfully crawled can be queried from Athena\.
 
 **Note**  
 Athena does not recognize [exclude patterns](https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude) that you specify for an AWS Glue crawler\. For example, if you have an Amazon S3 bucket that contains both `.csv` and `.json` files and you exclude the `.json` files from the crawler, Athena queries both groups of files\. To avoid this, place the files that you want to exclude in a different location\. 
 
-### Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync<a name="schema-crawlers-schedule"></a>
+### Scheduling a crawler to keep the AWS Glue Data Catalog and Amazon S3 in sync<a name="schema-crawlers-schedule"></a>
 
-AWS Glue crawlers can be set up to run on a schedule or on demand\. For more information, see [Time\-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html) in the *AWS Glue Developer Guide*\.
+AWS Glue crawlers can be set up to run on a schedule or on demand\. For more information, see [Time\-based schedules for jobs and crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html) in the *AWS Glue Developer Guide*\.
 
-If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually run an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table Partitions](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
+If you have data that arrives for a partitioned table at a fixed time, you can set up an AWS Glue crawler to run on schedule to detect and update table partitions\. This can eliminate the need to run a potentially long and expensive `MSCK REPAIR` command or manually run an `ALTER TABLE ADD PARTITION` command\. For more information, see [Table partitions](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html#tables-partition) in the *AWS Glue Developer Guide*\.
 
-### Using Multiple Data Sources with Crawlers<a name="schema-crawlers-data-sources"></a>
+### Using multiple data sources with crawlers<a name="schema-crawlers-data-sources"></a>
 
 When an AWS Glue crawler scans Amazon S3 and detects multiple directories, it uses a heuristic to determine where the root for a table is in the directory structure, and which directories are partitions for the table\. In some cases, where the schema detected in two or more directories is similar, the crawler may treat them as partitions instead of separate tables\. One way to help the crawler discover individual tables is to add each table's root directory as a data store for the crawler\.
 
@@ -96,7 +96,7 @@ To have the AWS Glue crawler create two separate tables, set the crawler to have
 
 1.  Choose **Finish**\. 
 
-### Syncing Partition Schema to Avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"<a name="schema-syncing"></a>
+### Syncing partition schema to avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"<a name="schema-syncing"></a>
 
 For each table within the AWS Glue Data Catalog that has partition columns, the schema is stored at the table level and for each individual partition within the table\. The schema for partitions are populated by an AWS Glue crawler based on the sample of data that it reads within the partition\. For more information, see [Using Multiple Data Sources with Crawlers](#schema-crawlers-data-sources)\.
 
@@ -104,17 +104,17 @@ When Athena runs a query, it validates the schema of the table and the schema of
 
 There are a few ways to fix this issue\. First, if the data was accidentally added, you can remove the data files that cause the difference in schema, drop the partition, and re\-crawl the data\. Second, you can drop the individual partition and then run `MSCK REPAIR` within Athena to re\-create the partition using the table's schema\. This second option works only if you are confident that the schema applied will continue to read the data correctly\.
 
-### Updating Table Metadata<a name="schema-table-metadata"></a>
+### Updating table metadata<a name="schema-table-metadata"></a>
 
-After a crawl, the AWS Glue crawler automatically assigns certain table metadata to help make it compatible with other external technologies like Apache Hive, Presto, and Spark\. Occasionally, the crawler may incorrectly assign metadata properties\. Manually correct the properties in AWS Glue before querying the table using Athena\. For more information, see [Viewing and Editing Table Details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
+After a crawl, the AWS Glue crawler automatically assigns certain table metadata to help make it compatible with other external technologies like Apache Hive, Presto, and Spark\. Occasionally, the crawler may incorrectly assign metadata properties\. Manually correct the properties in AWS Glue before querying the table using Athena\. For more information, see [Viewing and editing table details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
 
 AWS Glue may mis\-assign metadata when a CSV file has quotes around each data field, getting the `serializationLib` property wrong\. For more information, see [CSV Data Enclosed in quotes](#schema-csv-quotes)\.
 
-## Working with CSV Files<a name="schema-csv"></a>
+## Working with CSV files<a name="schema-csv"></a>
 
 CSV files occasionally have quotes around the data values intended for each column, and there may be header values included in CSV files, which aren't part of the data to be analyzed\. When you use AWS Glue to create schema from these files, follow the guidance in this section\.
 
-### CSV Data Enclosed in Quotes<a name="schema-csv-quotes"></a>
+### CSV data enclosed in quotes<a name="schema-csv-quotes"></a>
 
 You might have a CSV file that has data fields enclosed in double quotes like the following example:
 
@@ -123,7 +123,7 @@ You might have a CSV file that has data fields enclosed in double quotes like th
 "Jane","Doe","123-555-9876","Jane said \"hello\""
 ```
 
-To run a query in Athena on a table created from a CSV file that has quoted values, you must modify the table properties in AWS Glue to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for Processing CSV](csv-serde.md)\.
+To run a query in Athena on a table created from a CSV file that has quoted values, you must modify the table properties in AWS Glue to use the OpenCSVSerDe\. For more information about the OpenCSV SerDe, see [OpenCSVSerDe for processing CSV](csv-serde.md)\.
 
 **To edit table properties in the AWS Glue console**
 
@@ -141,9 +141,9 @@ To run a query in Athena on a table created from a CSV file that has quoted valu
 
 1. Choose **Apply**\.
 
-For more information, see [Viewing and Editing Table Details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
+For more information, see [Viewing and editing table details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
 
-#### Updating AWS Glue Table Properties Programmatically<a name="schema-csv-quotes-api"></a>
+#### Updating AWS Glue table properties programmatically<a name="schema-csv-quotes-api"></a>
 
 You can use the AWS Glue [UpdateTable](https://docs.aws.amazon.com/glue/latest/webapi/API_UpdateTable.html) API operation or [update\-table](https://docs.aws.amazon.com/cli/latest/reference/glue/update-table.html) CLI command to modify the `SerDeInfo` block in the table definition, as in the following example JSON\.
 
@@ -159,7 +159,7 @@ You can use the AWS Glue [UpdateTable](https://docs.aws.amazon.com/glue/latest/w
 },
 ```
 
-### CSV Files with Headers<a name="schema-csv-headers"></a>
+### CSV files with headers<a name="schema-csv-headers"></a>
 
 When you define a table in Athena with a `CREATE TABLE` statement, you can use the `skip.header.line.count` table property to ignore headers in your CSV data, as in the following example\.
 
@@ -170,7 +170,7 @@ LOCATION 's3://my_bucket/csvdata_folder/';
 TBLPROPERTIES ("skip.header.line.count"="1")
 ```
 
-Alternatively, you can remove the CSV headers beforehand so that the header information is not included in Athena query results\. One way to achieve this is to use AWS Glue jobs, which perform extract, transform, and load \(ETL\) work\. You can write scripts in AWS Glue using a language that is an extension of the PySpark Python dialect\. For more information, see [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+Alternatively, you can remove the CSV headers beforehand so that the header information is not included in Athena query results\. One way to achieve this is to use AWS Glue jobs, which perform extract, transform, and load \(ETL\) work\. You can write scripts in AWS Glue using a language that is an extension of the PySpark Python dialect\. For more information, see [Authoring jobs in glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
 
 The following example shows a function in an AWS Glue script that writes out a dynamic frame using `from_options`, and sets the `writeHeader` format option to false, which removes the header information:
 
@@ -178,7 +178,7 @@ The following example shows a function in an AWS Glue script that writes out a d
 glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://MYBUCKET/MYTABLEDATA/"}, format = "csv", format_options = {"writeHeader": False}, transformation_ctx = "datasink2")
 ```
 
-## AWS Glue Partition Indexing and Filtering<a name="glue-best-practices-partition-index"></a>
+## AWS Glue partition indexing and filtering<a name="glue-best-practices-partition-index"></a>
 
 When Athena queries partitioned tables, it retrieves and filters the available table partitions to the subset relevant to your query\. As new data and partitions are added, more time is required to process the partitions, and query runtime can increase\. If you have a table with a large number of partitions that grows over time, consider using AWS Glue partition indexing and filtering\. Partition indexing allows Athena to optimize partition processing and improve query performance on highly partitioned tables\. Setting up partition filtering in a table's properties is a two\-step process:
 
@@ -186,13 +186,13 @@ When Athena queries partitioned tables, it retrieves and filters the available t
 
 1. Enabling partition filtering for the table\.
 
-### Creating a Partition Index<a name="glue-best-practices-partition-index-creating"></a>
+### Creating a partition index<a name="glue-best-practices-partition-index-creating"></a>
 
-For steps on creating a partition index in AWS Glue, see [Working with Partition Indexes](https://docs.aws.amazon.com/glue/latest/dg/partition-indexes.html) in the AWS Glue Developer Guide\. For the limitations on partition indexes in AWS Glue, see the [About Partition Indexes](https://docs.aws.amazon.com/glue/latest/dg/partition-indexes.html#partition-index-1) section on that page\.
+For steps on creating a partition index in AWS Glue, see [Working with partition indexes](https://docs.aws.amazon.com/glue/latest/dg/partition-indexes.html) in the AWS Glue Developer Guide\. For the limitations on partition indexes in AWS Glue, see the [About partition indexes](https://docs.aws.amazon.com/glue/latest/dg/partition-indexes.html#partition-index-1) section on that page\.
 
-### Enabling Partition Filtering<a name="glue-best-practices-partition-filtering-enabling"></a>
+### Enabling partition filtering<a name="glue-best-practices-partition-filtering-enabling"></a>
 
-To enable partition filtering for the table, you must set a new table property in AWS Glue\. For steps on how to set table properties in AWS Glue, refer to the [Setting up Partition Projection](https://docs.aws.amazon.com/athena/latest/ug/partition-projection-setting-up.html) page\. When you edit the table details in AWS Glue, add the following key\-value pair to the **Table properties** section:
+To enable partition filtering for the table, you must set a new table property in AWS Glue\. For steps on how to set table properties in AWS Glue, refer to the [Setting up partition projection](https://docs.aws.amazon.com/athena/latest/ug/partition-projection-setting-up.html) page\. When you edit the table details in AWS Glue, add the following key\-value pair to the **Table properties** section:
 + For **Key**, add `partition_filtering.enabled`
 + For **Value**, add `true`
 
@@ -200,15 +200,15 @@ You can disable partition filtering on this table at any time by setting the `pa
 
 After you complete the above steps, you can return to the Athena console to query the data\.
 
-## Working with Geospatial Data<a name="schema-geospatial"></a>
+## Working with geospatial data<a name="schema-geospatial"></a>
 
-AWS Glue does not natively support Well\-known Text \(WKT\), Well\-Known Binary \(WKB\), or other PostGIS data types\. The AWS Glue classifier parses geospatial data and classifies them using supported data types for the format, such as `varchar` for CSV\. As with other AWS Glue tables, you may need to update the properties of tables created from geospatial data to allow Athena to parse these data types as\-is\. For more information, see [Using AWS Glue Crawlers](#schema-crawlers) and [Working with CSV Files](#schema-csv)\. Athena may not be able to parse some geospatial data types in AWS Glue tables as\-is\. For more information about working with geospatial data in Athena, see [Querying Geospatial Data](querying-geospatial-data.md)\.
+AWS Glue does not natively support Well\-known Text \(WKT\), Well\-Known Binary \(WKB\), or other PostGIS data types\. The AWS Glue classifier parses geospatial data and classifies them using supported data types for the format, such as `varchar` for CSV\. As with other AWS Glue tables, you may need to update the properties of tables created from geospatial data to allow Athena to parse these data types as\-is\. For more information, see [Using AWS Glue crawlers](#schema-crawlers) and [Working with CSV files](#schema-csv)\. Athena may not be able to parse some geospatial data types in AWS Glue tables as\-is\. For more information about working with geospatial data in Athena, see [Querying geospatial data](querying-geospatial-data.md)\.
 
-## Using AWS Glue Jobs for ETL with Athena<a name="schema-classifier"></a>
+## Using AWS Glue jobs for ETL with Athena<a name="schema-classifier"></a>
 
-AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extracts data from sources, transforms the data, and loads it into targets\. For more information, see [Authoring Jobs in Glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extracts data from sources, transforms the data, and loads it into targets\. For more information, see [Authoring jobs in glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
 
-### Creating Tables Using Athena for AWS Glue ETL Jobs<a name="schema-etl-tables"></a>
+### Creating tables using Athena for AWS Glue ETL jobs<a name="schema-etl-tables"></a>
 
 Tables that you create in Athena must have a table property added to them called a `classification`, which identifies the format of the data\. This allows AWS Glue to use the tables for ETL jobs\. The classification values can be `csv`, `parquet`, `orc`, `avro`, or `json`\. An example `CREATE TABLE` statement in Athena follows:
 
@@ -235,18 +235,18 @@ If the table property was not added when the table was created, you can add it u
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_edit_table_classification.png)
 
-For more information, see [Working with Tables](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html) in the *AWS Glue Developer Guide*\.
+For more information, see [Working with tables](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html) in the *AWS Glue Developer Guide*\.
 
-### Using ETL Jobs to Optimize Query Performance<a name="schema-etl-performance"></a>
+### Using ETL jobs to optimize query performance<a name="schema-etl-performance"></a>
 
 AWS Glue jobs can help you transform data to a format that optimizes query performance in Athena\. Data formats have a large impact on query performance and query costs in Athena\.
 
-We recommend to use Parquet and ORC data formats\. AWS Glue supports writing to both of these data formats, which can make it easier and faster for you to transform data to an optimal format for Athena\. For more information about these formats and other ways to improve performance, see [Top Performance Tuning Tips for Amazon Athena](http://aws.amazon.com/blogs/big-data/top-10-performance-tuning-tips-for-amazon-athena/)\.
+We recommend to use Parquet and ORC data formats\. AWS Glue supports writing to both of these data formats, which can make it easier and faster for you to transform data to an optimal format for Athena\. For more information about these formats and other ways to improve performance, see [Top performance tuning tips for Amazon Athena](http://aws.amazon.com/blogs/big-data/top-10-performance-tuning-tips-for-amazon-athena/)\.
 
-### Converting SMALLINT and TINYINT Data Types to INT When Converting to ORC<a name="schema-etl-orc"></a>
+### Converting SMALLINT and TINYINT data types to INT when converting to ORC<a name="schema-etl-orc"></a>
 
 To reduce the likelihood that Athena is unable to read the `SMALLINT` and `TINYINT` data types produced by an AWS Glue ETL job, convert `SMALLINT` and `TINYINT` to `INT` when using the wizard or writing a script for an ETL job\.
 
-### Automating AWS Glue Jobs for ETL<a name="schema-etl-automate"></a>
+### Automating AWS Glue jobs for ETL<a name="schema-etl-automate"></a>
 
-You can configure AWS Glue ETL jobs to run automatically based on triggers\. This feature is ideal when data from outside AWS is being pushed to an Amazon S3 bucket in a suboptimal format for querying in Athena\. For more information, see [Triggering AWS Glue Jobs](https://docs.aws.amazon.com/glue/latest/dg/trigger-job.html) in the *AWS Glue Developer Guide*\.
+You can configure AWS Glue ETL jobs to run automatically based on triggers\. This feature is ideal when data from outside AWS is being pushed to an Amazon S3 bucket in a suboptimal format for querying in Athena\. For more information, see [Triggering AWS Glue jobs](https://docs.aws.amazon.com/glue/latest/dg/trigger-job.html) in the *AWS Glue Developer Guide*\.

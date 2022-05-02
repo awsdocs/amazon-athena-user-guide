@@ -1,4 +1,4 @@
-# Querying AWS WAF Logs<a name="waf-logs"></a>
+# Querying AWS WAF logs<a name="waf-logs"></a>
 
 AWS WAF logs include information about the traffic that is analyzed by your web ACL, such as the time that AWS WAF received the request from your AWS resource, detailed information about the request, and the action for the rule that each request matched\.
 
@@ -9,15 +9,15 @@ For more information about enabling AWS WAF logs and about the log record struct
 For an example of how to aggregate AWS WAF logs into a central data lake repository and query them with Athena, see the AWS Big Data Blog post [Analyzing AWS WAF logs with OpenSearch Service, Amazon Athena, and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-aws-waf-logs-with-amazon-es-amazon-athena-and-amazon-quicksight/)\.
 
 **Topics**
-+ [Creating the Table for AWS WAF Logs](#create-waf-table)
-+ [Creating the Table for AWS WAF Logs in Athena Using Partition Projection](#create-waf-table-partition-projection)
-+ [Example Queries for AWS WAF Logs](#query-examples-waf-logs)
++ [Creating the table for AWS WAF logs](#create-waf-table)
++ [Creating the table for AWS WAF logs in Athena using partition projection](#create-waf-table-partition-projection)
++ [Example queries for AWS WAF logs](#query-examples-waf-logs)
 
-## Creating the Table for AWS WAF Logs<a name="create-waf-table"></a>
+## Creating the table for AWS WAF logs<a name="create-waf-table"></a>
 
 ### To create the AWS WAF table<a name="to-create-the-waf-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\. For information about individual log fields, see [Log Fields](https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html) in the *AWS WAF Developer Guide*\.
+1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\. For information about individual log fields, see [Log fields](https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html) in the *AWS WAF Developer Guide*\.
 
    This query uses the [OpenX JSON SerDe](openx-json-serde.md)\. The table format and the SerDe are suggested by the AWS Glue crawler when it analyzes AWS WAF logs\.
 **Note**  
@@ -133,7 +133,7 @@ The SerDe expects each JSON document to be on a single line of text with no line
 
 1. Run the `CREATE EXTERNAL TABLE` statement in the Athena console Query Editor\. This registers the `waf_logs` table and makes the data in it available for queries from Athena\.
 
-## Creating the Table for AWS WAF Logs in Athena Using Partition Projection<a name="create-waf-table-partition-projection"></a>
+## Creating the table for AWS WAF logs in Athena using partition projection<a name="create-waf-table-partition-projection"></a>
 
 Because AWS WAF logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena partition projection feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
 
@@ -241,9 +241,9 @@ TBLPROPERTIES
 )
 ```
 
-For more information about partition projection, see [Partition Projection with Amazon Athena](partition-projection.md)\.
+For more information about partition projection, see [Partition projection with Amazon Athena](partition-projection.md)\.
 
-## Example Queries for AWS WAF Logs<a name="query-examples-waf-logs"></a>
+## Example queries for AWS WAF logs<a name="query-examples-waf-logs"></a>
 
 The following example queries query the partition projection table created in the previous section\. Modify the table name, column values, and other variables in the examples according to your requirements\. To improve the performance of your queries and reduce cost, add the partition column in the filter condition\.
 
@@ -278,7 +278,7 @@ GROUP BY "httprequest"."clientip", "allrulegroups"."ruleGroupId", "allrulegroups
 ORDER BY count DESC
 ```
 
-### Working with Date and Time<a name="query-examples-waf-logs-date-time"></a>
+### Working with date and time<a name="query-examples-waf-logs-date-time"></a>
 
 **Return the timestamp field in human\-readable ISO 8601 format**  
 The following query uses the `from_unixtime` and `to_iso8601` functions to return the `timestamp` field in human\-readable ISO 8601 format \(for example, `2019-12-13T23:40:12.000Z` instead of `1576280412771`\)\. The query also returns the HTTP source name, source ID, and request\. 
@@ -346,9 +346,9 @@ GROUP BY header.value
 ORDER BY COUNT DESC
 ```
 
-For more information about date and time functions, see [Date and Time Functions and Operators](https://prestodb.io/docs/0.217/functions/datetime.html) in the Presto documentation\.
+For more information about date and time functions, see [Date and time functions and operators](https://prestodb.io/docs/0.217/functions/datetime.html) in the Presto documentation\.
 
-### Working with Blocked Requests and Addresses<a name="query-examples-waf-logs-blocked-requests"></a>
+### Working with blocked requests and addresses<a name="query-examples-waf-logs-blocked-requests"></a>
 
 **Extract the top 100 IP addresses blocked by a specified rule type**  
 The following query extracts and counts the top 100 IP addresses that have been blocked by the `RATE_BASED` terminating rule during the specified date range\.

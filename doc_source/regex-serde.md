@@ -6,11 +6,11 @@ If a row in the data does not match the regex, then all columns in the row are r
 
 For more information, see [Class RegexSerDe](https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r1.2.2/api/org/apache/hadoop/hive/serde2/RegexSerDe.html) in the Apache Hive documentation\.
 
-## SerDe Name<a name="serde-name"></a>
+## SerDe name<a name="serde-name"></a>
 
 RegexSerDe
 
-## Library Name<a name="library-name"></a>
+## Library name<a name="library-name"></a>
 
  RegexSerDe 
 

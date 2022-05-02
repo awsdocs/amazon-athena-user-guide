@@ -8,7 +8,7 @@ Amazon Athena adds support for running SQL queries across relational, non\-relat
 
 Use Federated SQL queries to run SQL queries across relational, non\-relational, object, and custom data sources\.
 
-You can now use Athena’s federated query to scan data stored in relational, non\-relational, object, and custom data sources\. With federated querying, you can submit a single SQL query that scans data from multiple sources running on premises or hosted in the cloud\.
+You can now use Athena's federated query to scan data stored in relational, non\-relational, object, and custom data sources\. With federated querying, you can submit a single SQL query that scans data from multiple sources running on premises or hosted in the cloud\.
 
 Running analytics on data spread across applications can be complex and time consuming for the following reasons:
 + Data required for analytics is often spread across relational, key\-value, document, in\-memory, search, graph, object, time\-series and ledger data stores\.
@@ -41,11 +41,11 @@ You can now invoke machine learning models for inference directly from your Athe
 
 ### ML Models<a name="release-note-2019-11-26-machine-learning-models"></a>
 
-You can use more than a dozen built\-in machine learning algorithms provided by [Amazon SageMaker](https://aws.amazon.com/sagemaker/), train your own models, or find and subscribe to model packages from [AWS Marketplace](https://aws.amazon.com/marketplace/) and deploy on [Amazon SageMaker Hosting Services](https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-hosting.html)\. There is no additional setup required\. You can invoke these ML models in your SQL queries from the Athena console, [Athena APIs](https://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html), and through Athena’s [preview JDBC driver](https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html)\.
+You can use more than a dozen built\-in machine learning algorithms provided by [Amazon SageMaker](https://aws.amazon.com/sagemaker/), train your own models, or find and subscribe to model packages from [AWS Marketplace](https://aws.amazon.com/marketplace/) and deploy on [Amazon SageMaker Hosting Services](https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-hosting.html)\. There is no additional setup required\. You can invoke these ML models in your SQL queries from the Athena console, [Athena APIs](https://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html), and through Athena's [preview JDBC driver](https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html)\.
 
 ### Preview Availability<a name="release-note-2019-11-26-machine-learning-availability"></a>
 
-Athena’s ML functionality is available today in preview in the US East \(N\. Virginia\) Region\.
+Athena's ML functionality is available today in preview in the US East \(N\. Virginia\) Region\.
 
 ### Next Steps<a name="release-note-2019-11-26-machine-learning-next-steps"></a>
 + To begin your preview, follow the instructions in the [Athena Preview Features FAQ](https://aws.amazon.com/athena/faqs/#Preview_features)\.

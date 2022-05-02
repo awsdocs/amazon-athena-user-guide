@@ -7,5 +7,5 @@ Athena is serverless, so there is no infrastructure to set up or manage, and you
 **Topics**
 + [When should I use Athena?](when-should-i-use-ate.md)
 + [Accessing Athena](accessing-ate.md)
-+ [Understanding Tables, Databases, and the Data Catalog](understanding-tables-databases-and-the-data-catalog.md)
++ [Understanding tables, databases, and the Data Catalog](understanding-tables-databases-and-the-data-catalog.md)
 + [AWS service integrations with Athena](athena-aws-service-integrations.md)

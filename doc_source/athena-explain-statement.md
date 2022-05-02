@@ -4,13 +4,13 @@ The `EXPLAIN` statement shows the logical or distributed execution plan of a spe
 
 The `EXPLAIN ANALYZE` statement shows both the distributed execution plan of a specified SQL statement and the computational cost of each operation in a SQL query\. You can output the results in text or JSON format\. 
 
-## Considerations and Limitations<a name="athena-explain-statement-considerations-and-limitations"></a>
+## Considerations and limitations<a name="athena-explain-statement-considerations-and-limitations"></a>
 
 The `EXPLAIN` and `EXPLAIN ANALYZE` statements in Athena have the following limitations\.
-+ Because `EXPLAIN` queries do not scan any data, Athena does not charge for them\. However, because `EXPLAIN` queries make calls to AWS Glue to retrieve table metadata, you may incur charges from Glue if the calls go above the [free tier limit for Glue](http://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23analytics&all-free-tier.q=glue&all-free-tier.q_operator=AND)\.
++ Because `EXPLAIN` queries do not scan any data, Athena does not charge for them\. However, because `EXPLAIN` queries make calls to AWS Glue to retrieve table metadata, you may incur charges from Glue if the calls go above the [free tier limit for glue](http://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23analytics&all-free-tier.q=glue&all-free-tier.q_operator=AND)\.
 + Because `EXPLAIN ANALYZE` queries are executed, they do scan data, and Athena charges for the amount of data scanned\.
 
-## EXPLAIN Syntax<a name="athena-explain-statement-syntax-athena-engine-version-2"></a>
+## EXPLAIN syntax<a name="athena-explain-statement-syntax-athena-engine-version-2"></a>
 
 ```
 EXPLAIN [ ( option [, ...]) ] statement
@@ -25,7 +25,7 @@ TYPE { LOGICAL | DISTRIBUTED | VALIDATE | IO }
 
 If the `FORMAT` option is not specified, the output defaults to `TEXT` format\. The `IO` type provides information about the tables and schemas that the query reads\. `IO` is supported only in Athena engine version 2 and can be returned only in JSON format\.
 
-## EXPLAIN ANALYZE Syntax<a name="athena-explain-analyze-statement"></a>
+## EXPLAIN ANALYZE syntax<a name="athena-explain-analyze-statement"></a>
 
 In addition to the output included in `EXPLAIN`, `EXPLAIN ANALYZE` output also includes runtime statistics for the specified query such as CPU usage, the number of rows input, and the number of rows output\.
 
@@ -50,11 +50,11 @@ INSERT
 UNLOAD
 ```
 
-## EXPLAIN Examples<a name="athena-explain-statement-examples"></a>
+## EXPLAIN examples<a name="athena-explain-statement-examples"></a>
 
 The following examples for `EXPLAIN` progress from the more straightforward to the more complex\.
 
-### EXPLAIN Example 1\. Use the EXPLAIN statement to show a query plan in text format<a name="athena-explain-statement-example-text-query-plan"></a>
+### EXPLAIN example 1\. use the EXPLAIN statement to show a query plan in text format<a name="athena-explain-statement-example-text-query-plan"></a>
 
 In the following example, `EXPLAIN` shows the execution plan for a `SELECT` query on Elastic Load Balancing logs\. The format defaults to text output\.
 
@@ -80,7 +80,7 @@ analyzePartitionValues=Optional.empty}] => [[request_timestamp, elb_name, reques
                 elb_name := elb_name:string:1:REGULAR
 ```
 
-### EXPLAIN Example 2\. Use the EXPLAIN statement to graph a query plan<a name="athena-explain-statement-example-graph-a-query-plan"></a>
+### EXPLAIN example 2\. use the EXPLAIN statement to graph a query plan<a name="athena-explain-statement-example-graph-a-query-plan"></a>
 
 ```
 EXPLAIN (FORMAT GRAPHVIZ)
@@ -136,7 +136,7 @@ To see the query plan visually, use the open source [Graphviz](https://graphviz.
 
 ![\[Graph of the query plan rendered by the Graphviz tool.\]](http://docs.aws.amazon.com/athena/latest/ug/images/athena-explain-statement-1.png)
 
-### EXPLAIN Example 3\. Use the EXPLAIN statement to verify partition pruning<a name="athena-explain-statement-example-verify-partition-pruning"></a>
+### EXPLAIN example 3\. use the EXPLAIN statement to verify partition pruning<a name="athena-explain-statement-example-verify-partition-pruning"></a>
 
 When you use a filtering predicate on a partitioned key to query a partitioned table, the query engine applies the predicate to the partitioned key to reduce the amount of data read\.
 
@@ -208,7 +208,7 @@ analyzePartitionValues=Optional.empty}] => [[o_orderkey, o_custkey, o_orderdate]
 
 The bold text in the result shows that the predicate `o_orderdate = '1995'` was applied on the `PARTITION_KEY`\.
 
-### EXPLAIN Example 4\. Use an EXPLAIN query to check the join order and join type<a name="athena-explain-statement-example-check-join-order-and-type"></a>
+### EXPLAIN example 4\. use an EXPLAIN query to check the join order and join type<a name="athena-explain-statement-example-check-join-order-and-type"></a>
 
 The following `EXPLAIN` query checks the `SELECT` statement's join order and join type\. Use a query like this to examine query memory usage so that you can reduce the chances of getting an `EXCEEDED_LOCAL_MEMORY_LIMIT` error\.
 
@@ -281,7 +281,7 @@ JOIN tpch100.customer c -- the filtered results of tpch100.customer are distribu
 WHERE c.c_custkey = 123
 ```
 
-### EXPLAIN Example 5\. Use an EXPLAIN query to remove predicates that have no effect<a name="athena-explain-statement-example-remove-unneeded-predicates"></a>
+### EXPLAIN example 5\. use an EXPLAIN query to remove predicates that have no effect<a name="athena-explain-statement-example-remove-unneeded-predicates"></a>
 
 You can use an `EXPLAIN` query to check the effectiveness of filtering predicates\. You can use the results to remove predicates that have no effect, as in the following example\.
 
@@ -319,13 +319,13 @@ filterPredicate = (("c_custkey" = 1500) AND ("c_custkey" = CAST(("random"() * 1E
 
 Because the results show that the predicate `AND c.c_custkey BETWEEN 1000 AND 2000` has no effect, you can remove this predicate without changing the query results\.
 
-For information about the terms used in the results of `EXPLAIN` queries, see [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\.
+For information about the terms used in the results of `EXPLAIN` queries, see [Understanding Athena EXPLAIN statement results](athena-explain-statement-understanding.md)\.
 
-## EXPLAIN ANALYZE Examples<a name="athena-explain-analyze-examples"></a>
+## EXPLAIN ANALYZE examples<a name="athena-explain-analyze-examples"></a>
 
 The following examples show example `EXPLAIN ANALYZE` queries and outputs\.
 
-### EXPLAIN ANALYZE Example 1\. Use EXPLAIN ANALYZE to show a query plan and computational cost in text format<a name="athena-explain-analyze-example-cflogs-text"></a>
+### EXPLAIN ANALYZE example 1\. use EXPLAIN ANALYZE to show a query plan and computational cost in text format<a name="athena-explain-analyze-example-cflogs-text"></a>
 
 In the following example, `EXPLAIN ANALYZE` shows the execution plan and computational costs for a `SELECT` query on CloudFront logs\. The format defaults to text output\.
 
@@ -382,7 +382,7 @@ grouped = false] => [[date, time, location, bytes, requestip, method, host, uri,
                  status := status:int:8:REGULAR
 ```
 
-### EXPLAIN ANALYZE Example 2\. Use EXPLAIN ANALYZE to show a query plan in JSON format<a name="athena-explain-analyze-example-cflogs-json"></a>
+### EXPLAIN ANALYZE example 2\. use EXPLAIN ANALYZE to show a query plan in JSON format<a name="athena-explain-analyze-example-cflogs-json"></a>
 
 The following example shows the execution plan and computational costs for a `SELECT` query on CloudFront logs\. The example specifies JSON as the output format\.
 
@@ -520,7 +520,7 @@ EXPLAIN ANALYZE (FORMAT JSON) SELECT * FROM cloudfront_logs LIMIT 10
 }
 ```
 
-## Additional Resources<a name="athena-explain-statement-additional-resources"></a>
+## Additional resources<a name="athena-explain-statement-additional-resources"></a>
 
 For additional information about `EXPLAIN` queries, see the following resources\.
 + Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain.html](https://prestodb.io/docs/0.217/sql/explain.html) documentation

@@ -1,6 +1,6 @@
 # SHOW COLUMNS<a name="show-columns"></a>
 
-Shows the column names for a specified table or view\. To view additional column metadata \(such as data type\), see [Listing or Searching Columns for a Specified Table or View](querying-glue-catalog.md#querying-glue-catalog-listing-columns)\.
+Shows the column names for a specified table or view\. To view additional column metadata \(such as data type\), see [Listing or searching columns for a specified table or view](querying-glue-catalog.md#querying-glue-catalog-listing-columns)\.
 
 ## Synopsis<a name="synopsis"></a>
 

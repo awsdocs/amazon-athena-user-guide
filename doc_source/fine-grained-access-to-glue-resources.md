@@ -1,19 +1,19 @@
-# Fine\-Grained Access to Databases and Tables in the AWS Glue Data Catalog<a name="fine-grained-access-to-glue-resources"></a>
+# Fine\-grained access to databases and tables in the AWS Glue Data Catalog<a name="fine-grained-access-to-glue-resources"></a>
 
 If you use the AWS Glue Data Catalog with Amazon Athena, you can define resource\-level policies for the following Data Catalog objects that are used in Athena: databases and tables\.
 
 You define resource\-level permissions in IAM identity\-based policies\.
 
 **Important**  
-This section discusses resource\-level permissions in IAM identity\-based policies\. These are different from resource\-based policies\. For more information about the differences, see [Identity\-Based Policies and Resource\-Based Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) in the *IAM User Guide*\.
+This section discusses resource\-level permissions in IAM identity\-based policies\. These are different from resource\-based policies\. For more information about the differences, see [Identity\-based policies and resource\-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) in the *IAM User Guide*\.
 
 See the following topics for these tasks: 
 
 
 | To perform this task | See the following topic | 
 | --- | --- | 
-| Create an IAM policy that defines fine\-grained access to resources | [Creating IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the IAM User Guide\. | 
-| Learn about IAM identity\-based policies used in AWS Glue | [ Identity\-Based Policies \(IAM Policies\)](https://docs.aws.amazon.com/glue/latest/dg/using-identity-based-policies.html) in the AWS Glue Developer Guide\.  | 
+| Create an IAM policy that defines fine\-grained access to resources | [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the IAM User Guide\. | 
+| Learn about IAM identity\-based policies used in AWS Glue | [ Identity\-based policies \(IAM policies\)](https://docs.aws.amazon.com/glue/latest/dg/using-identity-based-policies.html) in the AWS Glue Developer Guide\.  | 
 
  **In this section** 
 +  [Limitations](#access-to-glue-resources-limitations) 
@@ -51,7 +51,7 @@ From this list, resources that are common between Athena and the AWS Glue Data C
   }
   ```
 
-## Mandatory: Access Policy to the `Default` Database and Catalog per AWS Region<a name="full-access-to-default-db-per-region"></a>
+## Mandatory: Access policy to the `Default` database and catalog per AWS Region<a name="full-access-to-default-db-per-region"></a>
 
 For Athena to work with the AWS Glue Data Catalog, the following access policy to the `default` database and to the AWS Glue Data Catalog per AWS Region for `GetDatabase` and `CreateDatabase` must be present :
 
@@ -69,7 +69,7 @@ For Athena to work with the AWS Glue Data Catalog, the following access policy t
 }
 ```
 
-## Table Partitions and Versions in AWS Glue<a name="access-to-glue-resources-table-partitions-and-versions"></a>
+## Table partitions and versions in AWS Glue<a name="access-to-glue-resources-table-partitions-and-versions"></a>
 
 In AWS Glue, tables can have partitions and versions\. Table versions and partitions are not considered to be independent resources in AWS Glue\. Access to table versions and partitions is given by granting access on the table and ancestor resources for the table\. 
 
@@ -79,9 +79,9 @@ For the purposes of fine\-grained access control, the following access permissio
 Having access to all partitions within a table is not sufficient if you need to run actions in AWS Glue on partitions\. To run actions on partitions, you need permissions for those actions\. For example, to run `GetPartitions` on table `myTable` in the database `myDB`, you need permissions for the action ` glue:GetPartitions` in the Data Catalog, the `myDB` database, and `myTable`\. 
 + Fine\-grained access controls do not apply to table versions\. As with partitions, access to previous versions of a table is granted through access to the table version APIs in AWS Glue on the table, and to the table ancestors\.
 
-For information about permissions on AWS Glue actions, see [AWS Glue API Permissions: Actions and Resources Reference](https://docs.aws.amazon.com/glue/latest/dg/api-permissions-reference.html) in the *AWS Glue Developer Guide*\. 
+For information about permissions on AWS Glue actions, see [AWS Glue API permissions: Actions and resources reference](https://docs.aws.amazon.com/glue/latest/dg/api-permissions-reference.html) in the *AWS Glue Developer Guide*\. 
 
-## Examples of Fine\-Grained Permissions to Tables and Databases<a name="examples-fine-grained-table-database-policies"></a>
+## Examples of fine\-grained permissions to tables and databases<a name="examples-fine-grained-table-database-policies"></a>
 
 The following table lists examples of IAM identity\-based policies that allow fine\-grained access to databases and tables in Athena\. We recommend that you start with these examples and, depending on your needs, adjust them to allow or deny specific actions to particular databases and tables\.
 
@@ -90,7 +90,7 @@ These examples include the access policy to the `default` database and catalog, 
 In addition, replace the `example_db` database and `test` table names with the names for your databases and tables\.
 
 
-| DDL Statement | Example of an IAM access policy granting access to the resource | 
+| DDL statement | Example of an IAM access policy granting access to the resource | 
 | --- | --- | 
 | ALTER DATABASE | Allows you to modify the properties for the example\_db database\.<pre>{<br />   "Effect": "Allow",<br />   "Action": [<br />      "glue:GetDatabase", <br />      "glue:CreateDatabase"<br />   ],<br />   "Resource": [<br />     "arn:aws:glue:us-east-1:123456789012:catalog",<br />     "arn:aws:glue:us-east-1:123456789012:database/default"<br />   ]<br />},<br />{<br />   "Effect": "Allow",<br />   "Action": [<br />      "glue:GetDatabase", <br />      "glue:UpdateDatabase"<br />   ],<br />   "Resource": [<br />     "arn:aws:glue:us-east-1:123456789012:catalog",<br />     "arn:aws:glue:us-east-1:123456789012:database/example_db"<br />   ]<br /> }</pre> | 
 | CREATE DATABASE | Allows you to create the database named example\_db\.<pre>{<br />   "Effect": "Allow",<br />   "Action": [<br />      "glue:GetDatabase", <br />      "glue:CreateDatabase"<br />   ],<br />   "Resource": [<br />     "arn:aws:glue:us-east-1:123456789012:catalog",<br />     "arn:aws:glue:us-east-1:123456789012:database/default",<br />     "arn:aws:glue:us-east-1:123456789012:database/example_db"<br />   ]<br /> }<br /></pre> | 

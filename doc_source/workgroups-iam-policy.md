@@ -1,4 +1,4 @@
-# IAM Policies for Accessing Workgroups<a name="workgroups-iam-policy"></a>
+# IAM policies for accessing workgroups<a name="workgroups-iam-policy"></a>
 
 To control access to workgroups, use resource\-level IAM permissions or identity\-based IAM policies\. Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
@@ -14,7 +14,7 @@ For IAM\-specific information, see the links listed at the end of this section\.
 
 1. On the **Visual editor** tab, choose **Choose a service**\. Then choose Athena to add to the policy\.
 
-1. Choose **Select actions**, and then choose the actions to add to the policy\. The visual editor shows the actions available in Athena\. For more information, see [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonathena.html) in the *Service Authorization Reference*\.
+1. Choose **Select actions**, and then choose the actions to add to the policy\. The visual editor shows the actions available in Athena\. For more information, see [Actions, resources, and condition keys for Amazon Athena](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonathena.html) in the *Service Authorization Reference*\.
 
 1. Choose **add actions** to type a specific action or use wildcards \(\*\) to specify multiple actions\. 
 
@@ -35,10 +35,10 @@ For IAM\-specific information, see the links listed at the end of this section\.
 1. Attach this identity\-based policy to a user, a group, or role\.
 
 For more information, see the following topics in the *Service Authorization Reference* and *IAM User Guide*:
-+  [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonathena.html) 
-+  [Creating Policies with the Visual Editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) 
-+  [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) 
-+  [Controlling Access to Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_controlling.html#access_controlling-resources) 
++  [Actions, resources, and condition keys for Amazon Athena](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonathena.html) 
++  [Creating policies with the visual editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) 
++  [Adding and removing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) 
++  [Controlling access to resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_controlling.html#access_controlling-resources) 
 
 For example JSON workgroup policies, see [Workgroup Example Policies](example-policies-workgroup.md)\.
 

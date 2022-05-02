@@ -1,6 +1,6 @@
-# Querying Apache Logs Stored in Amazon S3<a name="querying-apache-logs"></a>
+# Querying Apache logs stored in Amazon S3<a name="querying-apache-logs"></a>
 
-You can use Amazon Athena to query [Apache HTTP Server Log Files](https://httpd.apache.org/docs/2.4/logs.html) stored in your Amazon S3 account\. This topic shows you how to create table schemas to query Apache [Access Log](https://httpd.apache.org/docs/2.4/logs.html#accesslog) files in the common log format\.
+You can use Amazon Athena to query [Apache HTTP Server log files](https://httpd.apache.org/docs/2.4/logs.html) stored in your Amazon S3 account\. This topic shows you how to create table schemas to query Apache [Access log](https://httpd.apache.org/docs/2.4/logs.html#accesslog) files in the common log format\.
 
 Fields in the common log format include the client IP address, client ID, user ID, request received timestamp, text of the client request, server status code, and size of the object returned to the client\.
 
@@ -16,9 +16,9 @@ The following example data shows the Apache common log format\.
 198.51.100.11 - Xiulan [22/Apr/2019:10:51:34 -0700] "GET /group/index.html HTTP/1.1" 200 1344
 ```
 
-## Creating a Table in Athena for Apache Logs<a name="querying-apache-logs-creating-a-table-in-athena"></a>
+## Creating a table in Athena for Apache logs<a name="querying-apache-logs-creating-a-table-in-athena"></a>
 
-Before you can query Apache logs stored in Amazon S3, you must create a table schema for Athena so that it can read the log data\. To create an Athena table for Apache logs, you can use the [Grok SerDe](grok-serde.md)\. For more information about using the Grok SerDe, see [Writing Grok Custom Classifiers](https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-grok) in the *AWS Glue Developer Guide*\.
+Before you can query Apache logs stored in Amazon S3, you must create a table schema for Athena so that it can read the log data\. To create an Athena table for Apache logs, you can use the [Grok SerDe](grok-serde.md)\. For more information about using the Grok SerDe, see [Writing grok custom classifiers](https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-grok) in the *AWS Glue Developer Guide*\.
 
 **To create a table in Athena for Apache web server logs**
 
@@ -51,7 +51,7 @@ Before you can query Apache logs stored in Amazon S3, you must create a table sc
 
 1. Run the query in the Athena console to register the `apache_logs` table\. When the query completes, the logs are ready for you to query from Athena\.
 
-### Example Select Queries for Apache Logs<a name="querying-apache-logs-example-select-queries"></a>
+### Example select queries for Apache logs<a name="querying-apache-logs-example-select-queries"></a>
 
 **Example – Filtering for 404 errors**  
 The following example query selects the request received time, text of the client request, and server status code from the `apache_logs` table\. The `WHERE` clause filters for HTTP status code `404` \(page not found\)\.  

@@ -1,21 +1,21 @@
-# Geospatial Functions in Athena engine version 2<a name="geospatial-functions-list-v2"></a>
+# Geospatial functions in Athena engine version 2<a name="geospatial-functions-list-v2"></a>
 
-This topic lists the ESRI geospatial functions that are supported in Athena engine version 2\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\.
+This topic lists the ESRI geospatial functions that are supported in Athena engine version 2\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
 
 **Changes in Athena engine version 2**
-+ The input and output types for some functions have changed\. Most notably, the `VARBINARY` type is no longer directly supported for input\. For more information, see [Changes to Geospatial Functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions)\.
-+ The names of some geospatial functions have changed since Athena engine version 1\. For more information, see [Geospatial Function Name Changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
-+ New functions have been added\. For more information, see [New Geospatial Functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
++ The input and output types for some functions have changed\. Most notably, the `VARBINARY` type is no longer directly supported for input\. For more information, see [Changes to geospatial functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions)\.
++ The names of some geospatial functions have changed since Athena engine version 1\. For more information, see [Geospatial function name changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
++ New functions have been added\. For more information, see [New geospatial functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
 
 Athena supports the following types of geospatial functions:
-+  [Constructor Functions](#geospatial-functions-list-v2-constructors-functions) 
-+  [Geospatial Relationship Functions](#geospatial-functions-list-v2-geospatial-relationships-functions) 
-+  [Operation Functions](#geospatial-functions-list-v2-operations-functions) 
-+  [Accessor Functions](#geospatial-functions-list-v2-accessors-functions) 
-+  [Aggregation Functions](#geospatial-functions-list-v2-aggregation-functions) 
-+  [Bing Tile Functions](#geospatial-functions-list-v2-bing-tile-functions) 
++  [Constructor functions](#geospatial-functions-list-v2-constructors-functions) 
++  [Geospatial relationship functions](#geospatial-functions-list-v2-geospatial-relationships-functions) 
++  [Operation functions](#geospatial-functions-list-v2-operations-functions) 
++  [Accessor functions](#geospatial-functions-list-v2-accessors-functions) 
++  [Aggregation functions](#geospatial-functions-list-v2-aggregation-functions) 
++  [Bing tile functions](#geospatial-functions-list-v2-bing-tile-functions) 
 
-## Constructor Functions<a name="geospatial-functions-list-v2-constructors-functions"></a>
+## Constructor functions<a name="geospatial-functions-list-v2-constructors-functions"></a>
 
 Use constructor functions to obtain binary representations of `point`, `line`, or `polygon` geometry data types\. You can also use these functions to convert binary data to text, and obtain binary values for geometry data that is expressed as Well\-Known Text \(WKT\)\. 
 
@@ -145,7 +145,7 @@ SELECT to_geometry(to_spherical_geography(ST_Point(-158.54, 61.56)))
 
 ### `to_spherical_geography(geometry)`<a name="geospatial-functions-list-v2-to-spherical-geography"></a>
 
-Returns a spherical geography object from the specified geometry\. Use this function to convert a geometry object to a spherical geography object on the sphere of the Earth’s radius\. This function can be used only on `POINT`, `MULTIPOINT`, `LINESTRING`, `MULTILINESTRING`, `POLYGON`, and `MULTIPOLYGON` geometries defined in 2D space or a `GEOMETRYCOLLECTION` of such geometries\. For each point of the specified geometry, the function verifies that `point.x` is within `[-180.0, 180.0]` and `point.y` is within `[-90.0, 90.0]`\. The function uses these points as longitude and latitude degrees to construct the shape of the `sphericalGeography` result\.
+Returns a spherical geography object from the specified geometry\. Use this function to convert a geometry object to a spherical geography object on the sphere of the Earth's radius\. This function can be used only on `POINT`, `MULTIPOINT`, `LINESTRING`, `MULTILINESTRING`, `POLYGON`, and `MULTIPOLYGON` geometries defined in 2D space or a `GEOMETRYCOLLECTION` of such geometries\. For each point of the specified geometry, the function verifies that `point.x` is within `[-180.0, 180.0]` and `point.y` is within `[-90.0, 90.0]`\. The function uses these points as longitude and latitude degrees to construct the shape of the `sphericalGeography` result\.
 
 Example:
 
@@ -153,7 +153,7 @@ Example:
 SELECT to_spherical_geography(ST_Point(-158.54, 61.56))
 ```
 
-## Geospatial Relationship Functions<a name="geospatial-functions-list-v2-geospatial-relationships-functions"></a>
+## Geospatial relationship functions<a name="geospatial-functions-list-v2-geospatial-relationships-functions"></a>
 
 The following functions express relationships between two different geometries that you specify as input and return results of type `boolean`\. The order in which you specify the pair of geometries matters: the first geometry value is called the left geometry, the second geometry value is called the right geometry\.
 
@@ -245,7 +245,7 @@ Example:
 SELECT ST_Within(ST_Point(8, 8), ST_Polygon('polygon((1  1, 1  4, 4  4, 4 1))'))
 ```
 
-## Operation Functions<a name="geospatial-functions-list-v2-operations-functions"></a>
+## Operation functions<a name="geospatial-functions-list-v2-operations-functions"></a>
 
 Use operation functions to perform operations on geometry data type values\. For example, you can obtain the boundaries of a single geometry data type; intersections between two geometry data types; difference between left and right geometries, where each is of the same geometry data type; or an exterior buffer or ring around a particular geometry data type\.
 
@@ -357,7 +357,7 @@ Returns a geometry data type that represents the point set union of the specifie
 SELECT ST_Union(ST_Point(-158.54, 61.56),ST_LineString(array[ST_Point(1,2), ST_Point(3,4)]))
 ```
 
-## Accessor Functions<a name="geospatial-functions-list-v2-accessors-functions"></a>
+## Accessor functions<a name="geospatial-functions-list-v2-accessors-functions"></a>
 
 Accessor functions are useful to obtain values in types `varchar`, `bigint`, or `double` from different `geometry` data types, where `geometry` is any of the geometry data types supported in Athena: `point`, `line`, `polygon`, `multiline`, and `multipolygon`\. For example, you can obtain an area of a `polygon` geometry data type, maximum and minimum X and Y values for a specified geometry data type, obtain the length of a `line`, or receive the number of points in a specified geometry data type\.
 
@@ -371,7 +371,7 @@ SELECT geometry_invalid_reason(ST_Point(-158.54, 61.56))
 
 ### `great_circle_distance(latitude1, longitude1, latitude2, longitude2)`<a name="geospatial-functions-list-v2-great-circle-distance"></a>
 
-Returns, as a double, the great\-circle distance between two points on Earth’s surface in kilometers\. Example:
+Returns, as a double, the great\-circle distance between two points on Earth's surface in kilometers\. Example:
 
 ```
 SELECT great_circle_distance(36.12, -86.67, 33.94, -118.40)
@@ -389,7 +389,7 @@ SELECT line_locate_point(ST_GeometryFromText('LINESTRING (0 0, 0 1)'), ST_Point(
 
 ### `simplify_geometry(geometry, double)`<a name="geospatial-functions-list-v2-simplify-geometry"></a>
 
-Uses the [Ramer\-Douglas\-Peucker algorithm](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm) to return a geometry data type that is a simplified version of the specified geometry\. Avoids creating derived geometries \(in particular, polygons\) that are invalid\. Example:
+Uses the [Ramer\-douglas\-peucker algorithm](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm) to return a geometry data type that is a simplified version of the specified geometry\. Avoids creating derived geometries \(in particular, polygons\) that are invalid\. Example:
 
 ```
 SELECT simplify_geometry(ST_GeometryFromText('POLYGON ((1 0, 2 1, 3 1, 3 1, 4 1, 1 0))'), 1.5)
@@ -655,7 +655,7 @@ Returns the minimum Y coordinate of a geometry in type `double`\. Example:
 SELECT ST_YMin(ST_Line('linestring(0 2, 2 2)'))
 ```
 
-## Aggregation Functions<a name="geospatial-functions-list-v2-aggregation-functions"></a>
+## Aggregation functions<a name="geospatial-functions-list-v2-aggregation-functions"></a>
 
 ### `convex_hull_agg(geometry)`<a name="geospatial-functions-list-v2-convex-hull-agg"></a>
 
@@ -665,9 +665,9 @@ Returns the minimum convex geometry that encloses all geometries passed as input
 
 Returns a geometry that represents the point set union of all geometries passed as input\.
 
-## Bing Tile Functions<a name="geospatial-functions-list-v2-bing-tile-functions"></a>
+## Bing tile functions<a name="geospatial-functions-list-v2-bing-tile-functions"></a>
 
-The following functions convert between geometries and tiles in the Microsoft [Bing Maps Tile System](https://docs.microsoft.com/bingmaps/articles/bing-maps-tile-system/)\.
+The following functions convert between geometries and tiles in the Microsoft [Bing maps tile system](https://docs.microsoft.com/bingmaps/articles/bing-maps-tile-system/)\.
 
 ### `bing_tile(x, y, zoom_level)`<a name="geospatial-functions-list-v2-bing-tile"></a>
 

@@ -17,7 +17,7 @@ For more information, search for "workgroup" in the [ODBC Driver Installation an
 This driver version lets you use [Athena API workgroup actions](workgroups-api-list.md) to create and manage workgroups, and [Athena API tag actions](tags-operations.md) to add, list, or remove tags on workgroups\. Before you begin, make sure that you have resource\-level permissions in IAM for actions on workgroups and tags\. 
 
 For more information, see:
-+ [Using Workgroups for Running Queries](workgroups.md) and [Workgroup Example Policies](example-policies-workgroup.md)\.
-+ [Tagging Athena Resources](tags.md) and [Tag\-Based IAM Access Control Policies](tags-access-control.md)\.
++ [Using workgroups for running queries](workgroups.md) and [Workgroup example policies](example-policies-workgroup.md)\.
++ [Tagging Athena resources](tags.md) and [Tag\-based IAM access control policies](tags-access-control.md)\.
 
-If you use the JDBC driver or the AWS SDK, upgrade to the latest version of the driver and SDK, both of which already include support for workgroups and tags in Athena\. For more information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.
+If you use the JDBC driver or the AWS SDK, upgrade to the latest version of the driver and SDK, both of which already include support for workgroups and tags in Athena\. For more information, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.

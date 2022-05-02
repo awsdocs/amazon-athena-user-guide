@@ -1,4 +1,4 @@
-# Understanding Tables, Databases, and the Data Catalog<a name="understanding-tables-databases-and-the-data-catalog"></a>
+# Understanding tables, databases, and the Data Catalog<a name="understanding-tables-databases-and-the-data-catalog"></a>
 
 In Athena, tables and databases are containers for the metadata definitions that define a schema for underlying source data\. For each dataset, a table needs to exist in Athena\. The metadata in the table tells Athena where the data is located in Amazon S3, and specifies the structure of the data, for example, column names, data types, and the name of the table\. Databases are a logical grouping of tables, and also hold only metadata and schema information for a dataset\.
 

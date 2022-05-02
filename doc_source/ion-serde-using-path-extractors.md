@@ -1,10 +1,10 @@
-# Using Path Extractors<a name="ion-serde-using-path-extractors"></a>
+# Using path extractors<a name="ion-serde-using-path-extractors"></a>
 
 Amazon Ion is a document style file format, but Apache Hive is a flat columnar format\. You can use special Amazon Ion SerDe properties called `path extractors` to map between the two formats\. Path extractors flatten the hierarchical Amazon Ion format, map Amazon Ion values to Hive columns, and can be used to rename fields\.
 
 Athena can generate the extractors for you, but you can also define your own extractors if necessary\.
 
-## Generated Path Extractors<a name="ion-serde-generated-path-extractors"></a>
+## Generated path extractors<a name="ion-serde-generated-path-extractors"></a>
 
 By default, Athena searches for top level Amazon Ion values that match Hive column names and creates path extractors at runtime based on these matching values\. If your Amazon Ion data format matches the Hive table schema, Athena dynamically generates the extractors for you, and you do not need to add any additional path extractors\. These default path extractors are not stored in the table metadata\.
 
@@ -45,7 +45,7 @@ The following example shows the extracted table\.
 |{["name", "driver_license"],["John Smith", "XXXX"]} | "Johnny" |
 ```
 
-## Specifying Your Own Path Extractors<a name="ion-serde-specifying-your-own-path-extractors"></a>
+## Specifying your own path extractors<a name="ion-serde-specifying-your-own-path-extractors"></a>
 
 If your Amazon Ion fields do not map neatly to Hive columns, you can specify your own path extractors\. In the `WITH SERDEPROPERTIES` clause of your `CREATE TABLE` statement, use the following syntax\.
 
@@ -59,7 +59,7 @@ WITH SERDEPROPERTIES (
 **Note**  
 By default, path extractors are case insensitive\. To override this setting, set the [ion.path_extractor.case_sensitive](ion-serde-using-ion-serde-properties.md#ioncase) SerDe property to `true`\.
 
-### Using Search Paths in Path Extractors<a name="ion-serde-using-search-paths-in-path-extractors"></a>
+### Using search paths in path extractors<a name="ion-serde-using-search-paths-in-path-extractors"></a>
 
 The SerDe property syntax for path extractor contains a *<path\_extractor\_expression>*:
 
@@ -92,7 +92,7 @@ The following example shows an Amazon Ion document and some example search paths
 (A::bar)      # matches A::"annotatedValue"
 ```
 
-## Extractor Examples<a name="ion-serde-examples"></a>
+## Extractor examples<a name="ion-serde-examples"></a>
 
 ### Flattening and renaming fields<a name="ion-serde-flattening-and-renaming-fields"></a>
 
@@ -141,7 +141,7 @@ The following example shows the extracted data\.
 | "John Smith" |  "Johnny"    |
 ```
 
-For more information about search paths and additional search path examples, see the [ion\-java\-path\-extraction](https://github.com/amzn/ion-java-path-extraction) page on GitHub\.
+For more information about search paths and additional search path examples, see the [Ion Java Path Extraction](https://github.com/amzn/ion-java-path-extraction) page on GitHub\.
 
 ### Extracting flight data to text format<a name="ion-serde-extracting-flight-data-to-text-format"></a>
 

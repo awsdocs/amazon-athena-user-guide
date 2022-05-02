@@ -1,9 +1,9 @@
-# Connecting Athena to an Apache Hive Metastore<a name="connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore"></a>
+# Connecting Athena to an Apache Hive metastore<a name="connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore"></a>
 
 To connect Athena to an Apache Hive metastore, you must create and configure a Lambda function\. For a basic implementation, you can perform all required steps starting from the Athena management console\.
 
 **Note**  
-The following procedure requires that you have permission to create a custom IAM role for the Lambda function\. If you do not have permission to create a custom role, you can use the Athena [reference implementation](connect-to-data-source-hive.md#connect-to-a-data-source-hive-features-reference-implementation) to create a Lambda function separately, and then use the AWS Lambda console to choose an existing IAM role for the function\. For more information, see [Connecting Athena to a Hive Metastore Using an Existing IAM Execution Role](connect-data-source-hive-existing-iam-role.md)\.
+The following procedure requires that you have permission to create a custom IAM role for the Lambda function\. If you do not have permission to create a custom role, you can use the Athena [reference implementation](connect-to-data-source-hive.md#connect-to-a-data-source-hive-features-reference-implementation) to create a Lambda function separately, and then use the AWS Lambda console to choose an existing IAM role for the function\. For more information, see [Connecting Athena to a Hive metastore using an existing IAM execution role](connect-data-source-hive-existing-iam-role.md)\.
 
 **To connect Athena to a Hive metastore**
 
@@ -47,7 +47,7 @@ The following procedure requires that you have permission to create a custom IAM
 
 1. Choose the name of the function that you just created in the Lambda console\. The ARN of the Lambda function displays\.
 
-1. \(Optional\) For **Tags**, add key\-value pairs to associate with this data source\. For more information about tags, see [Tagging Athena Resources](tags.md)\.
+1. \(Optional\) For **Tags**, add key\-value pairs to associate with this data source\. For more information about tags, see [Tagging Athena resources](tags.md)\.
 
 1. Choose **Next**\.
 
@@ -61,4 +61,4 @@ The following procedure requires that you have permission to create a custom IAM
    SELECT * FROM hms-catalog-1.CustomerData.customers 
    ```
 
-1. For information about viewing, editing, or deleting the data sources that you create, see [Managing Data Sources](data-sources-managing.md)\.
+1. For information about viewing, editing, or deleting the data sources that you create, see [Managing data sources](data-sources-managing.md)\.

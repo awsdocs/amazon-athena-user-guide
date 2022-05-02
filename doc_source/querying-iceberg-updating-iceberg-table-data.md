@@ -1,4 +1,4 @@
-# Updating Iceberg Table Data<a name="querying-iceberg-updating-iceberg-table-data"></a>
+# Updating Iceberg table data<a name="querying-iceberg-updating-iceberg-table-data"></a>
 
 Iceberg table data can be managed directly on Athena using `INSERT`, `UPDATE`, and `DELETE` queries\. Each data management transaction produces a new snapshot, which can be queried using time travel\. The `UPDATE` and `DELETE` statements follow the Iceberg format v2 row\-level [position delete](https://iceberg.apache.org/spec/#position-delete-files) specification and enforce snapshot isolation\.
 

@@ -1,10 +1,10 @@
-# Using CREATE TABLE to Create Amazon Ion Tables<a name="ion-serde-using-create-table"></a>
+# Using CREATE TABLE to create Amazon Ion tables<a name="ion-serde-using-create-table"></a>
 
 To create a table in Athena from data stored in Amazon Ion format, you can use one of the following techniques in a CREATE TABLE statement:
 + Specify `STORED AS ION`\. In this usage, you do not have to specify the Amazon Ion Hive SerDe explicitly\. This choice is the more straightforward option\.
 + Specify the Amazon Ion class paths in the `ROW FORMAT SERDE`, `INPUTFORMAT`, and `OUTPUTFORMAT` fields\.
 
-You can also use `CREATE TABLE AS SELECT` \(CTAS\) statements to create Amazon Ion tables in Athena\. For information, see [Using CTAS and INSERT INTO to Create Amazon Ion Tables](ion-serde-using-ctas-and-insert-into-to-create-ion-tables.md)\.
+You can also use `CREATE TABLE AS SELECT` \(CTAS\) statements to create Amazon Ion tables in Athena\. For information, see [Using CTAS and INSERT INTO to create Amazon Ion tables](ion-serde-using-ctas-and-insert-into-to-create-ion-tables.md)\.
 
 ## Specifying STORED AS ION<a name="ion-serde-specifying-stored-as-ion"></a>
 
@@ -60,4 +60,4 @@ OUTPUTFORMAT
 LOCATION 's3://DOC-EXAMPLE-BUCKET/'
 ```
 
-For information about the SerDe properties for `CREATE TABLE` statements in Athena, see [Using Amazon Ion SerDe Properties](ion-serde-using-ion-serde-properties.md)\.
+For information about the SerDe properties for `CREATE TABLE` statements in Athena, see [Using Amazon Ion SerDe properties](ion-serde-using-ion-serde-properties.md)\.

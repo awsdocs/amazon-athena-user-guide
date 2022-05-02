@@ -1,10 +1,10 @@
-# Querying Internet Information Server \(IIS\) Logs Stored in Amazon S3<a name="querying-iis-logs"></a>
+# Querying internet information server \(IIS\) logs stored in Amazon S3<a name="querying-iis-logs"></a>
 
 You can use Amazon Athena to query Microsoft Internet Information Services \(IIS\) web server logs stored in your Amazon S3 account\. While IIS uses a [variety](https://docs.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms525807(v%3Dvs.90)) of log file formats, this topic shows you how to create table schemas to query W3C extended and IIS log file format logs from Athena\.
 
 Because the W3C extended and IIS log file formats use single character delimiters \(spaces and commas, respectively\) and do not have values enclosed in quotation marks, you can use the [LazySimpleSerDe](lazy-simple-serde.md) to create Athena tables for them\.
 
-## W3C Extended Log File Format<a name="querying-iis-logs-w3c-extended-log-file-format"></a>
+## W3C extended log file format<a name="querying-iis-logs-w3c-extended-log-file-format"></a>
 
 The [W3C extended](https://docs.microsoft.com/en-us/windows/win32/http/w3c-logging) log file data format has space\-separated fields\. The fields that appear in W3C extended logs are determined by a web server administrator who chooses which log fields to include\. The following example log data has the fields `date, time`, `c-ip`, `s-ip`, `cs-method`, `cs-uri-stem`, `sc-status`, `sc-bytes`, `cs-bytes`, `time-taken`, and `cs-version`\.
 
@@ -15,7 +15,7 @@ The [W3C extended](https://docs.microsoft.com/en-us/windows/win32/http/w3c-loggi
 2020-01-19 22:51:44 203.0.113.15 198.51.100.16 GET /faq.html 200 330 324 288 HTTP/1.0
 ```
 
-### Creating a Table in Athena for W3C Extended Logs<a name="querying-iis-logs-creating-a-table-in-athena-for-w3c-extended-logs"></a>
+### Creating a table in Athena for W3C extended logs<a name="querying-iis-logs-creating-a-table-in-athena-for-w3c-extended-logs"></a>
 
 Before you can query your W3C extended logs, you must create a table schema so that Athena can read the log data\.
 
@@ -58,7 +58,7 @@ Before you can query your W3C extended logs, you must create a table schema so t
 
 1. Run the query in the Athena console to register the `iis_w3c_logs` table\. When the query completes, the logs are ready for you to query from Athena\.
 
-### Example W3C Extended Log Select Query<a name="querying-iis-logs-example-w3c-extended-log-select-query"></a>
+### Example W3C extended log select query<a name="querying-iis-logs-example-w3c-extended-log-select-query"></a>
 
 The following example query selects the date, time, request target, and time taken for the request from the table `iis_w3c_logs`\. The `WHERE` clause filters for cases in which the HTTP method is `GET` and the HTTP status code is `200` \(successful\)\.
 
@@ -72,7 +72,7 @@ The following image shows the results of the query in the Athena Query Editor\.
 
 ![\[Example query results in Athena of W3C extended log files stored in Amazon S3.\]](http://docs.aws.amazon.com/athena/latest/ug/images/querying-iis-logs-1.png)
 
-### Combining the Date and Time Fields<a name="querying-iis-logs-example-w3c-extended-log-combining-date-and-time"></a>
+### Combining the date and time fields<a name="querying-iis-logs-example-w3c-extended-log-combining-date-and-time"></a>
 
 The space delimited `date` and `time` fields are separate entries in the log source data, but you can combine them into a timestamp if you want\. Use the [concat\(\)](https://prestodb.io/docs/0.217/functions/string.html#concat) and [date\_parse\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#date_parse) functions in a [SELECT](select.md) or [CREATE TABLE AS SELECT](create-table-as.md) query to concatenate and convert the date and time columns into timestamp format\. The following example uses a CTAS query to create a new table with a `derived_timestamp` column\.
 
@@ -104,7 +104,7 @@ The following image shows the results of the query\.
 
 ![\[W3C extended log file query results on an table with a derived timestamp column.\]](http://docs.aws.amazon.com/athena/latest/ug/images/querying-iis-logs-1a.png)
 
-## IIS Log File Format<a name="querying-iis-logs-iis-log-file-format"></a>
+## IIS log file format<a name="querying-iis-logs-iis-log-file-format"></a>
 
 Unlike the W3C extended format, the [IIS log file format](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc728311(v%3dws.10)) has a fixed set of fields and includes a comma as a delimiter\. The LazySimpleSerDe treats the comma as the delimiter and the space after the comma as the beginning of the next field\.
 
@@ -117,7 +117,7 @@ The following example shows sample data in the IIS log file format\.
 203.0.113.8, -, 2020-02-24, 22:48:41, W3SVC2, SERVER8, 198.51.100.14, 125, 711, 868, 200, 0, GET, /intro.htm, -,
 ```
 
-### Creating a Table in Athena for IIS Log Files<a name="querying-iis-logs-creating-a-table-in-athena-for-iis-log-files"></a>
+### Creating a table in Athena for IIS log files<a name="querying-iis-logs-creating-a-table-in-athena-for-iis-log-files"></a>
 
 To query your IIS log file format logs in Amazon S3, you first create a table schema so that Athena can read the log data\.
 
@@ -161,7 +161,7 @@ To query your IIS log file format logs in Amazon S3, you first create a table sc
 
 1. Run the query in the Athena console to register the `iis_format_logs` table\. When the query completes, the logs are ready for you to query from Athena\.
 
-### Example IIS Log Format Select Query<a name="querying-iis-logs-example-iis-log-format-select-query"></a>
+### Example IIS log format select query<a name="querying-iis-logs-example-iis-log-format-select-query"></a>
 
 The following example query selects the request date, request time, request target, and time taken in milliseconds from the table `iis_format_logs`\. The `WHERE` clause filters for cases in which the request type is `GET` and the HTTP status code is `200` \(successful\)\. In the query, note that the leading spaces in `' GET'` and `' 200'` are required to make the query successful\. 
 
@@ -175,9 +175,9 @@ The following image shows the results of the query of the sample data\.
 
 ![\[Example query results in Athena of IIS log file format log files stored in Amazon S3.\]](http://docs.aws.amazon.com/athena/latest/ug/images/querying-iis-logs-2.png)
 
-## NCSA Log File Format<a name="querying-iis-logs-ncsa-log-file-format"></a>
+## NCSA log file format<a name="querying-iis-logs-ncsa-log-file-format"></a>
 
-IIS also uses the [NCSA Logging](https://docs.microsoft.com/en-us/windows/win32/http/ncsa-logging) format, which has a fixed number of fields in ASCII text format separated by spaces\. The structure is similar to the common log format used for Apache access logs\. Fields in the NCSA common log data format include the client IP address, client ID \(not typically used\), domain\\user ID, request received timestamp, text of the client request, server status code, and size of the object returned to the client\.
+IIS also uses the [NCSA logging](https://docs.microsoft.com/en-us/windows/win32/http/ncsa-logging) format, which has a fixed number of fields in ASCII text format separated by spaces\. The structure is similar to the common log format used for Apache access logs\. Fields in the NCSA common log data format include the client IP address, client ID \(not typically used\), domain\\user ID, request received timestamp, text of the client request, server status code, and size of the object returned to the client\.
 
 The following example shows data in the NCSA common log format as documented for IIS\.
 
@@ -191,9 +191,9 @@ The following example shows data in the NCSA common log format as documented for
 198.51.100.11 - ExampleCorp\Xiulan [22/Apr/2019:10:51:34 -0700] "GET /group/index.html HTTP/1.1" 200 1344
 ```
 
-### Creating a Table in Athena for IIS NCSA Logs<a name="querying-iis-logs-ncsa-creating-a-table-in-athena"></a>
+### Creating a table in Athena for IIS NCSA logs<a name="querying-iis-logs-ncsa-creating-a-table-in-athena"></a>
 
-For your `CREATE TABLE` statement, you can use the [Grok SerDe](grok-serde.md) and a grok pattern similar to the one for [Apache web server logs](querying-apache-logs.md)\. Unlike Apache logs, the grok pattern uses `%{DATA:user_id}` for the third field instead of `%{USERNAME:user_id}` to account for the presence of the backslash in `domain\user_id`\. For more information about using the Grok SerDe, see [Writing Grok Custom Classifiers](https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-grok) in the *AWS Glue Developer Guide*\.
+For your `CREATE TABLE` statement, you can use the [Grok SerDe](grok-serde.md) and a grok pattern similar to the one for [Apache web server logs](querying-apache-logs.md)\. Unlike Apache logs, the grok pattern uses `%{DATA:user_id}` for the third field instead of `%{USERNAME:user_id}` to account for the presence of the backslash in `domain\user_id`\. For more information about using the Grok SerDe, see [Writing grok custom classifiers](https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-grok) in the *AWS Glue Developer Guide*\.
 
 **To create a table in Athena for IIS NCSA web server logs**
 
@@ -226,7 +226,7 @@ For your `CREATE TABLE` statement, you can use the [Grok SerDe](grok-serde.md) a
 
 1. Run the query in the Athena console to register the `iis_ncsa_logs` table\. When the query completes, the logs are ready for you to query from Athena\.
 
-### Example Select Queries for IIS NCSA Logs<a name="querying-iis-logs-ncsa-example-select-queries"></a>
+### Example select queries for IIS NCSA logs<a name="querying-iis-logs-ncsa-example-select-queries"></a>
 
 **Example – Filtering for 404 errors**  
 The following example query selects the request received time, text of the client request, and server status code from the `iis_ncsa_logs` table\. The `WHERE` clause filters for HTTP status code `404` \(page not found\)\.  

@@ -1,4 +1,4 @@
-# Monitoring Athena Queries with CloudWatch Metrics<a name="query-metrics-viewing"></a>
+# Monitoring Athena queries with CloudWatch metrics<a name="query-metrics-viewing"></a>
 
 Athena publishes query\-related metrics to Amazon CloudWatch, when the [publish query metrics to CloudWatch](athena-cloudwatch-metrics-enable.md) option is selected\. You can create custom dashboards, set alarms and triggers on metrics in CloudWatch, or use pre\-populated dashboards directly from the Athena console\. 
 
@@ -17,7 +17,7 @@ These metrics have the following dimensions:
 + `QueryType` – `DML` or `DDL`
 + `WorkGroup` – name of the workgroup
 
-For more information, see the [List of CloudWatch Metrics and Dimensions for Athena](#athena-cloudwatch-metrics-table) later in this topic\. For information about Athena usage metrics, see [Monitoring Athena Usage Metrics](monitoring-athena-usage-metrics.md)\.
+For more information, see the [List of CloudWatch metrics and dimensions for Athena](#athena-cloudwatch-metrics-table) later in this topic\. For information about Athena usage metrics, see [Monitoring Athena usage metrics](monitoring-athena-usage-metrics.md)\.
 
 **To view query metrics for a workgroup in the console**
 
@@ -63,12 +63,12 @@ If you just recently enabled metrics for the workgroup and/or there has been no 
   aws cloudwatch list-metrics"
   ```
 
-## List of CloudWatch Metrics and Dimensions for Athena<a name="athena-cloudwatch-metrics-table"></a>
+## List of CloudWatch metrics and dimensions for Athena<a name="athena-cloudwatch-metrics-table"></a>
 
 If you've enabled CloudWatch metrics in Athena, it sends the following metrics to CloudWatch per workgroup\. The metrics use the `AWS/Athena` namespace\.
 
 
-| Metric Name | Description | 
+| Metric name | Description | 
 | --- | --- | 
 | EngineExecutionTime |  The number of milliseconds that the query took to run\.  | 
 | ProcessedBytes |  The number of bytes that Athena scanned per DML query\. For queries that were canceled \(either by the users, or automatically, if they reached the limit\), this includes the amount of data scanned before the cancellation time\. This metric is not reported for DDL queries\.  | 

@@ -1,4 +1,4 @@
-# Managing Iceberg Tables<a name="querying-iceberg-managing-tables"></a>
+# Managing Iceberg tables<a name="querying-iceberg-managing-tables"></a>
 
 Athena supports the following table DDL operations for Iceberg tables\.
 
@@ -24,7 +24,7 @@ ALTER TABLE my_db.my_table RENAME TO my_db2.my_table2
 
 Adds properties to an Iceberg table and sets their assigned values\.
 
-In accordance with [Iceberg specifications](https://iceberg.apache.org/#spec/#table-metadata-fields), table properties are stored in the Iceberg table metadata file rather than in AWS Glue\. Athena does not accept custom table properties\. Refer to the [Table Properties](querying-iceberg-creating-tables.md#querying-iceberg-table-properties) section for allowed key\-value pairs\. If you would like Athena to support a specific open source table configuration property, send feedback to [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\.
+In accordance with [Iceberg specifications](https://iceberg.apache.org/#spec/#table-metadata-fields), table properties are stored in the Iceberg table metadata file rather than in AWS Glue\. Athena does not accept custom table properties\. Refer to the [Table properties](querying-iceberg-creating-tables.md#querying-iceberg-table-properties) section for allowed key\-value pairs\. If you would like Athena to support a specific open source table configuration property, send feedback to [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\.
 
 ### Synopsis<a name="querying-iceberg-alter-table-set-properties-synopsis"></a>
 

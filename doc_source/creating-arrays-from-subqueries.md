@@ -1,4 +1,4 @@
-# Creating Arrays from Subqueries<a name="creating-arrays-from-subqueries"></a>
+# Creating arrays from subqueries<a name="creating-arrays-from-subqueries"></a>
 
 Create an array from a collection of rows\.
 

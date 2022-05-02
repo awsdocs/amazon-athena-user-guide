@@ -1,22 +1,22 @@
-# Managing Workgroups<a name="workgroups-create-update-delete"></a>
+# Managing workgroups<a name="workgroups-create-update-delete"></a>
 
 In the [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home), you can perform the following tasks:
 
 
 | Statement | Description | 
 | --- | --- | 
-|  [Create a Workgroup](#creating-workgroups)  |  Create a new workgroup\.  | 
-|  [Edit a Workgroup](#editing-workgroups)  | Edit a workgroup and change its settings\. You cannot change a workgroup's name, but you can create a new workgroup with the same settings and a different name\. | 
-| [View the Workgroup's Details](#viewing-details-workgroups) | View the workgroup's details, such as its name, description, data usage limits, location of query results, expected query results bucket owner, encryption, and control of objects written to the query results bucket\. You can also verify whether this workgroup enforces its settings, if Override client\-side settings is checked\. | 
-|  [Delete a Workgroup](#deleting-workgroups)  |  Delete a workgroup\. If you delete a workgroup, query history, saved queries, the workgroup's settings and per\-query data limit controls are deleted\. The workgroup\-wide data limit controls remain in CloudWatch, and you can delete them individually\. The primary workgroup cannot be deleted\.  | 
-|  [Switch Workgroups](#switching-workgroups)  |  Switch between workgroups to which you have access\.   | 
-|  [Copy a Saved Query between Workgroups](#copy-a-query-between-workgroups)  | Copy a saved query between workgroups\. You might want to do this if, for example, you created a query in a preview workgroup and you want to make it available in a nonpreview workgroup\. | 
-|  [Enable and Disable a Workgroup](#workgroups-enabled-disabled)  |  Enable or disable a workgroup\. When a workgroup is disabled, its users cannot run queries, or create new named queries\. If you have access to it, you can still view metrics, data usage limit controls, workgroup's settings, query history, and saved queries\.  | 
-|  [Specify a Workgroup in Which to Run Queries](#specify-wkgroup-to-athena-in-which-to-run-queries)  |  Before you can run queries, you must specify to Athena which workgroup to use\. You must have permissions to the workgroup\.   | 
+|  [Create a workgroup](#creating-workgroups)  |  Create a new workgroup\.  | 
+|  [Edit a workgroup](#editing-workgroups)  | Edit a workgroup and change its settings\. You cannot change a workgroup's name, but you can create a new workgroup with the same settings and a different name\. | 
+| [View the workgroup's details](#viewing-details-workgroups) | View the workgroup's details, such as its name, description, data usage limits, location of query results, expected query results bucket owner, encryption, and control of objects written to the query results bucket\. You can also verify whether this workgroup enforces its settings, if Override client\-side settings is checked\. | 
+|  [Delete a workgroup](#deleting-workgroups)  |  Delete a workgroup\. If you delete a workgroup, query history, saved queries, the workgroup's settings and per\-query data limit controls are deleted\. The workgroup\-wide data limit controls remain in CloudWatch, and you can delete them individually\. The primary workgroup cannot be deleted\.  | 
+|  [Switch workgroups](#switching-workgroups)  |  Switch between workgroups to which you have access\.   | 
+|  [Copy a saved query between workgroups](#copy-a-query-between-workgroups)  | Copy a saved query between workgroups\. You might want to do this if, for example, you created a query in a preview workgroup and you want to make it available in a nonpreview workgroup\. | 
+|  [Enable and disable a workgroup](#workgroups-enabled-disabled)  |  Enable or disable a workgroup\. When a workgroup is disabled, its users cannot run queries, or create new named queries\. If you have access to it, you can still view metrics, data usage limit controls, workgroup's settings, query history, and saved queries\.  | 
+|  [Specify a workgroup in which to run queries](#specify-wkgroup-to-athena-in-which-to-run-queries)  |  Before you can run queries, you must specify to Athena which workgroup to use\. You must have permissions to the workgroup\.   | 
 
-## Create a Workgroup<a name="creating-workgroups"></a>
+## Create a workgroup<a name="creating-workgroups"></a>
 
-Creating a workgroup requires permissions to `CreateWorkgroup` API actions\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding tags, you also need to add permissions to `TagResource`\. See [Tag Policy Examples for Workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
+Creating a workgroup requires permissions to `CreateWorkgroup` API actions\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding tags, you also need to add permissions to `TagResource`\. See [Tag policy examples for workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
 
 **To create a workgroup in the console**
 
@@ -37,9 +37,9 @@ You can also use the [CreateWorkGroup](https://docs.aws.amazon.com/athena/latest
 **Important**  
 After you create workgroups, create [IAM Policies for Workgroups](workgroups-iam-policy.md) IAM that allow you to run workgroup\-related actions\. 
 
-## Edit a Workgroup<a name="editing-workgroups"></a>
+## Edit a workgroup<a name="editing-workgroups"></a>
 
-Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding or editing tags, you also need to have permissions to `TagResource`\. See [Tag Policy Examples for Workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
+Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding or editing tags, you also need to have permissions to `TagResource`\. See [Tag policy examples for workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
 
 **To edit a workgroup in the console**
 
@@ -53,7 +53,7 @@ Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. S
 
 1. Choose **Save changes**\. The updated workgroup appears in the list on the **Workgroups** page\.
 
-## View the Workgroup's Details<a name="viewing-details-workgroups"></a>
+## View the workgroup's details<a name="viewing-details-workgroups"></a>
 
 For each workgroup, you can view its details\. The details include the workgroup's name, description, whether it is enabled or disabled, and the settings used for queries that run in the workgroup, which include the location of the query results, expected bucket owner, encryption, and control of objects written to the query results bucket\. If a workgroup has data usage limits, they are also displayed\.
 
@@ -63,7 +63,7 @@ For each workgroup, you can view its details\. The details include the workgroup
 
 1. On the **Workgroups** page, choose the link of the workgroup that you want to view\. The **Overview Details** page for the workgroup displays\.
 
-## Delete a Workgroup<a name="deleting-workgroups"></a>
+## Delete a workgroup<a name="deleting-workgroups"></a>
 
 You can delete a workgroup if you have permissions to do so\. The primary workgroup cannot be deleted\. 
 
@@ -88,7 +88,7 @@ Before deleting a workgroup, ensure that its users also belong to other workgrou
 
 To delete a workgroup with the API operation, use the `DeleteWorkGroup` action\.
 
-## Switch Workgroups<a name="switching-workgroups"></a>
+## Switch workgroups<a name="switching-workgroups"></a>
 
 You can switch from one workgroup to another if you have permissions to both of them\.
 
@@ -102,7 +102,7 @@ You can open up to ten query tabs within each workgroup\. When you switch betwee
 
 The **Workgroup** option shows the name of the workgroup that you switched to\. You can now run queries in this workgroup\.
 
-## Copy a Saved Query between Workgroups<a name="copy-a-query-between-workgroups"></a>
+## Copy a saved query between workgroups<a name="copy-a-query-between-workgroups"></a>
 
 Currently, the Athena console does not have an option to to copy a saved query from one workgroup to another directly, but you can perform the same task manually by using the following procedure\.
 
@@ -124,7 +124,7 @@ Currently, the Athena console does not have an option to to copy a saved query f
 
 1. Choose **Save**\.
 
-## Enable and Disable a Workgroup<a name="workgroups-enabled-disabled"></a>
+## Enable and disable a workgroup<a name="workgroups-enabled-disabled"></a>
 
 If you have permissions to do so, you can enable or disable workgroups in the console, by using the API operations, or with the JDBC and ODBC drivers\.
 
@@ -138,13 +138,13 @@ If you have permissions to do so, you can enable or disable workgroups in the co
 
 1. At the confirmation prompt, choose **Enable** or **Disable**\. If you disable a workgroup, its users cannot run queries in it, or create new named queries\. If you enable a workgroup, users can use it to run queries\.
 
-## Specify a Workgroup in Which to Run Queries<a name="specify-wkgroup-to-athena-in-which-to-run-queries"></a>
+## Specify a workgroup in which to run queries<a name="specify-wkgroup-to-athena-in-which-to-run-queries"></a>
 
 To specify a workgroup to use, you must have permissions to the workgroup\. 
 
 **To specify the workgroup to use**
 
-1. Make sure your permissions allow you to run queries in a workgroup that you intend to use\. For more information, see [ IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\.
+1. Make sure your permissions allow you to run queries in a workgroup that you intend to use\. For more information, see [ IAM policies for accessing workgroups](workgroups-iam-policy.md)\.
 
 1.  To specify the workgroup, use one of these options: 
    + If you are using the Athena console, set the workgroup by [switching workgroups](#switching-workgroups)\.

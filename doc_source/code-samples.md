@@ -1,6 +1,6 @@
-# Code Samples<a name="code-samples"></a>
+# Code samples<a name="code-samples"></a>
 
-Use the examples in this topic as a starting point for writing Athena applications using the SDK for Java 2\.x\. For more information about running the Java code examples, see the [Amazon Athena Java Readme](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javav2/example_code/athena) on the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples) on GitHub\.
+Use the examples in this topic as a starting point for writing Athena applications using the SDK for Java 2\.x\. For more information about running the Java code examples, see the [Amazon Athena Java readme](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javav2/example_code/athena) on the [AWS code examples repository](https://github.com/awsdocs/aws-doc-sdk-examples) on GitHub\.
 +   
 **Java Code Examples**  
   +  [Constants](#constants) 
@@ -39,7 +39,7 @@ public class ExampleConstants {
 }
 ```
 
-## Create a Client to Access Athena<a name="create-a-client-to-access-athena"></a>
+## Create a client to access Athena<a name="create-a-client-to-access-athena"></a>
 
 The `AthenaClientFactory.java` class shows how to create and configure an Amazon Athena client\.
 
@@ -63,7 +63,7 @@ public class AthenaClientFactory {
 }
 ```
 
-## Start Query Execution<a name="start-query-execution"></a>
+## Start query execution<a name="start-query-execution"></a>
 
 The `StartQueryExample` shows how to submit a query to Athena, wait until the results become available, and then process the results\.
 
@@ -200,7 +200,7 @@ public class StartQueryExample {
 }
 ```
 
-## Stop Query Execution<a name="stop-query-execution"></a>
+## Stop query execution<a name="stop-query-execution"></a>
 
 The `StopQueryExecutionExample` runs an example query, immediately stops the query, and checks the status of the query to ensure that it was canceled\.
 
@@ -295,7 +295,7 @@ public class StopQueryExecutionExample {
 }
 ```
 
-## List Query Executions<a name="list-query-executions"></a>
+## List query executions<a name="list-query-executions"></a>
 
 The `ListQueryExecutionsExample` shows how to obtain a list of query execution IDs\.
 
@@ -347,7 +347,7 @@ public class ListQueryExecutionsExample {
 }
 ```
 
-## Create a Named Query<a name="create-a-named-query"></a>
+## Create a named query<a name="create-a-named-query"></a>
 
 The `CreateNamedQueryExample` shows how to create a named query\.
 
@@ -411,7 +411,7 @@ public class CreateNamedQueryExample {
 }
 ```
 
-## Delete a Named Query<a name="delete-a-named-query"></a>
+## Delete a named query<a name="delete-a-named-query"></a>
 
 The `DeleteNamedQueryExample` shows how to delete a named query by using the named query ID\.
 
@@ -494,7 +494,7 @@ public class DeleteNamedQueryExample {
    }
 ```
 
-## List Named Queries<a name="list-named-queries"></a>
+## List named queries<a name="list-named-queries"></a>
 
 The `ListNamedQueryExample` shows how to obtain a list of named query IDs\.
 

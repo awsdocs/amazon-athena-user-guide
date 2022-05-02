@@ -11,6 +11,6 @@ The new and improved [Amazon Athena](http://aws.amazon.com/athena/) console is n
 + Set preferences for displaying query results, query history, line wrapping, and more\.
 + Increase your productivity with new and improved keyboard shortcuts and embedded product documentation\.
 
-With today’s announcement, the [redesigned console](https://console.aws.amazon.com/athena/home) is now the default\. To tell us about your experience, choose **Feedback** in the bottom\-left corner of the console\.
+With today's announcement, the [redesigned console](https://console.aws.amazon.com/athena/home) is now the default\. To tell us about your experience, choose **Feedback** in the bottom\-left corner of the console\.
 
 If desired, you may use the earlier console by logging into your AWS account, choosing Amazon Athena, and deselecting **New Athena experience** from the navigation panel on the left\.

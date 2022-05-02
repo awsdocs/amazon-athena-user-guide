@@ -1,4 +1,4 @@
-# Using Athena to Query Data Registered With AWS Lake Formation<a name="security-athena-lake-formation"></a>
+# Using Athena to query data registered with AWS Lake Formation<a name="security-athena-lake-formation"></a>
 
 [AWS Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html) allows you to define and enforce database, table, and column\-level access policies when using Athena queries to read data stored in Amazon S3\. Lake Formation provides an authorization and governance layer on data stored in Amazon S3\. You can use a hierarchy of permissions in Lake Formation to grant or revoke permissions to read data catalog objects such as databases, tables, and columns\. Lake Formation simplifies the management of permissions and allows you to implement fine\-grained access control \(FGAC\) for your data\.
 
@@ -11,8 +11,8 @@ Lake Formation permissions do not apply when writing objects to Amazon S3, nor d
 For more information about Lake Formation, see [Lake Formation FAQs](https://aws.amazon.com/lake-formation/faqs/) and the [AWS Lake Formation Developer Guide](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html)\.
 
 **Topics**
-+ [How Lake Formation Data Access Works](lf-athena-access.md)
-+ [Considerations and Limitations](lf-athena-limitations.md)
-+ [Managing User Permissions](lf-athena-user-permissions.md)
-+ [Applying Lake Formation Permissions to Existing Databases and Tables](lf-athena-removing-permissions.md)
-+ [Using Lake Formation and JDBC or ODBC for Federated Access](security-athena-lake-formation-jdbc.md)
++ [How Lake Formation data access works](lf-athena-access.md)
++ [Considerations and limitations](lf-athena-limitations.md)
++ [Managing user permissions](lf-athena-user-permissions.md)
++ [Applying Lake Formation permissions to existing databases and tables](lf-athena-removing-permissions.md)
++ [Using Lake Formation and JDBC or ODBC for federated access](security-athena-lake-formation-jdbc.md)

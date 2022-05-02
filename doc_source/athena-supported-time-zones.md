@@ -1,4 +1,4 @@
-# Supported Time Zones<a name="athena-supported-time-zones"></a>
+# Supported time zones<a name="athena-supported-time-zones"></a>
 
 You can use the [AT TIME ZONE](https://prestodb.io/docs/0.217/functions/datetime.html#time-zone-conversion) operator in a `SELECT timestamp` statement to specify the timezone for the timestamp that is returned, as in the following example:
 

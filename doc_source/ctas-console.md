@@ -1,4 +1,4 @@
-# Running CTAS Queries in the Console<a name="ctas-console"></a>
+# Running CTAS queries in the console<a name="ctas-console"></a>
 
 In the Athena console, you can: 
 + [Create a CTAS query from another query](#ctas-create-from-query)
@@ -20,7 +20,7 @@ In the Athena console, you can:
 
    1. For **Dataset**, specify an empty location in Amazon S3 where the data will be output\. If data already exists in the location that you specify, the query fails with an error\.
 
-   1. For **Data format**, select from the list of supported formats\. For information about the Parquet and ORC formats, see [Columnar Storage Formats](columnar-storage.md)\.
+   1. For **Data format**, select from the list of supported formats\. For information about the Parquet and ORC formats, see [Columnar storage formats](columnar-storage.md)\.
 
    1. For **Preview table query**, review your query and revise it as needed\. For query syntax, see [CREATE TABLE AS](create-table-as.md)\.
 
@@ -36,5 +36,5 @@ Use the `CREATE TABLE AS SELECT` template to create a CTAS query in the query ed
 
 1. Choose **Run**\.
 
-For examples, see [Examples of CTAS Queries](ctas-examples.md)\.
+For examples, see [Examples of CTAS queries](ctas-examples.md)\.
 

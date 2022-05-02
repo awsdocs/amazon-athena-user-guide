@@ -1,15 +1,15 @@
-# Monitoring Athena Queries with CloudWatch Events<a name="athena-cloudwatch-events"></a>
+# Monitoring Athena queries with CloudWatch events<a name="athena-cloudwatch-events"></a>
 
 You can use Amazon Athena with Amazon CloudWatch to receive real\-time notifications regarding the state of your queries\. When a query you have submitted transitions states, Athena publishes an event to CloudWatch Events containing information about that query state transition\. You can write simple rules for events that are of interest to you and take automated actions when an event matches a rule\. For example, you can create a rule that invokes an AWS Lambda function when a query reaches a terminal state\. Events are emitted on a best effort basis\.
 
 Before you create event rules for Athena, you should do the following:
-+ Familiarize yourself with events, rules, and targets in CloudWatch Events\. For more information, see [What Is Amazon CloudWatch Events?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) For more information about how to set up rules, see [Getting Started with CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CWE_GettingStarted.html)\.
++ Familiarize yourself with events, rules, and targets in CloudWatch Events\. For more information, see [What is Amazon CloudWatch events?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) For more information about how to set up rules, see [Getting started with CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CWE_GettingStarted.html)\.
 + Create the target or targets to use in your event rules\.
 
 **Note**  
 Athena currently offers one type of event, Athena Query State Change, but may add other event types and details\. If you are programmatically deserializing event JSON data, make sure that your application is prepared to handle unknown properties if additional properties are added\.
 
-## Athena Event Format<a name="athena-cloudwatch-events-pattern"></a>
+## Athena event format<a name="athena-cloudwatch-events-pattern"></a>
 
 The following is the basic pattern for an Amazon Athena event\.
 
@@ -29,7 +29,7 @@ The following is the basic pattern for an Amazon Athena event\.
 }
 ```
 
-## Athena Query State Change Event<a name="athena-cloudwatch-events-athena-query-state-change"></a>
+## Athena query state change event<a name="athena-cloudwatch-events-athena-query-state-change"></a>
 
 The following is the format of an Athena Query State Change event\.
 
@@ -57,7 +57,7 @@ The following is the format of an Athena Query State Change event\.
 }
 ```
 
-### Output Properties<a name="athena-cloudwatch-events-query-state-change-output-properties"></a>
+### Output properties<a name="athena-cloudwatch-events-query-state-change-output-properties"></a>
 
 The JSON output includes the following properties\.
 

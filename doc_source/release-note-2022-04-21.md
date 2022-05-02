@@ -19,4 +19,4 @@ For a complete list of data sources supported by Athena, see [Athena Data Source
 
 To make it easier to browse the available sources and connect to your data, you can now search, sort, and filter the available connectors from an updated **Data Sources** screen in the Athena console\.
 
-To learn about querying federated sources, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Writing Federated Queries](writing-federated-queries.md)\.
+To learn about querying federated sources, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Writing federated queries](writing-federated-queries.md)\.

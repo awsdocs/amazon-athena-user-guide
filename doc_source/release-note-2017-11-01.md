@@ -2,4 +2,4 @@
 
 Published on *2017\-11\-01*
 
-Added support for querying geospatial data, and for Asia Pacific \(Seoul\), Asia Pacific \(Mumbai\), and EU \(London\) regions\. For information, see [Querying Geospatial Data](querying-geospatial-data.md) and [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.
+Added support for querying geospatial data, and for Asia Pacific \(Seoul\), Asia Pacific \(Mumbai\), and EU \(London\) regions\. For information, see [Querying geospatial data](querying-geospatial-data.md) and [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#athena)\.

@@ -1,8 +1,8 @@
-# Using a Default Data Source Name in External Hive Metastore Queries<a name="datastores-hive-default-catalog"></a>
+# Using a default data source name in external Hive metastore queries<a name="datastores-hive-default-catalog"></a>
 
 When you run DML and DDL queries on external Hive metastores, you can simplify your query syntax by omitting the catalog name if that name is selected in the query editor\. Certain restrictions apply to this functionality\.
 
-## DML Statements<a name="datastores-hive-default-catalog-dml-statements"></a>
+## DML statements<a name="datastores-hive-default-catalog-dml-statements"></a>
 
 **To run queries with registered catalogs**
 
@@ -31,7 +31,7 @@ When you run DML and DDL queries on external Hive metastores, you can simplify y
    ...
    ```
 
-## DDL Statements<a name="datastores-hive-default-catalog-ddl-statements"></a>
+## DDL statements<a name="datastores-hive-default-catalog-ddl-statements"></a>
 
 The following Athena DDL statements support catalog name prefixes\. Catalog name prefixes in other DDL statements cause syntax errors\.
 
@@ -55,12 +55,12 @@ In the following image, the `hms-catalog-1` data source and the `hms_tpch` datab
 
 ![\[A DDL statement using the default catalog.\]](http://docs.aws.amazon.com/athena/latest/ug/images/datastores-hive-default-catalog-4.png)
 
-## Specifying a Default Data Source in a JDBC Connection String<a name="datastores-hive-default-catalog-jdbc"></a>
+## Specifying a default data source in a JDBC connection string<a name="datastores-hive-default-catalog-jdbc"></a>
 
-When you use the Athena JDBC Driver to connect Athena to an external Hive metastore, you can use the `Catalog` parameter to specify the default data source name in your connection string in a SQL editor like [SQL Workbench](https://www.sql-workbench.eu/index.html)\.
+When you use the Athena JDBC Driver to connect Athena to an external Hive metastore, you can use the `Catalog` parameter to specify the default data source name in your connection string in a SQL editor like [SQL workbench](https://www.sql-workbench.eu/index.html)\.
 
 **Note**  
-To download the latest Athena JDBC drivers, see [Using Athena with the JDBC Driver](https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html)\.
+To download the latest Athena JDBC drivers, see [Using Athena with the JDBC driver](https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html)\.
 
 The following connection string specifies the default data source *hms\-catalog\-name*\.
 

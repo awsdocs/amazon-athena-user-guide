@@ -1,4 +1,4 @@
-# Workgroup Settings Override Client\-Side Settings<a name="workgroups-settings-override"></a>
+# Workgroup settings override client\-side settings<a name="workgroups-settings-override"></a>
 
 The **Create workgroup** and **Edit workgroup** dialogs have a field titled **Override client\-side settings**\. This field is unselected by default\. Depending on whether you select it, Athena does the following:
 + If **Override client\-side settings** is not selected, workgroup settings are not enforced\. In this case, for all queries that run in this workgroup, Athena uses the client\-side settings for query results location, expected bucket owner, encryption, and control of objects written to the query results bucket\. Each user can specify client\-side settings in the **Settings** menu on the console\. If the client\-side settings are not used, the workgroup\-wide settings apply, but are not enforced\. Also, if you run queries in this workgroup through the API operations, the command line interface, or the JDBC and ODBC drivers, and specify your query results location and encryption there, your queries continue using those settings\.

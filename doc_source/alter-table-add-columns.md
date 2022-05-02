@@ -17,7 +17,7 @@ ALTER TABLE table_name
 **PARTITION \(partition\_col\_name = partition\_col\_value \[,\.\.\.\]\)**  
 Creates a partition with the column name/value combinations that you specify\. Enclose `partition_col_value` in quotation marks only if the data type of the column is a string\.
 
-**ADD COLUMNS \(col\_name data\_type \[,col\_name data\_type,…\]\)**  
+**ADD COLUMNS \(col\_name data\_type \[,col\_name data\_type,\.\.\.\]\)**  
 Adds columns after existing columns but before partition columns\.
 
 ## Examples<a name="examples"></a>

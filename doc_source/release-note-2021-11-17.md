@@ -6,4 +6,4 @@ Published on 2021\-11\-17
 
 When querying partitioned tables, Athena retrieves and filters the available table partitions to the subset relevant to your query\. As new data and partitions are added, more time is required to process the partitions and query runtime can increase\. To optimize partition processing and improve query performance on highly partitioned tables, Athena now supports [AWS Glue partition indexes](https://docs.aws.amazon.com/glue/latest/dg/partition-indexes.html)\.
 
-For more information, see [AWS Glue Partition Indexing and Filtering](glue-best-practices.md#glue-best-practices-partition-index)\.
+For more information, see [AWS Glue partition indexing and filtering](glue-best-practices.md#glue-best-practices-partition-index)\.

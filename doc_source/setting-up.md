@@ -1,4 +1,4 @@
-# Setting Up<a name="setting-up"></a>
+# Setting up<a name="setting-up"></a>
 
 If you've already signed up for Amazon Web Services, you can start using Amazon Athena immediately\. If you haven't signed up for AWS or need assistance getting started, be sure to complete the following tasks:
 
@@ -34,7 +34,7 @@ For steps, see [Creating an administrator IAM user and user group \(console\)](h
 
 After you have created an IAM user, you must attach some Athena managed policies to the user so that the user can access Athena\. There are two managed policies for Athena: `AmazonAthenaFullAccess` and `AWSQuicksightAthenaAccess`\. These policies grant permissions to Athena to query Amazon S3 and to write the results of your queries to a separate bucket on your behalf\. To see the contents of these policies for Athena, see [AWS managed policies for Amazon Athena](managed-policies.md)\. 
 
-For steps to attach the Athena managed policies, follow [Adding IAM Identity Permissions \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the *IAM User Guide* and add the `AmazonAthenaFullAccess` and `AWSQuicksightAthenaAccess` managed policies to the IAM administrator user that you created\.
+For steps to attach the Athena managed policies, follow [Adding IAM identity permissions \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the *IAM User Guide* and add the `AmazonAthenaFullAccess` and `AWSQuicksightAthenaAccess` managed policies to the IAM administrator user that you created\.
 
 **Note**  
 You may need additional permissions to access the underlying dataset in Amazon S3\. If you are not the account owner or otherwise have restricted access to a bucket, contact the bucket owner to grant access using a resource\-based bucket policy, or contact your account administrator to grant access using an identity\-based policy\. For more information, see [Amazon S3 Permissions](s3-permissions.md)\. If the dataset or Athena query results are encrypted, you may need additional permissions\. For more information, see [Configuring Encryption Options](encryption.md)\.

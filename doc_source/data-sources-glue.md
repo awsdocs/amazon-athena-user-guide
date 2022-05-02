@@ -1,10 +1,10 @@
-# Using AWS Glue to Connect to Data Sources in Amazon S3<a name="data-sources-glue"></a>
+# Using AWS Glue to connect to data sources in Amazon S3<a name="data-sources-glue"></a>
 
 Athena can connect to your data stored in Amazon S3 using the AWS Glue Data Catalog to store metadata such as table and column names\. After the connection is made, your databases, tables, and views appear in Athena's query editor\.
 
 To define schema information for AWS Glue to use, you can create an AWS Glue crawler to retrieve the information automatically, or you can manually add a table and enter the schema information\. 
 
-## Creating an AWS Glue Crawler<a name="data-sources-glue-crawler-setup"></a>
+## Creating an AWS Glue crawler<a name="data-sources-glue-crawler-setup"></a>
 
 You can create a crawler by starting in the Athena console and then using the AWS Glue console in an integrated way\. When you create the crawler, you specify a data location in Amazon S3 to crawl\.
 
@@ -19,7 +19,7 @@ You can create a crawler by starting in the Athena console and then using the AW
 **Note**  
 Athena does not recognize [exclude patterns](https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude) that you specify for an AWS Glue crawler\. For example, if you have an Amazon S3 bucket that contains both `.csv` and `.json` files and you exclude the `.json` files from the crawler, Athena queries both groups of files\. To avoid this, place the files that you want to exclude in a different location\.
 
-## Adding a Table Using a Form<a name="data-sources-glue-manual-table"></a>
+## Adding a table using a form<a name="data-sources-glue-manual-table"></a>
 
 The following procedure shows you how to use the Athena console to add a table using the **Create Table From S3 bucket data** form\.
 
@@ -41,7 +41,7 @@ The following procedure shows you how to use the Athena console to add a table u
 
 1. For **Column details**, specify a column name and the column data type\.
    + To add more columns one at a time, choose **Add a column**\.
-   + To quickly add more columns, choose **Bulk add columns**\. In the text box, enter a comma separated list of columns in the format *column\_name* *data\_type*, *column\_name* *data\_type*\[, …\], and then choose **Add**\.
+   + To quickly add more columns, choose **Bulk add columns**\. In the text box, enter a comma separated list of columns in the format *column\_name* *data\_type*, *column\_name* *data\_type*\[, \.\.\.\], and then choose **Add**\.
 
 1. \(Optional\) For **Partition details**, add one or more column names and data types\.
 

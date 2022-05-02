@@ -1,4 +1,4 @@
-# Querying Arrays with Complex Types and Nested Structures<a name="rows-and-structs"></a>
+# Querying arrays with complex types and nested structures<a name="rows-and-structs"></a>
 
 Your source data often contains arrays with complex data types and nested structures\. Examples in this section show how to change element's data type, locate elements within arrays, and find keywords using Athena queries\.
 +  [Creating a ROW](#creating-row) 
@@ -31,7 +31,7 @@ This query returns:
 +-------------------------+
 ```
 
-## Changing Field Names in Arrays Using `CAST`<a name="changing-row-arrays-with-cast"></a>
+## Changing field names in arrays using `CAST`<a name="changing-row-arrays-with-cast"></a>
 
 To change the field name in an array that contains `ROW` values, you can `CAST` the `ROW` declaration:
 
@@ -58,7 +58,7 @@ This query returns:
 **Note**  
 In the example above, you declare `name` as a `VARCHAR` because this is its type in Presto\. If you declare this `STRUCT` inside a `CREATE TABLE` statement, use `String` type because Hive defines this data type as `String`\.
 
-## Filtering Arrays Using the `.` Notation<a name="filtering-with-dot"></a>
+## Filtering arrays using the `.` notation<a name="filtering-with-dot"></a>
 
 In the following example, select the `accountId` field from the `userIdentity` column of a AWS CloudTrail logs table by using the dot `.` notation\. For more information, see [Querying AWS CloudTrail Logs](cloudtrail-logs.md)\.
 
@@ -104,7 +104,7 @@ It returns this result:
 +-----------------------------------------------------------------+
 ```
 
-## Filtering Arrays with Nested Values<a name="filtering-nested-with-dot"></a>
+## Filtering arrays with nested values<a name="filtering-nested-with-dot"></a>
 
 Large arrays often contain nested structures, and you need to be able to filter, or search, for values within them\.
 
@@ -153,7 +153,7 @@ This query selects the nested fields and returns this result:
 +------------------------+
 ```
 
-## Filtering Arrays Using `UNNEST`<a name="filtering-with-unnest"></a>
+## Filtering arrays using `UNNEST`<a name="filtering-with-unnest"></a>
 
 To filter an array that includes a nested structure by one of its child elements, issue a query with an `UNNEST` operator\. For more information about `UNNEST`, see [Flattening Nested Arrays](flattening-arrays.md)\.
 
@@ -188,7 +188,7 @@ It returns:
 +------------------------+
 ```
 
-## Finding Keywords in Arrays Using `regexp_like`<a name="filtering-with-regexp"></a>
+## Finding keywords in arrays using `regexp_like`<a name="filtering-with-regexp"></a>
 
 The following examples illustrate how to search a dataset for a keyword within an element inside an array, using the [regexp\_like](https://prestodb.io/docs/0.172/functions/regexp.html) function\. It takes as an input a regular expression pattern to evaluate, or a list of terms separated by a pipe \(\|\), evaluates the pattern, and determines if the specified string contains it\.
 

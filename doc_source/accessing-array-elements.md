@@ -1,4 +1,4 @@
-# Accessing Array Elements<a name="accessing-array-elements"></a>
+# Accessing array elements<a name="accessing-array-elements"></a>
 
 To access array elements, use the `[]` operator, with 1 specifying the first element, 2 specifying the second element, and so on, as in this example:
 

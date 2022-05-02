@@ -1,14 +1,14 @@
-# Querying Amazon Route 53 Resolver Query Logs<a name="querying-r53-resolver-logs"></a>
+# Querying Amazon Route 53 resolver query logs<a name="querying-r53-resolver-logs"></a>
 
 You can create Athena tables for your Amazon Route 53 Resolver query logs and query them from Athena\.
 
-Route 53 Resolver query logging is for logging of DNS queries made by resources within a VPC, on\-premises resources that use inbound resolver endpoints, queries that use an outbound Resolver endpoint for recursive DNS resolution, and queries that use Route 53 Resolver DNS firewall rules to block, allow, or monitor a domain list\. For more information about Resolver query logging, see [Resolver query logging](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-query-logs.html) in the *Amazon Route 53 Developer Guide*\. For information about each of the fields in the logs, see [Values that appear in Resolver query logs](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-query-logs-format.html) in the *Amazon Route 53 Developer Guide*\.
+Route 53 Resolver query logging is for logging of DNS queries made by resources within a VPC, on\-premises resources that use inbound resolver endpoints, queries that use an outbound Resolver endpoint for recursive DNS resolution, and queries that use Route 53 Resolver DNS firewall rules to block, allow, or monitor a domain list\. For more information about Resolver query logging, see [Resolver query logging](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-query-logs.html) in the *Amazon Route 53 Developer Guide*\. For information about each of the fields in the logs, see [Values that appear in resolver query logs](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-query-logs-format.html) in the *Amazon Route 53 Developer Guide*\.
 
-## Creating the Table for Resolver Query Logs<a name="querying-r53-resolver-logs-creating-the-table"></a>
+## Creating the table for resolver query logs<a name="querying-r53-resolver-logs-creating-the-table"></a>
 
 You can use the Query Editor in the Athena console to create and query a table for your Route 53 Resolver query logs\.
 
-**To create and query an Athena table for Route 53 Resolver query logs**
+**To create and query an Athena table for Route 53 resolver query logs**
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
@@ -57,11 +57,11 @@ The SerDe expects each JSON document to be on a single line of text with no line
    SELECT * FROM "r53_rlogs" LIMIT 10
    ```
 
-## Example Queries<a name="querying-r53-resolver-logs-example-queries"></a>
+## Example queries<a name="querying-r53-resolver-logs-example-queries"></a>
 
 The following examples show some queries that you can perform from Athena on your Resolver query logs\.
 
-### Example 1 \- Query logs in descending query\_timestamp order<a name="querying-r53-resolver-logs-example-1-query-logs-in-descending-query_timestamp-order"></a>
+### Example 1 \- query logs in descending query\_timestamp order<a name="querying-r53-resolver-logs-example-1-query-logs-in-descending-query_timestamp-order"></a>
 
 The following query displays log results in descending `query_timestamp` order\.
 
@@ -70,7 +70,7 @@ SELECT * FROM "r53_rlogs"
 ORDER BY query_timestamp DESC
 ```
 
-### Example 2 \- Query logs within specified start and end times<a name="querying-r53-resolver-logs-example-2-query-logs-within-specified-start-and-end-times"></a>
+### Example 2 \- query logs within specified start and end times<a name="querying-r53-resolver-logs-example-2-query-logs-within-specified-start-and-end-times"></a>
 
 The following query queries logs between midnight and 8am on September 24, 2020\. Substitute the start and end times according to your own requirements\.
 
@@ -83,7 +83,7 @@ WHERE (parse_datetime(query_timestamp,'yyyy-MM-dd''T''HH:mm:ss''Z')
 ORDER BY query_timestamp DESC
 ```
 
-### Example 3 \- Query logs based on a specified DNS query name pattern<a name="querying-r53-resolver-logs-example-3-query-logs-based-on-a-specified-dns-query-name-pattern"></a>
+### Example 3 \- query logs based on a specified DNS query name pattern<a name="querying-r53-resolver-logs-example-3-query-logs-based-on-a-specified-dns-query-name-pattern"></a>
 
 The following query selects records whose query name includes the string "example\.com"\.
 
@@ -94,7 +94,7 @@ WHERE query_name LIKE '%example.com%'
 ORDER BY query_timestamp DESC
 ```
 
-### Example 4 \- Query log requests with no answer<a name="querying-r53-resolver-logs-example-4-query-log-requests-with-no-answer"></a>
+### Example 4 \- query log requests with no answer<a name="querying-r53-resolver-logs-example-4-query-log-requests-with-no-answer"></a>
 
 The following query selects log entries in which the request received no answer\.
 
@@ -104,7 +104,7 @@ FROM "r53_rlogs"
 WHERE cardinality(answers) = 0
 ```
 
-### Example 5 \- Query logs with a specific answer<a name="querying-r53-resolver-logs-example-5-query-logs-with-a-specific-answer"></a>
+### Example 5 \- query logs with a specific answer<a name="querying-r53-resolver-logs-example-5-query-logs-with-a-specific-answer"></a>
 
 The following query shows logs in which the `answer.Rdata` value has the specified IP address\.
 

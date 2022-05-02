@@ -1,13 +1,13 @@
 # CREATE TABLE AS<a name="create-table-as"></a>
 
-Creates a new table populated with the results of a [SELECT](select.md) query\. To create an empty table, use [CREATE TABLE](create-table.md)\. For additional information about `CREATE TABLE AS` beyond the scope of this reference topic, see [Creating a Table from Query Results \(CTAS\)](ctas.md)\.
+Creates a new table populated with the results of a [SELECT](select.md) query\. To create an empty table, use [CREATE TABLE](create-table.md)\. For additional information about `CREATE TABLE AS` beyond the scope of this reference topic, see [Creating a table from query results \(CTAS\)](ctas.md)\.
 
 **Note**  
-For CTAS statements, the expected bucket owner setting does not apply to the destination table location in Amazon S3\. The expected bucket owner setting applies only to the Amazon S3 output location that you specify for Athena query results\. For more information, see [Specifying a Query Result Location Using the Athena Console](querying.md#query-results-specify-location-console)\.
+For CTAS statements, the expected bucket owner setting does not apply to the destination table location in Amazon S3\. The expected bucket owner setting applies only to the Amazon S3 output location that you specify for Athena query results\. For more information, see [Specifying a query result location using the Athena console](querying.md#query-results-specify-location-console)\.
 
 **Topics**
 + [Synopsis](#synopsis)
-+ [CTAS Table Properties](#ctas-table-properties)
++ [CTAS table properties](#ctas-table-properties)
 + [Examples](#ctas-table-examples)
 
 ## Synopsis<a name="synopsis"></a>
@@ -22,7 +22,7 @@ AS query
 Where:
 
 **WITH \( property\_name = expression \[, \.\.\.\] \)**  
-A list of optional CTAS table properties, some of which are specific to the data storage format\. See [CTAS Table Properties](#ctas-table-properties)\.
+A list of optional CTAS table properties, some of which are specific to the data storage format\. See [CTAS table properties](#ctas-table-properties)\.
 
 **query**  
 A [SELECT](select.md) query that is used to create a new table\.  
@@ -32,11 +32,11 @@ If you plan to create a query with partitions, specify the names of partitioned 
 If `WITH NO DATA` is used, a new empty table with the same schema as the original table is created\.
 
 **Note**  
-To include column headers in your query result output, you can use a simple `SELECT` query instead of a CTAS query\. You can retrieve the results from your query results location or download the results directly using the Athena console\. For more information, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\. 
+To include column headers in your query result output, you can use a simple `SELECT` query instead of a CTAS query\. You can retrieve the results from your query results location or download the results directly using the Athena console\. For more information, see [Working with query results, recent queries, and output files](querying.md)\. 
 
-## CTAS Table Properties<a name="ctas-table-properties"></a>
+## CTAS table properties<a name="ctas-table-properties"></a>
 
-Each CTAS table in Athena has a list of optional CTAS table properties that you specify using `WITH (property_name = expression [, ...] )`\. For information about using these parameters, see [Examples of CTAS Queries](ctas-examples.md)\.
+Each CTAS table in Athena has a list of optional CTAS table properties that you specify using `WITH (property_name = expression [, ...] )`\. For information about using these parameters, see [Examples of CTAS queries](ctas-examples.md)\.
 
 **`WITH (property_name = expression [, ...], )`**    
 `external_location = [location]`   
@@ -69,7 +69,7 @@ The number of buckets for bucketing your data\. If omitted, Athena does not buck
 The compression type to use for any storage format that allows compression to be specified\. The `compression_format` value specifies the compression to be used when the data is written to the table\. You can specify compression for the `TEXTFILE`, `JSON`, `PARQUET`, and `ORC` file formats\.   
 For example, if the `format` property specifies `PARQUET` as the storage format, the value for `write_compression` specifies the compression format for Parquet\. In this case, specifying a value for `write_compression` is equivalent to specifying a value for `parquet_compression`\.   
 Similarly, if the `format` property specifies `ORC` as the storage format, the value for `write_compression` specifies the compression format for ORC\. In this case, specifying a value for `write_compression` is equivalent to specifying a value for `orc_compression`\.   
-Multiple compression format table properties cannot be specified in the same CTAS query\. For example, you cannot specify both `write_compression` and `parquet_compression` in the same query\. The same applies for `write_compression` and `orc_compression`\. For information about the compression types that are supported for each file format, see [Athena Compression Support](compression-formats.md)\.  
+Multiple compression format table properties cannot be specified in the same CTAS query\. For example, you cannot specify both `write_compression` and `parquet_compression` in the same query\. The same applies for `write_compression` and `orc_compression`\. For information about the compression types that are supported for each file format, see [Athena compression support](compression-formats.md)\.  
 `orc_compression = [compression_format]`  
 The compression type to use for the `ORC` file format when `ORC` data is written to the table\. For example, `WITH (orc_compression = 'ZLIB')`\. Chunks within the `ORC` file \(except the `ORC` Postscript\) are compressed using the compression that you specify\. If omitted, ZLIB compression is used by default for `ORC`\.  
 For consistency, we recommend that you use the `write_compression` property instead of `orc_compression`\. Use the `format` property to specify the storage format as `ORC`, and then use the `write_compression` property to specify the compression format that `ORC` will use\.   
@@ -82,7 +82,7 @@ Optional and specific to text\-based data storage formats\. The single\-characte
 ## Examples<a name="ctas-table-examples"></a>
 
 For examples of CTAS queries, consult the following resources\.
-+ [Examples of CTAS Queries](ctas-examples.md)
-+ [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)
++ [Examples of CTAS queries](ctas-examples.md)
++ [Using CTAS and INSERT INTO for ETL and data analysis](ctas-insert-into-etl.md)
 + [Use CTAS statements with Amazon Athena to reduce cost and improve performance](http://aws.amazon.com/blogs/big-data/using-ctas-statements-with-amazon-athena-to-reduce-cost-and-improve-performance/)
-+ [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)
++ [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)

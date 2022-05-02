@@ -1,4 +1,4 @@
-# Table Location in Amazon S3<a name="tables-location-format"></a>
+# Table location in Amazon S3<a name="tables-location-format"></a>
 
 When you run a `CREATE TABLE` query in Athena, you register your table with the AWS Glue Data Catalog\. \(If you are using Athena's older internal catalog, we highly recommend that you [upgrade](glue-upgrade.md) to the AWS Glue Data Catalog\.\) 
 
@@ -13,8 +13,8 @@ STORED AS INPUTFORMAT ...
 OUTPUTFORMAT ...
 LOCATION s3://bucketname/folder/
 ```
-+ For information about naming buckets, see [Bucket Restrictions and Limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) in the *Amazon Simple Storage Service User Guide*\.
-+ For information about using folders in Amazon S3, see [Using Folders](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/using-folders.html) in the *Amazon Simple Storage Service User Guide\.* 
++ For information about naming buckets, see [Bucket restrictions and limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) in the *Amazon Simple Storage Service User Guide*\.
++ For information about using folders in Amazon S3, see [Using folders](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/using-folders.html) in the *Amazon Simple Storage Service User Guide\.* 
 
 The `LOCATION` in Amazon S3 specifies *all* of the files representing your table\. 
 
@@ -54,15 +54,15 @@ Do not use any of the following items for specifying the `LOCATION` for your dat
   https://<accesspointname>-<number>.s3-accesspoint.<region>.amazonaws.com
   ```
 
-## Table Location and Partitions<a name="table-location-and-partitions"></a>
+## Table location and partitions<a name="table-location-and-partitions"></a>
 
  Your source data may be grouped into Amazon S3 folders called *partitions* based on a set of columns\. For example, these columns may represent the year, month, and day the particular record was created\. 
 
 When you create a table, you can choose to make it partitioned\. When Athena runs a SQL query against a non\-partitioned table, it uses the `LOCATION` property from the table definition as the base path to list and then scan all available files\. However, before a partitioned table can be queried, you must update the AWS Glue Data Catalog with partition information\. This information represents the schema of files within the particular partition and the `LOCATION` of files in Amazon S3 for the partition\. 
-+ To learn how the AWS Glue crawler adds partitions, see [How Does a Crawler Determine When to Create Partitions? ](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html#crawler-s3-folder-table-partition) in the *AWS Glue Developer Guide*\. 
++ To learn how the AWS Glue crawler adds partitions, see [How does a crawler determine when to create partitions? ](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html#crawler-s3-folder-table-partition) in the *AWS Glue Developer Guide*\. 
 + To learn how to configure the crawler so that it creates tables for data in existing partitions, see [Using Multiple Data Sources with Crawlers](glue-best-practices.md#schema-crawlers-data-sources)\. 
 + You can also create partitions in a table directly in Athena\. For more information, see [Partitioning Data](partitions.md)\.
 
 When Athena runs a query on a partitioned table, it checks to see if any partitioned columns are used in the `WHERE` clause of the query\. If partitioned columns are used, Athena requests the AWS Glue Data Catalog to return the partition specification matching the specified partition columns\. The partition specification includes the `LOCATION` property that tells Athena which Amazon S3 prefix to use when reading data\. In this case, *only* data stored in this prefix is scanned\. If you do not use partitioned columns in the `WHERE` clause, Athena scans all the files that belong to the table's partitions\. 
 
-For examples of using partitioning with Athena to improve query performance and reduce query costs, see [Top Performance Tuning Tips for Amazon Athena](http://aws.amazon.com/blogs/big-data/top-10-performance-tuning-tips-for-amazon-athena/)\.
+For examples of using partitioning with Athena to improve query performance and reduce query costs, see [Top performance tuning tips for Amazon Athena](http://aws.amazon.com/blogs/big-data/top-10-performance-tuning-tips-for-amazon-athena/)\.

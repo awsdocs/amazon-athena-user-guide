@@ -6,30 +6,30 @@ Athena uses *data source connectors* that run on AWS Lambda to run federated que
 
 When a query is submitted against a data source, Athena invokes the corresponding connector to identify parts of the tables that need to be read, manages parallelism, and pushes down filter predicates\. Based on the user submitting the query, connectors can provide or restrict access to specific data elements\. Connectors use Apache Arrow as the format for returning data requested in a query, which enables connectors to be implemented in languages such as C, C\+\+, Java, Python, and Rust\. Since connectors are processed in Lambda, they can be used to access data from any data source on the cloud or on\-premises that is accessible from Lambda\.
 
-To write your own data source connector, you can use the Athena Query Federation SDK to customize one of the prebuilt connectors that Amazon Athena provides and maintains\. You can modify a copy of the source code from the [GitHub repository](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors) and then use the [Connector Publish Tool](https://github.com/awslabs/aws-athena-query-federation/wiki/Connector_Publish_Tool) to create your own AWS Serverless Application Repository package\. 
+To write your own data source connector, you can use the Athena Query Federation SDK to customize one of the prebuilt connectors that Amazon Athena provides and maintains\. You can modify a copy of the source code from the [GitHub repository](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors) and then use the [Connector publish tool](https://github.com/awslabs/aws-athena-query-federation/wiki/Connector_Publish_Tool) to create your own AWS Serverless Application Repository package\. 
 
 **Note**  
 Third party developers may have used the Athena Query Federation SDK to write data source connectors\. For support or licensing issues with these data source connectors, please work with your connector provider\. These connectors are not tested or supported by AWS\. 
 
-For a list of data source connectors written and tested by Athena, see [Using Athena Data Source Connectors](athena-prebuilt-data-connectors.md)\.
+For a list of data source connectors written and tested by Athena, see [Using Athena data source connectors](athena-prebuilt-data-connectors.md)\.
 
-For information about writing your own data source connector, see [Example Athena Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-example) on GitHub\.
+For information about writing your own data source connector, see [Example Athena connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-example) on GitHub\.
 
-## Considerations and Limitations<a name="connect-to-a-data-source-considerations"></a>
-+ **Engine versions** – Athena Federated Query is supported only on Athena engine version 2\. For information about Athena engine versions, see [Athena Engine Versioning](engine-versions.md)\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+## Considerations and limitations<a name="connect-to-a-data-source-considerations"></a>
++ **Engine versions** – Athena Federated Query is supported only on Athena engine version 2\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 + **Views** – You cannot use views with federated data sources\.
 + **Write operations** – Write operations like [INSERT INTO](insert-into.md) are not supported\. Attempting to do so may result in the error message This operation is currently not supported for external catalogs\.
 +  **Pricing** – For pricing information, see [Amazon Athena pricing](http://aws.amazon.com/athena/pricing/)\.
 
-  **JDBC driver** – To use the JDBC driver with federated queries or an [external Hive metastore](connect-to-data-source-hive.md), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. For information about the JDBC driver, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\. 
-+ **Secrets Manager** – To use the Athena Federated Query feature with AWS Secrets Manager, you must configure an Amazon VPC private endpoint for Secrets Manager\. For more information, see [Create a Secrets Manager VPC Private Endpoint](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html#vpc-endpoint-create) in the *AWS Secrets Manager User Guide*\.
+  **JDBC driver** – To use the JDBC driver with federated queries or an [external Hive metastore](connect-to-data-source-hive.md), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. For information about the JDBC driver, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\. 
++ **Secrets Manager** – To use the Athena Federated Query feature with AWS Secrets Manager, you must configure an Amazon VPC private endpoint for Secrets Manager\. For more information, see [Create a Secrets Manager VPC private endpoint](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html#vpc-endpoint-create) in the *AWS Secrets Manager User Guide*\.
 
-Data source connectors might require access to the following resources to function correctly\. If you use a prebuilt connector, check the information for the connector to ensure that you have configured your VPC correctly\. Also, ensure that IAM principals running queries and creating connectors have privileges to required actions\. For more information, see [Example IAM Permissions Policies to Allow Athena Federated Query](federated-query-iam-access.md)\.
+Data source connectors might require access to the following resources to function correctly\. If you use a prebuilt connector, check the information for the connector to ensure that you have configured your VPC correctly\. Also, ensure that IAM principals running queries and creating connectors have privileges to required actions\. For more information, see [Example IAM permissions policies to allow Athena Federated Query](federated-query-iam-access.md)\.
 + **Amazon S3** – In addition to writing query results to the Athena query results location in Amazon S3, data connectors also write to a spill bucket in Amazon S3\. Connectivity and permissions to this Amazon S3 location are required\.
 + **Athena** – Data sources need connectivity to Athena and vice versa for checking query status and preventing overscan\.
 + **AWS Glue Data Catalog** – Connectivity and permissions are required if your connector uses Data Catalog for supplemental or primary metadata\.
 
-For the most up\-to\-date information about known issues and limitations, see [Limitations and Issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the aws\-athena\-query\-federation GitHub repository\.
+For the most up\-to\-date information about known issues and limitations, see [Limitations and issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the aws\-athena\-query\-federation GitHub repository\.
 
 ## Videos<a name="connect-to-a-data-source-videos"></a>
 

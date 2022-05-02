@@ -18,4 +18,4 @@ Athena announces availability of JDBC driver version 2\.0\.24 for Athena\. This 
 
 As a convenience, this release includes downloads of the JDBC driver both with and without the AWS SDK\. This JDBC driver version allows you to have both the AWS\-SDK and the Athena JDBC driver embedded in project\.
 
-For more information and to download the new driver, release notes, and documentation, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.
+For more information and to download the new driver, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.

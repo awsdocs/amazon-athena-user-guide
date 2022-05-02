@@ -1,9 +1,9 @@
-# Geospatial Functions in Athena engine version 1<a name="geospatial-functions-list-v1"></a>
+# Geospatial functions in Athena engine version 1<a name="geospatial-functions-list-v1"></a>
 
 Geospatial functions in Athena have the following characteristics:
-+ The functions follow the general principles of [Spatial Query](https://en.wikipedia.org/wiki/Spatial_query)\.
++ The functions follow the general principles of [Spatial query](https://en.wikipedia.org/wiki/Spatial_query)\.
 + The functions are implemented as a Presto plugin that uses the ESRI Java Geometry Library\. This library has an Apache 2 license\.
-+ The functions rely on the [ESRI Geometry API](https://esri.github.io/geometry-api-java/javadoc/index.html?overview-summary.html)\.
++ The functions rely on the [ESRI geometry API](https://esri.github.io/geometry-api-java/javadoc/index.html?overview-summary.html)\.
 + Not all of the ESRI\-supported functions are available in Athena\. This topic lists only the ESRI geospatial functions that are supported in Athena engine version 1\.
 
 Athena supports four types of geospatial functions:
@@ -12,7 +12,7 @@ Athena supports four types of geospatial functions:
 +  [Operation Functions](#operations-functions-v1) 
 +  [Accessor Functions](#accessors-functions-v1) 
 
-## Constructor Functions<a name="constructors-functions-v1"></a>
+## Constructor functions<a name="constructors-functions-v1"></a>
 
 Use constructor functions to obtain binary representations of `point`, `line`, or `polygon` geometry data types\. You can also use these functions to convert binary data to text, and obtain binary values for geometry data that is expressed as Well\-Known Text \(WKT\)\. 
 
@@ -98,7 +98,7 @@ Using the sequence of the ordinates provided clockwise, left to right, returns a
 SELECT ST_POLYGON('polygon ((1 1, 1 4, 4 4, 4 1))') 
 ```
 
-## Geospatial Relationship Functions<a name="geospatial-relationships-functions-v1"></a>
+## Geospatial relationship functions<a name="geospatial-relationships-functions-v1"></a>
 
 The following functions express relationships between two different geometries that you specify as input and return results of type `boolean`\. The order in which you specify the pair of geometries matters: the first geometry value is called the left geometry, the second geometry value is called the right geometry\. In Athena engine version 1, geospatial relationship function inputs are representations of geometries in `varchar` or `varbinary` format\.
 
@@ -190,7 +190,7 @@ Example:
 SELECT ST_WITHIN(ST_POINT(8, 8), ST_POLYGON('polygon((1  1, 1  4, 4  4, 4 1))'))
 ```
 
-## Operation Functions<a name="operations-functions-v1"></a>
+## Operation functions<a name="operations-functions-v1"></a>
 
 Use operation functions to perform operations on geometry data type values\. For example, you can obtain the boundaries of a single geometry data type; intersections between two geometry data types; difference between left and right geometries, where each is of the same geometry data type; or an exterior buffer or ring around a particular geometry data type\.
 
@@ -280,7 +280,7 @@ Returns a binary representation of the geometrically symmetric difference betwee
 SELECT ST_GEOMETRY_TO_TEXT(ST_SYMMETRIC_DIFFERENCE(ST_LINE('linestring(0 2, 2 2)'), ST_LINE('linestring(1 2, 3 2)')))
 ```
 
-## Accessor Functions<a name="accessors-functions-v1"></a>
+## Accessor functions<a name="accessors-functions-v1"></a>
 
 Accessor functions are useful to obtain values in types `varchar`, `bigint`, or `double` from different `geometry` data types, where `geometry` is any of the geometry data types supported in Athena: `point`, `line`, `polygon`, `multiline`, and `multipolygon`\. For example, you can obtain an area of a `polygon` geometry data type, maximum and minimum X and Y values for a specified geometry data type, obtain the length of a `line`, or receive the number of points in a specified geometry data type\.
 

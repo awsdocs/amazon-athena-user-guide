@@ -1,4 +1,4 @@
-# Connecting to Data Sources<a name="work-with-data-stores"></a>
+# Connecting to data sources<a name="work-with-data-stores"></a>
 
 You can use Amazon Athena to query data stored in different locations and formats in a *dataset*\. This dataset might be in CSV, JSON, Avro, Parquet, or some other format\.
 
@@ -12,6 +12,6 @@ Athena natively supports the AWS Glue Data Catalog\. The AWS Glue Data Catalog i
 + [Integration with AWS Glue](glue-athena.md)
 + [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)
 + [Using Amazon Athena Federated Query](connect-to-a-data-source.md)
-+ [IAM Policies for Accessing Data Catalogs](datacatalogs-iam-policy.md)
-+ [Managing Data Sources](data-sources-managing.md)
-+ [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena-bi-tools-jdbc-odbc.md)
++ [IAM policies for accessing data catalogs](datacatalogs-iam-policy.md)
++ [Managing data sources](data-sources-managing.md)
++ [Connecting to Amazon Athena with ODBC and JDBC drivers](athena-bi-tools-jdbc-odbc.md)

@@ -1,4 +1,4 @@
-# Converting Array Data Types<a name="converting-array-data-types"></a>
+# Converting array data types<a name="converting-array-data-types"></a>
 
 To convert data in arrays to supported data types, use the `CAST` operator, as `CAST(value AS type)`\. Athena supports all of the native Presto data types\.
 

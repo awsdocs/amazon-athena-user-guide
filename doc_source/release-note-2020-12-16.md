@@ -12,4 +12,4 @@ For more information, see [Athena engine version 2](engine-versions-reference.md
 
 ## AWS PrivateLink<a name="release-note-2020-12-16-privatelink"></a>
 
-AWS PrivateLink for Athena is now supported in the Europe \(Stockholm\) Region\. For information about AWS PrivateLink for Athena, see [Connect to Amazon Athena Using an Interface VPC Endpoint](interface-vpc-endpoint.md)\.
+AWS PrivateLink for Athena is now supported in the Europe \(Stockholm\) Region\. For information about AWS PrivateLink for Athena, see [Connect to Amazon Athena using an interface VPC endpoint](interface-vpc-endpoint.md)\.

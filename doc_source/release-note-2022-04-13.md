@@ -9,8 +9,8 @@ Athena releases JDBC driver version 2\.0\.28\. The JDBC 2\.0\.28 driver includes
   + Log4j\-core 2\.17\.1 \(previously 2\.17\.0\) 
   + Log4j\-jcl 2\.17\.2
 + **Other improvements** – The new driver also includes the following improvements and bug fixes:
-  + The Athena prepared statements feature is now available through JDBC\. For information about prepared statements, see [Querying with Prepared Statements](querying-with-prepared-statements.md)\.
+  + The Athena prepared statements feature is now available through JDBC\. For information about prepared statements, see [Querying with prepared statements](querying-with-prepared-statements.md)\.
   + Athena JDBC SAML federation is now functional for the China Regions\.
   + Additional minor improvements\.
 
-For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.
+For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.

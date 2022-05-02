@@ -5,7 +5,7 @@ Creates a new view from a specified `SELECT` query\. The view is a logical table
 
 
 **Note**  
-This topic provides summary information for reference\. For more detailed information about using views in Athena, see [Working with Views](views.md)\.
+This topic provides summary information for reference\. For more detailed information about using views in Athena, see [Working with views](views.md)\.
 
 ## Synopsis<a name="synopsis"></a>
 
@@ -13,7 +13,7 @@ This topic provides summary information for reference\. For more detailed inform
 CREATE [ OR REPLACE ] VIEW view_name AS query
 ```
 
-The optional `OR REPLACE` clause lets you update the existing view by replacing it\. For more information, see [Creating Views](views.md#creating-views)\.
+The optional `OR REPLACE` clause lets you update the existing view by replacing it\. For more information, see [Creating views](views.md#creating-views)\.
 
 ## Examples<a name="examples"></a>
 

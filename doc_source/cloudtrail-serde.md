@@ -10,11 +10,11 @@ In addition to using the CloudTrail SerDe, instances exist where you need to use
 +  `additionalEventData` 
 +  `serviceEventDetails` 
 
-## SerDe Name<a name="serde-name"></a>
+## SerDe name<a name="serde-name"></a>
 
  `CloudTrail SerDe` 
 
-## Library Name<a name="library-name"></a>
+## Library name<a name="library-name"></a>
 
  `com.amazon.emr.hive.serde.CloudTrailSerde` 
 

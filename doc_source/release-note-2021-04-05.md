@@ -6,7 +6,7 @@ Published on 2021\-04\-05
 
 You can now use the `EXPLAIN` statement in Athena to view the execution plan for your SQL queries\.
 
-For more information, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN Statement Results](athena-explain-statement-understanding.md)\.
+For more information, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md) and [Understanding Athena EXPLAIN statement results](athena-explain-statement-understanding.md)\.
 
 ## SageMaker Machine Learning Models in SQL Queries<a name="release-note-2021-04-05-machine-learning"></a>
 
@@ -18,4 +18,4 @@ For more information, see [Using Machine Learning \(ML\) with Amazon Athena](que
 
 User defined functions \(UDFs\) are now generally available for Athena\. Use UDFs to leverage custom functions that process records or groups of records in a single SQL query\.
 
-For more information, see [Querying with User Defined Functions](querying-udf.md)\.
+For more information, see [Querying with user defined functions](querying-udf.md)\.

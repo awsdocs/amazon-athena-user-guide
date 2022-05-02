@@ -1,4 +1,4 @@
-# Getting Started<a name="getting-started"></a>
+# Getting started<a name="getting-started"></a>
 
 This tutorial walks you through using Amazon Athena to query data\. You'll create a table based on sample data stored in Amazon Simple Storage Service, query the table, and check the results of the query\.
 
@@ -8,7 +8,7 @@ The tutorial uses live resources, so you are charged for the queries that you ru
 + If you have not already done so, sign up for an account in [Setting Up](setting-up.md)\.
 + Using the same AWS Region \(for example, US West \(Oregon\)\) and account that you are using for Athena, [Create a bucket in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) to hold your Athena query results\.
 
-## Step 1: Create a Database<a name="step-1-create-a-database"></a>
+## Step 1: Create a database<a name="step-1-create-a-database"></a>
 
 You first need to create a database in Athena\.
 
@@ -48,7 +48,7 @@ You first need to create a database in Athena\.
 1. From the **Database** list on the left, choose `mydatabase` to make it your current database\.  
 ![\[Choose the database that you created.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-database.png)
 
-## Step 2: Create a Table<a name="step-2-create-a-table"></a>
+## Step 2: Create a table<a name="step-2-create-a-table"></a>
 
 Now that you have a database, you can create an Athena table for it\. The table that you create will be based on sample Amazon CloudFront log data in the location `s3://athena-examples-myregion/cloudfront/plaintext/`, where *myregion* is your current AWS Region\.
 
@@ -100,7 +100,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
   WITH SERDEPROPERTIES ("input.regex" = "regular_expression")
 ```
 
-Regular expressions can be useful for creating tables from complex CSV or TSV data but can be difficult to write and maintain\. Fortunately, there are other libraries that you can use for formats like JSON, Parquet, and ORC\. For more information, see [Supported SerDes and Data Formats](supported-serdes.md)\.
+Regular expressions can be useful for creating tables from complex CSV or TSV data but can be difficult to write and maintain\. Fortunately, there are other libraries that you can use for formats like JSON, Parquet, and ORC\. For more information, see [Supported SerDes and data formats](supported-serdes.md)\.
 
 Now you are ready to create the table in the Athena query editor\. The `CREATE TABLE` statement and regex are provided for you\.
 
@@ -147,9 +147,9 @@ Now you are ready to create the table in the Athena query editor\. The `CREATE T
 
    The table `cloudfront_logs` is created and appears under the list of **Tables** for the `mydatabase` database\.
 
-## Step 3: Query Data<a name="step-3-query-data"></a>
+## Step 3: Query data<a name="step-3-query-data"></a>
 
-Now that you have the `cloudfront_logs` table created in Athena based on the data in Amazon S3, you can run SQL queries on the table and see the results in Athena\. For more information about using SQL in Athena, see [SQL Reference for Amazon Athena](ddl-sql-reference.md)\.
+Now that you have the `cloudfront_logs` table created in Athena based on the data in Amazon S3, you can run SQL queries on the table and see the results in Athena\. For more information about using SQL in Athena, see [SQL reference for Amazon Athena](ddl-sql-reference.md)\.
 
 **To run a query**
 
@@ -176,12 +176,12 @@ Now that you have the `cloudfront_logs` table created in Athena based on the dat
 1. To download the results of a previous query from the **Recent queries** tab, select the query, and then choose **Download results**\. Queries are retained for 45 days\.  
 ![\[Viewing and downloading recent queries in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-recent-queries-tab-download.png)
 
-   For more information, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\.
+   For more information, see [Working with query results, recent queries, and output files](querying.md)\.
 
-## Saving Your Queries<a name="getting-started-saved-queries-tab"></a>
+## Saving your queries<a name="getting-started-saved-queries-tab"></a>
 
 You can save the queries that you create or edit in the query editor with a name\. Athena stores these queries on the **Saved queries** tab\. You can use the **Saved queries** tab to recall, run, rename, or delete your saved queries\. For more information, see [Using saved queries](saved-queries.md)\.
 
-## Connecting to Other Data Sources<a name="getting-started-other-data-sources"></a>
+## Connecting to other data sources<a name="getting-started-other-data-sources"></a>
 
-This tutorial used a data source in Amazon S3 in CSV format\. For information about using Athena with AWS Glue, see [Using AWS Glue to Connect to Data Sources in Amazon S3](data-sources-glue.md)\. You can also connect Athena to a variety of data sources by using ODBC and JDBC drivers, external Hive metastores, and Athena data source connectors\. For more information, see [Connecting to Data Sources](work-with-data-stores.md)\.
+This tutorial used a data source in Amazon S3 in CSV format\. For information about using Athena with AWS Glue, see [Using AWS Glue to connect to data sources in Amazon S3](data-sources-glue.md)\. You can also connect Athena to a variety of data sources by using ODBC and JDBC drivers, external Hive metastores, and Athena data source connectors\. For more information, see [Connecting to data sources](work-with-data-stores.md)\.

@@ -1,6 +1,6 @@
-# Querying Iceberg Table Data and Performing Time Travel<a name="querying-iceberg-table-data"></a>
+# Querying Iceberg table data and performing time travel<a name="querying-iceberg-table-data"></a>
 
-To query an iceberg dataset, use a standard `SELECT` statement like the following\. Queries follow the Apache Iceberg [format v2 spec](https://iceberg.apache.org/spec/#format-versioning) and perform merge\-on\-read of both position and equality deletes\.
+To query an Iceberg dataset, use a standard `SELECT` statement like the following\. Queries follow the Apache Iceberg [format v2 spec](https://iceberg.apache.org/spec/#format-versioning) and perform merge\-on\-read of both position and equality deletes\.
 
 ```
 SELECT * FROM [db_name.]table_name [WHERE predicate]
@@ -8,13 +8,13 @@ SELECT * FROM [db_name.]table_name [WHERE predicate]
 
 To optimize query times, all predicates are pushed down to where the data lives\.
 
-## Time Travel and Version Travel Queries<a name="querying-iceberg-time-travel-and-version-travel-queries"></a>
+## Time travel and version travel queries<a name="querying-iceberg-time-travel-and-version-travel-queries"></a>
 
 Each Apache Iceberg table maintains a versioned manifest of the Amazon S3 objects that it contains\. Previous versions of the manifest can be used for time travel and version travel queries\.
 
 Time travel queries in Athena query Amazon S3 for historical data from a consistent snapshot as of a specified date and time\. Version travel queries in Athena query Amazon S3 for historical data as of a specified snapshot ID\.
 
-### Time Travel Queries<a name="querying-iceberg-time-travel-queries"></a>
+### Time travel queries<a name="querying-iceberg-time-travel-queries"></a>
 
 To run a time travel query, use `FOR SYSTEM_TIME AS OF timestamp` after the table name in the `SELECT` statement, as in the following example\.
 
@@ -34,7 +34,7 @@ SELECT * FROM iceberg_table FOR SYSTEM_TIME AS OF TIMESTAMP '2020-01-01 10:00:00
 SELECT * FROM iceberg_table FOR SYSTEM_TIME AS OF (current_timestamp – interval '1' day)
 ```
 
-### Version Travel Queries<a name="querying-iceberg-version-travel-queries"></a>
+### Version travel queries<a name="querying-iceberg-version-travel-queries"></a>
 
 To execute a version travel query \(that is, view a consistent snapshot as of a specified version\), use `FOR SYSTEM_VERSION AS OF version` after the table name in the `SELECT` statement, as in the following example\.
 
@@ -50,7 +50,7 @@ The following example version travel query selects data for the specified versio
 SELECT * FROM iceberg_table FOR SYSTEM_VERSION AS OF 949530903748831860
 ```
 
-#### Retrieving the Snapshot ID<a name="querying-iceberg-table-snapshot-id"></a>
+#### Retrieving the snapshot ID<a name="querying-iceberg-table-snapshot-id"></a>
 
 You can use the SDKs provided by Iceberg in [Java](https://iceberg.apache.org/docs/latest/java-api-quickstart/) and [Python](https://iceberg.apache.org/docs/latest/python-quickstart/) to retrieve the Iceberg snapshot ID\. The following example is in Java\.
 
@@ -77,7 +77,7 @@ Table table = catalog.loadTable(name);
 long oldestSnapshotIdAfter2022 = SnapshotUtil.oldestAncestorAfter(table, millis);
 ```
 
-### Combining Time and Version Travel<a name="querying-iceberg-combining-time-and-version-travel"></a>
+### Combining time and version travel<a name="querying-iceberg-combining-time-and-version-travel"></a>
 
 You can use time travel and version travel syntax in the same query to specify different timing and versioning conditions, as in the following example\.
 

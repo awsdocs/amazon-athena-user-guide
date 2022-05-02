@@ -8,7 +8,7 @@ Amazon Athena adds support for querying compacted Hudi datasets and adds the AWS
 
 Apache Hudi is an open\-source data management framework that simplifies incremental data processing\. Amazon Athena now supports querying the read\-optimized view of an Apache Hudi dataset in your Amazon S3\-based data lake\.
 
-For more information, see [Using Athena to Query Apache Hudi Datasets](querying-hudi.md)\.
+For more information, see [Using Athena to query Apache Hudi datasets](querying-hudi.md)\.
 
 ## AWS CloudFormation Data Catalog Resource<a name="release-note-2020-07-09-data-catalog-cft"></a>
 

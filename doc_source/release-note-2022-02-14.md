@@ -6,4 +6,4 @@ This release adds the `ErrorType` subfield to the [AthenaError](https://docs.aws
 
 While the existing `ErrorCategory` field indicates the general source of a failed query \(system, user, or other\), the new `ErrorType` field provides more granular information about the error that occurred\. Combine the information from both fields to gain insight into the causes of query failure\. 
 
-For more information, see [Athena Error Catalog](error-reference.md)\.
+For more information, see [Athena error catalog](error-reference.md)\.

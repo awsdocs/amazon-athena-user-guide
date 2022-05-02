@@ -1,4 +1,4 @@
-# Managing Data Sources<a name="data-sources-managing"></a>
+# Managing data sources<a name="data-sources-managing"></a>
 
 You can use the **Data Sources** page of the Athena console to manage the data sources that you create\.
 
@@ -19,7 +19,7 @@ You can use the **Data Sources** page of the Athena console to manage the data s
    + Select the button next to the catalog name, and then choose **Actions**, **Edit**\. 
    + Choose the name of the data source\. Then on the details page, choose **Actions**, **Edit**\.
 
-1. On the **Edit** page, you can choose a different Lambda function for the data source, change the description, or add custom tags\. For more information about tags, see [Tagging Athena Resources](tags.md)\.
+1. On the **Edit** page, you can choose a different Lambda function for the data source, change the description, or add custom tags\. For more information about tags, see [Tagging Athena resources](tags.md)\.
 
 1. Choose **Save**\.
 
@@ -27,8 +27,8 @@ You can use the **Data Sources** page of the Athena console to manage the data s
 
 **To share a data source**  
 For information about sharing data sources, visit the following links\.
-+ For non\-Hive Lambda\-based data sources, see [Enabling Cross\-Account Federated Queries](xacct-fed-query-enable.md)\.
-+ For AWS Glue Data Catalogs, see [Cross\-Account Access to AWS Glue Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
++ For non\-Hive Lambda\-based data sources, see [Enabling cross\-account federated queries](xacct-fed-query-enable.md)\.
++ For AWS Glue Data Catalogs, see [Cross\-account access to AWS Glue data catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 
 **To delete a data source**
 

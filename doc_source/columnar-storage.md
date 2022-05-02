@@ -1,6 +1,6 @@
-# Columnar Storage Formats<a name="columnar-storage"></a>
+# Columnar storage formats<a name="columnar-storage"></a>
 
-[Apache Parquet](https://parquet.apache.org) and [ORC](https://orc.apache.org/) are columnar storage formats that are optimized for fast retrieval of data and used in AWS analytical applications\.
+[Apache parquet](https://parquet.apache.org) and [ORC](https://orc.apache.org/) are columnar storage formats that are optimized for fast retrieval of data and used in AWS analytical applications\.
 
 Columnar storage formats have the following characteristics that make them suitable for using with Athena: 
 + *Compression by column, with compression algorithm selected for the column data type* to save storage space in Amazon S3 and reduce disk space and I/O during query processing\.

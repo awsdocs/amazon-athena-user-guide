@@ -1,4 +1,4 @@
-# Supported Data Types<a name="lf-governed-tables-supported-data-types"></a>
+# Supported data types<a name="lf-governed-tables-supported-data-types"></a>
 
 Governed tables currently support the following data types:
 
@@ -24,4 +24,4 @@ varchar
 **Note**  
 Currently, support for the `double` and `float` types in governed tables is limited\. For `float`, Athena supports only up to 6 \(instead of 9\) decimals of precision\. For `double`, Athena supports only up to 15 \(instead of 17\) digits of precision\. 
 
-For more information about data types in Athena, see [Data Types in Amazon Athena](data-types.md)\.
+For more information about data types in Athena, see [Data types in Amazon Athena](data-types.md)\.

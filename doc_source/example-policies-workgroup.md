@@ -1,4 +1,4 @@
-# Workgroup Example Policies<a name="example-policies-workgroup"></a>
+# Workgroup example policies<a name="example-policies-workgroup"></a>
 
 This section includes example policies you can use to enable various actions on workgroups\. Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
@@ -14,7 +14,7 @@ Where `<workgroup-name>` is the name of your workgroup\. For example, for workgr
 "Resource": ["arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"]
 ```
 
-For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about IAM policies, see [Creating Policies with the Visual Editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) in the *IAM User Guide*\. For more information about creating IAM policies for workgroups, see [Workgroup IAM Policies](workgroups-iam-policy.md)\.
+For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about IAM policies, see [Creating policies with the visual editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) in the *IAM User Guide*\. For more information about creating IAM policies for workgroups, see [Workgroup IAM Policies](workgroups-iam-policy.md)\.
 +  [Example Policy for Full Access to All Workgroups](#example1-full-access-all-wkgs) 
 +  [Example Policy for Full Access to a Specified Workgroup](#example2-full-access-this-wkg) 
 +  [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access) 
@@ -24,7 +24,7 @@ For a complete list of Amazon Athena actions, see the API action names in the [A
 +  [Example Policy for Running and Stopping Queries in a Specific Workgroup](#example7-run-queries-access) 
 +  [Example Policy for Working with Named Queries in a Specific Workgroup](#example8-named-queries-access) 
 
-**Example Policy for Full Access to All Workgroups**  
+**Example policy for full access to all workgroups**  
 The following policy allows full access to all workgroup resources that might exist in the account\. We recommend that you use this policy for those users in your account that must administer and manage workgroups for all other users\.  
 
 ```
@@ -44,7 +44,7 @@ The following policy allows full access to all workgroup resources that might ex
 }
 ```
 
-**Example Policy for Full Access to a Specified Workgroup**  
+**Example policy for full access to a specified workgroup**  
 The following policy allows full access to the single specific workgroup resource, named `workgroupA`\. You could use this policy for users with full control over a particular workgroup\.  
 
 ```
@@ -105,7 +105,7 @@ The following policy allows full access to the single specific workgroup resourc
 }
 ```
 
-**Example Policy for Running Queries in a Specified Workgroup**  
+**Example policy for running queries in a specified workgroup**  
 In the following policy, a user is allowed to run queries in the specified `workgroupA`, and view them\. The user is not allowed to perform management tasks for the workgroup itself, such as updating or deleting it\.   
 
 ```
@@ -155,7 +155,7 @@ In the following policy, a user is allowed to run queries in the specified `work
 }
 ```
 
-**Example Policy for Running Queries in the Primary Workgroup**  
+**Example policy for running queries in the primary workgroup**  
 You can modify the preceding example to allow a particular user to also run queries in the primary workgroup\.   
 We recommend that you add the primary workgroup resource for all users who are otherwise configured to run queries in their designated workgroups\. Adding this resource to their workgroup user policies is useful in case their designated workgroup is deleted or is disabled\. In this case, they can continue running queries in the primary workgroup\.
 To allow users in your account to run queries in the primary workgroup, add a line that contains the ARN of the primary workgroup to the resource section of the [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access), as in the following example\.  
@@ -164,7 +164,7 @@ To allow users in your account to run queries in the primary workgroup, add a li
 arn:aws:athena:us-east-1:123456789012:workgroup/primary"
 ```
 
-**Example Policy for Management Operations on a Specified Workgroup**  
+**Example policy for management operations on a specified workgroup**  
 In the following policy, a user is allowed to create, delete, obtain details, and update a workgroup `test_workgroup`\.   
 
 ```
@@ -194,7 +194,7 @@ In the following policy, a user is allowed to create, delete, obtain details, an
 }
 ```
 
-**Example Policy for Listing Workgroups**  
+**Example policy for listing workgroups**  
 The following policy allows all users to list all workgroups:  
 
 ```
@@ -212,7 +212,7 @@ The following policy allows all users to list all workgroups:
 }
 ```
 
-**Example Policy for Running and Stopping Queries in a Specific Workgroup**  
+**Example policy for running and stopping queries in a specific workgroup**  
 In this policy, a user is allowed to run queries in the workgroup:  
 
 ```
@@ -233,7 +233,7 @@ In this policy, a user is allowed to run queries in the workgroup:
 }
 ```
 
-**Example Policy for Working with Named Queries in a Specific Workgroup**  
+**Example policy for working with named queries in a specific workgroup**  
 In the following policy, a user has permissions to create, delete, and obtain information about named queries in the specified workgroup:  
 
 ```

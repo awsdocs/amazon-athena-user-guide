@@ -1,4 +1,4 @@
-# Flattening Nested Arrays<a name="flattening-arrays"></a>
+# Flattening nested arrays<a name="flattening-arrays"></a>
 
 When working with nested arrays, you often need to expand nested array elements into a single array, or expand the array into multiple rows\.
 
@@ -147,6 +147,6 @@ This query returns:
 +--------------+
 ```
 
-## Considerations and Limitations<a name="flattening-arrays-considerations"></a>
+## Considerations and limitations<a name="flattening-arrays-considerations"></a>
 + `CROSS JOIN` does not generate a Cartesian product if the main \(`FROM`\) table has an empty array or `NULL` on the specified column\.
 + Currently, `UNNEST` can be used only with `CROSS JOIN` and does not support other `JOIN` types \(for example, `LEFT JOIN UNNEST`\)\.

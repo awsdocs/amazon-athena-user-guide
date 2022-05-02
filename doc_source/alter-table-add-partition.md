@@ -2,9 +2,9 @@
 
 Creates one or more partition columns for the table\. Each partition consists of one or more distinct column name/value combinations\. A separate data directory is created for each specified combination, which can improve query performance in some circumstances\. Partitioned columns don't exist within the table data itself, so if you use a column name that has the same name as a column in the table itself, you get an error\. For more information, see [Partitioning Data](partitions.md)\.
 
-In Athena, a table and its partitions must use the same data formats but their schemas may differ\. For more information, see [Updates in Tables with Partitions](updates-and-partitions.md)\.
+In Athena, a table and its partitions must use the same data formats but their schemas may differ\. For more information, see [Updates in tables with partitions](updates-and-partitions.md)\.
 
-For information about the resource\-level permissions required in IAM policies \(including `glue:CreatePartition`\), see [AWS Glue API Permissions: Actions and Resources Reference](https://docs.aws.amazon.com/glue/latest/dg/api-permissions-reference.html) and [Fine\-Grained Access to Databases and Tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\. For troubleshooting information about permissions when using Athena, see the [Permissions](troubleshooting-athena.md#troubleshooting-athena-permissions) section of the [Troubleshooting in Athena](troubleshooting-athena.md) topic\.
+For information about the resource\-level permissions required in IAM policies \(including `glue:CreatePartition`\), see [AWS Glue API permissions: Actions and resources reference](https://docs.aws.amazon.com/glue/latest/dg/api-permissions-reference.html) and [Fine\-grained access to databases and tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\. For troubleshooting information about permissions when using Athena, see the [Permissions](troubleshooting-athena.md#troubleshooting-athena-permissions) section of the [Troubleshooting in Athena](troubleshooting-athena.md) topic\.
 
 ## Synopsis<a name="synopsis"></a>
 
@@ -60,7 +60,7 @@ ALTER TABLE flights_parquet ADD IF NOT EXISTS
   PARTITION (year = '2021')
 ```
 
-## Zero Byte `_$folder$` Files<a name="alter-table-add-partition-zero-byte-folder-files"></a>
+## Zero byte `_$folder$` files<a name="alter-table-add-partition-zero-byte-folder-files"></a>
 
 If you run an `ALTER TABLE ADD PARTITION` statement and mistakenly specify a partition that already exists and an incorrect Amazon S3 location, zero byte placeholder files of the format `partition_value_$folder$` are created in Amazon S3\. You must remove these files manually\.
 

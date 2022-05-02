@@ -1,4 +1,4 @@
-# Extracting Data from JSON<a name="extracting-data-from-JSON"></a>
+# Extracting data from JSON<a name="extracting-data-from-JSON"></a>
 
 You may have source data with containing JSON\-encoded strings that you do not necessarily want to deserialize into a table in Athena\. In this case, you can still run SQL operations on this data, using the JSON functions available in Presto\.
 
@@ -15,7 +15,7 @@ Consider this JSON string as an example dataset\.
 }
 ```
 
-## Examples: extracting properties<a name="examples-extracting-properties"></a>
+## Examples: Extracting properties<a name="examples-extracting-properties"></a>
 
 To extract the `name` and `projects` properties from the JSON string, use the `json_extract` function as in the following example\. The `json_extract` function takes the column containing the JSON string, and searches it using a `JSONPath`\-like expression with the dot `.` notation\.
 

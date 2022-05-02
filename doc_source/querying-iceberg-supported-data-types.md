@@ -1,4 +1,4 @@
-# Supported Data Types<a name="querying-iceberg-supported-data-types"></a>
+# Supported data types<a name="querying-iceberg-supported-data-types"></a>
 
 Athena can query Iceberg tables that contain the following data types:
 
@@ -26,4 +26,4 @@ The following table shows the relationship between Athena data types and Iceberg
 ****  
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-supported-data-types.html)
 
-For more information about data types in Athena, see [Data Types in Amazon Athena](data-types.md)\.
+For more information about data types in Athena, see [Data types in Amazon Athena](data-types.md)\.

@@ -1,8 +1,8 @@
-# Querying Network Load Balancer Logs<a name="networkloadbalancer-classic-logs"></a>
+# Querying Network Load Balancer logs<a name="networkloadbalancer-classic-logs"></a>
 
 Use Athena to analyze and process logs from Network Load Balancer\. These logs receive detailed information about the Transport Layer Security \(TLS\) requests sent to the Network Load Balancer\. You can use these access logs to analyze traffic patterns and troubleshoot issues\. 
 
-Before you analyze the Network Load Balancer access logs, enable and configure them for saving in the destination Amazon S3 bucket\. For more information, see [ Access Logs for Your Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-access-logs.html)\.
+Before you analyze the Network Load Balancer access logs, enable and configure them for saving in the destination Amazon S3 bucket\. For more information, see [ Access logs for your Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-access-logs.html)\.
 + [Create the table for Network Load Balancer logs](#to-create-the-network-logs-table)
 + [Network Load Balancer Example Queries](#query-nlb-example)
 
@@ -48,7 +48,7 @@ Before you analyze the Network Load Balancer access logs, enable and configure t
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `nlb_tls_logs` table, making the data in it ready for queries\.
 
-## Network Load Balancer Example Queries<a name="query-nlb-example"></a>
+## Network Load Balancer example queries<a name="query-nlb-example"></a>
 
 To see how many times a certificate is used, use a query similar to this example:
 

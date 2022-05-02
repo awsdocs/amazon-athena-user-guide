@@ -1,8 +1,8 @@
-# Allow Access to Prepared Statements<a name="security-iam-athena-prepared-statements"></a>
+# Allow access to prepared statements<a name="security-iam-athena-prepared-statements"></a>
 
 This topic covers IAM permissions for prepared statements in Amazon Athena\. Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
-For more information about prepared statements, see [Querying with Prepared Statements](querying-with-prepared-statements.md)\.
+For more information about prepared statements, see [Querying with prepared statements](querying-with-prepared-statements.md)\.
 
 The following IAM permissions are required for creating, managing, and executing prepared statements\.
 
@@ -19,7 +19,7 @@ Use these permissions as shown in the following table\.
 
 ****  
 
-| To do this | use these permissions | 
+| To do this | Use these permissions | 
 | --- | --- | 
 | Run a PREPARE query | athena:StartQueryExecution athena:CreatePreparedStatement | 
 | Re\-run a PREPARE query to update an existing prepared statement | athena:StartQueryExecution athena:UpdatePreparedStatement | 

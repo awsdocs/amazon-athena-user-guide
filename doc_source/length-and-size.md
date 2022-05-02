@@ -1,4 +1,4 @@
-# Obtaining Length and Size of JSON Arrays<a name="length-and-size"></a>
+# Obtaining length and size of JSON arrays<a name="length-and-size"></a>
 
 ## Example: `json_array_length`<a name="example-json-array-length"></a>
 

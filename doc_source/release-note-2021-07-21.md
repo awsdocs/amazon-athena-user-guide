@@ -6,4 +6,4 @@ With the July 2021 release of [Microsoft Power BI Desktop](https://powerbi.micro
 
 Because the connector uses your existing ODBC data source name \(DSN\) to connect to and run queries on Athena, it requires the Athena ODBC driver\. To download the latest ODBC driver, see [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
-For more information, see [Using the Amazon Athena Power BI Connector](connect-with-odbc-and-power-bi.md)\.
+For more information, see [Using the Amazon Athena Power BI connector](connect-with-odbc-and-power-bi.md)\.

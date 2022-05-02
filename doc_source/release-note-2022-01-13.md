@@ -11,4 +11,4 @@ The JDBC 2\.0\.27 driver includes the following changes:
 The ODBC 1\.1\.15 driver includes the following changes:
 + Corrects an issue with second calls to `SQLParamData()`\.
 
-For more information about these changes, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC Driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+For more information about these changes, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.

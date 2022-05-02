@@ -1,4 +1,4 @@
-# OpenCSVSerDe for Processing CSV<a name="csv-serde"></a>
+# OpenCSVSerDe for processing CSV<a name="csv-serde"></a>
 
 When you create an Athena table for CSV data, determine the SerDe to use what types of values it contains:
 + If your data contains values enclosed in double quotes \(`"`\), you can use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\. If your data does not contain values enclosed in double quotes \(`"`\), you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\.
@@ -21,7 +21,7 @@ For data types other than `STRING`, the OpenCSVSerDe behaves as follows:
 + For columns specified with the `timestamp` data type in your `CREATE TABLE` statement, recognizes `TIMESTAMP` data if it is specified in the UNIX numeric format in milliseconds, such as `1579059880000`\. 
   + The OpenCSVSerDe does not support `TIMESTAMP` in the JDBC\-compliant `java.sql.Timestamp` format, such as `"YYYY-MM-DD HH:MM:SS.fffffffff"` \(9 decimal place precision\)\.
 + For columns specified with the `DATE` data type in your `CREATE TABLE` statement, recognizes values as dates if the values represent the number of days that elapsed since January 1, 1970\. For example, the value `18276` in a column with the `date` data type renders as `2020-01-15` when queried\. In this UNIX format, each day is considered to have 86,400 seconds\.
-  + The OpenCSVSerDe does not support `DATE` in any other format directly\. To process timestamp data in other formats, you can define the column as `string` and then use time conversion functions to return the desired results in your `SELECT` query\. For more information, see the article [When I query a table in Amazon Athena, the TIMESTAMP result is empty](https://aws.amazon.com/premiumsupport/knowledge-center/query-table-athena-timestamp-empty/) in the [AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
+  + The OpenCSVSerDe does not support `DATE` in any other format directly\. To process timestamp data in other formats, you can define the column as `string` and then use time conversion functions to return the desired results in your `SELECT` query\. For more information, see the article [When I query a table in Amazon Athena, the TIMESTAMP result is empty](https://aws.amazon.com/premiumsupport/knowledge-center/query-table-athena-timestamp-empty/) in the [AWS knowledge center](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
 + To further convert columns to the desired type in a table, you can [create a view](views.md) over the table and use `CAST` to convert to the desired type\.
 
 **Example: Using the TIMESTAMP type and DATE type specified in the UNIX numeric format\.**  
@@ -83,11 +83,11 @@ f1            s2
 456                          xyz
 ```
 
-### SerDe Name<a name="serde-name"></a>
+### SerDe name<a name="serde-name"></a>
 
  [CSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) 
 
-### Library Name<a name="library-name"></a>
+### Library name<a name="library-name"></a>
 
 To use this SerDe, specify its fully qualified class name after `ROW FORMAT SERDE`\. Also specify the delimiters inside `SERDEPROPERTIES`, as follows:
 
@@ -101,7 +101,7 @@ WITH SERDEPROPERTIES (
 )
 ```
 
-### Ignoring Headers<a name="csv-serde-opencsvserde-ignoring-headers"></a>
+### Ignoring headers<a name="csv-serde-opencsvserde-ignoring-headers"></a>
 
 To ignore headers in your data when you define a table, you can use the `skip.header.line.count` table property, as in the following example\.
 
@@ -109,7 +109,7 @@ To ignore headers in your data when you define a table, you can use the `skip.he
 TBLPROPERTIES ("skip.header.line.count"="1")
 ```
 
-For examples, see the `CREATE TABLE` statements in [Querying Amazon VPC Flow Logs](vpc-flow-logs.md) and [Querying Amazon CloudFront Logs](cloudfront-logs.md)\.
+For examples, see the `CREATE TABLE` statements in [Querying Amazon VPC flow logs](vpc-flow-logs.md) and [Querying Amazon CloudFront logs](cloudfront-logs.md)\.
 
 ### Example<a name="example"></a>
 

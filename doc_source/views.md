@@ -1,19 +1,19 @@
-# Working with Views<a name="views"></a>
+# Working with views<a name="views"></a>
 
 A view in Amazon Athena is a logical table, not a physical table\. The query that defines a view runs each time the view is referenced in a query\.
 
 You can create a view from a `SELECT` query and then reference this view in future queries\. For more information, see [CREATE VIEW](create-view.md)\.
 
 **Topics**
-+ [When to Use Views?](#when-to-use-views)
-+ [Supported Actions for Views in Athena](#views-supported-actions)
-+ [Considerations for Views](#considerations-views)
-+ [Limitations for Views](#limitations-views)
-+ [Working with Views in the Console](#views-console)
-+ [Creating Views](#creating-views)
-+ [Examples of Views](#views-examples)
++ [When to use views?](#when-to-use-views)
++ [Supported actions for views in Athena](#views-supported-actions)
++ [Considerations for views](#considerations-views)
++ [Limitations for views](#limitations-views)
++ [Working with views in the console](#views-console)
++ [Creating views](#creating-views)
++ [Examples of views](#views-examples)
 
-## When to Use Views?<a name="when-to-use-views"></a>
+## When to use views?<a name="when-to-use-views"></a>
 
 You may want to create views to: 
 + *Query a subset of data*\. For example, you can create a view with a subset of columns from the original table to simplify querying data\. 
@@ -22,21 +22,21 @@ You may want to create views to:
 + *Experiment with optimization techniques and create optimized queries*\. For example, if you find a combination of `WHERE` conditions, `JOIN` order, or other expressions that demonstrate the best performance, you can create a view with these clauses and expressions\. Applications can then make relatively simple queries against this view\. If you later find a better way to optimize the original query, when you recreate the view, all the applications immediately take advantage of the optimized base query\. 
 + *Hide the underlying table and column names, and minimize maintenance problems* if those names change\. In that case, you recreate the view using the new names\. All queries that use the view rather than the underlying tables keep running with no changes\.
 
-## Supported Actions for Views in Athena<a name="views-supported-actions"></a>
+## Supported actions for views in Athena<a name="views-supported-actions"></a>
 
 Athena supports the following actions for views\. You can run these commands in the query editor\.
 
 
 | Statement | Description | 
 | --- | --- | 
-| [CREATE VIEW](create-view.md) |  Creates a new view from a specified `SELECT` query\. For more information, see [Creating Views](#creating-views)\. The optional `OR REPLACE` clause lets you update the existing view by replacing it\.  | 
+| [CREATE VIEW](create-view.md) |  Creates a new view from a specified `SELECT` query\. For more information, see [Creating views](#creating-views)\. The optional `OR REPLACE` clause lets you update the existing view by replacing it\.  | 
 | [DESCRIBE VIEW](describe-view.md) |  Shows the list of columns for the named view\. This allows you to examine the attributes of a complex view\.   | 
 | [DROP VIEW](drop-view.md) |  Deletes an existing view\. The optional `IF EXISTS` clause suppresses the error if the view does not exist\.  | 
 | [SHOW CREATE VIEW](show-create-view.md) |  Shows the SQL statement that creates the specified view\.  | 
 | [SHOW VIEWS](show-views.md) |  Lists the views in the specified database, or in the current database if you omit the database name\. Use the optional `LIKE` clause with a regular expression to restrict the list of view names\. You can also see the list of views in the left pane in the console\.  | 
 | [SHOW COLUMNS](show-columns.md) |  Lists the columns in the schema for a view\.  | 
 
-## Considerations for Views<a name="considerations-views"></a>
+## Considerations for views<a name="considerations-views"></a>
 
 The following considerations apply to creating and using views in Athena:
 + In Athena, you can preview and work with views created in the Athena Console, in the AWS Glue Data Catalog, if you have migrated to using it, or with Presto running on the Amazon EMR cluster connected to the same catalog\. You cannot preview or add to Athena views that were created in other ways\.
@@ -66,15 +66,15 @@ The following considerations apply to creating and using views in Athena:
   + A referenced table is dropped and recreated with a different schema or configuration\.
 + You can create and run nested views as long as the query behind the nested view is valid and the tables and databases exist\.
 
-## Limitations for Views<a name="limitations-views"></a>
-+ Athena view names cannot contain special characters, other than underscore `(_)`\. For more information, see [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)\.
-+ Avoid using reserved keywords for naming views\. If you use reserved keywords, use double quotes to enclose reserved keywords in your queries on views\. See [Reserved Keywords](reserved-words.md)\.
+## Limitations for views<a name="limitations-views"></a>
++ Athena view names cannot contain special characters, other than underscore `(_)`\. For more information, see [Names for tables, databases, and columns](tables-databases-columns-names.md)\.
++ Avoid using reserved keywords for naming views\. If you use reserved keywords, use double quotes to enclose reserved keywords in your queries on views\. See [Reserved keywords](reserved-words.md)\.
 + You cannot use views with federated data sources, external Hive metastores, or UDFs\.
 + You cannot use views with geospatial functions\.
 + You cannot use views to manage access control on data in Amazon S3\. To query a view, you need permissions to access the data stored in Amazon S3\. For more information, see [Access to Amazon S3](s3-permissions.md)\.
 + You cannot use views with governed tables\.
 
-## Working with Views in the Console<a name="views-console"></a>
+## Working with views in the console<a name="views-console"></a>
 
 In the Athena console, you can:
 + Locate all views in the left pane, where tables are listed\.
@@ -92,7 +92,7 @@ A view shows in the console only if you have already created it\.
 
 1. Choose actions to preview the view, insert the view name into the query editor, delete the view, see the view's properties, or display and edit the view in the query editor\.
 
-## Creating Views<a name="creating-views"></a>
+## Creating views<a name="creating-views"></a>
 
 You can create a view in the Athena console by using a template or by running an existing query\.
 
@@ -103,9 +103,9 @@ You can create a view in the Athena console by using a template or by running an
 
    This action places an editable view template into the query editor\. 
 
-1. Edit the view template according to your requirements\. When you enter a name for the view in the statement, remember that view names cannot contain special characters other than underscore `(_)`\. See [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)\. Avoid using [Reserved Keywords](reserved-words.md) for naming views\. 
+1. Edit the view template according to your requirements\. When you enter a name for the view in the statement, remember that view names cannot contain special characters other than underscore `(_)`\. See [Names for tables, databases, and columns](tables-databases-columns-names.md)\. Avoid using [Reserved keywords](reserved-words.md) for naming views\. 
 
-   For more information about creating views, see [CREATE VIEW](create-view.md) and [Examples of Views](#views-examples)\. 
+   For more information about creating views, see [CREATE VIEW](create-view.md) and [Examples of views](#views-examples)\. 
 
 1. Choose **Run** to create the view\. The view appears in the list of views in the Athena console\.
 
@@ -116,7 +116,7 @@ You can create a view in the Athena console by using a template or by running an
 1. Under the query editor window, choose **Create**, and then choose **View from query**\.  
 ![\[Choose Create, View from query.\]](http://docs.aws.amazon.com/athena/latest/ug/images/create-view-from-query.png)
 
-1. In the **Create View** dialog box, enter a name for the view, and then choose **Create**\. View names cannot contain special characters other than underscore `(_)`\. See [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)\. Avoid using [Reserved Keywords](reserved-words.md) for naming views\.
+1. In the **Create View** dialog box, enter a name for the view, and then choose **Create**\. View names cannot contain special characters other than underscore `(_)`\. See [Names for tables, databases, and columns](tables-databases-columns-names.md)\. Avoid using [Reserved keywords](reserved-words.md) for naming views\.
 
    Athena adds the view to the list of views in the console and displays the `CREATE VIEW` statement for the view in the query editor\.
 
@@ -124,7 +124,7 @@ You can create a view in the Athena console by using a template or by running an
 + If you delete a table on which a table is based and then attempt to run the view, Athena displays an error message\.
 + You can create a nested view, which is a view on top of an existing view\. Athena prevents you from running a recursive view that references itself\.
 
-## Examples of Views<a name="views-examples"></a>
+## Examples of views<a name="views-examples"></a>
 
 To show the syntax of the view query, use [SHOW CREATE VIEW](show-create-view.md)\.
 

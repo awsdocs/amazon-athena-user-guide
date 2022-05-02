@@ -1,14 +1,14 @@
-# Enabling Cross\-Account Federated Queries<a name="xacct-fed-query-enable"></a>
+# Enabling cross\-account federated queries<a name="xacct-fed-query-enable"></a>
 
 Federated query allows you to query data sources other than Amazon S3 using data source connectors deployed on AWS Lambda\. The cross\-account federated query feature allows the Lambda function and the data sources that are to be queried to be located in different accounts\.
 
 As a data administrator, you can enable cross\-account federated queries by sharing your data connector with a data analyst's account or, as a data analyst, by using a shared Lambda ARN from a data administrator to add to your account\. When configuration changes are made to a connector in the originating account, the updated configuration is automatically applied to the shared instances of the connector in other user's accounts\.
 
-## Considerations and Limitations<a name="xacct-fed-query-enable-considerations-and-limitations"></a>
+## Considerations and limitations<a name="xacct-fed-query-enable-considerations-and-limitations"></a>
 + The cross\-account federated query feature is available for non\-Hive metastore data connectors that use a Lambda\-based data source\.
-+ The feature is not available for the AWS Glue Data Catalog data source type\. For information about cross\-account access to AWS Glue Data Catalogs, see [Cross\-Account Access to AWS Glue Data Catalogs](security-iam-cross-account-glue-catalog-access.md)\.
++ The feature is not available for the AWS Glue Data Catalog data source type\. For information about cross\-account access to AWS Glue Data Catalogs, see [Cross\-account access to AWS Glue data catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 
-## Required Permissions<a name="xacct-fed-query-enable-required-permissions"></a>
+## Required permissions<a name="xacct-fed-query-enable-required-permissions"></a>
 + For data administrator Account A to share a Lambda function with data analyst Account B, Account B requires Lambda invoke function and spill bucket access\. Accordingly, Account A should add a [ resource\-based policy](https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html) to the Lambda function and [principal](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html) access to its spill bucket in Amazon S3\.
 
   1. The following policy grants Lambda invoke function permissions to Account B on a Lambda function in Account A\.
@@ -80,7 +80,7 @@ As a data administrator, you can enable cross\-account federated queries by shar
   }
   ```
 
-## Sharing a Data Source in Account A with Account B<a name="xacct-fed-query-enable-sharing-a-lambda-data-source-in-account-a-with-account-b"></a>
+## Sharing a data source in Account A with Account B<a name="xacct-fed-query-enable-sharing-a-lambda-data-source-in-account-a-with-account-b"></a>
 
 After permissions are in place, you can use the **Data sources** page in the Athena console to share a data connector in your account \(Account A\) with another account \(Account B\)\. Account A retains full control and ownership of the connector\. When Account A makes configuration changes to the connector, the updated configuration applies to the shared connector in Account B\.
 
@@ -105,7 +105,7 @@ After permissions are in place, you can use the **Data sources** page in the Ath
 
 1. Choose **Share**\. The shared data connector that you specified is created in Account B\. Configuration changes to the connector in Account A apply to the connector in Account B\.
 
-## Adding a Shared Data Source from Account A to Account B<a name="xacct-fed-query-enable-add-a-shared-lambda-function-arn-to-your-account"></a>
+## Adding a shared data source from Account A to Account B<a name="xacct-fed-query-enable-add-a-shared-lambda-function-arn-to-your-account"></a>
 
 As a data analyst, you may be given the ARN of a connector to add to your account from a data administrator\. You can use the **Data sources** page of the Athena console to add the Lambda ARN provided by your administrator to your account\.
 

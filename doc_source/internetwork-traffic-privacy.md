@@ -1,4 +1,4 @@
-# Internetwork Traffic Privacy<a name="internetwork-traffic-privacy"></a>
+# Internetwork traffic privacy<a name="internetwork-traffic-privacy"></a>
 
 Traffic is protected both between Athena and on\-premises applications and between Athena and Amazon S3\. Traffic between Athena and other services, such as AWS Glue and AWS Key Management Service, uses HTTPS by default\.
 + **For traffic between Athena and on\-premises clients and applications**, query results that stream to JDBC or ODBC clients are encrypted using Transport Layer Security \(TLS\)\.

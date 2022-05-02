@@ -1,18 +1,18 @@
-# Querying Arrays<a name="querying-arrays"></a>
+# Querying arrays<a name="querying-arrays"></a>
 
 Amazon Athena lets you create arrays, concatenate them, convert them to different data types, and then filter, flatten, and sort them\.
 
 **Topics**
-+ [Creating Arrays](creating-arrays.md)
-+ [Concatenating Arrays](concatenating-strings-and-arrays.md)
-+ [Converting Array Data Types](converting-array-data-types.md)
-+ [Finding Lengths](finding-lengths.md)
-+ [Accessing Array Elements](accessing-array-elements.md)
-+ [Flattening Nested Arrays](flattening-arrays.md)
-+ [Creating Arrays from Subqueries](creating-arrays-from-subqueries.md)
-+ [Filtering Arrays](filtering-arrays.md)
-+ [Sorting Arrays](sorting-arrays.md)
-+ [Using Aggregation Functions with Arrays](arrays-and-aggregation.md)
-+ [Converting Arrays to Strings](converting-arrays-to-strings.md)
-+ [Using Arrays to Create Maps](maps.md)
-+ [Querying Arrays with Complex Types and Nested Structures](rows-and-structs.md)
++ [Creating arrays](creating-arrays.md)
++ [Concatenating arrays](concatenating-strings-and-arrays.md)
++ [Converting array data types](converting-array-data-types.md)
++ [Finding lengths](finding-lengths.md)
++ [Accessing array elements](accessing-array-elements.md)
++ [Flattening nested arrays](flattening-arrays.md)
++ [Creating arrays from subqueries](creating-arrays-from-subqueries.md)
++ [Filtering arrays](filtering-arrays.md)
++ [Sorting arrays](sorting-arrays.md)
++ [Using aggregation functions with arrays](arrays-and-aggregation.md)
++ [Converting arrays to strings](converting-arrays-to-strings.md)
++ [Using arrays to create maps](maps.md)
++ [Querying arrays with complex types and nested structures](rows-and-structs.md)

@@ -1,17 +1,17 @@
-# Geospatial Function Name Changes and New Functions in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes-and-new-functions"></a>
+# Geospatial function name changes and new functions in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes-and-new-functions"></a>
 
 This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\. 
 
 For information about other changes in Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 
-For information about Athena engine versioning, see [Athena Engine Versioning](engine-versions.md)\.
+For information about Athena engine versioning, see [Athena engine versioning](engine-versions.md)\.
 
-## Geospatial Function Name Changes in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes"></a>
+## Geospatial function name changes in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes"></a>
 
 The names of the following functions have changed\. In some cases, the input and output types have also changed\. For more information, visit the corresponding links\. 
 
 
-| Athena engine version 1 Function Name | Athena engine version 2 Function Name | 
+| Athena engine version 1 function name | Athena engine version 2 function name | 
 | --- | --- | 
 | [st\_coordinate\_dimension](geospatial-functions-list-v1.md#st-coordinate-dimension-geometry) | [ST\_CoordDim](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-coordim) | 
 | [st\_end\_point](geospatial-functions-list-v1.md#st-end-point-geometry) | [ST\_EndPoint](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-end-point) | 
@@ -29,11 +29,11 @@ The names of the following functions have changed\. In some cases, the input and
 | [st\_start\_point](geospatial-functions-list-v1.md#st-start-point-geometry) | [ST\_StartPoint](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-startpoint) | 
 | [st\_symmetric\_difference](geospatial-functions-list-v1.md#st-symmetric-difference-geometry-geometry) | [ST\_SymDifference](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-symdifference) | 
 
-## New Geospatial Functions in Athena engine version 2<a name="geospatial-functions-list-v2-new-functions"></a>
+## New geospatial functions in Athena engine version 2<a name="geospatial-functions-list-v2-new-functions"></a>
 
 The following geospatial functions are new in Athena engine version 2\. For more information, visit the corresponding links\.
 
-**Constructor Functions**
+**Constructor functions**
 + [ST\_AsBinary](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-asbinary)
 + [ST\_GeomAsLegacyBinary](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geomaslegacybinary)
 + [ST\_GeomFromBinary](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geomfrombinary)
@@ -43,12 +43,12 @@ The following geospatial functions are new in Athena engine version 2\. For more
 + [to\_geometry](geospatial-functions-list-v2.md#geospatial-functions-list-v2-to-geometry)
 + [to\_spherical\_geography](geospatial-functions-list-v2.md#geospatial-functions-list-v2-to-spherical-geography)
 
-**Operation Functions**
+**Operation functions**
 + [geometry\_union](geospatial-functions-list-v2.md#geospatial-functions-list-v2-geometry-union)
 + [ST\_EnvelopeAsPts](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-envelopeaspts)
 + [ST\_Union](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-union)
 
-**Accessor Functions**
+**Accessor functions**
 + [geometry\_invalid\_reason](geospatial-functions-list-v2.md#geospatial-functions-list-v2-geometry-invalid-reason)
 + [great\_circle\_distance](geospatial-functions-list-v2.md#geospatial-functions-list-v2-great-circle-distance)
 + [line\_locate\_point](geospatial-functions-list-v2.md#geospatial-functions-list-v2-line-locate-point)
@@ -66,11 +66,11 @@ The following geospatial functions are new in Athena engine version 2\. For more
 + [ST\_PointN](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-pointn)
 + [ST\_Points](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-points)
 
-**Aggregation Functions**
+**Aggregation functions**
 + [convex\_hull\_agg](geospatial-functions-list-v2.md#geospatial-functions-list-v2-convex-hull-agg)
 + [geometry\_union\_agg](geospatial-functions-list-v2.md#geospatial-functions-list-v2-geometry-union-agg)
 
-**Bing Tile Functions**
+**Bing tile functions**
 + [bing\_tile](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile)
 + [bing\_tile \(quadkey\)](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile-quadkey)
 + [bing\_tile\_at](geospatial-functions-list-v2.md#geospatial-functions-list-v2-bing-tile-at)

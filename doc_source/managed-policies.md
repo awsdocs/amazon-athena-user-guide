@@ -10,11 +10,11 @@ Additionally, AWS supports managed policies for job functions that span multiple
 
 Managed policies are easy to use and are updated automatically with the required actions as the service evolves\. When using managed policies with Athena, keep the following points in mind:
 + To allow or deny Amazon Athena service actions for yourself or other users using AWS Identity and Access Management \(IAM\), you attach identity\-based policies to principals, such as users or groups\. 
-+ Each identity\-based policy consists of statements that define the actions that are allowed or denied\. For more information and step\-by\-step instructions for attaching a policy to a user, see [Attaching Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html#attach-managed-policy-console) in the *IAM User Guide*\. For a list of actions, see the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
-+  *Customer\-managed* and *inline* identity\-based policies allow you to specify more detailed Athena actions within a policy to fine\-tune access\. We recommend that you use the `AmazonAthenaFullAccess` policy as a starting point and then allow or deny specific actions listed in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about inline policies, see [Managed Policies and Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) in the *IAM User Guide*\.
++ Each identity\-based policy consists of statements that define the actions that are allowed or denied\. For more information and step\-by\-step instructions for attaching a policy to a user, see [Attaching managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html#attach-managed-policy-console) in the *IAM User Guide*\. For a list of actions, see the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
++  *Customer\-managed* and *inline* identity\-based policies allow you to specify more detailed Athena actions within a policy to fine\-tune access\. We recommend that you use the `AmazonAthenaFullAccess` policy as a starting point and then allow or deny specific actions listed in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about inline policies, see [Managed policies and inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) in the *IAM User Guide*\.
 + If you also have principals that connect using JDBC, you must provide the JDBC driver credentials to your application\. For more information, see [Service Actions for JDBC Connections](policy-actions.md)\.
 + If you have encrypted the AWS Glue Data Catalog, you must specify additional actions in the identity\-based IAM policies for Athena\. For more information, see [Access to Encrypted Metadata in the AWS Glue Data Catalog](access-encrypted-data-glue-data-catalog.md)\.
-+ If you create and use workgroups, make sure your policies include relevant access to workgroup actions\. For detailed information, see [ IAM Policies for Accessing Workgroups](workgroups-iam-policy.md) and [Workgroup Example Policies](example-policies-workgroup.md)\. 
++ If you create and use workgroups, make sure your policies include relevant access to workgroup actions\. For detailed information, see [ IAM policies for accessing workgroups](workgroups-iam-policy.md) and [Workgroup example policies](example-policies-workgroup.md)\. 
 
 ## AWS managed policy: AmazonAthenaFullAccess<a name="amazonathenafullaccess-managed-policy"></a>
 
@@ -27,8 +27,8 @@ The `AmazonAthenaFullAccess` policy is grouped into the following sets of permis
 + **`glue`** – Allows principals access to AWS Glue databases, tables, and partitions\. This is required so that the principal can use the AWS Glue Data Catalog with Athena\.
 + **`s3`** – Allows the principal to write and read query results from Amazon S3, to read publically available Athena data examples that reside in Amazon S3, and to list buckets\. This is required so that the principal can use Athena to work with Amazon S3\.
 + **`sns`** – Allows principals to list Amazon SNS topics and get topic attributes\. This enables principals to use Amazon SNS topics with Athena for monitoring and alert purposes\.
-+ **`cloudwatch`** – Allows principals to create, read, and delete CloudWatch alarms\. For more information, see [Controlling Costs and Monitoring Queries with CloudWatch Metrics and Events](control-limits.md)\.
-+ **`lakeformation`** – Allows principals to request temporary credentials to access data in a data lake location that is registered with Lake Formation\. For more information, see [Underlying Data Access Control](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html) in the *AWS Lake Formation Developer Guide*\.
++ **`cloudwatch`** – Allows principals to create, read, and delete CloudWatch alarms\. For more information, see [Controlling costs and monitoring queries with CloudWatch metrics and events](control-limits.md)\.
++ **`lakeformation`** – Allows principals to request temporary credentials to access data in a data lake location that is registered with Lake Formation\. For more information, see [Underlying data access control](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html) in the *AWS Lake Formation Developer Guide*\.
 
 ```
 {
@@ -152,7 +152,7 @@ The `AWSQuicksightAthenaAccess` policy is grouped into the following sets of per
 + **`athena`** – Allows the principal to run queries on Athena resources\.
 + **`glue`** – Allows principals access to AWS Glue databases, tables, and partitions\. This is required so that the principal can use the AWS Glue Data Catalog with Athena\.
 + **`s3`** – Allows the principal to write and read query results from Amazon S3\.
-+ **`lakeformation`** – Allows principals to request temporary credentials to access data in a data lake location that is registered with Lake Formation\. For more information, see [Underlying Data Access Control](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html) in the *AWS Lake Formation Developer Guide*\.
++ **`lakeformation`** – Allows principals to request temporary credentials to access data in a data lake location that is registered with Lake Formation\. For more information, see [Underlying data access control](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html) in the *AWS Lake Formation Developer Guide*\.
 
 ```
 {

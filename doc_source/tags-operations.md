@@ -1,4 +1,4 @@
-# Using Tag Operations<a name="tags-operations"></a>
+# Using tag operations<a name="tags-operations"></a>
 
 Use the following tag operations to add, remove, or list tags on a resource\.
 
@@ -14,7 +14,7 @@ Use the following tag operations to add, remove, or list tags on a resource\.
 **Adding Tags When Creating a Resource**  
 To add tags when you create a workgroup or data catalog, use the `tags` parameter with the `CreateWorkGroup` or `CreateDataCatalog` API operations or with the AWS CLI `create-work-group` or `create-data-catalog` commands\.
 
-## Managing Tags Using API Operations<a name="tags-operations-examples-java"></a>
+## Managing tags using API operations<a name="tags-operations-examples-java"></a>
 
 The examples in this section show how to use tag API operations to manage tags on workgroups and data catalogs\. The examples are in the Java programming language\.
 
@@ -95,11 +95,11 @@ ListTagsForResourceResult result = client.listTagsForResource(request);
 List<Tag> resultTags = result.getTags();
 ```
 
-## Managing Tags Using the AWS CLI<a name="tags-operations-examples-cli"></a>
+## Managing tags using the AWS CLI<a name="tags-operations-examples-cli"></a>
 
 The following sections show how to use the AWS CLI to create and manage tags on data catalogs\.
 
-### Adding tags to a resource: tag\-resource<a name="tags-operations-examples-cli-tag-resource"></a>
+### Adding tags to a resource: Tag\-resource<a name="tags-operations-examples-cli-tag-resource"></a>
 
 The `tag-resource` command adds one or more tags to a specified resource\.
 
@@ -115,9 +115,9 @@ The following example adds tags to the `mydatacatalog` data catalog\.
 aws athena tag-resource --resource-arn arn:aws:athena:us-east-1:111122223333:datacatalog/mydatacatalog --tags Key=Color,Value=Orange Key=Time,Value=Now
 ```
 To show the result, use the `list-tags-for-resource` command\.   
-For information on adding tags when using the `create-data-catalog` command, see [Registering a Catalog: create\-data\-catalog](datastores-hive-cli.md#datastores-hive-cli-registering-a-catalog)\.
+For information on adding tags when using the `create-data-catalog` command, see [Registering a catalog: Create\-data\-catalog](datastores-hive-cli.md#datastores-hive-cli-registering-a-catalog)\.
 
-### Listing the tags for a resource: list\-tags\-for\-resource<a name="tags-operations-examples-cli-list-tags-for-resource"></a>
+### Listing the tags for a resource: List\-tags\-for\-resource<a name="tags-operations-examples-cli-list-tags-for-resource"></a>
 
 The `list-tags-for-resource` command lists the tags for the specified resource\.
 
@@ -149,7 +149,7 @@ The following sample result is in JSON format\.
 }
 ```
 
-### Removing tags from a resource: untag\-resource<a name="tags-operations-examples-cli-untag-resource"></a>
+### Removing tags from a resource: Untag\-resource<a name="tags-operations-examples-cli-untag-resource"></a>
 
 The `untag-resource` command removes the specified tag keys and their associated values from the specified resource\.
 

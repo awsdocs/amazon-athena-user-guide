@@ -1,6 +1,6 @@
-# Concatenating Strings and Arrays<a name="concatenating-strings-and-arrays"></a>
+# Concatenating strings and arrays<a name="concatenating-strings-and-arrays"></a>
 
-## Concatenating Strings<a name="concatenating-strings"></a>
+## Concatenating strings<a name="concatenating-strings"></a>
 
 To concatenate two strings, you can use the double pipe `||` operator, as in the following example\.
 
@@ -28,7 +28,7 @@ Concatenated_String
 This is a test.
 ```
 
-## Concatenating Arrays<a name="concatenating-arrays"></a>
+## Concatenating arrays<a name="concatenating-arrays"></a>
 
 You can use the same techniques to concatenate arrays\.
 
@@ -65,4 +65,4 @@ welcome_msg
 [Hello, Amazon, Athena, Hi, Alexa]
 ```
 
-For more information about `concat()` other string functions, see [String Functions and Operators](https://prestodb.io/docs/0.172/functions/string.html) in the Presto documentation\.
+For more information about `concat()` other string functions, see [String functions and operators](https://prestodb.io/docs/0.172/functions/string.html) in the Presto documentation\.

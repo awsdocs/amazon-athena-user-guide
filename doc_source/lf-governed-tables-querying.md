@@ -1,4 +1,4 @@
-# Querying Governed Tables<a name="lf-governed-tables-querying"></a>
+# Querying governed tables<a name="lf-governed-tables-querying"></a>
 
 To query a governed dataset, use a standard `SELECT` statement like the following\.
 
@@ -6,14 +6,14 @@ To query a governed dataset, use a standard `SELECT` statement like the followin
 SELECT * FROM databasename.tablename [WHERE predicate]
 ```
 
-## Predicate Pushdown Support<a name="lf-governed-tables-querying-predicate-pushdown"></a>
+## Predicate pushdown support<a name="lf-governed-tables-querying-predicate-pushdown"></a>
 
 To optimize query times, some predicates are pushed down to where the data lives\. The following tables summarize the Athena data types and logical operators currently supported in predicate pushdown\.
 
 
 ****  
 
-| Athena Data Type | Pushed Down | 
+| Athena data type | Pushed down | 
 | --- | --- | 
 | array | No | 
 | bigint | Yes | 
@@ -36,7 +36,7 @@ To optimize query times, some predicates are pushed down to where the data lives
 
 ****  
 
-| Logical Operator | Example Query | Pushed Down | 
+| Logical operator | Example query | Pushed down | 
 | --- | --- | --- | 
 | single or multiple AND | SELECT \* FROM table WHERE col\_1 = a AND col\_2 = b | Yes | 
 | OR conditions on same column | SELECT \* FROM table WHERE col\_1 = a OR col\_1 = b | Yes | 
@@ -47,13 +47,13 @@ To optimize query times, some predicates are pushed down to where the data lives
 | BETWEEN | SELECT \* FROM table WHERE col\_1 BETWEEN A AND B | Yes | 
 | LIKE | SELECT \* FROM table WHERE col\_1 LIKE 'expression%' | No | 
 
-## Time Travel and Version Travel Queries<a name="lf-governed-tables-time-travel-and-version-travel-queries"></a>
+## Time travel and version travel queries<a name="lf-governed-tables-time-travel-and-version-travel-queries"></a>
 
 Each governed table maintains a versioned manifest of the Amazon S3 objects that it comprises\. Previous versions of the manifest can be used for time travel and version travel queries\.
 
 Time travel queries in Athena query Amazon S3 for historical data from a consistent snapshot as of a specified date and time\. Version travel queries in Athena query Amazon S3 for historical data as of a specified snapshot ID\.
 
-### Time Travel Queries<a name="lf-governed-tables-example-syntax-time-travel"></a>
+### Time travel queries<a name="lf-governed-tables-example-syntax-time-travel"></a>
 
 To run a time travel query, use `FOR SYSTEM_TIME AS OF timestamp` after the table name in the `SELECT` statement, as in the following example:
 
@@ -75,7 +75,7 @@ SELECT * FROM governed_table
 FOR SYSTEM_TIME AS OF (current_timestamp - interval '1' day)
 ```
 
-### Version Travel Queries<a name="lf-governed-tables-example-syntax-version-travel"></a>
+### Version travel queries<a name="lf-governed-tables-example-syntax-version-travel"></a>
 
 To perform a version travel query \(that is, view a consistent snapshot as of a specified version\), use `FOR SYSTEM_VERSION AS OF version` after the table name in the `SELECT` statement, as in the following example\. 
 
@@ -91,7 +91,7 @@ The following example version travel query selects data for the specified versio
 SELECT * FROM governed_table FOR SYSTEM_VERSION AS OF 949530903748831860
 ```
 
-### Combining Time and Version Travel<a name="lf-governed-tables-combining-time-and-version-travel"></a>
+### Combining time and version travel<a name="lf-governed-tables-combining-time-and-version-travel"></a>
 
 You can use time travel and version travel syntax in the same query to specify different timing and versioning conditions, as in the following example\.
 

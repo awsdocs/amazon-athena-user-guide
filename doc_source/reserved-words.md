@@ -1,4 +1,4 @@
-# Reserved Keywords<a name="reserved-words"></a>
+# Reserved keywords<a name="reserved-words"></a>
 
 When you run queries in Athena that include reserved keywords, you must escape them by enclosing them in special characters\. Use the lists in this topic to check which keywords are reserved in Athena\. 
 
@@ -7,7 +7,7 @@ To escape reserved keywords in DDL statements, enclose them in backticks \(`\)\.
 +  [List of Reserved Keywords in SQL SELECT Statements](#list-of-reserved-words-sql-select) 
 +  [Examples of Queries with Reserved Keywords](#examples-reserved-words) 
 
-## List of Reserved Keywords in DDL Statements<a name="list-of-ddl-reserved-words"></a>
+## List of reserved keywords in DDL statements<a name="list-of-ddl-reserved-words"></a>
 
 Athena uses the following list of reserved keywords in its DDL statements\. If you use them without escaping them, Athena issues an error\. To escape them, enclose them in backticks \(`\)\.
 
@@ -28,7 +28,7 @@ TABLESAMPLE, THEN, TIME, TIMESTAMP, TO, TRANSFORM, TRIGGER, TRUE, TRUNCATE, UNBO
 UNIQUEJOIN, UPDATE, USER, USING, UTC_TIMESTAMP, VALUES, VARCHAR, VIEWS, WHEN, WHERE, WINDOW, WITH
 ```
 
-## List of Reserved Keywords in SQL SELECT Statements<a name="list-of-reserved-words-sql-select"></a>
+## List of reserved keywords in SQL SELECT statements<a name="list-of-reserved-words-sql-select"></a>
 
 Athena uses the following list of reserved keywords in SQL `SELECT` statements and in queries on views\. 
 
@@ -47,7 +47,7 @@ RECURSIVE, RIGHT, ROLLUP, SELECT, TABLE, THEN, TRUE,
 UNESCAPE, UNION, UNNEST, USING, VALUES, WHEN, WHERE, WITH
 ```
 
-## Examples of Queries with Reserved Words<a name="examples-reserved-words"></a>
+## Examples of queries with reserved words<a name="examples-reserved-words"></a>
 
 The query in the following example uses backticks \(`\) to escape the DDL\-related reserved keywords *partition* and *date* that are used for a table name and one of the column names:
 

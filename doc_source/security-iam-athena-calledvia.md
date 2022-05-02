@@ -1,8 +1,8 @@
-# Using Athena with CalledVia Context Keys<a name="security-iam-athena-calledvia"></a>
+# Using Athena with CalledVia context keys<a name="security-iam-athena-calledvia"></a>
 
 When a [principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/intro-structure.html#intro-structure-principal) makes a [request](https://docs.aws.amazon.com/IAM/latest/UserGuide/intro-structure.html#intro-structure-request) to AWS, AWS gathers the request information into a *request context* that evaluates and authorizes the request\. You can use the `Condition` element of a JSON policy to compare keys in the request context with key values that you specify in your policy\. *Global condition context keys* are condition keys with an `aws:` prefix\.
 
-## The aws:CalledVia Context Key<a name="security-iam-athena-calledvia-the-awscalledvia-context-key"></a>
+## The aws:CalledVia context key<a name="security-iam-athena-calledvia-the-awscalledvia-context-key"></a>
 
 You can use the [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-calledvia](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-calledvia) global condition context key to compare the services in the policy with the services that made requests on behalf of the IAM principal \(user or role\)\. When a principal makes a request to an AWS service, that service might use the principal's credentials to make subsequent requests to other services\. The `aws:CalledVia` key contains an ordered list of each service in the chain that made requests on the principal's behalf\.
 
@@ -20,7 +20,7 @@ By specifying a service principal name for the `aws:CalledVia` context key, you 
 
 You can use the `aws:CalledVia` context key to ensure that callers only have access to a resource \(like a Lambda function\) if they call the resource from Athena\.
 
-## Add an Optional CalledVia Context Key for Fine Grained Access to a Lambda function<a name="security-iam-athena-calledvia-example-policy-to-add-an-optional-calledvia-context-key-for-fine-grained-access-to-a-lambda-function"></a>
+## Add an optional CalledVia context key for fine grained access to a Lambda function<a name="security-iam-athena-calledvia-example-policy-to-add-an-optional-calledvia-context-key-for-fine-grained-access-to-a-lambda-function"></a>
 
 Athena requires the caller to have `lambda:InvokeFunction` permissions in order to invoke the Lambda function associated with the query\. The following statement allows fine\-grained access to a Lambda function so that the user can use only Athena to invoke the Lambda function\.
 

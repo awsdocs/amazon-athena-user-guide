@@ -1,10 +1,10 @@
-# Using the AWS CLI with Hive Metastores<a name="datastores-hive-cli"></a>
+# Using the AWS CLI with Hive metastores<a name="datastores-hive-cli"></a>
 
 You can use `aws athena` CLI commands to manage the Hive metastore data catalogs that you use with Athena\. After you have defined one or more catalogs to use with Athena, you can reference those catalogs in your `aws athena` DDL and DML commands\.
 
-## Using the AWS CLI to Manage Hive Metastore Catalogs<a name="datastores-hive-cli-manage-hive-catalogs"></a>
+## Using the AWS CLI to manage Hive metastore catalogs<a name="datastores-hive-cli-manage-hive-catalogs"></a>
 
-### Registering a Catalog: create\-data\-catalog<a name="datastores-hive-cli-registering-a-catalog"></a>
+### Registering a catalog: Create\-data\-catalog<a name="datastores-hive-cli-registering-a-catalog"></a>
 
 To register a data catalog, you use the `create-data-catalog` command\. Use the `name` parameter to specify the name that you want to use for the catalog\. Pass the ARN of the Lambda function to the `metadata-function` option of the `parameters` argument\. To create tags for the new catalog, use the `tags` parameter with one or more space\-separated `Key=key,Value=value` argument pairs\.
 
@@ -20,7 +20,7 @@ $ aws athena create-data-catalog
  --region us-east-1
 ```
 
-### Showing Catalog Details: get\-data\-catalog<a name="datastores-hive-cli-showing-details-of-a-catalog"></a>
+### Showing catalog details: Get\-data\-catalog<a name="datastores-hive-cli-showing-details-of-a-catalog"></a>
 
 To show the details of a catalog, pass the name of the catalog to the `get-data-catalog` command, as in the following example\.
 
@@ -44,7 +44,7 @@ The following sample result is in JSON format\.
 }
 ```
 
-### Listing Registered Catalogs: list\-data\-catalogs<a name="datastores-hive-cli-listing-registered-catalogs"></a>
+### Listing registered catalogs: List\-data\-catalogs<a name="datastores-hive-cli-listing-registered-catalogs"></a>
 
 To list the registered catalogs, use the `list-data-catalogs` command and optionally specify a Region, as in the following example\. The catalogs listed always include AWS Glue\.
 
@@ -73,7 +73,7 @@ The following sample result is in JSON format\.
 }
 ```
 
-### Updating a Catalog: update\-data\-catalog<a name="datastores-hive-cli-updating-a-catalog"></a>
+### Updating a catalog: Update\-data\-catalog<a name="datastores-hive-cli-updating-a-catalog"></a>
 
 To update a data catalog, use the `update-data-catalog` command, as in the following example\. The command has been formatted for readability\.
 
@@ -86,7 +86,7 @@ $ aws athena update-data-catalog
  --region us-east-1
 ```
 
-### Deleting a Catalog: delete\-data\-catalog<a name="datastores-hive-cli-deleting-a-catalog"></a>
+### Deleting a catalog: Delete\-data\-catalog<a name="datastores-hive-cli-deleting-a-catalog"></a>
 
 To delete a data catalog, use the `delete-data-catalog` command, as in the following example\.
 
@@ -94,7 +94,7 @@ To delete a data catalog, use the `delete-data-catalog` command, as in the follo
 $ aws athena delete-data-catalog --name "hms-catalog-1" --region us-east-1
 ```
 
-### Showing Database Details: get\-database<a name="datastores-hive-cli-showing-details-of-a-database"></a>
+### Showing database details: Get\-database<a name="datastores-hive-cli-showing-details-of-a-database"></a>
 
 To show the details of a database, pass the name of the catalog and the database to the `get-database` command, as in the following example\.
 
@@ -117,7 +117,7 @@ The following sample result is in JSON format\.
 }
 ```
 
-### Listing Databases in a Catalog: list\-databases<a name="datastores-hive-cli-listing-databases"></a>
+### Listing databases in a catalog: List\-databases<a name="datastores-hive-cli-listing-databases"></a>
 
 To list the databases in a catalog, use the `list-databases` command and optionally specify a Region, as in the following example\.
 
@@ -154,7 +154,7 @@ The following sample result is in JSON format\.
 }
 ```
 
-### Showing Table Details: get\-table\-metadata<a name="datastores-hive-cli-showing-details-of-a-table"></a>
+### Showing table details: Get\-table\-metadata<a name="datastores-hive-cli-showing-details-of-a-table"></a>
 
 To show the metadata for a table, including column names and datatypes, pass the name of the catalog, database, and table name to the `get-table-metadata` command, as in the following example\.
 
@@ -201,7 +201,7 @@ The following sample result is in JSON format\.
 }
 ```
 
-### Showing Metadata for All Tables in a Database: list\-table\-metadata<a name="datastores-hive-cli-showing-all-table-metadata"></a>
+### Showing metadata for all tables in a database: List\-table\-metadata<a name="datastores-hive-cli-showing-all-table-metadata"></a>
 
 To show the metadata for all tables in a database, pass the name of the catalog and database name to the `list-table-metadata` command\. The `list-table-metadata` command is similar to the `get-table-metadata` command, except that you do not specify a table name\. To limit the number of results, you can use the `--max-results` option, as in the following example\. 
 
@@ -281,13 +281,13 @@ The following sample result is in JSON format\.
 }
 ```
 
-## Running DDL and DML Statements<a name="datastores-hive-cli-running-ddl-and-dml"></a>
+## Running DDL and DML statements<a name="datastores-hive-cli-running-ddl-and-dml"></a>
 
 When you use the AWS CLI to run DDL and DML statements, you can pass the name of the Hive metastore catalog in one of two ways:
 + Directly into the statements that support it\.
 + To the `--query-execution-context` `Catalog` parameter\.
 
-### DDL Statements<a name="datastores-hive-cli-ddl-statements"></a>
+### DDL statements<a name="datastores-hive-cli-ddl-statements"></a>
 
 The following example passes in the catalog name directly as part of the `show create table` DDL statement\. The command has been formatted for readability\.
 
@@ -306,7 +306,7 @@ $ aws athena start-query-execution
  --result-configuration "OutputLocation=s3://mybucket/lambda/results"
 ```
 
-### DML Statements<a name="datastores-hive-cli-dml-statements"></a>
+### DML statements<a name="datastores-hive-cli-dml-statements"></a>
 
 The following example DML `select` statement passes the catalog name into the query directly\. The command has been formatted for readability\.
 

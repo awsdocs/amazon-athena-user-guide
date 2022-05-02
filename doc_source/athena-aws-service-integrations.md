@@ -1,6 +1,6 @@
 # AWS service integrations with Athena<a name="athena-aws-service-integrations"></a>
 
-You can use Athena to query data from the AWS services listed in this section\. To see the Regions that each service supports, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
+You can use Athena to query data from the AWS services listed in this section\. To see the Regions that each service supports, see [Regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
 
 **AWS services integrated with Athena**
 + [AWS CloudFormation](#integ-ate-cfn)
@@ -26,7 +26,7 @@ Reference topic: [AWS::Athena::NamedQuery](https://docs.aws.amazon.com/AWSCloudF
 Specify named queries with AWS CloudFormation and run them in Athena\. Named queries allow you to map a query name to a query and then run it as a saved query from the Athena console\. For information, see [CreateNamedQuery](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateNamedQuery.html) in the *Amazon Athena API Reference*\.  
 *Workgroup*  
 Reference topic: [AWS::Athena::WorkGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html) in the *AWS CloudFormation User Guide*  
-Specify Athena workgroups using AWS CloudFormation\. Use Athena workgroups to isolate queries for you or your group from other queries in the same account\. For more information, see [Using Workgroups to Control Query Access and Costs](manage-queries-control-costs-with-workgroups.md) in the *Amazon Athena User Guide* and [CreateWorkGroup](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateWorkGroup.html) in the *Amazon Athena API Reference*\.
+Specify Athena workgroups using AWS CloudFormation\. Use Athena workgroups to isolate queries for you or your group from other queries in the same account\. For more information, see [Using workgroups to control query access and costs](manage-queries-control-costs-with-workgroups.md) in the *Amazon Athena User Guide* and [CreateWorkGroup](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateWorkGroup.html) in the *Amazon Athena API Reference*\.
 
 **Amazon CloudFront**  
 Reference topic: [Querying Amazon CloudFront Logs](cloudfront-logs.md)  
@@ -48,7 +48,7 @@ Athena integrates with the AWS Glue Data Catalog, which offers a persistent meta
 
 **AWS Identity and Access Management \(IAM\)**  
 Reference topic: [Actions for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html)  
-You can use Athena API actions in IAM permission policies\. For more information, see [Actions for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html) and [Identity and Access Management in Athena](security-iam-athena.md)\.
+You can use Athena API actions in IAM permission policies\. For more information, see [Actions for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html) and [Identity and access management in Athena](security-iam-athena.md)\.
 
 **Amazon QuickSight**  
 Reference topic: [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena-bi-tools-jdbc-odbc.md)  
@@ -68,7 +68,7 @@ The following video demonstrates how to use Amazon Athena and AWS Step Functions
 For an example that uses Step Functions and Amazon EventBridge to orchestrate AWS Glue DataBrew, Athena, and Amazon QuickSight, see [Orchestrating an AWS Glue DataBrew job and Amazon Athena query with AWS Step Functions](http://aws.amazon.com/blogs/big-data/orchestrating-an-aws-glue-databrew-job-and-amazon-athena-query-with-aws-step-functions/) in the AWS Big Data Blog\.
 
 **AWS Systems Manager Inventory**  
-Reference topic: [Querying inventory data from multiple Regions and accounts](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-inventory-query.html) in the *AWS Systems Manager User Guide*  
+Reference topic: [Querying inventory data from multiple regions and accounts](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-inventory-query.html) in the *AWS Systems Manager User Guide*  
 AWS Systems Manager Inventory integrates with Amazon Athena to help you query inventory data from multiple AWS Regions and accounts\. For more information, see the [AWS Systems Manager User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/)\.
 
 **Amazon Virtual Private Cloud**  

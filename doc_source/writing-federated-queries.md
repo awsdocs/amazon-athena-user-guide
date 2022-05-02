@@ -1,8 +1,8 @@
-# Writing Federated Queries<a name="writing-federated-queries"></a>
+# Writing federated queries<a name="writing-federated-queries"></a>
 
 After you have configured one or more data connectors and deployed them to your account, you can use them in your Athena queries\. 
 
-## Querying a Single Data Source<a name="writing-federated-queries-single-data-source"></a>
+## Querying a single data source<a name="writing-federated-queries-single-data-source"></a>
 
 The examples in this section assume that you have configured and deployed the Athena CloudWatch connector to your account\. Use the same approach to query when you use other connectors\.
 
@@ -18,7 +18,7 @@ The examples in this section assume that you have configured and deployed the At
 
 ### Examples<a name="writing-federated-queries-single-data-source-examples"></a>
 
-The following example uses the Athena CloudWatch connector to connect to the `all_log_streams` view in the `/var/ecommerce-engine/order-processor` CloudWatch Logs [Log Group](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html)\. The `all_log_streams` view is a view of all the log streams in the log group\. The example query limits the number of rows returned to 100\.
+The following example uses the Athena CloudWatch connector to connect to the `all_log_streams` view in the `/var/ecommerce-engine/order-processor` CloudWatch Logs [Log group](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html)\. The `all_log_streams` view is a view of all the log streams in the log group\. The example query limits the number of rows returned to 100\.
 
 **Example**  
 
@@ -48,7 +48,7 @@ This example shows a query where the data source has been registered as a catalo
 
 ![\[Example Athena query output.\]](http://docs.aws.amazon.com/athena/latest/ug/images/connect-data-source-serverless-app-repo-1.png)
 
-## Querying Multiple Data Sources<a name="writing-federated-queries-multiple-sources"></a>
+## Querying multiple data sources<a name="writing-federated-queries-multiple-sources"></a>
 
 As a more complex example, imagine an ecommerce company that has an application infrastructure such as the one shown in the following diagram\.
 

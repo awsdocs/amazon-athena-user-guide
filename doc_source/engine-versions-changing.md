@@ -1,15 +1,15 @@
-# Changing Athena Engine Versions<a name="engine-versions-changing"></a>
+# Changing Athena engine versions<a name="engine-versions-changing"></a>
 
 Athena occasionally releases a new engine version to provide improved performance, functionality, and code fixes\. When a new engine version is available, Athena notifies you in the console\. You can choose to let Athena decide when to upgrade, or manually specify an Athena engine version per workgroup\.
 
 **Topics**
-+ [Finding the Query Engine Version for a Workgroup](#engine-versions-changing-finding-the-query-engine-version-for-a-workgroup)
-+ [Changing the Engine Version](#engine-versions-changing-changing-the-engine-version)
-+ [Specifying the Engine Version When You Create a Workgroup](#engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup)
-+ [Testing Queries in Advance of an Engine Version Upgrade](#engine-versions-testing)
-+ [Troubleshooting Queries That Fail](#engine-versions-troubleshooting)
++ [Finding the query engine version for a workgroup](#engine-versions-changing-finding-the-query-engine-version-for-a-workgroup)
++ [Changing the engine version](#engine-versions-changing-changing-the-engine-version)
++ [Specifying the engine version when you create a workgroup](#engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup)
++ [Testing queries in advance of an engine version upgrade](#engine-versions-testing)
++ [Troubleshooting queries that fail](#engine-versions-troubleshooting)
 
-## Finding the Query Engine Version for a Workgroup<a name="engine-versions-changing-finding-the-query-engine-version-for-a-workgroup"></a>
+## Finding the query engine version for a workgroup<a name="engine-versions-changing-finding-the-query-engine-version-for-a-workgroup"></a>
 
 You can use the **Workgroups** page to find the current engine version for any workgroup\.
 
@@ -24,12 +24,12 @@ You can use the **Workgroups** page to find the current engine version for any w
 
 1. On the **Workgroups** page, find the workgroup that you want\. The **Query engine version** column for the workgroup displays the query engine version\.
 
-## Changing the Engine Version<a name="engine-versions-changing-changing-the-engine-version"></a>
+## Changing the engine version<a name="engine-versions-changing-changing-the-engine-version"></a>
 
 When a new engine version is available, you can choose to let Athena decide when to upgrade the workgroup, or manually specify the Athena engine version that the workgroup uses\. If only one version is currently available, manually specifying a different version is not possible\.
 
 **Note**  
-To change the engine version for a workgroup, you must have permission to perform the `athena:ListEngineVersions` action on the workgroup\. For IAM policy examples, see [Workgroup Example Policies](example-policies-workgroup.md)\. 
+To change the engine version for a workgroup, you must have permission to perform the `athena:ListEngineVersions` action on the workgroup\. For IAM policy examples, see [Workgroup example policies](example-policies-workgroup.md)\. 
 
 **To let Athena decide when to upgrade the workgroup**
 
@@ -73,9 +73,9 @@ To change the engine version for a workgroup, you must have permission to perfor
 
    The **Query engine update status** for the workgroup shows **Manually set**\.
 
-## Specifying the Engine Version When You Create a Workgroup<a name="engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup"></a>
+## Specifying the engine version when you create a workgroup<a name="engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup"></a>
 
-When you create a workgroup, you can specify the engine version that the workgroup uses or let Athena decide when to upgrade the workgroup\. If a new engine version is available, a best practice is to create a workgroup to test the new engine before you upgrade your other workgroups\. To specify the engine version for a workgroup, you must have the `athena:ListEngineVersions` permission on the workgroup\. For IAM policy examples, see [Workgroup Example Policies](example-policies-workgroup.md)\.
+When you create a workgroup, you can specify the engine version that the workgroup uses or let Athena decide when to upgrade the workgroup\. If a new engine version is available, a best practice is to create a workgroup to test the new engine before you upgrade your other workgroups\. To specify the engine version for a workgroup, you must have the `athena:ListEngineVersions` permission on the workgroup\. For IAM policy examples, see [Workgroup example policies](example-policies-workgroup.md)\.
 
 **To specify the engine version when you create a workgroup**
 
@@ -91,28 +91,28 @@ When you create a workgroup, you can specify the engine version that the workgro
    + Choose **Automatic** to let Athena choose when to upgrade your workgroup\. This is the default setting\.
    + Choose **Manual** to manually choose a different engine version if one is available\.
 
-1. Enter information for the other fields as necessary\. For information about the other fields, see [Create a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
+1. Enter information for the other fields as necessary\. For information about the other fields, see [Create a workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
 
 1. Choose **Create workgroup**\.
 
-## Testing Queries in Advance of an Engine Version Upgrade<a name="engine-versions-testing"></a>
+## Testing queries in advance of an engine version upgrade<a name="engine-versions-testing"></a>
 
 When a workgroup is upgraded to a new engine version, some of your queries can break due to incompatibilities\. To make sure that your engine version upgrade goes smoothly, you can test your queries in advance\.
 
 **To test your queries prior to an engine version upgrade**
 
-1. Verify the engine version of the workgroup that you are using\. The engine version that you are using is displayed on the **Workgroups** page in the **Query engine version** column for for the workgroup\. For more information, see [Finding the Query Engine Version for a Workgroup](#engine-versions-changing-finding-the-query-engine-version-for-a-workgroup)\.
+1. Verify the engine version of the workgroup that you are using\. The engine version that you are using is displayed on the **Workgroups** page in the **Query engine version** column for for the workgroup\. For more information, see [Finding the query engine version for a workgroup](#engine-versions-changing-finding-the-query-engine-version-for-a-workgroup)\.
 
-1. Create a test workgroup that uses the new engine version\. For more information, see [Specifying the Engine Version When You Create a Workgroup](#engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup)\.
+1. Create a test workgroup that uses the new engine version\. For more information, see [Specifying the engine version when you create a workgroup](#engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup)\.
 
 1. Use the new workgroup to run the queries that you want to test\.
 
-1. If a query fails, use the [Athena Engine Version Reference](engine-versions-reference.md) to check for breaking changes that might be affecting the query\. Some changes may require you to update the syntax of your queries\.
+1. If a query fails, use the [Athena engine version reference](engine-versions-reference.md) to check for breaking changes that might be affecting the query\. Some changes may require you to update the syntax of your queries\.
 
 1. If your queries still fail, contact AWS Support for assistance\. In the AWS Management Console, choose **Support**, **Support Center**, or ask a question on [AWS re:Post](https://repost.aws/tags/TA78iVOM7gR62_QqDe2-CmiA/amazon-athena) using the **Amazon Athena** tag\.
 
-## Troubleshooting Queries That Fail<a name="engine-versions-troubleshooting"></a>
+## Troubleshooting queries that fail<a name="engine-versions-troubleshooting"></a>
 
-If a query fails after an engine version upgrade, use the [Athena Engine Version Reference](engine-versions-reference.md) to check for breaking changes, including changes that may affect the syntax in your queries\.
+If a query fails after an engine version upgrade, use the [Athena engine version reference](engine-versions-reference.md) to check for breaking changes, including changes that may affect the syntax in your queries\.
 
 If your queries still fail, contact AWS Support for assistance\. In the AWS Management Console, choose **Support**, **Support Center**, or ask a question on [AWS re:Post](https://repost.aws/tags/TA78iVOM7gR62_QqDe2-CmiA/amazon-athena) using the **Amazon Athena** tag\.

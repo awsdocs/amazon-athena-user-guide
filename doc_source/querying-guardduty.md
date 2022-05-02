@@ -1,13 +1,13 @@
-# Querying Amazon GuardDuty Findings<a name="querying-guardduty"></a>
+# Querying Amazon GuardDuty findings<a name="querying-guardduty"></a>
 
 [Amazon GuardDuty](https://aws.amazon.com/guardduty/) is a security monitoring service for helping to identify unexpected and potentially unauthorized or malicious activity in your AWS environment\. When it detects unexpected and potentially malicious activity, GuardDuty generates security [findings](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html) that you can export to Amazon S3 for storage and analysis\. After you export your findings to Amazon S3, you can use Athena to query them\. This article shows how to create a table in Athena for your GuardDuty findings and query them\.
 
 For more information about Amazon GuardDuty, see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
 
 ## Prerequisites<a name="querying-guardduty-prerequisites"></a>
-+ Enable the GuardDuty feature for exporting findings to Amazon S3\. For steps, see [Exporting Findings](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html) in the Amazon GuardDuty User Guide\.
++ Enable the GuardDuty feature for exporting findings to Amazon S3\. For steps, see [Exporting findings](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html) in the Amazon GuardDuty User Guide\.
 
-## Creating a Table in Athena for GuardDuty Findings<a name="querying-guardduty-creating-a-table-in-athena-for-guardduty-findings"></a>
+## Creating a table in Athena for GuardDuty findings<a name="querying-guardduty-creating-a-table-in-athena-for-guardduty-findings"></a>
 
 To query your GuardDuty findings from Athena, you must create a table for them\.
 
@@ -42,7 +42,7 @@ The SerDe expects each JSON document to be on a single line of text with no line
 
 1. Run the query in the Athena console to register the `gd_logs` table\. When the query completes, the findings are ready for you to query from Athena\.
 
-## Example Queries<a name="querying-guardduty-examples"></a>
+## Example queries<a name="querying-guardduty-examples"></a>
 
 The following examples show how to query GuardDuty findings from Athena\.
 
@@ -90,9 +90,9 @@ WHERE type LIKE '%UnauthorizedAccess:IAMUser%'
 ORDER BY severity desc;
 ```
 
-## Tips for Querying GuardDuty Findings<a name="querying-guardduty-tips"></a>
+## Tips for querying GuardDuty findings<a name="querying-guardduty-tips"></a>
 
 When you create your query, keep the following points in mind\.
-+ To extract data from nested JSON fields, use the Presto `json_extract` or `json_extract_scalar` functions\. For more information, see [Extracting Data from JSON](extracting-data-from-JSON.md)\.
++ To extract data from nested JSON fields, use the Presto `json_extract` or `json_extract_scalar` functions\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\.
 + Make sure that all characters in the JSON fields are in lower case\.
-+  For information about downloading query results, see [Downloading Query Results Files Using the Athena Console](querying.md#saving-query-results)\.
++  For information about downloading query results, see [Downloading query results files using the Athena console](querying.md#saving-query-results)\.

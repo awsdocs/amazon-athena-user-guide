@@ -10,12 +10,12 @@ Amazon Athena announces general availability of a new query engine version, Athe
 
 Athena engine version 2 includes performance enhancements and new feature capabilities such as schema evolution support for Parquet format data, additional geospatial functions, support for reading nested schema to reduce cost, and performance enhancements in JOIN and AGGREGATE operations\.
 + For information about improvements, breaking changes, and bug fixes, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
-+ For information about how to upgrade, see [Changing Athena Engine Versions](engine-versions-changing.md)\.
-+ For information about testing queries, see [Testing Queries in Advance of an Engine Version Upgrade](engine-versions-changing.md#engine-versions-testing)\.
++ For information about how to upgrade, see [Changing Athena engine versions](engine-versions-changing.md)\.
++ For information about testing queries, see [Testing queries in advance of an engine version upgrade](engine-versions-changing.md#engine-versions-testing)\.
 
 ## Federated SQL Queries<a name="release-note-2020-11-11-federated"></a>
 
-You can now use Athena’s federated query in the in the US East \(N\. Virginia\), US East \(Ohio\), and US West \(Oregon\) Regions without using the `AmazonAthenaPreviewFunctionality` workgroup\. 
+You can now use Athena's federated query in the US East \(N\. Virginia\), US East \(Ohio\), and US West \(Oregon\) Regions without using the `AmazonAthenaPreviewFunctionality` workgroup\. 
 
 Use Federated SQL queries to run SQL queries across relational, non\-relational, object, and custom data sources\. With federated querying, you can submit a single SQL query that scans data from multiple sources running on premises or hosted in the cloud\.
 

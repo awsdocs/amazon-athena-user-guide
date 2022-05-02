@@ -1,4 +1,4 @@
-# Setting up Partition Projection<a name="partition-projection-setting-up"></a>
+# Setting up partition projection<a name="partition-projection-setting-up"></a>
 
 Setting up partition projection in a table's properties is a two\-step process:
 
@@ -14,7 +14,7 @@ This section shows how to set these table properties for AWS Glue\. To set them,
 
 1. Choose the **Tables** tab\.
 
-   On the **Tables** tab, you can edit existing tables, or choose **Add tables** to create new ones\. For information about adding tables manually or with a crawler, see [Working with Tables on the AWS Glue Console](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html) in the *AWS Glue Developer Guide*\.
+   On the **Tables** tab, you can edit existing tables, or choose **Add tables** to create new ones\. For information about adding tables manually or with a crawler, see [Working with tables on the AWS Glue console](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html) in the *AWS Glue Developer Guide*\.
 
 1. In the list of tables, choose the link for the table that you want to edit\.  
 ![\[In the AWS Glue console, choose a table to edit.\]](http://docs.aws.amazon.com/athena/latest/ug/images/partition-projection-1.png)
@@ -26,9 +26,9 @@ This section shows how to set these table properties for AWS Glue\. To set them,
 
    1. For **Key**, add `projection.columnName.type`\.
 
-   1. For **Value**, add one of the supported types: `enum`, `integer`, `date`, or `injected`\. For more information, see [Supported Types for Partition Projection](partition-projection-supported-types.md)\.
+   1. For **Value**, add one of the supported types: `enum`, `integer`, `date`, or `injected`\. For more information, see [Supported types for partition projection](partition-projection-supported-types.md)\.
 
-1. Following the guidance in [Supported Types for Partition Projection](partition-projection-supported-types.md), add additional key\-value pairs according to your configuration requirements\.
+1. Following the guidance in [Supported types for partition projection](partition-projection-supported-types.md), add additional key\-value pairs according to your configuration requirements\.
 
    The following example table configuration configures the `year` column for partition projection, restricting the values that can be returned to a range from 2010 through 2016\.  
 ![\[Configuring partition projection for a partition column in the AWS Glue console table properties.\]](http://docs.aws.amazon.com/athena/latest/ug/images/partition-projection-3.png)
@@ -48,7 +48,7 @@ You can disable partition projection on this table at any time by setting `proje
 If you set `projection.enabled` to `true` but fail to configure one or more partition columns, you receive an error message like the following:  
 `HIVE_METASTORE_ERROR: Table database_name.table_name is configured for partition projection, but the following partition columns are missing projection configuration: [column_name] (table database_name.table_name)`\.
 
-## Specifying Custom S3 Storage Locations<a name="partition-projection-specifying-custom-s3-storage-locations"></a>
+## Specifying custom S3 storage locations<a name="partition-projection-specifying-custom-s3-storage-locations"></a>
 
 When you edit table properties in AWS Glue, you can also specify a custom Amazon S3 path template for the projected partitions\. A custom template enables Athena to properly map partition values to custom Amazon S3 file locations that do not follow a typical `.../column=value/...` pattern\. 
 

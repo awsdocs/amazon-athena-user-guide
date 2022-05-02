@@ -1,4 +1,4 @@
-# What is a Geospatial Query?<a name="geospatial-query-what-is"></a>
+# What is a geospatial query?<a name="geospatial-query-what-is"></a>
 
 Geospatial queries are specialized types of SQL queries supported in Athena\. They differ from non\-spatial SQL queries in the following ways:
 + Using the following specialized geometry data types: `point`, `line`, `multiline`, `polygon`, and `multipolygon`\.

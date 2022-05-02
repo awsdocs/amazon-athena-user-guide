@@ -1,4 +1,4 @@
-# Monitoring Athena Usage Metrics<a name="monitoring-athena-usage-metrics"></a>
+# Monitoring Athena usage metrics<a name="monitoring-athena-usage-metrics"></a>
 
 You can use CloudWatch usage metrics to provide visibility into your how your account uses resources by displaying your current service usage on CloudWatch graphs and dashboards\.
 
@@ -41,4 +41,4 @@ You can use the CloudWatch console to see a graph of Athena usage metrics and co
 
    The graph above displays your current usage of the AWS resource\.
 
-For information on adding service quotas to the graph and setting an alarm that notifies you if you approach the service quota, see [Visualizing your service quotas and setting alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Quotas-Visualize-Alarms.html) in the *Amazon CloudWatch User Guide*\. For information about setting usage limits per workgroup, see [Setting Data Usage Control Limits](workgroups-setting-control-limits-cloudwatch.md)\.
+For information on adding service quotas to the graph and setting an alarm that notifies you if you approach the service quota, see [Visualizing your service quotas and setting alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Quotas-Visualize-Alarms.html) in the *Amazon CloudWatch User Guide*\. For information about setting usage limits per workgroup, see [Setting data usage control limits](workgroups-setting-control-limits-cloudwatch.md)\.

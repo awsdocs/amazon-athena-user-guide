@@ -1,6 +1,6 @@
-# Creating Governed Tables<a name="lf-governed-tables-creating"></a>
+# Creating governed tables<a name="lf-governed-tables-creating"></a>
 
-## CREATE TABLE Syntax<a name="lf-governed-tables-create-table-syntax"></a>
+## CREATE TABLE syntax<a name="lf-governed-tables-create-table-syntax"></a>
 
 To create a governed table from Athena, set the `table_type` table property to `LAKEFORMATION_GOVERNED` in the `TBL_PROPERTIES` clause, as in the following syntax summary\.
 
@@ -15,7 +15,7 @@ CREATE TABLE
 **Note**  
 The `EXTERNAL` keyword is not used in Athena to create governed tables\. Using it results in the error message External keyword not supported for table type LAKEFORMATION\_GOVERNED\.
 
-## Example CREATE TABLE Statement<a name="lf-governed-tables-create-table-example"></a>
+## Example CREATE TABLE statement<a name="lf-governed-tables-create-table-example"></a>
 
 The following example creates a governed table that has three columns\.
 

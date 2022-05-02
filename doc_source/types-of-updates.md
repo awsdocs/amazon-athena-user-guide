@@ -1,6 +1,6 @@
-# Types of Updates<a name="types-of-updates"></a>
+# Types of updates<a name="types-of-updates"></a>
 
-Here are the types of updates that a table’s schema can have\. We review each type of schema update and specify which data formats allow you to have them in Athena\.
+Here are the types of updates that a table's schema can have\. We review each type of schema update and specify which data formats allow you to have them in Athena\.
 + [Adding Columns at the Beginning or Middle of the Table](#updates-add-columns-beginning-middle-of-table)
 + [Adding Columns at the End of the Table](#updates-add-columns-end-of-table)
 + [Removing Columns](#updates-removing-columns)
@@ -10,7 +10,7 @@ Here are the types of updates that a table’s schema can have\. We review each 
 
 Depending on how you expect your schemas to evolve, to continue using Athena queries, choose a compatible data format\. 
 
-Let’s consider an application that reads orders information from an `orders` table that exists in two formats: CSV and Parquet\. 
+Let's consider an application that reads orders information from an `orders` table that exists in two formats: CSV and Parquet\. 
 
 The following example creates a table in Parquet:
 
@@ -45,7 +45,7 @@ LOCATION 's3://schema_updates/orders_csv/';
 
 In the following sections, we review how updates to these tables affect Athena queries\.
 
-## Adding Columns at the Beginning or in the Middle of the Table<a name="updates-add-columns-beginning-middle-of-table"></a>
+## Adding columns at the beginning or in the middle of the table<a name="updates-add-columns-beginning-middle-of-table"></a>
 
 Adding columns is one of the most frequent schema changes\. For example, you may add a new column to enrich the table with new data\. Or, you may add a new column if the source for an existing column has changed, and keep the previous version of this column, to adjust applications that depend on them\.
 
@@ -71,7 +71,7 @@ ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 LOCATION 's3://schema_updates/orders_json/';
 ```
 
-## Adding Columns at the End of the Table<a name="updates-add-columns-end-of-table"></a>
+## Adding columns at the end of the table<a name="updates-add-columns-end-of-table"></a>
 
 If you create tables in any of the formats that Athena supports, such as Parquet, ORC, Avro, JSON, CSV, and TSV, you can use the `ALTER TABLE ADD COLUMNS` statement to add columns after existing columns but before partition columns\.
 
@@ -84,7 +84,7 @@ ALTER TABLE orders_parquet ADD COLUMNS (comment string)
 **Note**  
 To see a new table column in the Athena Query Editor after you run `ALTER TABLE ADD COLUMNS`, manually refresh the table list in the editor, and then expand the table again\.
 
-## Removing Columns<a name="updates-removing-columns"></a>
+## Removing columns<a name="updates-removing-columns"></a>
 
 You may need to remove columns from tables if they no longer contain data, or to restrict access to the data in them\.
 + You can remove columns from tables in JSON, Avro, and in Parquet and ORC if they are read by name\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\. 
@@ -107,7 +107,7 @@ STORED AS PARQUET
 LOCATION 's3://schema_updates/orders_parquet/';
 ```
 
-## Renaming Columns<a name="updates-renaming-columns"></a>
+## Renaming columns<a name="updates-renaming-columns"></a>
 
 You may want to rename columns in your tables to correct spelling, make column names more descriptive, or to reuse an existing column to avoid column reordering\.
 
@@ -165,7 +165,7 @@ SELECT *
 FROM orders_csv_column_renamed;
 ```
 
-## Reordering Columns<a name="updates-reordering-columns"></a>
+## Reordering columns<a name="updates-reordering-columns"></a>
 
 You can reorder columns only for tables with data in formats that read by name, such as JSON or Parquet, which reads by name by default\. You can also make ORC read by name, if needed\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\.
 
@@ -186,7 +186,7 @@ STORED AS PARQUET
 LOCATION 's3://schema_updates/orders_parquet/';
 ```
 
-## Changing a Column's Data Type<a name="updates-changing-column-type"></a>
+## Changing a column's data type<a name="updates-changing-column-type"></a>
 
 You change column types because a column's data type can no longer hold the amount of information, for example, when an ID column exceeds the size of an `INT` data type and has to change to a `BIGINT` data type\. 
 
@@ -202,9 +202,9 @@ We strongly suggest that you test and verify your queries before performing data
 The following table lists data types that you can change:
 
 
-**Compatible Data Types**  
+**Compatible data types**  
 
-| Original Data Type | Available Target Data Types | 
+| Original data type | Available target data types | 
 | --- | --- | 
 | STRING | BYTE, TINYINT, SMALLINT, INT, BIGINT | 
 | BYTE | TINYINT, SMALLINT, INT, BIGINT | 

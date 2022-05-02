@@ -3,7 +3,7 @@
 Retrieves rows of data from zero or more tables\.
 
 **Note**  
-This topic provides summary information for reference\. Comprehensive information about using `SELECT` and the SQL language is beyond the scope of this documentation\. For information about using SQL that is specific to Athena, see [Considerations and Limitations for SQL Queries in Amazon Athena](other-notable-limitations.md) and [Running SQL Queries Using Amazon Athena](querying-athena-tables.md)\. For help getting started with querying data in Athena, see [Getting Started](getting-started.md)\.
+This topic provides summary information for reference\. Comprehensive information about using `SELECT` and the SQL language is beyond the scope of this documentation\. For information about using SQL that is specific to Athena, see [Considerations and limitations for SQL queries in Amazon Athena](other-notable-limitations.md) and [Running SQL queries using Amazon Athena](querying-athena-tables.md)\. For help getting started with querying data in Athena, see [Getting started](getting-started.md)\.
 
 ## Synopsis<a name="synopsis"></a>
 
@@ -21,7 +21,7 @@ SELECT [ ALL | DISTINCT ] select_expression [, ...]
 ```
 
 **Note**  
-Reserved words in SQL SELECT statements must be enclosed in double quotes\. For more information, see [List of Reserved Keywords in SQL SELECT Statements](reserved-words.md#list-of-reserved-words-sql-select)\.
+Reserved words in SQL SELECT statements must be enclosed in double quotes\. For more information, see [List of reserved keywords in SQL SELECT statements](reserved-words.md#list-of-reserved-words-sql-select)\.
 
 ## Parameters<a name="select-parameters"></a>
 
@@ -138,7 +138,7 @@ Other columns are padded with nulls\.
 The `WITH ORDINALITY` clause adds an ordinality column to the end\.  
  `UNNEST` is usually used with a `JOIN` and can reference columns from relations on the left side of the `JOIN`\.
 
-## Getting the File Locations for Source Data in Amazon S3<a name="select-path"></a>
+## Getting the file locations for source data in Amazon S3<a name="select-path"></a>
 
 To see the Amazon S3 file location for the data in a table row, you can use `"$path"` in a `SELECT` query, as in the following example:
 
@@ -176,7 +176,7 @@ SELECT *,"$path" FROM my_database.my_table WHERE "$path" = 's3://awsexamplebucke
 
 For more information and examples, see the Knowledge Center article [How can I see the Amazon S3 source file for a row in an Athena table?](http://aws.amazon.com/premiumsupport/knowledge-center/find-s3-source-file-athena-table-row/)\.
 
-## Escaping Single Quotes<a name="select-escaping"></a>
+## Escaping single quotes<a name="select-escaping"></a>
 
  To escape a single quote, precede it with another single quote, as in the following example\. Do not confuse this with a double quote\. 
 
@@ -187,16 +187,16 @@ Select 'O''Reilly'
 **Results**  
 `O'Reilly`
 
-## Additional Resources<a name="select-additional-resources"></a>
+## Additional resources<a name="select-additional-resources"></a>
 
 For more information about using `SELECT` statements in Athena, see the following resources\.
 
 
-| For Information About This | See This | 
+| For information about this | See this | 
 | --- | --- | 
-| Running queries in Athena | [Running SQL Queries Using Amazon Athena](querying-athena-tables.md) | 
-| Using SELECT to create a table | [Creating a Table from Query Results \(CTAS\)](ctas.md) | 
+| Running queries in Athena | [Running SQL queries using Amazon Athena](querying-athena-tables.md) | 
+| Using SELECT to create a table | [Creating a table from query results \(CTAS\)](ctas.md) | 
 | Inserting data from a SELECT query into another table | [INSERT INTO](insert-into.md) | 
 | Using built\-in functions in SELECT statements | [Functions in Amazon Athena](presto-functions.md) | 
-| Using user defined functions in SELECT statements | [Querying with User Defined Functions](querying-udf.md) | 
+| Using user defined functions in SELECT statements | [Querying with user defined functions](querying-udf.md) | 
 | Querying Data Catalog metadata | [Querying AWS Glue Data Catalog](querying-glue-catalog.md) | 

@@ -1,4 +1,4 @@
-# Using Arrays to Create Maps<a name="maps"></a>
+# Using arrays to create maps<a name="maps"></a>
 
 Maps are key\-value pairs that consist of data types available in Athena\. To create maps, use the `MAP` operator and pass it two arrays: the first is the column \(key\) names, and the second is values\. All values in the arrays must be of the same type\. If any of the map value array elements need to be of different types, you can convert them later\.
 

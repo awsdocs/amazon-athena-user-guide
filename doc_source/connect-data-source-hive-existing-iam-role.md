@@ -1,25 +1,25 @@
-# Connecting Athena to a Hive Metastore Using an Existing IAM Execution Role<a name="connect-data-source-hive-existing-iam-role"></a>
+# Connecting Athena to a Hive metastore using an existing IAM execution role<a name="connect-data-source-hive-existing-iam-role"></a>
 
 To connect your external Hive metastore to Athena with a Lambda function that uses an existing IAM role, you can use Athena's reference implementation of the Athena connector for external Hive metastore\.
 
 The three major steps are as follows:
 
-1. **[Clone and Build](#connect-data-source-hive-existing-iam-role-clone-and-build-the-lambda-function)** – Clone the Athena reference implementation and build the JAR file that contains the Lambda function code\.
+1. **[Clone and build](#connect-data-source-hive-existing-iam-role-clone-and-build-the-lambda-function)** – Clone the Athena reference implementation and build the JAR file that contains the Lambda function code\.
 
 1. **[AWS Lambda console](#connect-data-source-hive-existing-iam-role-aws-lambda-console)** – In the AWS Lambda console, create a Lambda function, assign it an existing IAM execution role, and upload the function code that you generated\.
 
 1. **[Amazon Athena console](connect-data-source-hive-existing-lambda.md)** – In the Amazon Athena console, create a data source name that you can use to refer to your external Hive metastore in your Athena queries\.
 
-If you already have permissions to create a custom IAM role, you can use a simpler workflow that uses the Athena console and the AWS Serverless Application Repository to create and configure a Lambda function\. For more information, see [Connecting Athena to an Apache Hive Metastore](connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore.md)\.
+If you already have permissions to create a custom IAM role, you can use a simpler workflow that uses the Athena console and the AWS Serverless Application Repository to create and configure a Lambda function\. For more information, see [Connecting Athena to an Apache Hive metastore](connect-to-data-source-hive-connecting-athena-to-an-apache-hive-metastore.md)\.
 
 ## Prerequisites<a name="connect-data-source-hive-existing-iam-role-prerequisites"></a>
 + Git must be installed on your system\.
 + You must have [Apache Maven](https://maven.apache.org/) installed\.
-+ You have an IAM execution role that you can assign to the Lambda function\. For more information, see [Allow Lambda Function Access to External Hive Metastores](hive-metastore-iam-access-lambda.md)\.
++ You have an IAM execution role that you can assign to the Lambda function\. For more information, see [Allow Lambda function access to external Hive metastores](hive-metastore-iam-access-lambda.md)\.
 
-## Clone and Build the Lambda function<a name="connect-data-source-hive-existing-iam-role-clone-and-build-the-lambda-function"></a>
+## Clone and build the Lambda function<a name="connect-data-source-hive-existing-iam-role-clone-and-build-the-lambda-function"></a>
 
-The function code for the Athena reference implementation is a Maven project located on GitHub at [awslabs/aws\-athena\-hive\-metastore](https://github.com/awslabs/aws-athena-hive-metastore)\. For detailed information about the project, see the corresponding README file on GitHub or the [Reference Implementation](datastores-hive-reference-implementation.md) topic in this documentation\.
+The function code for the Athena reference implementation is a Maven project located on GitHub at [awslabs/aws\-athena\-hive\-metastore](https://github.com/awslabs/aws-athena-hive-metastore)\. For detailed information about the project, see the corresponding README file on GitHub or the [Reference implementation](datastores-hive-reference-implementation.md) topic in this documentation\.
 
 **To clone and build the Lambda function code**
 
@@ -41,11 +41,11 @@ The function code for the Athena reference implementation is a Maven project loc
 
    In the next section, you use the AWS Lambda console to upload this file to your Amazon Web Services account\.
 
-## Create and Configure the Lambda Function in the AWS Lambda Console<a name="connect-data-source-hive-existing-iam-role-aws-lambda-console"></a>
+## Create and configure the Lambda function in the AWS Lambda console<a name="connect-data-source-hive-existing-iam-role-aws-lambda-console"></a>
 
 In this section, you use the AWS Lambda console to create a function that uses an existing IAM execution role\. After you configure a VPC for the function, you upload the function code and configure the environment variables for the function\.
 
-### Create the Lambda Function<a name="connect-data-source-hive-existing-iam-role-create-the-lambda-function"></a>
+### Create the Lambda function<a name="connect-data-source-hive-existing-iam-role-create-the-lambda-function"></a>
 
 In this step, you create a function in the AWS Lambda console that uses an existing IAM role\.
 
@@ -81,7 +81,7 @@ In this step, you create a function in the AWS Lambda console that uses an exist
 
 1. Choose **Create function**\. The AWS Lambda console and opens the configuration page for your function and begins creating your function\.
 
-### Upload the Code and Configure the Lambda function<a name="connect-data-source-hive-existing-iam-role-upload-and-configure"></a>
+### Upload the code and configure the Lambda function<a name="connect-data-source-hive-existing-iam-role-upload-and-configure"></a>
 
 When the console informs you that your function has been successfully created, you are ready to upload the function code and configure its environment variables\.
 
@@ -111,4 +111,4 @@ When the console informs you that your function has been successfully created, y
 
 1. Choose **Save**\.
 
-At this point, you are ready to configure Athena to use your Lambda function to connect to your Hive metastore\. For steps, see [Configure Athena to Use a Deployed Hive Metastore Connector](connect-data-source-hive-existing-lambda.md)\.
+At this point, you are ready to configure Athena to use your Lambda function to connect to your Hive metastore\. For steps, see [Configure Athena to use a deployed Hive metastore connector](connect-data-source-hive-existing-lambda.md)\.

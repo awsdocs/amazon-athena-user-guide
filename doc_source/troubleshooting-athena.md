@@ -4,19 +4,19 @@ The Athena team has gathered the following troubleshooting information from cust
 
 **Topics**
 + [CREATE TABLE AS SELECT \(CTAS\)](#troubleshooting-athena-create-table-as-select-ctas)
-+ [Data File Issues](#troubleshooting-athena-data-file-issues)
-+ [Federated Queries](#troubleshooting-athena-federated-queries)
-+ [JSON Related Errors](#troubleshooting-athena-json-related-errors)
++ [Data file issues](#troubleshooting-athena-data-file-issues)
++ [Federated queries](#troubleshooting-athena-federated-queries)
++ [JSON related errors](#troubleshooting-athena-json-related-errors)
 + [MSCK REPAIR TABLE](#troubleshooting-athena-msck-repair-table)
-+ [Output Issues](#troubleshooting-athena-output-issues)
-+ [Partitioning Issues](#troubleshooting-athena-partitioning-issues)
++ [Output issues](#troubleshooting-athena-output-issues)
++ [Partitioning issues](#troubleshooting-athena-partitioning-issues)
 + [Permissions](#troubleshooting-athena-permissions)
-+ [Query Syntax Issues](#troubleshooting-athena-query-syntax-issues)
-+ [Throttling Issues](#troubleshooting-athena-throttling-issues)
++ [Query syntax issues](#troubleshooting-athena-query-syntax-issues)
++ [Throttling issues](#troubleshooting-athena-throttling-issues)
 + [Views](#troubleshooting-athena-views)
 + [Workgroups](#troubleshooting-athena-workgroups)
-+ [Additional Resources](#troubleshooting-athena-additional-resources)
-+ [Athena Error Catalog](error-reference.md)
++ [Additional resources](#troubleshooting-athena-additional-resources)
++ [Athena error catalog](error-reference.md)
 
 ## CREATE TABLE AS SELECT \(CTAS\)<a name="troubleshooting-athena-create-table-as-select-ctas"></a>
 
@@ -26,9 +26,9 @@ Athena does not maintain concurrent validation for CTAS\. Make sure that there i
 
 ### HIVE\_TOO\_MANY\_OPEN\_PARTITIONS<a name="troubleshooting-athena-ctas-hive-too-many-open-partitions"></a>
 
-When you use a CTAS statement to create a table with more than 100 partitions, you may receive the error HIVE\_TOO\_MANY\_OPEN\_PARTITIONS: Exceeded limit of 100 open writers for partitions/buckets\. To work around this limitation, you can use a CTAS statement and a series of `INSERT INTO` statements that create or insert up to 100 partitions each\. For more information, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
+When you use a CTAS statement to create a table with more than 100 partitions, you may receive the error HIVE\_TOO\_MANY\_OPEN\_PARTITIONS: Exceeded limit of 100 open writers for partitions/buckets\. To work around this limitation, you can use a CTAS statement and a series of `INSERT INTO` statements that create or insert up to 100 partitions each\. For more information, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
 
-## Data File Issues<a name="troubleshooting-athena-data-file-issues"></a>
+## Data file issues<a name="troubleshooting-athena-data-file-issues"></a>
 
 ### Athena cannot read hidden files<a name="troubleshooting-athena-athena-cannot-read-hidden-files"></a>
 
@@ -36,7 +36,7 @@ Athena treats sources files that start with an underscore \(\_\) or a dot \(\.\)
 
 ### Athena cannot read files stored in Amazon S3 Glacier<a name="troubleshooting-athena-athena-cannot-read-files-stored-in-the-glacier-storage-class"></a>
 
-Athena does not support querying the data in the [S3 Glacier Flexible Retrieval](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier) or S3 Glacier Deep Archive storage classes\. Objects in the S3 Glacier and S3 Glacier Deep Archive storage classes are ignored\. Data that is moved or transitioned to one of these classes are no longer readable or queryable by Athena even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class, or use the Amazon S3 Glacier Instant Retrieval storage class instead, which is queryable by Athena\. For more information, see [Amazon S3 Glacier Instant Retrieval storage class](http://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/)\.
+Athena does not support querying the data in the [S3 Glacier flexible retrieval](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier) or S3 Glacier Deep Archive storage classes\. Objects in the S3 Glacier and S3 Glacier Deep Archive storage classes are ignored\. Data that is moved or transitioned to one of these classes are no longer readable or queryable by Athena even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class, or use the Amazon S3 Glacier Instant Retrieval storage class instead, which is queryable by Athena\. For more information, see [Amazon S3 Glacier instant retrieval storage class](http://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/)\.
 
 ### Athena reads files that I excluded from the AWS Glue crawler<a name="troubleshooting-athena-athena-reads-files-that-i-excluded-from-the-glue-crawler"></a>
 
@@ -45,12 +45,12 @@ Athena does not recognize [exclude patterns](https://docs.aws.amazon.com/glue/la
 ### HIVE\_BAD\_DATA: Error parsing field value<a name="troubleshooting-athena-hive_bad_data-error-parsing-field-value"></a>
 
 This error can occur in the following scenarios:
-+ The data type defined in the table doesn't match the source data, or a single field contains different types of data\. For suggested resolutions, see [My Amazon Athena query fails with the error "HIVE\_BAD\_DATA: Error parsing field value for field X: For input string: "12312845691""](http://aws.amazon.com/premiumsupport/knowledge-center/athena-hive-bad-data-parsing-field-value/) in the AWS Knowledge Center\.
-+ Null values are present in an integer field\. One workaround is to create the column with the null values as `string` and then use `CAST` to convert the field in a query, supplying a default value of `0` for nulls\. For more information, see [When I query CSV data in Athena, I get the error "HIVE\_BAD\_DATA: Error parsing field value '' for field X: For input string: """](http://aws.amazon.com/premiumsupport/knowledge-center/athena-hive-bad-data-error-csv/) in the AWS Knowledge Center\.
++ The data type defined in the table doesn't match the source data, or a single field contains different types of data\. For suggested resolutions, see [My Amazon Athena query fails with the error "HIVE\_BAD\_DATA: Error parsing field value for field x: For input string: "12312845691""](http://aws.amazon.com/premiumsupport/knowledge-center/athena-hive-bad-data-parsing-field-value/) in the AWS Knowledge Center\.
++ Null values are present in an integer field\. One workaround is to create the column with the null values as `string` and then use `CAST` to convert the field in a query, supplying a default value of `0` for nulls\. For more information, see [When I query CSV data in Athena, I get the error "HIVE\_BAD\_DATA: Error parsing field value '' for field x: For input string: """](http://aws.amazon.com/premiumsupport/knowledge-center/athena-hive-bad-data-error-csv/) in the AWS Knowledge Center\.
 
 ### HIVE\_CANNOT\_OPEN\_SPLIT: Error opening Hive split s3://*bucket\-name*<a name="troubleshooting-athena-hive_cannot_open_split-error-opening-hive-split-s3bucket-name"></a>
 
-This error can occur when you query an Amazon S3 bucket prefix that has a large number of objects\. For more information, see [How do I resolve the "HIVE\_CANNOT\_OPEN\_SPLIT: Error opening Hive split s3://awsdoc\-example\-bucket/: Slow Down" error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/hive-cannot-open-split-503-athena/) in the AWS Knowledge Center\.
+This error can occur when you query an Amazon S3 bucket prefix that has a large number of objects\. For more information, see [How do I resolve the "HIVE\_CANNOT\_OPEN\_SPLIT: Error opening Hive split s3://awsdoc\-example\-bucket/: Slow down" error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/hive-cannot-open-split-503-athena/) in the AWS Knowledge Center\.
 
 ### HIVE\_CURSOR\_ERROR: com\.amazonaws\.services\.s3\.model\.AmazonS3Exception: The specified key does not exist<a name="troubleshooting-athena-hive_cursor_error-com.amazonaws.services.s3.model.amazons3exception-the-specified-key-does-not-exist"></a>
 
@@ -79,13 +79,13 @@ This error is caused by a parquet schema mismatch\. A column that has a non\-pri
 
 ### The S3 location provided to save your query results is invalid\.<a name="troubleshooting-athena-the-s3-location-provided-to-save-your-query-results-is-invalid."></a>
 
-Make sure that you have specified a valid S3 location for your query results\. For more information, see [Specifying a Query Result Location](querying.md#query-results-specify-location) in the [Working with Query Results, Recent Queries, and Output Files](querying.md) topic\.
+Make sure that you have specified a valid S3 location for your query results\. For more information, see [Specifying a query result location](querying.md#query-results-specify-location) in the [Working with query results, recent queries, and output files](querying.md) topic\.
 
-## Federated Queries<a name="troubleshooting-athena-federated-queries"></a>
+## Federated queries<a name="troubleshooting-athena-federated-queries"></a>
 
 For information on troubleshooting federated queries, see [Common\_Problems](https://github.com/awslabs/aws-athena-query-federation/wiki/Common_Problems) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
 
-## JSON Related Errors<a name="troubleshooting-athena-json-related-errors"></a>
+## JSON related errors<a name="troubleshooting-athena-json-related-errors"></a>
 
 ### NULL or incorrect data errors when trying to read JSON data<a name="troubleshooting-athena-null-or-incorrect-data-errors-when-trying-to-read-json-data"></a>
 
@@ -95,13 +95,13 @@ NULL or incorrect data errors when you try read JSON data can be due to a number
 
 The [OpenX JSON SerDe](openx-json-serde.md) throws this error when it fails to parse a column in an Athena query\. This can happen if you define a column as a `map` or `struct`, but the underlying data is actually a `string`, `int`, or other primitive type\.
 
-### HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object \- JSONException: Duplicate key<a name="troubleshooting-athena-hive_cursor_error-row-is-not-a-valid-json-object---jsonexception-duplicate-key"></a>
+### HIVE\_CURSOR\_ERROR: Row is not a valid JSON object \- JSONException: Duplicate key<a name="troubleshooting-athena-hive_cursor_error-row-is-not-a-valid-json-object---jsonexception-duplicate-key"></a>
 
-This error occurs when you use Athena to query AWS Config resources that have multiple tags with the same name in different case\. The solution is to run *CREATE TABLE* using *WITH SERDEPROPERTIES 'case\.insensitive'='false'* and map the names\. For information about `case.insensitive` and mapping, see [JSON SerDe Libraries](json-serde.md)\. For more information, see [How do I resolve "HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object \- JSONException: Duplicate key" when reading files from AWS Config in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/json-duplicate-key-error-athena-config/) in the AWS Knowledge Center\.
+This error occurs when you use Athena to query AWS Config resources that have multiple tags with the same name in different case\. The solution is to run *CREATE TABLE* using *WITH SERDEPROPERTIES 'case\.insensitive'='false'* and map the names\. For information about `case.insensitive` and mapping, see [JSON SerDe libraries](json-serde.md)\. For more information, see [How do I resolve "HIVE\_CURSOR\_ERROR: Row is not a valid JSON object \- JSONException: Duplicate key" when reading files from AWS Config in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/json-duplicate-key-error-athena-config/) in the AWS Knowledge Center\.
 
 ### HIVE\_CURSOR\_ERROR messages with pretty\-printed JSON<a name="troubleshooting-athena-json-serde-hive-cursor-error"></a>
 
-The [Hive JSON SerDe](hive-json-serde.md) and [OpenX JSON SerDe](openx-json-serde.md) libraries expect each JSON document to be on a single line of text with no line termination characters separating the fields in the record\. If the JSON text is in pretty print format, you may receive an error message like HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object or HIVE\_CURSOR\_ERROR: JsonParseException: Unexpected end\-of\-input: expected close marker for OBJECT when you attempt to query the table after you create it\. For more information, see [JSON Data Files](https://github.com/rcongiu/Hive-JSON-Serde#json-data-files) in the OpenX SerDe documentation on GitHub\.
+The [Hive JSON SerDe](hive-json-serde.md) and [OpenX JSON SerDe](openx-json-serde.md) libraries expect each JSON document to be on a single line of text with no line termination characters separating the fields in the record\. If the JSON text is in pretty print format, you may receive an error message like HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object or HIVE\_CURSOR\_ERROR: JsonParseException: Unexpected end\-of\-input: expected close marker for OBJECT when you attempt to query the table after you create it\. For more information, see [JSON data files](https://github.com/rcongiu/Hive-JSON-Serde#json-data-files) in the OpenX SerDe documentation on GitHub\.
 
 ### Multiple JSON records return a SELECT COUNT of 1<a name="troubleshooting-athena-multiple-json-records-return-a-select-count-of-1"></a>
 
@@ -113,13 +113,13 @@ The Athena engine does not support [custom JSON classifiers](https://docs.aws.am
 
 ## MSCK REPAIR TABLE<a name="troubleshooting-athena-msck-repair-table"></a>
 
-For information about MSCK REPAIR TABLE related issues, see the [Considerations and Limitations](msck-repair-table.md#msck-repair-table-considerations) and [Troubleshooting](msck-repair-table.md#msck-repair-table-troubleshooting) sections of the [MSCK REPAIR TABLE](msck-repair-table.md) page\.
+For information about MSCK REPAIR TABLE related issues, see the [Considerations and limitations](msck-repair-table.md#msck-repair-table-considerations) and [Troubleshooting](msck-repair-table.md#msck-repair-table-troubleshooting) sections of the [MSCK REPAIR TABLE](msck-repair-table.md) page\.
 
-## Output Issues<a name="troubleshooting-athena-output-issues"></a>
+## Output issues<a name="troubleshooting-athena-output-issues"></a>
 
 ### Unable to verify/create output bucket<a name="troubleshooting-athena-unable-to-verifycreate-output-bucket"></a>
 
-This error can occur if the specified query result location doesn't exist or if the proper permissions are not present\. For more information, see [How do I resolve the "Unable to verify/create output bucket" error in Amazon Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-output-bucket-error/) in the AWS Knowledge Center\.
+This error can occur if the specified query result location doesn't exist or if the proper permissions are not present\. For more information, see [How do I resolve the "unable to verify/create output bucket" error in Amazon Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-output-bucket-error/) in the AWS Knowledge Center\.
 
 ### TIMESTAMP result is empty<a name="troubleshooting-athena-timestamp-result-is-empty"></a>
 
@@ -131,9 +131,9 @@ By default, Athena outputs files in CSV format only\. To output the results of a
 
 ### The S3 location provided to save your query results is invalid<a name="troubleshooting-athena-the-s3-location-provided-to-save-your-query-results-is-invalid"></a>
 
-You can receive this error message if your output bucket location is not in the same Region as the Region in which you run your query\. To avoid this, specify a query results location in the Region in which you run the query\. For steps, see [Specifying a Query Result Location](querying.md#query-results-specify-location)\.
+You can receive this error message if your output bucket location is not in the same Region as the Region in which you run your query\. To avoid this, specify a query results location in the Region in which you run the query\. For steps, see [Specifying a query result location](querying.md#query-results-specify-location)\.
 
-## Partitioning Issues<a name="troubleshooting-athena-partitioning-issues"></a>
+## Partitioning issues<a name="troubleshooting-athena-partitioning-issues"></a>
 
 ### MSCK REPAIR TABLE does not remove stale partitions<a name="troubleshooting-athena-msck-repair-table-does-not-remove-stale-partitions"></a>
 
@@ -149,7 +149,7 @@ This issue can occur if an Amazon S3 path is in camel case instead of lower case
 
 ### Partition projection ranges with the date format of dd\-MM\-yyyy\-HH\-mm\-ss or yyyy\-MM\-dd do not work<a name="troubleshooting-athena-partition-projection-ranges-with-the-date-format-of-dd-mm-yyyy-hh-mm-ss-or-yyyy-mm-dd-do-not-work"></a>
 
-To work correctly, the date format must be set to `yyyy-MM-dd HH:00:00`\. For more information, see the Stack Overflow post [Athena Partition Projection Not Working As Expected](https://stackoverflow.com/questions/63943920/athena-partition-projection-not-working-as-expected)\.
+To work correctly, the date format must be set to `yyyy-MM-dd HH:00:00`\. For more information, see the Stack Overflow post [Athena partition projection not working as expected](https://stackoverflow.com/questions/63943920/athena-partition-projection-not-working-as-expected)\.
 
 ### PARTITION BY doesn't support the BIGINT type<a name="troubleshooting-athena-partition-by-doesnt-support-the-bigint-type"></a>
 
@@ -169,13 +169,13 @@ One or more of the glue partitions are declared in a different format as each gl
 
 ### HIVE\_PARTITION\_SCHEMA\_MISMATCH<a name="troubleshooting-athena-hive_partition_schema_mismatch"></a>
 
-If the schema of a partition differs from the schema of the table, a query can fail with the error message HIVE\_PARTITION\_SCHEMA\_MISMATCH\. For more information, see [Syncing Partition Schema to Avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"](glue-best-practices.md#schema-syncing)\.
+If the schema of a partition differs from the schema of the table, a query can fail with the error message HIVE\_PARTITION\_SCHEMA\_MISMATCH\. For more information, see [Syncing partition schema to avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"](glue-best-practices.md#schema-syncing)\.
 
 ### SemanticException table is not partitioned but partition spec exists<a name="troubleshooting-athena-semanticexception-table-is-not-partitioned-but-partition-spec-exists"></a>
 
 This error can occur when no partitions were defined in the `CREATE TABLE` statement\. For more information, see [How can I troubleshoot the error "FAILED: SemanticException table is not partitioned but partition spec exists" in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-failed-semanticexception-table/) in the AWS Knowledge Center\.
 
-### Zero Byte `_$folder$` Files<a name="troubleshooting-athena-alter-table-add-partition-zero-byte-folder-files"></a>
+### Zero byte `_$folder$` files<a name="troubleshooting-athena-alter-table-add-partition-zero-byte-folder-files"></a>
 
 If you run an `ALTER TABLE ADD PARTITION` statement and mistakenly specify a partition that already exists and an incorrect Amazon S3 location, zero byte placeholder files of the format `partition_value_$folder$` are created in Amazon S3\. You must remove these files manually\.
 
@@ -193,11 +193,11 @@ See also [HIVE\_TOO\_MANY\_OPEN\_PARTITIONS](#troubleshooting-athena-ctas-hive-t
 
 ## Permissions<a name="troubleshooting-athena-permissions"></a>
 
-### Access Denied Error when querying Amazon S3<a name="troubleshooting-athena-access-denied-error-when-querying-amazon-s3"></a>
+### Access denied error when querying Amazon S3<a name="troubleshooting-athena-access-denied-error-when-querying-amazon-s3"></a>
 
-This can occur when you don't have permission to read the data in the bucket, permission to write to the results bucket, or the Amazon S3 path contains a Region endpoint like `us-east-1.amazonaws.com`\. For more information, see [When I run an Athena query, I get an "Access Denied" error](http://aws.amazon.com/premiumsupport/knowledge-center/access-denied-athena/) in the AWS Knowledge Center\.
+This can occur when you don't have permission to read the data in the bucket, permission to write to the results bucket, or the Amazon S3 path contains a Region endpoint like `us-east-1.amazonaws.com`\. For more information, see [When I run an Athena query, I get an "access denied" error](http://aws.amazon.com/premiumsupport/knowledge-center/access-denied-athena/) in the AWS Knowledge Center\.
 
-### Access Denied with Status Code: 403 error when running DDL queries on encrypted data in Amazon S3<a name="troubleshooting-athena-access-denied-error-when-querying-amazon-s3-encrypted"></a>
+### Access denied with status code: 403 error when running DDL queries on encrypted data in Amazon S3<a name="troubleshooting-athena-access-denied-error-when-querying-amazon-s3-encrypted"></a>
 
 When you may receive the error message Access Denied \(Service: Amazon S3; Status Code: 403; Error Code: AccessDenied; Request ID: *<request\_id>*\) if the following conditions are true:
 
@@ -239,17 +239,17 @@ When you may receive the error message Access Denied \(Service: Amazon S3; Statu
 
 In a case like this, the recommended solution is to remove the bucket policy like the one above given that the bucket's default encryption is already present\.
 
-### Access Denied with Status Code: 403 when querying an Amazon S3 bucket in another account<a name="troubleshooting-athena-access-denied-with-status-code-403-when-querying-an-amazon-s3-bucket-in-another-account"></a>
+### Access denied with status code: 403 when querying an Amazon S3 bucket in another account<a name="troubleshooting-athena-access-denied-with-status-code-403-when-querying-an-amazon-s3-bucket-in-another-account"></a>
 
-This error can occur when you try to query logs written by another AWS service and the second account is the bucket owner but does not own the objects in the bucket\. For more information, see [I get the Amazon S3 Exception "Access Denied with Status Code: 403" in Amazon Athena when I query a bucket in another account](http://aws.amazon.com/premiumsupport/knowledge-center/athena-access-denied-status-code-403/) in the AWS Knowledge Center or watch the Knowledge Center [video](https://youtu.be/0j6U4gv2Os8)\.
+This error can occur when you try to query logs written by another AWS service and the second account is the bucket owner but does not own the objects in the bucket\. For more information, see [I get the Amazon S3 exception "access denied with status code: 403" in Amazon Athena when I query a bucket in another account](http://aws.amazon.com/premiumsupport/knowledge-center/athena-access-denied-status-code-403/) in the AWS Knowledge Center or watch the Knowledge Center [video](https://youtu.be/0j6U4gv2Os8)\.
 
 ### Use IAM role credentials to connect to the Athena JDBC driver<a name="troubleshooting-athena-use-IAM-role-credentials-to-connect-to-the-athena-jdbc-driver"></a>
 
 You can retrieve a role's temporary credentials to authenticate the [JDBC connection to Athena](connect-with-jdbc.md)\. Temporary credentials have a maximum lifespan of 12 hours\. For more information, see [How can I use my IAM role credentials or switch to another IAM role when connecting to Athena using the JDBC driver?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-iam-jdbc-driver/) in the AWS Knowledge Center\.
 
-## Query Syntax Issues<a name="troubleshooting-athena-query-syntax-issues"></a>
+## Query syntax issues<a name="troubleshooting-athena-query-syntax-issues"></a>
 
-### FAILED: NullPointerException Name is null<a name="troubleshooting-athena-nullpointerexception-name-is-null"></a>
+### FAILED: NullPointerException name is null<a name="troubleshooting-athena-nullpointerexception-name-is-null"></a>
 
 If you use the AWS Glue [CreateTable](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateTable.html) API operation or the AWS CloudFormation [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) template to create a table for use in Athena without specifying the `TableType` property and then run a DDL query like `SHOW CREATE TABLE` or `MSCK REPAIR TABLE`, you can receive the error message FAILED: NullPointerException Name is null\. 
 
@@ -261,15 +261,15 @@ This requirement applies only when you create a table using the AWS Glue `Create
 
 This error occurs when you try to use a function that Athena doesn't support\. For a list of functions that Athena supports, see [Functions in Amazon Athena](presto-functions.md) or run the `SHOW FUNCTIONS` statement in the Query Editor\. You can also write your own [user defined function \(UDF\)](querying-udf.md)\. For more information, see [How do I resolve the "function not registered" syntax error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-syntax-function-not-registered/) in the AWS Knowledge Center\.
 
-### GENERIC\_INTERNAL\_ERROR Exceptions<a name="troubleshooting-athena-generic-internal-error"></a>
+### GENERIC\_INTERNAL\_ERROR exceptions<a name="troubleshooting-athena-generic-internal-error"></a>
 
 `GENERIC_INTERNAL_ERROR` exceptions can have a variety of causes, including the following:
-+ **GENERIC\_INTERNAL\_ERROR: null** – You might see this exception under either of the following conditions:
++ **GENERIC\_INTERNAL\_ERROR: Null** – You might see this exception under either of the following conditions:
   + You have a schema mismatch between the data type of a column in table definition and the actual data type of the dataset\.
   + You are running a `CREATE TABLE AS SELECT` \(CTAS\) query with inaccurate syntax\.
-+ **GENERIC\_INTERNAL\_ERROR: parent builder is null** – You might see this exception when you query a table with columns of data type `array`, and you are using the OpenCSVSerDe library\. The OpenCSVSerde format doesn't support the `array` data type\.
++ **GENERIC\_INTERNAL\_ERROR: Parent builder is null** – You might see this exception when you query a table with columns of data type `array`, and you are using the OpenCSVSerDe library\. The OpenCSVSerde format doesn't support the `array` data type\.
 + **GENERIC\_INTERNAL\_ERROR: Value exceeds MAX\_INT** – You might see this exception when the source data column is defined with the data type `INT` and has a numeric value greater than 2,147,483,647\.
-+ **GENERIC\_INTERNAL\_ERROR: Value exceeds MAX\_BYTE** – You might see this exception when the source data column has a numeric value exceeding the allowable size for the data type `BYTE`\. The data type `BYTE` is equivalent to `TINYINT`\. `TINYINT` is an 8\-bit signed integer in two’s complement format with a minimum value of \-128 and a maximum value of 127\.
++ **GENERIC\_INTERNAL\_ERROR: Value exceeds MAX\_BYTE** – You might see this exception when the source data column has a numeric value exceeding the allowable size for the data type `BYTE`\. The data type `BYTE` is equivalent to `TINYINT`\. `TINYINT` is an 8\-bit signed integer in two's complement format with a minimum value of \-128 and a maximum value of 127\.
 + **GENERIC\_INTERNAL\_ERROR: Number of partition values does not match number of filters** – You might see this exception if you have inconsistent partitions on Amazon Simple Storage Service\(Amazon S3\) data\. You might have inconsistent partitions under either of the following conditions:
   + Partitions on Amazon S3 have changed \(example: new partitions were added\)\.
   + The number of partition columns in the table do not match those in the partition metadata\.
@@ -278,7 +278,7 @@ For more detailed information about each of these errors, see [How do I resolve 
 
 ### Number of matching groups doesn't match the number of columns<a name="troubleshooting-athena-number-of-matching-groups-doesnt-match-the-number-of-columns"></a>
 
-This error occurs when you use the [Regex SerDe](regex-serde.md) in a CREATE TABLE statement and the number of regex matching groups doesn't match the number of columns that you specified for the table\. For more information, see [How do I resolve the RegexSerDe error "Number of matching groups doesn't match the number of columns" in Amazon Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/regexserde-error-athena-matching-groups/) in the AWS Knowledge Center\.
+This error occurs when you use the [Regex SerDe](regex-serde.md) in a CREATE TABLE statement and the number of regex matching groups doesn't match the number of columns that you specified for the table\. For more information, see [How do I resolve the RegexSerDe error "number of matching groups doesn't match the number of columns" in amazon Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/regexserde-error-athena-matching-groups/) in the AWS Knowledge Center\.
 
 ### queryString failed to satisfy constraint: Member must have length less than or equal to 262144<a name="troubleshooting-athena-querystring-failed-to-satisfy-constraint-member-must-have-length-less-than-or-equal-to-262144"></a>
 
@@ -288,14 +288,14 @@ The maximum query string length in Athena \(262,144 bytes\) is not an adjustable
 
 This error can occur when you query a table created by an AWS Glue crawler from a UTF\-8 encoded CSV file that has a byte order mark \(BOM\)\. AWS Glue doesn't recognize the BOMs and changes them to question marks, which Amazon Athena doesn't recognize\. The solution is to remove the question mark in Athena or in AWS Glue\.
 
-## Throttling Issues<a name="troubleshooting-athena-throttling-issues"></a>
+## Throttling issues<a name="troubleshooting-athena-throttling-issues"></a>
 
 If your queries exceed the limits of dependent services such as Amazon S3, AWS KMS, AWS Glue, or AWS Lambda, the following messages can be expected\. To resolve these issues, reduce the number of concurrent calls that originate from the same account\.
 
 
 ****  
 
-| Service | Error Message | 
+| Service | Error message | 
 | --- | --- | 
 | AWS Glue | AWSGlueException: Rate exceeded\. | 
 | AWS KMS | You have exceeded the rate at which you may call KMS\. Reduce the frequency of your calls\. | 
@@ -310,29 +310,29 @@ Because of their fundamentally different implementations, views created in Apach
 
 ### View is stale; it must be re\-created<a name="troubleshooting-athena-view-is-stale-it-must-be-re-created"></a>
 
-You can receive this error if the table that underlies a view has altered or dropped\. The resolution is to recreate the view\. For more information, see [How can I resolve the "View is stale; it must be re\-created" error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-view-is-stale-error/) in the AWS Knowledge Center\.
+You can receive this error if the table that underlies a view has altered or dropped\. The resolution is to recreate the view\. For more information, see [How can I resolve the "view is stale; it must be re\-created" error in Athena?](http://aws.amazon.com/premiumsupport/knowledge-center/athena-view-is-stale-error/) in the AWS Knowledge Center\.
 
 ## Workgroups<a name="troubleshooting-athena-workgroups"></a>
 
-For information on troubleshooting workgroup issues, see [Troubleshooting Workgroups](workgroups-troubleshooting.md)\.
+For information on troubleshooting workgroup issues, see [Troubleshooting workgroups](workgroups-troubleshooting.md)\.
 
-## Additional Resources<a name="troubleshooting-athena-additional-resources"></a>
+## Additional resources<a name="troubleshooting-athena-additional-resources"></a>
 
 The following pages provide additional information for troubleshooting issues with Amazon Athena\.
-+ [Athena Error Catalog](error-reference.md)
++ [Athena error catalog](error-reference.md)
 + [Service Quotas](service-limits.md)
-+ [Considerations and Limitations for SQL Queries in Amazon Athena](other-notable-limitations.md)
++ [Considerations and limitations for SQL queries in Amazon Athena](other-notable-limitations.md)
 + [Unsupported DDL](unsupported-ddl.md)
-+ [Names for Tables, Databases, and Columns](tables-databases-columns-names.md)
-+ [Data Types in Amazon Athena](data-types.md)
-+ [Supported SerDes and Data Formats](supported-serdes.md)
-+ [Athena Compression Support](compression-formats.md)
-+ [Reserved Keywords](reserved-words.md)
-+ [Troubleshooting Workgroups](workgroups-troubleshooting.md)
++ [Names for tables, databases, and columns](tables-databases-columns-names.md)
++ [Data types in Amazon Athena](data-types.md)
++ [Supported SerDes and data formats](supported-serdes.md)
++ [Athena compression support](compression-formats.md)
++ [Reserved keywords](reserved-words.md)
++ [Troubleshooting workgroups](workgroups-troubleshooting.md)
 
 The following AWS resources can also be of help:
-+  [Athena topics in the AWS Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/#Amazon_Athena) 
++  [Athena topics in the AWS knowledge center](https://aws.amazon.com/premiumsupport/knowledge-center/#Amazon_Athena) 
 +  [Amazon Athena questions on AWS re:Post](https://repost.aws/tags/TA78iVOM7gR62_QqDe2-CmiA/amazon-athena)
-+  [Athena posts in the AWS Big Data Blog](http://aws.amazon.com/blogs/big-data/tag/amazon-athena/) 
++  [Athena posts in the AWS big data blog](http://aws.amazon.com/blogs/big-data/tag/amazon-athena/) 
 
 Troubleshooting often requires iterative query and discovery by an expert or from a community of helpers\. If you continue to experience issues after trying the suggestions on this page, contact AWS Support \(in the AWS Management Console, click **Support**, **Support Center**\) or ask a question on [AWS re:Post](https://repost.aws/tags/TA78iVOM7gR62_QqDe2-CmiA/amazon-athena) using the **Amazon Athena** tag\.

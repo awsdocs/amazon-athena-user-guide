@@ -1,29 +1,29 @@
-# Athena Engine Version Reference<a name="engine-versions-reference"></a>
+# Athena engine version reference<a name="engine-versions-reference"></a>
 
  This section lists the changes to the Athena query engine since Athena engine version 1\. Athena engine version 1 was Athena's initial engine version and was based on [Presto 0\.172](https://prestodb.io/docs/0.172/index.html)\.
 
 ## Athena engine version 2<a name="engine-versions-reference-0002"></a>
 
 Athena engine version 2 introduces the following changes\. Currently, Athena engine version 2 is available in all Regions where Athena is supported, including Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Mumbai\), Asia Pacific \(Osaka\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), AWS GovCloud \(US\-East\), AWS GovCloud \(US\-West\), Canada \(Central\), China \(Beijing\), China \(Ningxia\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Milan\), Europe \(Paris\), Europe \(Stockholm\), Middle East \(Bahrain\), South America \(São Paulo\), US East \(N\. Virginia\), US East \(Ohio\), US West \(N\. California\), and US West \(Oregon\)\.
-+  [Improvements and New Features](#engine-versions-reference-0002-improvements-and-new-features) 
-  +  [Grouping, Join, and Subquery Improvements](#engine-versions-reference-0002-grouping-join-and-subquery-improvements) 
-  +  [Datatype Enhancements](#engine-versions-reference-0002-datatype-related-improvements) 
-  +  [Added Functions](#engine-versions-reference-0002-added-functions) 
-  +  [Performance Improvements](#engine-versions-reference-0002-improvements-performance) 
-  +  [JSON\-Related Improvements](#engine-versions-reference-0002-improvements-json-related-improvements) 
-+  [ Breaking Changes](#engine-versions-reference-0002-breaking-changes) 
-  +  [Bug Fixes](#engine-versions-reference-0002-bug-fixes) 
-  +  [Changes to Geospatial Functions](#engine-versions-reference-0002-changes-to-geospatial-functions) 
-  +  [ANSI SQL Compliance](#engine-versions-reference-0002-ansi-sql-compliance) 
-  +  [Replaced Functions](#engine-versions-reference-0002-replaced-functions) 
++  [Improvements and new features](#engine-versions-reference-0002-improvements-and-new-features) 
+  +  [Grouping, join, and subquery improvements](#engine-versions-reference-0002-grouping-join-and-subquery-improvements) 
+  +  [Datatype enhancements](#engine-versions-reference-0002-datatype-related-improvements) 
+  +  [Added functions](#engine-versions-reference-0002-added-functions) 
+  +  [Performance improvements](#engine-versions-reference-0002-improvements-performance) 
+  +  [JSON\-related improvements](#engine-versions-reference-0002-improvements-json-related-improvements) 
++  [ Breaking changes](#engine-versions-reference-0002-breaking-changes) 
+  +  [Bug fixes](#engine-versions-reference-0002-bug-fixes) 
+  +  [Changes to geospatial functions](#engine-versions-reference-0002-changes-to-geospatial-functions) 
+  +  [ANSI SQL compliance](#engine-versions-reference-0002-ansi-sql-compliance) 
+  +  [Replaced functions](#engine-versions-reference-0002-replaced-functions) 
   +  [Limits](#engine-versions-reference-0002-limits) 
 
-### Improvements and New Features<a name="engine-versions-reference-0002-improvements-and-new-features"></a>
+### Improvements and new features<a name="engine-versions-reference-0002-improvements-and-new-features"></a>
 + **EXPLAIN** and **EXPLAIN ANALYZE** – You can use the `EXPLAIN` statement in Athena to view the execution plan for your SQL queries\. Use `EXPLAIN ANALYZE` to view the distributed execution plan for your SQL queries and the cost of each operation\. For more information, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md)\.
 + **Federated queries** – Federated queries are supported in Athena engine version 2\. For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\. 
-+ **Geospatial functions** – More than 25 geospatial functions have been added\. For more information, see [New Geospatial Functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
++ **Geospatial functions** – More than 25 geospatial functions have been added\. For more information, see [New geospatial functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
 + **Nested schema** – Support has been added for reading nested schema, which reduces cost\.
-+ **Prepared statements** – Use prepared statements for repeated execution of the same query with different query parameters\. A prepared statement contains placeholder parameters whose values you pass at runtime\. Prepared statements help prevent SQL injection attacks\. For more information, see [Querying with Prepared Statements](querying-with-prepared-statements.md)\.
++ **Prepared statements** – Use prepared statements for repeated execution of the same query with different query parameters\. A prepared statement contains placeholder parameters whose values you pass at runtime\. Prepared statements help prevent SQL injection attacks\. For more information, see [Querying with prepared statements](querying-with-prepared-statements.md)\.
 + **Schema evolution support** – Schema evolution support has been added for data in Parquet format\.
   + Added support for reading array, map, or row type columns from partitions where the partition schema is different from the table schema\. This can occur when the table schema was updated after the partition was created\. The changed column types must be compatible\. For row types, trailing fields may be added or dropped, but the corresponding fields \(by ordinal\) must have the same name\.
   + ORC files can now have struct columns with missing fields\. This allows the table schema to be changed without rewriting the ORC files\.
@@ -31,7 +31,7 @@ Athena engine version 2 introduces the following changes\. Currently, Athena eng
 + **SQL OFFSET** – The SQL `OFFSET` clause is now supported in `SELECT` statements\. For more information, see [SELECT](select.md)\.
 + **UNLOAD statement** – You can use the `UNLOAD` statement to write the output of a `SELECT` query to the PARQUET, ORC, AVRO, and JSON formats\. For more information, see [UNLOAD](unload.md)\.
 
-#### Grouping, Join, and Subquery Improvements<a name="engine-versions-reference-0002-grouping-join-and-subquery-improvements"></a>
+#### Grouping, join, and subquery improvements<a name="engine-versions-reference-0002-grouping-join-and-subquery-improvements"></a>
 + **Complex grouping** – Added support for complex grouping operations\.
 + **Correlated subqueries** – Added support for correlated subqueries in `IN` predicates and for correlated subqueries that require coercions\.
 + **CROSS JOIN** – Added support for `CROSS JOIN` against `LATERAL` derived tables\.
@@ -41,7 +41,7 @@ Athena engine version 2 introduces the following changes\. Currently, Athena eng
 + **Spatial joins** – Added support for broadcast spatial joins and spatial left joins\.
 + **Spill to disk** – For memory intensive `INNER JOIN` and `LEFT JOIN` operations, Athena offloads intermediate operation results to disk\. This enables execution of queries that require large amounts of memory\. 
 
-#### Datatype Enhancements<a name="engine-versions-reference-0002-datatype-related-improvements"></a>
+#### Datatype enhancements<a name="engine-versions-reference-0002-datatype-related-improvements"></a>
 + **INT for INTEGER** – Added support for `INT` as an alias for the `INTEGER` data type\.
 + **INTERVAL types** – Added support for casting to `INTERVAL` types\.
 + **IPADDRESS** – Added a new `IPADDRESS` type to represent IP addresses\. Added support for casting between the `VARBINARY` type and `IPADDRESS` type\.
@@ -54,36 +54,36 @@ Athena engine version 2 introduces the following changes\. Currently, Athena eng
 
   **Window value functions** – Window value functions now support `IGNORE NULLS` and `RESPECT NULLS`\.
 
-##### Additional Input Types for Functions<a name="engine-versions-reference-0002-additional-input-datatypes-for-functions"></a>
+##### Additional input types for functions<a name="engine-versions-reference-0002-additional-input-datatypes-for-functions"></a>
 
 The following functions now accept additional input types\. For more information about each function, visit the corresponding link to the Presto documentation\.
 + **approx\_distinct\(\)** – The [approx\_distinct\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#approx_distinct) function now supports the following types: `INTEGER`, `SMALLINT`, `TINYINT`, `DECIMAL`, `REAL`, `DATE`, `TIMESTAMP`, `TIMESTAMP WITH TIME ZONE`, `TIME`, `TIME WITH TIME ZONE`, `IPADDRESS`, and `CHAR`\.
-+ **avg\(\), sum\(\)** – The [avg\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#avg) and [sum\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#sum) aggregate functions now support the `INTERVAL` data type\.
-+ **lpad\(\), rpad\(\)** – The [lpad](https://prestodb.io/docs/0.217/functions/string.html#lpad) and [rpad](https://prestodb.io/docs/0.217/functions/string.html#rpad) functions now work on `VARBINARY` inputs\.
-+ **min\(\), max\(\)** – The [min\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#min) and [max\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#max) aggregation functions now allow unknown input types at query analysis time so that you can use the functions with `NULL` literals\.
++ **Avg\(\), sum\(\)** – The [avg\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#avg) and [sum\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#sum) aggregate functions now support the `INTERVAL` data type\.
++ **Lpad\(\), rpad\(\)** – The [lpad](https://prestodb.io/docs/0.217/functions/string.html#lpad) and [rpad](https://prestodb.io/docs/0.217/functions/string.html#rpad) functions now work on `VARBINARY` inputs\.
++ **Min\(\), max\(\)** – The [min\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#min) and [max\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#max) aggregation functions now allow unknown input types at query analysis time so that you can use the functions with `NULL` literals\.
 + **regexp\_replace\(\)** – Variant of the [regexp\_replace\(\)](https://prestodb.io/docs/0.217/functions/regexp.html#regexp_replace) function added that can execute a Lambda function for each replacement\.
-+ **sequence\(\)** – Added `DATE` variants for the [sequence\(\)](https://prestodb.io/docs/0.217/functions/array.html#sequence) function, including variant with an implicit one\-day step increment\.
++ **Sequence\(\)** – Added `DATE` variants for the [sequence\(\)](https://prestodb.io/docs/0.217/functions/array.html#sequence) function, including variant with an implicit one\-day step increment\.
 + **ST\_Area\(\)** – The [ST\_Area\(\)](https://prestodb.io/docs/0.217/functions/geospatial.html#ST_Area) geospatial function now supports all geometry types\. 
-+ **substr\(\)** – The [substr](https://prestodb.io/docs/0.217/functions/string.html#substr) function now works on `VARBINARY` inputs\.
++ **Substr\(\)** – The [substr](https://prestodb.io/docs/0.217/functions/string.html#substr) function now works on `VARBINARY` inputs\.
 + **zip\_with\(\)** – Arrays of mismatched length can now be used with [zip\_with\(\)](https://prestodb.io/docs/0.217/functions/array.html#zip_with)\. Missing positions are filled with null\. Previously, an error was raised when arrays of differing lengths were passed\. This change may make it difficult to distinguish between values that were originally null from values that were added to pad the arrays to the same length\.
 
-#### Added Functions<a name="engine-versions-reference-0002-added-functions"></a>
+#### Added functions<a name="engine-versions-reference-0002-added-functions"></a>
 
-The following list contains functions that are new in Athena engine version 2\. The list does not include geospatial functions\. For a list of geospatial functions, see [New Geospatial Functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
+The following list contains functions that are new in Athena engine version 2\. The list does not include geospatial functions\. For a list of geospatial functions, see [New geospatial functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
 
 For more information about each function, visit the corresponding link to the Presto documentation\.
 
-##### Aggregate Functions<a name="engine-versions-reference-0002-aggregate-functions"></a>
+##### Aggregate functions<a name="engine-versions-reference-0002-aggregate-functions"></a>
 
  [reduce\_agg\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#reduce_agg) 
 
-##### Array Functions and Operators<a name="engine-versions-reference-0002-array-functions-and-operators"></a>
+##### Array functions and operators<a name="engine-versions-reference-0002-array-functions-and-operators"></a>
 
 [array\_sort\(\)](https://prestodb.io/docs/0.217/functions/array.html#array_sort) \- Variant of this function added that takes a Lambda function as a comparator\.
 
  [ngrams\(\)](https://prestodb.io/docs/0.217/functions/array.html#ngrams) 
 
-##### Binary Functions and Operators<a name="engine-versions-reference-0002-binary-functions-and-operators"></a>
+##### Binary functions and operators<a name="engine-versions-reference-0002-binary-functions-and-operators"></a>
 
  [from\_big\_endian\_32\(\)](https://prestodb.io/docs/0.217/functions/binary.html#from_big_endian_32) 
 
@@ -109,7 +109,7 @@ For more information about each function, visit the corresponding link to the Pr
 
  [to\_ieee754\_64\(\)](https://prestodb.io/docs/0.217/functions/binary.html#to_ieee754_64) 
 
-##### Date and Time Functions and Operators<a name="engine-versions-reference-0002-date-and-time-functions-and-operators"></a>
+##### Date and time functions and operators<a name="engine-versions-reference-0002-date-and-time-functions-and-operators"></a>
 
  [millisecond\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#millisecond) 
 
@@ -117,11 +117,11 @@ For more information about each function, visit the corresponding link to the Pr
 
  [to\_milliseconds\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#to_milliseconds) 
 
-##### Map Functions and Operators<a name="engine-versions-reference-0002-map-functions-and-operators"></a>
+##### Map functions and operators<a name="engine-versions-reference-0002-map-functions-and-operators"></a>
 
  [multimap\_from\_entries\(\)](https://prestodb.io/docs/0.217/functions/map.html#multimap_from_entries) 
 
-##### Mathematical Functions and Operators<a name="engine-versions-reference-0002-mathematical-functions-and-operators"></a>
+##### Mathematical functions and operators<a name="engine-versions-reference-0002-mathematical-functions-and-operators"></a>
 
  [inverse\_normal\_cdf\(\)](https://prestodb.io/docs/0.217/functions/math.html#inverse_normal_cdf) 
 
@@ -129,21 +129,21 @@ For more information about each function, visit the corresponding link to the Pr
 
  [wilson\_interval\_upper\(\)](https://prestodb.io/docs/0.217/functions/math.html#wilson_interval_upper) 
 
-##### Quantile Digest Functions<a name="engine-versions-reference-0002-quantile-digest-functions"></a>
+##### Quantile digest functions<a name="engine-versions-reference-0002-quantile-digest-functions"></a>
 
 [quantile digest functions](https://prestodb.io/docs/0.217/functions/qdigest.html) and the `qdigest` quantile digest type added\.
 
-##### String Functions and Operators<a name="engine-versions-reference-0002-string-functions-and-operators"></a>
+##### String functions and operators<a name="engine-versions-reference-0002-string-functions-and-operators"></a>
 
  [hamming\_distance\(\)](https://prestodb.io/docs/0.217/functions/string.html#hamming_distance) 
 
  [split\_to\_multimap\(\)](https://prestodb.io/docs/0.217/functions/string.html#split_to_multimap) 
 
-#### Performance Improvements<a name="engine-versions-reference-0002-improvements-performance"></a>
+#### Performance improvements<a name="engine-versions-reference-0002-improvements-performance"></a>
 
 Performance of the following features has improved in Athena engine version 2\.
 
-##### Query Performance<a name="engine-versions-reference-0002-improvements-performance-query"></a>
+##### Query performance<a name="engine-versions-reference-0002-improvements-performance-query"></a>
 + **Broadcast join performance** – Improved broadcast join performance by applying dynamic partition pruning in the worker node\. 
 + **Bucketed tables** – Improved performance for writing to bucketed tables when the data being written is already partitioned appropriately \(for example, when the output is from a bucketed join\)\.
 + **DISTINCT** – Improved performance for some queries that use `DISTINCT`\.
@@ -163,46 +163,46 @@ Performance of the following features has improved in Athena engine version 2\.
 + **Table scans** – An optimization rule has been introducted to avoid duplicate table scans in certain cases\.
 + **UNION** – Improved performance for `UNION` queries\.
 
-##### Query Planning Performance<a name="engine-versions-reference-0002-improvements-performance-query-planning"></a>
+##### Query planning performance<a name="engine-versions-reference-0002-improvements-performance-query-planning"></a>
 + **Planning performance** – Improved planning performance for queries that join multiple tables with a large number of columns\.
 + **Predicate evaluations** – Improved predicate evaluation performance during predicate pushdown in planning\.
 + **Predicate pushdown support for casting** – Support predicate pushdown for the *<column>* `IN` *<values list>* predicate where values in the values list require casting to match the type of column\.
 + **Predicate inference and pushdown** – Predicate inference and pushdown extended for queries that use a *<symbol>* `IN` *<subquery>* predicate\.
 + **Timeouts** – Fixed a bug that could in rare cases cause query planning timeouts\.
 
-##### Join Performance<a name="engine-versions-reference-0002-improvements-performance-join"></a>
+##### Join performance<a name="engine-versions-reference-0002-improvements-performance-join"></a>
 + **Joins with map columns** – Improved the performance of joins and aggregations that include map columns\.
 + **Joins with solely non\-equality conditions** – Improved the performance of joins with only non\-equality conditions by using a nested loop join instead of a hash join\.
 + **Outer joins** – The join distribution type is now automatically selected for queries involving outer joins\.
 + **Range over a function joins** – Improved performance of joins where the condition is a range over a function \(for example, `a JOIN b ON b.x < f(a.x) AND b.x > g(a.x)`\)\.
 + **Spill\-to\-disk** – Fixed spill\-to\-disk related bugs and memory issues to enhance performance and reduce memory errors in `JOIN` operations\.
 
-##### Subquery Performance<a name="engine-versions-reference-0002-improvements-performance-subquery"></a>
+##### Subquery performance<a name="engine-versions-reference-0002-improvements-performance-subquery"></a>
 + **Correlated EXISTS subqueries** – Improved performance of correlated `EXISTS` subqueries\.
 + **Correlated subqueries with equalities** – Improved support for correlated subqueries containing equality predicates\.
 + **Correlated subqueries with inequalities** – Improved performance for correlated subqueries that contain inequalities\.
-+ **count\(\*\) aggregations over subqueries** – Improved performance of `count(*)` aggregations over subqueries with known constant cardinality\.
++ **Count\(\*\) aggregations over subqueries** – Improved performance of `count(*)` aggregations over subqueries with known constant cardinality\.
 + **Outer query filter propagation** – Improved performance of correlated subqueries when filters from the outer query can be propagated to the subquery\.
 
-##### Function Performance<a name="engine-versions-reference-0002-improvements-performance-functions"></a>
+##### Function performance<a name="engine-versions-reference-0002-improvements-performance-functions"></a>
 + **Aggregate window functions** – Improved performance of aggregate window functions\.
 + **element\_at\(\)** – Improved performance of `element_at()` for maps to be constant time rather than proportional to the size of the map\.
-+ **grouping\(\)** – Improved performance for queries involving `grouping()`\.
++ **Grouping\(\)** – Improved performance for queries involving `grouping()`\.
 + **JSON casting** – Improved the performance of casting from `JSON` to `ARRAY` or `MAP` types\.
 + **Map\-returning functions** – Improved performance of functions that return maps\.
 + **Map\-to\-map casting** – Improved the performance of map\-to\-map cast\.
-+ **min\(\) and max\(\)** – The `min()` and `max()` functions have been optimized to avoid unnecessary object creation, thus reducing garbage collection overhead\.
++ **Min\(\) and max\(\)** – The `min()` and `max()` functions have been optimized to avoid unnecessary object creation, thus reducing garbage collection overhead\.
 + **row\_number\(\)** – Improved performance and memory usage for queries using `row_number()` followed by a filter on the row numbers generated\.
 + **Window functions** – Improved performance of queries containing window functions with identical `PARTITION BY` and `ORDER BY` clauses\.
 + **Window functions** – Improved performance of certain window functions \(for example, `LAG`\) that have similar specifications\.
 
-##### Geospatial Performance<a name="engine-versions-reference-0002-improvements-performance-geospatial"></a>
+##### Geospatial performance<a name="engine-versions-reference-0002-improvements-performance-geospatial"></a>
 + **Geometry serialization** – Improved the serialization performance of geometry values\.
 + **Geospatial functions** – Improved the performance of `ST_Intersects()`, `ST_Contains()`, `ST_Touches()`, `ST_Within()`, `ST_Overlaps()`, `ST_Disjoint()`, `transform_values()`, `ST_XMin()`, `ST_XMax()`, `ST_YMin()`, `ST_YMax()`, `ST_Crosses()`, and `array_intersect()`\.
 + **ST\_Distance\(\)** – Improved performance of join queries involving the `ST_Distance()` function\.
 + **ST\_Intersection\(\)** – Optimized the `ST_Intersection()` function for rectangles aligned with coordinate axes \(for example, polygons produced by the `ST_Envelope()` and `bing_tile_polygon()` functions\)\.
 
-#### JSON\-Related Improvements<a name="engine-versions-reference-0002-improvements-json-related-improvements"></a>
+#### JSON\-related improvements<a name="engine-versions-reference-0002-improvements-json-related-improvements"></a>
 
  **Map Functions** 
 + Improved performance of map subscript from `O(n)` to `O(1)` in all cases\. Previously, only maps produced by certain functions and readers took advantage of this improvement\.
@@ -217,29 +217,29 @@ Performance of the following features has improved in Athena engine version 2\.
  **New JSON Functions** 
 +  [is\_json\_scalar\(\)](https://prestodb.io/docs/0.217/functions/json.html#is_json_scalar) 
 
-### Breaking Changes<a name="engine-versions-reference-0002-breaking-changes"></a>
+### Breaking changes<a name="engine-versions-reference-0002-breaking-changes"></a>
 
 Breaking changes include bug fixes, changes to geospatial functions, replaced functions, and the introduction of limits\. Improvements in ANSI SQL compliance may break queries that depended on non\-standard behavior\.
 
-#### Bug Fixes<a name="engine-versions-reference-0002-bug-fixes"></a>
+#### Bug fixes<a name="engine-versions-reference-0002-bug-fixes"></a>
 
 The following changes correct behavioral issues that caused queries to run successfully, but with inaccurate results\.
-+ **fixed\_len\_byte\_array Parquet columns are now accepted as DECIMAL** – Queries on Parquet columns of type `fixed_len_byte_array` succeed and return correct values if they are annotated as `DECIMAL` in the Parquet Schema\. Queries on `fixed_len_byte_array` columns without the `DECIMAL` annotation fail with an error\. Previously, queries on `fixed_len_byte_array` columns without the DECIMAL annotation succeeded but returned incomprehensible values\. 
++ **fixed\_len\_byte\_array parquet columns are now accepted as DECIMAL** – Queries on Parquet columns of type `fixed_len_byte_array` succeed and return correct values if they are annotated as `DECIMAL` in the Parquet Schema\. Queries on `fixed_len_byte_array` columns without the `DECIMAL` annotation fail with an error\. Previously, queries on `fixed_len_byte_array` columns without the DECIMAL annotation succeeded but returned incomprehensible values\. 
 + **json\_parse\(\) no longer ignores trailing characters** – Previously, inputs such as `[1,2]abc` would successfully parse as `[1,2]`\. Using trailing characters now produces the error message Cannot convert '\[1, 2\]abc' to JSON\.
-+ **round\(\) decimal precision corrected** – `round(x, d)` now correctly rounds `x` when `x` is a DECIMAL or when `x` is a DECIMAL with scale 0 and `d` is a negative integer\. Previously, no rounding occurred in these cases\.
++ **Round\(\) decimal precision corrected** – `round(x, d)` now correctly rounds `x` when `x` is a DECIMAL or when `x` is a DECIMAL with scale 0 and `d` is a negative integer\. Previously, no rounding occurred in these cases\.
 + **round\(x, d\) and truncate\(x, d\)** – The parameter `d` in the signature of functions `round(x, d)` and `truncate(x, d)` is now of type `INTEGER`\. Previously, `d` could be of type `BIGINT`\.
-+ **map\(\) with duplicate keys** – `map()` now raises an error on duplicate keys rather than silently producing a corrupted map\. Queries that currently construct map values using duplicate keys now fail with an error\.
++ **Map\(\) with duplicate keys** – `map()` now raises an error on duplicate keys rather than silently producing a corrupted map\. Queries that currently construct map values using duplicate keys now fail with an error\.
 + **map\_from\_entries\(\) raises an error with null entries ** – `map_from_entries()` now raises an error when the input array contains a null entry\. Queries that construct a map by passing `NULL` as a value now fail\.
 + **Tables** – Tables that have unsupported partition types can no longer be created\.
 + **Improved numerical stability in statistical functions ** – The numerical stability for the statistical functions `corr()`, `covar_samp()`, `regr_intercept()`, and `regr_slope()` has been improved\.
-+ **TIMESTAMP precision defined in Parquet is now respected** – The precision of `TIMESTAMP` values and the precision defined for the `TIMESTAMP` column in the Parquet schema must now match\. Non\-matching precisions result in incorrect timestamps\. 
++ **TIMESTAMP precision defined in parquet is now respected** – The precision of `TIMESTAMP` values and the precision defined for the `TIMESTAMP` column in the Parquet schema must now match\. Non\-matching precisions result in incorrect timestamps\. 
 + **Time zone information** – Time zone information is now calculated using the [java\.time](https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html) package of the Java 1\.8 SDK\.
 + **SUM of INTERVAL\_DAY\_TO\_SECOND and INTERVAL\_YEAR\_TO\_MONTH datatypes ** – You can no longer use `SUM(NULL)` directly\. In order to use `SUM(NULL)`, cast `NULL` to a data type like `BIGINT`, `DECIMAL`, `REAL`, `DOUBLE`, `INTERVAL_DAY_TO_SECOND` or `INTERVAL_YEAR_TO_MONTH`\.
 
-#### Changes to Geospatial Functions<a name="engine-versions-reference-0002-changes-to-geospatial-functions"></a>
+#### Changes to geospatial functions<a name="engine-versions-reference-0002-changes-to-geospatial-functions"></a>
 
 Changes made to geospatial functions include the following\.
-+ **Function name changes** – Some function names have changed\. For more information, see [Geospatial Function Name Changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\. 
++ **Function name changes** – Some function names have changed\. For more information, see [Geospatial function name changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\. 
 + **VARBINARY input** – The `VARBINARY` type is no longer directly supported for input to geospatial functions\. For example, to calculate the area of a geometry directly, the geometry must now be input in either `VARCHAR` or `GEOMETRY` format\. The workaround is to use transform functions, as in the following examples\.
   + To use `ST_area()` to calculate the area for `VARBINARY` input in Well\-Known Binary \(WKB\) format, pass the input to `ST_GeomFromBinary()` first, for example:
 
@@ -254,23 +254,23 @@ Changes made to geospatial functions include the following\.
 + **ST\_ExteriorRing\(\) and ST\_Polygon\(\)** – [`ST_ExteriorRing()`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-exteriorring) and [`ST_Polygon()`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-polygon) now accept only polygons as inputs\. Previously, these functions erroneously accepted other geometries\.
 + **ST\_Distance\(\)** – As required by the [SQL/MM specification](http://doesen0.informatik.uni-leipzig.de/proceedings/paper/68.pdf), the [`ST_Distance()`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-distance) function now returns `NULL` if one of the inputs is an empty geometry\. Previously, `NaN` was returned\.
 
-#### ANSI SQL Compliance<a name="engine-versions-reference-0002-ansi-sql-compliance"></a>
+#### ANSI SQL compliance<a name="engine-versions-reference-0002-ansi-sql-compliance"></a>
 
 The following syntax and behavioral issues have been corrected to follow the ANSI SQL standard\.
 + **Cast\(\) operations** – Cast\(\) operations from REAL or DOUBLE to DECIMAL now conform to the SQL standard\. For example, `cast (double '100000000000000000000000000000000' as decimal(38))` previously returned `100000000000000005366162204393472` but now returns `100000000000000000000000000000000`\.
 + **JOIN \.\.\. USING** – `JOIN ... USING` now conforms to standard SQL semantics\. Previously, `JOIN ... USING` required qualifying the table name in columns, and the column from both tables would be present in the output\. Table qualifications are now invalid and the column is present only once in the output\.
 + **ROW type literals removed** – The ROW type literal format `ROW<int, int>(1, 2)` is no longer supported\. Use the syntax `ROW(1 int, 2 int)` instead\.
-+ **log\(\) function** – Previously, in violation of the SQL standard, the order of the arguments in the `log()` function was reversed\. This caused `log()` to return incorrect results when queries were translated to or from other SQL implementations\. The equivalent to `log(x, b)` is now correctly `ln(x) / ln(b)`\.
++ **Log\(\) function** – Previously, in violation of the SQL standard, the order of the arguments in the `log()` function was reversed\. This caused `log()` to return incorrect results when queries were translated to or from other SQL implementations\. The equivalent to `log(x, b)` is now correctly `ln(x) / ln(b)`\.
 + **Grouped aggregation semantics** – Grouped aggregations use `IS NOT DISTINCT FROM` semantics rather than equality semantics\. Grouped aggregations now return correct results and show improved performance when grouping on `NaN` floating point values\. Grouping on map, list, and row types that contain nulls is supported\.
 + **Types with quotation marks are no longer allowed** – In accordance with the ANSI SQL standard, data types can no longer be enclosed in quotation marks\. For example, `SELECT "date" '2020-02-02'` is no longer a valid query\. Instead, use the syntax `SELECT date '2020-02-02'`\.
 + **Anonymous row field access** – Anonymous row fields can no longer be accessed by using the syntax \[`.field0, .field1, ...`\]\.
 + **Complex grouping operations** – The complex grouping operations `GROUPING SETS`, `CUBE`, and `ROLLUP` do not support grouping on expressions composed of input columns\. Only column names are allowed\.
 
-#### Replaced Functions<a name="engine-versions-reference-0002-replaced-functions"></a>
+#### Replaced functions<a name="engine-versions-reference-0002-replaced-functions"></a>
 
 The following functions are no longer supported and have been replaced by syntax that produces the same results\.
-+ **information\_schema\.\_\_internal\_partitions\_\_** – The usage of `__internal_partitions__` is no longer supported in Athena engine version 2\. For equivalent syntax, use `SELECT * FROM "<table_name>$partitions"` or `SHOW PARTITIONS`\. For more information, see [Listing Partitions for a Specific Table](querying-glue-catalog.md#querying-glue-catalog-listing-partitions)\.
-+ **Replaced geospatial functions** – For a list of geospatial functions whose names have changed, see [Geospatial Function Name Changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
++ **information\_schema\.\_\_internal\_partitions\_\_** – The usage of `__internal_partitions__` is no longer supported in Athena engine version 2\. For equivalent syntax, use `SELECT * FROM "<table_name>$partitions"` or `SHOW PARTITIONS`\. For more information, see [Listing partitions for a specific table](querying-glue-catalog.md#querying-glue-catalog-listing-partitions)\.
++ **Replaced geospatial functions** – For a list of geospatial functions whose names have changed, see [Geospatial function name changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
 
 #### Limits<a name="engine-versions-reference-0002-limits"></a>
 

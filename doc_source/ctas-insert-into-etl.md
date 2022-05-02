@@ -1,4 +1,4 @@
-# Using CTAS and INSERT INTO for ETL and Data Analysis<a name="ctas-insert-into-etl"></a>
+# Using CTAS and INSERT INTO for ETL and data analysis<a name="ctas-insert-into-etl"></a>
 
 You can use Create Table as Select \([CTAS](ctas.md)\) and [INSERT INTO](insert-into.md) statements in Athena to extract, transform, and load \(ETL\) data into Amazon S3 for data processing\. This topic shows you how to use these statements to partition and convert a dataset into columnar data format to optimize it for data analysis\.
 
@@ -11,14 +11,14 @@ INSERT INTO statements insert new rows into a destination table based on a SELEC
 In Athena, use a CTAS statement to perform an initial batch conversion of the data\. Then use multiple INSERT INTO statements to make incremental updates to the table created by the CTAS statement\.
 
 **Steps**
-+ [Step 1: Create a Table Based on the Original Dataset](#ctas-insert-into-etl-step-1-create-a-table-based-on-the-original-dataset)
-+  [Step 2: Use CTAS to Partition, Convert, and Compress the Data](#ctas-insert-into-etl-step-2-use-ctas-to-partition-convert-and-compress-the-data) 
-+  [Step 3: Use INSERT INTO to Add Data](#ctas-insert-into-etl-step-3-use-insert-into-to-add-data) 
-+  [Step 4: Measure Performance and Cost Differences](#ctas-insert-into-etl-step-4-measure-performance-and-cost-differences) 
++ [Step 1: Create a table based on the original dataset](#ctas-insert-into-etl-step-1-create-a-table-based-on-the-original-dataset)
++  [Step 2: Use CTAS to partition, convert, and compress the data](#ctas-insert-into-etl-step-2-use-ctas-to-partition-convert-and-compress-the-data) 
++  [Step 3: Use INSERT INTO to add data](#ctas-insert-into-etl-step-3-use-insert-into-to-add-data) 
++  [Step 4: Measure performance and cost differences](#ctas-insert-into-etl-step-4-measure-performance-and-cost-differences) 
 
-## Step 1: Create a Table Based on the Original Dataset<a name="ctas-insert-into-etl-step-1-create-a-table-based-on-the-original-dataset"></a>
+## Step 1: Create a table based on the original dataset<a name="ctas-insert-into-etl-step-1-create-a-table-based-on-the-original-dataset"></a>
 
-The example in this topic uses an Amazon S3 readable subset of the publicly available [NOAA Global Historical Climatology Network Daily \(GHCN\-D\)](https://registry.opendata.aws/noaa-ghcn/) dataset\. The data on Amazon S3 has the following characteristics\.
+The example in this topic uses an Amazon S3 readable subset of the publicly available [NOAA global historical climatology network daily \(GHCN\-d\)](https://registry.opendata.aws/noaa-ghcn/) dataset\. The data on Amazon S3 has the following characteristics\.
 
 ```
 Location: s3://aws-bigdata-blog/artifacts/athena-ctas-insert-into-blog/
@@ -71,13 +71,13 @@ The file sizes in this sample are relatively small\. By merging them into larger
      's3://aws-bigdata-blog/artifacts/athena-ctas-insert-into-blog/'
    ```
 
-## Step 2: Use CTAS to Partition, Convert, and Compress the Data<a name="ctas-insert-into-etl-step-2-use-ctas-to-partition-convert-and-compress-the-data"></a>
+## Step 2: Use CTAS to partition, convert, and compress the data<a name="ctas-insert-into-etl-step-2-use-ctas-to-partition-convert-and-compress-the-data"></a>
 
 After you create a table, you can use a single [CTAS](ctas.md) statement to convert the data to Parquet format with Snappy compression and to partition the data by year\.
 
 The table you created in Step 1 has a `date` field with the date formatted as `YYYYMMDD` \(for example, `20100104`\)\. Because the new table will be partitioned on `year`, the sample statement in the following procedure uses the Presto function `substr("date",1,4)` to extract the `year` value from the `date` field\.
 
-**To convert the data to Parquet format with Snappy compression, partitioning by year**
+**To convert the data to parquet format with snappy compression, partitioning by year**
 + Run the following CTAS statement, replacing *your\-bucket* with your Amazon S3 bucket location\.
 
   ```
@@ -139,7 +139,7 @@ When the query completes, use the following procedure to verify the output in th
    2019-10-31 14:51:05    6.9 MiB optimized-data/year=2015/20191031_215021_00001_3f42d_42da4cfd-6e21-40a1-8152-0b902da385a1
    ```
 
-## Step 3: Use INSERT INTO to Add Data<a name="ctas-insert-into-etl-step-3-use-insert-into-to-add-data"></a>
+## Step 3: Use INSERT INTO to add data<a name="ctas-insert-into-etl-step-3-use-insert-into-to-add-data"></a>
 
 In Step 2, you used CTAS to create a table with partitions for the years 2015 to 2019\. However, the original dataset also contains data for the years 2010 to 2014\. Now you add that data using an [INSERT INTO](insert-into.md) statement\.
 
@@ -216,9 +216,9 @@ In Step 2, you used CTAS to create a table with partitions for the years 2015 to
    WHERE cast(substr("date",1,4) AS bigint) = 2020
    ```
 **Note**  
-The INSERT INTO statement supports writing a maximum of 100 partitions to the destination table\. However, to add more than 100 partitions, you can run multiple INSERT INTO statements\. For more information, see [Using CTAS and INSERT INTO to Create a Table with More Than 100 Partitions](ctas-insert-into.md)\.
+The INSERT INTO statement supports writing a maximum of 100 partitions to the destination table\. However, to add more than 100 partitions, you can run multiple INSERT INTO statements\. For more information, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
 
-## Step 4: Measure Performance and Cost Differences<a name="ctas-insert-into-etl-step-4-measure-performance-and-cost-differences"></a>
+## Step 4: Measure performance and cost differences<a name="ctas-insert-into-etl-step-4-measure-performance-and-cost-differences"></a>
 
 After you transform the data, you can measure the performance gains and cost savings by running the same queries on the new and old tables and comparing the results\.
 

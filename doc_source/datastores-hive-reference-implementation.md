@@ -1,4 +1,4 @@
-# Reference Implementation<a name="datastores-hive-reference-implementation"></a>
+# Reference implementation<a name="datastores-hive-reference-implementation"></a>
 
 Athena provides a reference implementation of its connector for external Hive metastore on GitHub\.com at [https://github\.com/awslabs/aws\-athena\-hive\-metastore](https://github.com/awslabs/aws-athena-hive-metastore)\.
 
@@ -16,7 +16,7 @@ The reference implementation is an [Apache Maven](https://maven.apache.org/) pro
 **Note**  
 These two properties can be overridden by the [Lambda environment variables](https://docs.aws.amazon.com/lambda/latest/dg/env_variables.html) `HMS_URIS` and `SPILL_LOCATION`\. Use these variables instead of recompiling the source code for the Lambda function when you want to use the function with a different Hive metastore or spill location\.
 
-## Building the Artifacts Yourself<a name="datastores-hive-reference-implementation-building-the-artifacts-yourself"></a>
+## Building the artifacts yourself<a name="datastores-hive-reference-implementation-building-the-artifacts-yourself"></a>
 
 Most use cases do not require you to modify the reference implementation\. However, if necessary, you can modify the source code, build the artifacts yourself, and upload them to an Amazon S3 location\.
 

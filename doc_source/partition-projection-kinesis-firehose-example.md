@@ -1,4 +1,4 @@
-# Amazon Kinesis Data Firehose Example<a name="partition-projection-kinesis-firehose-example"></a>
+# Amazon Kinesis Data Firehose example<a name="partition-projection-kinesis-firehose-example"></a>
 
 When you use Kinesis Data Firehose to deliver data to Amazon S3, the default configuration writes objects with keys that look like the following example:
 
@@ -39,7 +39,7 @@ The `TBLPROPERTIES` clause in the `CREATE TABLE` statement tells Athena the foll
 
 When you query the table, Athena calculates the values for `datehour` and uses the storage location template to generate a list of partition locations\.
 
-## Using the `date` Type<a name="partition-projection-kinesis-firehose-example-using-the-date-type"></a>
+## Using the `date` type<a name="partition-projection-kinesis-firehose-example-using-the-date-type"></a>
 
 When you use the `date` type for a projected partition key, you must specify a range\. Because you have no data for dates before the Kinesis Data Firehose delivery stream was created, you can use the date of creation as the start\. And because you do not have data for dates in the future, you can use the special token `NOW` as the end\.
 
@@ -79,7 +79,7 @@ FROM my_ingested_data
 WHERE datehour >= '2021/11/09/00'
 ```
 
-## Choosing Partition Keys<a name="partition-projection-kinesis-firehose-example-choosing-partition-keys"></a>
+## Choosing partition keys<a name="partition-projection-kinesis-firehose-example-choosing-partition-keys"></a>
 
 You can specify how partition projection maps the partition locations to partition keys\. In the `CREATE TABLE` example, the date and hour were combined into one partition key called datehour, but other schemes are possible\. For example, you could also configure a table with separate partition keys for the year, month, day, and hour\.
 
@@ -120,7 +120,7 @@ WHERE day = '2021/11/09'
 AND hour > 3
 ```
 
-### Partition Key Types and Partition Projection Types<a name="partition-projection-kinesis-firehose-example-partition-key-types-and-partition-projection-types"></a>
+### Partition key types and partition projection types<a name="partition-projection-kinesis-firehose-example-partition-key-types-and-partition-projection-types"></a>
 
 Note that `datehour` key in the first `CREATE TABLE` example is configured as `date` in the partition projection configuration, but the type of the partition key is `string`\. The same is true for `day` in the second example\. The types in the partition projection configuration only tell Athena how to format the values when it generates the partition locations\. The types that you specify do not change the type of the partition key — in queries, `datehour` and `day` are of type `string`\.
 
@@ -130,7 +130,7 @@ Similarly, for a query condition like `day > '2021/11/09'`, Athena parses the ri
 
 Writing the same condition as `day > '2021-11-09'` or `day > DATE '2021-11-09'` does not work\. In the first case, the date format does not match \(note the hyphens instead of the forward slashes\), and in the second case, the data types do not match\.
 
-## Using Custom Prefixes and Dynamic Partitioning<a name="partition-projection-kinesis-firehose-example-using-custom-prefixes-and-dynamic-partitioning"></a>
+## Using custom prefixes and dynamic partitioning<a name="partition-projection-kinesis-firehose-example-using-custom-prefixes-and-dynamic-partitioning"></a>
 
 Kinesis Data Firehose can be configured with [custom prefixes](https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html) and [dynamic partitioning](https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html)\. Using these features, you can configure the Amazon S3 keys and set up partitioning schemes that better support your use case\. You can also use partition projection with these partitioning schemes and configure them accordingly\.
 
@@ -175,7 +175,7 @@ WHERE day BETWEEN '2021-11-01' AND '2021-11-30'
 AND customer_id = 'customer-1234'
 ```
 
-### ISO Formatted Dates<a name="partition-projection-kinesis-firehose-example-iso-formatted-dates"></a>
+### ISO formatted dates<a name="partition-projection-kinesis-firehose-example-iso-formatted-dates"></a>
 
 Because the values for the `day` partition key are ISO formatted, you can also use the `DATE` type for the day partition key instead of `STRING`, as in the following example:
 

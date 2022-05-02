@@ -1,7 +1,7 @@
-# Allow Lambda Function Access to External Hive Metastores<a name="hive-metastore-iam-access-lambda"></a>
+# Allow Lambda function access to external Hive metastores<a name="hive-metastore-iam-access-lambda"></a>
 
 To invoke a Lambda function in your account, you must create a role that has the following permissions:
-+ `AWSLambdaVPCAccessExecutionRole` – An [AWS Lambda Execution Role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) permission to manage elastic network interfaces that connect your function to a VPC\. Ensure that you have a sufficient number of network interfaces and IP addresses available\.
++ `AWSLambdaVPCAccessExecutionRole` – An [AWS Lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) permission to manage elastic network interfaces that connect your function to a VPC\. Ensure that you have a sufficient number of network interfaces and IP addresses available\.
 + `AmazonAthenaFullAccess` – The [AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy) managed policy grants full access to Athena\.
 + An Amazon S3 policy to allow the Lambda function to write to S3 and to allow Athena to read from S3\.
 
@@ -29,13 +29,13 @@ For example, the following policy defines the permission for the spill location 
 
 Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
-## Creating Lambda Functions<a name="hive-metastore-iam-access-lambda-creating-lambda-functions"></a>
+## Creating Lambda functions<a name="hive-metastore-iam-access-lambda-creating-lambda-functions"></a>
 
-To create a Lambda function in your account, function development permissions or the `AWSLambdaFullAccess` role are required\. For more information, see [Identity\-based IAM Policies for AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/access-control-identity-based.html)\.
+To create a Lambda function in your account, function development permissions or the `AWSLambdaFullAccess` role are required\. For more information, see [Identity\-based IAM policies for AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/access-control-identity-based.html)\.
 
 Because Athena uses the AWS Serverless Application Repository to create Lambda functions, the superuser or administrator who creates Lambda functions should also have IAM policies [to allow Athena federated queries](federated-query-iam-access.md)\.
 
-## Catalog Registration and Metadata API Operations<a name="hive-metastore-iam-access-lambda-catalog-registration-and-metadata-api-operations"></a>
+## Catalog registration and metadata API operations<a name="hive-metastore-iam-access-lambda-catalog-registration-and-metadata-api-operations"></a>
 
 For access to catalog registration API and metadata API operations, use the [AmazonAthenaFullAccess managed policy](managed-policies.md#amazonathenafullaccess-managed-policy)\. If you do not use this policy, add the following API operations to your Athena policies:
 
@@ -64,7 +64,7 @@ For access to catalog registration API and metadata API operations, use the [Ama
 }
 ```
 
-## Cross Region Lambda Invocation<a name="hive-metastore-iam-access-lambda-cross-region-invocation"></a>
+## Cross Region Lambda invocation<a name="hive-metastore-iam-access-lambda-cross-region-invocation"></a>
 
 To invoke a Lambda function in a region other than the region in which you are running Athena queries, use the full ARN of the Lambda function\. By default, Athena invokes Lambda functions defined in the same region\. If you need to invoke a Lambda function to access a Hive metastore in a region other than the region in which you run Athena queries, you must provide the full ARN of the Lambda function\.
 
@@ -79,7 +79,7 @@ When you specify the full ARN in this way, Athena can call the `external-hms-ser
 **Note**  
 The catalog `ehms` should be registered in the same region that you run Athena queries\.
 
-## Cross Account Lambda Invocation<a name="hive-metastore-iam-access-lambda-cross-account-invocation"></a>
+## Cross account Lambda invocation<a name="hive-metastore-iam-access-lambda-cross-account-invocation"></a>
 
 Sometimes you might require access to a Hive metastore from a different account\. For example, to run a Hive metastore, you might launch an EMR cluster from an account that is different from the one that you use for Athena queries\. Different groups or teams might run Hive metastore with different accounts inside their VPC\. Or you might want to access metadata from different Hive metastores from different groups or teams\.
 
@@ -134,9 +134,9 @@ After adding the permission, you can use a full ARN of the Lambda function on `u
 arn:aws:lambda:us-east-1:111122223333:function:external-hms-service-new
 ```
 
-For information about cross region invocation, see [Cross Region Lambda Invocation](#hive-metastore-iam-access-lambda-cross-region-invocation) earlier in this topic\.
+For information about cross region invocation, see [Cross Region Lambda invocation](#hive-metastore-iam-access-lambda-cross-region-invocation) earlier in this topic\.
 
-### Granting Cross\-Account Access to Data<a name="hive-metastore-iam-access-lambda-granting-cross-account-access-to-data"></a>
+### Granting cross\-account access to data<a name="hive-metastore-iam-access-lambda-granting-cross-account-access-to-data"></a>
 
 Before you can run Athena queries, you must grant cross account access to the data in Amazon S3\. You can do this in one of the following ways:
 + Update the access control list policy of the Amazon S3 bucket with a [canonical user ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html)\.

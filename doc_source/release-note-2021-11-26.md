@@ -6,4 +6,4 @@ Athena announces the public preview of Athena ACID transactions, which add write
 
 Athena ACID transactions and familiar SQL syntax simplify updates to your business and regulatory data\. For example, to respond to a data erasure request, you can perform a SQL `DELETE` operation\. To make manual record corrections, you can use a single `UPDATE` statement\. To recover data that was recently deleted, you can issue time travel queries using a `SELECT` statement\. Athena transactions are available through Athena's console, API operations, and ODBC and JDBC drivers\.
 
-For more information, see [Using Athena ACID Transactions](acid-transactions.md)\.
+For more information, see [Using Athena ACID transactions](acid-transactions.md)\.

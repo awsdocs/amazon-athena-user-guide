@@ -1,12 +1,12 @@
-# Example IAM Permissions Policies to Allow Athena Federated Query<a name="federated-query-iam-access"></a>
+# Example IAM permissions policies to allow Athena Federated Query<a name="federated-query-iam-access"></a>
 
 The permission policy examples in this topic demonstrate required allowed actions and the resources for which they are allowed\. Examine these policies carefully and modify them according to your requirements before attaching them to IAM identities\.
 
-For information about attaching policies to IAM identities, see [Adding and Removing IAM Identity Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
+For information about attaching policies to IAM identities, see [Adding and removing IAM identity permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 +  [Example Policy to Allow an IAM Principal to Run and Return Results Using Athena Federated Query](#fed-using-iam) 
 +  [Example Policy to Allow an IAM Principal to Create a Data Source Connector](#fed-creating-iam) 
 
-**Example – Allow an IAM Principal to Run and Return Results Using Athena Federated Query**  
+**Example – Allow an IAM principal to run and return results using Athena Federated Query**  
 The following identity\-based permissions policy allows actions that a user or other IAM principal requires to use Athena Federated Query\. Principals who are allowed to perform these actions are able to run queries that specify Athena catalogs associated with a federated data source\.  
 
 ```
@@ -56,15 +56,15 @@ The following identity\-based permissions policy allows actions that a user or o
 ```
 
 
-**Explanation of Permissions**  
+**Explanation of permissions**  
 
-| Allowed Actions | Explanation | 
+| Allowed actions | Explanation | 
 | --- | --- | 
 |  <pre> "athena:StartQueryExecution",<br /> "athena:GetQueryResults",<br /> "athena:GetWorkGroup",<br /> "athena:StopQueryExecution",<br /> "athena:GetQueryExecution",<br /></pre>  |  Athena permissions that are required to run federated queries\.  | 
-|  <pre>"s3:PutObject",<br />"s3:GetObject",<br />"s3:AbortMultipartUpload"</pre>  |  `s3:PutObject` and `s3:AbortMultipartUpload` allow writing query results to all sub\-folders of the query results bucket as specified by the `arn:aws:s3:::MyQueryResultsBucket/*` resource identifier, where *MyQueryResultsBucket* is the Athena query results bucket\. For more information, see [Working with Query Results, Recent Queries, and Output Files](querying.md)\. `s3:GetObject` allows reading of query results and query history for the resource specified as `arn:aws:s3:::MyQueryResultsBucket`, where *MyQueryResultsBucket* is the Athena query results bucket\. `s3:GetObject` also allows reading from the resource specified as `"arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*"`, where *MyLambdaSpillPrefix* is specified in the configuration of the Lambda function or functions being invoked\.  | 
+|  <pre>"s3:PutObject",<br />"s3:GetObject",<br />"s3:AbortMultipartUpload"</pre>  |  `s3:PutObject` and `s3:AbortMultipartUpload` allow writing query results to all sub\-folders of the query results bucket as specified by the `arn:aws:s3:::MyQueryResultsBucket/*` resource identifier, where *MyQueryResultsBucket* is the Athena query results bucket\. For more information, see [Working with query results, recent queries, and output files](querying.md)\. `s3:GetObject` allows reading of query results and query history for the resource specified as `arn:aws:s3:::MyQueryResultsBucket`, where *MyQueryResultsBucket* is the Athena query results bucket\. `s3:GetObject` also allows reading from the resource specified as `"arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*"`, where *MyLambdaSpillPrefix* is specified in the configuration of the Lambda function or functions being invoked\.  | 
 |  <pre>"lambda:InvokeFunction"</pre>  | Allows queries to invoke the AWS Lambda functions for the AWS Lambda functions specified in the Resource block\. For example, arn:aws:lambda:\*:MyAWSAcctId:function:MyAthenaLambdaFunction, where MyAthenaLambdaFunction specifies the name of a Lambda function to be invoked\. Multiple functions can be specified as shown in the example\. | 
 
-**Example – Allow an IAM Principal to Create a Data Source Connector**  
+**Example – Allow an IAM principal to create a data source connector**  
 
 ```
 {
@@ -158,9 +158,9 @@ The following identity\-based permissions policy allows actions that a user or o
 ```
 
 
-**Explanation of Permissions**  
+**Explanation of permissions**  
 
-| Allowed Actions | Explanation | 
+| Allowed actions | Explanation | 
 | --- | --- | 
 |  <pre>"lambda:CreateFunction",<br />"lambda:ListVersionsByFunction",<br />"lambda:GetFunctionConfiguration",<br />"lambda:PutFunctionConcurrency",<br />"lambda:ListTags",<br />"lambda:DeleteFunction",<br />"lambda:GetAlias",<br />"lambda:InvokeFunction",<br />"lambda:GetFunction",<br />"lambda:ListAliases",<br />"lambda:UpdateFunctionConfiguration",<br />"lambda:UpdateFunctionCode",<br />"lambda:AddPermission",<br />"lambda:DeleteFunctionConcurrency",<br />"lambda:RemovePermission",<br />"lambda:GetPolicy"<br />"lambda:GetAccountSettings",<br />"lambda:ListFunctions",<br />"lambda:ListEventSourceMappings",<br /></pre>  |  Allow the creation and management of Lambda functions listed as resources\. In the example, a name prefix is used in the resource identifier `arn:aws:lambda:*:MyAWSAcctId:function:MyAthenaLambdaFunctionsPrefix*`, where *MyAthenaLambdaFunctionsPrefix* is a shared prefix used in the name of a group of Lambda functions so that they don't need to be specified individually as resources\. You can specify one or more Lambda function resources\.  | 
 |  <pre>"s3:GetObject"</pre>  | Allows reading of a bucket that AWS Serverless Application Repository requires as specified by the resource identifier arn:aws:s3:::awsserverlessrepo\-changesets\-1iiv3xa62ln3m/\*\. This bucket may be specific to your account\. | 

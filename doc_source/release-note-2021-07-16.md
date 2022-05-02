@@ -6,4 +6,4 @@ Amazon Athena has updated its integration with Apache Hudi\. Hudi is an open\-so
 
 Apache Hudi provides record\-level data processing that can help you simplify development of Change Data Capture \(CDC\) pipelines, comply with GDPR\-driven updates and deletes, and better manage streaming data from sensors or devices that require data insertion and event updates\. The 0\.8\.0 release makes it easier to migrate large Parquet tables to Hudi without copying data so you can query and analyze them through Athena\. You can use Athena's new support for snapshot queries to have near real\-time views of your streaming table updates\.
 
-To learn more about using Hudi with Athena, see [Using Athena to Query Apache Hudi Datasets](querying-hudi.md)\.
+To learn more about using Hudi with Athena, see [Using Athena to query Apache Hudi datasets](querying-hudi.md)\.

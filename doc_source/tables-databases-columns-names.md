@@ -1,4 +1,4 @@
-# Names for Tables, Databases, and Columns<a name="tables-databases-columns-names"></a>
+# Names for tables, databases, and columns<a name="tables-databases-columns-names"></a>
 
 Use these tips for naming items in Athena\.
 
@@ -37,10 +37,10 @@ FROM "234table"
 
 ### Column names and complex types<a name="tables-databases-columns-names-complex-types"></a>
 
-For complex types, only alphanumeric characters, underscore \(`_`\), and period \(`.`\) are allowed in column names\. To create a table and mappings for keys that have restricted characters, you can use a custom DDL statement\. For more information, see the article [Create Tables in Amazon Athena from Nested JSON and Mappings Using JSONSerDe](http://aws.amazon.com/blogs/big-data/create-tables-in-amazon-athena-from-nested-json-and-mappings-using-jsonserde/) in the *AWS Big Data Blog*\.
+For complex types, only alphanumeric characters, underscore \(`_`\), and period \(`.`\) are allowed in column names\. To create a table and mappings for keys that have restricted characters, you can use a custom DDL statement\. For more information, see the article [Create tables in Amazon Athena from nested JSON and mappings using JSONSerDe](http://aws.amazon.com/blogs/big-data/create-tables-in-amazon-athena-from-nested-json-and-mappings-using-jsonserde/) in the *AWS Big Data Blog*\.
 
 ### Reserved words<a name="tables-databases-columns-names-reserved-words"></a>
 
 Certain reserved words in Athena must be escaped\. To escape reserved keywords in DDL statements, enclose them in backticks \(`\)\. To escape reserved keywords in SQL `SELECT` statements and in queries on [views](views.md), enclose them in double quotes \(''\)\. 
 
-For more information, see [Reserved Keywords](reserved-words.md)\.
+For more information, see [Reserved keywords](reserved-words.md)\.

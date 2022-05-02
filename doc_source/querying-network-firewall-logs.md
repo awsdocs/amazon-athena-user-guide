@@ -1,4 +1,4 @@
-# Querying AWS Network Firewall Logs<a name="querying-network-firewall-logs"></a>
+# Querying AWS Network Firewall logs<a name="querying-network-firewall-logs"></a>
 
 AWS Network Firewall is a managed service that you can use to deploy essential network protections for your Amazon Virtual Private Cloud instances\. AWS Network Firewall works together with AWS Firewall Manager so you can build policies based on AWS Network Firewall rules and then centrally apply those policies across your VPCs and accounts\. For more information about AWS Network Firewall, see [AWS Network Firewall](http://aws.amazon.com/network-firewall/)\.
 
@@ -53,7 +53,7 @@ You can configure AWS Network Firewall logging for traffic that you forward to y
 
 1. Run the query in the Athena console\. After the query completes, Athena registers the `anf_logs` table, making the data in it ready for queries\.
 
-## Network Firewall Example Query<a name="querying-network-firewall-logs-example"></a>
+## Network Firewall example query<a name="querying-network-firewall-logs-example"></a>
 
 The following query shows the count of requests evaluated by AWS Network Firewall that have unique source and destination IP pairs\.
 

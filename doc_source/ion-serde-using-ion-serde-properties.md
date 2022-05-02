@@ -1,8 +1,8 @@
-# Using Amazon Ion SerDe Properties<a name="ion-serde-using-ion-serde-properties"></a>
+# Using Amazon Ion SerDe properties<a name="ion-serde-using-ion-serde-properties"></a>
 
-This topic contains information about the SerDe properties for `CREATE TABLE` statements in Athena\. For more information and examples of Amazon Ion SerDe property usage, see [SerDe Properties](https://github.com/amzn/ion-hive-serde/blob/master/docs/serde-properties.md) in the Amazon Ion Hive SerDe documentation on [GitHub](https://github.com/amzn/ion-hive-serde/tree/master/docs)\.
+This topic contains information about the SerDe properties for `CREATE TABLE` statements in Athena\. For more information and examples of Amazon Ion SerDe property usage, see [SerDe properties](https://github.com/amzn/ion-hive-serde/blob/master/docs/serde-properties.md) in the Amazon Ion Hive SerDe documentation on [GitHub](https://github.com/amzn/ion-hive-serde/tree/master/docs)\.
 
-## Specifying Amazon Ion SerDe Properties<a name="ion-serde-specifying-ion-serde-properties"></a>
+## Specifying Amazon Ion SerDe properties<a name="ion-serde-specifying-ion-serde-properties"></a>
 
 To specify properties for the Amazon Ion Hive SerDe in your `CREATE TABLE` statement, use the `WITH SERDEPROPERTIES` clause\. Because `WITH SERDEPROPERTIES` is a subfield of the `ROW FORMAT SERDE` clause, you must specify `ROW FORMAT SERDE` and the Amazon Ion Hive SerDe class path first, as the following syntax shows\.
 
@@ -19,7 +19,7 @@ WITH SERDEPROPERTIES (
 
 Note that although the `ROW FORMAT SERDE` clause is required if you want to use `WITH SERDEPROPERTIES`, you can use either `STORED AS ION` or the longer `INPUTFORMAT` and `OUTPUTFORMAT` syntax to specify the Amazon Ion format\.
 
-## Amazon Ion SerDe Properties<a name="ion-serde-ion-serde-properties"></a>
+## Amazon Ion SerDe properties<a name="ion-serde-ion-serde-properties"></a>
 
 Following are the Amazon Ion SerDe properties that can be used in `CREATE TABLE` statements in Athena\.
 
@@ -102,7 +102,7 @@ The following example path extractor maps the `example_ion_field` to the `exampl
 ```
 'ion.example_hive_column.path_extractor' = '(example_ion_field)'
 ```
-For more information about path extractors and search paths, see [Using Path Extractors](ion-serde-using-path-extractors.md)\.
+For more information about path extractors and search paths, see [Using path extractors](ion-serde-using-path-extractors.md)\.
 
 **ion\.timestamp\.serialization\_offset**  
 Optional  
@@ -130,7 +130,7 @@ The following example specifies strongly typed nulls\.
 Optional  
 Default: `false`  
 Values: `true`, `false`  
-When `true`, ignores malformed entries or the whole file if the SerDe is unable to read it\. For more information, see [Ignore Malformed](https://github.com/amzn/ion-hive-serde/blob/master/docs/serde-properties.md#ignore-malformed) in the documentation on GitHub\.
+When `true`, ignores malformed entries or the whole file if the SerDe is unable to read it\. For more information, see [Ignore malformed](https://github.com/amzn/ion-hive-serde/blob/master/docs/serde-properties.md#ignore-malformed) in the documentation on GitHub\.
 
 **ion\.*<column>*\.serialize\_as**  
 Optional  

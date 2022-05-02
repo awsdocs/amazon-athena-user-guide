@@ -1,8 +1,8 @@
-# Querying Amazon CloudFront Logs<a name="cloudfront-logs"></a>
+# Querying Amazon CloudFront logs<a name="cloudfront-logs"></a>
 
-You can configure Amazon CloudFront CDN to export Web distribution access logs to Amazon Simple Storage Service\. Use these logs to explore users’ surfing patterns across your web properties served by CloudFront\.
+You can configure Amazon CloudFront CDN to export Web distribution access logs to Amazon Simple Storage Service\. Use these logs to explore users' surfing patterns across your web properties served by CloudFront\.
 
-Before you begin querying the logs, enable Web distributions access log on your preferred CloudFront distribution\. For information, see [Access Logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) in the *Amazon CloudFront Developer Guide*\.
+Before you begin querying the logs, enable Web distributions access log on your preferred CloudFront distribution\. For information, see [Access logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) in the *Amazon CloudFront Developer Guide*\.
 
 Make a note of the Amazon S3 bucket to which to save these logs\.
 
@@ -11,13 +11,13 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 +  [Creating the Table for CloudFront Logs](#create-cloudfront-table) 
 +  [Example Query for CloudFront logs](#query-examples-cloudfront-logs) 
 
-## Creating the Table for CloudFront Logs<a name="create-cloudfront-table"></a>
+## Creating the table for CloudFront logs<a name="create-cloudfront-table"></a>
 
 ### To create the CloudFront table<a name="to-create-the-cf-table"></a>
 
-1. Copy and paste the following DDL statement into the Query Editor in the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\. For information about using the Query Editor, see [Getting Started](getting-started.md)\.
+1. Copy and paste the following DDL statement into the Query Editor in the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\. For information about using the Query Editor, see [Getting started](getting-started.md)\.
 
-   This query uses the default SerDe, [LazySimpleSerDe](lazy-simple-serde.md)\. The column `date` is escaped using backticks \(`\) because it is a reserved word in Athena\. For information, see [Reserved Keywords](reserved-words.md)\.
+   This query uses the default SerDe, [LazySimpleSerDe](lazy-simple-serde.md)\. The column `date` is escaped using backticks \(`\) because it is a reserved word in Athena\. For information, see [Reserved keywords](reserved-words.md)\.
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS default.cloudfront_logs (
@@ -63,7 +63,7 @@ This procedure works for the Web distribution access logs in CloudFront\. It doe
 
 1. Run the query in Athena console\. After the query completes, Athena registers the `cloudfront_logs` table, making the data in it ready for you to issue queries\.
 
-## Example Query for CloudFront Logs<a name="query-examples-cloudfront-logs"></a>
+## Example query for CloudFront logs<a name="query-examples-cloudfront-logs"></a>
 
 The following query adds up the number of bytes served by CloudFront between June 9 and June 11, 2018\. Surround the date column name with double quotes because it is a reserved word\.
 
@@ -82,12 +82,12 @@ FROM cloudfront_logs
 LIMIT 10;
 ```
 
-## Additional Resources<a name="cloudfront-logs-additional-resources"></a>
+## Additional resources<a name="cloudfront-logs-additional-resources"></a>
 
-For more information about using Athena to query CloudFront logs, see the following posts from the [AWS Big Data Blog](http://aws.amazon.com/blogs/big-data/)\.
+For more information about using Athena to query CloudFront logs, see the following posts from the [AWS big data blog](http://aws.amazon.com/blogs/big-data/)\.
 
 [Easily query AWS service logs using Amazon Athena](http://aws.amazon.com/blogs/big-data/easily-query-aws-service-logs-using-amazon-athena/) \(May 29, 2019\)\.
 
 [Analyze your Amazon CloudFront access logs at scale](http://aws.amazon.com/blogs/big-data/analyze-your-amazon-cloudfront-access-logs-at-scale/) \(December 21, 2018\)\.
 
-[Build a Serverless Architecture to Analyze Amazon CloudFront Access Logs Using AWS Lambda, Amazon Athena, and Amazon Kinesis Data Analytics](http://aws.amazon.com/blogs/big-data/build-a-serverless-architecture-to-analyze-amazon-cloudfront-access-logs-using-aws-lambda-amazon-athena-and-amazon-kinesis-analytics/) \(May 26, 2017\)\.
+[Build a serverless architecture to analyze Amazon CloudFront access logs using AWS Lambda, Amazon Athena, and Amazon Kinesis Data Analytics](http://aws.amazon.com/blogs/big-data/build-a-serverless-architecture-to-analyze-amazon-cloudfront-access-logs-using-aws-lambda-amazon-athena-and-amazon-kinesis-analytics/) \(May 26, 2017\)\.

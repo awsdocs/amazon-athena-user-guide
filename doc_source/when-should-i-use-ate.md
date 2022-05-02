@@ -30,7 +30,7 @@ A data warehouse like Amazon Redshift is your best choice when you need to pull 
 
 For more information about when to use Athena, consult the following resources:
 + [When to use Athena vs other big data services](http://aws.amazon.com/athena/faqs/#When_to_use_Athena_vs_other_big_data_services) 
-+ [Amazon Athena Overview](http://aws.amazon.com/athena/) 
-+ [Amazon Athena Features](http://aws.amazon.com/athena/features/) 
++ [Amazon Athena overview](http://aws.amazon.com/athena/) 
++ [Amazon Athena features](http://aws.amazon.com/athena/features/) 
 + [Amazon Athena FAQs](http://aws.amazon.com/athena/faqs/)
-+ [Amazon Athena Blog posts](http://aws.amazon.com/athena/resources/#Blog_posts) 
++ [Amazon Athena blog posts](http://aws.amazon.com/athena/resources/#Blog_posts) 

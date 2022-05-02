@@ -1,15 +1,15 @@
-# Understanding Athena EXPLAIN Statement Results<a name="athena-explain-statement-understanding"></a>
+# Understanding Athena EXPLAIN statement results<a name="athena-explain-statement-understanding"></a>
 
 This topic provides a brief guide to the operational terms used in Athena `EXPLAIN` statement results\.
 
-## EXPLAIN Statement Output Types<a name="athena-explain-statement-understanding-explain-plan-types"></a>
+## EXPLAIN statement output types<a name="athena-explain-statement-understanding-explain-plan-types"></a>
 
 `EXPLAIN` statement outputs can be one of two types:
-+ **Logical Plan** – Shows the logical plan that the SQL engine uses to execute a statement\. The syntax for this option is `EXPLAIN` or `EXPLAIN (TYPE LOGICAL)`\.
-+ **Distributed Plan** – Shows an execution plan in a distributed environment\. The output shows fragments, which are processing stages\. Each plan fragment is processed by one or more nodes\. Data can be exchanged between the nodes that process the fragments\. The syntax for this option is `EXPLAIN (TYPE DISTRIBUTED)`\.
++ **Logical plan** – Shows the logical plan that the SQL engine uses to execute a statement\. The syntax for this option is `EXPLAIN` or `EXPLAIN (TYPE LOGICAL)`\.
++ **Distributed plan** – Shows an execution plan in a distributed environment\. The output shows fragments, which are processing stages\. Each plan fragment is processed by one or more nodes\. Data can be exchanged between the nodes that process the fragments\. The syntax for this option is `EXPLAIN (TYPE DISTRIBUTED)`\.
 
   In the output for a distributed plan, fragments \(processing stages\) are indicated by `Fragment` *number* \[*fragment\_type*\], where *number* is a zero\-based integer and *fragment\_type* specifies how the fragment is executed by the nodes\. Fragment types, which provide insight into the layout of the data exchange, are described in the following table\.  
-**Distributed Plan Fragment Types**    
+**Distributed plan fragment types**    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/athena-explain-statement-understanding.html)
 
 ## Exchange<a name="athena-explain-statement-understanding-exchange-types"></a>
@@ -22,14 +22,14 @@ Transfers data locally within worker nodes for different stages of a query\. The
 **RemoteExchange \[*exchange\_type*\] **  
 Transfers data between worker nodes for different stages of a query\. The value for *exchange\_type* can be one of the logical or distributed exchange types as described later in this section\.
 
-### Logical Exchange Types<a name="athena-explain-statement-understanding-exchange-types-logical"></a>
+### Logical Exchange types<a name="athena-explain-statement-understanding-exchange-types-logical"></a>
 
 The following exchange types describe actions taken during the exchange phase of a logical plan\.
 + **`GATHER`** – A single worker node gathers output from all other worker nodes\. For example, the last stage of a select query gathers results from all nodes and writes the results to Amazon S3\.
 + **`REPARTITION`** – Sends the row data to a specific worker based on the partitioning scheme required to apply to the next operator\.
 + **`REPLICATE`** – Copies the row data to all workers\.
 
-### Distributed Exchange Types<a name="athena-explain-statement-understanding-exchange-types-distributed"></a>
+### Distributed Exchange types<a name="athena-explain-statement-understanding-exchange-types-distributed"></a>
 
 The following exchange types indicate the layout of the data when they are exchanged between nodes in a distributed plan\.
 + **`HASH`** – The exchange distributes data to multiple destinations using a hash function\.
@@ -52,7 +52,7 @@ First, scans a table's source data from Amazon S3 or a Hive connector and applie
 
 Joins data between two tables\. Joins can be categorized by join type and by distribution type\.
 
-### Join Types<a name="athena-explain-statement-understanding-join-types"></a>
+### Join types<a name="athena-explain-statement-understanding-join-types"></a>
 
 Join types define the way in which the join operation occurs\.
 
@@ -69,7 +69,7 @@ Join types define the way in which the join operation occurs\.
 **Note**  
 For performance reasons, the query engine can rewrite a join query into a different join type to produce the same results\. For example, an inner join query with predicate on one table can be rewritten into a `CrossJoin`\. This pushes the predicate down to the scanning phase of the table so that fewer data are scanned\.
 
-### Join Distribution Types<a name="athena-explain-statement-understanding-join-distribution-types"></a>
+### Join distribution types<a name="athena-explain-statement-understanding-join-distribution-types"></a>
 
 Distribution types define how data is exchanged between worker nodes when the join operation is performed\.
 

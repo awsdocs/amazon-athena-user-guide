@@ -1,4 +1,4 @@
-# Searching for Values in JSON Arrays<a name="searching-for-values"></a>
+# Searching for values in JSON arrays<a name="searching-for-values"></a>
 
 To determine if a specific value exists inside a JSON\-encoded array, use the `json_array_contains` function\.
 

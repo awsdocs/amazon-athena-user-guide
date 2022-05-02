@@ -1,17 +1,17 @@
 # Parquet SerDe<a name="parquet-serde"></a>
 
-## SerDe Name<a name="serde-name"></a>
+## SerDe name<a name="serde-name"></a>
 
-ParquetHiveSerDe is used for data stored in [Parquet Format](https://cwiki.apache.org/confluence/display/Hive/Parquet)\. 
+ParquetHiveSerDe is used for data stored in [Parquet format](https://cwiki.apache.org/confluence/display/Hive/Parquet)\. 
 
 **Note**  
-To convert data into Parquet format, you can use [CREATE TABLE AS SELECT \(CTAS\)](create-table-as.md) queries\. For more information, see [Creating a Table from Query Results \(CTAS\)](ctas.md), [Examples of CTAS Queries](ctas-examples.md) and [Using CTAS and INSERT INTO for ETL and Data Analysis](ctas-insert-into-etl.md)\.
+To convert data into Parquet format, you can use [CREATE TABLE AS SELECT \(CTAS\)](create-table-as.md) queries\. For more information, see [Creating a table from query results \(CTAS\)](ctas.md), [Examples of CTAS queries](ctas-examples.md) and [Using CTAS and INSERT INTO for ETL and data analysis](ctas-insert-into-etl.md)\.
 
-## Library Name<a name="library-name"></a>
+## Library name<a name="library-name"></a>
 
 Athena uses the following class when it needs to deserialize data stored in Parquet: `org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe`
 
-## Example: Querying a File Stored in Parquet<a name="example-querying-a-file-stored-in-parquet"></a>
+## Example: Querying a file stored in parquet<a name="example-querying-a-file-stored-in-parquet"></a>
 
 **Note**  
 Replace *myregion* in `s3://athena-examples-myregion/path/to/data/` with the region identifier where you run Athena, for example, `s3://athena-examples-us-west-1/path/to/data/`\.

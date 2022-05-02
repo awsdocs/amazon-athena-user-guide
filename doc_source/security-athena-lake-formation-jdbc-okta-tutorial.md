@@ -1,4 +1,4 @@
-# Tutorial: Configuring Federated Access for Okta Users to Athena Using Lake Formation and JDBC<a name="security-athena-lake-formation-jdbc-okta-tutorial"></a>
+# Tutorial: Configuring federated access for Okta users to Athena using Lake Formation and JDBC<a name="security-athena-lake-formation-jdbc-okta-tutorial"></a>
 
 This tutorial shows you how to configure Okta, AWS Lake Formation, AWS Identity and Access Management permissions, and the Athena JDBC driver to enable SAML\-based federated use of Athena\. Lake Formation provides fine\-grained access control over the data that is available in Athena to the SAML\-based user\. To set up this configuration, the tutorial uses the Okta developer console, the AWS IAM and Lake Formation consoles, and the SQL Workbench/J tool\.
 <a name="security-athena-lake-formation-jdbc-okta-tutorial-prerequisites"></a>
@@ -9,20 +9,20 @@ This tutorial assumes that you have done the following:
 + [Registered an Amazon S3 data bucket location](https://docs.aws.amazon.com/lake-formation/latest/dg/register-data-lake.html) with Lake Formation\.
 + Defined a [database](https://docs.aws.amazon.com/glue/latest/dg/define-database.html) and [tables](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html) on the [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html) that point to your data in Amazon S3\.
   + If you have not yet defined a table, either [run a AWS Glue crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) or [use Athena to define a database and one or more tables](work-with-data.md) for the data that you want to access\.
-  + This tutorial uses a table based on the [NYC Taxi trips dataset](https://registry.opendata.aws/nyc-tlc-trip-records-pds/) available in the [Registry of Open Data on AWS](https://registry.opendata.aws/)\. The tutorial uses the database name `tripdb` and the table name `nyctaxi`\.
+  + This tutorial uses a table based on the [NYC taxi trips dataset](https://registry.opendata.aws/nyc-tlc-trip-records-pds/) available in the [Registry of open data on AWS](https://registry.opendata.aws/)\. The tutorial uses the database name `tripdb` and the table name `nyctaxi`\.
 
 **Topics**
-+ [Step 1: Create an Okta Account](#security-athena-lake-formation-jdbc-okta-tutorial-step-1-create-an-okta-account)
++ [Step 1: Create an Okta account](#security-athena-lake-formation-jdbc-okta-tutorial-step-1-create-an-okta-account)
 + [Step 2: Add users and groups to Okta](#security-athena-lake-formation-jdbc-okta-tutorial-step-2-set-up-an-okta-application-for-saml-authentication)
-+ [Step 3: Set up an Okta Application for SAML Authentication](#security-athena-lake-formation-jdbc-okta-tutorial-step-3-set-up-an-okta-application-for-saml-authentication)
-+ [Step 4: Create an AWS SAML Identity Provider and Lake Formation Access IAM Role](#security-athena-lake-formation-jdbc-okta-tutorial-step-4-create-an-aws-saml-identity-provider-and-lake-formation-access-IAM-role)
-+ [Step 5: Add the IAM Role and SAML Identity Provider to the Okta Application](#security-athena-lake-formation-jdbc-okta-tutorial-step-5-update-the-okta-application-with-the-aws-role-and-saml-identity-provider)
++ [Step 3: Set up an Okta application for SAML authentication](#security-athena-lake-formation-jdbc-okta-tutorial-step-3-set-up-an-okta-application-for-saml-authentication)
++ [Step 4: Create an AWS SAML Identity Provider and Lake Formation access IAM role](#security-athena-lake-formation-jdbc-okta-tutorial-step-4-create-an-aws-saml-identity-provider-and-lake-formation-access-IAM-role)
++ [Step 5: Add the IAM role and SAML Identity Provider to the Okta application](#security-athena-lake-formation-jdbc-okta-tutorial-step-5-update-the-okta-application-with-the-aws-role-and-saml-identity-provider)
 + [Step 6: Grant user and group permissions through AWS Lake Formation](#security-athena-lake-formation-jdbc-okta-tutorial-step-6-grant-permissions-through-aws-lake-formation)
 + [Step 7: Verify access through the Athena JDBC client](#security-athena-lake-formation-jdbc-okta-tutorial-step-7-verify-access-through-athena-jdbc-client)
 + [Conclusion](#security-athena-lake-formation-jdbc-okta-tutorial-conclusion)
-+ [Related Resources](#security-athena-lake-formation-jdbc-okta-tutorial-related-resources)
++ [Related resources](#security-athena-lake-formation-jdbc-okta-tutorial-related-resources)
 
-## Step 1: Create an Okta Account<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-1-create-an-okta-account"></a>
+## Step 1: Create an Okta account<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-1-create-an-okta-account"></a>
 
 This tutorial uses Okta as a SAML\-based identity provider\. If you do not already have an Okta account, you can create a free one\. An Okta account is required so that you can create an Okta application for SAML authentication\.
 
@@ -118,7 +118,7 @@ Now that you have two users and two groups, you are ready to add a user to each 
    The **Groups** page now shows that each group has one Okta user\.  
 ![\[One user has been added to each Okta group in the Okta console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-4j.png)
 
-## Step 3: Set up an Okta Application for SAML Authentication<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-3-set-up-an-okta-application-for-saml-authentication"></a>
+## Step 3: Set up an Okta application for SAML authentication<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-3-set-up-an-okta-application-for-saml-authentication"></a>
 
 In this step, you use the Okta developer console to perform the following tasks:
 + Add a SAML application for use with AWS\.
@@ -179,7 +179,7 @@ Now you are ready to download the identity provider application metadata for use
 1. Choose **Save Link As** to save the identity provider metadata, which is in XML format, to a file\. Give it a name that you recognize \(for example, `Athena-LakeFormation-idp-metadata.xml`\)\.  
 ![\[Saving the identity provider metadata.\]](http://docs.aws.amazon.com/athena/latest/ug/images/security-athena-lake-formation-jdbc-okta-tutorial-14.png)
 
-## Step 4: Create an AWS SAML Identity Provider and Lake Formation Access IAM Role<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-4-create-an-aws-saml-identity-provider-and-lake-formation-access-IAM-role"></a>
+## Step 4: Create an AWS SAML Identity Provider and Lake Formation access IAM role<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-4-create-an-aws-saml-identity-provider-and-lake-formation-access-IAM-role"></a>
 
 In this step, you use the AWS Identity and Access Management \(IAM\) console to perform the following tasks:
 + Create an identity provider for AWS\.
@@ -327,7 +327,7 @@ Next, you copy the ARN of the Lake Formation access role and the ARN of the SAML
 
 1. Save the full ARN securely for later reference\.
 
-## Step 5: Add the IAM Role and SAML Identity Provider to the Okta Application<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-5-update-the-okta-application-with-the-aws-role-and-saml-identity-provider"></a>
+## Step 5: Add the IAM role and SAML Identity Provider to the Okta application<a name="security-athena-lake-formation-jdbc-okta-tutorial-step-5-update-the-okta-application-with-the-aws-role-and-saml-identity-provider"></a>
 
 In this step, you return to the Okta developer console and perform the following tasks:
 + Add user and group Lake Formation URL attributes to the Okta application\.
@@ -467,7 +467,7 @@ In this section, you perform the following tasks:
 
 **To prepare the test client**
 
-1. Download and extract the Lake Formation compatible Athena JDBC driver \(2\.0\.14 or later version\) from [Using Athena with the JDBC Driver](connect-with-jdbc.md)\.
+1. Download and extract the Lake Formation compatible Athena JDBC driver \(2\.0\.14 or later version\) from [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
 
 1. Download and install the free [SQL Workbench/J](https://www.sql-workbench.eu/index.html) SQL query tool, available under a modified Apache 2\.0 license\.
 
@@ -666,13 +666,13 @@ Now you can use SQL Workbench to verify the change in permissions for the **lf\-
 
 In this tutorial you configured Athena integration with AWS Lake Formation using Okta as the SAML provider\. You used Lake Formation and IAM to control the resources that are available to the SAML user in your data lake AWS Glue Data Catalog\.
 
-## Related Resources<a name="security-athena-lake-formation-jdbc-okta-tutorial-related-resources"></a>
+## Related resources<a name="security-athena-lake-formation-jdbc-okta-tutorial-related-resources"></a>
 
 For related information, see the following resources\.
-+ [Using Athena with the JDBC Driver](connect-with-jdbc.md)
-+ [Enabling Federated Access to the Athena API](access-federation-saml.md)
++ [Using Athena with the JDBC driver](connect-with-jdbc.md)
++ [Enabling federated access to the Athena API](access-federation-saml.md)
 + [AWS Lake Formation Developer Guide](https://docs.aws.amazon.com/lake-formation/latest/dg/)
-+ [Granting and Revoking Data Catalog Permissions](https://docs.aws.amazon.com/lake-formation/latest/dg/granting-catalog-permissions.html) in the *AWS Lake Formation Developer Guide*\.
-+ [Identity Providers and Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html) in the *IAM User Guide*\.
-+ [Creating IAM SAML Identity Providers](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml.html) in the *IAM User Guide*\.
-+ [Enabling Federation to AWS Using Windows Active Directory, ADFS, and SAML 2\.0](http://aws.amazon.com/blogs/security/enabling-federation-to-aws-using-windows-active-directory-adfs-and-saml-2-0/) on the *AWS Security Blog*\.
++ [Granting and revoking Data Catalog permissions](https://docs.aws.amazon.com/lake-formation/latest/dg/granting-catalog-permissions.html) in the *AWS Lake Formation Developer Guide*\.
++ [Identity providers and federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html) in the *IAM User Guide*\.
++ [Creating IAM SAML identity providers](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml.html) in the *IAM User Guide*\.
++ [Enabling federation to AWS using Windows Active Directory, ADFS, and SAML 2\.0](http://aws.amazon.com/blogs/security/enabling-federation-to-aws-using-windows-active-directory-adfs-and-saml-2-0/) on the *AWS Security Blog*\.
