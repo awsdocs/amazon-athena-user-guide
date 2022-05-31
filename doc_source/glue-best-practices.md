@@ -5,25 +5,25 @@ When using Athena with the AWS Glue Data Catalog, you can use AWS Glue to create
 Under the hood, Athena uses Presto to process DML statements and Hive to process the DDL statements that create and modify schema\. With these technologies, there are a couple of conventions to follow so that Athena and AWS Glue work well together\.
 
  **In this topic** 
-+  **[Database, Table, and Column Names](#schema-names)** 
++  **[Database, table, and column names](#schema-names)** 
 +   
-** [Using AWS Glue Crawlers](#schema-crawlers) **  
-  +  [Scheduling a Crawler to Keep the AWS Glue Data Catalog and Amazon S3 in Sync](#schema-crawlers-schedule) 
-  +  [Using Multiple Data Sources with Crawlers](#schema-crawlers-data-sources) 
-  +  [Syncing Partition Schema to Avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"](#schema-syncing) 
-  +  [Updating Table Metadata](#schema-table-metadata) 
+** [Using AWS Glue crawlers](#schema-crawlers) **  
+  +  [Scheduling a crawler to keep the AWS Glue Data Catalog and Amazon S3 in sync](#schema-crawlers-schedule) 
+  +  [Using multiple data sources with crawlers](#schema-crawlers-data-sources) 
+  +  [Syncing partition schema to avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"](#schema-syncing) 
+  +  [Updating table metadata](#schema-table-metadata) 
 +   
-** [Working with CSV Files](#schema-csv) **  
-  +  [CSV Data Enclosed in Quotes](#schema-csv-quotes) 
-  +  [CSV Files with Headers](#schema-csv-headers) 
+** [Working with CSV files](#schema-csv) **  
+  +  [CSV data enclosed in quotes](#schema-csv-quotes) 
+  +  [CSV files with headers](#schema-csv-headers) 
 + ** [AWS Glue partition indexing and filtering](#glue-best-practices-partition-index)**
 + **[Working with geospatial data](#schema-geospatial)**
 +   
-** [Using AWS Glue Jobs for ETL with Athena](#schema-classifier) **  
-  +  [Creating Tables Using Athena for AWS Glue ETL Jobs](#schema-etl-tables) 
-  +  [Using ETL Jobs to Optimize Query Performance](#schema-etl-performance) 
-  +  [Converting SMALLINT and TINYINT Datatypes to INT When Converting to ORC](#schema-etl-orc) 
-  +  [Automating AWS Glue Jobs for ETL](#schema-etl-automate) 
+** [Using AWS Glue jobs for ETL with Athena](#schema-classifier) **  
+  +  [Creating tables using Athena for AWS Glue ETL jobs](#schema-etl-tables) 
+  +  [Using ETL jobs to optimize query performance](#schema-etl-performance) 
+  +  [Converting SMALLINT and TINYINT data types to INT when converting to ORC](#schema-etl-orc) 
+  +  [Automating AWS Glue jobs for ETL](#schema-etl-automate) 
 
 ## Database, table, and column names<a name="schema-names"></a>
 
@@ -98,7 +98,7 @@ To have the AWS Glue crawler create two separate tables, set the crawler to have
 
 ### Syncing partition schema to avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"<a name="schema-syncing"></a>
 
-For each table within the AWS Glue Data Catalog that has partition columns, the schema is stored at the table level and for each individual partition within the table\. The schema for partitions are populated by an AWS Glue crawler based on the sample of data that it reads within the partition\. For more information, see [Using Multiple Data Sources with Crawlers](#schema-crawlers-data-sources)\.
+For each table within the AWS Glue Data Catalog that has partition columns, the schema is stored at the table level and for each individual partition within the table\. The schema for partitions are populated by an AWS Glue crawler based on the sample of data that it reads within the partition\. For more information, see [Using multiple data sources with crawlers](#schema-crawlers-data-sources)\.
 
 When Athena runs a query, it validates the schema of the table and the schema of any partitions necessary for the query\. The validation compares the column data types in order and makes sure that they match for the columns that overlap\. This prevents unexpected operations such as adding or removing columns from the middle of a table\. If Athena detects that the schema of a partition differs from the schema of the table, Athena may not be able to process the query and fails with `HIVE_PARTITION_SCHEMA_MISMATCH`\.
 
@@ -108,7 +108,7 @@ There are a few ways to fix this issue\. First, if the data was accidentally add
 
 After a crawl, the AWS Glue crawler automatically assigns certain table metadata to help make it compatible with other external technologies like Apache Hive, Presto, and Spark\. Occasionally, the crawler may incorrectly assign metadata properties\. Manually correct the properties in AWS Glue before querying the table using Athena\. For more information, see [Viewing and editing table details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
 
-AWS Glue may mis\-assign metadata when a CSV file has quotes around each data field, getting the `serializationLib` property wrong\. For more information, see [CSV Data Enclosed in quotes](#schema-csv-quotes)\.
+AWS Glue may mis\-assign metadata when a CSV file has quotes around each data field, getting the `serializationLib` property wrong\. For more information, see [CSV data enclosed in quotes](#schema-csv-quotes)\.
 
 ## Working with CSV files<a name="schema-csv"></a>
 

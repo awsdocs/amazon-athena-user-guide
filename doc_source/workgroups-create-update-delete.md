@@ -16,7 +16,7 @@ In the [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.co
 
 ## Create a workgroup<a name="creating-workgroups"></a>
 
-Creating a workgroup requires permissions to `CreateWorkgroup` API actions\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding tags, you also need to add permissions to `TagResource`\. See [Tag policy examples for workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
+Creating a workgroup requires permissions to `CreateWorkgroup` API actions\. See [Access to workgroups and tags](workgroups-access.md) and [ IAM policies for accessing workgroups](workgroups-iam-policy.md)\. If you are adding tags, you also need to add permissions to `TagResource`\. See [Tag policy examples for workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
 
 **To create a workgroup in the console**
 
@@ -35,11 +35,11 @@ Creating a workgroup requires permissions to `CreateWorkgroup` API actions\. See
 You can also use the [CreateWorkGroup](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateWorkGroup.html) API operation to create a workgroup\. 
 
 **Important**  
-After you create workgroups, create [IAM Policies for Workgroups](workgroups-iam-policy.md) IAM that allow you to run workgroup\-related actions\. 
+After you create workgroups, create [ IAM policies for accessing workgroups](workgroups-iam-policy.md) IAM that allow you to run workgroup\-related actions\. 
 
 ## Edit a workgroup<a name="editing-workgroups"></a>
 
-Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. See [Access to Athena Workgroups](workgroups-access.md) and [IAM Policies for Accessing Workgroups](workgroups-iam-policy.md)\. If you are adding or editing tags, you also need to have permissions to `TagResource`\. See [Tag policy examples for workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
+Editing a workgroup requires permissions to `UpdateWorkgroup` API operations\. See [Access to workgroups and tags](workgroups-access.md) and [ IAM policies for accessing workgroups](workgroups-iam-policy.md)\. If you are adding or editing tags, you also need to have permissions to `TagResource`\. See [Tag policy examples for workgroups](tags-access-control.md#tag-policy-examples-workgroups)\.
 
 **To edit a workgroup in the console**
 
@@ -164,4 +164,4 @@ To specify a workgroup to use, you must have permissions to the workgroup\.
      Workgroup=<WORKGROUPNAME>;
      ```
 
-     For more information, search for "Workgroup" in the driver documentation link included in [JDBC Driver Documentation](connect-with-jdbc.md#documentation-jdbc)\.
+     For more information, search for "Workgroup" in the driver documentation link included in [JDBC driver documentation](connect-with-jdbc.md#documentation-jdbc)\.

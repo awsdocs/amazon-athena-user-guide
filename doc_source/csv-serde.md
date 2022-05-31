@@ -1,7 +1,7 @@
 # OpenCSVSerDe for processing CSV<a name="csv-serde"></a>
 
 When you create an Athena table for CSV data, determine the SerDe to use what types of values it contains:
-+ If your data contains values enclosed in double quotes \(`"`\), you can use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\. If your data does not contain values enclosed in double quotes \(`"`\), you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see [LazySimpleSerDe for CSV, TSV, and Custom\-Delimited Files](lazy-simple-serde.md)\.
++ If your data contains values enclosed in double quotes \(`"`\), you can use the [OpenCSV SerDe](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) to deserialize the values in Athena\. If your data does not contain values enclosed in double quotes \(`"`\), you can omit specifying any SerDe\. In this case, Athena uses the default `LazySimpleSerDe`\. For information, see [LazySimpleSerDe for CSV, TSV, and custom\-delimited files](lazy-simple-serde.md)\.
 +  If your data has UNIX numeric `TIMESTAMP` values \(for example, `1579059880000`\), use the OpenCSVSerDe\. If your data uses the `java.sql.Timestamp` format, use the LazySimpleSerDe\.
 
 ## CSV SerDe \(OpenCSVSerDe\)<a name="csv-serde-opencsvserde"></a>

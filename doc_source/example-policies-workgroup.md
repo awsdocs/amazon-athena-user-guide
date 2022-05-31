@@ -14,7 +14,7 @@ Where `<workgroup-name>` is the name of your workgroup\. For example, for workgr
 "Resource": ["arn:aws:athena:us-east-1:123456789012:workgroup/test_workgroup"]
 ```
 
-For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about IAM policies, see [Creating policies with the visual editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) in the *IAM User Guide*\. For more information about creating IAM policies for workgroups, see [Workgroup IAM Policies](workgroups-iam-policy.md)\.
+For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. For more information about IAM policies, see [Creating policies with the visual editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) in the *IAM User Guide*\. For more information about creating IAM policies for workgroups, see [ IAM policies for accessing workgroups](workgroups-iam-policy.md)\.
 +  [Example Policy for Full Access to All Workgroups](#example1-full-access-all-wkgs) 
 +  [Example Policy for Full Access to a Specified Workgroup](#example2-full-access-this-wkg) 
 +  [Example Policy for Running Queries in a Specified Workgroup](#example3-user-access) 

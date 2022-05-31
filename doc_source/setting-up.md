@@ -37,7 +37,7 @@ After you have created an IAM user, you must attach some Athena managed policies
 For steps to attach the Athena managed policies, follow [Adding IAM identity permissions \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the *IAM User Guide* and add the `AmazonAthenaFullAccess` and `AWSQuicksightAthenaAccess` managed policies to the IAM administrator user that you created\.
 
 **Note**  
-You may need additional permissions to access the underlying dataset in Amazon S3\. If you are not the account owner or otherwise have restricted access to a bucket, contact the bucket owner to grant access using a resource\-based bucket policy, or contact your account administrator to grant access using an identity\-based policy\. For more information, see [Amazon S3 Permissions](s3-permissions.md)\. If the dataset or Athena query results are encrypted, you may need additional permissions\. For more information, see [Configuring Encryption Options](encryption.md)\.
+You may need additional permissions to access the underlying dataset in Amazon S3\. If you are not the account owner or otherwise have restricted access to a bucket, contact the bucket owner to grant access using a resource\-based bucket policy, or contact your account administrator to grant access using an identity\-based policy\. For more information, see [Access to Amazon S3](s3-permissions.md)\. If the dataset or Athena query results are encrypted, you may need additional permissions\. For more information, see [Encryption at rest](encryption.md)\.
 
 ## 4\. Sign in as an IAM user<a name="setting-up-sign-in-as-an-iam-user"></a>
 

@@ -1,6 +1,6 @@
 # Using earlier version JDBC drivers<a name="connect-with-previous-jdbc"></a>
 
-We recommend that you use the latest version of the JDBC driver\. For information, see [Using Athena with the JDBC Driver](connect-with-jdbc.md)\. Links to earlier version 2\.x drivers and support materials are below if required for your application\.
+We recommend that you use the latest version of the JDBC driver\. For information, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\. Links to earlier version 2\.x drivers and support materials are below if required for your application\.
 
 
 **Earlier version JDBC drivers**  
@@ -37,7 +37,7 @@ To gain access to AWS services and resources, such as Athena and the Amazon S3 b
 
  To provide credentials in the Java code for your application:
 
-1. Use a class which implements the [https://docs.aws.amazon.com/sdk-for-java/latest/reference/com/amazonaws/auth/AWSCredentialsProvider.html](https://docs.aws.amazon.com/sdk-for-java/latest/reference/com/amazonaws/auth/AWSCredentialsProvider.html)\. 
+1. Use a class which implements the [AWSCredentialsProvider](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/AWSCredentialsProvider.html)\.
 
 1. Set the JDBC property, `aws_credentials_provider_class`, equal to the class name, and include it in your classpath\.
 
@@ -132,7 +132,7 @@ Properties myProps = new Properties();
          String providerArgs = "My_Access_Key," + "My_Secret_Key," + "My_Token";
          myProps.put("aws_credentials_provider_arguments",providerArgs);
 ```
- If you use the [https://docs.aws.amazon.com/sdk-for-java/latest/reference/com/amazonaws/auth/InstanceProfileCredentialsProvider.html](https://docs.aws.amazon.com/sdk-for-java/latest/reference/com/amazonaws/auth/InstanceProfileCredentialsProvider.html), you don't need to supply any credential provider arguments because they are provided using the Amazon EC2 instance profile for the instance on which you are running your application\. You would still set the `aws_credentials_provider_class` property to this class name, however\.
+ If you use the [InstanceProfileCredentialsProvider](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/InstanceProfileCredentialsProvider.html), you don't need to supply any credential provider arguments because they are provided using the Amazon EC2 instance profile for the instance on which you are running your application\. You would still set the `aws_credentials_provider_class` property to this class name, however\.
 
 ### Policies for the JDBC driver earlier than version 1\.1\.0<a name="jdbc-version-before-1.0.1"></a>
 

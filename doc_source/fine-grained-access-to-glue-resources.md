@@ -17,24 +17,24 @@ See the following topics for these tasks:
 
  **In this section** 
 +  [Limitations](#access-to-glue-resources-limitations) 
-+  [Mandatory: Access Policy to the Default Database and Catalog per AWS Region](#full-access-to-default-db-per-region) 
-+  [Table Partitions and Versions in AWS Glue](#access-to-glue-resources-table-partitions-and-versions) 
-+  [Fine\-Grained Policy Examples](#examples-fine-grained-table-database-policies) 
++  [Mandatory: Access policy to the `Default` database and catalog per AWS Region](#full-access-to-default-db-per-region) 
++  [Table partitions and versions in AWS Glue](#access-to-glue-resources-table-partitions-and-versions) 
++  [Examples of fine\-grained permissions to tables and databases](#examples-fine-grained-table-database-policies) 
 
 ## Limitations<a name="access-to-glue-resources-limitations"></a>
 
 Consider the following limitations when using fine\-grained access control with the AWS Glue Data Catalog and Athena:
-+ You can limit access only to databases and tables\. Fine\-grained access controls apply at the table level and you cannot limit access to individual partitions within a table\. For more information, see [Table Partitions and Versions in AWS Glue](#access-to-glue-resources-table-partitions-and-versions)\.
++ You can limit access only to databases and tables\. Fine\-grained access controls apply at the table level and you cannot limit access to individual partitions within a table\. For more information, see [Table partitions and versions in AWS Glue](#access-to-glue-resources-table-partitions-and-versions)\.
 + The AWS Glue Data Catalog contains the following resources: `CATALOG`, `DATABASE`, `TABLE`, and `FUNCTION`\. 
 **Note**  
-From this list, resources that are common between Athena and the AWS Glue Data Catalog are `TABLE`, `DATABASE`, and `CATALOG` for each account\. `Function` is specific to AWS Glue\. For delete actions in Athena, you must include permissions to AWS Glue actions\. See [Fine\-Grained Policy Examples](#examples-fine-grained-table-database-policies)\.
+From this list, resources that are common between Athena and the AWS Glue Data Catalog are `TABLE`, `DATABASE`, and `CATALOG` for each account\. `Function` is specific to AWS Glue\. For delete actions in Athena, you must include permissions to AWS Glue actions\. See [Examples of fine\-grained permissions to tables and databases](#examples-fine-grained-table-database-policies)\.
 
    The hierarchy is as follows: `CATALOG` is an ancestor of all `DATABASES` in each account, and each `DATABASE` is an ancestor for all of its `TABLES` and `FUNCTIONS`\. For example, for a table named `table_test` that belongs to a database `db` in the catalog in your account, its ancestors are `db` and the catalog in your account\. For the `db` database, its ancestor is the catalog in your account, and its descendants are tables and functions\. For more information about the hierarchical structure of resources, see [List of ARNs in Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/glue-specifying-resource-arns.html#data-catalog-resource-arns) in the *AWS Glue Developer Guide*\. 
-+ For any non\-delete Athena action on a resource, such as `CREATE DATABASE`, `CREATE TABLE`, `SHOW DATABASE`, `SHOW TABLE`, or `ALTER TABLE`, you need permissions to call this action on the resource \(table or database\) and all ancestors of the resource in the Data Catalog\. For example, for a table, its ancestors are the database to which it belongs, and the catalog for the account\. For a database, its ancestor is the catalog for the account\. See [Fine\-Grained Policy Examples](#examples-fine-grained-table-database-policies)\. 
-+ For a delete action in Athena, such as `DROP DATABASE` or `DROP TABLE`, you also need permissions to call the delete action on all anscestors and descendants of the resource in the Data Catalog\. For example, to delete a database you need permissions on the database, the catalog, which is its ancestor, and all the tables and user defined functions, which are its descendents\. A table does not have descendants\. To run `DROP TABLE`, you need permissions to this action on the table, the database to which it belongs, and the catalog\. See [Fine\-Grained Policy Examples](#examples-fine-grained-table-database-policies)\.
++ For any non\-delete Athena action on a resource, such as `CREATE DATABASE`, `CREATE TABLE`, `SHOW DATABASE`, `SHOW TABLE`, or `ALTER TABLE`, you need permissions to call this action on the resource \(table or database\) and all ancestors of the resource in the Data Catalog\. For example, for a table, its ancestors are the database to which it belongs, and the catalog for the account\. For a database, its ancestor is the catalog for the account\. See [Examples of fine\-grained permissions to tables and databases](#examples-fine-grained-table-database-policies)\. 
++ For a delete action in Athena, such as `DROP DATABASE` or `DROP TABLE`, you also need permissions to call the delete action on all ancestors and descendants of the resource in the Data Catalog\. For example, to delete a database you need permissions on the database, the catalog, which is its ancestor, and all the tables and user defined functions, which are its descendents\. A table does not have descendants\. To run `DROP TABLE`, you need permissions to this action on the table, the database to which it belongs, and the catalog\. See [Examples of fine\-grained permissions to tables and databases](#examples-fine-grained-table-database-policies)\.
 + When limiting access to a specific database in the Data Catalog, you must also specify the access policy to the `default` database and catalog for each AWS Region for `GetDatabase` and `CreateDatabase` actions\. If you use Athena in more than one Region, add a separate line to the policy for the resource ARN for each `default` database and catalog in each Region\. 
 
-  For example, to allow `GetDatabase` access to `example_db` in the `us-east-1` \(N\.Virginia\) Region, also include the `default` database and catalog in the policy for that Region for two actions: `GetDatabase` and `CreateDatabase`:
+  For example, to allow `GetDatabase` access to `example_db` in the `us-east-1` \(N\.Virginia\) Region, also include the `default` database and catalog in the policy for that Region for the actions `GetDatabase`, `GetDatabases`, and `CreateDatabase`:
 
   ```
   {
@@ -54,7 +54,7 @@ From this list, resources that are common between Athena and the AWS Glue Data C
 
 ## Mandatory: Access policy to the `Default` database and catalog per AWS Region<a name="full-access-to-default-db-per-region"></a>
 
-For Athena to work with the AWS Glue Data Catalog, the following access policy to the `default` database and to the AWS Glue Data Catalog per AWS Region for `GetDatabase` and `CreateDatabase` must be present :
+For Athena to work with the AWS Glue Data Catalog, the following access policy to the `default` database and to the AWS Glue Data Catalog per AWS Region for `GetDatabase`, `GetDatabases`, and `CreateDatabase` must be present :
 
 ```
 {

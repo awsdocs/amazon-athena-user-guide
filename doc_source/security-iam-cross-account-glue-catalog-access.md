@@ -110,36 +110,41 @@ To give the Borrower account role or user access to the Owner account's AWS Glue
 
 After you finish, it is recommend that you use the [AWS Glue API](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api.html) to make some test cross\-account calls to confirm that permissions are configured as you expect\.
 
-### Step 2: The borrower creates an Athena Data Catalog that points to the owner account<a name="security-iam-cross-account-glue-catalog-access-step-2"></a>
+### Step 2: The borrower registers the AWS Glue Data Catalog that belongs to the owner account<a name="security-iam-cross-account-glue-catalog-access-step-2"></a>
 
-The creator of the Athena [DataCatalog](https://docs.aws.amazon.com/athena/latest/APIReference/API_DataCatalog.html) resource must have the necessary permissions to run the Athena [CreateDataCatalog](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateDataCatalog.html) API operation\. Depending on your requirements, access to additional API operations might be necessary\. For more information, see [Data Catalog example policies](datacatalogs-example-policies.md)\.
+The following procedure shows you how to use the Athena console to configure the AWS Glue Data Catalog in the owner Amazon Web Services account as a data source\. For information on using API operations instead of the console to register the catalog, see [Using the API to register an Athena Data Catalog that belongs to the owner account](#security-iam-cross-account-glue-catalog-access-step-2-api)\.
 
-The following `CreateDataCatalog` request body registers an AWS Glue catalog for cross\-account access:
+**To register an AWS Glue Data Catalog belonging to another account**
 
-```
-# Example CreateDataCatalog request to register a cross-account Glue catalog:
-{
-    "Description": "Cross-account Glue catalog",
-    "Name": "ownerCatalog",
-    "Parameters": {"catalog-id" : "999999999999"  # Owner's account ID
-    },
-    "Type": "GLUE"
-}
-```
+1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 
-The following sample code uses a Java client to create the `DataCatalog` object\.
+1. If the console navigation pane is not visible, choose the expansion menu on the left\.  
+![\[Choose the expansion menu.\]](http://docs.aws.amazon.com/athena/latest/ug/images/polaris-nav-pane-expansion.png)
 
-```
-# Sample code to create the DataCatalog through Java client
-CreateDataCatalogRequest request = new CreateDataCatalogRequest()
-    .withName("ownerCatalog")
-    .withType(DataCatalogType.GLUE)
-    .withParameters(ImmutableMap.of("catalog-id", "999999999999"));
+1. Choose **Data sources**\.
 
-athenaClient.createDataCatalog(request);
-```
+1. On the upper right, choose **Create data source**\.
 
-After these steps, the Borrower should see `ownerCatalog` when it calls the [ListDataCatalogs](https://docs.aws.amazon.com/athena/latest/APIReference/API_ListDataCatalogs.html) API operation\.
+1. On the **Choose a data source** page, for **Data sources**, choose **S3 \- AWS Glue Data Catalog**, and then choose **Next**\.
+
+1. On the **Enter data source details** page, in the **AWS Glue Data Catalog** section, for **Choose an AWS Glue Data Catalog**, choose **AWS Glue Data Catalog in another account**\.
+
+1. For **Data source details**, enter the following information:
+   + **Data source name** – Enter the name that you want to use in your SQL queries to refer to the data catalog in the other account\.
+   + **Description** – \(Optional\) Enter a description of the data catalog in the other account\.
+   + **Catalog ID** – Enter the 12\-digit Amazon Web Services account ID of the account to which the data catalog belongs\. The Amazon Web Services account ID is the catalog ID\.
+
+1. \(Optional\) For **Tags**, enter key\-value pairs that you want to associate with the data source\. For more information about tags, see [Tagging Athena resources](tags.md)\.
+
+1. Choose **Next**\.
+
+1. On the **Review and create** page, review the information that you provided, and then choose **Create data source**\. The **Data source details** page lists the databases and tags for the data catalog that you registered\.
+
+1. Choose **Data sources**\. The data catalog that you registered is listed in the **Data source name** column\.
+
+1. To view or edit information about the data catalog, choose the catalog, and then choose **Actions**, **Edit**\.
+
+1. To delete the new data catalog, choose the catalog, and then choose **Actions**, **Delete**\.
 
 ### Step 3: The borrower submits a query<a name="security-iam-cross-account-glue-catalog-access-step-4"></a>
 
@@ -175,3 +180,36 @@ When you use dynamic catalogs, remember the following points\.
 + Use of a dynamic catalog requires the IAM permissions that you normally use for Athena Data Catalog API operations\. The main difference is that the Data Catalog resource name follows the `glue:*` naming convention\.
 + The catalog ARN must belong to the same Region where the query is being run\.
 + When using a dynamic catalog in a DML query or view, surround it with escaped double quotation marks \(`\"`\)\. When using a dynamic catalog in a DDL query, surround it with backtick characters \(```\)\.
+
+## Using the API to register an Athena Data Catalog that belongs to the owner account<a name="security-iam-cross-account-glue-catalog-access-step-2-api"></a>
+
+Instead of using the Athena console as described in Step 2, it is possible to use API operations to register the Data Catalog that belongs to the owner account\.
+
+The creator of the Athena [DataCatalog](https://docs.aws.amazon.com/athena/latest/APIReference/API_DataCatalog.html) resource must have the necessary permissions to run the Athena [CreateDataCatalog](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateDataCatalog.html) API operation\. Depending on your requirements, access to additional API operations might be necessary\. For more information, see [Data Catalog example policies](datacatalogs-example-policies.md)\.
+
+The following `CreateDataCatalog` request body registers an AWS Glue catalog for cross\-account access:
+
+```
+# Example CreateDataCatalog request to register a cross-account Glue catalog:
+{
+    "Description": "Cross-account Glue catalog",
+    "Name": "ownerCatalog",
+    "Parameters": {"catalog-id" : "999999999999"  # Owner's account ID
+    },
+    "Type": "GLUE"
+}
+```
+
+The following sample code uses a Java client to create the `DataCatalog` object\.
+
+```
+# Sample code to create the DataCatalog through Java client
+CreateDataCatalogRequest request = new CreateDataCatalogRequest()
+    .withName("ownerCatalog")
+    .withType(DataCatalogType.GLUE)
+    .withParameters(ImmutableMap.of("catalog-id", "999999999999"));
+
+athenaClient.createDataCatalog(request);
+```
+
+After these steps, the borrower should see `ownerCatalog` when it calls the [ListDataCatalogs](https://docs.aws.amazon.com/athena/latest/APIReference/API_ListDataCatalogs.html) API operation\.

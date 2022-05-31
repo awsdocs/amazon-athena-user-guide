@@ -1,12 +1,12 @@
 # Types of updates<a name="types-of-updates"></a>
 
 Here are the types of updates that a table's schema can have\. We review each type of schema update and specify which data formats allow you to have them in Athena\.
-+ [Adding Columns at the Beginning or Middle of the Table](#updates-add-columns-beginning-middle-of-table)
-+ [Adding Columns at the End of the Table](#updates-add-columns-end-of-table)
-+ [Removing Columns](#updates-removing-columns)
-+ [Renaming Columns](#updates-renaming-columns)
-+ [Reordering Columns](#updates-reordering-columns)
-+ [Changing a Column's Data Type](#updates-changing-column-type)
++ [Adding columns at the beginning or in the middle of the table](#updates-add-columns-beginning-middle-of-table)
++ [Adding columns at the end of the table](#updates-add-columns-end-of-table)
++ [Removing columns](#updates-removing-columns)
++ [Renaming columns](#updates-renaming-columns)
++ [Reordering columns](#updates-reordering-columns)
++ [Changing a column's data type](#updates-changing-column-type)
 
 Depending on how you expect your schemas to evolve, to continue using Athena queries, choose a compatible data format\. 
 
@@ -49,7 +49,7 @@ In the following sections, we review how updates to these tables affect Athena q
 
 Adding columns is one of the most frequent schema changes\. For example, you may add a new column to enrich the table with new data\. Or, you may add a new column if the source for an existing column has changed, and keep the previous version of this column, to adjust applications that depend on them\.
 
-To add columns at the beginning or in the middle of the table, and continue running queries against existing tables, use AVRO, JSON, and Parquet and ORC if their SerDe property is set to read by name\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\.
+To add columns at the beginning or in the middle of the table, and continue running queries against existing tables, use AVRO, JSON, and Parquet and ORC if their SerDe property is set to read by name\. For information, see [Index access in ORC and parquet](handling-schema-updates-chapter.md#index-access)\.
 
 Do not add columns at the beginning or in the middle of the table in CSV and TSV, as these formats depend on ordering\. Adding a column in such cases will lead to schema mismatch errors when the schema of partitions changes\.
 
@@ -87,7 +87,7 @@ To see a new table column in the Athena Query Editor after you run `ALTER TABLE 
 ## Removing columns<a name="updates-removing-columns"></a>
 
 You may need to remove columns from tables if they no longer contain data, or to restrict access to the data in them\.
-+ You can remove columns from tables in JSON, Avro, and in Parquet and ORC if they are read by name\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\. 
++ You can remove columns from tables in JSON, Avro, and in Parquet and ORC if they are read by name\. For information, see [Index access in ORC and parquet](handling-schema-updates-chapter.md#index-access)\. 
 + We do not recommend removing columns from tables in CSV and TSV if you want to retain the tables you have already created in Athena\. Removing a column breaks the schema and requires that you recreate the table without the removed column\.
 
 In this example, remove a column ``totalprice`` from a table in Parquet and run a query\. In Athena, Parquet is read by name by default, this is why we omit the SERDEPROPERTIES configuration that specifies reading by name\. Notice that the following query succeeds, even though you changed the schema:
@@ -111,7 +111,7 @@ LOCATION 's3://schema_updates/orders_parquet/';
 
 You may want to rename columns in your tables to correct spelling, make column names more descriptive, or to reuse an existing column to avoid column reordering\.
 
-You can rename columns if you store your data in CSV and TSV, or in Parquet and ORC that are configured to read by index\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\. 
+You can rename columns if you store your data in CSV and TSV, or in Parquet and ORC that are configured to read by index\. For information, see [Index access in ORC and parquet](handling-schema-updates-chapter.md#index-access)\. 
 
 Athena reads data in CSV and TSV in the order of the columns in the schema and returns them in the same order\. It does not use column names for mapping data to a column, which is why you can rename columns in CSV or TSV without breaking Athena queries\. 
 
@@ -167,7 +167,7 @@ FROM orders_csv_column_renamed;
 
 ## Reordering columns<a name="updates-reordering-columns"></a>
 
-You can reorder columns only for tables with data in formats that read by name, such as JSON or Parquet, which reads by name by default\. You can also make ORC read by name, if needed\. For information, see [Index Access in ORC and Parquet](handling-schema-updates-chapter.md#index-access)\.
+You can reorder columns only for tables with data in formats that read by name, such as JSON or Parquet, which reads by name by default\. You can also make ORC read by name, if needed\. For information, see [Index access in ORC and parquet](handling-schema-updates-chapter.md#index-access)\.
 
 The following example illustrates reordering of columns:
 
@@ -194,7 +194,7 @@ Changing a column's data type has these limitations:
 + Only certain data types can be converted to other data types\. See the table in this section for data types that can change\.
 + For data in Parquet and ORC, you cannot change a column's data type if the table is not partitioned\. 
 
-  For partitioned tables in Parquet and ORC, a partition's column type can be different from another partition's column type, and Athena will `CAST` to the desired type, if possible\. For information, see [Avoiding Schema Mismatch Errors for Tables with Partitions](updates-and-partitions.md#partitions-dealing-with-schema-mismatch-errors)\.
+  For partitioned tables in Parquet and ORC, a partition's column type can be different from another partition's column type, and Athena will `CAST` to the desired type, if possible\. For information, see [Avoiding schema mismatch errors for tables with partitions](updates-and-partitions.md#partitions-dealing-with-schema-mismatch-errors)\.
 
 **Important**  
 We strongly suggest that you test and verify your queries before performing data type translations\. If Athena cannot convert the data type from the original data type to the target data type, the `CREATE TABLE` query may fail\. 

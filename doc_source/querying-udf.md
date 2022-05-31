@@ -17,6 +17,7 @@ For an example that uses UDFs with Athena to translate and analyze text, see the
 + **Java runtime support** – Currently, Athena UDFs support the Java 8 and Java 11 runtimes for Lambda\. For more information, see [Building Lambda functions with Java](https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html) in the *AWS Lambda Developer Guide*\.
 + **IAM permissions** – To run and create UDF query statements in Athena, the IAM principal running the query must be allowed to perform actions in addition to Athena functions\. For more information, see [Example IAM permissions policies to allow Amazon Athena User Defined Functions \(UDF\)](udf-iam-access.md)\.
 + **Lambda quotas** – Lambda quotas apply to UDFs\. For more information, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) in the *AWS Lambda Developer Guide*\.
++  **Views** – You cannot use views with UDFs\. 
 + **Known issues** – For the most up\-to\-date list of known issues, see [Limitations and issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
 
 ## Videos<a name="udf-videos"></a>

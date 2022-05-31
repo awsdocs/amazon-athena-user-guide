@@ -10,8 +10,6 @@ A database in Athena is a logical grouping for tables you create in it\. Creatin
 
 1. Choose **Run** or press **Ctrl\+ENTER**\.
 
-1. To make your database the current database, select it from from the **Database** menu on the left of the query editor\.
-**Note**  
-Currently, the database menu can show and filter a maximum of 1000 databases regardless of the type of data catalog used\. This is a limitation of the Athena console, not an account limit\. The number of databases that can be displayed and filtered is not user configurable\.
+1. To make your database the current database, select it from the **Database** menu on the left of the query editor\.
 
 For information on controlling permissions to Athena databases, see [Fine\-grained access to databases and tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\.

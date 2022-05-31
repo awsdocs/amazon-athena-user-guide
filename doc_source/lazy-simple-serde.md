@@ -6,7 +6,7 @@ For reference documentation about the LazySimpleSerDe, see the [Hive SerDe](http
 
 ## Library name<a name="library-name"></a>
 
-The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`\. For information about the LazySimpleSerDe class, see [LazySimpleSerDe](https://hive.apache.org/javadocs/r2.1.1/api/org/apache/hadoop/hive/serde2/lazy/LazySimpleSerDe.html)\. 
+The Class library name for the LazySimpleSerDe is `org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe`\. For information about the LazySimpleSerDe class, see [LazySimpleSerDe\.java](https://github.com/apache/hive/blob/master/serde/src/java/org/apache/hadoop/hive/serde2/lazy/LazySimpleSerDe.java) on GitHub\.com\. 
 
 ## Ignoring headers<a name="lazy-simple-serde-ignoring-headers"></a>
 

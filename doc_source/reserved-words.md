@@ -3,9 +3,9 @@
 When you run queries in Athena that include reserved keywords, you must escape them by enclosing them in special characters\. Use the lists in this topic to check which keywords are reserved in Athena\. 
 
 To escape reserved keywords in DDL statements, enclose them in backticks \(`\)\. To escape reserved keywords in SQL `SELECT` statements and in queries on [views](views.md), enclose them in double quotes \(''\)\.
-+  [List of Reserved Keywords in DDL Statements](#list-of-ddl-reserved-words) 
-+  [List of Reserved Keywords in SQL SELECT Statements](#list-of-reserved-words-sql-select) 
-+  [Examples of Queries with Reserved Keywords](#examples-reserved-words) 
++  [List of reserved keywords in DDL statements](#list-of-ddl-reserved-words) 
++  [List of reserved keywords in SQL SELECT statements](#list-of-reserved-words-sql-select) 
++  [Examples of queries with reserved words](#examples-reserved-words) 
 
 ## List of reserved keywords in DDL statements<a name="list-of-ddl-reserved-words"></a>
 

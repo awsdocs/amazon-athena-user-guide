@@ -5,7 +5,7 @@ This tutorial walks you through using Amazon Athena to query data\. You'll creat
 The tutorial uses live resources, so you are charged for the queries that you run\. You aren't charged for the sample data in the location that this tutorial uses, but if you upload your own data files to Amazon S3, charges do apply\.
 
 ## Prerequisites<a name="prerequisites"></a>
-+ If you have not already done so, sign up for an account in [Setting Up](setting-up.md)\.
++ If you have not already done so, sign up for an account in [Setting up](setting-up.md)\.
 + Using the same AWS Region \(for example, US West \(Oregon\)\) and account that you are using for Athena, [Create a bucket in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) to hold your Athena query results\.
 
 ## Step 1: Create a database<a name="step-1-create-a-database"></a>

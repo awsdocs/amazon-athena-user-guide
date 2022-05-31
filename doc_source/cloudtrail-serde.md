@@ -4,7 +4,7 @@ AWS CloudTrail is a service that records AWS API calls and events for Amazon Web
 
 To query CloudTrail logs in Athena, create table from the logs and use the CloudTrail SerDe to deserialize the logs data\.
 
-In addition to using the CloudTrail SerDe, instances exist where you need to use a different SerDe or to extract data from JSON\. Certain fields in CloudTrail logs are STRING values that may have a variable data format, which depends on the service\. As a result, the CloudTrail SerDe is unable to predictably deserialize them\. To query the following fields, identify the data pattern and then use a different SerDe, such as the [OpenX JSON SerDe](openx-json-serde.md)\. Alternatively, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\. 
+In addition to using the CloudTrail SerDe, instances exist where you need to use a different SerDe or to extract data from JSON\. Certain fields in CloudTrail logs are STRING values that may have a variable data format, which depends on the service\. As a result, the CloudTrail SerDe is unable to predictably deserialize them\. To query the following fields, identify the data pattern and then use a different SerDe, such as the [OpenX JSON SerDe](openx-json-serde.md)\. Alternatively, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\. 
 +  `requestParameters` 
 +  `responseElements` 
 +  `additionalEventData` 
@@ -22,7 +22,7 @@ In addition to using the CloudTrail SerDe, instances exist where you need to use
 
 The following example uses the CloudTrail SerDe on a fictional set of logs to create a table based on them\.
 
-In this example, the fields `requestParameters`, `responseElements`, and `additionalEventData` are included as part of `STRUCT` data type used in JSON\. To get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\.
+In this example, the fields `requestParameters`, `responseElements`, and `additionalEventData` are included as part of `STRUCT` data type used in JSON\. To get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\.
 
 ```
 CREATE EXTERNAL TABLE cloudtrail_logs (
@@ -90,4 +90,4 @@ WHERE eventname = 'ConsoleLogin'
       AND eventtime < '2017-02-18T00:00:00Z';
 ```
 
-For more information, see [Querying AWS CloudTrail Logs](cloudtrail-logs.md)\.
+For more information, see [Querying AWS CloudTrail logs](cloudtrail-logs.md)\.

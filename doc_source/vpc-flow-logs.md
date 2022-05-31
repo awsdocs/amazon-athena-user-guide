@@ -123,7 +123,7 @@ LIMIT 100;
 To see which one of your servers is receiving the highest number of HTTPS requests, use the following query\. It counts the number of packets received on HTTPS port 443, groups them by destination IP address, and returns the top 10 from the last week\.
 
 ```
-SELECT SUM(numpackets) AS
+SELECT SUM(packets) AS
   packetcount,
   dstaddr
 FROM vpc_flow_logs

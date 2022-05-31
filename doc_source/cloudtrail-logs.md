@@ -290,11 +290,11 @@ For more information, see the AWS Big Data blog post [Analyze security, complian
 
 To explore the CloudTrail logs data, use these tips:
 + Before querying the logs, verify that your logs table looks the same as the one in [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\. If it is not the first table, delete the existing table using the following command: `DROP TABLE cloudtrail_logs;`\.
-+ After you drop the existing table, re\-create it\. For more information, see [Creating the Table for CloudTrail Logs](#create-cloudtrail-table)\.
++ After you drop the existing table, re\-create it\. For more information, see [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\.
 
   Verify that fields in your Athena query are listed correctly\. For information about the full list of fields in a CloudTrail record, see [CloudTrail record contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
 
-  If your query includes fields in JSON formats, such as `STRUCT`, extract data from JSON\. For more information, see [Extracting Data From JSON](extracting-data-from-JSON.md)\. 
+  If your query includes fields in JSON formats, such as `STRUCT`, extract data from JSON\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\. 
 
   Now you are ready to issue queries against your CloudTrail table\.
 + Start by looking at which IAM users called which API operations and from which source IP addresses\.

@@ -1,6 +1,6 @@
 # Creating tables in Athena<a name="creating-tables"></a>
 
-You can run DDL statements in the Athena console, using a JDBC or an ODBC driver, or using the Athena [**Add table** wizard](#to-create-a-table-using-the-wizard)\.
+You can run DDL statements in the Athena console, using a JDBC or an ODBC driver, or using the Athena [**Create table** form](#to-create-a-table-using-the-wizard)\.
 
 When you create a new table schema in Athena, Athena stores the schema in a data catalog and uses it when you run queries\.
 
@@ -28,7 +28,7 @@ When you create a table, you specify an Amazon S3 bucket location for the underl
 + Athena can only query the latest version of data on a versioned Amazon S3 bucket, and cannot query previous versions of the data\.
 + You must have the appropriate permissions to work with data in the Amazon S3 location\. For more information, see [Access to Amazon S3](s3-permissions.md)\.
 + Athena supports querying objects that are stored with multiple storage classes in the same bucket specified by the `LOCATION` clause\. For example, you can query data in objects that are stored in different Storage classes \(Standard, Standard\-IA and Intelligent\-Tiering\) in Amazon S3\.
-+  Athena supports [Requester Pays buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html)\. For information how to enable Requester Pays for buckets with source data you intend to query in Athena, see [Creating a Workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
++  Athena supports [Requester Pays buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html)\. For information how to enable Requester Pays for buckets with source data you intend to query in Athena, see [Create a workgroup](workgroups-create-update-delete.md#creating-workgroups)\.
 + Athena does not support querying the data in the [S3 Glacier flexible retrieval](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier) or S3 Glacier Deep Archive storage classes\. Objects in the S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive storage classes are ignored\. As an alternative, you can use the Amazon S3 Glacier Instant Retrieval storage class, which is queryable by Athena\. For more information, see [Amazon S3 Glacier instant retrieval storage class](http://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/)\.
 
   For information about storage classes, see [Storage classes](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html), [Changing the storage class of an object in amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/ChgStoClsOfObj.html), [Transitioning to the GLACIER storage class \(object archival\) ](https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html#before-deciding-to-archive-objects), and [Requester Pays buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) in the *Amazon Simple Storage Service User Guide*\.
@@ -67,7 +67,7 @@ You can create tables in Athena by using AWS Glue, the add table form, or by run
 
 1. Follow the steps on the **Add crawler** page of the AWS Glue console to add a crawler\. 
 
-   For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
+   For more information, see [Using AWS Glue crawlers](glue-best-practices.md#schema-crawlers)\.
 
 ### To create a table using the Athena create table form<a name="to-create-a-table-using-the-wizard"></a>
 

@@ -15,9 +15,11 @@ The following procedure shows you how to use the Athena console to configure an 
 
 1. Choose **Data sources**\.
 
-1. On the upper right, choose **Connect data source**\.
+1. On the upper right, choose **Create data source**\.
 
-1. In the **AWS Glue Data Catalog** section, for **Choose an AWS Glue Data Catalog**, choose **AWS Glue Data Catalog in another account**\.
+1. On the **Choose a data source** page, for **Data sources**, choose **S3 \- AWS Glue Data Catalog**, and then choose **Next**\.
+
+1. On the **Enter data source details** page, in the **AWS Glue Data Catalog** section, for **Choose an AWS Glue Data Catalog**, choose **AWS Glue Data Catalog in another account**\.
 
 1. For **Data source details**, enter the following information:
    + **Data source name** – Enter the name that you want to use in your SQL queries to refer to the data catalog in the other account\.
@@ -26,8 +28,12 @@ The following procedure shows you how to use the Athena console to configure an 
 
 1. \(Optional\) For **Tags**, enter key\-value pairs that you want to associate with the data source\. For more information about tags, see [Tagging Athena resources](tags.md)\.
 
-1. Choose **Register**\. On the **Data sources** page, the data catalog that you entered is listed in the **Catalog name** column\.
+1. Choose **Next**\.
 
-1. To view or edit information about the new data catalog, choose the catalog, and then choose **Edit**\.
+1. On the **Review and create** page, review the information that you provided, and then choose **Create data source**\. The **Data source details** page lists the databases and tags for the data catalog that you registered\.
 
-1. To delete the new data catalog, choose the catalog, and then choose **Delete**\.
+1. Choose **Data sources**\. The data catalog that you registered is listed in the **Data source name** column\.
+
+1. To view or edit information about the data catalog, choose the catalog, and then choose **Actions**, **Edit**\.
+
+1. To delete the new data catalog, choose the catalog, and then choose **Actions**, **Delete**\.

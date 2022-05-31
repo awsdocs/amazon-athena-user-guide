@@ -4,7 +4,7 @@ You can run queries in Amazon Athena on encrypted data in Amazon S3 in the same 
 
 You can encrypt the following assets in Athena:
 + The results of all queries in Amazon S3, which Athena stores in a location known as the Amazon S3 results location\. You can encrypt query results stored in Amazon S3 whether the underlying dataset is encrypted in Amazon S3 or not\. For information, see [Encrypting Athena query results stored in Amazon S3Encrypting Athena query results when using JDBC or ODBC](encrypting-query-results-stored-in-s3.md)\.
-+ The data in the AWS Glue Data Catalog\. For information, see [Permissions to Encrypted Metadata in the AWS Glue Data Catalog](#glue-encryption)\.
++ The data in the AWS Glue Data Catalog\. For information, see [Permissions to encrypted metadata in the AWS Glue Data Catalog](#glue-encryption)\.
 
 **Note**  
 The setup for querying an encrypted dataset in Amazon S3 and the options in Athena to encrypt query results are independent\. Each option is enabled and configured separately\. You can use different encryption methods or keys for each\. This means that reading encrypted data in Amazon S3 doesn't automatically encrypt Athena query results in Amazon S3\. The opposite is also true\. Encrypting Athena query results in Amazon S3 doesn't encrypt the underlying dataset in Amazon S3\.
@@ -51,7 +51,7 @@ If you want to use Athena to query data that has been encrypted with the AWS Enc
 ## Permissions to encrypted data in Amazon S3<a name="permissions-for-encrypting-and-decrypting-data"></a>
 
 Depending on the type of encryption you use in Amazon S3, you may need to add permissions, also known as "Allow" actions, to your policies used in Athena:
-+ **SSE\-S3** – If you use SSE\-S3 for encryption, Athena users require no additional permissions in their policies\. It is sufficient to have the appropriate Amazon S3 permissions for the appropriate Amazon S3 location and for Athena actions\. For more information about policies that allow appropriate Athena and Amazon S3 permissions, see [IAM Policies for User Access](managed-policies.md) and [Amazon S3 Permissions](s3-permissions.md)\.
++ **SSE\-S3** – If you use SSE\-S3 for encryption, Athena users require no additional permissions in their policies\. It is sufficient to have the appropriate Amazon S3 permissions for the appropriate Amazon S3 location and for Athena actions\. For more information about policies that allow appropriate Athena and Amazon S3 permissions, see [AWS managed policies for Amazon Athena](managed-policies.md) and [Access to Amazon S3](s3-permissions.md)\.
 + **AWS KMS** – If you use AWS KMS for encryption, Athena users must be allowed to perform particular AWS KMS actions in addition to Athena and Amazon S3 permissions\. You allow these actions by editing the key policy for the AWS KMS customer managed CMKs that are used to encrypt data in Amazon S3\. To add key users to the appropriate AWS KMS key policies, you can use the AWS KMS console at [https://console\.aws\.amazon\.com/kms](https://console.aws.amazon.com/kms)\. For information about how to add a user to a AWS KMS key policy, see [Allows key users to use the CMK](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-users) in the *AWS Key Management Service Developer Guide*\.
 **Note**  
 Advanced key policy administrators can adjust key policies\. `kms:Decrypt` is the minimum allowed action for an Athena user to work with an encrypted dataset\. To work with encrypted query results, the minimum allowed actions are `kms:GenerateDataKey` and `kms:Decrypt`\.
@@ -62,4 +62,4 @@ For troubleshooting information about permissions when using Amazon S3 with Athe
 
 ## Permissions to encrypted metadata in the AWS Glue Data Catalog<a name="glue-encryption"></a>
 
-If you [encrypt metadata in the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html), you must add `"kms:GenerateDataKey"`, `"kms:Decrypt"`, and `"kms:Encrypt"` actions to the policies you use for accessing Athena\. For information, see [Access to Encrypted Metadata in the AWS Glue Data Catalog](access-encrypted-data-glue-data-catalog.md)\.
+If you [encrypt metadata in the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html), you must add `"kms:GenerateDataKey"`, `"kms:Decrypt"`, and `"kms:Encrypt"` actions to the policies you use for accessing Athena\. For information, see [Access from Athena to encrypted metadata in the AWS Glue Data Catalog](access-encrypted-data-glue-data-catalog.md)\.

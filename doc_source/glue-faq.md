@@ -46,7 +46,7 @@ Yes\. With AWS Glue, you pay a monthly rate for storing and accessing the metada
 
 ### Who can perform the upgrade?<a name="faq-upgrade-who"></a>
 
-You need to attach a customer\-managed IAM policy with a policy statement that allows the upgrade action to the user who will perform the migration\. This extra check prevents someone from accidentally migrating the catalog for the entire account\. For more information, see [Step 1 \- Allow a User to Perform the Upgrade](glue-upgrade.md#upgrade-step1)\.
+You need to attach a customer\-managed IAM policy with a policy statement that allows the upgrade action to the user who will perform the migration\. This extra check prevents someone from accidentally migrating the catalog for the entire account\. For more information, see [Step 1 \- Allow a user to perform the upgrade](glue-upgrade.md#upgrade-step1)\.
 
 ### My users use a managed policy with Athena and Redshift Spectrum\. what steps do I need to take to upgrade?<a name="faq-upgrade-managed-policy"></a>
 
@@ -62,7 +62,7 @@ Before you upgrade, Athena manages the data catalog, so Athena actions must be a
 
 ### What happens if I don't allow AWS Glue policies for Athena users?<a name="faq-upgrade-no-perms"></a>
 
-If you upgrade to the AWS Glue Data Catalog and don't update a user's customer\-managed or inline IAM policies, Athena queries fail because the user won't be allowed to perform actions in AWS Glue\. For the specific actions to allow, see [Step 2 \- Update Customer\-Managed/Inline Policies Associated with Athena Users](glue-upgrade.md#upgrade-step2)\.
+If you upgrade to the AWS Glue Data Catalog and don't update a user's customer\-managed or inline IAM policies, Athena queries fail because the user won't be allowed to perform actions in AWS Glue\. For the specific actions to allow, see [Step 2 \- Update customer\-managed or inline policies associated with Athena users](glue-upgrade.md#upgrade-step2)\.
 
 ### Is there risk of data loss during the upgrade?<a name="faq-upgrade-data-loss"></a>
 

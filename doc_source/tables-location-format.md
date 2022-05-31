@@ -19,7 +19,7 @@ LOCATION s3://bucketname/folder/
 The `LOCATION` in Amazon S3 specifies *all* of the files representing your table\. 
 
 **Important**  
-Athena reads *all* data stored in the Amazon S3 folder that you specify\. If you have data that you do *not* want Athena to read, do not store that data in the same Amazon S3 folder as the data that you do want Athena to read\. If you are leveraging partitioning, to ensure Athena scans data within a partition, your `WHERE` filter must include the partition\. For more information, see [Table Location and Partitions](#table-location-and-partitions)\.
+Athena reads *all* data stored in the Amazon S3 folder that you specify\. If you have data that you do *not* want Athena to read, do not store that data in the same Amazon S3 folder as the data that you do want Athena to read\. If you are leveraging partitioning, to ensure Athena scans data within a partition, your `WHERE` filter must include the partition\. For more information, see [Table location and partitions](#table-location-and-partitions)\.
 
 When you specify the `LOCATION` in the `CREATE TABLE` statement, use the following guidelines:
 + Use a trailing slash\.
@@ -60,8 +60,8 @@ Do not use any of the following items for specifying the `LOCATION` for your dat
 
 When you create a table, you can choose to make it partitioned\. When Athena runs a SQL query against a non\-partitioned table, it uses the `LOCATION` property from the table definition as the base path to list and then scan all available files\. However, before a partitioned table can be queried, you must update the AWS Glue Data Catalog with partition information\. This information represents the schema of files within the particular partition and the `LOCATION` of files in Amazon S3 for the partition\. 
 + To learn how the AWS Glue crawler adds partitions, see [How does a crawler determine when to create partitions? ](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html#crawler-s3-folder-table-partition) in the *AWS Glue Developer Guide*\. 
-+ To learn how to configure the crawler so that it creates tables for data in existing partitions, see [Using Multiple Data Sources with Crawlers](glue-best-practices.md#schema-crawlers-data-sources)\. 
-+ You can also create partitions in a table directly in Athena\. For more information, see [Partitioning Data](partitions.md)\.
++ To learn how to configure the crawler so that it creates tables for data in existing partitions, see [Using multiple data sources with crawlers](glue-best-practices.md#schema-crawlers-data-sources)\. 
++ You can also create partitions in a table directly in Athena\. For more information, see [Partitioning data in Athena](partitions.md)\.
 
 When Athena runs a query on a partitioned table, it checks to see if any partitioned columns are used in the `WHERE` clause of the query\. If partitioned columns are used, Athena requests the AWS Glue Data Catalog to return the partition specification matching the specified partition columns\. The partition specification includes the `LOCATION` property that tells Athena which Amazon S3 prefix to use when reading data\. In this case, *only* data stored in this prefix is scanned\. If you do not use partitioned columns in the `WHERE` clause, Athena scans all the files that belong to the table's partitions\. 
 

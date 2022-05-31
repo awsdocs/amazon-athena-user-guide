@@ -1,12 +1,12 @@
 # Querying arrays with complex types and nested structures<a name="rows-and-structs"></a>
 
 Your source data often contains arrays with complex data types and nested structures\. Examples in this section show how to change element's data type, locate elements within arrays, and find keywords using Athena queries\.
-+  [Creating a ROW](#creating-row) 
-+  [Changing Field Names in Arrays Using CAST](#changing-row-arrays-with-cast) 
-+  [Filtering Arrays Using the \. Notation](#filtering-with-dot) 
-+  [Filtering Arrays with Nested Values](#filtering-nested-with-dot) 
-+  [Filtering Arrays Using UNNEST](#filtering-with-unnest) 
-+  [Finding Keywords in Arrays Using `regexp_like`](#filtering-with-regexp) 
++ [Creating a `ROW`](#creating-row)
++ [Changing field names in arrays using `CAST` ](#changing-row-arrays-with-cast)
++ [Filtering arrays using the `.` notation](#filtering-with-dot)
++ [Filtering arrays with nested values](#filtering-nested-with-dot)
++ [Filtering arrays using `UNNEST` ](#filtering-with-unnest)
++ [Finding keywords in arrays using `regexp_like`](#filtering-with-regexp)
 
 ## Creating a `ROW`<a name="creating-row"></a>
 
@@ -157,7 +157,7 @@ This query selects the nested fields and returns this result:
 
 To filter an array that includes a nested structure by one of its child elements, issue a query with an `UNNEST` operator\. For more information about `UNNEST`, see [Flattening Nested Arrays](flattening-arrays.md)\.
 
-For example, this query finds hostnames of sites in the dataset\.
+For example, this query finds host names of sites in the dataset\.
 
 ```
 WITH dataset AS (
@@ -194,7 +194,7 @@ The following examples illustrate how to search a dataset for a keyword within a
 
 The regular expression pattern needs to be contained within the string, and does not have to match it\. To match the entire string, enclose the pattern with ^ at the beginning of it, and $ at the end, such as `'^pattern$'`\.
 
-Consider an array of sites containing their hostname, and a `flaggedActivity` element\. This element includes an `ARRAY`, containing several `MAP` elements, each listing different popular keywords and their popularity count\. Assume you want to find a particular keyword inside a `MAP` in this array\.
+Consider an array of sites containing their host name, and a `flaggedActivity` element\. This element includes an `ARRAY`, containing several `MAP` elements, each listing different popular keywords and their popularity count\. Assume you want to find a particular keyword inside a `MAP` in this array\.
 
 To search this dataset for sites with a specific keyword, we use `regexp_like` instead of the similar SQL `LIKE` operator, because searching for a large number of keywords is more efficient with `regexp_like`\.
 

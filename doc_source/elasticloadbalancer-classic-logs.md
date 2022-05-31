@@ -4,7 +4,7 @@ Use Classic Load Balancer logs to analyze and understand traffic patterns to and
 
 Before you analyze the Elastic Load Balancing logs, configure them for saving in the destination Amazon S3 bucket\. For more information, see [Enable access logs for your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html)\.
 + [Create the table for Elastic Load Balancing logs](#create-elb-table)
-+ [Elastic Load Balancing Example Queries](#query-elb-classic-example)
++ [Elastic Load Balancing example queries](#query-elb-classic-example)
 
 ## To create the table for Elastic Load Balancing logs<a name="create-elb-table"></a>
 
@@ -43,7 +43,7 @@ Before you analyze the Elastic Load Balancing logs, configure them for saving in
 
 1. Modify the `LOCATION` Amazon S3 bucket to specify the destination of your Elastic Load Balancing logs\.
 
-1. Run the query in the Athena console\. After the query completes, Athena registers the `elb_logs` table, making the data in it ready for queries\. For more information, see [Elastic Load Balancing Example Queries](#query-elb-classic-example)
+1. Run the query in the Athena console\. After the query completes, Athena registers the `elb_logs` table, making the data in it ready for queries\. For more information, see [Elastic Load Balancing example queries](#query-elb-classic-example)\.
 
 ## Elastic Load Balancing example queries<a name="query-elb-classic-example"></a>
 

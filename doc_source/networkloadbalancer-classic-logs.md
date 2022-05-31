@@ -4,7 +4,7 @@ Use Athena to analyze and process logs from Network Load Balancer\. These logs r
 
 Before you analyze the Network Load Balancer access logs, enable and configure them for saving in the destination Amazon S3 bucket\. For more information, see [ Access logs for your Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-access-logs.html)\.
 + [Create the table for Network Load Balancer logs](#to-create-the-network-logs-table)
-+ [Network Load Balancer Example Queries](#query-nlb-example)
++ [Network Load Balancer example queries](#query-nlb-example)
 
 ## To create the table for Network Load Balancer logs<a name="to-create-the-network-logs-table"></a>
 

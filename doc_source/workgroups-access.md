@@ -13,7 +13,7 @@ For example, for a workgroup named `test_workgroup` in the `us-west-2` region fo
 ```
 + For a list of workgroup policies, see [Workgroup example policies](example-policies-workgroup.md)\.
 + For a list of tag\-based policies for workgroups, see [Tag\-based IAM access control policies](tags-access-control.md)\.
-+ For more information about creating IAM policies for workgroups, see [Workgroup IAM Policies](workgroups-iam-policy.md)\.
++ For more information about creating IAM policies for workgroups, see [ IAM policies for accessing workgroups](workgroups-iam-policy.md)\.
 + For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. 
 + For more information about IAM policies, see [Creating policies with the visual editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-visual-editor) in the *IAM User Guide*\. 
 

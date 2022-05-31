@@ -8,8 +8,8 @@ Make a note of the Amazon S3 bucket to which to save these logs\.
 
 **Note**  
 This procedure works for the Web distribution access logs in CloudFront\. It does not apply to streaming logs from RTMP distributions\.
-+  [Creating the Table for CloudFront Logs](#create-cloudfront-table) 
-+  [Example Query for CloudFront logs](#query-examples-cloudfront-logs) 
++  [Creating the table for CloudFront logs](#create-cloudfront-table) 
++  [Example query for CloudFront logs](#query-examples-cloudfront-logs) 
 
 ## Creating the table for CloudFront logs<a name="create-cloudfront-table"></a>
 

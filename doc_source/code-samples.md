@@ -4,24 +4,24 @@ Use the examples in this topic as a starting point for writing Athena applicatio
 +   
 **Java Code Examples**  
   +  [Constants](#constants) 
-  +  [Create a Client to Access Athena](#create-a-client-to-access-athena) 
+  +  [Create a client to access Athena](#create-a-client-to-access-athena) 
   +   
 **Working with Query Executions**  
-    +  [Start Query Execution](#start-query-execution) 
-    +  [Stop Query Execution](#stop-query-execution) 
-    +  [List Query Executions](#list-query-executions) 
+    +  [Start query execution](#start-query-execution) 
+    +  [Stop query execution](#stop-query-execution) 
+    +  [List query executions](#list-query-executions) 
   +   
 **Working with Named Queries**  
-    +  [Create a Named Query](#create-a-named-query) 
-    +  [Delete a Named Query](#delete-a-named-query) 
-    +  [List Query Executions](#list-query-executions) 
+    +  [Create a named query](#create-a-named-query) 
+    +  [Delete a named query](#delete-a-named-query) 
+    +  [List query executions](#list-query-executions) 
 
 **Note**  
 These samples use constants \(for example, `ATHENA_SAMPLE_QUERY`\) for strings, which are defined in an `ExampleConstants.java` class declaration\. Replace these constants with your own strings or defined constants\.
 
 ## Constants<a name="constants"></a>
 
-The `ExampleConstants.java` class demonstrates how to query a table created by the [Getting Started](getting-started.md) tutorial in Athena\.
+The `ExampleConstants.java` class demonstrates how to query a table created by the [Getting started](getting-started.md) tutorial in Athena\.
 
 ```
 package aws.example.athena;

@@ -18,7 +18,7 @@ The following table summarizes data storage formats and their supported schema m
 
 In this table, observe that Parquet and ORC are columnar formats with different default column access methods\. By default, Parquet will access columns by name and ORC by index \(ordinal value\)\. Therefore, Athena provides a SerDe property defined when creating a table to toggle the default column access method which enables greater flexibility with schema evolution\. 
 
-For Parquet, the `parquet.column.index.access` property may be set to `true`, which sets the column access method to use the column's ordinal number\. Setting this property to `false` will change the column access method to use column name\. Similarly, for ORC use the `orc.column.index.access` property to control the column access method\. For more information, see [Index Access in ORC and Parquet](#index-access)\.
+For Parquet, the `parquet.column.index.access` property may be set to `true`, which sets the column access method to use the column's ordinal number\. Setting this property to `false` will change the column access method to use column name\. Similarly, for ORC use the `orc.column.index.access` property to control the column access method\. For more information, see [Index access in ORC and parquet](#index-access)\.
 
 CSV and TSV allow you to do all schema manipulations except reordering of columns, or adding columns at the beginning of the table\. For example, if your schema evolution requires only renaming columns but not removing them, you can choose to create your tables in CSV or TSV\. If you require removing columns, do not use CSV or TSV, and instead use any of the other supported formats, preferably, a columnar format, such as Parquet or ORC\.
 
@@ -37,8 +37,8 @@ CSV and TSV allow you to do all schema manipulations except reordering of column
 ## Index access in ORC and parquet<a name="index-access"></a>
 
 PARQUET and ORC are columnar data storage formats that can be read by index, or by name\. Storing your data in either of these formats lets you perform all operations on schemas and run Athena queries without schema mismatch errors\. 
-+ Athena *reads ORC by index by default*, as defined in `SERDEPROPERTIES ( 'orc.column.index.access'='true')`\. For more information, see [ORC: Read by Index](#orc-read-by-index)\.
-+ Athena reads *Parquet by name by default*, as defined in `SERDEPROPERTIES ( 'parquet.column.index.access'='false')`\. For more information, see [PARQUET: Read by Name](#parquet-read-by-name)\.
++ Athena *reads ORC by index by default*, as defined in `SERDEPROPERTIES ( 'orc.column.index.access'='true')`\. For more information, see [ORC: Read by index](#orc-read-by-index)\.
++ Athena reads *Parquet by name by default*, as defined in `SERDEPROPERTIES ( 'parquet.column.index.access'='false')`\. For more information, see [Parquet: Read by name](#parquet-read-by-name)\.
 
 Since these are defaults, specifying these SerDe properties in your `CREATE TABLE` queries is optional, they are used implicitly\. When used, they allow you to run some schema update operations while preventing other such operations\. To enable those operations, run another `CREATE TABLE` query and change the SerDe settings\. 
 

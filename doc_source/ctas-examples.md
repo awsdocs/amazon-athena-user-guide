@@ -57,7 +57,7 @@ WITH NO DATA;
 
 **Example: Specifying data storage and compression formats**  
 You can use a CTAS query to create a new table in Parquet format from a source table in a different storage format\.   
-Use the `format` property to specify `ORC`, `AVRO`, `JSON`, or `TEXTFILE` as the storage format for the new table\.   
+Use the `format` property to specify `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE` as the storage format for the new table\.   
 For the `PARQUET`, `ORC`, `TEXTFILE`, and `JSON` storage formats, use the `write_compression` property to specify the compression format for the new table's data\. For information about the compression formats that each file format supports, see [Athena compression support](compression-formats.md)\.  
 The following example specifies that data in the table `new_table` be stored in Parquet format and use Snappy compression\. The default compression for Parquet is `GZIP`\.  
 

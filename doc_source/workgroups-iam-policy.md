@@ -4,7 +4,7 @@ To control access to workgroups, use resource\-level IAM permissions or identity
 
 The following procedure is specific to Athena\. 
 
-For IAM\-specific information, see the links listed at the end of this section\. For information about example JSON workgroup policies, see [Workgroup Example Policies](example-policies-workgroup.md)\.
+For IAM\-specific information, see the links listed at the end of this section\. For information about example JSON workgroup policies, see [Workgroup example policies](example-policies-workgroup.md)\.
 
 **To use the visual editor in the IAM console to create a workgroup policy**
 
@@ -20,7 +20,7 @@ For IAM\-specific information, see the links listed at the end of this section\.
 
    By default, the policy that you are creating allows the actions that you choose\. If you chose one or more actions that support resource\-level permissions to the `workgroup` resource in Athena, then the editor lists the `workgroup` resource\. 
 
-1. Choose **Resources** to specify the specific workgroups for your policy\. For example JSON workgroup policies, see [Workgroup Example Policies](example-policies-workgroup.md)\.
+1. Choose **Resources** to specify the specific workgroups for your policy\. For example JSON workgroup policies, see [Workgroup example policies](example-policies-workgroup.md)\.
 
 1. Specify the `workgroup` resource as follows:
 
@@ -40,6 +40,6 @@ For more information, see the following topics in the *Service Authorization Ref
 +  [Adding and removing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) 
 +  [Controlling access to resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_controlling.html#access_controlling-resources) 
 
-For example JSON workgroup policies, see [Workgroup Example Policies](example-policies-workgroup.md)\.
+For example JSON workgroup policies, see [Workgroup example policies](example-policies-workgroup.md)\.
 
 For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. 

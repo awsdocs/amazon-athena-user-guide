@@ -7,10 +7,10 @@ Geospatial functions in Athena have the following characteristics:
 + Not all of the ESRI\-supported functions are available in Athena\. This topic lists only the ESRI geospatial functions that are supported in Athena engine version 1\.
 
 Athena supports four types of geospatial functions:
-+  [Constructor Functions](#constructors-functions-v1) 
-+  [Geospatial Relationship Functions](#geospatial-relationships-functions-v1) 
-+  [Operation Functions](#operations-functions-v1) 
-+  [Accessor Functions](#accessors-functions-v1) 
++  [Constructor functions](#constructors-functions-v1) 
++  [Geospatial relationship functions](#geospatial-relationships-functions-v1) 
++  [Operation functions](#operations-functions-v1) 
++  [Accessor functions](#accessors-functions-v1) 
 
 ## Constructor functions<a name="constructors-functions-v1"></a>
 

@@ -8,7 +8,7 @@ If you are using the older Athena\-managed data catalog, you see the option to u
 
 A wizard in the Athena console can walk you through upgrading to the AWS Glue console\. The upgrade takes just a few minutes, and you can pick up where you left off\. For information about each upgrade step, see the topics in this section\. 
 
-For information about working with data and tables in the AWS Glue Data Catalog, see the guidelines in [Best Practices When Using Athena with AWS Glue](glue-best-practices.md)\.
+For information about working with data and tables in the AWS Glue Data Catalog, see the guidelines in [Best practices when using Athena with AWS Glue](glue-best-practices.md)\.
 
 ## Step 1 \- Allow a user to perform the upgrade<a name="upgrade-step1"></a>
 
@@ -35,7 +35,7 @@ The following is an example policy statement\.
 
 ## Step 2 \- Update customer\-managed or inline policies associated with Athena users<a name="upgrade-step2"></a>
 
-If you have customer\-managed or inline IAM policies associated with Athena users, you need to update the policy or policies to allow actions that AWS Glue requires\. If you use the Athena managed policy, no action is required\. The AWS Glue policy actions to allow are listed in the example policy below\. For the full policy statement, see [IAM Policies for User Access](managed-policies.md)\.
+If you have customer\-managed or inline IAM policies associated with Athena users, you need to update the policy or policies to allow actions that AWS Glue requires\. If you use the Athena managed policy, no action is required\. The AWS Glue policy actions to allow are listed in the example policy below\. For the full policy statement, see [AWS managed policies for Amazon Athena](managed-policies.md)\.
 
 ```
 {
@@ -76,4 +76,4 @@ If you have customer\-managed or inline IAM policies associated with Athena user
 
 After you make the required IAM policy updates, choose **Upgrade** in the Athena console\. Athena moves your metadata to the AWS Glue Data Catalog\. The upgrade takes only a few minutes\.
 
-When you create a table using the console, you can create a table using an AWS Glue crawler\. For more information, see [Using AWS Glue Crawlers](glue-best-practices.md#schema-crawlers)\.
+When you create a table using the console, you can create a table using an AWS Glue crawler\. For more information, see [Using AWS Glue crawlers](glue-best-practices.md#schema-crawlers)\.

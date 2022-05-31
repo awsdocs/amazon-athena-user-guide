@@ -29,17 +29,17 @@ Reference topic: [AWS::Athena::WorkGroup](https://docs.aws.amazon.com/AWSCloudFo
 Specify Athena workgroups using AWS CloudFormation\. Use Athena workgroups to isolate queries for you or your group from other queries in the same account\. For more information, see [Using workgroups to control query access and costs](manage-queries-control-costs-with-workgroups.md) in the *Amazon Athena User Guide* and [CreateWorkGroup](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateWorkGroup.html) in the *Amazon Athena API Reference*\.
 
 **Amazon CloudFront**  
-Reference topic: [Querying Amazon CloudFront Logs](cloudfront-logs.md)  
+Reference topic: [Querying Amazon CloudFront logs](cloudfront-logs.md)  
 Use Athena to query Amazon CloudFront logs\. For more information about using CloudFront, see the [Amazon CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/)\.
 
 **AWS CloudTrail**  
-Reference topic: [Querying AWS CloudTrail Logs](cloudtrail-logs.md)  
-Using Athena with CloudTrail logs is a powerful way to enhance your analysis of AWS service activity\. For example, you can use queries to identify trends and further isolate activity by attribute, such as source IP address or user\. You can create tables for querying logs directly from the CloudTrail console, and use those tables to run queries in Athena\. For more information, see [Creating a Table for CloudTrail Logs in the CloudTrail Console](cloudtrail-logs.md#create-cloudtrail-table-ct)\.
+Reference topic: [Querying AWS CloudTrail logs](cloudtrail-logs.md)  
+Using Athena with CloudTrail logs is a powerful way to enhance your analysis of AWS service activity\. For example, you can use queries to identify trends and further isolate activity by attribute, such as source IP address or user\. You can create tables for querying logs directly from the CloudTrail console, and use those tables to run queries in Athena\. For more information, see [Using the CloudTrail console to create an Athena table for CloudTrail logs ](cloudtrail-logs.md#create-cloudtrail-table-ct)\.
 
 **Elastic Load Balancing**  
-Reference topic: [Querying Application Load Balancer Logs](application-load-balancer-logs.md)  
-Querying Application Load Balancer logs allows you to see the source of traffic, latency, and bytes transferred to and from Elastic Load Balancing instances and backend applications\. For more information, see [Creating the Table for ALB Logs](application-load-balancer-logs.md#create-alb-table)\.  
-Reference topic: [Querying Classic Load Balancer Logs](elasticloadbalancer-classic-logs.md)  
+Reference topic: [Querying Application Load Balancer logs](application-load-balancer-logs.md)  
+Querying Application Load Balancer logs allows you to see the source of traffic, latency, and bytes transferred to and from Elastic Load Balancing instances and backend applications\. For more information, see [Creating the table for ALB logs](application-load-balancer-logs.md#create-alb-table)\.  
+Reference topic: [Querying Classic Load Balancer logs](elasticloadbalancer-classic-logs.md)  
 Query Classic Load Balancer logs to analyze and understand traffic patterns to and from Elastic Load Balancing instances and backend applications\. You can see the source of traffic, latency, and bytes transferred\. For more information, see [Creating the Table for ELB Logs](elasticloadbalancer-classic-logs.md#create-elb-table)\.
 
 **AWS Glue Data Catalog**  
@@ -51,7 +51,7 @@ Reference topic: [Actions for Amazon Athena](https://docs.aws.amazon.com/IAM/lat
 You can use Athena API actions in IAM permission policies\. For more information, see [Actions for Amazon Athena](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonathena.html) and [Identity and access management in Athena](security-iam-athena.md)\.
 
 **Amazon QuickSight**  
-Reference topic: [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena-bi-tools-jdbc-odbc.md)  
+Reference topic: [Connecting to Amazon Athena with ODBC and JDBC drivers](athena-bi-tools-jdbc-odbc.md)  
 Athena integrates with Amazon QuickSight for easy data visualization\. You can use Athena to generate reports or to explore data with business intelligence tools or SQL clients connected with a JDBC or an ODBC driver\. For more information about Amazon QuickSight, see [What is Amazon QuickSight](https://docs.aws.amazon.com/quicksight/latest/user/welcome.html) in the *Amazon QuickSight User Guide*\. For information about using JDBC and ODBC drivers with Athena, see [Connecting to Amazon Athena with ODBC and JDBC Drivers](athena-bi-tools-jdbc-odbc.md)\.
 
 **Amazon S3 Inventory**  
@@ -72,5 +72,5 @@ Reference topic: [Querying inventory data from multiple regions and accounts](ht
 AWS Systems Manager Inventory integrates with Amazon Athena to help you query inventory data from multiple AWS Regions and accounts\. For more information, see the [AWS Systems Manager User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/)\.
 
 **Amazon Virtual Private Cloud**  
-Reference topic: [Querying Amazon VPC Flow Logs](vpc-flow-logs.md)  
+Reference topic: [Querying Amazon VPC flow logs](vpc-flow-logs.md)  
 Amazon Virtual Private Cloud flow logs capture information about the IP traffic going to and from network interfaces in a VPC\. Query the logs in Athena to investigate network traffic patterns and identify threats and risks across your Amazon VPC network\. For more information about Amazon VPC, see the [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)\.
