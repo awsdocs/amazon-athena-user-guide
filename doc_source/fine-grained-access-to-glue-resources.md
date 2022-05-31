@@ -41,6 +41,7 @@ From this list, resources that are common between Athena and the AWS Glue Data C
      "Effect": "Allow",
      "Action": [
         "glue:GetDatabase", 
+        "glue:GetDatabases",
         "glue:CreateDatabase"
      ],
      "Resource": [
@@ -60,6 +61,7 @@ For Athena to work with the AWS Glue Data Catalog, the following access policy t
    "Effect": "Allow",
    "Action": [
       "glue:GetDatabase", 
+      "glue:GetDatabases",
       "glue:CreateDatabase"
    ],
    "Resource": [
