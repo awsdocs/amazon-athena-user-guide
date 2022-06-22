@@ -22,7 +22,7 @@ In addition to using the CloudTrail SerDe, instances exist where you need to use
 
 The following example uses the CloudTrail SerDe on a fictional set of logs to create a table based on them\.
 
-In this example, the fields `requestParameters`, `responseElements`, and `additionalEventData` are included as part of `STRUCT` data type used in JSON\. To get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\.
+In this example, the fields `requestParameters`, `responseElements`, and `additionalEventData` are included as part of `STRING` data type used in JSON\. To get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\.
 
 ```
 CREATE EXTERNAL TABLE cloudtrail_logs (
