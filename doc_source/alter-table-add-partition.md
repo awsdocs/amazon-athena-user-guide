@@ -67,5 +67,5 @@ If you run an `ALTER TABLE ADD PARTITION` statement and mistakenly specify a par
 To prevent this from happening, use the `ADD IF NOT EXISTS` syntax in your `ALTER TABLE ADD PARTITION` statement, like this:
 
 ```
-ALTER TABLE table_name ADD IF NOT EXISTS PARTITIION […]
+ALTER TABLE table_name ADD IF NOT EXISTS PARTITION […]
 ```
