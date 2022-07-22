@@ -62,6 +62,6 @@ You can set multiple alert thresholds when queries running in a workgroup scan a
 1. For **Data usage threshold configuration**, specify values as follows:
    + For **Data threshold**, specify a number, and then select a unit value from the drop\-down list\.
    + **For Time period**, choose a time period from the drop\-down list\.
-   + For **SNS topic selection**, choose an Amazon SNS topic from the drop\-down list\. Or, choose **Create SNS topic** to go directly to the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home), create the Amazon SNS topic, and set up a subscription for it for one of the users in your Athena account\. For more information, see [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html) in the *Amazon Simple Notification Service Getting Started Guide*\. 
+   + For **SNS topic selection**, choose an Amazon SNS topic from the drop\-down list\. Or, choose **Create SNS topic** to go directly to the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home), create the Amazon SNS topic, and set up a subscription for it for one of the users in your Athena account\. For more information, see [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html) in the *Amazon Simple Notification Service Developer Guide*\. 
 
 1. Choose **Add alert** if you are creating a new alert, or **Save** to save an existing alert\.

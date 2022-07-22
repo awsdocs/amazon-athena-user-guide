@@ -31,13 +31,12 @@ CREATE EXTERNAL TABLE impressions (
 )   
 PARTITIONED BY (dt string)
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
-WITH SERDEPROPERTIES ( 'paths'='requestbegintime, adid, impressionid, referrer, useragent, usercookie, ip' )
 LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 ```
 
 ## Specifying timestamp formats with the Hive JSON SerDe<a name="hive-json-serde-timestamp-formats"></a>
 
-To parse timestamp values from string, you can use the `timestamp.formats` parameter in `SERDEPROPERTIES` to specify a comma\-separated list of one or more timestamp patterns, as in the following example:
+To parse timestamp values from string, you can add the `WITH SERDEPROPERTIES` subfield to the `ROW FORMAT SERDE` clause and use it to specify the `timestamp.formats` parameter\. In the parameter, specify a comma\-separated list of one or more timestamp patterns, as in the following example:
 
 ```
 ...

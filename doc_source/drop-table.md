@@ -1,6 +1,6 @@
 # DROP TABLE<a name="drop-table"></a>
 
-Removes the metadata table definition for the table named `table_name`\. When you drop an external table, the underlying data remains intact because all tables in Athena are `EXTERNAL`\.
+Removes the metadata table definition for the table named `table_name`\. When you drop an external table, the underlying data remains intact\.
 
 ## Synopsis<a name="synopsis"></a>
 

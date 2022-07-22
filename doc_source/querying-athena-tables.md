@@ -5,10 +5,12 @@ You can run SQL queries using Amazon Athena on data sources that are registered 
 This section provides guidance for running Athena queries on common data sources and data types using a variety of SQL statements\. General guidance is provided for working with common structures and operators—for example, working with arrays, concatenating, filtering, flattening, and sorting\. Other examples include queries for data in tables with nested structures and maps, tables based on JSON\-encoded datasets, and datasets associated with AWS services such as AWS CloudTrail logs and Amazon EMR logs\. Comprehensive coverage of standard SQL usage is beyond the scope of this documentation\.
 
 **Topics**
++ [Viewing query plans](query-plans.md)
 + [Query results and recent queries](querying.md)
++ [Viewing query stats](query-stats.md)
 + [Working with views](views.md)
 + [Using saved queries](saved-queries.md)
-+ [Querying with prepared statements](querying-with-prepared-statements.md)
++ [Querying with parameterized queries](querying-with-prepared-statements.md)
 + [Handling schema updates](handling-schema-updates-chapter.md)
 + [Querying arrays](querying-arrays.md)
 + [Querying geospatial data](querying-geospatial-data.md)

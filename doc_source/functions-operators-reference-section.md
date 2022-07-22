@@ -11,6 +11,7 @@ For information about DDL statements, see [DDL statements](language-reference.md
 **Topics**
 + [SELECT](select.md)
 + [INSERT INTO](insert-into.md)
++ [PREPARE](sql-prepare.md)
 + [UNLOAD](unload.md)
 + [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md)
 + [Functions in Amazon Athena](presto-functions.md)

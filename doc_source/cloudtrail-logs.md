@@ -4,6 +4,9 @@ AWS CloudTrail is a service that records AWS API calls and events for Amazon Web
 
 CloudTrail logs include details about any API calls made to your AWS services, including the console\. CloudTrail generates encrypted log files and stores them in Amazon S3\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\. 
 
+**Note**  
+If you want to perform SQL queries on CloudTrail event information across accounts, regions, and dates, consider using CloudTrail Lake\. CloudTrail Lake is an AWS alternative to creating trails that aggregates information from an enterprise into a single, searchable event data store\. Instead of using Amazon S3 bucket storage, it stores events in a data lake, which allows richer, faster queries\. You can use it to create SQL queries that search events across organizations, regions, and within custom time ranges\. Because you perform CloudTrail Lake queries within the CloudTrail console itself, using CloudTrail Lake does not require Athena\. For more information, see the [CloudTrail Lake](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html) documentation\.
+
 Using Athena with CloudTrail logs is a powerful way to enhance your analysis of AWS service activity\. For example, you can use queries to identify trends and further isolate activity by attributes, such as source IP address or user\.
 
 A common application is to use CloudTrail logs to analyze operational activity for security and compliance\. For information about a detailed example, see the AWS Big Data Blog post, [Analyze security, compliance, and operational activity using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.

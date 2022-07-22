@@ -75,7 +75,7 @@ You can create tables in Athena by using AWS Glue, the add table form, or by run
 
 1. In the query editor, next to **Tables and views**, choose **Create**, and then choose **S3 bucket data\.**
 
-1. in the **Create Table From S3 bucket data** form, enter the the information to create your table, and then choose **Create table**\. For more information about the fields in the form, see [Adding a table using a form](data-sources-glue.md#data-sources-glue-manual-table)\.
+1. In the **Create Table From S3 bucket data** form, enter the information to create your table, and then choose **Create table**\. For more information about the fields in the form, see [Adding a table using a form](data-sources-glue.md#data-sources-glue-manual-table)\.
 
 ### To create a table using Hive DDL<a name="to-create-a-table-using-hive-ddl"></a>
 

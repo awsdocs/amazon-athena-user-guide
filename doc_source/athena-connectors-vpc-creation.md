@@ -8,9 +8,9 @@ Some Athena data source connectors require a VPC and a security group\. This top
 
 1. In the navigation pane, ensure that **New VPC Experience** is selected\.
 
-1. Choose **Launch VPC Wizard**\.
+1. Choose **Create VPC**\.
 
-1. Under **VPC Settings**, for **Resources to create**, choose **VPC, subnets, etc\.**
+1. Under **VPC Settings**, for **Resources to create**, choose **VPC and more**\.
 
 1. For **Auto\-generate**, enter a value that will be used to generate name tags for all resources in your VPC\.
 

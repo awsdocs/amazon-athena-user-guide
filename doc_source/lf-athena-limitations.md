@@ -5,6 +5,7 @@ Consider the following when using Athena to query data registered in Lake Format
 **Topics**
 + [Column metadata visible to users without data permissions to column in some circumstances](#lf-athena-limitations-column-metadata)
 + [Working with Lake Formation permissions to views](#lf-athena-limitations-permissions-to-views)
++ [Lake Formation data filters cannot be used with partition projection](#lf-athena-limitations-data-filters)
 + [Athena query results location in Amazon S3 not registered with Lake Formation](#lf-athena-limitations-query-results-location)
 + [Use Athena workgroups to limit access to query history](#lf-athena-limitations-use-workgroups-to-limit-access-to-query-history)
 + [Cross\-account access](#lf-athena-limitations-cross-account)
@@ -22,6 +23,12 @@ This occurs when column metadata is stored in table properties for tables using 
 ## Working with Lake Formation permissions to views<a name="lf-athena-limitations-permissions-to-views"></a>
 
 For data registered with Lake Formation, an Athena user can create a `VIEW` only if they have Lake Formation permissions to the tables, columns, and source Amazon S3 data locations on which the `VIEW` is based\. After a `VIEW` is created in Athena, Lake Formation permissions can be applied to the `VIEW`\. Column\-level permissions are not available for a `VIEW`\. Users who have Lake Formation permissions to a `VIEW` but do not have permissions to the table and columns on which the view was based are not able to use the `VIEW` to query data\. However, users with this mix of permissions are able to use statements like `DESCRIBE VIEW`, `SHOW CREATE VIEW`, and `SHOW COLUMNS` to see `VIEW` metadata\. For this reason, be sure to align Lake Formation permissions for each `VIEW` with underlying table permissions\. Cell filters defined on a table do not apply to a `VIEW` for that table\. For more information about setting up permissions for shared views across accounts, see [Cross\-account Data Catalog access](#lf-athena-limitations-cross-account)\.
+
+## Lake Formation data filters cannot be used with partition projection<a name="lf-athena-limitations-data-filters"></a>
+
+Lake Formation [data filters](https://docs.aws.amazon.com/lake-formation/latest/dg/data-filters-about.html) cannot be used with partition projection in Athena\. If you enable data filters on a database or table in Lake Formation, partition projection stops working\.
+
+ 
 
 ## Athena query results location in Amazon S3 not registered with Lake Formation<a name="lf-athena-limitations-query-results-location"></a>
 

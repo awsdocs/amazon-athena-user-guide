@@ -1,11 +1,12 @@
 # Document history<a name="DocHistory"></a>
 
-**Latest documentation update: May 31, 2022\.**  
+**Latest documentation update: July 21, 2022\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release date | 
 | --- | --- | --- | 
+| Added documentation for viewing query plans and statistics in the Athena console\. | You can use the Athena query editor to see graphical representations of how your queries will be run and graphs, details, and statistics of how completed queries ran\. For more information, see [Viewing execution plans for SQL queries](query-plans.md) and [Viewing statistics and execution details for completed queries](query-stats.md)\. | July 21, 2022 | 
 | Added documentation for querying Apache Hive views in external Hive metastores\. | You can use Athena to query Apache views created in external Hive metastores\. Some Hive functions are not supported or require special handling\. For more information, see [Working with Hive views](hive-views.md)\. | April 22, 2022 | 
 | Added documentation for saved queries\. | You can use the saved queries feature in Athena to save, recall, edit, and rename your queries\. For more information, see [Using saved queries](saved-queries.md) in this guide and [UpdateNamedQuery](https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdateNamedQuery.html) in the Amazon Athena API Reference\. | February 28, 2022 | 
 | Added documentation for Lake Formation governed tables support\. | You can use Athena to read Lake Formation governed tables\. Use Lake Formation governed tables to secure your tables in Amazon S3 by granting permissions at the column, row, and cell levels\. For more information, see [Using governed tables](lf-governed-tables.md)\. | November 30, 2021 | 

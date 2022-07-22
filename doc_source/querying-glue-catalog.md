@@ -2,19 +2,19 @@
 
 Because AWS Glue Data Catalog is used by many AWS services as their central metadata repository, you might want to query Data Catalog metadata\. To do so, you can use SQL queries in Athena\. You can use Athena to query AWS Glue catalog metadata like databases, tables, partitions, and columns\.
 
-**Note**  
-You can use individual hive [DDL commands](language-reference.md) to extract metadata information for specific databases, tables, views, partitions, and columns from Athena, but the output is in a non\-tabular format\.
-
 To obtain AWS Glue Catalog metadata, you query the `information_schema` database on the Athena backend\. The example queries in this topic show how to use Athena to query AWS Glue Catalog metadata for common use cases\.
 
-**Important**  
- You cannot use `CREATE VIEW` to create a view on the `information_schema` database\. 
-
 **Topics**
++ [Considerations and limitations](#querying-glue-catalog-considerations-limitations)
 + [Listing databases and searching a specified database](#querying-glue-catalog-querying-available-databases-including-rdbms)
 + [Listing tables in a specified database and searching for a table by name](#querying-glue-catalog-listing-tables)
 + [Listing partitions for a specific table](#querying-glue-catalog-listing-partitions)
 + [Listing or searching columns for a specified table or view](#querying-glue-catalog-listing-columns)
+
+## Considerations and limitations<a name="querying-glue-catalog-considerations-limitations"></a>
++ Instead of querying the `information_schema` database, it is possible to use individual Apache Hive [DDL commands](language-reference.md) to extract metadata information for specific databases, tables, views, partitions, and columns from Athena\. However, the output is in a non\-tabular format\.
++ Querying `information_schema` is most performant if you have a small to moderate amount of AWS Glue metadata\. If you have a large amount of metadata, errors can occur\.
++ You cannot use `CREATE VIEW` to create a view on the `information_schema` database\. 
 
 ## Listing databases and searching a specified database<a name="querying-glue-catalog-querying-available-databases-including-rdbms"></a>
 

@@ -9,7 +9,7 @@ Hudi datasets are suitable for the following use cases:
 + Working with streaming data from sensors and other Internet of Things \(IoT\) devices that require specific data insertion and update events\.
 + Implementing a [change data capture \(CDC\) system](https://en.wikipedia.org/wiki/Change_data_capture)\.
 
-Data sets managed by Hudi are stored in S3 using open storage formats\. Currently, Athena can read compacted Hudi datasets but not write Hudi data\. Athena uses Apache Hudi version 0\.8\.0, subject to change\. For more information about this Hudi version, see [Release 0\.8\.0 \(docs\)](https://hudi.apache.org/releases.html#release-080-docs) on the Apache website\.
+Data sets managed by Hudi are stored in S3 using open storage formats\. Currently, Athena can read compacted Hudi datasets but not write Hudi data\. Athena uses Apache Hudi version 0\.8\.0, subject to change\. For more information about this Hudi version, see [Release 0\.8\.0 \(docs\)](https://hudi.apache.org/releases/release-0.8.0) on the Apache website\.
 
 ## Hudi dataset table types<a name="querying-hudi-hudi-dataset-table-types"></a>
 
@@ -34,7 +34,7 @@ The following table shows the possible Hudi query types for each table type\.
 
 Currently, Athena supports snapshot queries and read optimized queries, but not incremental queries\. On MoR tables, all data exposed to read optimized queries are compacted\. This provides good performance but does not include the latest delta commits\. Snapshot queries contain the freshest data but incur some computational overhead, which makes these queries less performant\. 
 
-For more information about the tradeoffs between table and query types, see [Table types & queries](https://hudi.apache.org/docs/0.8.0-overview.html#table-types--queries) in the Apache Hudi documentation\.
+For more information about the tradeoffs between table and query types, see [Table & Query Types](https://hudi.apache.org/docs/table_types/) in the Apache Hudi documentation\.
 
 ### Hudi terminology change: Views are now queries<a name="querying-hudi-hudi-dataset-table-types-terminology"></a>
 
@@ -61,7 +61,7 @@ For more information on creating Hudi tables using the bootstrap operation in Am
 
   For more information about writing Hudi data, see the following resources:
   + [Working with a Hudi dataset](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hudi-work-with-dataset.html) in the [Amazon EMR Release Guide](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/)\.
-  + [Writing Hudi tables](https://hudi.apache.org/docs/0.8.0-writing_data.html) in the Apache Hudi documentation\.
+  + [Writing Data](https://hudi.apache.org/docs/0.8.0/writing_data.html) in the Apache Hudi documentation\.
 + Using MSCK REPAIR TABLE on Hudi tables in Athena is not supported\. If you need to load a Hudi table not created in AWS Glue, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\.
 
 ## Video<a name="querying-hudi-videos"></a>

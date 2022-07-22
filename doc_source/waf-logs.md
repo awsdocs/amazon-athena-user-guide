@@ -188,14 +188,27 @@ CREATE EXTERNAL TABLE `waf_logs`(
   `ratebasedrulelist` array<
                         struct<
                           ratebasedruleid:string,
+                          ratebasedrulename:string,
                           limitkey:string,
+                          limitvalue:string,
                           maxrateallowed:int
                               >
                            >,
   `nonterminatingmatchingrules` array<
                                   struct<
                                     ruleid:string,
-                                    action:string
+                                    action:string,
+                                    rulematchdetails:array<
+                                        struct<
+                                            conditiontype:string,
+                                            location:string,
+                                            matcheddata:array<string>
+                                              >
+                                            >,
+                                    captcharesponse:struct<
+                                                    responsecode:string,
+                                                    solvetimestamp:bigint
+                                                          >
                                         >
                                      >,
   `requestheadersinserted` string,
@@ -219,7 +232,13 @@ CREATE EXTERNAL TABLE `waf_logs`(
              struct<
                name:string
                    >
-                  >
+                  >,
+  `captcharesponse` struct<
+                        responsecode:string,
+                        solvetimestamp:bigint,
+                        failurereason:string
+                    >
+
 )
 PARTITIONED BY
 (
@@ -247,8 +266,8 @@ For more information about partition projection, see [Partition projection with 
 
 The following example queries query the partition projection table created in the previous section\. Modify the table name, column values, and other variables in the examples according to your requirements\. To improve the performance of your queries and reduce cost, add the partition column in the filter condition\.
 
-**Count the number of referers that contain a specified term**  
-The following query counts the number of referers that contain the term "amazon" for the specified date range\.
+**Count the number of referrers that contain a specified term**  
+The following query counts the number of referrers that contain the term "amazon" for the specified date range\.
 
 ```
 WITH test_dataset AS 

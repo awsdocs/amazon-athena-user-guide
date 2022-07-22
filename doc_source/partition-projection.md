@@ -46,6 +46,7 @@ The following considerations apply:
 + Partition projection is usable only when the table is queried through Athena\. If the same table is read through another service such as Amazon Redshift Spectrum or Amazon EMR, the standard partition metadata is used\.
 + Because partition projection is a DML\-only feature, `SHOW PARTITIONS` does not list partitions that are projected by Athena but not registered in the AWS Glue catalog or external Hive metastore\. 
 + Athena does not use the table properties of views as configuration for partition projection\. To work around this limitation, configure and enable partition projection in the table properties for the tables that the views reference\.
++ Lake Formation [data filters](https://docs.aws.amazon.com/lake-formation/latest/dg/data-filters-about.html) cannot be used with partition projection in Athena\.
 
 ## Video<a name="partition-projection-video"></a>
 

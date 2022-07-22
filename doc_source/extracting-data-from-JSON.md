@@ -1,6 +1,6 @@
 # Extracting data from JSON<a name="extracting-data-from-JSON"></a>
 
-You may have source data with containing JSON\-encoded strings that you do not necessarily want to deserialize into a table in Athena\. In this case, you can still run SQL operations on this data, using the JSON functions available in Presto\.
+You may have source data containing JSON\-encoded strings that you do not necessarily want to deserialize into a table in Athena\. In this case, you can still run SQL operations on this data, using the JSON functions available in Presto\.
 
 Consider this JSON string as an example dataset\.
 

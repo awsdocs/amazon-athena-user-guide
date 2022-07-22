@@ -1,6 +1,9 @@
 # Using EXPLAIN and EXPLAIN ANALYZE in Athena<a name="athena-explain-statement"></a>
 
-The `EXPLAIN` statement shows the logical or distributed execution plan of a specified SQL statement, or validates the SQL statement\. You can output the results in text format or in a data format for rendering into a graph\. 
+The `EXPLAIN` statement shows the logical or distributed execution plan of a specified SQL statement, or validates the SQL statement\. You can output the results in text format or in a data format for rendering into a graph\.
+
+**Note**  
+You can view graphical representations of logical and distributed plans for your queries in the Athena console without using the `EXPLAIN` syntax\. For more information, see [Viewing execution plans for SQL queries](query-plans.md)\.
 
 The `EXPLAIN ANALYZE` statement shows both the distributed execution plan of a specified SQL statement and the computational cost of each operation in a SQL query\. You can output the results in text or JSON format\. 
 
@@ -54,7 +57,7 @@ UNLOAD
 
 The following examples for `EXPLAIN` progress from the more straightforward to the more complex\.
 
-### EXPLAIN example 1\. use the EXPLAIN statement to show a query plan in text format<a name="athena-explain-statement-example-text-query-plan"></a>
+### EXPLAIN example 1: Use the EXPLAIN statement to show a query plan in text format<a name="athena-explain-statement-example-text-query-plan"></a>
 
 In the following example, `EXPLAIN` shows the execution plan for a `SELECT` query on Elastic Load Balancing logs\. The format defaults to text output\.
 
@@ -80,63 +83,30 @@ analyzePartitionValues=Optional.empty}] => [[request_timestamp, elb_name, reques
                 elb_name := elb_name:string:1:REGULAR
 ```
 
-### EXPLAIN example 2\. use the EXPLAIN statement to graph a query plan<a name="athena-explain-statement-example-graph-a-query-plan"></a>
+### EXPLAIN example 2: Graph a query plan<a name="athena-explain-statement-example-graph-a-query-plan"></a>
+
+You can use the Athena console to graph a query plan for you\. Enter a `SELECT` statement like the following into the Athena query editor, and then choose **EXPLAIN**\.
 
 ```
-EXPLAIN (FORMAT GRAPHVIZ)
 SELECT 
       c.c_custkey,
       o.o_orderkey,
       o.o_orderstatus
    FROM tpch100.customer c 
    JOIN tpch100.orders o 
-       ON c.c_custkey = o.o_custkey 
-   WHERE c.c_custkey = 5566684
+       ON c.c_custkey = o.o_custkey
 ```
 
-#### Results<a name="athena-explain-statement-example-graph-a-query-plan-results"></a>
+The **Explain** page of the Athena query editor opens and shows you a distributed plan and a logical plan for the query\. The following graph shows the logical plan for the example\.
 
-```
-Query Plan
-digraph logical_plan {
-subgraph cluster_graphviz_plan {
-label = "SINGLE"
-plannode_1[label="{Output[c_custkey, o_orderkey, o_orderstatus]}", style="rounded, filled", shape=record,\
-  fillcolor=white];
-plannode_2[label="{ExchangeNode[GATHER]|\"c_custkey\", \"o_orderstatus\", \"o_orderkey\"}", style="rounded,\
-  filled", shape=record, fillcolor=gold];
-plannode_3[label="{InnerJoin}", style="rounded, filled", shape=record, fillcolor=orange];
-plannode_4[label="{Filter|(\"c_custkey\" = 5566684)}", style="rounded, filled", shape=record,\
-  fillcolor=yellow];
-plannode_5[label="{TableScan[awsdatacatalog:HiveTableHandle\{schemaName=tpch100, tableName=customer,\
-  analyzePartitionValues=Optional.empty\}]}", style="rounded, filled", shape=record, fillcolor=deepskyblue];
-plannode_6[label="{ExchangeNode[GATHER]|\"o_orderstatus\", \"o_orderkey\"}", style="rounded, filled",\
-  shape=record, fillcolor=gold];
-plannode_7[label="{ExchangeNode[REPLICATE]|\"o_orderstatus\", \"o_orderkey\"}", style="rounded, filled",\
-  shape=record, fillcolor=gold];
-plannode_8[label="{Project}", style="rounded, filled", shape=record, fillcolor=bisque];
-plannode_9[label="{Filter|(\"o_custkey\" = 5566684)}", style="rounded, filled", shape=record,\
-  fillcolor=yellow];
-plannode_10[label="{TableScan[awsdatacatalog:HiveTableHandle\{schemaName=tpch100, tableName=orders,\
-  analyzePartitionValues=Optional.empty\}]}", style="rounded, filled", shape=record, fillcolor=deepskyblue];
-}
-plannode_1, plannode_2;
-plannode_2, plannode_3;
-plannode_3, plannode_4;
-plannode_4, plannode_5;
-plannode_3, plannode_6;
-plannode_6, plannode_7;
-plannode_7, plannode_8;
-plannode_8, plannode_9;
-plannode_9, plannode_10;
-}
-```
+![\[Graph of the query plan rendered by the Athena query editor.\]](http://docs.aws.amazon.com/athena/latest/ug/images/athena-explain-statement-tpch.png)
 
-To see the query plan visually, use the open source [Graphviz](https://graphviz.org/) tool to render all of the text in the results after `Query Plan` into a graph like the following\.
+**Important**  
+Currently, some partition filters may not be visible in the nested operator tree graph even though Athena does apply them to your query\. To verify the effect of such filters, run `EXPLAIN` or `EXPLAIN ANALYZE` on your query and view the results\.
 
-![\[Graph of the query plan rendered by the Graphviz tool.\]](http://docs.aws.amazon.com/athena/latest/ug/images/athena-explain-statement-1.png)
+For more information about using the query plan graphing features in the Athena console, see [Viewing execution plans for SQL queries](query-plans.md)\.
 
-### EXPLAIN example 3\. use the EXPLAIN statement to verify partition pruning<a name="athena-explain-statement-example-verify-partition-pruning"></a>
+### EXPLAIN example 3: Use the EXPLAIN statement to verify partition pruning<a name="athena-explain-statement-example-verify-partition-pruning"></a>
 
 When you use a filtering predicate on a partitioned key to query a partitioned table, the query engine applies the predicate to the partitioned key to reduce the amount of data read\.
 
@@ -208,7 +178,7 @@ analyzePartitionValues=Optional.empty}] => [[o_orderkey, o_custkey, o_orderdate]
 
 The bold text in the result shows that the predicate `o_orderdate = '1995'` was applied on the `PARTITION_KEY`\.
 
-### EXPLAIN example 4\. use an EXPLAIN query to check the join order and join type<a name="athena-explain-statement-example-check-join-order-and-type"></a>
+### EXPLAIN example 4: Use an EXPLAIN query to check the join order and join type<a name="athena-explain-statement-example-check-join-order-and-type"></a>
 
 The following `EXPLAIN` query checks the `SELECT` statement's join order and join type\. Use a query like this to examine query memory usage so that you can reduce the chances of getting an `EXCEEDED_LOCAL_MEMORY_LIMIT` error\.
 
@@ -281,7 +251,7 @@ JOIN tpch100.customer c -- the filtered results of tpch100.customer are distribu
 WHERE c.c_custkey = 123
 ```
 
-### EXPLAIN example 5\. use an EXPLAIN query to remove predicates that have no effect<a name="athena-explain-statement-example-remove-unneeded-predicates"></a>
+### EXPLAIN example 5: Use an EXPLAIN query to remove predicates that have no effect<a name="athena-explain-statement-example-remove-unneeded-predicates"></a>
 
 You can use an `EXPLAIN` query to check the effectiveness of filtering predicates\. You can use the results to remove predicates that have no effect, as in the following example\.
 
@@ -325,7 +295,7 @@ For information about the terms used in the results of `EXPLAIN` queries, see [U
 
 The following examples show example `EXPLAIN ANALYZE` queries and outputs\.
 
-### EXPLAIN ANALYZE example 1\. use EXPLAIN ANALYZE to show a query plan and computational cost in text format<a name="athena-explain-analyze-example-cflogs-text"></a>
+### EXPLAIN ANALYZE example 1: Use EXPLAIN ANALYZE to show a query plan and computational cost in text format<a name="athena-explain-analyze-example-cflogs-text"></a>
 
 In the following example, `EXPLAIN ANALYZE` shows the execution plan and computational costs for a `SELECT` query on CloudFront logs\. The format defaults to text output\.
 
@@ -382,7 +352,7 @@ grouped = false] => [[date, time, location, bytes, requestip, method, host, uri,
                  status := status:int:8:REGULAR
 ```
 
-### EXPLAIN ANALYZE example 2\. use EXPLAIN ANALYZE to show a query plan in JSON format<a name="athena-explain-analyze-example-cflogs-json"></a>
+### EXPLAIN ANALYZE example 2: Use EXPLAIN ANALYZE to show a query plan in JSON format<a name="athena-explain-analyze-example-cflogs-json"></a>
 
 The following example shows the execution plan and computational costs for a `SELECT` query on CloudFront logs\. The example specifies JSON as the output format\.
 
@@ -522,7 +492,10 @@ EXPLAIN ANALYZE (FORMAT JSON) SELECT * FROM cloudfront_logs LIMIT 10
 
 ## Additional resources<a name="athena-explain-statement-additional-resources"></a>
 
-For additional information about `EXPLAIN` queries, see the following resources\.
+For additional information, see the following resources\.
++  [Understanding Athena EXPLAIN statement results](athena-explain-statement-understanding.md)
++  [Viewing execution plans for SQL queries](query-plans.md)
++  [Viewing statistics and execution details for completed queries](query-stats.md)
 + Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain.html](https://prestodb.io/docs/0.217/sql/explain.html) documentation
 + Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain-analyze.html](https://prestodb.io/docs/0.217/sql/explain-analyze.html) documentation
 + [Explain the `EXPLAIN`](https://youtu.be/GcS02yTNwC0?t=1222) video on YouTube \(20:18\)

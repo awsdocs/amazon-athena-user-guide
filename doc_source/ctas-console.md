@@ -1,8 +1,6 @@
 # Running CTAS queries in the console<a name="ctas-console"></a>
 
-In the Athena console, you can: 
-+ [To create a CTAS query from another query](#ctas-create-from-query)
-+ [To create a CTAS query from another query](#ctas-create-from-query)<a name="ctas-create-from-query"></a>
+In the Athena console, you can create a CTAS query from another query\.<a name="ctas-create-from-query"></a>
 
 **To create a CTAS query from another query**
 

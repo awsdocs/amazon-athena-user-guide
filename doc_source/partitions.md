@@ -4,12 +4,13 @@ By partitioning your data, you can restrict the amount of data scanned by each q
 
 Athena can use Apache Hive style partitions, whose data paths contain key value pairs connected by equal signs \(for example, `country=us/...` or `year=2021/month=01/day=26/...`\)\. Thus, the paths include both the names of the partition keys and the values that each path represents\. To load new Hive partitions into a partitioned table, you can use the [MSCK REPAIR TABLE](msck-repair-table.md) command, which works only with Hive\-style partitions\.
 
-Athena can also use non\-Hive style partitioning schemes\. For example, CloudTrail logs and Kinesis Data Firehose delivery streams use separate path components for date parts such as `data/2021/01/26/us/6fc7845e.json`\. For such non\-Hive compatible data, you use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to add the partitions manually\.
+Athena can also use non\-Hive style partitioning schemes\. For example, CloudTrail logs and Kinesis Data Firehose delivery streams use separate path components for date parts such as `data/2021/01/26/us/6fc7845e.json`\. For such non\-Hive style partitions, you use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to add the partitions manually\.
 
 ## Considerations and limitations<a name="partitions-considerations-limitations"></a>
 
 When using partitioning, keep in mind the following points:
 + If you query a partitioned table and specify the partition in the `WHERE` clause, Athena scans the data only from that partition\. For more information, see [Table location and partitions](tables-location-format.md#table-location-and-partitions)\.
++ If the partition name is within the `WHERE` clause of the subquery, Athena currently does not filter the partition and instead scans all data from the partitioned table\.
 + If you issue queries against Amazon S3 buckets with a large number of objects and the data is not partitioned, such queries may affect the `GET` request rate limits in Amazon S3 and lead to Amazon S3 exceptions\. To prevent errors, partition your data\. Additionally, consider tuning your Amazon S3 request rates\. For more information, see [Best practices design patterns: Optimizing Amazon S3 performance ](https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html)\.
 + Partition locations to be used with Athena must use the `s3` protocol \(for example, `s3://DOC-EXAMPLE-BUCKET/folder/`\)\. In Athena, locations that use other protocols \(for example, `s3a://DOC-EXAMPLE-BUCKET/folder/`\) will result in query failures when `MSCK REPAIR TABLE` queries are run on the containing tables\. 
 + Make sure that the Amazon S3 path is in lower case instead of camel case \(for example, `userid` instead of `userId`\)\. If the S3 path is in camel case, `MSCK REPAIR TABLE` doesn't add the partitions to the AWS Glue Data Catalog\. For more information, see [MSCK REPAIR TABLE](msck-repair-table.md)\.
@@ -33,7 +34,7 @@ STORED AS parquet
 LOCATION 's3://DOC-EXAMPLE-BUCKET/folder/'
 ```
 
-After you create the table, you load the data in the partitions for querying\. For Hive\-compatible data, you run [MSCK REPAIR TABLE](msck-repair-table.md)\. For non\-Hive compatible data, you use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to add the partitions manually\.
+After you create the table, you load the data in the partitions for querying\. For Hive style partitions, you run [MSCK REPAIR TABLE](msck-repair-table.md)\. For non\-Hive style partitions, you use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to add the partitions manually\.
 
 ## Preparing Hive style and non\-Hive style data for querying<a name="partitions-preparing-data"></a>
 

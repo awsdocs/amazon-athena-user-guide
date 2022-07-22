@@ -170,7 +170,7 @@ LOCATION 's3://my_bucket/csvdata_folder/';
 TBLPROPERTIES ("skip.header.line.count"="1")
 ```
 
-Alternatively, you can remove the CSV headers beforehand so that the header information is not included in Athena query results\. One way to achieve this is to use AWS Glue jobs, which perform extract, transform, and load \(ETL\) work\. You can write scripts in AWS Glue using a language that is an extension of the PySpark Python dialect\. For more information, see [Authoring jobs in glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+Alternatively, you can remove the CSV headers beforehand so that the header information is not included in Athena query results\. One way to achieve this is to use AWS Glue jobs, which perform extract, transform, and load \(ETL\) work\. You can write scripts in AWS Glue using a language that is an extension of the PySpark Python dialect\. For more information, see [Authoring Jobs in AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/author-job.html) in the *AWS Glue Developer Guide*\.
 
 The following example shows a function in an AWS Glue script that writes out a dynamic frame using `from_options`, and sets the `writeHeader` format option to false, which removes the header information:
 
@@ -206,7 +206,7 @@ AWS Glue does not natively support Well\-known Text \(WKT\), Well\-Known Binary 
 
 ## Using AWS Glue jobs for ETL with Athena<a name="schema-classifier"></a>
 
-AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extracts data from sources, transforms the data, and loads it into targets\. For more information, see [Authoring jobs in glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extracts data from sources, transforms the data, and loads it into targets\. For more information, see [Authoring Jobs in AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/author-job.html) in the *AWS Glue Developer Guide*\.
 
 ### Creating tables using Athena for AWS Glue ETL jobs<a name="schema-etl-tables"></a>
 

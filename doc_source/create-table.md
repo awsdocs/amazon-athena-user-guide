@@ -23,7 +23,7 @@ CREATE EXTERNAL TABLE [IF NOT EXISTS]
 ## Parameters<a name="parameters"></a>
 
 **EXTERNAL**  
-Specifies that the table is based on an underlying data file that exists in Amazon S3, in the `LOCATION` that you specify\. All tables created in Athena, except for those created using [CTAS](create-table-as.md), must be `EXTERNAL`\. When you create an external table, the data referenced must comply with the default format or the format that you specify with the `ROW FORMAT`, `STORED AS`, and `WITH SERDEPROPERTIES` clauses\.
+Specifies that the table is based on an underlying data file that exists in Amazon S3, in the `LOCATION` that you specify\. Except when creating [governed tables](lf-governed-tables-creating.md) or [Iceberg](querying-iceberg-creating-tables.md) tables, always use the `EXTERNAL` keyword\. If you use `CREATE TABLE` without the `EXTERNAL` keyword for non\-governed, non\-Iceberg tables, Athena issues an error\. When you create an external table, the data referenced must comply with the default format or the format that you specify with the `ROW FORMAT`, `STORED AS`, and `WITH SERDEPROPERTIES` clauses\.
 
 **\[IF NOT EXISTS\]**  
 Causes the error message to be suppressed if a table named `table_name` already exists\.
@@ -107,6 +107,6 @@ Use a trailing slash for your folder or bucket\. Do not use file names or glob c
 **\[TBLPROPERTIES \( \['has\_encrypted\_data'='true \| false',\] \['classification'='aws\_glue\_classification',\] property\_name=property\_value \[, \.\.\.\] \) \]**  
 Specifies custom metadata key\-value pairs for the table definition in addition to predefined table properties, such as `"comment"`\.  
 Athena has a built\-in property, `has_encrypted_data`\. Set this property to `true` to indicate that the underlying dataset specified by `LOCATION` is encrypted\. If omitted and if the workgroup's settings do not override client\-side settings, `false` is assumed\. If omitted or set to `false` when underlying data is encrypted, the query results in an error\. For more information, see [Encryption at rest](encryption.md)\.  
-To run ETL jobs, AWS Glue requires that you create a table with the `classification` property to indicate the data type for AWS Glue as `csv`, `parquet`, `orc`, `avro`, or `json`\. For example, `'classification'='csv'`\. ETL jobs will fail if you do not specify this property\. You can subsequently specify it using the AWS Glue console, API, or CLI\. For more information, see [Using AWS Glue jobs for ETL with Athena](glue-best-practices.md#schema-classifier) and [Authoring jobs in glue](https://docs.aws.amazon.com/glue/latest/dg/busisadd-job.html) in the *AWS Glue Developer Guide*\.
+To run ETL jobs, AWS Glue requires that you create a table with the `classification` property to indicate the data type for AWS Glue as `csv`, `parquet`, `orc`, `avro`, or `json`\. For example, `'classification'='csv'`\. ETL jobs will fail if you do not specify this property\. You can subsequently specify it using the AWS Glue console, API, or CLI\. For more information, see [Using AWS Glue jobs for ETL with Athena](glue-best-practices.md#schema-classifier) and [Authoring Jobs in AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/author-job.html) in the *AWS Glue Developer Guide*\.
 
 For more information about creating tables, see [Creating tables in Athena](creating-tables.md)\.

@@ -1,10 +1,11 @@
 # Connecting to Amazon Athena with ODBC<a name="connect-with-odbc"></a>
 
-Download the Amazon Athena ODBC driver License Agreement, ODBC drivers, and ODBC documentation using the following links\. For information about the ODBC connection string, see the ODBC Driver Installation and Configuration Guide PDF file, downloadable from this page\. For permissions information, see [Access through JDBC and ODBC connections](policy-actions.md)\.
+Use the links on this page to download the Amazon Athena ODBC driver License Agreement, ODBC drivers, and ODBC documentation\. For information about the ODBC connection string, see the ODBC Driver Installation and Configuration Guide PDF file, downloadable from this page\. For permissions information, see [Access through JDBC and ODBC connections](policy-actions.md)\.
 
-## Amazon Athena ODBC driver license agreement<a name="atelong-odbc-driver-license-agreement"></a>
-
- [License agreement](https://s3.amazonaws.com/athena-downloads/agreement/ODBC/Amazon+Athena+ODBC+Driver+License+Agreement.pdf) 
+**Important**  
+When you use the ODBC driver, be sure to note the following requirements:  
+**Open port 444** – Keep port 444, which Athena uses to stream query results, open to outbound traffic\. When you use a PrivateLink endpoint to connect to Athena, ensure that the security group attached to the PrivateLink endpoint is open to inbound traffic on port 444\. 
+**athena:GetQueryResultsStream policy** – Add the `athena:GetQueryResultsStream` policy action to the IAM principals that use the ODBC driver\. This policy action is not exposed directly with the API\. It is used only with the ODBC and JDBC drivers as part of streaming results support\. For an example policy, see [AWS managed policy: AWSQuicksightAthenaAccess](managed-policies.md#awsquicksightathenaaccess-managed-policy)\. 
 
 ## ODBC driver download links<a name="connect-with-odbc-driver-and-documentation-download-links"></a>
 
@@ -34,61 +35,11 @@ Download the Amazon Athena ODBC driver License Agreement, ODBC drivers, and ODBC
 ### Documentation<a name="connect-with-odbc-driver-documentation"></a>
 
 
-| Driver version | Download link | 
+| Content | Download link | 
 | --- | --- | 
+| Amazon Athena ODBC driver license agreement |  [License agreement](https://s3.amazonaws.com/athena-downloads/agreement/ODBC/Amazon+Athena+ODBC+Driver+License+Agreement.pdf)  | 
 | Documentation for ODBC 1\.1\.17 | [ODBC driver installation and configuration guide version 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/docs/Simba+Amazon+Athena+ODBC+Connector+Install+and+Configuration+Guide.pdf) | 
 | Release Notes for ODBC 1\.1\.17 | [ODBC driver release notes version 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/docs/release-notes.txt) | 
-
-## Migration from the previous version of the ODBC driver<a name="migration-from-previous-odbc-driver"></a>
-
-The current ODBC driver version 1\.1\.17 is a drop\-in replacement of the previous versions of the ODBC driver\. It is also backward compatible with the ODBC driver version 1\.0\.3, if you use the following required steps to make sure that the driver runs\. 
-
-**Important**  
-To use the ODBC driver versions 1\.0\.3 and greater, follow these requirements:   
-Keep port 444, which Athena uses to stream query results, open to outbound traffic\. When you use a PrivateLink endpoint to connect to Athena, ensure that the security group attached to the PrivateLink endpoint is open to inbound traffic on port 444\. 
-Add the `athena:GetQueryResultsStream` policy action to the list of policies for Athena\. This policy action is not exposed directly with the API operation, and is used only with the ODBC and JDBC drivers, as part of streaming results support\. For an example policy, see [AWS managed policy: AWSQuicksightAthenaAccess](managed-policies.md#awsquicksightathenaaccess-managed-policy)\. 
-
-## Previous versions of the ODBC driver<a name="odbc-previous-versions"></a>
-
-
-| Driver version 1\.0\.5 | Download link | 
-| --- | --- | 
-| ODBC 1\.0\.5 for Windows 32\-bit | [Windows 32 bit ODBC driver 1\.0\.5](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/Windows/Simba+Athena+1.0+32-bit.msi) | 
-| ODBC 1\.0\.5 for Windows 64\-bit | [Windows 64 bit ODBC driver 1\.0\.5](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/Windows/Simba+Athena+1.0+64-bit.msi) | 
-| ODBC 1\.0\.5 for Linux 32\-bit | [Linux 32 bit ODBC driver 1\.0\.5](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/Linux/simbaathena-1.0.5.1006-1.i686.rpm) | 
-| ODBC 1\.0\.5 for Linux 64\-bit | [Linux 64 bit ODBC driver 1\.0\.5](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/Linux/simbaathena-1.0.5.1006-1.x86_64.rpm) | 
-| ODBC 1\.0\.5 for OSX | [OSX ODBC driver 1\.0\.5](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/OSX/Simba+Athena+1.0.dmg) | 
-| Documentation for ODBC 1\.0\.5 | [ODBC driver installation and configuration guide version 1\.0\.5](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.5/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf)  | 
-
-
-| Driver version 1\.0\.4 | Download link | 
-| --- | --- | 
-| ODBC 1\.0\.4 for Windows 32\-bit | [Windows 32 bit ODBC driver 1\.0\.4](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.4/Windows/Simba+Athena+1.0+32-bit.msi) | 
-| ODBC 1\.0\.4 for Windows 64\-bit | [Windows 64 bit ODBC driver 1\.0\.4](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.4/Windows/Simba+Athena+1.0+64-bit.msi) | 
-| ODBC 1\.0\.4 for Linux 32\-bit | [Linux 32 bit ODBC driver 1\.0\.4](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.4/Linux/simbaathena-1.0.4.1005-1.i686.rpm) | 
-| ODBC 1\.0\.4 for Linux 64\-bit | [Linux 64 bit ODBC driver 1\.0\.4](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.4/Linux/simbaathena-1.0.4.1005-1.x86_64.rpm) | 
-| ODBC 1\.0\.4 for OSX | [OSX ODBC driver 1\.0\.4](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.4/OSX/Simba+Athena+1.0.dmg) | 
-| Documentation for ODBC 1\.0\.4 | [ODBC driver installation and configuration guide version 1\.0\.4](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.4/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf)  | 
-
-
-| Driver version 1\.0\.3 | Download link | 
-| --- | --- | 
-| ODBC 1\.0\.3 for Windows 32\-bit | [Windows 32\-bit ODBC driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Windows/Simba+Athena+1.0+32-bit.msi) | 
-| ODBC 1\.0\.3 for Windows 64\-bit | [Windows 64\-bit ODBC driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Windows/Simba+Athena+1.0+64-bit.msi) | 
-| ODBC 1\.0\.3 for Linux 32\-bit | [Linux 32\-bit ODBC driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Linux/simbaathena-1.0.3.1004-1.i686.rpm) | 
-| ODBC 1\.0\.3 for Linux 64\-bit | [Linux 64\-bit ODBC driver 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Linux/simbaathena-1.0.3.1004-1.x86_64.rpm) | 
-| ODBC 1\.0\.3 for OSX | [OSX ODBC driver 1\.0](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/OSX/Simba+Athena+1.0.dmg) | 
-| Documentation for ODBC 1\.0\.3 | [ODBC driver installation and configuration guide version 1\.0\.3](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.3/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf) | 
-
-
-| Driver version 1\.0\.2 | Download link | 
-| --- | --- | 
-| ODBC 1\.0\.2 for Windows 32\-bit | [Windows 32\-bit ODBC driver 1\.0\.2](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Windows/Simba+Athena+1.0+32-bit.msi) | 
-| ODBC 1\.0\.2 for Windows 64\-bit | [Windows 64\-bit ODBC driver 1\.0\.2](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Windows/Simba+Athena+1.0+64-bit.msi) | 
-| ODBC 1\.0\.2 for Linux 32\-bit | [Linux 32\-bit ODBC driver 1\.0\.2](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Linux/simbaathena-1.0.2.1003-1.i686.rpm) | 
-| ODBC 1\.0\.2 for Linux 64\-bit | [Linux 64\-bit ODBC driver 1\.0\.2](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Linux/simbaathena-1.0.2.1003-1.x86_64.rpm) | 
-| ODBC 1\.0 for OSX | [OSX ODBC driver 1\.0](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/OSX/Simba+Athena+1.0.dmg) | 
-| Documentation for ODBC 1\.0\.2 | [ODBC driver installation and configuration guide version 1\.0\.2](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/Simba+Athena+ODBC+Install+and+Configuration+Guide.pdf) | 
 
 ## ODBC driver notes<a name="connect-with-odbc-configuration"></a>
 

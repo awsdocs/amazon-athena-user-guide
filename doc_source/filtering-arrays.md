@@ -56,9 +56,9 @@ This query returns:
  filter(ARRAY [list_of_values], boolean_function)
 ```
 
-The `filter` function creates an array from the items in the *list\_of\_values* for which *boolean\_function* is true\. The `filter` function can be useful in cases in which you cannot use the *UNNEST* function\.
+You can use the `filter` function on an `ARRAY` expression to create a new array that is the subset of the items in the *list\_of\_values* for which *boolean\_function* is true\. The `filter` function can be useful in cases in which you cannot use the *UNNEST* function\.
 
-The following example creates an array from the values greater than zero in the array `[1,0,5,-1]`\.
+The following example filters for values greater than zero in the array `[1,0,5,-1]`\.
 
 ```
 SELECT filter(ARRAY [1,0,5,-1], x -> x>0)
@@ -67,7 +67,7 @@ SELECT filter(ARRAY [1,0,5,-1], x -> x>0)
 **Results**  
 `[1,5]`
 
-The following example creates an array that consists of the non\-null values from the array `[-1, NULL, 10, NULL]`\.
+The following example filters for the non\-null values in the array `[-1, NULL, 10, NULL]`\.
 
 ```
 SELECT filter(ARRAY [-1, NULL, 10, NULL], q -> q IS NOT NULL)

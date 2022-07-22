@@ -29,6 +29,6 @@ While queries continue to run, automation built based on availability of results
 
 1. Notify users which workgroups to use for running queries\. Send an email to inform your account's users about workgroup names that they can use, the required IAM policies, and the workgroup settings\.
 
-1. Configure cost control limits, also known as data usage control limits, for queries and workgroups\. To notify you when a threshold is breached, create an Amazon SNS topic and configure subscriptions\. For detailed steps, see [Setting data usage control limits](workgroups-setting-control-limits-cloudwatch.md) and [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html) in the *Amazon Simple Notification Service Getting Started Guide*\.
+1. Configure cost control limits, also known as data usage control limits, for queries and workgroups\. To notify you when a threshold is breached, create an Amazon SNS topic and configure subscriptions\. For detailed steps, see [Setting data usage control limits](workgroups-setting-control-limits-cloudwatch.md) and [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html) in the *Amazon Simple Notification Service Developer Guide*\.
 
 1. Switch to the workgroup so that you can run queries\.To run queries, switch to the appropriate workgroup\. For detailed steps, see [Specify a workgroup in which to run queries](workgroups-create-update-delete.md#specify-wkgroup-to-athena-in-which-to-run-queries)\.

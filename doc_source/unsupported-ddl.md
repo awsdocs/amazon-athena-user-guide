@@ -2,26 +2,27 @@
 
 The following DDL statements are not supported by Athena:
 + ALTER INDEX
-+ ALTER TABLE `table_name` ARCHIVE PARTITION
-+ ALTER TABLE `table_name` CLUSTERED BY
-+ ALTER TABLE `table_name` EXCHANGE PARTITION
-+ ALTER TABLE `table_name` NOT CLUSTERED
-+ ALTER TABLE `table_name` NOT SKEWED
-+ ALTER TABLE `table_name` NOT SORTED
-+ ALTER TABLE `table_name` NOT STORED AS DIRECTORIES
-+ ALTER TABLE `table_name` partitionSpec CHANGE COLUMNS
-+ ALTER TABLE `table_name` partitionSpec COMPACT
-+ ALTER TABLE `table_name` partitionSpec CONCATENATE
-+ ALTER TABLE `table_name` partitionSpec SET FILEFORMAT
-+ ALTER TABLE `table_name` RENAME TO
-+ ALTER TABLE `table_name` SET SKEWED LOCATION
-+ ALTER TABLE `table_name` SKEWED BY
-+ ALTER TABLE `table_name` TOUCH
-+ ALTER TABLE `table_name` UNARCHIVE PARTITION
++ ALTER TABLE *table\_name* ARCHIVE PARTITION
++ ALTER TABLE *table\_name* CLUSTERED BY
++ ALTER TABLE *table\_name* EXCHANGE PARTITION
++ ALTER TABLE *table\_name* NOT CLUSTERED
++ ALTER TABLE *table\_name* NOT SKEWED
++ ALTER TABLE *table\_name* NOT SORTED
++ ALTER TABLE *table\_name* NOT STORED AS DIRECTORIES
++ ALTER TABLE *table\_name* partitionSpec CHANGE COLUMNS
++ ALTER TABLE *table\_name* partitionSpec COMPACT
++ ALTER TABLE *table\_name* partitionSpec CONCATENATE
++ ALTER TABLE *table\_name* partitionSpec SET FILEFORMAT
++ ALTER TABLE *table\_name* RENAME TO
++ ALTER TABLE *table\_name* SET SERDEPROPERTIES
++ ALTER TABLE *table\_name* SET SKEWED LOCATION
++ ALTER TABLE *table\_name* SKEWED BY
++ ALTER TABLE *table\_name* TOUCH
++ ALTER TABLE *table\_name* UNARCHIVE PARTITION
 + COMMIT
 + CREATE INDEX
 + CREATE ROLE
-+ CREATE TABLE `table_name` LIKE `existing_table_name` 
++ CREATE TABLE *table\_name* LIKE *existing\_table\_name* 
 + CREATE TEMPORARY MACRO
 + DELETE FROM
 + DESCRIBE DATABASE

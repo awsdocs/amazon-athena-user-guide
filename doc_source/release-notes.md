@@ -12,6 +12,51 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2022<a name="release-notes-2022"></a>
 
+### July 21, 2022<a name="release-note-2022-07-21"></a>
+
+Published on 2022\-07\-21
+
+You can now analyze and debug your queries using performance metrics and interactive, visual query analysis tools in the Athena console\. The query performance data and execution details can help you identify bottlenecks in queries, inspect the operators and statistics for each stage of a query, trace the volume of data flowing between stages, and validate the impact of query predicates\. You can now:
++ Access the distributed and logical execution plan for your query in a single click\. 
++ Explore the operations at each stage before the stage is run\.
++ Visualize the performance of completed queries with metrics for time spent in the queuing, planning, and execution stages\. 
++ Get information on the number of rows and amount of source data processed and output by your query\.
++ See granular execution details for your queries presented in context and formatted as an interactive graph\.
++ Use precise, stage\-level execution details to understand the flow of data through your query\.
++ Analyze query performance data programmatically using new APIs to [get query runtime statistics](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryRuntimeStatistics.html), also released today\.
+
+To learn how to use these capabilities on your queries, watch the video tutorial [Optimize Amazon Athena Queries with New Query Analysis Tools](https://www.youtube.com/watch?v=7JUyTqglmNU) on the AWS YouTube channel\.
+
+For documentation, see [Viewing execution plans for SQL queries](query-plans.md) and [Viewing statistics and execution details for completed queries](query-stats.md)\.
+
+### July 11, 2022<a name="release-note-2022-07-11"></a>
+
+Published on 2022\-07\-11
+
+You can now run parameterized queries directly from the Athena console or API without preparing SQL statements in advance\.
+
+When you run queries in the Athena console that have parameters in the form of question marks, the user interface now prompts you to enter values for the parameters directly\. This eliminates the need to modify literal values in the query editor every time you want to run the query\. 
+
+If you use the enhanced [query execution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) API, you can now provide the execution parameters and their values in a single call\.
+
+For more information, see [Querying with parameterized queries](querying-with-prepared-statements.md) in this user guide and the AWS Big Data Blog post [Use Amazon Athena parameterized queries to provide data as a service](http://aws.amazon.com/blogs/big-data/use-amazon-athena-parameterized-queries-to-provide-data-as-a-service/)\.
+
+### July 8, 2022<a name="release-note-2022-07-08"></a>
+
+Published on 2022\-07\-08
+
+Athena announces the following fixes and improvements\.
++ Fixed an issue with `DATE` column conversion handling for SageMaker endpoints \(UDF\) that was causing query failures\.
+
+### June 6, 2022<a name="release-note-2022-06-06"></a>
+
+Published on 2022\-06\-06
+
+Athena releases JDBC driver version 2\.0\.31\. The JDBC 2\.0\.31 driver includes the following changes:
++ **log4j dependency issue** – Resolved a Cannot find driver class error message caused by a log4j dependency\.
+
+For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+
 ### May 25, 2022<a name="release-note-2022-05-25"></a>
 
 Published on 2022\-05\-25
@@ -84,7 +129,7 @@ Athena releases JDBC driver version 2\.0\.28\. The JDBC 2\.0\.28 driver includes
   + Log4j\-core 2\.17\.1 \(previously 2\.17\.0\) 
   + Log4j\-jcl 2\.17\.2
 + **Other improvements** – The new driver also includes the following improvements and bug fixes:
-  + The Athena prepared statements feature is now available through JDBC\. For information about prepared statements, see [Querying with prepared statements](querying-with-prepared-statements.md)\.
+  + The Athena prepared statements feature is now available through JDBC\. For information about prepared statements, see [Querying with parameterized queries](querying-with-prepared-statements.md)\.
   + Athena JDBC SAML federation is now functional for the China Regions\.
   + Additional minor improvements\.
 
@@ -513,7 +558,7 @@ For in\-depth information about using the Vertica connector, see [Querying a Ver
 
 Published on 2021\-04\-30
 
-Released drivers JDBC 2\.0\.21 and ODBC 1\.1\.9 for Athena\. Both releases support SAML authentication with Azure Active Directory \(AD\) and SAML authentication with PingFederate\. The JDBC release also supports parameterized queries\. For information about parameterized queries in Athena, see [Querying with prepared statements](querying-with-prepared-statements.md)\. 
+Released drivers JDBC 2\.0\.21 and ODBC 1\.1\.9 for Athena\. Both releases support SAML authentication with Azure Active Directory \(AD\) and SAML authentication with PingFederate\. The JDBC release also supports parameterized queries\. For information about parameterized queries in Athena, see [Querying with parameterized queries](querying-with-prepared-statements.md)\. 
 
 To download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
@@ -1071,7 +1116,7 @@ For downloading the JDBC driver version 2\.0\.5 and its documentation, see [Usin
 
 The JDBC driver version 2\.0\.5 is a drop\-in replacement for the previous version of the driver \(2\.0\.2\)\. To ensure that you can use the JDBC driver version 2\.0\.5, add the `athena:GetQueryResultsStream` policy action to the list of policies for Athena\. This policy action is not exposed directly with the API and is only used with the JDBC driver, as part of streaming results support\. For an example policy, see [AWS managed policy: AWSQuicksightAthenaAccess](managed-policies.md#awsquicksightathenaaccess-managed-policy)\. For more information about migrating from version 2\.0\.2 to version 2\.0\.5 of the driver, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. 
 
-If you are migrating from a 1\.x driver to a 2\.x driver, you will need to migrate your existing configurations to the new configuration\. We highly recommend that you migrate to the current version of the driver\. For more information, see [Using earlier version JDBC drivers](connect-with-previous-jdbc.md), and the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. 
+If you are migrating from a 1\.x driver to a 2\.x driver, you will need to migrate your existing configurations to the new configuration\. We highly recommend that you migrate to the current version of the driver\. For more information, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. 
 
 ### August 7, 2018<a name="release-note-2018-08-07"></a>
 
@@ -1130,8 +1175,6 @@ For information about downloading the new JDBC driver version 2\.0\.2 and its do
 The latest version of the JDBC driver is 2\.0\.2\. If you are migrating from a 1\.x driver to a 2\.x driver, you will need to migrate your existing configurations to the new configuration\. We highly recommend that you migrate to the current driver\. 
 
 For information about the changes introduced in the new version of the driver, the version differences, and examples, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. 
-
-For information about the previous version of the JDBC driver, see [Using earlier version JDBC drivers](connect-with-previous-jdbc.md)\.
 
 ### April 6, 2018<a name="release-note-2018-04-06"></a>
 
@@ -1283,7 +1326,7 @@ For more information, see [Encryption at rest](encryption.md)\.
 #### Improvements<a name="release-note-2017-04-04-improvements"></a>
 + Better JDBC query performance with page\-size improvements, returning 1,000 rows instead of 100\.
 + Added ability to cancel a query using the JDBC driver interface\.
-+ Added ability to specify JDBC options in the JDBC connection URL\. For more information, see [Using earlier version JDBC drivers](connect-with-previous-jdbc.md) for the previous version of the driver, and see [Using Athena with the JDBC driver](connect-with-jdbc.md) for the most current version\.
++ Added ability to specify JDBC options in the JDBC connection URL\. See [Using Athena with the JDBC driver](connect-with-jdbc.md) for the most current JDBC driver\.
 + Added PROXY setting in the driver, which can now be set using [ClientConfiguration](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/ClientConfiguration.html) in the AWS SDK for Java\.
 
 #### Bug Fixes<a name="release-note-2017-04-04-bug-fixes"></a>
