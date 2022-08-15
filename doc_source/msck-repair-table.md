@@ -16,6 +16,7 @@ When using `MSCK REPAIR TABLE`, keep in mind the following points:
 + For partitions that are not compatible with Hive, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to load the partitions so that you can query their data\.
 + Partition locations to be used with Athena must use the `s3` protocol \(for example, `s3://bucket/folder/`\)\. In Athena, locations that use other protocols \(for example, `s3a://bucket/folder/`\) will result in query failures when `MSCK REPAIR TABLE` queries are run on the containing tables\. 
 + Because `MSCK REPAIR TABLE` scans both a folder its subfolders to find a matching partition scheme, be sure to keep data for separate tables in separate folder hierarchies\. For example, suppose you have data for table A in `s3://table-a-data` and data for table B in `s3://table-a-data/table-b-data`\. If both tables are partitioned by string, `MSCK REPAIR TABLE` will add the partitions for table B to table A\. To avoid this, use separate folder structures like `s3://table-a-data` and `s3://table-b-data` instead\. Note that this behavior is consistent with Amazon EMR and Apache Hive\.
++ Due to a known issue, `MSCK REPAIR TABLE` fails silently when partition values contain a colon \(`:`\) character \(for example, when the partition value is a timestamp\)\. As a workaround, use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\. 
 
 ## Synopsis<a name="synopsis"></a>
 

@@ -105,4 +105,4 @@ WHERE
 
 Replace the *map\_identifier\_to\_bucket* function in the example with any scalar expression that maps an identifier to an integer\. For example, the expression could be a simple hash or modulus\. The function enforces a constant upper bound on the number of partitions that can ever be projected on the specified dimension\. When paired with a file format that supports predicate pushdown such as Apache Parquet or ORC, the bucket technique provides good performance\.
 
-For information on writing your own user\-defined function like the scalar bucketing function in the preceding example, see [Querying with user defined functions](querying-udf.md)\.
+For information about writing your own user\-defined function like the scalar bucketing function in the preceding example, see [Querying with user defined functions](querying-udf.md)\.

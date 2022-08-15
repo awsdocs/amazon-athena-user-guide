@@ -27,7 +27,7 @@ You can configure AWS Network Firewall logging for traffic that you forward to y
        app_proto:string,
        netflow:struct<
          pkts:int,
-         bytes:int,
+         bytes:bigint,
          start:string,
          finish:string,
          age:int,

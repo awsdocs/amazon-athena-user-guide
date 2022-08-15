@@ -12,4 +12,4 @@ A database in Athena is a logical grouping for tables you create in it\. Creatin
 
 1. To make your database the current database, select it from the **Database** menu on the left of the query editor\.
 
-For information on controlling permissions to Athena databases, see [Fine\-grained access to databases and tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\.
+For information about controlling permissions to Athena databases, see [Fine\-grained access to databases and tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\.

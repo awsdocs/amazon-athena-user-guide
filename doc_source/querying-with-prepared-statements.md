@@ -1,4 +1,4 @@
-# Querying with parameterized queries<a name="querying-with-prepared-statements"></a>
+# Using parameterized queries<a name="querying-with-prepared-statements"></a>
 
 You can use Athena parameterized queries to re\-run the same query with different parameter values at execution time and help prevent SQL injection attacks\. In Athena, parameterized queries can take the form of execution parameters in any DML query or SQL prepared statements\.
 + Queries with execution parameters can be done in a single step and are not workgroup specific\. You place question marks in any DML query for the values that you want to parameterize\. When you run the query, you declare the execution parameter values sequentially\. The declaration of parameters and the assigning of values for the parameters can be done in the same query, but in a decoupled fashion\. Unlike prepared statements, you can select the workgroup when you submit a query with execution parameters\.
@@ -42,6 +42,7 @@ At this point, you can do one of the following:
 + Enter different parameter values for the same query, and then choose **Run again**\.
 + To clear all of the values that you entered at once, choose **Clear**\.
 + To edit the query directly \(for example, to add or remove question marks\), close the **Enter parameters** dialog box first\.
++ To save the parameterized query for later use, choose **Save** or **Save as**, and then give the query a name\. For more information about using saved queries, see [Using saved queries](saved-queries.md)\.
 
 As a convenience, the **Enter parameters** dialog box remembers the values that you entered previously for the query as long as you use the same tab in the query editor\.
 

@@ -40,4 +40,4 @@ For more information, see the following resources\.
 
 [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md)
 
-[Optimize Amazon Athena Queries with New Query Analysis Tools](https://www.youtube.com/watch?v=7JUyTqglmNU) \(AWS YouTube channel video\)
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/7JUyTqglmNU/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/7JUyTqglmNU)

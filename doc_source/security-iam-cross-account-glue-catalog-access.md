@@ -1,6 +1,6 @@
 # Cross\-account access to AWS Glue data catalogs<a name="security-iam-cross-account-glue-catalog-access"></a>
 
-You can use Athena's cross\-account AWS Glue catalog feature to register an AWS Glue catalog from an account other than your own\. After you configure the required IAM permissions for AWS Glue and register the catalog as an Athena [DataCatalog](https://docs.aws.amazon.com/athena/latest/APIReference/API_DataCatalog.html) resource, you can use Athena to run cross\-account queries\. For information on using the Athena console to register a catalog from another account, see [Registering an AWS Glue Data Catalog from another account](data-sources-glue-cross-account.md)\.
+You can use Athena's cross\-account AWS Glue catalog feature to register an AWS Glue catalog from an account other than your own\. After you configure the required IAM permissions for AWS Glue and register the catalog as an Athena [DataCatalog](https://docs.aws.amazon.com/athena/latest/APIReference/API_DataCatalog.html) resource, you can use Athena to run cross\-account queries\. For information about using the Athena console to register a catalog from another account, see [Registering an AWS Glue Data Catalog from another account](data-sources-glue-cross-account.md)\.
 
 For more information about cross\-account access in AWS Glue, see [Granting cross\-account access](https://docs.aws.amazon.com/glue/latest/dg/cross-account-access.html) in the *AWS Glue Developer Guide*\.
 
@@ -112,7 +112,7 @@ After you finish, it is recommend that you use the [AWS Glue API](https://docs.a
 
 ### Step 2: The borrower registers the AWS Glue Data Catalog that belongs to the owner account<a name="security-iam-cross-account-glue-catalog-access-step-2"></a>
 
-The following procedure shows you how to use the Athena console to configure the AWS Glue Data Catalog in the owner Amazon Web Services account as a data source\. For information on using API operations instead of the console to register the catalog, see [Using the API to register an Athena Data Catalog that belongs to the owner account](#security-iam-cross-account-glue-catalog-access-step-2-api)\.
+The following procedure shows you how to use the Athena console to configure the AWS Glue Data Catalog in the owner Amazon Web Services account as a data source\. For information about using API operations instead of the console to register the catalog, see [Using the API to register an Athena Data Catalog that belongs to the owner account](#security-iam-cross-account-glue-catalog-access-step-2-api)\.
 
 **To register an AWS Glue Data Catalog belonging to another account**
 

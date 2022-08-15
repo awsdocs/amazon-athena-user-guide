@@ -2,7 +2,7 @@
 
 When running queries in Athena, keep in mind the following considerations and limitations:
 + **Stored procedures** – Stored procedures are not supported\.
-+ **Parameterized queries** – Parameterized queries are not supported in Athena engine version 1 but are supported in Athena engine version 2\. For more information, see [Querying with parameterized queries](querying-with-prepared-statements.md)\.
++ **Parameterized queries** – Parameterized queries are not supported in Athena engine version 1 but are supported in Athena engine version 2\. For more information, see [Using parameterized queries](querying-with-prepared-statements.md)\.
 + **Maximum number of partitions** – The maximum number of partitions you can create with `CREATE TABLE AS SELECT` \(CTAS\) statements is 100\. For information, see [CREATE TABLE AS](create-table-as.md)\. For a workaround, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
 + **Unsupported statements** – The following statements are not supported:
   + `CREATE TABLE LIKE` is not supported\.
@@ -17,5 +17,6 @@ When running queries in Athena, keep in mind the following considerations and li
   Data that is moved or transitioned to one of these classes are no longer readable or queryable by Athena even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class\. Alternatively, you can use the Amazon S3 Glacier Instant Retrieval storage class, which is queryable by Athena\. For more information, see [Amazon S3 Glacier instant retrieval storage class](http://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/)\.
 + **Files treated as hidden** – Athena treats source files that start with an underscore \(`_`\) or a dot \(`.`\) as hidden\. To work around this limitation, rename the files\.
 + **Row or column size limitation** – The size of a single row or its columns cannot exceed 32 megabytes\. This limit can be exceeded when, for example, a row in a CSV or JSON file contains a single column of 100 megabytes\. Exceeding this limit can also produce the error message Line too long in text file\. To work around this limitation, make sure that the sum of the data of the columns in any row is less than 32MB\.
++ **LIMIT clause maximum** – The maximum number of rows that can be specified for the `LIMIT` clause is 2147483647\. Exceeding this limit results in the error message NOT\_SUPPORTED: ORDER BY LIMIT > 2147483647 is not supported\.
 + **information\_schema** – Querying `information_schema` is most performant if you have a small to moderate amount of AWS Glue metadata\. If you have a large amount of metadata, errors can occur\. For information about querying the `information_schema` database for AWS Glue metadata, see [Querying AWS Glue Data Catalog](querying-glue-catalog.md)\.
 +  **Array initializations** – Due to a limitation in Java, it is not possible to initialize an array in Athena that has more than 254 arguments\. 

@@ -19,7 +19,7 @@ FROM matches
 CROSS JOIN UNNEST(scores) AS m (score)
 ```
 
-For information on connecting an external Hive metastore to Athena, see [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)\.
+For information about connecting an external Hive metastore to Athena, see [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)\.
 
 ## Considerations and limitations<a name="hive-views-considerations-and-limitations"></a>
 

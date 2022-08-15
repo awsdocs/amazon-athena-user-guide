@@ -2,7 +2,7 @@
 
 This topic covers IAM permissions for prepared statements in Amazon Athena\. Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
-For more information about prepared statements, see [Querying with parameterized queries](querying-with-prepared-statements.md)\.
+For more information about prepared statements, see [Using parameterized queries](querying-with-prepared-statements.md)\.
 
 The following IAM permissions are required for creating, managing, and executing prepared statements\.
 

@@ -10,4 +10,3 @@ The geospatial functions that are available in Athena depend on the engine versi
 
 **Topics**
 + [Geospatial functions in Athena engine version 2](geospatial-functions-list-v2.md)
-+ [Geospatial functions in Athena engine version 1](geospatial-functions-list-v1.md)

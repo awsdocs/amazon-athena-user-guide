@@ -10,7 +10,7 @@ This section provides guidance for running Athena queries on common data sources
 + [Viewing query stats](query-stats.md)
 + [Working with views](views.md)
 + [Using saved queries](saved-queries.md)
-+ [Querying with parameterized queries](querying-with-prepared-statements.md)
++ [Using parameterized queries](querying-with-prepared-statements.md)
 + [Handling schema updates](handling-schema-updates-chapter.md)
 + [Querying arrays](querying-arrays.md)
 + [Querying geospatial data](querying-geospatial-data.md)

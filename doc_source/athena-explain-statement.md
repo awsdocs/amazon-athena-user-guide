@@ -498,4 +498,5 @@ For additional information, see the following resources\.
 +  [Viewing statistics and execution details for completed queries](query-stats.md)
 + Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain.html](https://prestodb.io/docs/0.217/sql/explain.html) documentation
 + Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain-analyze.html](https://prestodb.io/docs/0.217/sql/explain-analyze.html) documentation
-+ [Explain the `EXPLAIN`](https://youtu.be/GcS02yTNwC0?t=1222) video on YouTube \(20:18\)
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/7JUyTqglmNU/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/7JUyTqglmNU)

@@ -42,6 +42,6 @@ For more information, see the following topics in the *Service Authorization Ref
 
 For example JSON data catalog policies, see [Data Catalog example policies](datacatalogs-example-policies.md)\.
 
-For information on AWS Glue permissions and AWS Glue crawler permissions, see [Setting up IAM permissions for AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/getting-started-access.html) and [Crawler prerequisites](https://docs.aws.amazon.com/glue/latest/dg/crawler-prereqs.html) in the *AWS Glue Developer Guide*\.
+For information about AWS Glue permissions and AWS Glue crawler permissions, see [Setting up IAM permissions for AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/getting-started-access.html) and [Crawler prerequisites](https://docs.aws.amazon.com/glue/latest/dg/crawler-prereqs.html) in the *AWS Glue Developer Guide*\.
 
 For a complete list of Amazon Athena actions, see the API action names in the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. 

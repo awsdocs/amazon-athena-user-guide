@@ -105,7 +105,7 @@ For queries that require resources beyond existing limits, you can either optimi
 
 ## Additional resources<a name="performance-tuning-additional-resources"></a>
 
-For additional information on performance tuning in Athena, consider the following resources:
+For additional information about performance tuning in Athena, consider the following resources:
 + Read the AWS Big Data blog post [Top 10 performance tuning tips for Amazon Athena](http://aws.amazon.com/blogs/big-data/top-10-performance-tuning-tips-for-amazon-athena/)
 + Read other [Athena posts in the AWS big data blog](http://aws.amazon.com/blogs/big-data/tag/amazon-athena/) 
 + Ask a question on [AWS re:Post](https://repost.aws/tags/TA78iVOM7gR62_QqDe2-CmiA/amazon-athena) using the **Amazon Athena** tag

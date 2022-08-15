@@ -12,6 +12,29 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2022<a name="release-notes-2022"></a>
 
+### August 3, 2022<a name="release-note-2022-08-03"></a>
+
+Published on 2022\-08\-03
+
+Athena releases JDBC driver version 2\.0\.32\. The JDBC 2\.0\.32 driver includes the following changes:
++ The `User-Agent` string sent to the Athena SDK has been extended to contain the driver version, JDBC specification version, and the name of the authentication plugin\. 
++  Fixed a `NullPointerException` that was thrown when no value was provided for the `CheckNonProxyHost` parameter\. 
++  Fixed an issue with `login_url` parsing in the BrowserSaml authentication plugin\. 
++  Fixed a proxy host issue that occurred when the `UseProxyforIdp` parameter was set to `true`\. 
+
+For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+
+### August 1, 2022<a name="release-note-2022-08-01"></a>
+
+Published on 2022\-08\-01
+
+Athena announces improvements to the Athena Query Federation SDK and Athena prebuilt data source connectors\. The improvements include the following:
++ **Struct parsing** – Fixed a `GlueFieldLexer` parsing issue in the Athena Query Federation SDK that prevented certain complicated structs from displaying all of their data\. This issue affected connectors built on the Athena Query Federation SDK\.
++ **AWS Glue tables** – Added additional support for the `set` and `decimal` column types in AWS Glue tables\.
++ **DynamoDB connector** – Added the ability to ignore casing on DynamoDB attribute names\. For more information, see the [disable\_projection\_and\_casing](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-dynamodb#disable_projection_and_casing) section of the [Amazon Athena DynamoDB connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-dynamodb) documentation on GitHub\.
+
+For more information, see [Release v2022\.30\.2 of Athena Query Federation](https://github.com/awslabs/aws-athena-query-federation/releases/tag/v2022.30.2) on GitHub\.
+
 ### July 21, 2022<a name="release-note-2022-07-21"></a>
 
 Published on 2022\-07\-21
@@ -20,7 +43,7 @@ You can now analyze and debug your queries using performance metrics and interac
 + Access the distributed and logical execution plan for your query in a single click\. 
 + Explore the operations at each stage before the stage is run\.
 + Visualize the performance of completed queries with metrics for time spent in the queuing, planning, and execution stages\. 
-+ Get information on the number of rows and amount of source data processed and output by your query\.
++ Get information about the number of rows and amount of source data processed and output by your query\.
 + See granular execution details for your queries presented in context and formatted as an interactive graph\.
 + Use precise, stage\-level execution details to understand the flow of data through your query\.
 + Analyze query performance data programmatically using new APIs to [get query runtime statistics](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryRuntimeStatistics.html), also released today\.
@@ -39,7 +62,7 @@ When you run queries in the Athena console that have parameters in the form of q
 
 If you use the enhanced [query execution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) API, you can now provide the execution parameters and their values in a single call\.
 
-For more information, see [Querying with parameterized queries](querying-with-prepared-statements.md) in this user guide and the AWS Big Data Blog post [Use Amazon Athena parameterized queries to provide data as a service](http://aws.amazon.com/blogs/big-data/use-amazon-athena-parameterized-queries-to-provide-data-as-a-service/)\.
+For more information, see [Using parameterized queries](querying-with-prepared-statements.md) in this user guide and the AWS Big Data Blog post [Use Amazon Athena parameterized queries to provide data as a service](http://aws.amazon.com/blogs/big-data/use-amazon-athena-parameterized-queries-to-provide-data-as-a-service/)\.
 
 ### July 8, 2022<a name="release-note-2022-07-08"></a>
 
@@ -129,7 +152,7 @@ Athena releases JDBC driver version 2\.0\.28\. The JDBC 2\.0\.28 driver includes
   + Log4j\-core 2\.17\.1 \(previously 2\.17\.0\) 
   + Log4j\-jcl 2\.17\.2
 + **Other improvements** – The new driver also includes the following improvements and bug fixes:
-  + The Athena prepared statements feature is now available through JDBC\. For information about prepared statements, see [Querying with parameterized queries](querying-with-prepared-statements.md)\.
+  + The Athena prepared statements feature is now available through JDBC\. For information about prepared statements, see [Using parameterized queries](querying-with-prepared-statements.md)\.
   + Athena JDBC SAML federation is now functional for the China Regions\.
   + Additional minor improvements\.
 
@@ -186,7 +209,7 @@ Published on 2022\-02\-15
 
 Amazon Athena has increased the active DML query quota in all AWS Regions\. Active queries include both running and queued queries\. With this change, you can now have more DML queries in an active state than before\.
 
-For information on Athena service quotas, see [Service Quotas](service-limits.md)\. For the query quotas in the Region where you use Athena, see [Amazon Athena endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/athena.html#amazon-athena-limits) in the *AWS General Reference*\.
+For information about Athena service quotas, see [Service Quotas](service-limits.md)\. For the query quotas in the Region where you use Athena, see [Amazon Athena endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/athena.html#amazon-athena-limits) in the *AWS General Reference*\.
 
 To monitor your quota usage, you can use CloudWatch usage metrics\. Athena publishes the `ActiveQueryCount` metric in the `AWS/Usage` namespace\. For more information, see [Monitoring Athena usage metrics](monitoring-athena-usage-metrics.md)\.
 
@@ -558,7 +581,7 @@ For in\-depth information about using the Vertica connector, see [Querying a Ver
 
 Published on 2021\-04\-30
 
-Released drivers JDBC 2\.0\.21 and ODBC 1\.1\.9 for Athena\. Both releases support SAML authentication with Azure Active Directory \(AD\) and SAML authentication with PingFederate\. The JDBC release also supports parameterized queries\. For information about parameterized queries in Athena, see [Querying with parameterized queries](querying-with-prepared-statements.md)\. 
+Released drivers JDBC 2\.0\.21 and ODBC 1\.1\.9 for Athena\. Both releases support SAML authentication with Azure Active Directory \(AD\) and SAML authentication with PingFederate\. The JDBC release also supports parameterized queries\. For information about parameterized queries in Athena, see [Using parameterized queries](querying-with-prepared-statements.md)\. 
 
 To download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 

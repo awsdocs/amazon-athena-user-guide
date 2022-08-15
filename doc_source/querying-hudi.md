@@ -53,7 +53,7 @@ Starting in Apache Hudi version 0\.6\.0, the bootstrap operation feature provide
 
 You can use Athena to query tables from a bootstrap operation just like other tables based on data in Amazon S3\. In your `CREATE TABLE` statement, specify the Hudi table path in your `LOCATION` clause\. 
 
-For more information on creating Hudi tables using the bootstrap operation in Amazon EMR, see the article [New features from Apache Hudi available in Amazon EMR](http://aws.amazon.com/blogs/big-data/new-features-from-apache-hudi-available-in-amazon-emr/) in the AWS Big Data Blog\.
+For more information about creating Hudi tables using the bootstrap operation in Amazon EMR, see the article [New features from Apache Hudi available in Amazon EMR](http://aws.amazon.com/blogs/big-data/new-features-from-apache-hudi-available-in-amazon-emr/) in the AWS Big Data Blog\.
 
 ## Considerations and limitations<a name="querying-hudi-in-athena-considerations-and-limitations"></a>
 + Athena does not support incremental queries\.
@@ -263,4 +263,4 @@ ALTER TABLE partition_mor_rt ADD
 
 ## See also<a name="querying-hudi-see-also"></a>
 
-For information on using AWS Glue custom connectors and AWS Glue 2\.0 jobs to create an Apache Hudi table that you can query with Athena, see [Writing to Apache Hudi tables using AWS Glue custom connector](http://aws.amazon.com/blogs/big-data/writing-to-apache-hudi-tables-using-aws-glue-connector/) in the AWS Big Data Blog\.
+For information about using AWS Glue custom connectors and AWS Glue 2\.0 jobs to create an Apache Hudi table that you can query with Athena, see [Writing to Apache Hudi tables using AWS Glue custom connector](http://aws.amazon.com/blogs/big-data/writing-to-apache-hudi-tables-using-aws-glue-connector/) in the AWS Big Data Blog\.

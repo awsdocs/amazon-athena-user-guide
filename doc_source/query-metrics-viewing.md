@@ -13,7 +13,7 @@ Athena publishes the following metrics to the CloudWatch console:
 + `TotalExecutionTime` – in milliseconds, for DDL and DML queries
 
 These metrics have the following dimensions:
-+ `QueryState` – `QUEUED`, `RUNNING`, `SUCCEEDED`, `FAILED`, or `CANCELLED`
++ `QueryState` – `QUEUED`, `RUNNING`, `SUCCEEDED`, `FAILED`, or `CANCELED`
 + `QueryType` – `DML` or `DDL`
 + `WorkGroup` – name of the workgroup
 
@@ -82,6 +82,6 @@ CloudWatch metrics for Athena have the following dimensions\.
 
 | Dimension | Description | 
 | --- | --- | 
-| QueryState |  The query state\. Valid statistics: QUEUED, RUNNING, SUCCEEDED, FAILED, or CANCELLED\.  Athena automatically retries your queries in cases of certain transient errors\. As a result, you may see the query state transition from RUNNING or FAILED to QUEUED\.   | 
+| QueryState |  The query state\. Valid statistics: QUEUED, RUNNING, SUCCEEDED, FAILED, or CANCELED\.  Athena automatically retries your queries in cases of certain transient errors\. As a result, you may see the query state transition from RUNNING or FAILED to QUEUED\.   | 
 | QueryType |  The query type\. Valid statistics: `DDL` or `DML`\.  | 
 | WorkGroup |  The name of the workgroup\.  | 

@@ -115,7 +115,7 @@ The following example adds tags to the `mydatacatalog` data catalog\.
 aws athena tag-resource --resource-arn arn:aws:athena:us-east-1:111122223333:datacatalog/mydatacatalog --tags Key=Color,Value=Orange Key=Time,Value=Now
 ```
 To show the result, use the `list-tags-for-resource` command\.   
-For information on adding tags when using the `create-data-catalog` command, see [Registering a catalog: Create\-data\-catalog](datastores-hive-cli.md#datastores-hive-cli-registering-a-catalog)\.
+For information about adding tags when using the `create-data-catalog` command, see [Registering a catalog: Create\-data\-catalog](datastores-hive-cli.md#datastores-hive-cli-registering-a-catalog)\.
 
 ### Listing the tags for a resource: List\-tags\-for\-resource<a name="tags-operations-examples-cli-list-tags-for-resource"></a>
 

@@ -314,7 +314,7 @@ You can receive this error if the table that underlies a view has altered or dro
 
 ## Workgroups<a name="troubleshooting-athena-workgroups"></a>
 
-For information on troubleshooting workgroup issues, see [Troubleshooting workgroups](workgroups-troubleshooting.md)\.
+For information about troubleshooting workgroup issues, see [Troubleshooting workgroups](workgroups-troubleshooting.md)\.
 
 ## Additional resources<a name="troubleshooting-athena-additional-resources"></a>
 

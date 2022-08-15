@@ -43,7 +43,7 @@ These are limits imposed by the console for data usage controls within workgroup
 
 **To create or edit a per\-workgroup data usage alert**
 
-You can set multiple alert thresholds when queries running in a workgroup scan a specified amount of data within a specific period\. Alerts are implemented using Amazon CloudWatch alarms and apply to all queries in the workgroup\. When a threshold is reached, you can have Amazon SNS send an email to users that you specify\. Queries are not automatically cancelled when a threshold is reached\.
+You can set multiple alert thresholds when queries running in a workgroup scan a specified amount of data within a specific period\. Alerts are implemented using Amazon CloudWatch alarms and apply to all queries in the workgroup\. When a threshold is reached, you can have Amazon SNS send an email to users that you specify\. Queries are not automatically canceled when a threshold is reached\.
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)\.
 

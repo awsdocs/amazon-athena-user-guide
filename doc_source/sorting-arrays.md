@@ -22,4 +22,4 @@ This query returns:
 +--------------------+
 ```
 
-For information on expanding an array into multiple rows, see [Flattening nested arrays](flattening-arrays.md)\.
+For information about expanding an array into multiple rows, see [Flattening nested arrays](flattening-arrays.md)\.

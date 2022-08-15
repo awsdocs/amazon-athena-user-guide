@@ -23,6 +23,7 @@ When you create tables in Athena for Amazon VPC flow logs, remember the followin
 + Use the names in the flow log records for the column names in Athena\. The names of the columns in the Athena schema should exactly match the field names in the Amazon VPC flow logs, with the following differences: 
   + Replace the hyphens in the Amazon VPC log field names with underscores in the Athena column names\. In Athena, the only acceptable characters for database names, table names, and column names are lowercase letters, numbers, and the underscore character\. For more information, see [Database, table, and column names](glue-best-practices.md#schema-names)\.
   + Escape the flow log record names that are [reserved keywords](reserved-words.md) in Athena by enclosing them with backticks\. 
++ VPC flow logs are AWS account specific\. When you publish your log files to Amazon S3, the path that Amazon VPC creates in Amazon S3 includes the ID of the AWS account that was used to create the flow log\. For more information, see [Publish flow logs to Amazon S3](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-s3.html) in the *Amazon VPC User Guide*\.
 
 ### CREATE TABLE statement for Amazon VPC flow logs<a name="vpc-flow-logs-create-table-statement"></a>
 

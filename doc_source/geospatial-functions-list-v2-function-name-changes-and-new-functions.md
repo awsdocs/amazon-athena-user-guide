@@ -13,21 +13,21 @@ The names of the following functions have changed\. In some cases, the input and
 
 | Athena engine version 1 function name | Athena engine version 2 function name | 
 | --- | --- | 
-| [st\_coordinate\_dimension](geospatial-functions-list-v1.md#st-coordinate-dimension-geometry) | [ST\_CoordDim](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-coordim) | 
-| [st\_end\_point](geospatial-functions-list-v1.md#st-end-point-geometry) | [ST\_EndPoint](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-end-point) | 
-| [st\_exterior\_ring](geospatial-functions-list-v1.md#st-exterior-ring-geometry) | [ST\_ExteriorRing](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-exteriorring) | 
-| [st\_interior\_ring\_number](geospatial-functions-list-v1.md#st-interior-ring-number-geometry) | [ST\_NumInteriorRing](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-numinteriorring) | 
-| [st\_geometry\_from\_text](geospatial-functions-list-v1.md#st-geometry-from-text-varchar) | [ST\_GeometryFromText](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geometryfromtext) | 
-| [st\_is\_closed](geospatial-functions-list-v1.md#st-is-closed-geometry) | [ST\_IsClosed](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-isclosed) | 
-| [st\_is\_empty](geospatial-functions-list-v1.md#st-is-empty-geometry) | [ST\_IsEmpty](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-isempty) | 
-| [st\_is\_ring](geospatial-functions-list-v1.md#st-is-ring-geometry) | [ST\_IsRing](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-isring) | 
-| [st\_max\_x](geospatial-functions-list-v1.md#st-max-x-geometry) | [ST\_XMax](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-xmax) | 
-| [st\_max\_y](geospatial-functions-list-v1.md#st-max-y-geometry) | [ST\_YMax](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-ymax) | 
-| [st\_min\_x](geospatial-functions-list-v1.md#st-min-x-geometry) | [ST\_XMin](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-xmin) | 
-| [st\_min\_y](geospatial-functions-list-v1.md#st-min-y-geometry) | [ST\_YMin](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-ymin) | 
-| [st\_point\_number](geospatial-functions-list-v1.md#st-point-number-geometry) | [ST\_NumPoints](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-numpoints) | 
-| [st\_start\_point](geospatial-functions-list-v1.md#st-start-point-geometry) | [ST\_StartPoint](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-startpoint) | 
-| [st\_symmetric\_difference](geospatial-functions-list-v1.md#st-symmetric-difference-geometry-geometry) | [ST\_SymDifference](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-symdifference) | 
+| st\_coordinate\_dimension | [ST\_CoordDim](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-coordim) | 
+| st\_end\_point | [ST\_EndPoint](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-end-point) | 
+| st\_exterior\_ring | [ST\_ExteriorRing](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-exteriorring) | 
+| st\_interior\_ring\_number | [ST\_NumInteriorRing](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-numinteriorring) | 
+| st\_geometry\_from\_text | [ST\_GeometryFromText](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geometryfromtext) | 
+| st\_is\_closed | [ST\_IsClosed](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-isclosed) | 
+| st\_is\_empty | [ST\_IsEmpty](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-isempty) | 
+| st\_is\_ring | [ST\_IsRing](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-isring) | 
+| st\_max\_x | [ST\_XMax](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-xmax) | 
+| st\_max\_y | [ST\_YMax](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-ymax) | 
+| st\_min\_x | [ST\_XMin](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-xmin) | 
+| st\_min\_y | [ST\_YMin](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-ymin) | 
+| st\_point\_number | [ST\_NumPoints](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-numpoints) | 
+| st\_start\_point | [ST\_StartPoint](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-startpoint) | 
+| st\_symmetric\_difference | [ST\_SymDifference](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-symdifference) | 
 
 ## New geospatial functions in Athena engine version 2<a name="geospatial-functions-list-v2-new-functions"></a>
 

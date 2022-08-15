@@ -11,7 +11,8 @@ SHOW TABLES [IN database_name] ['regular_expression']
 ## Parameters<a name="parameters"></a>
 
 **\[IN database\_name\]**  
-Specifies the `database_name` from which tables will be listed\. If omitted, the database from the current context is assumed\.
+Specifies the `database_name` from which tables will be listed\. If omitted, the database from the current context is assumed\.  
+`SHOW TABLES` may fail if `database_name` uses an [unsupported character](tables-databases-columns-names.md) such as a hyphen\. As a workaround, try enclosing the database name in backticks\.
 
 **\['regular\_expression'\]**  
 Filters the list of tables to those that match the `regular_expression` you specify\. To indicate any character in `AWSDataCatalog` tables, you can use the `*` or `.*` wildcard expression\. For Apache Hive databases, use the `.*` wildcard expression\. To indicate a choice between characters, use the `|` character\.

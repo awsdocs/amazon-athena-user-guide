@@ -25,27 +25,3 @@ Athena engine version 2 is based on [Presto 0\.217](https://prestodb.io/docs/0.2
 + [Map functions and operators](https://prestodb.io/docs/0.217/functions/map.html)
 + [Lambda expressions and functions](https://prestodb.io/docs/0.217/functions/lambda.html)
 + [Teradata functions](https://prestodb.io/docs/0.217/functions/teradata.html)
-
-## Athena engine version 1<a name="presto-functions-env1"></a>
-
-Athena engine version 1 is based on [Presto 0\.172](https://prestodb.io/docs/0.172/index.html)\. For information about related functions, operators, and expressions, see [Presto 0\.172 functions and operators](https://prestodb.io/docs/0.172/functions.html) and the following specific sections from the Presto documentation\. For the geospatial functions in Athena engine version 1, see [Geospatial functions in Athena engine version 1](geospatial-functions-list-v1.md)\.
-+ [Logical operators](https://prestodb.io/docs/0.172/functions/logical.html)
-+ [Comparison functions and operators](https://prestodb.io/docs/0.172/functions/comparison.html)
-+ [Conditional expressions](https://prestodb.io/docs/0.172/functions/conditional.html)
-+ [Conversion functions](https://prestodb.io/docs/0.172/functions/conversion.html)
-+ [Mathematical functions and operators](https://prestodb.io/docs/0.172/functions/math.html)
-+ [Bitwise functions](https://prestodb.io/docs/0.172/functions/bitwise.html)
-+ [Decimal functions and operators](https://prestodb.io/docs/0.172/functions/decimal.html)
-+ [String functions and operators](https://prestodb.io/docs/0.172/functions/string.html)
-+ [Binary functions](https://prestodb.io/docs/0.172/functions/binary.html)
-+ [Date and time functions and operators](https://prestodb.io/docs/0.172/functions/datetime.html)
-+ [Regular expression functions](https://prestodb.io/docs/0.172/functions/regexp.html)
-+ [JSON functions and operators](https://prestodb.io/docs/0.172/functions/json.html)
-+ [URL functions](https://prestodb.io/docs/0.172/functions/url.html)
-+ [Aggregate functions](https://prestodb.io/docs/0.172/functions/aggregate.html)
-+ [Window functions](https://prestodb.io/docs/0.172/functions/window.html)
-+ [Color functions](https://prestodb.io/docs/0.172/functions/color.html)
-+ [Array functions and operators](https://prestodb.io/docs/0.172/functions/array.html)
-+ [Map functions and operators](https://prestodb.io/docs/0.172/functions/map.html)
-+ [Lambda expressions and functions](https://prestodb.io/docs/0.172/functions/lambda.html)
-+ [Teradata functions](https://prestodb.io/docs/0.172/functions/teradata.html)

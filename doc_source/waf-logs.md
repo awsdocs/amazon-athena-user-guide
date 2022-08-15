@@ -6,265 +6,214 @@ You can enable access logging for AWS WAF logs and save them to Amazon S3\. Make
 
 For more information about enabling AWS WAF logs and about the log record structure, see [Logging and monitoring web ACL traffic](https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the *AWS WAF Developer Guide*\.
 
+For information about individual AWS WAF log fields, see [Log fields](https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html) in the *AWS WAF Developer Guide*\.
+
 For an example of how to aggregate AWS WAF logs into a central data lake repository and query them with Athena, see the AWS Big Data Blog post [Analyzing AWS WAF logs with OpenSearch Service, Amazon Athena, and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-aws-waf-logs-with-amazon-es-amazon-athena-and-amazon-quicksight/)\.
 
+This topic provides two example `CREATE TABLE` statements: one that uses partitioning and one that does not\.
+
+**Note**  
+The `CREATE TABLE` statements in this topic can be used for both v1 and v2 AWS WAF logs\. In v1, the `webaclid` field contains an ID\. In v2, the `webaclid` field contains a full ARN\. The `CREATE TABLE` statements here treat this content agnostically by using the `string` data type\.
+
 **Topics**
-+ [Creating the table for AWS WAF logs](#create-waf-table)
 + [Creating the table for AWS WAF logs in Athena using partition projection](#create-waf-table-partition-projection)
++ [Creating a table for AWS WAF logs without partitioning](#create-waf-table)
 + [Example queries for AWS WAF logs](#query-examples-waf-logs)
 
-## Creating the table for AWS WAF logs<a name="create-waf-table"></a>
+## Creating the table for AWS WAF logs in Athena using partition projection<a name="create-waf-table-partition-projection"></a>
+
+Because AWS WAF logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena [partition projection](partition-projection.md) feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
+
+The following example `CREATE TABLE` statement automatically uses partition projection on AWS WAF logs from a specified date until the present for four different AWS regions\. The `PARTITION BY` clause in this example partitions by region and by date, but you can modify this according to your requirements\. In the `LOCATION` and `storage.location.template` clauses, replace the *bucket* and *accountID* placeholders with values that identify the Amazon S3 bucket location of your AWS WAF logs\. For `projection.day.range`, replace *2021*/*01*/*01* with the starting date that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\. 
+
+```
+CREATE EXTERNAL TABLE `waf_logs`(
+  `timestamp` bigint, 
+  `formatversion` int, 
+  `webaclid` string, 
+  `terminatingruleid` string, 
+  `terminatingruletype` string, 
+  `action` string, 
+  `terminatingrulematchdetails` array<
+                                    struct<
+                                        conditiontype:string,
+                                        location:string,
+                                        matcheddata:array<string>
+                                           >
+                                    >, 
+  `httpsourcename` string, 
+  `httpsourceid` string, 
+  `rulegrouplist` array<
+                      struct<
+                          rulegroupid:string,
+                          terminatingrule:struct<
+                                              ruleid:string,
+                                              action:string,
+                                              rulematchdetails:string
+                                                >,
+                          nonterminatingmatchingrules:array<string>,
+                          excludedrules:string
+                            >
+                       >, 
+ `ratebasedrulelist` array<
+                         struct<
+                             ratebasedruleid:string,
+                             limitkey:string,
+                             maxrateallowed:int
+                               >
+                          >, 
+  `nonterminatingmatchingrules` array<
+                                    struct<
+                                        ruleid:string,
+                                        action:string
+                                          >
+                                     >, 
+  `requestheadersinserted` string, 
+  `responsecodesent` string, 
+  `httprequest` struct<
+                    clientip:string,
+                    country:string,
+                    headers:array<
+                                struct<
+                                    name:string,
+                                    value:string
+                                      >
+                                 >,
+                    uri:string,
+                    args:string,
+                    httpversion:string,
+                    httpmethod:string,
+                    requestid:string
+                      >, 
+  `labels` array<
+               struct<
+                   name:string
+                     >
+                >, 
+  `captcharesponse` struct<
+                        responsecode:string,
+                        solvetimestamp:string,
+                        failureReason:string
+                          > 
+)
+PARTITIONED BY ( 
+`region` string, 
+`date` string) 
+ROW FORMAT SERDE 
+  'org.openx.data.jsonserde.JsonSerDe' 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  's3://bucket/AWSLogs/accountID/WAFLogs/region/webACL/'
+TBLPROPERTIES(
+ 'projection.enabled' = 'true',
+ 'projection.region.type' = 'enum',
+ 'projection.region.values' = 'us-east-1,us-west-2,eu-central-1,eu-west-1',
+ 'projection.date.type' = 'date',
+ 'projection.date.range' = '2021/01/01,NOW',
+ 'projection.date.format' = 'yyyy/MM/dd',
+ 'projection.date.interval' = '1',
+ 'projection.date.interval.unit' = 'DAYS',
+ 'storage.location.template' = 's3://bucket/AWSLogs/accountID/WAFLogs/${region}/webACL/${date}/')
+```
+
+For more information about partition projection, see [Partition projection with Amazon Athena](partition-projection.md)\.
+
+## Creating a table for AWS WAF logs without partitioning<a name="create-waf-table"></a>
+
+This section describes how to create a table for AWS WAF logs without partitioning or partition projection\.
 
 ### To create the AWS WAF table<a name="to-create-the-waf-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket that stores your logs\. For information about individual log fields, see [Log fields](https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html) in the *AWS WAF Developer Guide*\.
+1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket to correspond to the one that stores your logs\.
 
-   This query uses the [OpenX JSON SerDe](openx-json-serde.md)\. The table format and the SerDe are suggested by the AWS Glue crawler when it analyzes AWS WAF logs\.
+   This query uses the [OpenX JSON SerDe](openx-json-serde.md)\.
 **Note**  
 The SerDe expects each JSON document to be on a single line of text with no line termination characters separating the fields in the record\. If the JSON text is in pretty print format, you may receive an error message like HIVE\_CURSOR\_ERROR: Row is not a valid JSON Object or HIVE\_CURSOR\_ERROR: JsonParseException: Unexpected end\-of\-input: expected close marker for OBJECT when you attempt to query the table after you create it\. For more information, see [JSON Data Files](https://github.com/rcongiu/Hive-JSON-Serde#json-data-files) in the OpenX SerDe documentation on GitHub\. 
 
    ```
    CREATE EXTERNAL TABLE `waf_logs`(
-     `timestamp` bigint,
-     `formatversion` int,
-     `webaclid` string,
-     `terminatingruleid` string,
-     `terminatingruletype` string,
-     `action` string,
+     `timestamp` bigint, 
+     `formatversion` int, 
+     `webaclid` string, 
+     `terminatingruleid` string, 
+     `terminatingruletype` string, 
+     `action` string, 
      `terminatingrulematchdetails` array<
-                                     struct<
-                                       conditiontype:string,
-                                       location:string,
-                                       matcheddata:array<string>
-                                           >
-                                        >,
-     `httpsourcename` string,
-     `httpsourceid` string,
+                                       struct<
+                                           conditiontype:string,
+                                           location:string,
+                                           matcheddata:array<string>
+                                              >
+                                       >, 
+     `httpsourcename` string, 
+     `httpsourceid` string, 
      `rulegrouplist` array<
-                        struct<
-                           rulegroupid:string,
-                           terminatingrule:struct<
-                              ruleid:string,
-                              action:string,
-                              rulematchdetails:string
-                                                  >,
-                           nonterminatingmatchingrules:array<
-                                                          struct<
-                                                             ruleid:string,
-                                                             action:string,
-                                                             rulematchdetails:array<
-                                                                  struct<
-                                                                     conditiontype:string,
-                                                                     location:string,
-                                                                     matcheddata:array<string>
-                                                                        >
-                                                                     >
-                                                                  >
-                                                               >,
-                           excludedrules:array<
-                                            struct<
-                                               ruleid:string,
-                                               exclusiontype:string
-                                                  >
-                                               >
-                              >
-                          >,
-     `ratebasedrulelist` array<
-                           struct<
-                             ratebasedruleid:string,
-                             ratebasedrulename:string,
-                             limitkey:string,
-                             limitvalue:string,
-                             maxrateallowed:int
-                                 >
-                              >,
+                         struct<
+                             rulegroupid:string,
+                             terminatingrule:struct<
+                                                 ruleid:string,
+                                                 action:string,
+                                                 rulematchdetails:string
+                                                   >,
+                             nonterminatingmatchingrules:array<string>,
+                             excludedrules:string
+                               >
+                          >, 
+    `ratebasedrulelist` array<
+                            struct<
+                                ratebasedruleid:string,
+                                limitkey:string,
+                                maxrateallowed:int
+                                  >
+                             >, 
      `nonterminatingmatchingrules` array<
-                                     struct<
-                                       ruleid:string,
-                                       action:string,
-                                       rulematchdetails:array<
-                                           struct<
-                                               conditiontype:string,
-                                               location:string,
-                                               matcheddata:array<string>
-                                                 >
-                                               >,
-                                       captcharesponse:struct<
-                                                       responsecode:string,
-                                                       solvetimestamp:bigint
-                                                             >
-                                           >
-                                        >,
-     `requestheadersinserted` string,
-     `responsecodesent` string,
+                                       struct<
+                                           ruleid:string,
+                                           action:string
+                                             >
+                                        >, 
+     `requestheadersinserted` string, 
+     `responsecodesent` string, 
      `httprequest` struct<
-                         clientip:string,
-                         country:string,
-                         headers:array<
+                       clientip:string,
+                       country:string,
+                       headers:array<
                                    struct<
-                                     name:string,
-                                     value:string
+                                       name:string,
+                                       value:string
                                          >
-                                      >,
-                         uri:string,
-                         args:string,
-                         httpversion:string,
-                         httpmethod:string,
-                         requestid:string
-                         >,
+                                    >,
+                       uri:string,
+                       args:string,
+                       httpversion:string,
+                       httpmethod:string,
+                       requestid:string
+                         >, 
      `labels` array<
-                struct<
-                  name:string
-                      >
-                     >,
+                  struct<
+                      name:string
+                        >
+                   >, 
      `captcharesponse` struct<
                            responsecode:string,
-                           solvetimestamp:bigint,
-                           failurereason:string
-                       >
+                           solvetimestamp:string,
+                           failureReason:string
+                             > 
    )
    ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
-   WITH SERDEPROPERTIES (
-    'paths'='action,formatVersion,httpRequest,httpSourceId,httpSourceName,labels,nonTerminatingMatchingRules,rateBasedRuleList,requestHeadersInserted,responseCodeSent,ruleGroupList,terminatingRuleId,terminatingRuleMatchDetails,terminatingRuleType,timestamp,webaclId,captchaResponse')
    STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
    LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/'
    ```
 
-1. Run the `CREATE EXTERNAL TABLE` statement in the Athena console Query Editor\. This registers the `waf_logs` table and makes the data in it available for queries from Athena\.
-
-## Creating the table for AWS WAF logs in Athena using partition projection<a name="create-waf-table-partition-projection"></a>
-
-Because AWS WAF logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena partition projection feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
-
-The following example `CREATE TABLE` statement automatically uses partition projection on AWS WAF logs from a specified date until the present for a single AWS region\. In the `LOCATION` and `storage.location.template` clauses, replace the *bucket* and *folder* placeholders with values that identify the Amazon S3 bucket location of your AWS WAF logs\. For `projection.day.range`, replace *2021*/*01*/*01* with the starting date that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\.
-
-```
-CREATE EXTERNAL TABLE `waf_logs`(
-  `timestamp` bigint,
-  `formatversion` int,
-  `webaclid` string,
-  `terminatingruleid` string,
-  `terminatingruletype` string,
-  `action` string,
-  `terminatingrulematchdetails` array<
-                                  struct<
-                                    conditiontype:string,
-                                    location:string,
-                                    matcheddata:array<string>
-                                        >
-                                     >,
-  `httpsourcename` string,
-  `httpsourceid` string,
-  `rulegrouplist` array<
-                     struct<
-                        rulegroupid:string,
-                        terminatingrule:struct<
-                           ruleid:string,
-                           action:string,
-                           rulematchdetails:string
-                                               >,
-                        nonterminatingmatchingrules:array<
-                                                       struct<
-                                                          ruleid:string,
-                                                          action:string,
-                                                          rulematchdetails:array<
-                                                               struct<
-                                                                  conditiontype:string,
-                                                                  location:string,
-                                                                  matcheddata:array<string>
-                                                                     >
-                                                                  >
-                                                               >
-                                                            >,
-                        excludedrules:array<
-                                         struct<
-                                            ruleid:string,
-                                            exclusiontype:string
-                                               >
-                                            >
-                           >
-                       >,
-  `ratebasedrulelist` array<
-                        struct<
-                          ratebasedruleid:string,
-                          ratebasedrulename:string,
-                          limitkey:string,
-                          limitvalue:string,
-                          maxrateallowed:int
-                              >
-                           >,
-  `nonterminatingmatchingrules` array<
-                                  struct<
-                                    ruleid:string,
-                                    action:string,
-                                    rulematchdetails:array<
-                                        struct<
-                                            conditiontype:string,
-                                            location:string,
-                                            matcheddata:array<string>
-                                              >
-                                            >,
-                                    captcharesponse:struct<
-                                                    responsecode:string,
-                                                    solvetimestamp:bigint
-                                                          >
-                                        >
-                                     >,
-  `requestheadersinserted` string,
-  `responsecodesent` string,
-  `httprequest` struct<
-                      clientip:string,
-                      country:string,
-                      headers:array<
-                                struct<
-                                  name:string,
-                                  value:string
-                                      >
-                                   >,
-                      uri:string,
-                      args:string,
-                      httpversion:string,
-                      httpmethod:string,
-                      requestid:string
-                      >,
-  `labels` array<
-             struct<
-               name:string
-                   >
-                  >,
-  `captcharesponse` struct<
-                        responsecode:string,
-                        solvetimestamp:bigint,
-                        failurereason:string
-                    >
-
-)
-PARTITIONED BY
-(
- day STRING
-)
-ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
-STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
-OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-LOCATION 's3://bucket/folder/'
-TBLPROPERTIES
-(
- "projection.enabled" = "true",
- "projection.day.type" = "date",
- "projection.day.range" = "2021/01/01,NOW",
- "projection.day.format" = "yyyy/MM/dd",
- "projection.day.interval" = "1",
- "projection.day.interval.unit" = "DAYS",
- "storage.location.template" = "s3://bucket/folder/${day}"
-)
-```
-
-For more information about partition projection, see [Partition projection with Amazon Athena](partition-projection.md)\.
+1. Run the `CREATE EXTERNAL TABLE` statement in the Athena console query editor\. This registers the `waf_logs` table and makes the data in it available for queries from Athena\.
 
 ## Example queries for AWS WAF logs<a name="query-examples-waf-logs"></a>
 
-The following example queries query the partition projection table created in the previous section\. Modify the table name, column values, and other variables in the examples according to your requirements\. To improve the performance of your queries and reduce cost, add the partition column in the filter condition\.
+The following example queries the partition projection table created previously in this document\. Modify the table name, column values, and other variables in the examples according to your requirements\. To improve the performance of your queries and reduce cost, add the partition column in the filter condition\.
 
 **Count the number of referrers that contain a specified term**  
 The following query counts the number of referrers that contain the term "amazon" for the specified date range\.
