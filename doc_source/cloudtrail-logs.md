@@ -18,7 +18,8 @@ You can use Athena to query these log files directly from Amazon S3, specifying 
 **Topics**
 + [Understanding CloudTrail logs and Athena tables](#create-cloudtrail-table-understanding)
 + [Using the CloudTrail console to create an Athena table for CloudTrail logs](#create-cloudtrail-table-ct)
-+ [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)
++ [Creating a table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)
++ [Creating a table for an organization wide trail using manual partitioning](#create-cloudtrail-table-org-wide-trail)
 + [Creating the table for CloudTrail logs in Athena using partition projection](#create-cloudtrail-table-partition-projection)
 + [Querying nested fields](#cloudtrail-logs-nested-fields)
 + [Example query](#query-examples-cloudtrail-logs)
@@ -53,7 +54,7 @@ You can create a non\-partitioned Athena table for querying CloudTrail logs dire
 **Note**  
 You cannot use the CloudTrail console to create an Athena table for organization trail logs\. Instead, create the table manually using the Athena console so that you can specify the correct storage location\. For information about organization trails, see [Creating a trail for an organization](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html) in the *AWS CloudTrail User Guide*\.
 + For information about setting up permissions for Athena, see [Setting up](setting-up.md)\.
-+ For information about creating a table with partitions, see [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\.
++ For information about creating a table with partitions, see [Creating a table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\.
 
 **To create an Athena table for a CloudTrail trail using the CloudTrail console**
 
@@ -70,7 +71,7 @@ To find the name of the bucket that is associated with a trail, choose **Trails*
 
 1. Choose **Create table**\. The table is created with a default name that includes the name of the Amazon S3 bucket\.
 
-## Creating the table for CloudTrail logs in Athena using manual partitioning<a name="create-cloudtrail-table"></a>
+## Creating a table for CloudTrail logs in Athena using manual partitioning<a name="create-cloudtrail-table"></a>
 
 You can manually create tables for CloudTrail log files in the Athena console, and then run queries in Athena\.
 
@@ -136,7 +137,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
    LOCATION 's3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/';
    ```
 
-1. Run the query in the Athena console\.
+1. Run the `CREATE TABLE` statement in the Athena console\.
 
 1. Use the [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) command to load the partitions so that you can query them, as in the following example\.
 
@@ -146,7 +147,66 @@ You can manually create tables for CloudTrail log files in the Athena console, a
                  year='2019',
                  month='02',
                  day='01')
-      LOCATION 's3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/us-east-1/2019/02/01/'
+      LOCATION 's3://cloudtrail_bucket_name/AWSLogs/Account_ID/CloudTrail/us-east-1/2019/02/01/'
+   ```
+
+## Creating a table for an organization wide trail using manual partitioning<a name="create-cloudtrail-table-org-wide-trail"></a>
+
+To create a table for organization wide CloudTrail log files in Athena, follow the steps in [Creating a table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table), but make the modifications noted in the following procedure\.
+
+**To create an Athena table for organization wide CloudTrail logs**
+
+1. In the `CREATE TABLE` statement, modify the `LOCATION` clause to include the organization ID instead of the account ID, as in the following example:
+
+   ```
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/CloudTrail/'
+   ```
+
+1. In the `PARTITIONED BY` clause, add an entry for the account ID as a string, as in the following example:
+
+   ```
+   PARTITIONED BY (account string, region string, year string, month string, day string)
+   ```
+
+   The following example shows the combined result:
+
+   ```
+   ...
+   
+   PARTITIONED BY (account string, region string, year string, month string, day string) 
+   ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
+   STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
+   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/CloudTrail/'
+   ```
+
+1. In the `ALTER TABLE` statement `ADD PARTITION` clause, include the account ID, as in the following example:
+
+   ```
+   ALTER TABLE table_name ADD
+   PARTITION (account='111122223333',
+   region='us-east-1',
+   year='2022',
+   month='08',
+   day='08')
+   ```
+
+1. In the `ALTER TABLE` statement `LOCATION` clause, include the organization ID, the account ID, and the partition that you want to add, as in the following example:
+
+   ```
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/account_id/CloudTrail/us-east-1/2022/08/08/'
+   ```
+
+   The following example `ALTER TABLE` statement shows the combined result:
+
+   ```
+   ALTER TABLE table_name ADD
+   PARTITION (account='111122223333',
+   region='us-east-1',
+   year='2022',
+   month='08',
+   day='08')
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/111122223333/CloudTrail/us-east-1/2022/08/08/'
    ```
 
 ## Creating the table for CloudTrail logs in Athena using partition projection<a name="create-cloudtrail-table-partition-projection"></a>
@@ -292,8 +352,8 @@ For more information, see the AWS Big Data blog post [Analyze security, complian
 ## Tips for querying CloudTrail logs<a name="tips-for-querying-cloudtrail-logs"></a>
 
 To explore the CloudTrail logs data, use these tips:
-+ Before querying the logs, verify that your logs table looks the same as the one in [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\. If it is not the first table, delete the existing table using the following command: `DROP TABLE cloudtrail_logs;`\.
-+ After you drop the existing table, re\-create it\. For more information, see [Creating the table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\.
++ Before querying the logs, verify that your logs table looks the same as the one in [Creating a table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\. If it is not the first table, delete the existing table using the following command: `DROP TABLE cloudtrail_logs;`\.
++ After you drop the existing table, re\-create it\. For more information, see [Creating a table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\.
 
   Verify that fields in your Athena query are listed correctly\. For information about the full list of fields in a CloudTrail record, see [CloudTrail record contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
 

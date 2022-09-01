@@ -1,7 +1,7 @@
 # Service Quotas<a name="service-limits"></a>
 
 **Note**  
-The Service Quotas console provides information about Amazon Athena quotas\. Along with viewing the default quotas, you can use the Service Quotas console to [request quota increases](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) for the quotas that are adjustable\.
+The Service Quotas console provides information about Amazon Athena quotas\. You can also use the Service Quotas console to [request quota increases](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) for the quotas that are adjustable\.
 
 ## Queries<a name="service-limits-queries"></a>
 

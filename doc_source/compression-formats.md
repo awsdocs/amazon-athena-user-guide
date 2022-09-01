@@ -4,8 +4,6 @@ Athena supports a variety of compression formats for reading and writing data, i
 
 Athena supports the following compression formats:
 + **BZIP2** – Format that uses the Burrows\-Wheeler algorithm\.
-**Note**  
-In rare cases, a known issue in Athena engine version 1 can cause records to be silently dropped when the BZIP2 format is used\. For this reason, use of the BZIP2 format in Athena engine version 1 is not recommended\.
 + **DEFLATE** – Compression algorithm based on [LZSS](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Storer%E2%80%93Szymanski) and [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding)\. [Deflate](https://en.wikipedia.org/wiki/Deflate) is relevant only for the Avro file format\.
 + **GZIP** – Compression algorithm based on Deflate\. GZIP is the default write compression format for files in the Parquet and text file storage formats\. Files in the `tar.gz` format are not supported\.
 + **LZ4** – This member of the Lempel\-Ziv 77 \(LZ7\) family also focuses on compression and decompression speed rather than maximum compression of data\. LZ4 has the following framing formats:

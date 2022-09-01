@@ -1,6 +1,6 @@
 # SHOW COLUMNS<a name="show-columns"></a>
 
-Shows the column names for a specified table or view\. To view additional column metadata \(such as data type\), see [Listing or searching columns for a specified table or view](querying-glue-catalog.md#querying-glue-catalog-listing-columns)\.
+Shows the column names for a specified table or view\. To view additional column metadata \(such as data type\), see [Listing or searching columns for a specified table or view](querying-glue-catalog.md#querying-glue-catalog-listing-columns)\. To view all columns for all tables in all databases in `AwsDataCatalog` or for all tables in a specific database in `AwsDataCatalog`, see [Listing all columns for all tables](querying-glue-catalog.md#querying-glue-catalog-listing-all-columns-for-all-tables) in the [Querying AWS Glue Data Catalog](querying-glue-catalog.md) topic\.
 
 ## Synopsis<a name="synopsis"></a>
 

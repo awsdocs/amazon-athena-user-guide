@@ -9,6 +9,7 @@ To obtain AWS Glue Catalog metadata, you query the `information_schema` database
 + [Listing databases and searching a specified database](#querying-glue-catalog-querying-available-databases-including-rdbms)
 + [Listing tables in a specified database and searching for a table by name](#querying-glue-catalog-listing-tables)
 + [Listing partitions for a specific table](#querying-glue-catalog-listing-partitions)
++ [Listing all columns for all tables](#querying-glue-catalog-listing-all-columns-for-all-tables)
 + [Listing or searching columns for a specified table or view](#querying-glue-catalog-listing-columns)
 
 ## Considerations and limitations<a name="querying-glue-catalog-considerations-limitations"></a>
@@ -108,10 +109,10 @@ You can use `SHOW PARTITIONS table_name` to list the partitions for a specified 
 SHOW PARTITIONS cloudtrail_logs_test2
 ```
 
-You can also use a metadata query to list the partition numbers and partition values for a specific table\. The syntax that you use depends on the Athena engine version\.
+You can also use a `$partitions` metadata query to list the partition numbers and partition values for a specific table\.
 
-**Example – Querying the partitions for a table in Athena engine version 2**  
-The following example query lists the partitions for the table `cloudtrail_logs_test2` using Athena engine version 2\.  
+**Example – Querying the partitions for a table using the $partitions syntax**  
+The following example query lists the partitions for the table `cloudtrail_logs_test2` using the `$partitions` syntax\.  
 
 ```
 SELECT * FROM default."cloudtrail_logs_test2$partitions" ORDER BY partition_number
@@ -127,26 +128,18 @@ The following table shows sample results\.
 | 2 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 2020 | 08 | 11 | 
 | 3 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 2020 | 08 | 12 | 
 
-**Example – Querying the partitions for a table in Athena engine version 1**  
-The following example query lists the partitions for the table `cloudtrail_logs_test2` using Athena engine version 1\.  
+## Listing all columns for all tables<a name="querying-glue-catalog-listing-all-columns-for-all-tables"></a>
+
+You can list all columns for all tables in `AwsDataCatalog` or for all tables in a specific database in `AwsDataCatalog`\.
++ To list all columns for all databases in `AwsDataCatalog`, use the query `SELECT * FROM information_schema.columns`\.
++ To restrict the results to a specific database, use `table_schema='database_name'` in the `WHERE` clause\.
+
+**Example – Listing all columns for all tables in a specific database**  
+The following example query lists all columns for all tables in the database `webdata`\.  
 
 ```
-SELECT *
-FROM   information_schema.__internal_partitions__
-WHERE  table_schema = 'default'
-       AND table_name = 'cloudtrail_logs_test2'
-ORDER  BY partition_number
+SELECT * FROM information_schema.columns WHERE table_schema = 'webdata'            
 ```
-The following table shows sample results\.  
-
-
-****  
-
-|  | table\_catalog | table\_schema | table\_name | partition\_number | partition\_key | partition\_value | 
-| --- | --- | --- | --- | --- | --- | --- | 
-| 1 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 1 | year | 2018 | 
-| 2 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 1 | month | 09 | 
-| 3 | awsdatacatalog | default | cloudtrail\_logs\_test2 | 1 | day | 30 | 
 
 ## Listing or searching columns for a specified table or view<a name="querying-glue-catalog-listing-columns"></a>
 

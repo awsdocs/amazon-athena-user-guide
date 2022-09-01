@@ -59,7 +59,7 @@ dt=2009-04-13-22-15
 
 ### Listing partitions in sorted order<a name="show-partitions-examples-ordering"></a>
 
-To order the partitions in the results list in Athena engine version 2, use the following `SELECT` syntax instead of `SHOW PARTITIONS`\.
+To order the partitions in the results list, use the following `SELECT` syntax instead of `SHOW PARTITIONS`\.
 
 ```
 SELECT * FROM "table_name$partitions" ORDER BY column_name

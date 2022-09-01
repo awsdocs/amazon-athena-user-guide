@@ -83,7 +83,7 @@ Make sure that you have specified a valid S3 location for your query results\. F
 
 ## Federated queries<a name="troubleshooting-athena-federated-queries"></a>
 
-For information on troubleshooting federated queries, see [Common\_Problems](https://github.com/awslabs/aws-athena-query-federation/wiki/Common_Problems) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
+For information about troubleshooting federated queries, see [Common\_Problems](https://github.com/awslabs/aws-athena-query-federation/wiki/Common_Problems) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
 
 ## JSON related errors<a name="troubleshooting-athena-json-related-errors"></a>
 

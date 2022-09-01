@@ -1,8 +1,6 @@
 # Geospatial function name changes and new functions in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes-and-new-functions"></a>
 
-This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\. 
-
-For information about other changes in Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. For information about other changes in Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
 
 For information about Athena engine versioning, see [Athena engine versioning](engine-versions.md)\.
 
@@ -11,7 +9,7 @@ For information about Athena engine versioning, see [Athena engine versioning](e
 The names of the following functions have changed\. In some cases, the input and output types have also changed\. For more information, visit the corresponding links\. 
 
 
-| Athena engine version 1 function name | Athena engine version 2 function name | 
+| Prior function name | Athena engine version 2 function name | 
 | --- | --- | 
 | st\_coordinate\_dimension | [ST\_CoordDim](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-coordim) | 
 | st\_end\_point | [ST\_EndPoint](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-end-point) | 

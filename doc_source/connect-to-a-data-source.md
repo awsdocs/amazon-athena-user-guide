@@ -11,7 +11,7 @@ To write your own data source connector, you can use the Athena Query Federation
 **Note**  
 Third party developers may have used the Athena Query Federation SDK to write data source connectors\. For support or licensing issues with these data source connectors, please work with your connector provider\. These connectors are not tested or supported by AWS\. 
 
-For a list of data source connectors written and tested by Athena, see [Using Athena data source connectors](athena-prebuilt-data-connectors.md)\.
+For a list of data source connectors written and tested by Athena, see [Using Athena data source connectors](connectors-prebuilt.md)\.
 
 For information about writing your own data source connector, see [Example Athena connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-example) on GitHub\.
 

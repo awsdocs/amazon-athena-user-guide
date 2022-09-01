@@ -301,7 +301,7 @@ SELECT interface_id,
        action,
        protocol,
        to_iso8601(from_unixtime(start)) AS start_time,
-       to_iso8601(from_unixtime(end)) AS end_time
+       to_iso8601(from_unixtime("end")) AS end_time
 FROM test_table_vpclogs
 WHERE DAY >= '2021/04/01'
   AND DAY < '2021/04/30'

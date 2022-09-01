@@ -33,7 +33,7 @@ You can run an `INSERT` query on tables created from data with the following for
 
 ### Partitioning<a name="insert-into-limitations-partitioning"></a>
 
-Consider the points in this section when using parititioning with `INSERT INTO` or `CREATE TABLE AS SELECT` queries\.
+Consider the points in this section when using partitioning with `INSERT INTO` or `CREATE TABLE AS SELECT` queries\.
 
 #### Limits<a name="insert-into-partition-limits"></a>
 

@@ -45,7 +45,7 @@ LOCATION 's3://my-query-log/json/';
 The following example query uses the `CROSS JOIN` function on the `counties` and `earthquake` tables\. The example uses `ST_CONTAINS` to query for counties whose boundaries include earthquake locations, which are specified with `ST_POINT`\. The query groups such counties by name, orders them by count, and returns them in descending order\. The query uses Athena engine version 2\.
 
 **Note**  
-In Athena engine version 2, functions like `ST_CONTAINS` no longer support the `VARBINARY` type as an input\. For this reason, the example uses the [`ST_GeomFromLegacyBinary(varbinary)`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geomfromlegacybinary) function to convert the `boundaryshape` binary value into a geometry\. If you are using Athena engine version 1, you do not need to do this conversion\. For more information, see [Changes to geospatial functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions) in the [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002) reference\.
+In Athena engine version 2, functions like `ST_CONTAINS` no longer support the `VARBINARY` type as an input\. For this reason, the example uses the [`ST_GeomFromLegacyBinary(varbinary)`](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-geomfromlegacybinary) function to convert the `boundaryshape` binary value into a geometry\. For more information, see [Changes to geospatial functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions) in the [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002) reference\.
 
 ```
 SELECT counties.name,

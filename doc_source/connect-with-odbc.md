@@ -14,23 +14,23 @@ When you use the ODBC driver, be sure to note the following requirements:
 
 | Driver version | Download link | 
 | --- | --- | 
-| ODBC 1\.1\.17 for Windows 32\-bit | [Windows 32 bit ODBC driver 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/Windows/SimbaAthena_1.1.17.1001_32-bit.msi) | 
-| ODBC 1\.1\.17 for Windows 64\-bit | [Windows 64 bit ODBC driver 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/Windows/SimbaAthena_1.1.17.1001_64-bit.msi) | 
+| ODBC 1\.1\.18 for Windows 32\-bit | [Windows 32 bit ODBC driver 1\.1\.18](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1000/Windows/SimbaAthena_1.1.18.1000_32-bit.msi) | 
+| ODBC 1\.1\.18 for Windows 64\-bit | [Windows 64 bit ODBC driver 1\.1\.18](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1000/Windows/SimbaAthena_1.1.18.1000_64-bit.msi) | 
 
 ### Linux<a name="connect-with-odbc-linux"></a>
 
 
 | Driver version | Download link | 
 | --- | --- | 
-| ODBC 1\.1\.17 for Linux 32\-bit | [Linux 32 bit ODBC driver 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/Linux/simbaathena-1.1.17.1001-1.el7.i686.rpm) | 
-| ODBC 1\.1\.17 for Linux 64\-bit | [Linux 64 bit ODBC driver 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/Linux/simbaathena-1.1.17.1001-1.el7.x86_64.rpm) | 
+| ODBC 1\.1\.18 for Linux 32\-bit | [Linux 32 bit ODBC driver 1\.1\.18](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1000/Linux/simbaathena-1.1.18.1000-1.i686.rpm) | 
+| ODBC 1\.1\.18 for Linux 64\-bit | [Linux 64 bit ODBC driver 1\.1\.18](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1000/Linux/simbaathena-1.1.18.1000-1.x86_64.rpm) | 
 
 ### OSX<a name="connect-with-odbc-osx"></a>
 
 
 | Driver version | Download link | 
 | --- | --- | 
-| ODBC 1\.1\.17 for OSX | [OSX ODBC driver 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/OSX/SimbaAthena_1.1.17.1001.dmg) | 
+| ODBC 1\.1\.18 for OSX | [OSX ODBC driver 1\.1\.18](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1000/OSX/SimbaAthena_1.1.18.1000.dmg) | 
 
 ### Documentation<a name="connect-with-odbc-driver-documentation"></a>
 
@@ -38,8 +38,8 @@ When you use the ODBC driver, be sure to note the following requirements:
 | Content | Download link | 
 | --- | --- | 
 | Amazon Athena ODBC driver license agreement |  [License agreement](https://s3.amazonaws.com/athena-downloads/agreement/ODBC/Amazon+Athena+ODBC+Driver+License+Agreement.pdf)  | 
-| Documentation for ODBC 1\.1\.17 | [ODBC driver installation and configuration guide version 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/docs/Simba+Amazon+Athena+ODBC+Connector+Install+and+Configuration+Guide.pdf) | 
-| Release Notes for ODBC 1\.1\.17 | [ODBC driver release notes version 1\.1\.17](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.17.1001/docs/release-notes.txt) | 
+| Documentation for ODBC 1\.1\.18 | [ODBC driver installation and configuration guide version 1\.1\.18](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1000/docs/Simba+Amazon+Athena+ODBC+Connector+Install+and+Configuration+Guide.pdf) | 
+| Release Notes for ODBC 1\.1\.18 | [ODBC driver release notes version 1\.1\.18](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1000/docs/release-notes.txt) | 
 
 ## ODBC driver notes<a name="connect-with-odbc-configuration"></a>
 

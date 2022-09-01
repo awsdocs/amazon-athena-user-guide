@@ -1,5 +1,0 @@
-# Amazon Athena Azure Synapse connector<a name="athena-prebuilt-data-connectors-azure-synapse"></a>
-
-The Amazon Athena connector for [Azure synapse analytics](https://docs.microsoft.com/en-us/azure/synapse-analytics/overview-what-is) enables Amazon Athena to run SQL queries on data stored in Synapse\. For information about configuration options, data type support, and other considerations, see [Amazon Athena Azure Synapse connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-synapse/) on [GitHub](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors)\.
-
-Before you use this connector, you must set up a VPC and a security group\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.

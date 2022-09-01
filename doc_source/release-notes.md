@@ -12,6 +12,23 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2022<a name="release-notes-2022"></a>
 
+### August 31, 2022<a name="release-note-2022-08-31"></a>
+
+Published on 2022\-08\-31
+
+Amazon Athena announces availability of Athena and its [features](http://aws.amazon.com/athena/features/) in the Asia Pacific \(Jakarta\) Region\.
+
+This release expands Athena's availability in Asia Pacific to include Asia Pacific \(Hong Kong\), Asia Pacific \(Jakarta\), Asia Pacific \(Mumbai\), Asia Pacific \(Osaka\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), and Asia Pacific \(Tokyo\)\. For a complete list of AWS services available in these and other Regions, refer to the [AWS Regional Services List](http://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\.
+
+### August 23, 2022<a name="release-note-2022-08-23"></a>
+
+Published on 2022\-08\-23
+
+Release [v2022\.32\.1](https://github.com/awslabs/aws-athena-query-federation/releases/tag/v2022.32.1) of the Athena Query Federation SDK includes the following changes:
++ Added support to the Amazon Athena Oracle data source connector for SSL based connections to Amazon RDS instances\. Support is limited to the Transport Layer Security \(TLS\) protocol and to authentication of the server by the client\. Because mutual authentication it is not supported in Amazon RDS, the update does not include support for mutual authentication\. 
+
+  For more information, see [Amazon Athena Oracle connector](connectors-oracle.md)\.
+
 ### August 3, 2022<a name="release-note-2022-08-03"></a>
 
 Published on 2022\-08\-03
@@ -123,19 +140,19 @@ Athena announces the following fixes and improvements\.
 Published on 2022\-04\-21
 
 You can now use Amazon Athena to run federated queries on new data sources, including Google BigQuery, Azure Synapse, and Snowflake\. New data source connectors include:
-+ [Azure Data Lake Storage \(ADLS\) Gen2](athena-prebuilt-data-connectors-adls-gen2.md)
-+ [Azure Synapse](athena-prebuilt-data-connectors-azure-synapse.md)
-+ [Cloudera Hive](athena-prebuilt-data-connectors-cloudera-hive.md)
-+ [Cloudera Impala](athena-prebuilt-data-connectors-cloudera-impala.md)
-+ [Google BigQuery](athena-prebuilt-data-connectors-google-bigquery.md)
-+ [Hortonworks](athena-prebuilt-data-connectors-hortonworks.md)
-+ [Microsoft SQL Server](athena-prebuilt-data-connectors-microsoft-sql-server.md)
-+ [Oracle](athena-prebuilt-data-connectors-oracle.md)
-+ [SAP HANA \(Express Edition\)](athena-prebuilt-data-connectors-sap-hana.md)
-+ [Snowflake](athena-prebuilt-data-connectors-snowflake.md)
-+ [Teradata](athena-prebuilt-data-connectors-teradata.md)
++ [Azure Data Lake Storage \(ADLS\) Gen2](connectors-adls-gen2.md)
++ [Azure Synapse](connectors-azure-synapse.md)
++ [Cloudera Hive](connectors-cloudera-hive.md)
++ [Cloudera Impala](connectors-cloudera-impala.md)
++ [Google BigQuery](connectors-bigquery.md)
++ [Hortonworks](connectors-hortonworks.md)
++ [Microsoft SQL Server](connectors-microsoft-sql-server.md)
++ [Oracle](connectors-oracle.md)
++ [SAP HANA \(Express Edition\)](connectors-sap-hana.md)
++ [Snowflake](connectors-snowflake.md)
++ [Teradata](connectors-teradata.md)
 
-For a complete list of data sources supported by Athena, see [Using Athena data source connectors](athena-prebuilt-data-connectors.md)\.
+For a complete list of data sources supported by Athena, see [Using Athena data source connectors](connectors-prebuilt.md)\.
 
 To make it easier to browse the available sources and connect to your data, you can now search, sort, and filter the available connectors from an updated **Data Sources** screen in the Athena console\.
 
@@ -720,16 +737,16 @@ Federated SQL queries in Athena eliminate this complexity by allowing users to q
 ##### Data Source Connectors<a name="release-note-2020-11-11-federated-connectors"></a>
 
 To process federated queries, Athena uses Athena Data Source Connectors that run on [AWS Lambda](https://aws.amazon.com/lambda/)\. The following open sourced, pre\-built connectors were written and tested by Athena\. Use them to run SQL queries in Athena on their corresponding data sources\.
-+ [CloudWatch](athena-prebuilt-data-connectors-cwlogs.md)
-+ [CloudWatch Metrics](athena-prebuilt-data-connectors-cwmetrics.md)
-+ [DocumentDB](athena-prebuilt-data-connectors-docdb.md)
-+ [DynamoDB](athena-prebuilt-data-connectors-dynamodb.md)
-+ [Elasticsearch](athena-prebuilt-data-connectors-elasticsearch.md)
-+ [HBase](athena-prebuilt-data-connectors-hbase.md)
-+ [Neptune](athena-prebuilt-data-connectors-neptune.md)
-+ [Redis](athena-prebuilt-data-connectors-redis.md)
-+ [Timestream](athena-prebuilt-data-connectors-timestream.md)
-+ [TPC Benchmark DS \(TPC\-DS\)](athena-prebuilt-data-connectors-tpcds.md)
++ [CloudWatch](connectors-cloudwatch.md)
++ [CloudWatch Metrics](connectors-cwmetrics.md)
++ [DocumentDB](connectors-docdb.md)
++ [DynamoDB](connectors-dynamodb.md)
++ [OpenSearch](connectors-opensearch.md)
++ [HBase](connectors-hbase.md)
++ [Neptune](connectors-neptune.md)
++ [Redis](connectors-redis.md)
++ [Timestream](connectors-timestream.md)
++ [TPC Benchmark DS \(TPC\-DS\)](connectors-tpcds.md)
 
 ##### Custom Data Source Connectors<a name="release-note-2020-11-11-federated-connectors-custom"></a>
 

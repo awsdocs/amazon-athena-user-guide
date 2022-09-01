@@ -1,10 +1,10 @@
 # Geospatial functions in Athena engine version 2<a name="geospatial-functions-list-v2"></a>
 
-This topic lists the ESRI geospatial functions that are supported in Athena engine version 2\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
+This topic lists the ESRI geospatial functions that are supported in Athena engine version 2\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
 
 **Changes in Athena engine version 2**
 + The input and output types for some functions have changed\. Most notably, the `VARBINARY` type is no longer directly supported for input\. For more information, see [Changes to geospatial functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions)\.
-+ The names of some geospatial functions have changed since Athena engine version 1\. For more information, see [Geospatial function name changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
++ The names of some geospatial functions have changed\. For more information, see [Geospatial function name changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
 + New functions have been added\. For more information, see [New geospatial functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
 
 Athena supports the following types of geospatial functions:
@@ -37,7 +37,7 @@ SELECT ST_AsText(ST_Point(-158.54, 61.56))
 
 ### `ST_GeomAsLegacyBinary(geometry)`<a name="geospatial-functions-list-v2-st-geomaslegacybinary"></a>
 
-Returns an Athena engine version 1 varbinary from the specified geometry\. Example:
+Returns a legacy varbinary from the specified geometry\. Example:
 
 ```
 SELECT ST_GeomAsLegacyBinary(ST_Point(-158.54, 61.56)
@@ -61,7 +61,7 @@ SELECT ST_GeomFromBinary(ST_AsBinary(ST_Point(-158.54, 61.56)))
 
 ### `ST_GeomFromLegacyBinary(varbinary)`<a name="geospatial-functions-list-v2-st-geomfromlegacybinary"></a>
 
-Returns a geometry type object from an Athena engine version 1 varbinary type\. Example:
+Returns a geometry type object from a legacy varbinary type\. Example:
 
 ```
 SELECT ST_GeomFromLegacyBinary(ST_GeomAsLegacyBinary(ST_Point(-158.54, 61.56)))

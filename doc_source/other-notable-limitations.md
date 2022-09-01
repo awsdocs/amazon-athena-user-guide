@@ -2,7 +2,6 @@
 
 When running queries in Athena, keep in mind the following considerations and limitations:
 + **Stored procedures** – Stored procedures are not supported\.
-+ **Parameterized queries** – Parameterized queries are not supported in Athena engine version 1 but are supported in Athena engine version 2\. For more information, see [Using parameterized queries](querying-with-prepared-statements.md)\.
 + **Maximum number of partitions** – The maximum number of partitions you can create with `CREATE TABLE AS SELECT` \(CTAS\) statements is 100\. For information, see [CREATE TABLE AS](create-table-as.md)\. For a workaround, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
 + **Unsupported statements** – The following statements are not supported:
   + `CREATE TABLE LIKE` is not supported\.
@@ -10,7 +9,6 @@ When running queries in Athena, keep in mind the following considerations and li
   + `MERGE` statements are not supported\.
   + `UPDATE` statements are not supported\.
 + **Presto federated connectors** – [Presto federated connectors](https://prestodb.io/docs/0.172/connector.html) are not supported\. Use Amazon Athena Federated Query to connect data sources\. For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
-+ **Querying parquet columns with complex data types ** – When you query columns with complex data types \(`array`, `map`, `struct`\), and are using Parquet for storing data, Athena engine version 1 reads an entire row of data instead of selectively reading only the specified columns\. This issue does not occur in Athena engine version 2\.
 + **Timeouts on tables with many partitions** – Athena may time out when querying a table that has many thousands of partitions\. This can happen when the table has many partitions that are not of type `string`\. When you use type `string`, Athena prunes partitions at the metastore level\. However, when you use other data types, Athena prunes partitions on the server side\. The more partitions you have, the longer this process takes and the more likely your queries are to time out\. To resolve this issue, set your partition type to `string` so that Athena prunes partitions at the metastore level\. This reduces overhead and prevents queries from timing out\.
 + **Amazon S3 Glacier storage** – Athena does not support querying the data in the [S3 Glacier flexible retrieval](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier) or S3 Glacier Deep Archive storage classes, or in the [ Archive access or deep archive access tiers](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering-overview.html#intel-tiering-tier-definition) of the S3 Intelligent Tiering storage class\. Objects in the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes are ignored\. 
 
@@ -20,3 +18,5 @@ When running queries in Athena, keep in mind the following considerations and li
 + **LIMIT clause maximum** – The maximum number of rows that can be specified for the `LIMIT` clause is 2147483647\. Exceeding this limit results in the error message NOT\_SUPPORTED: ORDER BY LIMIT > 2147483647 is not supported\.
 + **information\_schema** – Querying `information_schema` is most performant if you have a small to moderate amount of AWS Glue metadata\. If you have a large amount of metadata, errors can occur\. For information about querying the `information_schema` database for AWS Glue metadata, see [Querying AWS Glue Data Catalog](querying-glue-catalog.md)\.
 +  **Array initializations** – Due to a limitation in Java, it is not possible to initialize an array in Athena that has more than 254 arguments\. 
+
+For information about maximum query string length, quotas for query timeouts, and quotas for the active number of DML queries, see [Service Quotas](service-limits.md)\.

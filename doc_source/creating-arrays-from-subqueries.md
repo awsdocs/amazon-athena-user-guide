@@ -43,3 +43,5 @@ This query returns the following result\. Note that ordering is not guaranteed\.
 | [1, 2, 3, 4, 5] |
 +-----------------+
 ```
+
+For more information about using the `array_agg` function, see [Aggregate functions](https://trino.io/docs/current/functions/aggregate.html) in the Trino documentation\.

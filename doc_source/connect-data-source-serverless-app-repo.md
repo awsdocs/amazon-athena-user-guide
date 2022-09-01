@@ -15,7 +15,7 @@ To use the Amazon Athena Federated Query feature, set your workgroup to Athena e
 
 1. Select the option **Show apps that create custom IAM roles or resource policies**\.
 
-1. In the search box, type the name of the connector\. For a list of prebuilt Athena data connectors, see [Using Athena data source connectors](athena-prebuilt-data-connectors.md)\.
+1. In the search box, type the name of the connector\. For a list of prebuilt Athena data connectors, see [Using Athena data source connectors](connectors-prebuilt.md)\.
 
 1. Choose the name of the connector\. Choosing a connector opens the Lambda function's **Application details** page in the AWS Lambda console\.
 

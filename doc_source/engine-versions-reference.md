@@ -1,6 +1,6 @@
 # Athena engine version reference<a name="engine-versions-reference"></a>
 
- This section lists the changes to the Athena query engine since Athena engine version 1\. Athena engine version 1 was Athena's initial engine version and was based on [Presto 0\.172](https://prestodb.io/docs/0.172/index.html)\.
+This section lists the changes to the Athena query engine\.
 
 ## Athena engine version 2<a name="engine-versions-reference-0002"></a>
 

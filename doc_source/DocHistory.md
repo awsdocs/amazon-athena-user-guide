@@ -1,11 +1,13 @@
 # Document history<a name="DocHistory"></a>
 
-**Latest documentation update: August 15, 2022\.**  
+**Latest documentation update: August 31, 2022\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release date | 
 | --- | --- | --- | 
+| Added tutorial on configuring SSO for ODBC using the Okta plugin\. |  Configure the Amazon Athena ODBC driver and the Okta plugin for single sign\-on \(SSO\) capability using the Okta identity provider\. For more information, see [Configuring SSO for ODBC using the Okta plugin and Okta Identity Provider](odbc-okta-plugin.md)\.  | August 23, 2022 | 
+| Added tutorial on configuring SSO for Azure AD single\-account access using ODBC\. | Configure Azure Active Directory and ODBC for single sign\-on to Athena with and without MFA support\. AWS single\-account access enables you to federate Azure AD to a single AWS account and use Azure AD to manage access to AWS IAM roles\. For each AWS account, Azure AD administrators federate to AWS IAM, assign users or groups to the account, and configure Azure AD to authorize role access\. For more information, see [Configuring SSO for Azure AD Single\-Account Access using ODBC](odbc-azure-saml-sso.md)\. | August 16, 2022 | 
 | Added documentation for viewing query plans and statistics in the Athena console\. | You can use the Athena query editor to see graphical representations of how your queries will be run and graphs, details, and statistics of how completed queries ran\. For more information, see [Viewing execution plans for SQL queries](query-plans.md) and [Viewing statistics and execution details for completed queries](query-stats.md)\. | July 21, 2022 | 
 | Added documentation for querying Apache Hive views in external Hive metastores\. | You can use Athena to query Apache views created in external Hive metastores\. Some Hive functions are not supported or require special handling\. For more information, see [Working with Hive views](hive-views.md)\. | April 22, 2022 | 
 | Added documentation for saved queries\. | You can use the saved queries feature in Athena to save, recall, edit, and rename your queries\. For more information, see [Using saved queries](saved-queries.md) in this guide and [UpdateNamedQuery](https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdateNamedQuery.html) in the Amazon Athena API Reference\. | February 28, 2022 | 
@@ -18,7 +20,7 @@ We update the documentation frequently to address your feedback\. The following 
 | Added documentation for Athena engine versioning and Athena engine version 2\. | For more information, see [Athena engine versioning](engine-versions.md)\. | November 11, 2020 | 
 | Updated federated query documentation for general availability release\. | For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Using Athena with CalledVia context keys](security-iam-athena-calledvia.md)\. | November 11, 2020 | 
 | Added documentation for using the JDBC driver with Lake Formation for federated access to Athena\. | For more information, see [Using Lake Formation and the Athena JDBC and ODBC drivers for federated access to Athena](security-athena-lake-formation-jdbc.md) and [Tutorial: Configuring federated access for Okta users to Athena using Lake Formation and JDBC](security-athena-lake-formation-jdbc-okta-tutorial.md)\. | September 25, 2020 | 
-| Added documentation for the Amazon Athena OpenSearch data connector\. | For more information, see [Amazon Athena OpenSearch connector](athena-prebuilt-data-connectors-elasticsearch.md)\. | July 21, 2020 | 
+| Added documentation for the Amazon Athena OpenSearch data connector\. | For more information, see [Amazon Athena OpenSearch connector](connectors-opensearch.md)\. | July 21, 2020 | 
 | Added documentation for querying Hudi datasets\. | For more information, see [Using Athena to query Apache Hudi datasets](querying-hudi.md)\. | July 9, 2020 | 
 | Added documentation on querying Apache web server logs and IIS web server logs stored in Amazon S3\. | For more information, see [Querying Apache logs stored in Amazon S3](querying-apache-logs.md) and [Querying internet information server \(IIS\) logs stored in Amazon S3](querying-iis-logs.md)\. | July 8, 2020 | 
 | Added documentation for the general release of the Athena Data Connector for External Hive Metastore\. | For more information, see [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)\. | June 1, 2020 | 
