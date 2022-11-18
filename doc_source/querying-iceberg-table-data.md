@@ -16,10 +16,10 @@ Time travel queries in Athena query Amazon S3 for historical data from a consist
 
 ### Time travel queries<a name="querying-iceberg-time-travel-queries"></a>
 
-To run a time travel query, use `FOR SYSTEM_TIME AS OF timestamp` after the table name in the `SELECT` statement, as in the following example\.
+To run a time travel query, use `FOR TIMESTAMP AS OF timestamp` after the table name in the `SELECT` statement, as in the following example\.
 
 ```
-SELECT * FROM iceberg_table FOR SYSTEM_TIME AS OF timestamp
+SELECT * FROM iceberg_table FOR TIMESTAMP AS OF timestamp
 ```
 
 The system time to be specified for traveling is either a timestamp or timestamp with a time zone\. If not specified, Athena considers the value to be a timestamp in UTC time\.
@@ -27,19 +27,19 @@ The system time to be specified for traveling is either a timestamp or timestamp
 The following example time travel queries select CloudTrail data for the specified date and time\.
 
 ```
-SELECT * FROM iceberg_table FOR SYSTEM_TIME AS OF TIMESTAMP '2020-01-01 10:00:00'
+SELECT * FROM iceberg_table FOR TIMESTAMP AS OF TIMESTAMP '2020-01-01 10:00:00 UTC'
 ```
 
 ```
-SELECT * FROM iceberg_table FOR SYSTEM_TIME AS OF (current_timestamp – interval '1' day)
+SELECT * FROM iceberg_table FOR TIMESTAMP AS OF (current_timestamp – interval '1' day)
 ```
 
 ### Version travel queries<a name="querying-iceberg-version-travel-queries"></a>
 
-To execute a version travel query \(that is, view a consistent snapshot as of a specified version\), use `FOR SYSTEM_VERSION AS OF version` after the table name in the `SELECT` statement, as in the following example\.
+To execute a version travel query \(that is, view a consistent snapshot as of a specified version\), use `FOR VERSION AS OF version` after the table name in the `SELECT` statement, as in the following example\.
 
 ```
-SELECT * FROM [db_name.]table_name FOR SYSTEM_VERSION AS OF version         
+SELECT * FROM [db_name.]table_name FOR VERSION AS OF version         
 ```
 
 The *version* parameter is the `bigint` snapshot ID associated with an Iceberg table version\.
@@ -47,8 +47,11 @@ The *version* parameter is the `bigint` snapshot ID associated with an Iceberg t
 The following example version travel query selects data for the specified version\.
 
 ```
-SELECT * FROM iceberg_table FOR SYSTEM_VERSION AS OF 949530903748831860
+SELECT * FROM iceberg_table FOR VERSION AS OF 949530903748831860
 ```
+
+**Note**  
+The `FOR SYSTEM_TIME AS OF` and `FOR SYSTEM_VERSION AS OF` clauses in Athena engine version 2 have been replaced by the `FOR TIMESTAMP AS OF` and `FOR VERSION AS OF` clauses in Athena engine version 3\.
 
 #### Retrieving the snapshot ID<a name="querying-iceberg-table-snapshot-id"></a>
 
@@ -83,9 +86,31 @@ You can use time travel and version travel syntax in the same query to specify d
 
 ```
 SELECT table1.*, table2.* FROM 
-  [db_name.]table_name FOR SYSTEM_TIME AS OF (current_timestamp - interval '1' day) AS table1 
+  [db_name.]table_name FOR TIMESTAMP AS OF (current_timestamp - interval '1' day) AS table1 
   FULL JOIN 
-  [db_name.]table_name FOR SYSTEM_VERSION AS OF 5487432386996890161 AS table2 
+  [db_name.]table_name FOR VERSION AS OF 5487432386996890161 AS table2 
   ON table1.ts = table2.ts 
   WHERE (table1.id IS NULL OR table2.id IS NULL)
 ```
+
+## Creating and querying views with Iceberg tables<a name="querying-iceberg-views"></a>
+
+To create and query Athena views on Iceberg tables, use `CREATE VIEW` views as described in [Working with views](views.md)\.
+
+Example:
+
+```
+CREATE VIEW view1 AS SELECT * FROM iceberg_table
+```
+
+```
+SELECT * FROM view1 
+```
+
+If you are interested in using the [Iceberg view specification](https://github.com/apache/iceberg/blob/master/format/view-spec.md) to create views, contact [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\. 
+
+## Working with Lake Formation fine\-grained access control<a name="querying-iceberg-working-with-lf-fgac"></a>
+
+Athena engine version 3 supports Lake Formation fine\-grained access control with Iceberg tables, including column level and row level security access control\. This access control works with time travel queries and with tables that have performed schema evolution\. For more information, see [Lake Formation fine\-grained access control and Athena workgroups](lf-athena-limitations.md#lf-athena-limitations-fine-grained-access-control)\.
+
+If you created your Iceberg table outside of Athena, use [Apache Iceberg SDK](https://iceberg.apache.org/releases/) version 0\.13\.0 or higher so that your Iceberg table column information is populated in the AWS Glue Data Catalog\. If your Iceberg table does not contain column information in AWS Glue, you can use the Athena [ALTER TABLE SET PROPERTIES](querying-iceberg-managing-tables.md#querying-iceberg-alter-table-set-properties) statement or the latest Iceberg SDK to fix the table and update the column information in AWS Glue\. 

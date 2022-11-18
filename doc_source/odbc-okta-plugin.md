@@ -131,7 +131,7 @@ Now you are ready to upload the metadata XML file to the IAM console in AWS\. Yo
 
 1. Choose **Add provider**\.
 
-### Creating an IAM role for Athena and Amazon S3 access<a name="odbc-okta-plugin-creating-an-IAM-role-for-athena-and-amazon-s3-access"></a>
+### Creating an IAM role for Athena and Amazon S3 access<a name="odbc-okta-plugin-creating-an-iam-role-for-athena-and-amazon-s3-access"></a>
 
 Now you are ready to create an IAM role for Athena and Amazon S3 access\. You will assign this role to your user\. That way, you can provide the user with single sign\-on access to Athena\.
 
@@ -150,7 +150,7 @@ Now you are ready to create an IAM role for Athena and Amazon S3 access\. You wi
 
 1. On the **Add Permissions** page, for **Filter policies**, enter **AthenaFull**, and then press ENTER\.
 
-1. Select the **AmazonAthenaFullAccess** managed policy, and then choose **Next**\.  
+1. Select the `AmazonAthenaFullAccess` managed policy, and then choose **Next**\.  
 ![\[Choose the AmazonAthenaFullAccess managed policy.\]](http://docs.aws.amazon.com/athena/latest/ug/images/odbc-okta-plugin-16.png)
 
 1. On the **Name, review, and create** page, for **Role name**, enter a name for the role \(for example, **Athena\-ODBC\-OktaRole**\), and then choose **Create role**\.

@@ -7,7 +7,6 @@ Although you can use the CTAS statement to output data in formats other than CSV
 ## Considerations and limitations<a name="unload-considerations-and-limitations"></a>
 
 When you use the `UNLOAD` statement in Athena, keep in mind the following points:
-+ **Engine version** – Athena engine version 2 is required\.
 + **No global ordering of files** – `UNLOAD` results are written to multiple files in parallel\. If the `SELECT` query in the `UNLOAD` statement specifies a sort order, each file's contents are in sorted order, but the files are not sorted relative to each other\.
 + **Orphaned data not deleted** – In the case of a failure, Athena does not attempt to delete orphaned data\. This behavior is the same as that for CTAS and `INSERT INTO` statements\.
 + **Maximum partitions** – The maximum number of partitions that can be used with `UNLOAD` is 100\.

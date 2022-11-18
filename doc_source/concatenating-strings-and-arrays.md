@@ -65,4 +65,4 @@ welcome_msg
 [Hello, Amazon, Athena, Hi, Alexa]
 ```
 
-For more information about `concat()` other string functions, see [String functions and operators](https://prestodb.io/docs/0.172/functions/string.html) in the Presto documentation\.
+For more information about `concat()` other string functions, see [String functions and operators](https://trino.io/docs/current/functions/string.html) in the Trino documentation\.

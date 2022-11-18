@@ -14,11 +14,11 @@ You can use the Athena console to save, edit, run, rename, and delete the querie
 
 1. In the Athena console query editor, enter or run a query\.
 
-1. At the bottom of the query editor window, choose **Save**, **Save as**\.
+1. Above the query editor window, on the tab for the query, choose the three vertical dots, and then choose **Save as**\.
 
 1. In the **Save query** dialog box, enter a name for the query and an optional description\. You can use the expandable **Preview SQL query** window to verify the contents of the query before you save it\.
 
-1. Choose **Save**\.
+1. Choose **Save query**\.
 
    In the query editor, the tab for the query shows the name that you specified\.
 
@@ -26,13 +26,32 @@ You can use the Athena console to save, edit, run, rename, and delete the querie
 
 1. In the Athena console, choose the **Saved queries** tab\.
 
-1. In the **Saved queries** list, choose the name of the query that you want to run\.
+1. In the **Saved queries** list, choose the ID of the query that you want to run\.
 
    The query editor displays the query that you chose\.
 
 1. Choose **Run**\.
 
-**To rename a saved query**
+**To edit a saved query**
+
+1. In the Athena console, choose the **Saved queries** tab\.
+
+1. In the **Saved queries** list, choose the ID of the query that you want to edit\.
+
+1. Edit the query in the query editor\.
+
+1. Perform one of the following steps:
+   + To run the query, choose **Run**\.
+   + To save the query, choose the three vertical dots on the tab for the query, and then choose **Save**\.
+   + To save the query with a different name, choose the three vertical dots on the tab for the query, and then choose **Save as**\.
+
+**To rename or delete a saved query already displayed in the query editor**
+
+1. Choose the three vertical dots on the tab for the query, and then choose **Rename** or **Delete**\.
+
+1. Follow the prompts to rename or delete the query\.
+
+**To rename a saved query not displayed in the query editor**
 
 1. In the Athena console, choose the **Saved queries** tab\.
 
@@ -46,20 +65,7 @@ You can use the Athena console to save, edit, run, rename, and delete the querie
 
    The renamed query appears in the **Saved queries** list\.
 
-**To edit a saved query**
-
-1. In the Athena console, choose the **Saved queries** tab\.
-
-1. In the **Saved queries** list, choose the name of the query that you want to edit\.
-
-1. Edit the query in the query editor\.
-
-1. Perform one of the following steps:
-   + To run the query, choose **Run**\.
-   + To save the query, choose **Save**, **Save**\.
-   + To save the query with a different name, choose **Save**, **Save as**\.
-
-**To delete a saved query**
+**To delete a saved query not displayed in the query editor**
 
 1. In the Athena console, choose the **Saved queries** tab\.
 
@@ -67,9 +73,9 @@ You can use the Athena console to save, edit, run, rename, and delete the querie
 
 1. Choose **Delete**\.
 
-1. In the **Delete saved queries** prompt, choose **Delete**\.
+1. At the confirmation prompt, choose **Delete**\.
 
-   The queries are removed from the **Saved queries** list\.
+   One or more queries are removed from the **Saved queries** list\.
 
 ## Using the Athena API to update saved queries<a name="saved-queries-athena-api"></a>
 

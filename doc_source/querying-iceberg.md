@@ -11,18 +11,15 @@ For more information about Apache Iceberg, see [https://iceberg\.apache\.org/](h
 Athena support for Iceberg tables has the following limitations:
 + **Tables with AWS Glue catalog only** – Only Iceberg tables created against the AWS Glue catalog based on specifications defined by the [open source glue catalog implementation](https://iceberg.apache.org/docs/latest/aws/#glue-catalog) are supported from Athena\.
 + **Table locking support by AWS Glue only** – Unlike the open source Glue catalog implementation, which supports plug\-in custom locking, Athena supports AWS Glue optimistic locking only\. Using Athena to modify an Iceberg table with any other lock implementation will cause potential data loss and break transactions\.
-+ **Parquet files only** – Currently, Athena supports Iceberg tables in Parquet file format only\. ORC and AVRO are not supported\.
++ **Supported file formats** – Iceberg file format support in Athena depends on the Athena engine version, as shown in the following table\.  
+****    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/querying-iceberg.html)
 + **Iceberg v2 tables** – Athena only creates and operates on Iceberg v2 tables\. For the difference between v1 and v2 tables, see [Format version changes](https://iceberg.apache.org/spec/#appendix-e-format-version-changes) in the Apache Iceberg documentation\.
 + **Display of time types without time zone** – The time and timestamp without time zone types are displayed in UTC\. If the time zone is unspecified in a filter expression on a time column, UTC is used\.
-+  **Timestamp related data precision** – While Iceberg supports microsecond precision for the timestamp data type, Athena supports only millisecond precision for timestamps in both reads and writes\. Athena only retains millisecond precision in time related columns for data that is rewritten during manual compaction operations\.
-+  **Lake Formation** – Integration with AWS Lake Formation is not supported\.
-+ **Unsupported operations** – The following Athena operations are not supported for Iceberg tables\.
-  + [CREATE TABLE AS](create-table-as.md)
++ **Timestamp related data precision** – While Iceberg supports microsecond precision for the timestamp data type, Athena supports only millisecond precision for timestamps in both reads and writes\. Athena only retains millisecond precision in time related columns for data that is rewritten during manual compaction operations\.
++ **Unsupported operations** – The following Athena operations are not supported for Iceberg tables\. 
   + [ALTER TABLE SET LOCATION](alter-table-set-location.md)
-  + [CREATE VIEW](create-view.md)
-  + [SHOW CREATE VIEW](show-create-view.md)
-  + [DROP VIEW](drop-view.md)
-  + [DESCRIBE VIEW](describe-view.md)
++ **Views** – Use `CREATE VIEW` to create Athena views as described in [Working with views](views.md)\. If you are interested in using the [Iceberg view specification](https://github.com/apache/iceberg/blob/master/format/view-spec.md) to create views, contact [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\. 
 
 If you would like Athena to support a particular feature, send feedback to [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\.
 

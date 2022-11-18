@@ -27,9 +27,10 @@ At the same time, because all of your data has integer type values stored in the
 ## Data types supported for filtering on bucketed columns<a name="bucketing-data-types-supported-for-filtering"></a>
 
 You can reduce the amount of data scanned by adding filters on bucketed columns that have certain data types\. Athena supports such filtering only on bucketed columns with the following data types:
-+ `TINYINT`
-+ `SMALLINT`
-+ `INT`
-+ `BIGINT`
-+ `BOOLEAN`
-+ `STRING`
++  `TINYINT` 
++  `SMALLINT` 
++  `INT` 
++  `BIGINT` 
++  `BOOLEAN` 
++  `STRING` 
++  `TIMESTAMP` 

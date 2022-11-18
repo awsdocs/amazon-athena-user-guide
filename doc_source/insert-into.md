@@ -9,6 +9,7 @@ Consider the following when using `INSERT` queries with Athena\.
 
   For more information about encrypting query results using the console, see [Encrypting Athena query results stored in Amazon S3Encrypting Athena query results when using JDBC or ODBC](encrypting-query-results-stored-in-s3.md)\. To enable encryption using the AWS CLI or Athena API, use the `EncryptionConfiguration` properties of the [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html) action to specify Amazon S3 encryption options according to your requirements\.
 + For `INSERT INTO` statements, the expected bucket owner setting does not apply to the destination table location in Amazon S3\. The expected bucket owner setting applies only to the Amazon S3 output location that you specify for Athena query results\. For more information, see [Specifying a query result location using the Athena console](querying.md#query-results-specify-location-console)\.
++ For ACID compliant `INSERT INTO` statements, see the `INSERT INTO` section of [Updating Iceberg table data](querying-iceberg-updating-iceberg-table-data.md)\.
 
 ### Supported formats and SerDes<a name="insert-into-supported-formats"></a>
 

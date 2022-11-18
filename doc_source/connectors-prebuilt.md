@@ -23,6 +23,7 @@ This section lists prebuilt Athena data source connectors that you can use to qu
 + [CloudWatch](connectors-cloudwatch.md)
 + [CloudWatch metrics](connectors-cwmetrics.md)
 + [CMDB](connectors-cmdb.md)
++ [Db2](connectors-ibm-db2.md)
 + [DocumentDB](connectors-docdb.md)
 + [DynamoDB](connectors-dynamodb.md)
 + [HBase](connectors-hbase.md)
@@ -41,3 +42,6 @@ This section lists prebuilt Athena data source connectors that you can use to qu
 + [Timestream](connectors-timestream.md)
 + [TPC\-DS](connectors-tpcds.md)
 + [Vertica](connectors-vertica.md)
+
+**Note**  
+The [AthenaJdbcConnector](https://serverlessrepo.aws.amazon.com/applications/us-east-1/292517598671/AthenaJdbcConnector) \(latest version 2022\.4\.1\) has been deprecated\. Instead, use a database\-specific connector like those for [MySQL](connectors-mysql.md), [Redshift](connectors-redshift.md), or [PostgreSQL](connectors-postgresql.md)\.

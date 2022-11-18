@@ -8,7 +8,7 @@ You can also use `CREATE TABLE AS SELECT` \(CTAS\) statements to create Amazon I
 
 ## Specifying STORED AS ION<a name="ion-serde-specifying-stored-as-ion"></a>
 
-The following example `CREATE TABLE` statement uses `STORED AS ION` before the `LOCATION` clause to create a table based on flight data in Amazon Ion format\.
+The following example `CREATE TABLE` statement uses `STORED AS ION` before the `LOCATION` clause to create a table based on flight data in Amazon Ion format\. The `LOCATION` clause specifies the bucket or folder where the input files in Ion format are located\. All files in the specified location are scanned\.
 
 ```
 CREATE EXTERNAL TABLE flights_ion (

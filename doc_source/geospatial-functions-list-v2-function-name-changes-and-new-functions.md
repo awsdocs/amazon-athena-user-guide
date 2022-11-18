@@ -1,6 +1,6 @@
 # Geospatial function name changes and new functions in Athena engine version 2<a name="geospatial-functions-list-v2-function-name-changes-and-new-functions"></a>
 
-This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. For information about other changes in Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+This section lists changes in geospatial function names and geospatial functions that are new in Athena engine version 2\. For information about other changes as of Athena engine version 2, see [Athena engine version 2](engine-versions-reference-0002.md)\.
 
 For information about Athena engine versioning, see [Athena engine versioning](engine-versions.md)\.
 
@@ -9,7 +9,7 @@ For information about Athena engine versioning, see [Athena engine versioning](e
 The names of the following functions have changed\. In some cases, the input and output types have also changed\. For more information, visit the corresponding links\. 
 
 
-| Prior function name | Athena engine version 2 function name | 
+| Prior function name | Function name starting in Athena engine version 2 | 
 | --- | --- | 
 | st\_coordinate\_dimension | [ST\_CoordDim](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-coordim) | 
 | st\_end\_point | [ST\_EndPoint](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-end-point) | 
@@ -29,7 +29,7 @@ The names of the following functions have changed\. In some cases, the input and
 
 ## New geospatial functions in Athena engine version 2<a name="geospatial-functions-list-v2-new-functions"></a>
 
-The following geospatial functions are new in Athena engine version 2\. For more information, visit the corresponding links\.
+The following geospatial functions are new as of Athena engine version 2\. For more information, visit the corresponding links\.
 
 **Constructor functions**
 + [ST\_AsBinary](geospatial-functions-list-v2.md#geospatial-functions-list-v2-st-asbinary)

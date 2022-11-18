@@ -25,3 +25,6 @@ DROP DATABASE clickstreams;
 ```
 DROP SCHEMA IF EXISTS clickstreams CASCADE;
 ```
+
+**Note**  
+When you try to drop a database whose name has special characters \(for example, `my-database`\), you may receive an error message\. To resolve this issue, try enclosing the database name in back tick \(`\) characters\. For information about naming databases in Athena, see [Names for tables, databases, and columns](tables-databases-columns-names.md)\.

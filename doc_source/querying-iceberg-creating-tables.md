@@ -125,6 +125,28 @@ This section describes table properties that you can specify as key\-value pairs
 | Allowed property values | A positive number\. Must be less than 50\. | 
 | Default value | 2 | 
 
+***vacuum\_min\_snapshots\_to\_keep***
+
+
+****  
+
+|  |  | 
+| --- |--- |
+| Description | Minimum number of snapshots to retain on a table's main branch\. | 
+| Allowed property values | A positive number\. | 
+| Default value | 1 | 
+
+***vacuum\_max\_snapshot\_age\_seconds***
+
+
+****  
+
+|  |  | 
+| --- |--- |
+| Description | Maximum age of the snapshots to retain on the main branch\. | 
+| Allowed property values | A positive number\. | 
+| Default value | 432000 seconds \(5 days\) | 
+
 ## Example CREATE TABLE statement<a name="querying-iceberg-example-create-table-statement"></a>
 
 The following example creates an Iceberg table that has three columns\.

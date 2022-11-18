@@ -123,7 +123,8 @@ The `AmazonAthenaFullAccess` policy is grouped into the following sets of permis
             "Action": [
                 "cloudwatch:PutMetricAlarm",
                 "cloudwatch:DescribeAlarms",
-                "cloudwatch:DeleteAlarms"
+                "cloudwatch:DeleteAlarms",
+                "cloudwatch:GetMetricData"
             ],
             "Resource": [
                 "*"
@@ -246,5 +247,6 @@ View details about updates to AWS managed policies for Athena since this service
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  [AmazonAthenaFullAccess](#amazonathenafullaccess-managed-policy) – Update to existing policy  |  Athena added `cloudwatch:GetMetricData` to retrieve CloudWatch metric values\. For more information, see [GetMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html) in the *Amazon CloudWatch API Reference*\.  | November 14, 2022 | 
 |  [AmazonAthenaFullAccess](#amazonathenafullaccess-managed-policy) and [AWSQuicksightAthenaAccess](#awsquicksightathenaaccess-managed-policy) – Updates to existing policies  |  Athena added `s3:PutBucketPublicAccessBlock` to enable the blocking of public access on the buckets created by Athena\.  | July 7, 2021 | 
 |  Athena started tracking changes  |  Athena started tracking changes for its AWS managed policies\.  | July 7, 2021 | 

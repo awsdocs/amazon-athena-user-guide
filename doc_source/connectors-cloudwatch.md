@@ -31,6 +31,23 @@ Every table mapped by the Athena CloudWatch connector has the following schema\.
 + **time** – An `INT64` that contains the epoch time of when the log line was generated\.
 + **message** – A `VARCHAR` that contains the log message\.
 
+**Examples**  
+The following example shows how to perform a `SELECT` query on a specified LogStream\.
+
+```
+SELECT * 
+FROM "lambda:cloudwatch_connector_lambda_name"."log_group_path"."log_stream_name" 
+LIMIT 100
+```
+
+The following example shows how to use the `all_log_streams` view to perform a query on all LogStreams in a specified LogGroup\. 
+
+```
+SELECT * 
+FROM "lambda:cloudwatch_connector_lambda_name"."log_group_path"."all_log_streams" 
+LIMIT 100
+```
+
 ## Required Permissions<a name="connectors-cloudwatch-required-permissions"></a>
 
 Review the `Policies` section of the [athena\-cloudwatch\.yaml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-cloudwatch/athena-cloudwatch.yaml) file for full details on the IAM policies that this connector requires\. The following is a brief summary\.

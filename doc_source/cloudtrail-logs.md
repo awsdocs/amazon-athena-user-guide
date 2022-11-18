@@ -77,13 +77,7 @@ You can manually create tables for CloudTrail log files in the Athena console, a
 
 **To create an Athena table for a CloudTrail trail using the Athena console**
 
-1. Copy and paste the following DDL statement into the Athena console\. The statement is the same as the one in the CloudTrail console **Create a table in Amazon Athena** dialog box, but adds a `PARTITIONED BY` clause that makes the table partitioned\.
-
-1. Modify `s3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/` to point to the Amazon S3 bucket that contains your log data\.
-
-1. Verify that fields are listed correctly\. For more information about the full list of fields in a CloudTrail record, see [CloudTrail record contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
-
-   In this example, the fields `requestparameters`, `responseelements`, and `additionaleventdata` are listed as type `STRING` in the query, but are `STRUCT` data type used in JSON\. Therefore, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\. For performance improvements, this example partitions the data by Region, year, month, and day\.
+1. Copy and paste the following DDL statement into the Athena console query editor\.
 
    ```
    CREATE EXTERNAL TABLE cloudtrail_logs (
@@ -96,16 +90,20 @@ You can manually create tables for CloudTrail log files in the Athena console, a
                   invokedby:STRING,
                   accesskeyid:STRING,
                   userName:STRING,
-   sessioncontext:STRUCT<
-   attributes:STRUCT<
+     sessioncontext:STRUCT<
+       attributes:STRUCT<
                   mfaauthenticated:STRING,
                   creationdate:STRING>,
-   sessionissuer:STRUCT<  
+       sessionissuer:STRUCT<  
                   type:STRING,
                   principalId:STRING,
                   arn:STRING, 
                   accountId:STRING,
-                  userName:STRING>>>,
+                  userName:STRING>,
+       ec2RoleDelivery:string,
+       webIdFederationData:map<string,string>
+     >
+   >,
    eventtime STRING,
    eventsource STRING,
    eventname STRING,
@@ -120,22 +118,35 @@ You can manually create tables for CloudTrail log files in the Athena console, a
    requestid STRING,
    eventid STRING,
    resources ARRAY<STRUCT<
-                  ARN:STRING,
-                  accountId:STRING,
+                  arn:STRING,
+                  accountid:STRING,
                   type:STRING>>,
    eventtype STRING,
    apiversion STRING,
    readonly STRING,
    recipientaccountid STRING,
    serviceeventdetails STRING,
-   sharedeventid STRING
+   sharedeventid STRING,
+   vpcendpointid STRING,
+   tlsDetails struct<
+     tlsVersion:string,
+     cipherSuite:string,
+     clientProvidedHostHeader:string>
    )
    PARTITIONED BY (region string, year string, month string, day string)
-   ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
+   ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
    STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
    LOCATION 's3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/';
    ```
+
+1. \(Optional\) Remove any fields not required for your table\. If you need to read only a certain set of columns, your table definition can exclude the other columns\.
+
+1. Modify `s3://CloudTrail_bucket_name/AWSLogs/Account_ID/CloudTrail/` to point to the Amazon S3 bucket that contains your log data\.
+
+1. Verify that fields are listed correctly\. For more information about the full list of fields in a CloudTrail record, see [CloudTrail record contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\.
+
+   The following example uses the [Hive JSON SerDe](hive-json-serde.md)\. In this example, the fields `requestparameters`, `responseelements`, and `additionaleventdata` are listed as type `STRING` in the query, but are `STRUCT` data type used in JSON\. Therefore, to get data out of these fields, use `JSON_EXTRACT` functions\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\. For performance improvements, the example partitions the data by AWS Region, year, month, and day\.
 
 1. Run the `CREATE TABLE` statement in the Athena console\.
 
@@ -174,7 +185,7 @@ To create a table for organization wide CloudTrail log files in Athena, follow t
    ...
    
    PARTITIONED BY (account string, region string, year string, month string, day string) 
-   ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
+   ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
    STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
    LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/CloudTrail/'
@@ -235,7 +246,11 @@ CREATE EXTERNAL TABLE cloudtrail_logs_pp(
                 principalId: STRING,
                 arn: STRING,
                 accountId: STRING,
-                userName: STRING>>>,
+                userName: STRING>,
+            ec2RoleDelivery:string,
+            webIdFederationData:map<string,string>
+        >
+    >,
     eventTime STRING,
     eventSource STRING,
     eventName STRING,
@@ -244,9 +259,9 @@ CREATE EXTERNAL TABLE cloudtrail_logs_pp(
     userAgent STRING,
     errorCode STRING,
     errorMessage STRING,
-    requestParameters STRING,
-    responseElements STRING,
-    additionalEventData STRING,
+    requestparameters STRING,
+    responseelements STRING,
+    additionaleventdata STRING,
     requestId STRING,
     eventId STRING,
     readOnly STRING,
@@ -259,11 +274,15 @@ CREATE EXTERNAL TABLE cloudtrail_logs_pp(
     recipientAccountId STRING,
     serviceEventDetails STRING,
     sharedEventID STRING,
-    vpcendpointid STRING
+    vpcendpointid STRING,
+    tlsDetails struct<
+        tlsVersion:string,
+        cipherSuite:string,
+        clientProvidedHostHeader:string>
   )
 PARTITIONED BY (
    `timestamp` string)
-ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
 STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION
@@ -300,7 +319,7 @@ LIMIT 10
 
 The `resources` field is an array of `STRUCT` objects\. For these arrays, use `CROSS JOIN UNNEST` to unnest the array so that you can query its objects\.
 
-The following example returns all rows where the resource ARN ends in `example/datafile.txt`\. For readability, the [replace](https://prestodb.io/docs/0.217/functions/string.html#replace) function removes the initial `arn:aws:s3:::` substring from the ARN\.
+The following example returns all rows where the resource ARN ends in `example/datafile.txt`\. For readability, the [replace](https://prestodb.io/docs/current/functions/string.html#replace) function removes the initial `arn:aws:s3:::` substring from the ARN\.
 
 ```
 SELECT 
@@ -342,7 +361,7 @@ FROM cloudtrail_logs
 WHERE 
     eventsource = 's3.amazonaws.com' AND 
     eventname in ('GetObject') AND 
-    useridentity.accountid LIKE '%ANONYMOUS%' AND 
+    useridentity.accountid = 'anonymous' AND 
     useridentity.arn IS NULL AND
     requestparameters LIKE '%[your bucket name ]%';
 ```
@@ -352,14 +371,14 @@ For more information, see the AWS Big Data blog post [Analyze security, complian
 ## Tips for querying CloudTrail logs<a name="tips-for-querying-cloudtrail-logs"></a>
 
 To explore the CloudTrail logs data, use these tips:
-+ Before querying the logs, verify that your logs table looks the same as the one in [Creating a table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\. If it is not the first table, delete the existing table using the following command: `DROP TABLE cloudtrail_logs;`\.
++ Before querying the logs, verify that your logs table looks the same as the one in [Creating a table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\. If it is not the first table, delete the existing table using the following command: `DROP TABLE cloudtrail_logs`\.
 + After you drop the existing table, re\-create it\. For more information, see [Creating a table for CloudTrail logs in Athena using manual partitioning](#create-cloudtrail-table)\.
 
   Verify that fields in your Athena query are listed correctly\. For information about the full list of fields in a CloudTrail record, see [CloudTrail record contents](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)\. 
 
   If your query includes fields in JSON formats, such as `STRUCT`, extract data from JSON\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\. 
 
-  Now you are ready to issue queries against your CloudTrail table\.
+  Some suggestions for issuing queries against your CloudTrail table:
 + Start by looking at which IAM users called which API operations and from which source IP addresses\.
 + Use the following basic SQL query as your template\. Paste the query to the Athena console and run it\.
 
@@ -372,5 +391,5 @@ To explore the CloudTrail logs data, use these tips:
   FROM cloudtrail_logs
   LIMIT 100;
   ```
-+ Modify the earlier query to further explore your data\.
++ Modify the query to further explore your data\.
 + To improve performance, include the `LIMIT` clause to return a specified subset of rows\.

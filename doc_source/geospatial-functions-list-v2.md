@@ -1,9 +1,9 @@
 # Geospatial functions in Athena engine version 2<a name="geospatial-functions-list-v2"></a>
 
-This topic lists the ESRI geospatial functions that are supported in Athena engine version 2\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
+This topic lists the ESRI geospatial functions that are supported starting in Athena engine version 2\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
 
 **Changes in Athena engine version 2**
-+ The input and output types for some functions have changed\. Most notably, the `VARBINARY` type is no longer directly supported for input\. For more information, see [Changes to geospatial functions](engine-versions-reference.md#engine-versions-reference-0002-changes-to-geospatial-functions)\.
++ The input and output types for some functions have changed\. Most notably, the `VARBINARY` type is no longer directly supported for input\. For more information, see [Changes to geospatial functions](engine-versions-reference-0002.md#engine-versions-reference-0002-changes-to-geospatial-functions)\.
 + The names of some geospatial functions have changed\. For more information, see [Geospatial function name changes in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-function-name-changes)\.
 + New functions have been added\. For more information, see [New geospatial functions in Athena engine version 2](geospatial-functions-list-v2-function-name-changes-and-new-functions.md#geospatial-functions-list-v2-new-functions)\.
 
@@ -129,7 +129,7 @@ SELECT ST_AsText(ST_Point(-74.006801, 40.705220)) AS WKT
 
 ### `ST_Polygon(varchar)`<a name="geospatial-functions-list-v2-st-polygon"></a>
 
-Using the sequence of the ordinates provided clockwise, left to right, returns a [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `polygon`\. In Athena engine version 2, only polygons are accepted as inputs\. Example:
+Using the sequence of the ordinates provided clockwise, left to right, returns a [geometry data type](geospatial-input-data-formats-supported-geometry-types.md#geometry-data-types) `polygon`\. Starting in Athena engine version 2, only polygons are accepted as inputs\. Example:
 
 ```
 SELECT ST_Polygon('polygon ((1 1, 1 4, 4 4, 4 1))') 
@@ -315,7 +315,7 @@ SELECT ST_EnvelopeAsPts(ST_Point(-158.54, 61.56))
 
 ### `ST_ExteriorRing(geometry)`<a name="geospatial-functions-list-v2-st-exteriorring"></a>
 
-Returns the geometry of the exterior ring of the input type `polygon`\. In Athena engine version 2, polygons are the only geometries accepted as inputs\. Examples:
+Returns the geometry of the exterior ring of the input type `polygon`\. Starting in Athena engine version 2, polygons are the only geometries accepted as inputs\. Examples:
 
 ```
 SELECT ST_ExteriorRing(ST_Polygon(1,1, 1,4, 4,1))
@@ -441,7 +441,7 @@ SELECT ST_Dimension(ST_Polygon('polygon((1 1, 4 1, 4 4, 1 4))'))
 
 ### `ST_Distance(geometry, geometry)`<a name="geospatial-functions-list-v2-st-distance"></a>
 
-Returns, based on spatial ref, a double containing the two\-dimensional minimum Cartesian distance between two geometries in projected units\. In Athena engine version 2, returns null if one of the inputs is an empty geometry\. Example:
+Returns, based on spatial ref, a double containing the two\-dimensional minimum Cartesian distance between two geometries in projected units\. Starting in Athena engine version 2, returns null if one of the inputs is an empty geometry\. Example:
 
 ```
 SELECT ST_Distance(ST_Point(0.0,0.0), ST_Point(3.0,4.0))

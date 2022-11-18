@@ -74,7 +74,7 @@ The following image shows the results of the query in the Athena Query Editor\.
 
 ### Combining the date and time fields<a name="querying-iis-logs-example-w3c-extended-log-combining-date-and-time"></a>
 
-The space delimited `date` and `time` fields are separate entries in the log source data, but you can combine them into a timestamp if you want\. Use the [concat\(\)](https://prestodb.io/docs/0.217/functions/string.html#concat) and [date\_parse\(\)](https://prestodb.io/docs/0.217/functions/datetime.html#date_parse) functions in a [SELECT](select.md) or [CREATE TABLE AS SELECT](create-table-as.md) query to concatenate and convert the date and time columns into timestamp format\. The following example uses a CTAS query to create a new table with a `derived_timestamp` column\.
+The space delimited `date` and `time` fields are separate entries in the log source data, but you can combine them into a timestamp if you want\. Use the [concat\(\)](https://prestodb.io/docs/current/functions/string.html#concat) and [date\_parse\(\)](https://prestodb.io/docs/current/functions/datetime.html#date_parse) functions in a [SELECT](select.md) or [CREATE TABLE AS SELECT](create-table-as.md) query to concatenate and convert the date and time columns into timestamp format\. The following example uses a CTAS query to create a new table with a `derived_timestamp` column\.
 
 ```
 CREATE TABLE iis_w3c_logs_w_timestamp AS

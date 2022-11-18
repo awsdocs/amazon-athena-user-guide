@@ -31,7 +31,6 @@ A SerDe is a custom library that tells the data catalog used by Athena how to ha
 **Topics**
 + [Amazon Ion Hive SerDe](ion-serde.md)
 + [Avro SerDe](avro-serde.md)
-+ [CloudTrail SerDe](cloudtrail-serde.md)
 + [Grok SerDe](grok-serde.md)
 + [JSON SerDe libraries](json-serde.md)
 + [LazySimpleSerDe for CSV](lazy-simple-serde.md)

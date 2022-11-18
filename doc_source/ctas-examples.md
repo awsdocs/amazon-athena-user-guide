@@ -1,16 +1,18 @@
 # Examples of CTAS queries<a name="ctas-examples"></a>
 
-Use the following examples to create CTAS queries\. For information about the CTAS syntax, see [CREATE TABLE AS](create-table-as.md)\.
+Use the following examples to create CTAS queries\. For information about the CTAS syntax, see [ CREATE TABLE AS ](create-table-as.md)\.
 
 In this section: 
-+ [Example: Duplicating a Table by Selecting All Columns](#ctas-example-dupe-table)
-+ [Example: Selecting Specific Columns From One or More Tables](#ctas-example-specify-columns)
-+ [Example: Creating an Empty Copy of an Existing Table](#ctas-example-empty-table)
-+ [Example: Specifying Data Storage and Compression Formats](#ctas-example-compression)
-+ [Example: Writing Query Results to a Different Format](#ctas-example-format)
-+ [Example: Creating Unpartitioned Tables](#ctas-example-unpartitioned)
-+ [Example: Creating Partitioned Tables](#ctas-example-partitioned)
-+ [Example: Creating Bucketed and Partitioned Tables](#ctas-example-bucketed)
++  [Example: Duplicating a Table by Selecting All Columns](#ctas-example-dupe-table) 
++  [Example: Selecting Specific Columns From One or More Tables](#ctas-example-specify-columns) 
++  [Example: Creating an Empty Copy of an Existing Table](#ctas-example-empty-table) 
++  [Example: Specifying Data Storage and Compression Formats](#ctas-example-compression) 
++  [Example: Writing Query Results to a Different Format](#ctas-example-format) 
++  [Example: Creating Unpartitioned Tables](#ctas-example-unpartitioned) 
++  [Example: Creating Partitioned Tables](#ctas-example-partitioned) 
++  [Example: Creating Bucketed and Partitioned Tables](#ctas-example-bucketed) 
++  [Example: Creating an Iceberg table with Parquet data](#ctas-example-iceberg-parquet) 
++  [Example: Creating an Iceberg table with Avro data](#ctas-example-iceberg-avro) 
 
 **Example: Duplicating a table by selecting all columns**  
 The following example creates a table by copying all columns from a table:  
@@ -56,7 +58,7 @@ WITH NO DATA;
 ```
 
 **Example: Specifying data storage and compression formats**  
-You can use a CTAS query to create a new table in Parquet format from a source table in a different storage format\.   
+With CTAS, you can use a source table in one storage format to create another table in a different storage format\.   
 Use the `format` property to specify `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE` as the storage format for the new table\.   
 For the `PARQUET`, `ORC`, `TEXTFILE`, and `JSON` storage formats, use the `write_compression` property to specify the compression format for the new table's data\. For information about the compression formats that each file format supports, see [Athena compression support](compression-formats.md)\.  
 The following example specifies that data in the table `new_table` be stored in Parquet format and use Snappy compression\. The default compression for Parquet is `GZIP`\.  
@@ -188,4 +190,34 @@ WITH (
       bucket_count = 3) 
 AS SELECT key1, name1, address1, phone1, acctbal, mktsegment, comment1, nationkey 
 FROM table1;
+```
+
+**Example: Creating an Iceberg table with Parquet data**  
+The following example creates an Iceberg table with Parquet data files\. The files are partitioned by a month transform on the `dt` column in `table1`\. The example updates the retention properties on the table so that 10 snapshots are retained by default on every branch in the table\. Snapshots within the past 30 days are also retained\.  
+  
+
+```
+CREATE TABLE ctas_iceberg_parquet
+WITH (table_type = 'ICEBERG',
+      format = 'PARQUET', 
+      location = 's3://my_athena_results/ctas_iceberg_parquet/', 
+      is_external = false,
+      partitioning = ARRAY['month(dt)'],
+      vacuum_min_snapshots_to_keep = 10,
+      vacuum_max_snapshot_age_ms = 259200
+   ) 
+AS SELECT key1, name1, dt FROM table1;
+```
+
+**Example: Creating an Iceberg table with Avro data**  
+The following example creates an Iceberg table with Avro data files partitioned by `key1`\.  
+
+```
+CREATE TABLE ctas_iceberg_avro
+WITH ( format = 'AVRO', 
+       location = 's3://my_athena_results/ctas_iceberg_avro/', 
+       is_external = false,
+       table_type = 'ICEBERG',
+       partitioning = ARRAY['key1']) 
+AS SELECT key1, name1, date FROM table1;
 ```

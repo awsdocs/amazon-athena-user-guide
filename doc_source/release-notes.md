@@ -12,6 +12,106 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2022<a name="release-notes-2022"></a>
 
+### November 18, 2022<a name="release-note-2022-11-18"></a>
+
+Published on 2022\-11\-18
+
+You can now use the Amazon Athena connector for IBM Db2 to query Db2 from Athena\. For example, you can run analytical queries over a data warehouse on Db2 and a data lake in Amazon S3\.
+
+The Amazon Athena Db2 connector exposes several configuration options through Lambda environment variables\. For information about configuration options, parameters, connection strings, deployment, and limitations, see [Amazon Athena IBM Db2 connector](connectors-ibm-db2.md)\. 
+
+### November 17, 2022<a name="release-note-2022-11-17"></a>
+
+Published on 2022\-11\-17
+
+Apache Iceberg support in Athena engine version 3 now offers the following enhanced ACID transaction features:
++ **ORC and Avro support** – Create Iceberg tables using the [Apache Avro](https://avro.apache.org/) and [Apache ORC](https://orc.apache.org/) row and column\-based file formats\. Support for these formats is in addition to the existing support for Parquet\. 
++ **MERGE INTO** – Use the `MERGE INTO` command to merge data at scale efficiently\. `MERGE INTO` combines the `INSERT`, `UPDATE`, and `DELETE` operations into one transaction\. This reduces the processing overhead in your data pipeline and takes less SQL to write\. For more information, see [Updating Iceberg table data](querying-iceberg-updating-iceberg-table-data.md) and [MERGE INTO](merge-into-statement.md)\.
++ **CTAS and VIEW support** – Use the `CREATE TABLE AS SELECT` \(CTAS\) and `CREATE VIEW` statements with Iceberg tables\. For more information, see [ CREATE TABLE AS ](create-table-as.md) and [CREATE VIEW](create-view.md)\.
++ **VACUUM support** – You can use the `VACUUM` statement to optimize your data lake by deleting snapshots and data that are no longer required\. You can use this feature to improve read performance and meet regulatory requirements like [GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation)\. For more information, see [Optimizing Iceberg tables](querying-iceberg-data-optimization.md) and [VACUUM](vacuum-statement.md)\.
+
+These new features require Athena engine version 3 and are available in all Regions where Athena is supported\. You can use them with the [Athena console](https://console.aws.amazon.com/athena/home), [drivers](athena-bi-tools-jdbc-odbc.md), or [API](https://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html)\. 
+
+For information about using Iceberg in Athena, see [Using Iceberg tables](querying-iceberg.md)\.
+
+### November 14, 2022<a name="release-note-2022-11-14"></a>
+
+Published on 2022\-11\-14
+
+Amazon Athena now supports IPv6 endpoints for inbound connections that you can use to invoke Athena functions over IPv6\. You can use this feature to meet IPv6 compliance requirements\. It also removes the need for additional networking equipment to handle address translation between IPv4 and IPv6\.
+
+To use this feature, configure your applications to use the new Athena dual\-stack endpoints, which support both IPv4 and IPv6\. Dual\-stack endpoints use the format `athena.region.api.aws`\. For example, the dual\-stack endpoint in the US East \(N\. Virginia\) Region is `athena.us-east-1.api.aws`\. 
+
+When you make a request to a dual\-stack Athena endpoint, the endpoint resolves to an IPv6 or an IPv4 address depending on the protocol used by your network and client\. To connect programmatically to an AWS service, you can use the [AWS CLI](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/index.html) or [AWS SDK](http://aws.amazon.com/developer/tools/) to specify an endpoint\. 
+
+For more information on service endpoints, see [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)\. To learn more about Athena's service endpoints, see [Amazon Athena endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/athena.html) in the AWS documentation\. 
+
+You can use the new Athena dual\-stack endpoints for inbound connections at no additional cost\. Dual\-stack endpoints are generally available in all AWS Regions except the China \(Beijing\), China \(Ningxia\), and AWS GovCloud \(US\) Regions\.
+
+### November 11, 2022<a name="release-note-2022-11-11"></a>
+
+Published on 2022\-11\-11
+
+Athena announces the following fixes and improvements\.
++ **Expanded Lake Formation fine\-grained access control** – You can now use [AWS Lake Formation](http://aws.amazon.com/lake-formation/) fine\-grained access control policies in Athena queries for data stored in any supported file or table format\. You can use fine\-grained access control in Lake Formation to restrict access to data in query results using data filters to achieve column\-level, row\-level, and cell\-level security\. Supported table formats in Athena include Apache Iceberg, Apache Hudi, and Apache Hive\. Expanded fine\-grained access control is available in all regions supported by Athena\. The expanded table and file format support requires [Athena engine version 3](engine-versions-reference-0003.md), which [offers new features and improved query performance](http://aws.amazon.com/blogs/big-data/upgrade-to-athena-engine-version-3-to-increase-query-performance-and-access-more-analytics-features/), but does not change how you set up fine\-grained access control policies in Lake Formation\. 
+
+  Use of this expanded fine\-grained access control in Athena has the following considerations:
+  + **EXPLAIN** – Row or cell filtering information defined in Lake Formation and query statistics information are not shown in the output of `EXPLAIN` and `EXPLAIN ANALYZE`\. For information about `EXPLAIN` in Athena, see [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md)\.
+  + **External Hive metastores** – Apache Hive hidden columns cannot be used for fine\-grained access control filtering, and Apache Hive hidden system tables are not supported by fine\-grained access control\. For more information, see [Considerations and limitations](connect-to-data-source-hive.md#connect-to-a-data-source-hive-considerations) in the topic [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)\.
+  + **Query statistics** – Stage\-level input and output row count and data size information are not shown in Athena query statistics when a query has row\-level filters defined in Lake Formation\. For information about seeing statistics for Athena queries, see [Viewing statistics and execution details for completed queries](query-stats.md) and [GetQueryRuntimeStatistics](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryRuntimeStatistics.html)\.
+  + **Workgroups** – Users in the same Athena workgroup can see the data that Lake Formation fine\-grained access control has configured to be accessible to the workgroup\. For information about using Athena to query data registered with Lake Formation, see [Using Athena to query data registered with AWS Lake Formation](security-athena-lake-formation.md)\. 
+
+  For information about using fine\-grained access control in Lake Formation, see [Manage fine\-grained access control using AWS Lake Formation](http://aws.amazon.com/blogs/big-data/manage-fine-grained-access-control-using-aws-lake-formation/) in the *AWS Big Data Blog*\. 
++ **Athena Federated Query** – Athena Federated Query now preserves the original casing of field names in `struct` objects\. Previously, `struct` field names were automatically made lower case\.
+
+### November 8, 2022<a name="release-note-2022-11-08"></a>
+
+Published on 2022\-11\-08
+
+You can now use the query result reuse caching feature to accelerate repeat queries in Athena\. A repeat query is a SQL query identical to one submitted just recently that produces the same results\. When you need to run identical multiple queries, result reuse caching can decrease the time required to produce results\. Result reuse caching also lowers costs by reducing the number of bytes scanned\.
+
+For more information, see [Reusing query results](reusing-query-results.md)\.
+
+### October 13, 2022<a name="release-note-2022-10-13"></a>
+
+Published on 2022\-10\-13
+
+Athena announces Athena engine version 3\.
+
+Athena has upgraded its SQL query engine to include the latest features from the [Trino ](https://trino.io/) open source project\. In addition to supporting all the features of Athena engine version 2, Athena engine version 3 includes over 50 new SQL functions, 30 new features, and more than 90 query performance improvements\. With today’s launch, Athena is also introducing a continuous integration approach to open source software management that improves currency with the Trino and [Presto](https://prestodb.io/) projects so that you get faster access to community improvements, integrated and tuned within the Athena engine\.
+
+For more information, see [Athena engine version 3](engine-versions-reference-0003.md)\.
+
+### October 10, 2022<a name="release-note-2022-10-10"></a>
+
+Published on 2022\-10\-10
+
+Athena releases JDBC driver version 2\.0\.33\. The JDBC 2\.0\.33 driver includes the following changes:
++ New driver version, JDBC version, and plugin name properties were added to the user\-agent string in the credentials provider class\.
++ Error messages were corrected and necessary information added\.
++ Prepared statements are now deallocated if the connection is closed or the Athena prepared statement execution fails\.
+
+For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+
+### September 23, 2022<a name="release-note-2022-09-23"></a>
+
+Published on 2022\-09\-26
+
+The Amazon Athena Neptune connector now supports case insensitive matching on column and table names\.
++ The Neptune data source connector can resolve column names on Neptune tables that use casing even if the column names are all lower cased in the table in AWS Glue\. To enable this behavior, set the `enable_caseinsensitivematch` environment variable to `true` on the Neptune connector Lambda function\.
++ Because AWS Glue supports only lower case table names, when you create a AWS Glue table for Neptune, specify the AWS Glue table parameter `"glabel" = table_name`\.
+
+For more information about the Neptune connector, see [Amazon Athena Neptune connector](connectors-neptune.md)\.
+
+### September 13, 2022<a name="release-note-2022-09-13"></a>
+
+Published on 2022\-09\-13
+
+Athena announces the following fixes and improvements\.
++ **External Hive metastore** – Athena now returns `NULL` instead of throwing an exception when a `WHERE` clause includes a partition that doesn't exist in an [external Hive metastore](connect-to-data-source-hive.md) \(EHMS\)\. The new behavior matches that of the AWS Glue Data Catalog\.
++ **Parameterized queries** – Values in [parameterized queries](querying-with-prepared-statements.md) can now be cast to the `DOUBLE` data type\.
++ **Apache Iceberg** – Write operations to [Iceberg tables](querying-iceberg.md) now succeed when [Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html) is enabled on an Amazon S3 bucket\.
+
 ### August 31, 2022<a name="release-note-2022-08-31"></a>
 
 Published on 2022\-08\-31
@@ -25,7 +125,7 @@ This release expands Athena's availability in Asia Pacific to include Asia Pacif
 Published on 2022\-08\-23
 
 Release [v2022\.32\.1](https://github.com/awslabs/aws-athena-query-federation/releases/tag/v2022.32.1) of the Athena Query Federation SDK includes the following changes:
-+ Added support to the Amazon Athena Oracle data source connector for SSL based connections to Amazon RDS instances\. Support is limited to the Transport Layer Security \(TLS\) protocol and to authentication of the server by the client\. Because mutual authentication it is not supported in Amazon RDS, the update does not include support for mutual authentication\. 
++ Added support to the Amazon Athena Oracle data source connector for SSL based connections to Amazon RDS instances\. Support is limited to the Transport Layer Security \(TLS\) protocol and to authentication of the server by the client\. Because mutual authentication it is not supported in Amazon RDS, the update does not include support for mutual authentication\.
 
   For more information, see [Amazon Athena Oracle connector](connectors-oracle.md)\.
 
@@ -590,7 +690,7 @@ You can now use the Amazon Athena Vertica connector in federated queries to quer
 
 To deploy the Athena Vertica connector, visit the [AthenaVerticaConnector](https://console.aws.amazon.com/lambda/home?region=us-east-1#/create/app?applicationId=arn:aws:serverlessrepo:us-east-1:292517598671:applications/AthenaVerticaConnector) page in the AWS Serverless Application Repository\.
 
-The Amazon Athena Vertica connector exposes several configuration options through Lambda environment variables\. For information about configuration options, parameters, connection strings, deployment, and limitations, see [Amazon Athena Vertica Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-vertica) on GitHub\. 
+The Amazon Athena Vertica connector exposes several configuration options through Lambda environment variables\. For information about configuration options, parameters, connection strings, deployment, and limitations, see [Amazon Athena Vertica connector](connectors-vertica.md)\. 
 
 For in\-depth information about using the Vertica connector, see [Querying a Vertica data source in Amazon Athena using the Athena Federated Query SDK](http://aws.amazon.com/blogs/big-data/querying-a-vertica-data-source-in-amazon-athena-using-the-athena-federated-query-sdk/) in the *AWS Big Data Blog*\.
 
@@ -608,7 +708,7 @@ Published on 2021\-04\-29
 
 Amazon Athena announces availability of Athena engine version 2 in the China \(Beijing\) and China \(Ningxia\) Regions\.
 
-For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference-0002.md)\.
 
 ### April 26, 2021<a name="release-note-2021-04-26"></a>
 
@@ -616,7 +716,7 @@ Published on 2021\-04\-26
 
 Window value functions in Athena engine version 2 now support `IGNORE NULLS` and `RESPECT NULLS`\.
 
-For more information, see [Value Functions](https://prestodb.io/docs/0.231/functions/window.html#value-functions) in the Presto documentation\.
+For more information, see [Value Functions](https://prestodb.io/docs/current/functions/window.html#value-functions) in the Presto documentation\.
 
 ### April 21, 2021<a name="release-note-2021-04-21"></a>
 
@@ -624,7 +724,7 @@ Published on 2021\-04\-21
 
 Amazon Athena announces availability of Athena engine version 2 in the Europe \(Milan\) and Africa \(Cape Town\) Regions\.
 
-For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference-0002.md)\.
 
 ### April 5, 2021<a name="release-note-2021-04-05"></a>
 
@@ -654,7 +754,7 @@ Published on 2021\-03\-30
 
 Amazon Athena announces availability of Athena engine version 2 in the Asia Pacific \(Hong Kong\) and Middle East \(Bahrain\) Regions\.
 
-For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference-0002.md)\.
 
 ### March 25, 2021<a name="release-note-2021-03-25"></a>
 
@@ -662,7 +762,7 @@ Published on 2021\-03\-25
 
 Amazon Athena announces availability of Athena engine version 2 in the Europe \(Stockholm\) Region\.
 
-For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference-0002.md)\.
 
 ### March 5, 2021<a name="release-note-2021-03-05"></a>
 
@@ -670,7 +770,7 @@ Published on 2021\-03\-05
 
 Amazon Athena announces availability of Athena engine version 2 in the Canada \(Central\), Europe \(Frankfurt\), and South America \(São Paulo\) Regions\.
 
-For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference-0002.md)\.
 
 ### February 25, 2021<a name="release-note-2021-02-25"></a>
 
@@ -678,7 +778,7 @@ Published on 2021\-02\-25
 
 Amazon Athena announces general availability of Athena engine version 2 in the Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Europe \(London\), and Europe \(Paris\) Regions\.
 
-For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
+For information about Athena engine version 2, see [Athena engine version 2](engine-versions-reference-0002.md)\.
 
 ## Athena release notes for 2020<a name="release-notes-2020"></a>
 
@@ -692,7 +792,7 @@ Amazon Athena announces availability of Athena engine version 2, Athena Federate
 
 Amazon Athena announces general availability of Athena engine version 2 and Athena Federated Query in the Asia Pacific \(Mumbai\), Asia Pacific \(Tokyo\), Europe \(Ireland\), and US West \(N\. California\) Regions\. Athena engine version 2 and federated queries are already available in the US East \(N\. Virginia\), US East \(Ohio\), and US West \(Oregon\) Regions\.
 
-For more information, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002) and [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
+For more information, see [Athena engine version 2](engine-versions-reference-0002.md) and [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
 
 #### AWS PrivateLink<a name="release-note-2020-12-16-privatelink"></a>
 
@@ -717,7 +817,7 @@ Amazon Athena announces general availability in the US East \(N\. Virginia\), US
 Amazon Athena announces general availability of a new query engine version, Athena engine version 2, in the US East \(N\. Virginia\), US East \(Ohio\), and US West \(Oregon\) Regions\.
 
 Athena engine version 2 includes performance enhancements and new feature capabilities such as schema evolution support for Parquet format data, additional geospatial functions, support for reading nested schema to reduce cost, and performance enhancements in JOIN and AGGREGATE operations\.
-+ For information about improvements, breaking changes, and bug fixes, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\.
++ For information about improvements, breaking changes, and bug fixes, see [Athena engine version 2](engine-versions-reference-0002.md)\.
 + For information about how to upgrade, see [Changing Athena engine versions](engine-versions-changing.md)\.
 + For information about testing queries, see [Testing queries in advance of an engine version upgrade](engine-versions-changing.md#engine-versions-testing)\.
 
@@ -1242,7 +1342,7 @@ Athena uses Presto, an open\-source distributed query engine, to run queries\.
 
 With Athena, there are no versions to manage\. We have transparently upgraded the underlying engine in Athena to a version based on Presto version 0\.172\. No action is required on your end\. 
 
-With the upgrade, you can now use [Presto 0\.172 Functions and Operators](https://prestodb.io/docs/0.172/functions.html), including [Presto 0\.172 Lambda Expressions](https://prestodb.io/docs/0.172/functions/lambda.html) in Athena\. 
+With the upgrade, you can now use Presto 0\.172 Functions and Operators, including Presto 0\.172 Lambda Expressions in Athena\. 
 
 Major updates for this release, including the community\-contributed fixes, include:
 + Support for ignoring headers\. You can use the `skip.header.line.count` property when defining tables, to allow Athena to ignore headers\. This is supported for queries that use the [LazySimpleSerDe](lazy-simple-serde.md) and [OpenCSV SerDe](csv-serde.md), and not for Grok or Regex SerDes\.
@@ -1253,13 +1353,13 @@ Major updates for this release, including the community\-contributed fixes, incl
 + Support for filtered aggregations, such as `SELECT sum(col_name) FILTER`, where `id > 0`\.
 + Push\-down predicates for the `DECIMAL`, `TINYINT`, `SMALLINT`, and `REAL` data types\.
 + Support for quantified comparison predicates: `ALL`, `ANY`, and `SOME`\. 
-+ Added functions: [https://prestodb.io/docs/0.172/functions/array.html#arrays_overlap](https://prestodb.io/docs/0.172/functions/array.html#arrays_overlap), [https://prestodb.io/docs/0.172/functions/array.html#array_except](https://prestodb.io/docs/0.172/functions/array.html#array_except), [https://prestodb.io/docs/0.172/functions/string.html#levenshtein_distance](https://prestodb.io/docs/0.172/functions/string.html#levenshtein_distance), [https://prestodb.io/docs/0.172/functions/string.html#codepoint](https://prestodb.io/docs/0.172/functions/string.html#codepoint), [https://prestodb.io/docs/0.172/functions/aggregate.html#skewness](https://prestodb.io/docs/0.172/functions/aggregate.html#skewness), [https://prestodb.io/docs/0.172/functions/aggregate.html#kurtosis](https://prestodb.io/docs/0.172/functions/aggregate.html#kurtosis), and [https://prestodb.io/docs/0.172/functions/conversion.html#typeof](https://prestodb.io/docs/0.172/functions/conversion.html#typeof)\.
-+ Added a variant of the [https://prestodb.io/docs/0.172/functions/datetime.html#from_unixtime](https://prestodb.io/docs/0.172/functions/datetime.html#from_unixtime) function that takes a timezone argument\.
-+ Added the [https://prestodb.io/docs/0.172/functions/aggregate.html#bitwise_and_agg](https://prestodb.io/docs/0.172/functions/aggregate.html#bitwise_and_agg) and [https://prestodb.io/docs/0.172/functions/aggregate.html#bitwise_or_agg](https://prestodb.io/docs/0.172/functions/aggregate.html#bitwise_or_agg) aggregation functions\.
-+  Added the [https://prestodb.io/docs/0.172/functions/binary.html#xxhash64](https://prestodb.io/docs/0.172/functions/binary.html#xxhash64) and [https://prestodb.io/docs/0.172/functions/binary.html#to_big_endian_64](https://prestodb.io/docs/0.172/functions/binary.html#to_big_endian_64) functions\. 
-+ Added support for escaping double quotes or backslashes using a backslash with a JSON path subscript to the [https://prestodb.io/docs/0.172/functions/json.html#json_extract](https://prestodb.io/docs/0.172/functions/json.html#json_extract) and [https://prestodb.io/docs/0.172/functions/json.html#json_extract_scalar](https://prestodb.io/docs/0.172/functions/json.html#json_extract_scalar) functions\. This changes the semantics of any invocation using a backslash, as backslashes were previously treated as normal characters\.
++ Added functions: [https://prestodb.io/docs/current/functions/array.html#arrays_overlap](https://prestodb.io/docs/current/functions/array.html#arrays_overlap), [https://prestodb.io/docs/current/functions/array.html#array_except](https://prestodb.io/docs/current/functions/array.html#array_except), [https://prestodb.io/docs/current/functions/string.html#levenshtein_distance](https://prestodb.io/docs/current/functions/string.html#levenshtein_distance), [https://prestodb.io/docs/current/functions/string.html#codepoint](https://prestodb.io/docs/current/functions/string.html#codepoint), [https://prestodb.io/docs/current/functions/aggregate.html#skewness](https://prestodb.io/docs/current/functions/aggregate.html#skewness), [https://prestodb.io/docs/current/functions/aggregate.html#kurtosis](https://prestodb.io/docs/current/functions/aggregate.html#kurtosis), and [https://prestodb.io/docs/current/functions/conversion.html#typeof](https://prestodb.io/docs/current/functions/conversion.html#typeof)\.
++ Added a variant of the [https://prestodb.io/docs/current/functions/datetime.html#from_unixtime](https://prestodb.io/docs/current/functions/datetime.html#from_unixtime) function that takes a timezone argument\.
++ Added the [https://prestodb.io/docs/current/functions/aggregate.html#bitwise_and_agg](https://prestodb.io/docs/current/functions/aggregate.html#bitwise_and_agg) and [https://prestodb.io/docs/current/functions/aggregate.html#bitwise_or_agg](https://prestodb.io/docs/current/functions/aggregate.html#bitwise_or_agg) aggregation functions\.
++  Added the [https://prestodb.io/docs/current/functions/binary.html#xxhash64](https://prestodb.io/docs/current/functions/binary.html#xxhash64) and [https://prestodb.io/docs/current/functions/binary.html#to_big_endian_64](https://prestodb.io/docs/current/functions/binary.html#to_big_endian_64) functions\. 
++ Added support for escaping double quotes or backslashes using a backslash with a JSON path subscript to the [https://prestodb.io/docs/current/functions/json.html#json_extract](https://prestodb.io/docs/current/functions/json.html#json_extract) and [https://prestodb.io/docs/current/functions/json.html#json_extract_scalar](https://prestodb.io/docs/current/functions/json.html#json_extract_scalar) functions\. This changes the semantics of any invocation using a backslash, as backslashes were previously treated as normal characters\.
 
-For a complete list of functions and operators, see [DML queries, functions, and operators](functions-operators-reference-section.md) in this guide, and [Presto 0\.172 Functions](https://prestodb.io/docs/0.172/functions.html)\. 
+For a complete list of functions and operators, see [DML queries, functions, and operators](functions-operators-reference-section.md) in this guide, and [Functions and operators](https://prestodb.io/docs/current/functions.html) in the Presto documentation\. 
 
 Athena does not support all of Presto's features\. For more information, see [Limitations](other-notable-limitations.md)\.
 
@@ -1385,7 +1485,7 @@ Published on *2017\-03\-24*
 Added the AWS CloudTrail SerDe, improved performance, fixed partition issues\.
 
 #### Features<a name="release-note-2017-03-24-features"></a>
-+ Added the AWS CloudTrail SerDe\. For more information, see [CloudTrail SerDe](cloudtrail-serde.md)\. For detailed usage examples, see the AWS Big Data Blog post, [ Analyze Security, Compliance, and Operational Activity Using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\.
++ Added the AWS CloudTrail SerDe, which has since been superseded by the [Hive JSON SerDe](hive-json-serde.md) for reading CloudTrail logs\. For information about querying CloudTrail logs, see [Querying AWS CloudTrail logs](cloudtrail-logs.md)\.
 
 #### Improvements<a name="release-note-2017-03-24-improvements"></a>
 + Improved performance when scanning a large number of partitions\.

@@ -71,30 +71,37 @@ If the schema for `table1` and `table2` are similar, and a single data source is
 
 To have the AWS Glue crawler create two separate tables, set the crawler to have two data sources, `s3://bucket01/folder1/table1/` and `s3://bucket01/folder1/table2`, as shown in the following procedure\.
 
-### To add another data store to an existing crawler in AWS Glue<a name="to-add-another-data-store-to-an-existing-crawler-in-aws-glue"></a>
+### To add an S3 data store to an existing crawler in AWS Glue<a name="to-add-another-data-store-to-an-existing-crawler-in-aws-glue"></a>
 
 1. Sign in to the AWS Management Console and open the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/)\.
 
-1. Choose **Crawlers**, select your crawler, and then choose **Action**, **Edit crawler**\.
+1. In the navigation pane, choose **Crawlers**\.
 
-1. Under **Add information about your crawler**, choose additional settings as appropriate, and then choose **Next**\.
+1. Choose the link to your crawler, and then choose **Edit**\. 
 
-1. Under **Specify crawler source type**, choose additional settings as appropriate, and then choose **Next**\.
+1. For **Step 2: Choose data sources and classifiers**, choose **Edit**\. 
 
-1. Under **Add a data store**, change **Include path** to the table\-level directory\. For instance, given the example above, you would change it from `s3://bucket01/folder1 to s3://bucket01/folder1/table1/`\.
+1. For **Data sources**, choose **Add a data source**\.
+
+1. In the **Add data source** dialog box, for **S3 path**, choose **Browse**\. 
+
+1. Select the bucket that you want to use, and then choose **Choose**\.
+
+   The data source that you added appears in the **Data sources** list\.
 
 1. Choose **Next**\.
 
-1. For **Add another data store**, choose **Yes**, and then choose **Next**\.
+1. On the **Configure security settings** page, create or choose an IAM role for the crawler, and then choose **Next**\.
 
-1. For **Include path**, enter your other table\-level directory \(for example, `s3://bucket01/folder1/table2/`\) and choose **Next**\.
+1. Make sure that the S3 path ends in a trailing slash, and then choose **Add an S3 data source**\.
 
-1. Repeat the steps to add any additional table\-level directories, and finish the crawler configuration\.
+1. On the **Set output and scheduling** page, for **Output configuration**, choose the target database\.
 
-   On the final screen, the new values for **Include locations** appear under **Data stores**, as in the following image:  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_add_data_store2.png)
+1. Choose **Next**\.
 
-1.  Choose **Finish**\. 
+1. On the **Review and update** page, review the choices that you made\. To edit a step, choose **Edit**\.
+
+1.  Choose **Update**\.
 
 ### Syncing partition schema to avoid "HIVE\_PARTITION\_SCHEMA\_MISMATCH"<a name="schema-syncing"></a>
 
@@ -129,17 +136,16 @@ To run a query in Athena on a table created from a CSV file that has quoted valu
 
 1. In the AWS Glue console navigation pane, choose **Tables**\.
 
-1. Choose the table that you want to edit, and then choose **Action**, **Edit table details**\.
+1. Choose the link for the table that you want to edit, and then choose **Actions**, **Edit table**\.
 
-1. In the **Edit table details** dialog box, make the following changes:
-   + For **Serde serialization lib**, enter `org.apache.hadoop.hive.serde2.OpenCSVSerde`\.
+1. On the **Edit table** page, make the following changes:
+   + For **Serialization lib**, enter `org.apache.hadoop.hive.serde2.OpenCSVSerde`\.
    + For **Serde parameters**, enter the following values for the keys `escapeChar`, `quoteChar`, and `separatorChar`: 
      + For `escapeChar`, enter a backslash \(**\\**\)\.
      + For `quoteChar`, enter a double quote \(**"**\)\.
-     + For `separatorChar`, enter a comma \(**,**\)\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_edit_serde.png)
+     + For `separatorChar`, enter a comma \(**,**\)\.
 
-1. Choose **Apply**\.
+1. Choose **Save**\.
 
 For more information, see [Viewing and editing table details](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html#console-tables-details) in the *AWS Glue Developer Guide*\.
 
@@ -210,7 +216,7 @@ AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extrac
 
 ### Creating tables using Athena for AWS Glue ETL jobs<a name="schema-etl-tables"></a>
 
-Tables that you create in Athena must have a table property added to them called a `classification`, which identifies the format of the data\. This allows AWS Glue to use the tables for ETL jobs\. The classification values can be `csv`, `parquet`, `orc`, `avro`, or `json`\. An example `CREATE TABLE` statement in Athena follows:
+Tables that you create in Athena must have a table property added to them called a `classification`, which identifies the format of the data\. This allows AWS Glue to use the tables for ETL jobs\. The classification values can be `avro`, `csv`, `json`, `orc`, `parquet`, or `xml`\. An example `CREATE TABLE` statement in Athena follows:
 
 ```
 CREATE EXTERNAL TABLE sampleTable (
@@ -223,17 +229,25 @@ CREATE EXTERNAL TABLE sampleTable (
 
 If the table property was not added when the table was created, you can add it using the AWS Glue console\.
 
-### To change the classification property using the console<a name="to-change-the-classification-property-using-the-console"></a>
+### To add the classification table property using the AWS Glue console<a name="to-change-the-classification-property-using-the-console"></a>
 
-1.   
-**Choose **Edit Table**\.**  
+1. Sign in to the AWS Management Console and open the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/)\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_edit_table.png)
+1. In the console navigation pane, choose **Tables**\.
 
-1.   
-**For **Classification**, select the file type and choose **Apply**\.**  
+1. Choose the link for the table that you want to edit, and then choose **Actions**, **Edit table**\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/glue_edit_table_classification.png)
+1. Scroll down to the **Table properties** section\.
+
+1. Choose **Add**\.
+
+1. For **Key**, enter **classification**\.
+
+1. For **Value**, enter a data type \(for example, **json**\)\.
+
+1. Choose **Save**\.
+
+   In the **Table details** section, the data type that you entered appears in the **Classification** field for the table\.
 
 For more information, see [Working with tables](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html) in the *AWS Glue Developer Guide*\.
 

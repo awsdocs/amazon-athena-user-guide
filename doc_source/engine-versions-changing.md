@@ -4,7 +4,8 @@ Athena occasionally releases a new engine version to provide improved performanc
 
 **Topics**
 + [Finding the query engine version for a workgroup](#engine-versions-changing-finding-the-query-engine-version-for-a-workgroup)
-+ [Changing the engine version](#engine-versions-changing-changing-the-engine-version)
++ [Changing the engine version using the Athena console](#engine-versions-changing-changing-the-engine-version)
++ [Changing the engine version using the AWS CLI](#engine-versions-changing-changing-the-engine-version-cli)
 + [Specifying the engine version when you create a workgroup](#engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup)
 + [Testing queries in advance of an engine version upgrade](#engine-versions-testing)
 + [Troubleshooting queries that fail](#engine-versions-troubleshooting)
@@ -24,7 +25,7 @@ You can use the **Workgroups** page to find the current engine version for any w
 
 1. On the **Workgroups** page, find the workgroup that you want\. The **Query engine version** column for the workgroup displays the query engine version\.
 
-## Changing the engine version<a name="engine-versions-changing-changing-the-engine-version"></a>
+## Changing the engine version using the Athena console<a name="engine-versions-changing-changing-the-engine-version"></a>
 
 When a new engine version is available, you can choose to let Athena decide when to upgrade the workgroup, or manually specify the Athena engine version that the workgroup uses\. If only one version is currently available, manually specifying a different version is not possible\.
 
@@ -47,7 +48,7 @@ To change the engine version for a workgroup, you must have permission to perfor
 
 1. Choose **Save changes**\.
 
-   If a new engine version is available, the workgroup's **Query engine update status** on the **Workgroups** page shows as **Pending automatic upgrade**\. When the update occurs, Athena will notify you in the Athena console and on your [AWS Personal Health Dashboard](https://aws.amazon.com/premiumsupport/technology/personal-health-dashboard/)\. The workgroup continues to use the current engine version until the update\.
+   In the list of workgroups, the **Query engine update status** for the workgroup shows **Automatic**\.
 
 **To manually choose an engine version**
 
@@ -67,11 +68,15 @@ To change the engine version for a workgroup, you must have permission to perfor
 
 1. Choose **Save changes**\.
 
-1. If you chose an older engine version, a **Confirm Athena engine version** warning appears\. Read the warning, and then do one of the following:
-   + To cancel the engine version change, choose **Cancel**\.
-   + To confirm the engine version change, enter **confirm** in the box, and then choose **Confirm**\.
+   In the list of workgroups, the **Query engine update status** for the workgroup shows **Manual**\.
 
-   The **Query engine update status** for the workgroup shows **Manually set**\.
+## Changing the engine version using the AWS CLI<a name="engine-versions-changing-changing-the-engine-version-cli"></a>
+
+To change the engine version using the AWS CLI, use the syntax in the following example\.
+
+```
+aws athena update-work-group --work-group workgroup-name --configuration-updates EngineVersion={SelectedEngineVersion='Athena engine version 3'}
+```
 
 ## Specifying the engine version when you create a workgroup<a name="engine-versions-changing-specifying-the-engine-version-when-you-create-a-workgroup"></a>
 

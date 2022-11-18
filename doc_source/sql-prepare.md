@@ -18,6 +18,9 @@ The following table describes the parameters\.
 | statement\_name | The name of the statement to be prepared\. The name must be unique within the workgroup\. | 
 | statement | A SELECT, CTAS, or INSERT INTO query\. | 
 
+**Note**  
+The maximum number of prepared statements in a workgroup is 1000\.
+
 ## Examples<a name="sql-prepare-examples"></a>
 
 The following example prepares a select query without parameters\.

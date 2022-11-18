@@ -41,7 +41,7 @@ When you create a table, you specify an Amazon S3 bucket location for the underl
 
 ### Functions supported<a name="hive-ddl-functions-supported"></a>
 
-The functions supported in Athena queries are those found within Presto\. For more information, see the documentation for Presto versions [0\.172](https://prestodb.io/docs/0.172/functions.html) and [0\.217](https://prestodb.io/docs/0.217/functions.html), which correspond to Athena engine versions 1 and 2\.
+The functions supported in Athena queries correspond to those in Trino and Presto\. For information about individual functions, see the functions and operators section in the [Trino](https://trino.io/docs/current/functions.html) or [Presto](https://prestodb.io/docs/current/functions.html) documentation\.
 
 ### Transactional data transformations are not supported<a name="transactional-data-transformations-are-not-supported"></a>
 

@@ -1,18 +1,6 @@
 # DML queries, functions, and operators<a name="functions-operators-reference-section"></a>
 
-Athena DML query statements are based on [Presto 0\.217](https://prestodb.io/docs/0.217/index.html) for Athena engine version 2\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
-
-For links to subsections of the Presto function documentation, see [Functions](presto-functions.md)\. 
-
-Athena does not support all Presto and Trino features, and there are some significant differences\. For more information, see the topics for specific statements in this section and [Considerations and limitations](other-notable-limitations.md)\.
+The Athena DML query engine generally supports Trino and Presto syntax and adds its own improvements\. Athena does not support all Trino or Presto features\. For more information, see the topics for specific statements in this section and [Considerations and limitations](other-notable-limitations.md)\. For information about functions, see [Functions in Amazon Athena](functions.md)\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\. 
 
 For information about DDL statements, see [DDL statements](language-reference.md)\. For a list of unsupported DDL statements, see [Unsupported DDL](unsupported-ddl.md)\.
 
-**Topics**
-+ [SELECT](select.md)
-+ [INSERT INTO](insert-into.md)
-+ [PREPARE](sql-prepare.md)
-+ [UNLOAD](unload.md)
-+ [Using EXPLAIN and EXPLAIN ANALYZE in Athena](athena-explain-statement.md)
-+ [Functions in Amazon Athena](presto-functions.md)
-+ [Supported time zones](athena-supported-time-zones.md)

@@ -1,6 +1,6 @@
 # Accessing Amazon Athena<a name="accessing-athena"></a>
 
- You can access Amazon Athena using the AWS Management Console, the Amazon Athena API, or the AWS CLI\.
+ You can access Amazon Athena using the AWS Management Console, the Amazon Athena API, or the AWS CLI\. For information about IAM policies in Athena, see [Identity and access management in Athena](security-iam-athena.md)\.
 
 ## Using the console<a name="console-athena"></a>
 

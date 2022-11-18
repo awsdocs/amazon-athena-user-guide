@@ -24,6 +24,11 @@ Use the Lambda environment variables in this section to configure the DocumentDB
 + **disable\_glue** – \(Optional\) If present and set to true, the connector does not attempt to retrieve supplemental metadata from AWS Glue\.
 + **glue\_catalog** – \(Optional\) Use this option to specify a [cross\-account AWS Glue catalog](data-sources-glue-cross-account.md)\. By default, the connector attempts to get metadata from its own AWS Glue account\.
 + **default\_docdb** – If present, specifies a DocumentDB connection string to use when no catalog\-specific environment variable exists\.
++ **disable\_projection\_and\_casing** – \(Optional\) Disables projection and casing\. Use if you want to query Amazon DocumentDB tables that use case sensitive column names\. The `disable_projection_and_casing` parameter uses the following values to specify the behavior of casing and column mapping: 
+  + **false** – This is the default setting\. Projection is enabled, and the connector expects all column names to be in lower case\. 
+  + **true** – Disables projection and casing\. When using the `disable_projection_and_casing` parameter, keep in mind the following points: 
+    + Use of the parameter can result in higher bandwidth usage if your Lambda function is not in the same AWS Region as your Amazon DocumentDB instances\. 
+    + Because a larger number of bytes is transferred and because the larger number of bytes requires a higher deserialization time, overall latency can increase\. 
 
 ### Specifying connection strings<a name="connectors-docdb-specifying-connection-strings"></a>
 
@@ -67,6 +72,8 @@ To enable an AWS Glue table for use with Amazon DocumentDB, you must have a AWS 
 
 1. When you edit the table and database in the AWS Glue console, add the following table property\.
    + **docdb\-metadata\-flag** – This property indicates to the DocumentDB connector that the connector can use the table for supplemental metadata\. You can provide any value for `docdb-metadata-flag` as long as the `docdb-metadata-flag` property is present in the list of table properties\.
+
+1. \(Optional\) Add the **sourceTable** table property\. This property defines the source table name in Amazon DocumentDB\. Use this property if AWS Glue table naming rules prevent you from creating an AWS Glue table with the same name as your Amazon DocumentDB table\. For example, capital letters are not permitted in AWS Glue table names, but they are permitted in Amazon DocumentDB table names\.
 
 1. Make sure that you use the data types appropriate for AWS Glue as listed in this document\.
 

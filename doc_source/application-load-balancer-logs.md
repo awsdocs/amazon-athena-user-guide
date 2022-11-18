@@ -14,7 +14,7 @@ An Application Load Balancer is a load balancing option for Elastic Load Balanci
 
 ## Creating the table for ALB logs<a name="create-alb-table"></a>
 
-1. Copy and paste the following `CREATE TABLE` statement into the Athena console\. Replace the values in `LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/'` with those corresponding to your Amazon S3 bucket location\. For information about each field, see [Access log entries](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format) in the *User Guide for Application Load Balancers*\. 
+1. Copy and paste the following `CREATE TABLE` statement into the query editor in the Athena console\. For information about getting started with the Athena console, see [Getting started](getting-started.md)\. Replace the values in `LOCATION 's3://your-alb-logs-directory/AWSLogs/<ACCOUNT-ID>/elasticloadbalancing/<REGION>/'` with those corresponding to your Amazon S3 bucket location\. For information about each field, see [Access log entries](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html#access-log-entry-format) in the *User Guide for Application Load Balancers*\. 
 **Note**  
 The following `CREATE TABLE` statement includes the recently added `classification` and `classification_reason` columns\. To create a table for Application Load Balancer access logs that do not contain these entries, remove these two columns from the `CREATE TABLE` statement and modify the regex accordingly\.
 

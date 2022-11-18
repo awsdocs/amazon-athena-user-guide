@@ -45,8 +45,6 @@ To use a SerDe when creating a table in Athena, use one of the following methods
 
   [Avro SerDe](avro-serde.md)
 
-  [CloudTrail SerDe](cloudtrail-serde.md)
-
   [Grok SerDe](grok-serde.md)
 
   [JSON SerDe libraries](json-serde.md)

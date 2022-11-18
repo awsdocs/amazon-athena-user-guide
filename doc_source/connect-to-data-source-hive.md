@@ -73,6 +73,8 @@ When you use Athena Data Connector for External Hive Metastore, consider the fol
 + You can use INSERT INTO to insert data into an AWS Glue table from a query on an external Hive metastore, but not to insert data into an external Hive metastore\.
 + Kerberos authentication for Hive metastore is not supported\.
 + To use the JDBC driver with an external Hive metastore or [federated queries](connect-to-a-data-source.md), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. For information about the JDBC driver, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
++ The Hive hidden columns `$path`, `$bucket`, `$file_size`, `$file_modified_time`, `$partition`, `$row_id` cannot be used for fine\-grained access control filtering\. 
++ Hive hidden system tables like `example_table$partitions` or `example_table$properties` are not supported by fine\-grained access control\.
 
 ### Permissions<a name="connect-to-a-data-source-hive-considerations-permissions"></a>
 

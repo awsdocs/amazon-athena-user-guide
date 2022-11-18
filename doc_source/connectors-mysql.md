@@ -37,6 +37,14 @@ Use a JDBC connection string in the following format to connect to a database in
 mysql://${jdbc_connection_string}
 ```
 
+**Note**  
+If you receive the error java\.sql\.SQLException: Zero date value prohibited when doing a `SELECT` query on a MySQL table, add the following parameter to your connection string:  
+
+```
+zeroDateTimeBehavior=convertToNull
+```
+For more information, see [Error 'Zero date value prohibited' while trying to select from MySQL table](https://github.com/awslabs/aws-athena-query-federation/issues/760) on GitHub\.com\.
+
 ### Using a multiplexing handler<a name="connectors-mysql-using-a-multiplexing-handler"></a>
 
 You can use a multiplexer to connect to multiple database instances with a single Lambda function\. Requests are routed by catalog name\. Use the following classes in Lambda\.

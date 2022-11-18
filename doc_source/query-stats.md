@@ -10,6 +10,8 @@ After you run a query, you can get statistics on the input and output data proce
    The **Query stats** tab provides the following information:
    + **Data processed** – Shows you the number of input rows and bytes processed, and the number of rows and bytes output\.
    + **The Total runtime** – Shows the total amount of time the query took to run and a graphical representation of how much of that time was spent on queuing, planning, execution, and service processing\.
+**Note**  
+Stage\-level input and output row count and data size information are not shown when a query has row\-level filters defined in Lake Formation\.
 
 1. To interactively explore information about how the query ran, choose **Execution details**\.  
 ![\[Choose Execution details.\]](http://docs.aws.amazon.com/athena/latest/ug/images/query-stats-2.png)

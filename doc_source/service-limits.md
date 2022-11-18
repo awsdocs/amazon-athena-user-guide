@@ -1,7 +1,7 @@
 # Service Quotas<a name="service-limits"></a>
 
 **Note**  
-The Service Quotas console provides information about Amazon Athena quotas\. You can also use the Service Quotas console to [request quota increases](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) for the quotas that are adjustable\.
+The Service Quotas console provides information about Amazon Athena quotas\. You can also use the Service Quotas console to [request quota increases](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) for the quotas that are adjustable\. For general information about AWS service quotas, see [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
 
 ## Queries<a name="service-limits-queries"></a>
 
@@ -29,6 +29,7 @@ If you require a greater query string length, provide feedback at [athena\-feedb
 When you work with Athena workgroups, remember the following points:
 + Athena service quotas are shared across all workgroups in an account\.
 + The maximum number of workgroups you can create per Region in an account is 1000\.
++ The maximum number of prepared statements in a workgroup is 1000\.
 + The maximum number of tags per workgroup is 50\. For more information, see [Tag restrictions](tags.md#tag-restrictions)\. 
 
 ## Databases, tables, and partitions<a name="service-limits-glue"></a>

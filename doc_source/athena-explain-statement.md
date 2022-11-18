@@ -12,6 +12,7 @@ The `EXPLAIN ANALYZE` statement shows both the distributed execution plan of a s
 The `EXPLAIN` and `EXPLAIN ANALYZE` statements in Athena have the following limitations\.
 + Because `EXPLAIN` queries do not scan any data, Athena does not charge for them\. However, because `EXPLAIN` queries make calls to AWS Glue to retrieve table metadata, you may incur charges from Glue if the calls go above the [free tier limit for glue](http://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23analytics&all-free-tier.q=glue&all-free-tier.q_operator=AND)\.
 + Because `EXPLAIN ANALYZE` queries are executed, they do scan data, and Athena charges for the amount of data scanned\.
++ Row or cell filtering information defined in Lake Formation and query stats information are not shown in the output of `EXPLAIN` and `EXPLAIN ANALYZE`\.
 
 ## EXPLAIN syntax<a name="athena-explain-statement-syntax-athena-engine-version-2"></a>
 
@@ -496,7 +497,7 @@ For additional information, see the following resources\.
 +  [Understanding Athena EXPLAIN statement results](athena-explain-statement-understanding.md)
 +  [Viewing execution plans for SQL queries](query-plans.md)
 +  [Viewing statistics and execution details for completed queries](query-stats.md)
-+ Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain.html](https://prestodb.io/docs/0.217/sql/explain.html) documentation
-+ Presto 0\.217 [https://prestodb.io/docs/0.217/sql/explain-analyze.html](https://prestodb.io/docs/0.217/sql/explain-analyze.html) documentation
++ Presto [https://prestodb.io/docs/current/sql/explain.html](https://prestodb.io/docs/current/sql/explain.html) documentation
++ Presto [https://prestodb.io/docs/current/sql/explain-analyze.html](https://prestodb.io/docs/current/sql/explain-analyze.html) documentation
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/7JUyTqglmNU/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/7JUyTqglmNU)

@@ -38,9 +38,6 @@ You can configure AWS Network Firewall logging for traffic that you forward to y
    )
    ROW FORMAT SERDE
      'org.openx.data.jsonserde.JsonSerDe'
-   WITH SERDEPROPERTIES (
-     'paths'='availability_zone,event,event_timestamp,firewall_name'
-   )
    STORED AS INPUTFORMAT
      'org.apache.hadoop.mapred.TextInputFormat'
    OUTPUTFORMAT

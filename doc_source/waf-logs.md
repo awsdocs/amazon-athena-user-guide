@@ -24,77 +24,115 @@ The `CREATE TABLE` statements in this topic can be used for both v1 and v2 AWS W
 
 Because AWS WAF logs have a known structure whose partition scheme you can specify in advance, you can reduce query runtime and automate partition management by using the Athena [partition projection](partition-projection.md) feature\. Partition projection automatically adds new partitions as new data is added\. This removes the need for you to manually add partitions by using `ALTER TABLE ADD PARTITION`\. 
 
-The following example `CREATE TABLE` statement automatically uses partition projection on AWS WAF logs from a specified date until the present for four different AWS regions\. The `PARTITION BY` clause in this example partitions by region and by date, but you can modify this according to your requirements\. In the `LOCATION` and `storage.location.template` clauses, replace the *bucket* and *accountID* placeholders with values that identify the Amazon S3 bucket location of your AWS WAF logs\. For `projection.day.range`, replace *2021*/*01*/*01* with the starting date that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\. 
+The following example `CREATE TABLE` statement automatically uses partition projection on AWS WAF logs from a specified date until the present for four different AWS regions\. The `PARTITION BY` clause in this example partitions by region and by date, but you can modify this according to your requirements\. Modify the fields as necessary to match your log output\. In the `LOCATION` and `storage.location.template` clauses, replace the *bucket* and *accountID* placeholders with values that identify the Amazon S3 bucket location of your AWS WAF logs\. For `projection.day.range`, replace *2021*/*01*/*01* with the starting date that you want to use\. After you run the query successfully, you can query the table\. You do not have to run `ALTER TABLE ADD PARTITION` to load the partitions\. 
 
 ```
 CREATE EXTERNAL TABLE `waf_logs`(
-  `timestamp` bigint, 
-  `formatversion` int, 
-  `webaclid` string, 
-  `terminatingruleid` string, 
-  `terminatingruletype` string, 
-  `action` string, 
-  `terminatingrulematchdetails` array<
-                                    struct<
-                                        conditiontype:string,
-                                        location:string,
-                                        matcheddata:array<string>
-                                           >
-                                    >, 
-  `httpsourcename` string, 
-  `httpsourceid` string, 
-  `rulegrouplist` array<
-                      struct<
-                          rulegroupid:string,
-                          terminatingrule:struct<
-                                              ruleid:string,
-                                              action:string,
-                                              rulematchdetails:string
-                                                >,
-                          nonterminatingmatchingrules:array<string>,
-                          excludedrules:string
-                            >
-                       >, 
- `ratebasedrulelist` array<
-                         struct<
-                             ratebasedruleid:string,
-                             limitkey:string,
-                             maxrateallowed:int
-                               >
-                          >, 
-  `nonterminatingmatchingrules` array<
-                                    struct<
-                                        ruleid:string,
-                                        action:string
+  `timestamp` bigint,
+  `formatversion` int,
+  `webaclid` string,
+  `terminatingruleid` string,
+  `terminatingruletype` string,
+  `action` string,
+  `terminatingrulematchdetails` array <
+                                    struct <
+                                        conditiontype: string,
+                                        sensitivitylevel: string,
+                                        location: string,
+                                        matcheddata: array < string >
                                           >
-                                     >, 
-  `requestheadersinserted` string, 
-  `responsecodesent` string, 
-  `httprequest` struct<
-                    clientip:string,
-                    country:string,
-                    headers:array<
-                                struct<
-                                    name:string,
-                                    value:string
+                                     >,
+  `httpsourcename` string,
+  `httpsourceid` string,
+  `rulegrouplist` array <
+                      struct <
+                          rulegroupid: string,
+                          terminatingrule: struct <
+                                              ruleid: string,
+                                              action: string,
+                                              rulematchdetails: array <
+                                                                   struct <
+                                                                       conditiontype: string,
+                                                                       sensitivitylevel: string,
+                                                                       location: string,
+                                                                       matcheddata: array < string >
+                                                                          >
+                                                                    >
+                                                >,
+                          nonterminatingmatchingrules: array <
+                                                              struct <
+                                                                  ruleid: string,
+                                                                  action: string,
+                                                                  rulematchdetails: array <
+                                                                                       struct <
+                                                                                           conditiontype: string,
+                                                                                           sensitivitylevel: string,
+                                                                                           location: string,
+                                                                                           matcheddata: array < string >
+                                                                                              >
+                                                                                       >
+                                                                    >
+                                                             >,
+                          excludedrules: string
+                            >
+                       >,
+`ratebasedrulelist` array <
+                         struct <
+                             ratebasedruleid: string,
+                             limitkey: string,
+                             maxrateallowed: int
+                               >
+                          >,
+  `nonterminatingmatchingrules` array <
+                                    struct <
+                                        ruleid: string,
+                                        action: string,
+                                        rulematchdetails: array <
+                                                             struct <
+                                                                 conditiontype: string,
+                                                                 sensitivitylevel: string,
+                                                                 location: string,
+                                                                 matcheddata: array < string >
+                                                                    >
+                                                             >,
+                                        captcharesponse: struct <
+                                                            responsecode: string,
+                                                            solvetimestamp: string
+                                                             >
+                                          >
+                                     >,
+  `requestheadersinserted` array <
+                                struct <
+                                    name: string,
+                                    value: string
                                       >
                                  >,
-                    uri:string,
-                    args:string,
-                    httpversion:string,
-                    httpmethod:string,
-                    requestid:string
-                      >, 
-  `labels` array<
-               struct<
-                   name:string
+  `responsecodesent` string,
+  `httprequest` struct <
+                    clientip: string,
+                    country: string,
+                    headers: array <
+                                struct <
+                                    name: string,
+                                    value: string
+                                      >
+                                 >,
+                    uri: string,
+                    args: string,
+                    httpversion: string,
+                    httpmethod: string,
+                    requestid: string
+                      >,
+  `labels` array <
+               struct <
+                   name: string
                      >
-                >, 
-  `captcharesponse` struct<
-                        responsecode:string,
-                        solvetimestamp:string,
-                        failureReason:string
-                          > 
+                >,
+  `captcharesponse` struct <
+                        responsecode: string,
+                        solvetimestamp: string,
+                        failureReason: string
+                          >
 )
 PARTITIONED BY ( 
 `region` string, 
@@ -116,8 +154,16 @@ TBLPROPERTIES(
  'projection.date.format' = 'yyyy/MM/dd',
  'projection.date.interval' = '1',
  'projection.date.interval.unit' = 'DAYS',
- 'storage.location.template' = 's3://bucket/AWSLogs/accountID/WAFLogs/${region}/webACL/${date}/')
+ 'storage.location.template' = 's3://DOC-EXAMPLE-BUCKET/AWSLogs/accountID/WAFLogs/${region}/webACL/${date}/')
 ```
+
+**Note**  
+The format of the path in the `LOCATION` clause in the example is standard but can vary based on the AWS WAF configuration that you have implemented\. For example, the following example AWS WAF logs path is for a CloudFront distribution:   
+
+```
+s3://DOC-EXAMPLE-BUCKET/AWSLogs/12345678910/WAFLogs/cloudfront/cloudfronyt/2022/08/08/17/55/
+```
+If you experience issues while creating or querying your AWS WAF logs table, confirm the location of your log data or [contact AWS Support](https://console.aws.amazon.com/support/home/)\.
 
 For more information about partition projection, see [Partition projection with Amazon Athena](partition-projection.md)\.
 
@@ -127,7 +173,7 @@ This section describes how to create a table for AWS WAF logs without partitioni
 
 ### To create the AWS WAF table<a name="to-create-the-waf-table"></a>
 
-1. Copy and paste the following DDL statement into the Athena console\. Modify the `LOCATION` for the Amazon S3 bucket to correspond to the one that stores your logs\.
+1. Copy and paste the following DDL statement into the Athena console\. Modify the fields as necessary to match your log output\. Modify the `LOCATION` for the Amazon S3 bucket to correspond to the one that stores your logs\.
 
    This query uses the [OpenX JSON SerDe](openx-json-serde.md)\.
 **Note**  
@@ -135,73 +181,111 @@ The SerDe expects each JSON document to be on a single line of text with no line
 
    ```
    CREATE EXTERNAL TABLE `waf_logs`(
-     `timestamp` bigint, 
-     `formatversion` int, 
-     `webaclid` string, 
-     `terminatingruleid` string, 
-     `terminatingruletype` string, 
-     `action` string, 
-     `terminatingrulematchdetails` array<
-                                       struct<
-                                           conditiontype:string,
-                                           location:string,
-                                           matcheddata:array<string>
-                                              >
-                                       >, 
-     `httpsourcename` string, 
-     `httpsourceid` string, 
-     `rulegrouplist` array<
-                         struct<
-                             rulegroupid:string,
-                             terminatingrule:struct<
-                                                 ruleid:string,
-                                                 action:string,
-                                                 rulematchdetails:string
-                                                   >,
-                             nonterminatingmatchingrules:array<string>,
-                             excludedrules:string
-                               >
-                          >, 
-    `ratebasedrulelist` array<
-                            struct<
-                                ratebasedruleid:string,
-                                limitkey:string,
-                                maxrateallowed:int
-                                  >
-                             >, 
-     `nonterminatingmatchingrules` array<
-                                       struct<
-                                           ruleid:string,
-                                           action:string
+     `timestamp` bigint,
+     `formatversion` int,
+     `webaclid` string,
+     `terminatingruleid` string,
+     `terminatingruletype` string,
+     `action` string,
+     `terminatingrulematchdetails` array <
+                                       struct <
+                                           conditiontype: string,
+                                           sensitivitylevel: string,
+                                           location: string,
+                                           matcheddata: array < string >
                                              >
-                                        >, 
-     `requestheadersinserted` string, 
-     `responsecodesent` string, 
-     `httprequest` struct<
-                       clientip:string,
-                       country:string,
-                       headers:array<
-                                   struct<
-                                       name:string,
-                                       value:string
+                                        >,
+     `httpsourcename` string,
+     `httpsourceid` string,
+     `rulegrouplist` array <
+                         struct <
+                             rulegroupid: string,
+                             terminatingrule: struct <
+                                                 ruleid: string,
+                                                 action: string,
+                                                 rulematchdetails: array <
+                                                                      struct <
+                                                                          conditiontype: string,
+                                                                          sensitivitylevel: string,
+                                                                          location: string,
+                                                                          matcheddata: array < string >
+                                                                             >
+                                                                       >
+                                                   >,
+                             nonterminatingmatchingrules: array <
+                                                                 struct <
+                                                                     ruleid: string,
+                                                                     action: string,
+                                                                     rulematchdetails: array <
+                                                                                          struct <
+                                                                                              conditiontype: string,
+                                                                                              sensitivitylevel: string,
+                                                                                              location: string,
+                                                                                              matcheddata: array < string >
+                                                                                                 >
+                                                                                          >
+                                                                       >
+                                                                >,
+                             excludedrules: string
+                               >
+                          >,
+   `ratebasedrulelist` array <
+                            struct <
+                                ratebasedruleid: string,
+                                limitkey: string,
+                                maxrateallowed: int
+                                  >
+                             >,
+     `nonterminatingmatchingrules` array <
+                                       struct <
+                                           ruleid: string,
+                                           action: string,
+                                           rulematchdetails: array <
+                                                                struct <
+                                                                    conditiontype: string,
+                                                                    sensitivitylevel: string,
+                                                                    location: string,
+                                                                    matcheddata: array < string >
+                                                                       >
+                                                                >,
+                                           captcharesponse: struct <
+                                                               responsecode: string,
+                                                               solvetimestamp: string
+                                                                >
+                                             >
+                                        >,
+     `requestheadersinserted` array <
+                                   struct <
+                                       name: string,
+                                       value: string
                                          >
                                     >,
-                       uri:string,
-                       args:string,
-                       httpversion:string,
-                       httpmethod:string,
-                       requestid:string
-                         >, 
-     `labels` array<
-                  struct<
-                      name:string
+     `responsecodesent` string,
+     `httprequest` struct <
+                       clientip: string,
+                       country: string,
+                       headers: array <
+                                   struct <
+                                       name: string,
+                                       value: string
+                                         >
+                                    >,
+                       uri: string,
+                       args: string,
+                       httpversion: string,
+                       httpmethod: string,
+                       requestid: string
+                         >,
+     `labels` array <
+                  struct <
+                      name: string
                         >
-                   >, 
-     `captcharesponse` struct<
-                           responsecode:string,
-                           solvetimestamp:string,
-                           failureReason:string
-                             > 
+                   >,
+     `captcharesponse` struct <
+                           responsecode: string,
+                           solvetimestamp: string,
+                           failureReason: string
+                             >
    )
    ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
    STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
@@ -221,8 +305,8 @@ The following query counts the number of referrers that contain the term "amazon
 ```
 WITH test_dataset AS 
   (SELECT header FROM waf_logs
-    CROSS JOIN UNNEST(httprequest.headers) AS t(header) WHERE day >= '2021/03/01'
-    AND day < '2021/03/31')
+    CROSS JOIN UNNEST(httprequest.headers) AS t(header) WHERE "date" >= '2021/03/01'
+    AND "date" < '2021/03/31')
 SELECT COUNT(*) referer_count 
 FROM test_dataset 
 WHERE LOWER(header.name)='referer' AND header.value LIKE '%amazon%'
@@ -279,7 +363,7 @@ The following query lists the records in a specified date range for a specified 
 ```
 SELECT * 
 FROM waf_logs 
-WHERE httprequest.clientip='53.21.198.66' AND day >= '2021/03/01' AND day < '2021/03/31'
+WHERE httprequest.clientip='53.21.198.66' AND "date" >= '2021/03/01' AND "date" < '2021/03/31'
 ```
 
 **For a specified date range, count the number of IP addresses in five minute intervals**  
@@ -291,7 +375,7 @@ WITH test_dataset AS
      format_datetime(from_unixtime((timestamp/1000) - ((minute(from_unixtime(timestamp / 1000))%5) * 60)),'yyyy-MM-dd HH:mm') AS five_minutes_ts,
      "httprequest"."clientip" 
      FROM waf_logs 
-     WHERE day >= '2021/03/01' AND day < '2021/03/31')
+     WHERE "date" >= '2021/03/01' AND "date" < '2021/03/31')
 SELECT five_minutes_ts,"clientip",count(*) ip_count 
 FROM test_dataset 
 GROUP BY five_minutes_ts,"clientip"
@@ -314,7 +398,7 @@ GROUP BY header.value
 ORDER BY COUNT DESC
 ```
 
-For more information about date and time functions, see [Date and time functions and operators](https://prestodb.io/docs/0.217/functions/datetime.html) in the Presto documentation\.
+For more information about date and time functions, see [Date and time functions and operators](https://trino.io/docs/current/functions/datetime.html) in the Trino documentation\.
 
 ### Working with blocked requests and addresses<a name="query-examples-waf-logs-blocked-requests"></a>
 
@@ -325,8 +409,8 @@ The following query extracts and counts the top 100 IP addresses that have been 
 SELECT COUNT(httpRequest.clientIp) as count,
 httpRequest.clientIp
 FROM waf_logs
-WHERE terminatingruletype='RATE_BASED' AND action='BLOCK' and day >= '2021/03/01'
-AND day < '2021/03/31'
+WHERE terminatingruletype='RATE_BASED' AND action='BLOCK' and "date" >= '2021/03/01'
+AND "date" < '2021/03/31'
 GROUP BY httpRequest.clientIp
 ORDER BY count DESC
 LIMIT 100
@@ -387,8 +471,8 @@ The following query extracts the top 100 IP addresses that have been blocked for
 ```
 SELECT "httprequest"."clientip", "count"(*) "ipcount", "httprequest"."country"
 FROM waf_logs
-WHERE "action" = 'BLOCK' and day >= '2021/03/01'
-AND day < '2021/03/31'
+WHERE "action" = 'BLOCK' and "date" >= '2021/03/01'
+AND "date" < '2021/03/31'
 GROUP BY "httprequest"."clientip", "httprequest"."country"
 ORDER BY "ipcount" DESC limit 100
 ```

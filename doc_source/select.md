@@ -3,7 +3,7 @@
 Retrieves rows of data from zero or more tables\.
 
 **Note**  
-This topic provides summary information for reference\. Comprehensive information about using `SELECT` and the SQL language is beyond the scope of this documentation\. For information about using SQL that is specific to Athena, see [Considerations and limitations for SQL queries in Amazon Athena](other-notable-limitations.md) and [Running SQL queries using Amazon Athena](querying-athena-tables.md)\. For help getting started with querying data in Athena, see [Getting started](getting-started.md)\.
+This topic provides summary information for reference\. Comprehensive information about using `SELECT` and the SQL language is beyond the scope of this documentation\. For information about using SQL that is specific to Athena, see [Considerations and limitations for SQL queries in Amazon Athena](other-notable-limitations.md) and [Running SQL queries using Amazon Athena](querying-athena-tables.md)\. For an example of creating a database, creating a table, and running a `SELECT` query on the table in Athena, see [Getting started](getting-started.md)\.
 
 ## Synopsis<a name="synopsis"></a>
 
@@ -197,6 +197,6 @@ For more information about using `SELECT` statements in Athena, see the followin
 | Running queries in Athena | [Running SQL queries using Amazon Athena](querying-athena-tables.md) | 
 | Using SELECT to create a table | [Creating a table from query results \(CTAS\)](ctas.md) | 
 | Inserting data from a SELECT query into another table | [INSERT INTO](insert-into.md) | 
-| Using built\-in functions in SELECT statements | [Functions in Amazon Athena](presto-functions.md) | 
+| Using built\-in functions in SELECT statements | [Functions in Amazon Athena](functions.md) | 
 | Using user defined functions in SELECT statements | [Querying with user defined functions](querying-udf.md) | 
 | Querying Data Catalog metadata | [Querying AWS Glue Data Catalog](querying-glue-catalog.md) | 

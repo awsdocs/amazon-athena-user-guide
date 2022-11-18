@@ -31,7 +31,7 @@ The following is the basic pattern for an Amazon Athena event\.
 
 ## Athena query state change event<a name="athena-cloudwatch-events-athena-query-state-change"></a>
 
-The following is the format of an Athena Query State Change event\.
+The following example shows an Athena Query State Change event with the `currentState` value of `SUCCEEDED`\.
 
 ```
 {
@@ -57,6 +57,37 @@ The following is the format of an Athena Query State Change event\.
 }
 ```
 
+The following example shows an Athena Query State Change event with the `currentState` value of `FAILED`\. The `athenaError` block appears only when `currentState` is `FAILED`\. For information about the values for `errorCategory` and `errorType`, see [Athena error catalog](error-reference.md)\.
+
+```
+{
+    "version":"0",
+    "id":"abcdef00-1234-5678-9abc-def012345678",
+    "detail-type":"Athena Query State Change",
+    "source":"aws.athena",
+    "account":"123456789012",
+    "time":"2019-10-06T09:30:10Z",
+    "region":"us-east-1",
+    "resources":[ 
+    ],
+    "detail":{
+        "athenaError": {
+            "errorCategory": 2.0, //Value depends on nature of exception
+            "errorType": 1306.0, //Type depends on nature of exception
+            "errorMessage": "Amazon S3 bucket not found", //Message depends on nature of exception
+            "retryable":false //Retryable value depends on nature of exception
+        },
+        "versionId":"0",
+        "currentState": "FAILED",
+        "previousState": "RUNNING",
+        "statementType":"DML",
+        "queryExecutionId":"01234567-0123-0123-0123-012345678901",
+        "workgroupName":"primary",
+        "sequenceNumber":"3"
+    }
+}
+```
+
 ### Output properties<a name="athena-cloudwatch-events-query-state-change-output-properties"></a>
 
 The JSON output includes the following properties\.
@@ -66,6 +97,7 @@ The JSON output includes the following properties\.
 
 | Property | Description | 
 | --- | --- | 
+| athenaError | Appears only when currentState is FAILED\. Contains information about the error that occurred, including the error category, error type, error message, and whether the action that led to the error can be retried\. Values for each of these fields depend on the nature of the error\. For information about the values for errorCategory and errorType, see [Athena error catalog](error-reference.md)\. | 
 | versionId | The version number for the detail object's schema\. | 
 | currentState | The state that the query transitioned to at the time of the event\. | 
 | previousState | The state that the query transitioned from at the time of the event\. | 

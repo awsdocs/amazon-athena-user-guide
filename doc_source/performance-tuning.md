@@ -86,22 +86,22 @@ For queries that require resources beyond existing limits, you can either optimi
 
 **To add new partitions frequently, use `ALTER TABLE ADD PARTITION`** – If you use `MSCK REPAIR TABLE` to add new partitions frequently \(for example, on a daily basis\) and are experiencing query timeouts, consider using [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\. `MSCK REPAIR TABLE` is best used when creating a table for the first time or when there is uncertainty about parity between data and partition metadata\.
 
-**Avoid using coalesce\(\) in a WHERE clause with partitioned columns** – Under some circumstances, using the [coalesce\(\)](https://prestodb.io/docs/0.217/functions/conditional.html#coalesce) or other functions in a `WHERE` clause against partitioned columns might result in reduced performance\. If this occurs, try rewriting your query to provide the same functionality without using `coalesce()`\.
+**Avoid using coalesce\(\) in a WHERE clause with partitioned columns** – Under some circumstances, using the [coalesce\(\)](https://prestodb.io/docs/current/functions/conditional.html#coalesce) or other functions in a `WHERE` clause against partitioned columns might result in reduced performance\. If this occurs, try rewriting your query to provide the same functionality without using `coalesce()`\.
 
 ### Window functions<a name="performance-tuning-window-functions"></a>
 
-**Minimize the use of window functions** – [Window functions](https://prestodb.io/docs/0.217/functions/window.html) such as [rank\(\)](https://prestodb.io/docs/0.217/functions/window.html#rank) are memory intensive\. In general, window functions require an entire dataset to be loaded into a single Athena node for processing\. With an extremely large dataset, this can risk crashing the node\. To avoid this, try the following options:
+**Minimize the use of window functions** – [Window functions](https://prestodb.io/docs/current/functions/window.html) such as [rank\(\)](https://prestodb.io/docs/current/functions/window.html#rank) are memory intensive\. In general, window functions require an entire dataset to be loaded into a single Athena node for processing\. With an extremely large dataset, this can risk crashing the node\. To avoid this, try the following options:
 + Filter the data and run window functions on a subset of the data\.
 + Use the `PARTITION BY` clause with the window function whenever possible\.
 + Find an alternative way to construct the query\.
 
 ### Use more efficient functions<a name="performance-tuning-use-more-efficient-functions"></a>
 
-**Replace `row_number() OVER (...) as rnk ... WHERE rnk = 1`** – To speed up a query with a [row\_number\(\)](https://prestodb.io/docs/0.217/functions/window.html#row_number) clause like this, replace this syntax with a combination of `GROUP BY`, `ORDER BY`, and `LIMIT 1`\.
+**Replace `row_number() OVER (...) as rnk ... WHERE rnk = 1`** – To speed up a query with a [row\_number\(\)](https://prestodb.io/docs/current/functions/window.html#row_number) clause like this, replace this syntax with a combination of `GROUP BY`, `ORDER BY`, and `LIMIT 1`\.
 
-**Use regular expressions instead of `LIKE` on large strings** – Queries that include clauses such as `LIKE '%string%'` on large strings can be very costly\. Consider using the [regexp\_like\(\)](https://prestodb.io/docs/0.217/functions/regexp.html#regexp_like) function and a regular expression instead\.
+**Use regular expressions instead of `LIKE` on large strings** – Queries that include clauses such as `LIKE '%string%'` on large strings can be very costly\. Consider using the [regexp\_like\(\)](https://prestodb.io/docs/current/functions/regexp.html#regexp_like) function and a regular expression instead\.
 
-**Use max\(\) instead of element\_at\(array\_sort\(\), 1\)** – For increased speed, replace the nested functions `element_at(array_sort(), 1)` with [max\(\)](https://prestodb.io/docs/0.217/functions/aggregate.html#max)\.
+**Use max\(\) instead of element\_at\(array\_sort\(\), 1\)** – For increased speed, replace the nested functions `element_at(array_sort(), 1)` with [max\(\)](https://prestodb.io/docs/current/functions/aggregate.html#max)\.
 
 ## Additional resources<a name="performance-tuning-additional-resources"></a>
 

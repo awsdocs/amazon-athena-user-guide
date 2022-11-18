@@ -3,7 +3,7 @@
 Creates a table with the name and the parameters that you specify\. 
 
 **Note**  
-This page contains summary reference information\. For more information about creating tables in Athena and an example `CREATE TABLE` statement, see [Creating tables in Athena](creating-tables.md)\.
+This page contains summary reference information\. For more information about creating tables in Athena and an example `CREATE TABLE` statement, see [Creating tables in Athena](creating-tables.md)\. For an example of creating a database, creating a table, and running a `SELECT` query on the table in Athena, see [Getting started](getting-started.md)\.
 
 ## Synopsis<a name="synopsis"></a>
 

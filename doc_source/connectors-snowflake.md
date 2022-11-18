@@ -157,14 +157,6 @@ The Lambda SDK can spill data to Amazon S3\. All database instances accessed by 
 | spill\_prefix | Required\. Spill bucket key prefix\. | 
 | spill\_put\_request\_headers | \(Optional\) A JSON encoded map of request headers and values for the Amazon S3 putObject request that is used for spilling \(for example, \{"x\-amz\-server\-side\-encryption" : "AES256"\}\)\. For other possible headers, see [PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html) in the Amazon Simple Storage Service API Reference\. | 
 
-### PageCount parameter<a name="connectors-snowflake-pagecount-parameter"></a>
-
-Limits the number of records for each partition\. The default value is 500000
-
-### PartitionLimit parameter<a name="connectors-snowflake-partitionlimit-parameter"></a>
-
-Limits the number of partitions\. The default value is 10\. A large number may cause a timeout issue\. If you encounter a timeout error, set this parameter to a lower value\.
-
 ## Data type support<a name="connectors-snowflake-data-type-support"></a>
 
 The following table shows the corresponding data types for JDBC and Apache Arrow\.

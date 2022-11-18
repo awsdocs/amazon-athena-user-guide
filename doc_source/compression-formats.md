@@ -26,19 +26,42 @@ Athena supports the following compression formats:
 
 ## Compression support in Athena by file format<a name="compression-support-by-file-format"></a>
 
-The following table summarizes the compression format support in Athena for each storage file format\. Text file format includes TSV, CSV, JSON, and custom SerDes for text\.
+Compression support in Athena depends on the engine version\.
+
+### Compression support in Athena engine version 3<a name="compression-support-by-file-format-v3"></a>
+
+The following table summarizes the compression format support in Athena engine version 3 for each storage file format\. Text file format includes TSV, CSV, JSON, and custom SerDes for text\. "Yes" or "No" in a cell apply equally to read and write operations except where noted\. For the purposes of this table, CREATE TABLE, CTAS, and INSERT INTO are considered write operations\.
 
 
 ****  
 
 |  | Avro | Ion | ORC | Parquet | Text file | 
 | --- | --- | --- | --- | --- | --- | 
-| BZIP2 | Read support only\. Write not supported\. | Yes | No | No | Yes | 
+| BZIP2 | Yes | Yes | No | No | Yes | 
 | DEFLATE | Yes | No | No | No | No | 
 | GZIP | No | Yes | No | Yes | Yes | 
-| LZ4 | No | Hadoop\-compatible read support\. No write support\. | Yes \(raw/unframed\) | No | Hadoop\-compatible read support\. No write support\. | 
-| LZO | No | Hadoop\-compatible read support\. No write support\. | No | Yes | Hadoop\-compatible read support\. No write support\. | 
-| SNAPPY | Raw/unframed read support\. Write not supported\. | Yes \(Hadoop\-compatible framing\) | Yes \(raw/unframed\) | Yes \(raw/unframed\) | Yes \(Hadoop\-compatible framing\) | 
+| LZ4 | No | Yes | Yes | Yes | Yes | 
+| LZO | No |  Write \- No Read \- Yes  | No | Yes |  Write \- No Read \- Yes  | 
+| SNAPPY | Yes | Yes | Yes | Yes | Yes | 
+| ZLIB | No | No | Yes | No | No | 
+| ZSTD | Yes | Yes | Yes | Yes | Yes | 
+| NONE | Yes | Yes | Yes | Yes | Yes | 
+
+### Compression support in Athena engine version 2<a name="compression-support-by-file-format-v2"></a>
+
+The following table summarizes the compression format support in Athena engine version 2\. Text file format includes TSV, CSV, JSON, and custom SerDes for text\. "Yes" or "No" in a cell apply equally to read and write operations except where noted\. For the purposes of this table, CREATE TABLE, CTAS, and INSERT INTO are considered write operations\.
+
+
+****  
+
+|  | Avro | Ion | ORC | Parquet | Text file | 
+| --- | --- | --- | --- | --- | --- | 
+| BZIP2 | Yes | Yes | No | No | Yes | 
+| DEFLATE | Yes | No | No | No | No | 
+| GZIP | No | Yes | No | Yes | Yes | 
+| LZ4 | No | No | Yes |  Write \- Yes Read \- No  |  Write \- No Read \- Yes  | 
+| LZO | No |  Write \- No Read \- Yes  | No | Yes |  Write \- No Read \- Yes  | 
+| SNAPPY | Yes | Yes | Yes | Yes | Yes | 
 | ZLIB | No | No | Yes | No | No | 
 | ZSTD | No | Yes | Yes | Yes | Yes | 
 | NONE | Yes | Yes | Yes | Yes | Yes | 

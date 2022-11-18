@@ -5,7 +5,8 @@ Consider the following when using Athena to query data registered in Lake Format
 **Topics**
 + [Column metadata visible to users without data permissions to column in some circumstances](#lf-athena-limitations-column-metadata)
 + [Working with Lake Formation permissions to views](#lf-athena-limitations-permissions-to-views)
-+ [Lake Formation data filters cannot be used with partition projection](#lf-athena-limitations-data-filters)
++ [Lake Formation fine\-grained access control and Athena workgroups](#lf-athena-limitations-fine-grained-access-control)
++ [Lake Formation data filter limitations](#lf-athena-limitations-data-filters)
 + [Athena query results location in Amazon S3 not registered with Lake Formation](#lf-athena-limitations-query-results-location)
 + [Use Athena workgroups to limit access to query history](#lf-athena-limitations-use-workgroups-to-limit-access-to-query-history)
 + [Cross\-account access](#lf-athena-limitations-cross-account)
@@ -24,11 +25,15 @@ This occurs when column metadata is stored in table properties for tables using 
 
 For data registered with Lake Formation, an Athena user can create a `VIEW` only if they have Lake Formation permissions to the tables, columns, and source Amazon S3 data locations on which the `VIEW` is based\. After a `VIEW` is created in Athena, Lake Formation permissions can be applied to the `VIEW`\. Column\-level permissions are not available for a `VIEW`\. Users who have Lake Formation permissions to a `VIEW` but do not have permissions to the table and columns on which the view was based are not able to use the `VIEW` to query data\. However, users with this mix of permissions are able to use statements like `DESCRIBE VIEW`, `SHOW CREATE VIEW`, and `SHOW COLUMNS` to see `VIEW` metadata\. For this reason, be sure to align Lake Formation permissions for each `VIEW` with underlying table permissions\. Cell filters defined on a table do not apply to a `VIEW` for that table\. For more information about setting up permissions for shared views across accounts, see [Cross\-account Data Catalog access](#lf-athena-limitations-cross-account)\.
 
-## Lake Formation data filters cannot be used with partition projection<a name="lf-athena-limitations-data-filters"></a>
+## Lake Formation fine\-grained access control and Athena workgroups<a name="lf-athena-limitations-fine-grained-access-control"></a>
+
+Users in the same Athena workgroup can see the data that Lake Formation fine\-grained access control has configured to be accessible to the workgroup\. For more information about using fine\-grained access control in Lake Formation, see [Manage fine\-grained access control using AWS Lake Formation](http://aws.amazon.com/blogs/big-data/manage-fine-grained-access-control-using-aws-lake-formation/) in the *AWS Big Data Blog*\. 
+
+## Lake Formation data filter limitations<a name="lf-athena-limitations-data-filters"></a>
 
 Lake Formation [data filters](https://docs.aws.amazon.com/lake-formation/latest/dg/data-filters-about.html) cannot be used with partition projection in Athena\. If you enable data filters on a database or table in Lake Formation, partition projection stops working\.
 
- 
+Lake Formation data filters do not support the Hive JSON SerDe\.
 
 ## Athena query results location in Amazon S3 not registered with Lake Formation<a name="lf-athena-limitations-query-results-location"></a>
 
@@ -44,7 +49,7 @@ To access a data catalog in another account, you can use Athena's cross\-account
 
 ### Athena cross\-account Data Catalog access<a name="lf-athena-limitations-cross-account-glue"></a>
 
-You can use Athena's cross\-account AWS Glue catalog feature to register the catalog in your account\. This capability is available only in Athena engine version 2 and is limited to same\-Region use between accounts\. For more information, see [Registering an AWS Glue Data Catalog from another account](data-sources-glue-cross-account.md)\.
+You can use Athena's cross\-account AWS Glue catalog feature to register the catalog in your account\. This capability is available only in Athena engine version 2 and later versions and is limited to same\-Region use between accounts\. For more information, see [Registering an AWS Glue Data Catalog from another account](data-sources-glue-cross-account.md)\.
 
 If the Data Catalog to be shared has a resource policy configured in AWS Glue, it must be updated to allow access to the AWS Resource Access Manager and grant permissions to Account B to use Account A's Data Catalog, as in the following example\. 
 

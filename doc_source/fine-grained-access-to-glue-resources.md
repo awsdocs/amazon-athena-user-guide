@@ -1,6 +1,9 @@
 # Fine\-grained access to databases and tables in the AWS Glue Data Catalog<a name="fine-grained-access-to-glue-resources"></a>
 
-If you use the AWS Glue Data Catalog with Amazon Athena, you can define resource\-level policies for the following Data Catalog objects that are used in Athena: databases and tables\.
+If you use the AWS Glue Data Catalog with Amazon Athena, you can define resource\-level policies for the database and table Data Catalog objects that are used in Athena\.
+
+**Note**  
+The term "fine\-grained access control" here refers to database and table level security\. For information about column\-, row\-, and cell\-level security, see [Data filtering and cell\-level security in Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/data-filtering.html)\. 
 
 You define resource\-level permissions in IAM identity\-based policies\.
 

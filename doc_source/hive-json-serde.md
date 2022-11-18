@@ -54,3 +54,7 @@ After you create the table, run [MSCK REPAIR TABLE](msck-repair-table.md) to loa
 ```
 MSCK REPAIR TABLE impressions
 ```
+
+## Querying CloudTrail logs<a name="hive-json-serde-querying-cloud-trail-logs"></a>
+
+You can use the Hive JSON SerDe to query CloudTrail logs\. For more information and example `CREATE TABLE` statements, see [Querying AWS CloudTrail logs](cloudtrail-logs.md)\.

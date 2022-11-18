@@ -77,9 +77,9 @@ The following example properties are for a Saphana MUX Lambda function that supp
 
 | Property | Value | 
 | --- | --- | 
-| default | saphana://jdbc:saphana://saphana1\.host:port/?$\{Test/RDS/ Saphana1\} | 
-| saphana\_catalog1\_connection\_string | saphana://jdbc:saphana://saphana1\.host:port/?$\{Test/RDS/ Saphana1\} | 
-| saphana\_catalog2\_connection\_string | saphana://jdbc:saphana://saphana2\.host:port/?user=sample2&password=sample2 | 
+| default | saphana://jdbc:sap://saphana1\.host:port/?$\{Test/RDS/ Saphana1\} | 
+| saphana\_catalog1\_connection\_string | saphana://jdbc:sap://saphana1\.host:port/?$\{Test/RDS/ Saphana1\} | 
+| saphana\_catalog2\_connection\_string | saphana://jdbc:sap://saphana2\.host:port/?user=sample2&password=sample2 | 
 
 #### Providing credentials<a name="connectors-sap-hana-providing-credentials"></a>
 
@@ -99,13 +99,13 @@ To provide a user name and password for your database in your JDBC connection st
 The following string has the secret name `${Test/RDS/Saphana1}`\.
 
 ```
-saphana://jdbc:saphana://saphana1.host:port/?${Test/RDS/Saphana1}&...
+saphana://jdbc:sap://saphana1.host:port/?${Test/RDS/Saphana1}&...
 ```
 
 The connector uses the secret name to retrieve secrets and provide the user name and password, as in the following example\.
 
 ```
-saphana://jdbc:saphana://saphana1.host:port/?user=sample2&password=sample2&...
+saphana://jdbc:sap://saphana1.host:port/?user=sample2&password=sample2&...
 ```
 
 Currently, the SAP HANA connector recognizes the `user` and `password` JDBC properties\.
@@ -141,7 +141,7 @@ The following example property is for a single SAP HANA instance supported by a 
 
 | Property | Value | 
 | --- | --- | 
-| default | saphana://jdbc:saphana://saphana1\.host:port/?secret=Test/RDS/Saphana1 | 
+| default | saphana://jdbc:sap://saphana1\.host:port/?secret=Test/RDS/Saphana1 | 
 
 ### Spill parameters<a name="connectors-sap-hana-spill-parameters"></a>
 

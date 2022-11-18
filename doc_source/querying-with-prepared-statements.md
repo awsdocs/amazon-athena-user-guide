@@ -5,7 +5,7 @@ You can use Athena parameterized queries to re\-run the same query with differen
 + Prepared statements require two separate SQL statements: `PREPARE` and `EXECUTE`\. First, you define the parameters in the `PREPARE` statement\. Then, you run an `EXECUTE` statement that supplies the values for the parameters that you defined\. Prepared statements are workgroup specific; you cannot run them outside the context of the workgroup to which they belong\.
 
 ## Considerations and limitations<a name="querying-with-prepared-statements-considerations-and-limitations"></a>
-+ Parameterized queries are supported only in Athena engine version 2\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
++ Parameterized queries are supported only in Athena engine version 2 and later versions\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
 + Currently, parameterized queries are supported only for `SELECT`, `INSERT INTO`, `CTAS`, and `UNLOAD` statements\.
 + In parameterized queries, parameters are positional and are denoted by `?`\. Parameters are assigned values by their order in the query\. Named parameters are not supported\.
 + Currently, `?` parameters can be placed only in the `WHERE` clause\. Syntax like `SELECT ? FROM table` is not supported\.
@@ -62,9 +62,14 @@ aws athena start-query-execution
 
 You can use a prepared statement for repeated execution of the same query with different query parameters\. A prepared statement contains parameter placeholders whose values are supplied at execution time\.
 
+**Note**  
+The maximum number of prepared statements in a workgroup is 1000\.
+
 ### SQL statements<a name="querying-with-prepared-statements-sql-statements"></a>
 
-You can use the `PREPARE`, `EXECUTE` and `DEALLOCATE PREPARE` SQL statements to run parameterized queries in the Athena console query editor\.
+You can use the `PREPARE`, `EXECUTE` and `DEALLOCATE PREPARE` SQL statements to run parameterized queries in the Athena console query editor\. 
+
+ 
 + To specify parameters where you would normally use literal values, use question marks in the `PREPARE` statement\.
 + To replace the parameters with values when you run the query, use the `USING` clause in the `EXECUTE` statement\.
 + To remove a prepared statement from the prepared statements in a workgroup, use the `DEALLOCATE PREPARE` statement\.

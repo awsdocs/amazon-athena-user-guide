@@ -2,6 +2,9 @@
 
 Creates a database\. The use of `DATABASE` and `SCHEMA` is interchangeable\. They mean the same thing\.
 
+**Note**  
+For an example of creating a database, creating a table, and running a `SELECT` query on the table in Athena, see [Getting started](getting-started.md)\.
+
 ## Synopsis<a name="synopsis"></a>
 
 ```

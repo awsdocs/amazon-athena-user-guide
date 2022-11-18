@@ -190,7 +190,7 @@ It returns:
 
 ## Finding keywords in arrays using `regexp_like`<a name="filtering-with-regexp"></a>
 
-The following examples illustrate how to search a dataset for a keyword within an element inside an array, using the [regexp\_like](https://prestodb.io/docs/0.172/functions/regexp.html) function\. It takes as an input a regular expression pattern to evaluate, or a list of terms separated by a pipe \(\|\), evaluates the pattern, and determines if the specified string contains it\.
+The following examples illustrate how to search a dataset for a keyword within an element inside an array, using the [regexp\_like](https://prestodb.io/docs/current/functions/regexp.html) function\. It takes as an input a regular expression pattern to evaluate, or a list of terms separated by a pipe \(\|\), evaluates the pattern, and determines if the specified string contains it\.
 
 The regular expression pattern needs to be contained within the string, and does not have to match it\. To match the entire string, enclose the pattern with ^ at the beginning of it, and $ at the end, such as `'^pattern$'`\.
 

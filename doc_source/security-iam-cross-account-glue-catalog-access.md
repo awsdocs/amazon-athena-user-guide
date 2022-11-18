@@ -14,7 +14,7 @@ Because this feature uses existing Athena `DataCatalog` resource APIs and functi
 ## Considerations and limitations<a name="security-iam-cross-account-glue-catalog-access-considerations-and-limitations"></a>
 
 Currently, Athena cross\-account AWS Glue catalog access has the following limitations:
-+ The feature is available only in Regions where Athena engine version 2 is supported\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference.md#engine-versions-reference-0002)\. To upgrade a workgroup to engine version 2, see [Changing Athena engine versions](engine-versions-changing.md)\.
++ The feature is available only in AWS Regions where Athena engine version 2 or later is supported\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\. To upgrade the engine version for a workgroup, see [Changing Athena engine versions](engine-versions-changing.md)\.
 + When you register another account's AWS Glue Data Catalog in your account, you create a regional `DataCatalog` resource that is linked to the other account's data in that particular Region only\.
 + Currently, `CREATE VIEW` statements that include a cross\-account AWS Glue catalog are not supported\.
 
