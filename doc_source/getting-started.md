@@ -149,7 +149,7 @@ Now you are ready to create the table in the Athena query editor\. The `CREATE T
 
 ## Step 3: Query data<a name="step-3-query-data"></a>
 
-Now that you have the `cloudfront_logs` table created in Athena based on the data in Amazon S3, you can run SQL queries on the table and see the results in Athena\. For more information about using SQL in Athena, see [SQL reference for Amazon Athena](ddl-sql-reference.md)\.
+Now that you have the `cloudfront_logs` table created in Athena based on the data in Amazon S3, you can run SQL queries on the table and see the results in Athena\. For more information about using SQL in Athena, see [SQL reference for Athena](ddl-sql-reference.md)\.
 
 **To run a query**
 

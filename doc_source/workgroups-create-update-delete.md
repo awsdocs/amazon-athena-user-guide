@@ -74,7 +74,7 @@ If you delete a workgroup while you are in it, the console switches focus to the
 If you delete a workgroup, its settings and per\-query data limit controls are deleted\. The workgroup\-wide data limit controls remain in CloudWatch, and you can delete them there if needed\.
 
 **Important**  
-Before deleting a workgroup, ensure that its users also belong to other workgroups where they can continue to run queries\. If the users' IAM policies allowed them to run queries *only* in this workgroup, and you delete it, they no longer have permissions to run queries\. For more information, see [Example Policy for Running Queries in the Primary Workgroup](example-policies-workgroup.md#example4-run-in-primary-access)\.
+Before deleting a workgroup, ensure that its users also belong to other workgroups where they can continue to run queries\. If the users' IAM policies allowed them to run queries *only* in this workgroup, and you delete it, they no longer have permissions to run queries\. For more information, see [Example policy for running queries in the primary workgroup](example-policies-workgroup.md#example4-run-in-primary-access)\.
 
 **To delete a workgroup in the console**
 

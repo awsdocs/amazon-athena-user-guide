@@ -12,6 +12,16 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2022<a name="release-notes-2022"></a>
 
+### November 30, 2022<a name="release-note-2022-11-30"></a>
+
+Published on 2022\-11\-30
+
+You can now interactively create and run Apache Spark applications and Jupyter compatible notebooks on Athena\. Run data analytics on Athena using Spark without having to plan for, configure, or manage resources\. Submit Spark code for processing and receive the results directly\. Use the simplified notebook experience in Amazon Athena console to develop Apache Spark applications using Python or [ Athena notebook APIs](notebooks-spark-api-list.md)\. 
+
+Apache Spark on Amazon Athena is serverless and provides automatic, on\-demand scaling that delivers instant\-on compute to meet changing data volumes and processing requirements\.
+
+For more information, see [Using Apache Spark in Amazon Athena](notebooks-spark.md)\.
+
 ### November 18, 2022<a name="release-note-2022-11-18"></a>
 
 Published on 2022\-11\-18
@@ -531,9 +541,8 @@ Published on 2021\-09\-16
 Athena announces the following new features and improvements\.
 
 #### Features<a name="release-note-2021-09-16-features"></a>
-+ The Apache Hudi Metadata Listing Feature is now available for Hudi tables, reducing Amazon S3 overhead and query times for partitioned table queries\. For information about using Apache Hudi in Athena, see [Using Athena to query Apache Hudi datasets](querying-hudi.md)\.
-+ Added support for specifying textfile and JSON compression in CTAS using the `write_compression` table property\. You can also specify the `write_compression` property in CTAS for the Parquet and ORC formats\. For more information, see [CTAS table properties](create-table-as.md#ctas-table-properties)\.
-+ The BZIP2 compression format is now supported for writing textfile and JSON files\. For more information about the compression formats in Athena, see [Athena compression support](compression-formats.md)\.
++ Added support for specifying text file and JSON compression in CTAS using the `write_compression` table property\. You can also specify the `write_compression` property in CTAS for the Parquet and ORC formats\. For more information, see [CTAS table properties](create-table-as.md#ctas-table-properties)\.
++ The BZIP2 compression format is now supported for writing text file and JSON files\. For more information about the compression formats in Athena, see [Athena compression support](compression-formats.md)\.
 
 #### Improvements<a name="release-note-2021-09-16-improvements"></a>
 + Fixed a bug in which identity information failed to be sent to the UDF Lambda function\.
@@ -1359,7 +1368,7 @@ Major updates for this release, including the community\-contributed fixes, incl
 +  Added the [https://prestodb.io/docs/current/functions/binary.html#xxhash64](https://prestodb.io/docs/current/functions/binary.html#xxhash64) and [https://prestodb.io/docs/current/functions/binary.html#to_big_endian_64](https://prestodb.io/docs/current/functions/binary.html#to_big_endian_64) functions\. 
 + Added support for escaping double quotes or backslashes using a backslash with a JSON path subscript to the [https://prestodb.io/docs/current/functions/json.html#json_extract](https://prestodb.io/docs/current/functions/json.html#json_extract) and [https://prestodb.io/docs/current/functions/json.html#json_extract_scalar](https://prestodb.io/docs/current/functions/json.html#json_extract_scalar) functions\. This changes the semantics of any invocation using a backslash, as backslashes were previously treated as normal characters\.
 
-For a complete list of functions and operators, see [DML queries, functions, and operators](functions-operators-reference-section.md) in this guide, and [Functions and operators](https://prestodb.io/docs/current/functions.html) in the Presto documentation\. 
+For more information about functions and operators, see [DML queries, functions, and operators](dml-queries-functions-operators.md) in this guide, and [Functions and operators](https://prestodb.io/docs/current/functions.html) in the Presto documentation\. 
 
 Athena does not support all of Presto's features\. For more information, see [Limitations](other-notable-limitations.md)\.
 

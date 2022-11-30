@@ -6,7 +6,7 @@ When running queries in Athena, keep in mind the following considerations and li
 + **Unsupported statements** – The following statements are not supported:
   + `CREATE TABLE LIKE` is not supported\.
   + `DESCRIBE INPUT` and `DESCRIBE OUTPUT` is not supported\.
-  + `MERGE` statements are not supported\.
+  + The `MERGE` statement is supported only for transactional table formats\. For more information, see [MERGE INTO](merge-into-statement.md)\.
   + `UPDATE` statements are not supported\.
 + **Trino and Presto connectors** – Neither [Trino](https://trino.io/docs/current/connector.html) nor [Presto](https://prestodb.io/docs/current/connector.html) connectors are supported\. Use Amazon Athena Federated Query to connect data sources\. For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
 + **Timeouts on tables with many partitions** – Athena may time out when querying a table that has many thousands of partitions\. This can happen when the table has many partitions that are not of type `string`\. When you use type `string`, Athena prunes partitions at the metastore level\. However, when you use other data types, Athena prunes partitions on the server side\. The more partitions you have, the longer this process takes and the more likely your queries are to time out\. To resolve this issue, set your partition type to `string` so that Athena prunes partitions at the metastore level\. This reduces overhead and prevents queries from timing out\.

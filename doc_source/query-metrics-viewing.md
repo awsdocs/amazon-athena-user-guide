@@ -17,6 +17,13 @@ These metrics have the following dimensions:
 + `QueryType` – `DML` or `DDL`
 + `WorkGroup` – name of the workgroup
 
+Athena publishes the following metric to the CloudWatch console under the `AmazonAthenaForApacheSpark` namespace:
++ `DPUCount` – number of DPUs consumed during the session to execute the calculations\.
+
+This metric has the following dimensions:
++ `SessionId` – The ID of the session in which the calculations are submitted\.
++ `WorkGroup` – Name of the workgroup\.
+
 For more information, see the [List of CloudWatch metrics and dimensions for Athena](#athena-cloudwatch-metrics-table) later in this topic\. For information about Athena usage metrics, see [Monitoring Athena usage metrics](monitoring-athena-usage-metrics.md)\.
 
 **To view query metrics for a workgroup in the console**
@@ -52,20 +59,21 @@ If you just recently enabled metrics for the workgroup and/or there has been no 
 1. Select the **AWS/Athena** namespace\.
 
 **To view metrics with the CLI**
-+ To list the metrics for Athena, open a command prompt, and use the following command:
++ Do one of the following:
+  + To list the metrics for Athena, open a command prompt, and use the following command:
 
-  ```
-  aws cloudwatch list-metrics --namespace "AWS/Athena"
-  ```
-+ To list all available metrics, use the following command:
+    ```
+    aws cloudwatch list-metrics --namespace "AWS/Athena"
+    ```
+  + To list all available metrics, use the following command:
 
-  ```
-  aws cloudwatch list-metrics"
-  ```
+    ```
+    aws cloudwatch list-metrics"
+    ```
 
 ## List of CloudWatch metrics and dimensions for Athena<a name="athena-cloudwatch-metrics-table"></a>
 
-If you've enabled CloudWatch metrics in Athena, it sends the following metrics to CloudWatch per workgroup\. The metrics use the `AWS/Athena` namespace\.
+If you've enabled CloudWatch metrics in Athena, it sends the following metrics to CloudWatch per workgroup\. The following metrics use the `AWS/Athena` namespace\.
 
 
 | Metric name | Description | 
@@ -77,7 +85,7 @@ If you've enabled CloudWatch metrics in Athena, it sends the following metrics t
 | ServiceProcessingTime | Number of milliseconds that Athena took to process the query results after the query engine finished running the query\. | 
 | TotalExecutionTime | The number of milliseconds that Athena took to run a DDL or DML query\. TotalExecutionTime includes QueryQueueTime, QueryPlanningTime, EngineExecutionTime, and ServiceProcessingTime\. | 
 
-CloudWatch metrics for Athena have the following dimensions\.
+These metrics for Athena have the following dimensions\.
 
 
 | Dimension | Description | 

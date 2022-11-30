@@ -8,7 +8,7 @@ To create database and table schema in the AWS Glue Data Catalog, you can run an
 
 You can register an AWS Glue Data Catalog from an account other than your own\. After you configure the required IAM permissions for AWS Glue, you can use Athena to run cross\-account queries\. For more information, see [Cross\-account access to AWS Glue data catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 
-For more information about the AWS Glue Data Catalog, see [Populating the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) in the *AWS Glue Developer Guide*\.
+For more information about the AWS Glue Data Catalog, see [Data Catalog and crawlers in AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/catalog-and-crawler.html) in the *AWS Glue Developer Guide*\.
 
 Separate charges apply to AWS Glue\. For more information, see [AWS Glue pricing](https://aws.amazon.com/glue/pricing) and [Are there separate charges for AWS Glue?](glue-faq.md#faq-pricing) For more information about the benefits of using AWS Glue with Athena, see [Why should I upgrade to the AWS Glue Data Catalog?](glue-faq.md#faq-benefits) 
 

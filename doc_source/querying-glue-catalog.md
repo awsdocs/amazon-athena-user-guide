@@ -13,7 +13,7 @@ To obtain AWS Glue Catalog metadata, you query the `information_schema` database
 + [Listing or searching columns for a specified table or view](#querying-glue-catalog-listing-columns)
 
 ## Considerations and limitations<a name="querying-glue-catalog-considerations-limitations"></a>
-+ Instead of querying the `information_schema` database, it is possible to use individual Apache Hive [DDL commands](language-reference.md) to extract metadata information for specific databases, tables, views, partitions, and columns from Athena\. However, the output is in a non\-tabular format\.
++ Instead of querying the `information_schema` database, it is possible to use individual Apache Hive [DDL commands](ddl-reference.md) to extract metadata information for specific databases, tables, views, partitions, and columns from Athena\. However, the output is in a non\-tabular format\.
 + Querying `information_schema` is most performant if you have a small to moderate amount of AWS Glue metadata\. If you have a large amount of metadata, errors can occur\.
 + You cannot use `CREATE VIEW` to create a view on the `information_schema` database\. 
 

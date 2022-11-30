@@ -1,37 +1,12 @@
-# Accessing Amazon Athena<a name="accessing-athena"></a>
+# Accessing Athena<a name="accessing-athena"></a>
 
- You can access Amazon Athena using the AWS Management Console, the Amazon Athena API, or the AWS CLI\. For information about IAM policies in Athena, see [Identity and access management in Athena](security-iam-athena.md)\.
-
-## Using the console<a name="console-athena"></a>
-
-You can use the AWS Management Console for Amazon Athena to do the following:
-+ Create or select a database\. 
-+ Create, view, and delete tables\. 
-+ Filter tables by starting to type their names\.
-+ Preview tables and generate CREATE TABLE DDL for them\.
-+ Show table properties\.
-+ Run queries on tables, save and format queries, and view query history\.
-+ Create up to ten queries using different query tabs in the query editor\. To open a new tab, click the plus sign\.
-+ Display query results, save, and export them\.
-+ Access the AWS Glue Data Catalog\.
-+ View and change settings, such as view the query result location, configure auto\-complete, and encrypt query results\.
-
-In the right pane, the Query Editor displays an introductory screen that prompts you to create your first table\. You can view your tables under **Tables** in the left pane\.
-
- Here's a high\-level overview of the actions available for each table:
-+ **Preview tables** – View the query syntax in the Query Editor on the right\. 
-+ **Show properties** – Show a table's name, its location in Amazon S3, input and output formats, the serialization \(SerDe\) library used, and whether the table has encrypted data\.
-+ **Delete table** – Delete a table\.
-+ **Generate CREATE TABLE DDL** – Generate the query behind a table and view it in the query editor\.
-
-## Using the API<a name="Using-API"></a>
-
- Amazon Athena enables application programming for Athena\. For more information, see [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. The latest AWS SDKs include support for the Athena API\. 
-
-For examples of using the AWS SDK for Java with Athena, see [Code Samples](code-samples.md)\. 
-
-For more information about AWS SDK for Java documentation and downloads, see the *SDKs* section in [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\. 
-
-## Using the CLI<a name="Using-CLI"></a>
-
- You can access Amazon Athena using the AWS CLI\. For more information, see the [AWS CLI reference for Athena](https://docs.aws.amazon.com/cli/latest/reference/athena/)\. 
+You can access Athena using the AWS Management Console, a JDBC or ODBC connection, the Athena API, the Athena CLI, the AWS SDK, or AWS Tools for Windows PowerShell\.
++ To get started using Athena SQL with the console, see [Getting started](getting-started.md)\.
++ To get started interactively creating Jupyter compatible notebooks and Apache Spark applications that use Python, see [Using Apache Spark in Amazon Athena](notebooks-spark.md)\.
++ To learn how to use JDBC or ODBC drivers, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
++ To use the Athena API, see the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
++ To use the CLI, [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) and then type `aws athena help` from the command line to see available commands\. For information about available commands, see the [Amazon Athena command line reference](https://docs.aws.amazon.com/cli/latest/reference/athena/)\.
++ To use the AWS SDK for Java 2\.x, see the Athena section of the [AWS SDK for Java 2\.x API Reference](https://docs.aws.amazon.com/sdk-for-java/latest/reference/), the [Athena Java V2 examples](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/java/example_code/athena) on GitHub\.com, and the [AWS SDK for Java 2\.x Developer Guide](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/)\.
++ To use the AWS SDK for \.NET, see the `Amazon.Athena` namespace in the [AWS SDK for \.NET API Reference](https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/Athena/NAthena.html), the [\.NET Athena examples](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/.dotnet/example_code_legacy/Athena) on GitHub\.com, and the [AWS SDK for \.NET Developer Guide](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/)\.
++ To use AWS Tools for Windows PowerShell, see the [AWS Tools for PowerShell \- Amazon Athena](https://docs.aws.amazon.com/powershell/latest/reference/index.html?page=Amazon_Athena_cmdlets.html) cmdlet reference, the [AWS Tools for PowerShell](http://aws.amazon.com/powershell/) portal page, and the [AWS Tools for Windows PowerShell User Guide](https://docs.aws.amazon.com/powershell/latest/userguide/)\.
++  For information about Athena service endpoints that you can connect to programmatically, see [Amazon Athena endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/athena.html) in the *[Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/)*\.

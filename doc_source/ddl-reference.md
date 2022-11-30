@@ -1,4 +1,4 @@
-# DDL statements<a name="language-reference"></a>
+# DDL statements<a name="ddl-reference"></a>
 
 Use the following DDL statements directly in Athena\. 
 

@@ -1,11 +1,12 @@
 # Document history<a name="DocHistory"></a>
 
-**Latest documentation update: November 18, 2022\.**  
+**Latest documentation update: November 30, 2022\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release date | 
 | --- | --- | --- | 
+| Added documentation for Amazon Athena for Apache Spark\. | You can now interactively create and run Apache Spark applications and Jupyter compatible notebooks on Amazon Athena\. For more information, see [Using Apache Spark in Amazon Athena](notebooks-spark.md)\. | November 30, 2022 | 
 | Added documentation for the Athena IBM Db2 connector\. | You can use the Amazon Athena connector for IBM Db2 to query Db2 from Athena\. For more information, see [Amazon Athena IBM Db2 connector](connectors-ibm-db2.md) | November 18, 2022 | 
 | Added documentation for query result reuse\. | When you re\-run a query in Athena, you can now optionally choose to reuse the last stored query result\. This can increase performance and reduce costs in terms of the number of bytes scanned\. For more information, see [Reusing query results](reusing-query-results.md)\. | November 8, 2022 | 
 | Updated documentation for CloudTrail logs\. | The CREATE TABLE DDL for querying CloudTrail logs has been updated to use the JSON SerDe instead of the CloudTrail SerDe\. For more information, see [Querying AWS CloudTrail logs](cloudtrail-logs.md)\. | November 3, 2022 | 
@@ -60,7 +61,7 @@ We update the documentation frequently to address your feedback\. The following 
 |  Updated the documentation for querying Amazon Virtual Private Cloud flow logs, which can be stored directly in Amazon S3 in a GZIP format\.  Updated examples for querying ALB logs\.  |  Updated the documentation for querying Amazon Virtual Private Cloud flow logs, which can be stored directly in Amazon S3 in a GZIP format\. For information, see [Querying Amazon VPC flow logs](vpc-flow-logs.md)\. Updated examples for querying ALB logs\. For information, see [Querying Application Load Balancer logs](application-load-balancer-logs.md)\.  | August 7, 2018 | 
 | Added support for views\. Added guidelines for schema manipulations for various data storage formats\.  |  Added support for views\. For information, see [Working with views](views.md)\. Updated this guide with guidance on handling schema updates for various data storage formats\. For information, see [Handling schema updates](handling-schema-updates-chapter.md)\.  | June 5, 2018 | 
 |  Increased default query concurrency limits from five to twenty\. |  You can submit and run up to twenty `DDL` queries and twenty `SELECT` queries at a time\. For information, see [Service Quotas](service-limits.md)\.   | May 17, 2018 | 
-| Added query tabs, and an ability to configure auto\-complete in the Query Editor\.  |  Added query tabs, and an ability to configure auto\-complete in the Query Editor\. For information, see [Using the console](accessing-athena.md#console-athena)\.  | May 8, 2018 | 
+| Added query tabs, and an ability to configure auto\-complete in the Query Editor\.  |  Added query tabs, and an ability to configure auto\-complete in the Query Editor\. For information, see [Getting started](getting-started.md)\.  | May 8, 2018 | 
 | Released the JDBC driver version 2\.0\.2\. |  Released the new version of the JDBC driver \(version 2\.0\.2\)\. For information, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.  | April 19, 2018 | 
 |  Added auto\-complete for typing queries in the Athena console\.  |  Added auto\-complete for typing queries in the Athena console\.  | April 6, 2018 | 
 |   Added an ability to create Athena tables for CloudTrail log files directly from the CloudTrail console\.   |   Added an ability to automatically create Athena tables for CloudTrail log files directly from the CloudTrail console\. For information, see [Using the CloudTrail console to create an Athena table for CloudTrail logs ](cloudtrail-logs.md#create-cloudtrail-table-ct)\.  | March 15, 2018 | 
