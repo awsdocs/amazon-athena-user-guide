@@ -62,7 +62,7 @@ dt=2009-04-13-22-15
 To order the partitions in the results list, use the following `SELECT` syntax instead of `SHOW PARTITIONS`\.
 
 ```
-SELECT * FROM "table_name$partitions" ORDER BY column_name
+SELECT * FROM db_name."table_name$partitions" ORDER BY column_name
 ```
 
 The following query shows the list of partitions for the `flight_delays_csv` example, but in sorted order\.
