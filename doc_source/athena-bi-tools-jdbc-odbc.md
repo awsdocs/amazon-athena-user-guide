@@ -5,6 +5,7 @@ To explore and visualize your data with business intelligence tools, download, i
 **Topics**
 + [Using Athena with the JDBC driver](connect-with-jdbc.md)
 + [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)
++ [Configuring AD FS access using ODBC](odbc-adfs-saml.md)
 + [Configuring SSO for ODBC and the Okta plugin](odbc-okta-plugin.md)
 + [Configuring SSO using ODBC, SAML 2\.0, and Okta](okta-saml-sso.md)
 + [Configuring SSO for Azure AD using ODBC](odbc-azure-saml-sso.md)

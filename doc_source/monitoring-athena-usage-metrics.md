@@ -7,9 +7,9 @@ For Athena, usage availability metrics correspond to AWS service quotas for Athe
 Athena publishes the following metrics in the `AWS/Usage` namespace\.
 
 
-|  Metric  |  Description  | 
+|  Metric name  |  Description  | 
 | --- | --- | 
-|  `ActiveQueryCount`  |  The sum of all queued and executing queries for an account, separated by query type \(DML or DDL\)\. Sum is the only useful statistic for this metric\. This metric publishes periodically every minute\. If you are not running any queries, the metric reports nothing \(not even 0\)\. The metric publishes only if active queries are running at the time the metric is taken\.   | 
+|  `ResourceCount`  |  The sum of all queued and executing queries for an account, separated by query type \(DML or DDL\)\. Sum is the only useful statistic for this metric\. This metric publishes periodically every minute\. If you are not running any queries, the metric reports nothing \(not even 0\)\. The metric publishes only if active queries are running at the time the metric is taken\.   | 
 
 The following dimensions are used to refine the usage metrics that are published by Athena\.
 
@@ -17,8 +17,8 @@ The following dimensions are used to refine the usage metrics that are published
 |  Dimension  |  Description  | 
 | --- | --- | 
 |  `Service`  |  The name of the AWS service containing the resource\. For Athena, the value for this dimension is `Athena`\.  | 
-|  `Type`  |  The type of entity that's being reported\. Currently, the only valid value for Athena usage metrics is `Resource`\.  | 
 |  `Resource`  |  The type of resource that is running\. The resource value for Athena query usage is `ActiveQueryCount`\.  | 
+|  `Type`  |  The type of entity that's being reported\. Currently, the only valid value for Athena usage metrics is `Resource`\.  | 
 |  `Class`  |  The class of resource being tracked\. For Athena, `Class` can be `DML` or `DDL`\.  | 
 
 ## Viewing Athena resource usage metrics in the CloudWatch console<a name="monitoring-athena-usage-metrics-cw-console"></a>
@@ -31,13 +31,13 @@ You can use the CloudWatch console to see a graph of Athena usage metrics and co
 
 1. In the navigation pane, choose **Metrics**, **All metrics**\.
 
-1. If you are in the **AWS/Athena**, namespace, choose **All**\.
-
 1. Choose **Usage**, and then choose **By AWS Resource**\.
 
    The list of service quota usage metrics appears\.
 
 1. Select the check box that is next to **Athena** and **ActiveQueryCount**\.
+
+1. Choose the **Graphed metrics** tab\.
 
    The graph above displays your current usage of the AWS resource\.
 

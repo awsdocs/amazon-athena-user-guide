@@ -6,7 +6,7 @@ AWS single\-account access enables you to federate Azure AD to a single AWS acco
 The directions provided here are specific to Athena\. For general instructions on configuring Azure Active Directory SSO for use with AWS, see [Tutorial: Azure Active Directory single sign\-on \(SSO\) integration with AWS Single\-Account Access](https://docs.microsoft.com/azure/active-directory/saas-apps/amazon-web-service-tutorial) in the Microsoft documentation\.
 
 **Important**  
-This tutorial shows you how to configure Azure Active Directory and ODBC for single sign\-on to Athena with and without MFA support\. The MFA and non\-MFA settings are slightly different\. For the **Reply URL** and **SAML:aud** values, non\-MFA support uses defaults, but MFA support uses **http://localhost/athena**\.
+This tutorial shows you how to configure Azure Active Directory and ODBC for single sign\-on to Athena with and without MFA support\. The MFA and non\-MFA settings are slightly different\. For the **Reply URL** and **SAML:aud** values, non\-MFA support uses defaults, but MFA support uses **http://localhost:/athena**\.
 
 ## Step 1: Creating an Azure Enterprise Application<a name="odbc-azure-saml-sso-step-1-creating-an-azure-enterprise-application"></a>
 
@@ -167,11 +167,14 @@ Next, you create an IAM role for Athena and Amazon S3 access\. You will assign t
 
 1. In the **Choose a SAML 2\.0 provider** section, for **SAML provider**, choose the SAML identity provider that you created \(for example, **AthenaAzureADSSO**\.\)
 
-1. Select **Allow programmatic and AWS Management Console access**\.
+1. Do one of the following:
+   + If your application does not require multifactor authentication, select **Allow programmatic and AWS Management Console access**\.
+   + If your application requires multifactor authentication, select **Allow programmatic access only**\.
 
 1. For the `SAML:aud` **Attribute**, do one of the following:
    + If your application does not require multifactor authentication, make sure that **Value** is set to **https://signin\.aws\.amazon\.com/saml** \(the default\)\.
-   + If your application requires MFA, for **Value**, enter **http://localhost/athena**\.
+   + If your application requires MFA and you are using ODBC driver 1\.17 or earlier, for **Value**, enter **http://localhost/athena**\.
+   + If your application requires MFA and you are using ODBC driver 1\.18 or later, for **Value**, enter **http://localhost:\*/athena**\. The **\*** accounts for the fact that later ODBC drivers add an ephemeral TCP port\.
 
 1. Choose **Next: Permissions**\.  
 ![\[Choosing your SAML provider and configuring access.\]](http://docs.aws.amazon.com/athena/latest/ug/images/odbc-azure-saml-sso-21.png)

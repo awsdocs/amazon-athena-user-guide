@@ -27,7 +27,7 @@ This metric has the following dimensions:
   + To list all available metrics, use the following command:
 
     ```
-    aws cloudwatch list-metrics"
+    aws cloudwatch list-metrics
     ```
 
 ## List of CloudWatch metrics and dimensions for Apache Spark calculations in Athena<a name="notebooks-spark-metrics-metrics-table"></a>

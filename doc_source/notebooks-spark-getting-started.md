@@ -42,7 +42,7 @@ After you create a workgroup, the workgroup's type of analytics engine cannot be
 
 ### Specifying your own workgroup configurations<a name="notebooks-spark-getting-started-workgroup-configuration"></a>
 
-If you want to specify your own IAM role and calculation results location for your notebook, follow the steps in this section\. If you chose **Use defaults** for the **Additional configurations** option, skip this section and go directly to [Switching workgroups and opening notebook explorer](#notebooks-spark-getting-started-switching-workgroups-and-opening-notebook-explorer)\.
+If you want to specify your own IAM role and calculation results location for your notebook, follow the steps in this section\. If you chose **Use defaults** for the **Additional configurations** option, skip this section and go directly to [Opening notebook explorer and switching workgroups ](#notebooks-spark-getting-started-switching-workgroups-and-opening-notebook-explorer)\.
 
 The following procedure assumes you have completed steps 1 to 9 of the **To create a Spark enabled workgroup in Athena** procedure in the previous section\.
 
@@ -85,9 +85,9 @@ When you select an existing location in Amazon S3, do not append a forward slash
 
 1. Choose **Create workgroup**\. A message informs you that the workgroup was created successfully, and the workgroup shows in the list of workgroups\.
 
-## Switching workgroups and opening notebook explorer<a name="notebooks-spark-getting-started-switching-workgroups-and-opening-notebook-explorer"></a>
+## Opening notebook explorer and switching workgroups<a name="notebooks-spark-getting-started-switching-workgroups-and-opening-notebook-explorer"></a>
 
-Before you can use the Spark enabled workgroup that you just created, you must switch to the workgroup\.
+Before you can use the Spark enabled workgroup that you just created, you must switch to the workgroup\. To switch Spark enabled workgroups, you can use the **Workgroup** option in Notebook explorer or Notebook editor\.
 
 **Note**  
 Before you start, check that your browser does not block third\-party cookies\. Any browser that blocks third party cookies either by default or as a user\-enabled setting will prevent notebooks from launching\. For more information on managing cookies, see:  
@@ -95,13 +95,11 @@ Before you start, check that your browser does not block third\-party cookies\. 
 [Firefox](https://support.mozilla.org/en-US/kb/third-party-cookies-firefox-tracking-protection)
 [Safari](https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac)
 
-**To switch workgroups and open notebook explorer**
+**To open notebook explorer and switch workgroups**
 
-1. On the **Workgroups** page of the Athena console, select the button next to the Spark enabled workgroup that you just created\.
+1. In the navigation pane,choose **Notebook explorer**\.
 
-1. Choose **Actions**, **Switch workgroup**\. The console informs you that you have switched to the new workgroup\.
-
-1. In the console navigation pane, choose **Notebook explorer**\. The **Workgroup** option on the upper right of the console shows the Spark enabled workgroup that you chose, and the example notebook is shown in the list of notebooks\.
+1. Use the **Workgroup** option on the upper right of the console to choose the Spark enabled workgroup that you created\. The example notebook is shown in the list of notebooks\.
 
    You can use the notebook explorer in the following ways:
    + Choose the linked name of a notebook to open the notebook in a new session\.

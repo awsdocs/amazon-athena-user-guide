@@ -118,7 +118,11 @@ Review the `Policies` section of the [athena\-hbase\.yaml](https://github.com/aw
 
 ## Performance<a name="connectors-hbase-performance"></a>
 
-The Athena HBase connector attempts to parallelize queries against your HBase instance by reading each region server in parallel\. The connector performs predicate pushdown within the Lambda function and, where possible, uses filters to push down into HBase\.
+The Athena HBase connector attempts to parallelize queries against your HBase instance by reading each region server in parallel\. The Lambda function performs predicate pushdown to decrease the data scanned by the query\.
+
+The Lambda function also performs *projection* pushdown to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in a longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\.
+
+HBase is prone to query failures and variable query execution times\. You might have to retry your queries multiple times for them to succeed\. The HBase connector is resilient to throttling due to concurrency\.
 
 ## License information<a name="connectors-hbase-license-information"></a>
 

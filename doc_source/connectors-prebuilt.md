@@ -28,6 +28,7 @@ This section lists prebuilt Athena data source connectors that you can use to qu
 + [DynamoDB](connectors-dynamodb.md)
 + [HBase](connectors-hbase.md)
 + [Hortonworks](connectors-hortonworks.md)
++ [MSK](connectors-msk.md)
 + [MySQL](connectors-mysql.md)
 + [Neptune](connectors-neptune.md)
 + [OpenSearch](connectors-opensearch.md)

@@ -179,6 +179,8 @@ Partitions are used to determine how to generate splits for the connector\. Athe
 
 Oracle supports native partitions\. The Athena Lambda connector can retrieve data from these partitions in parallel\. If you want to query very large datasets with uniform partition distribution, native partitioning is highly recommended\.
 
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. Selecting a subset of columns significantly speeds up query runtime and reduces data scanned\. The Oracle connector is resilient to throttling due to concurrency\. However, query runtimes tend to be long\.
+
 ## License information<a name="connectors-oracle-license-information"></a>
 
 By using this connector, you acknowledge the inclusion of third party components, a list of which can be found in the [pom\.xml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-oracle/pom.xml) file for this connector, and agree to the terms in the respective third party licenses provided in the [LICENSE\.txt](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-oracle/LICENSE.txt) file on GitHub\.com\.

@@ -50,7 +50,9 @@ Review the `Policies` section of the [athena\-timestream\.yaml](https://github.c
 
 ## Performance<a name="connectors-timestream-performance"></a>
 
-Currently, queries that run using this connector are significantly slower \(more than twice as slow\) than queries that run from Timestream itself\. We recommend that you limit the data returned \(not the data scanned\) to less than 256MB\. Note that unique and interesting use cases are possible even well below the 256MB recommendation\.
+We recommend that you use the `LIMIT` clause to limit the data returned \(not the data scanned\) to less than 256 MB to ensure that interactive queries are performant\.
+
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. Selecting a subset of columns significantly speeds up query runtime and reduces data scanned\. The Timestream connector is resilient to throttling due to concurrency\.
 
 ## License information<a name="connectors-timestream-license-information"></a>
 

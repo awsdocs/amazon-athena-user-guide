@@ -12,6 +12,28 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2022<a name="release-notes-2022"></a>
 
+### December 14, 2022<a name="release-note-2022-12-14"></a>
+
+Published on 2022\-12\-14
+
+You can now use the Amazon Athena connector for Kafka to run SQL queries on streaming data\. For example, you can run analytical queries on real\-time streaming data in Amazon Managed Streaming for Apache Kafka \(Amazon MSK\) and join it with historical data in your data lake in Amazon S3\.
+
+The Amazon Athena connector for Kafka supports queries on multiple streaming engines\. You can use Athena to run SQL queries on Amazon MSK provisioned and serverless clusters, on self\-managed Kafka deployments, and on streaming data in Confluent Cloud\.
+
+For more information, see [Amazon Athena MSK Connector](connectors-msk.md)\.
+
+### December 2, 2022<a name="release-note-2022-12-02"></a>
+
+Published on 2022\-12\-02
+
+Athena releases JDBC driver version 2\.0\.34\. The JDBC 2\.0\.34 driver includes the following new features and resolved issues:
++ **Query result reuse support** – You can now reuse the results of previously executed queries up to a time limit that you specify instead of having Athena recompute the results each time the query is run\. For more information, see the Installation and Configuration Guide, available from the JDBC download page, and [Reusing query results](reusing-query-results.md)\.
++ **Ec2InstanceMetadata support** – The JDBC driver now supports the [Ec2InstanceMetadata authentication method](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-metadata.html) using IAM [instance profiles ](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html)\.
++ **Character\-based exception fix** – Fixed an exception that occurred with queries containing certain language characters\.
++ **Vulnerability fix** – Corrected a vulnerability related to AWS dependencies packaged with the connector\. 
+
+For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+
 ### November 30, 2022<a name="release-note-2022-11-30"></a>
 
 Published on 2022\-11\-30
@@ -56,7 +78,7 @@ When you make a request to a dual\-stack Athena endpoint, the endpoint resolves 
 
 For more information on service endpoints, see [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)\. To learn more about Athena's service endpoints, see [Amazon Athena endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/athena.html) in the AWS documentation\. 
 
-You can use the new Athena dual\-stack endpoints for inbound connections at no additional cost\. Dual\-stack endpoints are generally available in all AWS Regions except the China \(Beijing\), China \(Ningxia\), and AWS GovCloud \(US\) Regions\.
+You can use the new Athena dual\-stack endpoints for inbound connections at no additional cost\. Dual\-stack endpoints are generally available in all AWS Regions\.
 
 ### November 11, 2022<a name="release-note-2022-11-11"></a>
 
@@ -158,7 +180,7 @@ Published on 2022\-08\-01
 Athena announces improvements to the Athena Query Federation SDK and Athena prebuilt data source connectors\. The improvements include the following:
 + **Struct parsing** – Fixed a `GlueFieldLexer` parsing issue in the Athena Query Federation SDK that prevented certain complicated structs from displaying all of their data\. This issue affected connectors built on the Athena Query Federation SDK\.
 + **AWS Glue tables** – Added additional support for the `set` and `decimal` column types in AWS Glue tables\.
-+ **DynamoDB connector** – Added the ability to ignore casing on DynamoDB attribute names\. For more information, see the [disable\_projection\_and\_casing](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-dynamodb#disable_projection_and_casing) section of the [Amazon Athena DynamoDB connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-dynamodb) documentation on GitHub\.
++ **DynamoDB connector** – Added the ability to ignore casing on DynamoDB attribute names\. For more information, see `disable_projection_and_casing` in the [Parameters](connectors-dynamodb.md#connectors-dynamodb-parameters) section of the [Amazon Athena DynamoDB connector](connectors-dynamodb.md) page\.
 
 For more information, see [Release v2022\.30\.2 of Athena Query Federation](https://github.com/awslabs/aws-athena-query-federation/releases/tag/v2022.30.2) on GitHub\.
 
@@ -617,7 +639,7 @@ Published on 2021\-07\-30
 Athena announces the following feature enhancements and bug fixes\.
 + **Dynamic filtering and partition pruning** – Improvements increase performance and reduce the amount of data scanned in certain queries, as in the following example\. 
 
-  This example assumes that `Table_B` is an unpartitioned table that has file sizes that add up to less than 20Mb\. For queries like this, less data is read from `Table_A` and the query completes more quickly\.
+  This example assumes that `Table_B` is an unpartitioned table that has file sizes that add up to less than 20 MB\. For queries like this, less data is read from `Table_A` and the query completes more quickly\.
 
   ```
   SELECT *

@@ -166,6 +166,10 @@ The following table shows the supported data types for the Vertica connector\.
 | BigDecimal | 
 | TimeStamp as Varchar | 
 
+## Performance<a name="connectors-vertica-performance"></a>
+
+The Lambda function performs projection pushdown to decrease the data scanned by the query\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. The Vertica connector is resilient to throttling due to concurrency\.
+
 ## License information<a name="connectors-vertica-license-information"></a>
 
 By using this connector, you acknowledge the inclusion of third party components, a list of which can be found in the [pom\.xml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-vertica/pom.xml) file for this connector, and agree to the terms in the respective third party licenses provided in the [LICENSE\.txt](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-vertica/LICENSE.txt) file on GitHub\.com\.

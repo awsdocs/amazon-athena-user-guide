@@ -29,9 +29,9 @@ The following procedure requires that you have permission to create a custom IAM
 
 1. Under **Application settings**, enter the parameters for your Lambda function\.
    + **LambdaFuncName** – Provide a name for the function\. For example, **myHiveMetastore**\.
-   + **SpillLocation** – Specify an Amazon S3 location in this account to hold spillover metadata if the Lambda function response size exceeds 4MB\.
+   + **SpillLocation** – Specify an Amazon S3 location in this account to hold spillover metadata if the Lambda function response size exceeds 4 MB\.
    + **HMSUris** – Enter the URI of your Hive metastore host that uses the Thrift protocol at port 9083\. Use the syntax `thrift://<host_name>:9083`\.
-   + **LambdaMemory** – Specify a value from 128MB to 3008MB\. The Lambda function is allocated CPU cycles proportional to the amount of memory that you configure\. The default is 1024\.
+   + **LambdaMemory** – Specify a value from 128 MB to 3008 MB\. The Lambda function is allocated CPU cycles proportional to the amount of memory that you configure\. The default is 1024\.
    + **LambdaTimeout** – Specify the maximum permissible Lambda invocation run time in seconds from 1 to 900 \(900 seconds is 15 minutes\)\. The default is 300 seconds \(5 minutes\)\.
    + **VPCSecurityGroupIds** – Enter a comma\-separated list of VPC security group IDs for the Hive metastore\.
    + **VPCSubnetIds** – Enter a comma\-separated list of VPC subnet IDs for the Hive metastore\.

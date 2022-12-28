@@ -30,7 +30,7 @@ The BigQuery connector uses the `concurrencyLimit` environment variable that is 
 
 ## Performance<a name="connectors-bigquery-performance"></a>
 
-In order to decrease the number of results that must be returned, the connector attempts to push as many constraints to Google BigQuery as possible\.
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. Selecting a subset of columns significantly speeds up query runtime and reduces data scanned\. The connector is subject to query failures as concurrency increases, and generally is a slow connector\.
 
 ## License information<a name="connectors-bigquery-license-information"></a>
 

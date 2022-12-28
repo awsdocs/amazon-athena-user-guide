@@ -27,7 +27,7 @@ Use the Lambda environment variables in this section to configure the DocumentDB
 + **disable\_projection\_and\_casing** – \(Optional\) Disables projection and casing\. Use if you want to query Amazon DocumentDB tables that use case sensitive column names\. The `disable_projection_and_casing` parameter uses the following values to specify the behavior of casing and column mapping: 
   + **false** – This is the default setting\. Projection is enabled, and the connector expects all column names to be in lower case\. 
   + **true** – Disables projection and casing\. When using the `disable_projection_and_casing` parameter, keep in mind the following points: 
-    + Use of the parameter can result in higher bandwidth usage if your Lambda function is not in the same AWS Region as your Amazon DocumentDB instances\. 
+    + Use of the parameter can result in higher bandwidth usage\. Additionally, if your Lambda function is not in the same AWS Region as your data source, you will incur higher standard AWS cross\-region transfer costs as a result of the higher bandwidth usage\. For more information about cross\-region transfer costs, see [AWS Data Transfer Charges for Server and Serverless Architectures](http://aws.amazon.com/blogs/apn/aws-data-transfer-charges-for-server-and-serverless-architectures/) in the AWS Partner Network Blog\.
     + Because a larger number of bytes is transferred and because the larger number of bytes requires a higher deserialization time, overall latency can increase\. 
 
 ### Specifying connection strings<a name="connectors-docdb-specifying-connection-strings"></a>
@@ -132,7 +132,9 @@ Review the `Policies` section of the [athena\-docdb\.yaml](https://github.com/aw
 
 ## Performance<a name="connectors-docdb-performance"></a>
 
-The Athena Amazon DocumentDB connector attempts to push down predicates as part of its queries, but it does not currently support parallel scans\.
+The Athena Amazon DocumentDB connector does not currently support parallel scans but attempts to push down predicates as part of its DocumentDB queries, and predicates against indexes on your DocumentDB collection result in significantly less data scanned\.
+
+The Lambda function performs projection pushdown to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in a longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\.
 
 ## See also<a name="connectors-docdb-see-also"></a>
 

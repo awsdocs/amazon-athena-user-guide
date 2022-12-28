@@ -197,7 +197,7 @@ The following procedure creates an Amazon VPC table for Amazon VPC flow logs in 
      )
    ```
 
-1. Modify the sample `LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/' ` to point to the Amazon S3 path that contains your log data\.
+1. Modify the sample `LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/'` to point to the Amazon S3 path that contains your log data\.
 
 1. Run the query in Athena console\.
 
@@ -215,7 +215,7 @@ For more information about using Athena to query Amazon VPC flow logs in Parquet
 
 Use a `CREATE TABLE` statement like the following to create a table, partition the table, and populate the partitions automatically by using [partition projection](partition-projection.md)\. Replace the table name `test_table_vpclogs` in the example with the name of your table\. Edit the `LOCATION` clause to specify the Amazon S3 bucket that contains your Amazon VPC log data\.
 
-The following `CREATE TABLE` statement is for VPC flow logs delivered in non\-Hive style partitioning format\.
+The following `CREATE TABLE` statement is for VPC flow logs delivered in non\-Hive style partitioning format\. If you are centralizing VPC Flow logs from multiple accounts into one Amazon S3 bucket, the account ID must be entered in the Amazon S3 path\.
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS test_table_vpclogs (
@@ -351,4 +351,7 @@ WHERE dstaddr = '10.0.1.14'
 
 ### Additional resources<a name="query-examples-vpc-logs-additional-resources"></a>
 
-For more information about using Athena to analyze VPC flow logs, see the AWS Big Data blog post [Analyzing VPC flow logs using Amazon Athena and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-vpc-flow-logs-using-amazon-athena-and-amazon-quicksight/)\.
+For more information about using Athena to analyze VPC flow logs, see the following AWS Big Data blog posts:
++ [Analyze VPC Flow Logs with point\-and\-click Amazon Athena integration](http://aws.amazon.com/blogs/networking-and-content-delivery/analyze-vpc-flow-logs-with-point-and-click-amazon-athena-integration/) 
++ [Analyzing VPC flow logs using Amazon Athena and Amazon QuickSight](http://aws.amazon.com/blogs/big-data/analyzing-vpc-flow-logs-using-amazon-athena-and-amazon-quicksight/)
++ [Optimize performance and reduce costs for network analytics with VPC Flow Logs in Apache Parquet format](http://aws.amazon.com/blogs/big-data/optimize-performance-and-reduce-costs-for-network-analytics-with-vpc-flow-logs-in-apache-parquet-format/)

@@ -104,21 +104,3 @@ Add a permissions policy like the following default policy for notebook enabled 
     ]
 }
 ```
-
-## Policy attached to Spark\-enabled workgroup has incorrect S3 ARN<a name="notebooks-spark-troubleshooting-workgroups-incorrect-arn"></a>
-
-If you edit a Spark\-enabled workgroup and create a new role, the policy that gets attached to the role has an incorrect Amazon S3 resource ARN\. The incorrect ARN has an `s3://` before the bucket location, as in the following example:
-
-```
-"Resource": [
-    "arn:aws:s3:::s3://DOC-EXAMPLE-BUCKET/*",
-    "arn:aws:s3:::s3://DOC-EXAMPLE-BUCKET"
-```
-
-The workaround is to edit the policy in the IAM console to remove the unwanted string, as in the following example\.
-
-```
-"Resource": [
-    "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
-    "arn:aws:s3:::DOC-EXAMPLE-BUCKET"
-```

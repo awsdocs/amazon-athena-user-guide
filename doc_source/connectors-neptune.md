@@ -13,7 +13,10 @@ Using the Neptune connector requires the following three steps\.
 
 ## Limitations<a name="connectors-neptune-limitations"></a>
 
-Currently, the connector supports only the property graph model\. RDF graphs are not currently supported\.
+Currently, the Neptune Connector has the following limitations\.
++ Only the property graph model is supported\.
++ RDF graphs are not supported\.
++ Projecting columns, including the primary key \(ID\), is not supported\. 
 
 ## Setting up a Neptune cluster<a name="connectors-neptune-setting-up-a-neptune-cluster"></a>
 
@@ -28,6 +31,10 @@ For instructions on setting up a new Neptune cluster and loading it with a sampl
 Unlike traditional relational data stores, Neptune graph DB nodes and edges do not use a set schema\. Each entry can have different fields and data types\. However, because the Neptune connector retrieves metadata from the AWS Glue Data Catalog, you must create an AWS Glue database that has tables with the required schema\. After you create the AWS Glue database and tables, the connector can populate the list of tables available to query from Athena\.
 
 For information on setting up a AWS Glue Data Catalog to work with Neptune, see [Set up AWS Glue Catalog](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-neptune/docs/aws-glue-sample-scripts) on GitHub\.com\.
+
+## Performance<a name="connectors-neptune-performance"></a>
+
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. However, predicates using the primary key result in query failure\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. The Neptune connector is resilient to throttling due to concurrency\.
 
 ## See also<a name="connectors-neptune-see-also"></a>
 

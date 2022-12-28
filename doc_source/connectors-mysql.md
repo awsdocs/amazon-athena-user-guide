@@ -185,7 +185,7 @@ Partitions are used to determine how to generate splits for the connector\. Athe
 
 MySQL supports native partitions\. The Athena Lambda connector can retrieve data from these partitions in parallel\. If you want to query very large datasets with uniform partition distribution, native partitioning is highly recommended\.
 
-Predicate pushdown is performed within the Lambda function to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if a predicate is not provided, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16mb of data\.
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in a longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\.
 
 ## License information<a name="connectors-mysql-license-information"></a>
 

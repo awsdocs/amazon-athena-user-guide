@@ -184,6 +184,10 @@ The following table shows the corresponding data types for SQL Server and Apache
 
 A partition is represented by a single partition column of type `varchar`\. In case of the SQL Server connector, a partition function determines how partitions are applied on the table\. The partition function and column name information are retrieved from the SQL Server metadata table\. A custom query then gets the partition\. Splits are created based upon the number of distinct partitions received\.
 
+## Performance<a name="connectors-microsoft-sql-server-performance"></a>
+
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. Selecting a subset of columns significantly speeds up query runtime and reduces data scanned\. The SQL Server connector is resilient to throttling due to concurrency\.
+
 ## License information<a name="connectors-sqlserver-license-information"></a>
 
 By using this connector, you acknowledge the inclusion of third party components, a list of which can be found in the [pom\.xml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-sqlserver/pom.xml) file for this connector, and agree to the terms in the respective third party licenses provided in the [LICENSE\.txt](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-sqlserver/LICENSE.txt) file on GitHub\.com\.

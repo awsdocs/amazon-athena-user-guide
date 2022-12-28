@@ -1,7 +1,7 @@
 # Service Quotas<a name="service-limits"></a>
 
 **Note**  
-The Service Quotas console provides information about Amazon Athena quotas\. You can also use the Service Quotas console to [request quota increases](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) for the quotas that are adjustable\. For general information about AWS service quotas, see [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
+The Service Quotas console provides information about Amazon Athena quotas\. You can also use the Service Quotas console to [request quota increases](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/services/athena/quotas) for the quotas that are adjustable\. For AWS Glue related schema limitations, see the [AWS Glue endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/glue.html) page\. For general information about AWS service quotas, see [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
 
 ## Queries<a name="service-limits-queries"></a>
 

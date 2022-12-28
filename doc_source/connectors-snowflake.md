@@ -205,6 +205,8 @@ Partitions are used to determine how to generate splits for the connector\. Athe
 
 For optimal performance, use filters in queries whenever possible\. In addition, we highly recommend native partitioning to retrieve huge datasets that have uniform partition distribution\.
 
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. Selecting a subset of columns significantly speeds up query runtime and reduces data scanned\. The Snowflake connector is resilient to throttling due to concurrency\.
+
 ## License information<a name="connectors-snowflake-license-information"></a>
 
 By using this connector, you acknowledge the inclusion of third party components, a list of which can be found in the [pom\.xml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-snowflake/pom.xml) file for this connector, and agree to the terms in the respective third party licenses provided in the [LICENSE\.txt](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-snowflake/LICENSE.txt) file on GitHub\.com\.

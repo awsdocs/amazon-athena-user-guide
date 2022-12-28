@@ -17,7 +17,7 @@ Define the partition properties in the table as follows:
 | projection\.columnName\.values |  `A,B,C,D,E,F,G,Unknown`  | Required\. A comma\-separated list of enumerated partition values for column columnName\. Any white space is considered part of an enum value\. | 
 
 **Note**  
-As a best practice we recommend limiting the use of `enum` based partition projections to a few dozen or less\. Although there is no specific limit for `enum` projections, the total size of your table's metadata cannot exceed the AWS Glue limit of about 1MB when gzip compressed\. Note that this limit is shared across key parts of your table like column names, location, storage format, and others\. If you find yourself using more than a few dozen unique IDs in your `enum` projection, consider an alternative approach such as bucketing into a smaller number of unique values in a surrogate field\. By trading off cardinality, you can control the number of unique values in your `enum` field\. 
+As a best practice we recommend limiting the use of `enum` based partition projections to a few dozen or less\. Although there is no specific limit for `enum` projections, the total size of your table's metadata cannot exceed the AWS Glue limit of about 1 MB when gzip compressed\. Note that this limit is shared across key parts of your table like column names, location, storage format, and others\. If you find yourself using more than a few dozen unique IDs in your `enum` projection, consider an alternative approach such as bucketing into a smaller number of unique values in a surrogate field\. By trading off cardinality, you can control the number of unique values in your `enum` field\. 
 
 ## Integer type<a name="partition-projection-integer-type"></a>
 

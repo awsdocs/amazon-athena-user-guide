@@ -69,7 +69,9 @@ Review the `Policies` section of the [athena\-redis\.yaml](https://github.com/aw
 
 ## Performance<a name="connectors-redis-performance"></a>
 
-The Athena Redis connector attempts to parallelize queries against your Redis instance according to the type of table that you have defined \(for example, zset keys or prefix keys\)\. Predicate pushdown is performed within the Lambda function\.
+The Athena Redis connector attempts to parallelize queries against your Redis instance according to the type of table that you have defined \(for example, zset keys or prefix keys\)\.
+
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. However, queries containing a predicate against the primary key fail with timeout\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. The Redis connector is resilient to throttling due to concurrency\.
 
 ## License information<a name="connectors-redis-license-information"></a>
 

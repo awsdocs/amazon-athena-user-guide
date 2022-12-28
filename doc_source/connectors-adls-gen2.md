@@ -178,6 +178,12 @@ The following table shows the corresponding data types for ADLS Gen2 and Arrow\.
 
 Azure Data Lake Storage Gen2 uses Hadoop compatible Gen2 blob storage for storing data files\. The data from these files is queried from the Azure Synapse engine\. The Azure Synapse engine treats Gen2 data stored in file systems as external tables\. The partitions are implemented based on the type of data\. If the data has already been partitioned and distributed within the Gen 2 storage system, the connector retrieves the data as single split\.
 
+## Performance<a name="connectors-adls-gen2-performance"></a>
+
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. Selecting a subset of columns significantly speeds up query runtime and reduces data scanned\.
+
+The connector shows slower query performance when running multiple queries at once, and is subject to throttling\.
+
 ## License information<a name="connectors-datalakegentwo-license-information"></a>
 
 By using this connector, you acknowledge the inclusion of third party components, a list of which can be found in the [pom\.xml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-datalakegen2/pom.xml) file for this connector, and agree to the terms in the respective third party licenses provided in the [LICENSE\.txt](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-datalakegen2/LICENSE.txt) file on GitHub\.com\.

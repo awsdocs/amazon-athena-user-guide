@@ -176,6 +176,9 @@ Now that you have the `cloudfront_logs` table created in Athena based on the dat
 1. To download the results of a previous query from the **Recent queries** tab, select the query, and then choose **Download results**\. Queries are retained for 45 days\.  
 ![\[Viewing and downloading recent queries in the Athena console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-recent-queries-tab-download.png)
 
+1. To download one or more recent SQL query strings to a CSV file, choose **Download CSV**\.  
+![\[Downloading recent query strings to a CSV file.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-recent-queries-tab-download-csv.png)
+
    For more information, see [Working with query results, recent queries, and output files](querying.md)\.
 
 ## Saving your queries<a name="getting-started-saved-queries-tab"></a>

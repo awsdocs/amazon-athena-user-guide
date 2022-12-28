@@ -178,6 +178,8 @@ Partitions are used to determine how to generate splits for the connector\. Athe
 
 PostgreSQL supports native partitions\. The Athena Lambda connector can retrieve data from these partitions in parallel\. If you want to query very large datasets with uniform partition distribution, native partitioning is highly recommended\.
 
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in a longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\.
+
 ## See also<a name="connectors-postgresql-see-also"></a>
 
 For the latest JDBC driver version information, see the [pom\.xml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-postgresql/pom.xml) file for the PostgreSQL connector on GitHub\.com\.

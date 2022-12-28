@@ -14,8 +14,8 @@ When you use the ODBC driver, be sure to note the following requirements:
 
 | Driver version | Download link | 
 | --- | --- | 
-| ODBC 1\.1\.18\.1002 for Windows 32\-bit | [Windows 32 bit ODBC driver 1\.1\.18\.1002](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1002/Windows/SimbaAthena_1.1.18.1002_32-bit.msi) | 
-| ODBC 1\.1\.18\.1002 for Windows 64\-bit | [Windows 64 bit ODBC driver 1\.1\.18\.1002](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1002/Windows/SimbaAthena_1.1.18.1002_64-bit.msi) | 
+| ODBC 1\.1\.19\.1000 for Windows 32\-bit | [Windows 32 bit ODBC driver 1\.1\.19\.1000](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.19.1000/Windows/SimbaAthena_1.1.19.1000_32-bit.msi) | 
+| ODBC 1\.1\.19\.1000 for Windows 64\-bit | [Windows 64 bit ODBC driver 1\.1\.19\.1000](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.19.1000/Windows/SimbaAthena_1.1.19.1000_64-bit.msi) | 
 
 ### Linux<a name="connect-with-odbc-linux"></a>
 
@@ -40,6 +40,8 @@ When you use the ODBC driver, be sure to note the following requirements:
 | Amazon Athena ODBC driver license agreement |  [License agreement](https://s3.amazonaws.com/athena-downloads/agreement/ODBC/Amazon+Athena+ODBC+Driver+License+Agreement.pdf)  | 
 | Documentation for ODBC 1\.1\.18\.1002 | [ODBC driver installation and configuration guide version 1\.1\.18\.1002](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1002/docs/Simba+Amazon+Athena+ODBC+Connector+Install+and+Configuration+Guide.pdf) | 
 | Release Notes for ODBC 1\.1\.18\.1002 | [ODBC driver release notes version 1\.1\.18\.1002](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.18.1002/docs/release-notes.txt) | 
+| Documentation for ODBC 1\.1\.19\.1000 \(Windows only\) | [ODBC driver installation and configuration guide version 1\.1\.19\.1000](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.19.1000/docs/Simba+Amazon+Athena+ODBC+Connector+Install+and+Configuration+Guide.pdf) | 
+| Release Notes for ODBC 1\.1\.19\.1000 \(Windows only\) | [ODBC driver release notes version 1\.1\.19\.1000](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.1.19.1000/docs/release-notes.txt) | 
 
 ## ODBC driver notes<a name="connect-with-odbc-configuration"></a>
 

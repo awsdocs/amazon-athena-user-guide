@@ -22,8 +22,8 @@ Use the Lambda environment variables in this section to configure the DynamoDB c
   + **always** – Disables projection and casing unconditionally\. This is useful when you have casing in your DynamoDB column names but do not want to specify any column name mapping\.
 
   When using the `disable_projection_and_casing` parameter, keep in mind the following points:
-  + Use of the parameter can result in higher bandwidth usage if your Lambda function is not in the same region as your DynamoDB table\.
-  + Because a larger number of bytes is transferred and because the larger number of bytes requires a higher deserialization time, overall latency can increase\.
+  + Use of the parameter can result in higher bandwidth usage\. Additionally, if your Lambda function is not in the same AWS Region as your data source, you will incur higher standard AWS cross\-region transfer costs as a result of the higher bandwidth usage\. For more information about cross\-region transfer costs, see [AWS Data Transfer Charges for Server and Serverless Architectures](http://aws.amazon.com/blogs/apn/aws-data-transfer-charges-for-server-and-serverless-architectures/) in the AWS Partner Network Blog\.
+  + Because a larger number of bytes is transferred and because the larger number of bytes requires a higher deserialization time, overall latency can increase\. 
 
 ## Setting up databases and tables in AWS Glue<a name="connectors-dynamodb-setting-up-databases-and-tables-in-aws-glue"></a>
 
@@ -66,7 +66,7 @@ Review the `Policies` section of the [athena\-dynamodb\.yaml](https://github.com
 
 The Athena DynamoDB connector supports parallel scans and attempts to push down predicates as part of its DynamoDB queries\. A hash key predicate with `X` distinct values results in `X` Query calls to DynamoDB\. All other predicate scenarios result in `Y` number of scan calls, where `Y` is heuristically determined based on the size of your table and its provisioned throughput\.
 
-Predicate pushdown is performed within the Lambda function to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if a predicate is not provided, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16mb of data\.
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in a longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\.
 
 The DynamoDB connector scans more data for larger datasets than for smaller datasets regardless of the `LIMIT` clause applied\. For example, the query `SELECT * LIMIT 10000` scans more data for a larger underlying dataset than a smaller underlying dataset\.
 

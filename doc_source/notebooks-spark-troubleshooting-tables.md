@@ -1,29 +1,12 @@
 # Troubleshooting tables<a name="notebooks-spark-troubleshooting-tables"></a>
 
-## Illegal argument exception when creating a table<a name="notebooks-spark-troubleshooting-tables-illegal-argument-exception"></a>
+## Cannot create a path error when creating a table<a name="notebooks-spark-troubleshooting-tables-illegal-argument-exception"></a>
 
 **Error message**: IllegalArgumentException: Cannot create a path from an empty string\.
 
-**Cause**: This error can occur when you use Apache Spark in Athena to create a table in an AWS Glue database, and the database has an empty `LOCATION` property\. Although the property is marked as optional in the AWS Glue console, it is required for use with Athena for Spark\.
+**Cause**: This error can occur when you use Apache Spark in Athena to create a table in an AWS Glue database, and the database has an empty `LOCATION` property\. 
 
-**Suggested Solution**: To fix the error, add an Amazon S3 path to the `LOCATION` property of the existing AWS Glue database or create a database in the AWS Glue Data Catalog that specifies an Amazon S3 path in the `LOCATION` field\.
-
-You can also specify the `LOCATION` when you use Spark SQL to create a table, as in the following example\.
-
-```
-spark.sql("create table mytable (firstName STRING) location 's3://DOC-EXAMPLE-BUCKET/'")
-```
-
-**Be sure to add the trailing forward slash to the path**  
-When you use the SQL `CREATE TABLE` statement to create a table, the path that the location property specifies must be an Amazon S3 path that has a bucket name or a bucket name and one or more folders\. The Amazon S3 path should include a trailing forward slash after the bucket or folder names\. Otherwise, the `CREATE TABLE` statement can fail with the error IllegalArgumentException: Cannot create a path from an empty string\. 
-
-For example, the following statement fails because the path specified does not include a trailing slash after the bucket name \(for example, 's3://*DOC\-EXAMPLE\-BUCKET*/'\): 
-
-```
-spark.sql("create table mytable (firstName STRING) location 's3://DOC-EXAMPLE-BUCKET'") 
-```
-
-For information about `CREATE TABLE` syntax, see [CREATE TABLE](create-table.md)\.
+**Suggested Solution**: For more information and solutions, see [Illegal argument exception when creating a table](notebooks-spark-known-issues.md#notebooks-spark-known-issues-illegal-argument-exception)\.
 
 ## AccessDeniedException when querying AWS Glue tables<a name="notebooks-spark-troubleshooting-tables-glue-access-denied"></a>
 

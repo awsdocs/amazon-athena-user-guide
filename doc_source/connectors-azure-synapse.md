@@ -182,6 +182,10 @@ The following table shows the corresponding data types for Synapse and Apache Ar
 
 A partition is represented by a single partition column of type `varchar`\. Synapse supports range partitioning, so partitioning is implemented by extracting the partition column and partition range from Synapse metadata tables\. These range values are used to create the splits\.
 
+## Performance<a name="connectors-azure-synapse-performance"></a>
+
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\. Selecting a subset of columns significantly slows down query runtime\. The connector shows significant throttling due to concurrency\.
+
 ## License information<a name="connectors-synapse-license-information"></a>
 
 By using this connector, you acknowledge the inclusion of third party components, a list of which can be found in the [pom\.xml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-synapse/pom.xml) file for this connector, and agree to the terms in the respective third party licenses provided in the [LICENSE\.txt](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-synapse/LICENSE.txt) file on GitHub\.com\.

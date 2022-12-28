@@ -247,7 +247,7 @@ Athena engine version 3 has the following data format and data type enhancements
   ```
 
 ### Miscellaneous enhancements<a name="engine-versions-reference-0003-miscellaneous-enhancements"></a>
-+ **Large prepared statements** – Increased the default HTTP request/response header size to 2MB to allow large prepared statements\.
++ **Large prepared statements** – Increased the default HTTP request/response header size to 2 MB to allow large prepared statements\.
 
 ## Limitations<a name="engine-versions-reference-0003-known-limitations"></a>
 

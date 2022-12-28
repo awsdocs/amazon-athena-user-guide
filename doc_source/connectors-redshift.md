@@ -174,7 +174,7 @@ Redshift does not support external partitions\. For information about performanc
 
 ## Performance tuning<a name="connectors-redshift-performance-tuning"></a>
 
-Predicate pushdown is performed within the Lambda function to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if a predicate is not provided, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16mb of data\.
+The Lambda function performs predicate pushdown to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in a longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\.
 
 Amazon Redshift is particularly susceptible to query execution slowdown when you run multiple queries concurrently\. For example, in one test, when concurrency was changed from 1 query to 8 queries, latency went from 17 seconds to 800 seconds for a simple `SELECT * LIMIT 1` query\.
 

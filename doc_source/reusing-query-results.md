@@ -31,6 +31,8 @@ When using the query result reuse feature, keep in mind the following points:
 + If multiple results are available for reuse, Athena uses the latest result\.
 + Queries that use non\-deterministic operators or functions like `rand()` or `shuffle()` do not used cached results\. For example, `LIMIT` without `ORDER BY` is non\-deterministic and not cached, but `LIMIT` with `ORDER BY` is deterministic and is cached\.
 + You cannot reuse query results with Apache Iceberg tables\.
++ Query result reuse is supported in the Athena console, in the Athena API, and in the JDBC driver\. Currently, ODBC driver support for query result reuse is available only for Windows\.
++ Query result reuse is not supported for Lake Formation registered tables\.
 
 ## Reusing query results in the Athena console<a name="reusing-query-results-athena-console"></a>
 

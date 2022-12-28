@@ -1,6 +1,6 @@
 # Document history<a name="DocHistory"></a>
 
-**Latest documentation update: November 30, 2022\.**  
+**Latest documentation update: December 19, 2022\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
