@@ -87,13 +87,13 @@ To provide a user name and password for your database in your JDBC connection st
 The following string has the secret name `${Test/RDS/PostGres1}`\.
 
 ```
-postgres://jdbc:postgres://postgres1.host:3306/default?...&${Test/RDS/PostGres1}&...
+postgres://jdbc:postgresql://postgres1.host:3306/default?...&${Test/RDS/PostGres1}&...
 ```
 
 The connector uses the secret name to retrieve secrets and provide the user name and password, as in the following example\.
 
 ```
-postgres://jdbc:postgres://postgres1.host:3306/default?...&user=sample2&password=sample2&...
+postgres://jdbc:postgresql://postgres1.host:3306/default?...&user=sample2&password=sample2&...
 ```
 
 Currently, the PostgreSQL connector recognizes the `user` and `password` JDBC properties\.

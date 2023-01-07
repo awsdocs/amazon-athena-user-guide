@@ -60,17 +60,32 @@ The workflow for using external Hive metastores from Athena includes the followi
 ## Considerations and limitations<a name="connect-to-a-data-source-hive-considerations"></a>
 
 When you use Athena Data Connector for External Hive Metastore, consider the following points:
++ You can use CTAS to create a table on an external Hive metastore\.
++ You can use INSERT INTO to insert data into an external Hive metastore\.
+**Note**  
+Currently, INSERT INTO for external Hive metastores is supported only in Athena engine version 3\.
 + DDL support for external Hive metastore is limited to the following statements\.
+  + ALTER DATABASE SET DBPROPERTIES
+  + ALTER TABLE ADD COLUMNS
+  + ALTER TABLE ADD PARTITION
+  + ALTER TABLE DROP PARTITION
+  + ALTER TABLE RENAME PARTITION
+  + ALTER TABLE REPLACE COLUMNS
+  + ALTER TABLE SET LOCATION
+  + ALTER TABLE SET TBLPROPERTIES
+  + CREATE DATABASE
+  + CREATE TABLE
+  + CREATE TABLE AS
   + DESCRIBE TABLE
+  + DROP DATABASE
+  + DROP TABLE
   + SHOW COLUMNS
-  + SHOW TABLES
-  + SHOW SCHEMAS
   + SHOW CREATE TABLE
-  + SHOW TBLPROPERTIES
   + SHOW PARTITIONS
+  + SHOW SCHEMAS
+  + SHOW TABLES
+  + SHOW TBLPROPERTIES
 + The maximum number of registered catalogs that you can have is 1,000\.
-+ You can use [CTAS](ctas.md) to create an AWS Glue table from a query on an external Hive metastore, but not to create a table on an external Hive metastore\.
-+ You can use INSERT INTO to insert data into an AWS Glue table from a query on an external Hive metastore, but not to insert data into an external Hive metastore\.
 + Kerberos authentication for Hive metastore is not supported\.
 + To use the JDBC driver with an external Hive metastore or [federated queries](connect-to-a-data-source.md), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. For information about the JDBC driver, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
 + The Hive hidden columns `$path`, `$bucket`, `$file_size`, `$file_modified_time`, `$partition`, `$row_id` cannot be used for fine\-grained access control filtering\. 

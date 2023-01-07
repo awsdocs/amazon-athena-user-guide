@@ -40,6 +40,11 @@ To use the Athena Federated Query feature with AWS Secrets Manager, the VPC conn
 
 ## Data types<a name="connectors-redis-data-types"></a>
 
+The Redis connector supports the following data types\. Redis streams are not supported\.
++ [String](https://redis.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/1-2-1-strings-in-redis/)
++ [Hash](https://redis.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/1-2-4-hashes-in-redis/)
++ Sorted Set \([ZSet](https://redis.com/ebook/part-2-core-concepts/chapter-3-commands-in-redis/3-5-sorted-sets/)\)
+
 All Redis values are retrieved as the `string` data type\. Then they are converted to one of the following Apache Arrow data types based on how your tables are defined in the AWS Glue Data Catalog\.
 
 

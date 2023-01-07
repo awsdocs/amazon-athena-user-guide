@@ -5,7 +5,6 @@ You can use Athena SQL to query your data in\-place in Amazon S3 using the [AWS 
 You can also:
 + Connect to business intelligence tools and other applications using [Athena's JDBC and ODBC drivers](https://docs.aws.amazon.com/athena/latest/ug/athena-bi-tools-jdbc-odbc.html)\. 
 + Query [AWS service logs](querying-aws-service-logs.md)\. 
-+ Query AWS Lake Formation [governed tables](lf-governed-tables.md)\. 
 + Query [Apache Iceberg tables](querying-iceberg.md), including time travel queries, and [Apache Hudi datasets](querying-hudi.md)\. 
 + Query [geospatial data](querying-geospatial-data.md)\. 
 + Query using [machine learning inference](https://docs.aws.amazon.com/athena/latest/ug/querying-mlmodel.html) from Amazon SageMaker\.

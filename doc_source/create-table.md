@@ -23,7 +23,7 @@ CREATE EXTERNAL TABLE [IF NOT EXISTS]
 ## Parameters<a name="parameters"></a>
 
 **EXTERNAL**  
-Specifies that the table is based on an underlying data file that exists in Amazon S3, in the `LOCATION` that you specify\. Except when creating [governed tables](lf-governed-tables-creating.md) or [Iceberg](querying-iceberg-creating-tables.md) tables, always use the `EXTERNAL` keyword\. If you use `CREATE TABLE` without the `EXTERNAL` keyword for non\-governed, non\-Iceberg tables, Athena issues an error\. When you create an external table, the data referenced must comply with the default format or the format that you specify with the `ROW FORMAT`, `STORED AS`, and `WITH SERDEPROPERTIES` clauses\.
+Specifies that the table is based on an underlying data file that exists in Amazon S3, in the `LOCATION` that you specify\. Except when creating [Iceberg](querying-iceberg-creating-tables.md) tables, always use the `EXTERNAL` keyword\. If you use `CREATE TABLE` without the `EXTERNAL` keyword for non\-Iceberg tables, Athena issues an error\. When you create an external table, the data referenced must comply with the default format or the format that you specify with the `ROW FORMAT`, `STORED AS`, and `WITH SERDEPROPERTIES` clauses\.
 
 **\[IF NOT EXISTS\]**  
 Causes the error message to be suppressed if a table named `table_name` already exists\.

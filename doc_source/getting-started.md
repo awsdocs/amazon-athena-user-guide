@@ -18,11 +18,8 @@ You first need to create a database in Athena\.
 
 1. If this is your first time to visit the Athena console in your current AWS Region, choose **Explore the query editor** to open the query editor\. Otherwise, Athena opens in the query editor\.
 
-1. Choose **View Settings** to set up a query result location in Amazon S3\.  
+1. Choose **Edit Settings** to set up a query result location in Amazon S3\.  
 ![\[Choose View Settings.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-view-settings.png)
-
-1. On the **Settings** tab, choose **Manage**\.  
-![\[Choose Manage.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-choose-manage.png)
 
 1. For **Manage settings**, do one of the following:
    + In the **Location of query result** box, enter the path to the bucket that you created in Amazon S3 for your query results\. Prefix the path with `s3://`\.

@@ -1,8 +1,6 @@
 # Access to Amazon S3<a name="s3-permissions"></a>
 
-You can grant access to Amazon S3 locations using identity\-based policies, bucket resource policies, access point policies, or any combination of the above\.
-
-When actors interact with Athena, their permissions pass through Athena to determine what Athena can access. This means that users must have permission to access S3 buckets in order to query them with Athena.
+You can grant access to Amazon S3 locations using identity\-based policies, bucket resource policies, access point policies, or any combination of the above\. When actors interact with Athena, their permissions pass through Athena to determine what Athena can access\. This means that users must have permission to access Amazon S3 buckets in order to query them with Athena\.
 
 Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 

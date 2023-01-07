@@ -53,7 +53,7 @@ When you create, update, or delete tables, those operations are guaranteed ACID\
 
 ### Tables are EXTERNAL<a name="all-tables-are-external"></a>
 
-Except when creating [governed tables](lf-governed-tables-creating.md) or [Iceberg](querying-iceberg-creating-tables.md) tables, always use the `EXTERNAL` keyword\. If you use `CREATE TABLE` without the `EXTERNAL` keyword for non\-governed, non\-Iceberg tables, Athena issues an error\. When you drop a table in Athena, only the table metadata is removed; the data remains in Amazon S3\.
+Except when creating [Iceberg](querying-iceberg-creating-tables.md) tables, always use the `EXTERNAL` keyword\. If you use `CREATE TABLE` without the `EXTERNAL` keyword for non\-Iceberg tables, Athena issues an error\. When you drop a table in Athena, only the table metadata is removed; the data remains in Amazon S3\.
 
 ## Creating tables using AWS Glue or the Athena console<a name="creating-tables-how-to"></a>
 

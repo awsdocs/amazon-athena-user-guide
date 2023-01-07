@@ -1,4 +1,4 @@
-# Amazon Athena MSK Connector<a name="connectors-msk"></a>
+# Amazon Athena MSK connector<a name="connectors-msk"></a>
 
 The Amazon Athena connector for [Amazon MSK](http://aws.amazon.com/msk/) enables Amazon Athena to run SQL queries on your Apache Kafka topics\. Use this connector to view [Apache Kafka](https://kafka.apache.org/) topics as tables and messages as rows in Athena\. For additional information, see [Analyze real\-time streaming data in Amazon MSK with Amazon Athena](http://aws.amazon.com/blogs/big-data/analyze-real-time-streaming-data-in-amazon-msk-with-amazon-athena/) in the AWS Big Data Blog\.
 

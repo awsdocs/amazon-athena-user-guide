@@ -72,7 +72,6 @@ The following considerations apply to creating and using views in Athena:
 + You cannot use views created in Athena with federated data sources, external Hive metastores, or UDFs\. For information about working with views created externally in Hive, see [Working with Hive views](hive-views.md)\.
 + You cannot use views with geospatial functions\.
 + You cannot use views to manage access control on data in Amazon S3\. To query a view, you need permissions to access the data stored in Amazon S3\. For more information, see [Access to Amazon S3](s3-permissions.md)\.
-+ You cannot use views with governed tables\.
 + You cannot use views with cross\-account data catalogs\. For information about cross\-account data catalog access, see [Cross\-account access to AWS Glue data catalogs](security-iam-cross-account-glue-catalog-access.md)\.
 
 ## Working with views in the console<a name="views-console"></a>

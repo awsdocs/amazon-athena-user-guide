@@ -4,10 +4,11 @@ The term "ACID transactions" refers to a set of properties \([atomicity](https:/
 
 Athena ACID transactions and familiar SQL syntax simplify updates to your business and regulatory data\. For example, to respond to a data erasure request, you can perform a SQL `DELETE` operation\. To make manual record corrections, you can use a single `UPDATE` statement\. To recover data that was recently deleted, you can issue time travel queries using a `SELECT` statement\.
 
-Because they are built on shared table formats, Athena ACID transactions are compatible with other services and engines such as [Amazon EMR](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html) and [Apache spark](https://spark.apache.org/) that also support shared table formats\.
+Because they are built on shared table formats, Athena ACID transactions are compatible with other services and engines such as [Amazon EMR](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html) and [Apache Spark](https://spark.apache.org/) that also support shared table formats\.
 
 Athena transactions are available through the Athena console, API operations, and ODBC and JDBC drivers\.
 
 **Topics**
-+ [Using governed tables](lf-governed-tables.md)
++ [Querying Delta Lake tables](delta-lake-tables.md)
++ [Using Athena to query Apache Hudi datasets](querying-hudi.md)
 + [Using Iceberg tables](querying-iceberg.md)

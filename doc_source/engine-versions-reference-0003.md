@@ -314,7 +314,7 @@ When you migrate from Athena engine version 2 to Athena engine version 3, certai
 
 **Error message**: mismatched input 'SYSTEM\_TIME'\. Expecting: 'TIMESTAMP', 'VERSION'
 
-**Cause**: In Athena engine version 2, Iceberg and Lake Formation governed tables used the `FOR SYSTEM_TIME AS OF` and `FOR SYSTEM_VERSION AS OF` clauses for timestamp and version time travel\. Athena engine version 3 uses the `FOR TIMESTAMP AS OF` and `FOR VERSION AS OF` clauses\. 
+**Cause**: In Athena engine version 2, Iceberg tables used the `FOR SYSTEM_TIME AS OF` and `FOR SYSTEM_VERSION AS OF` clauses for timestamp and version time travel\. Athena engine version 3 uses the `FOR TIMESTAMP AS OF` and `FOR VERSION AS OF` clauses\. 
 
 **Suggested solution**: Update the SQL query to use the `TIMESTAMP AS OF` and `VERSION AS OF` clauses for time travel operations, as in the following examples\.
 

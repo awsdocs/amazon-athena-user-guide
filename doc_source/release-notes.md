@@ -3,12 +3,34 @@
 Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 **Topics**
++ [2023](#release-notes-2023)
 + [2022](#release-notes-2022)
 + [2021](#release-notes-2021)
 + [2020](#release-notes-2020)
 + [2019](#release-notes-2019)
 + [2018](#release-notes-2018)
 + [2017](#release-notes-2017)
+
+## Athena release notes for 2023<a name="release-notes-2023"></a>
+
+### January 3, 2023<a name="release-note-2023-01-03"></a>
+
+Published on 2023\-01\-03
+
+Athena announces the following updates:
++ **Additional commands for Hive metastores** – You can use Athena to connect to your self\-managed Apache Hive Metastore as a metadata catalog and query data stored in Amazon S3\. With this release, you can use `CREATE TABLE AS` \(CTAS\), `INSERT INTO`, and 12 additional Data Definition Language \(DDL\) commands to interact with the Apache Hive Metastore\. You can manage your Hive Metastore schemas directly from Athena using this expanded set of SQL capabilities\.
+**Note**  
+Currently, `INSERT INTO` for external Hive metastores requires Athena engine version 3\.
+
+  For more information, see [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)\.
++ **JDBC driver version 2\.0\.35** – Athena releases JDBC driver version 2\.0\.35\. The JDBC 2\.0\.35 driver contains the following updates:
+  + The driver now uses the following libraries for the Jackson JSON parser\.
+    + jackson\-annotations 2\.14\.0 \(previously 2\.13\.2\)
+    + jackson\-core 2\.14\.0 \(previously 2\.13\.2\)
+    + jackson\-databind 2\.14\.0 \(previously 2\.13\.2\.2\)
+  +  Support for JDBC version 4\.1 has been discontinued\. 
+
+  For more information, and to download the new driver, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
 
 ## Athena release notes for 2022<a name="release-notes-2022"></a>
 
@@ -20,7 +42,7 @@ You can now use the Amazon Athena connector for Kafka to run SQL queries on stre
 
 The Amazon Athena connector for Kafka supports queries on multiple streaming engines\. You can use Athena to run SQL queries on Amazon MSK provisioned and serverless clusters, on self\-managed Kafka deployments, and on streaming data in Confluent Cloud\.
 
-For more information, see [Amazon Athena MSK Connector](connectors-msk.md)\.
+For more information, see [Amazon Athena MSK connector](connectors-msk.md)\.
 
 ### December 2, 2022<a name="release-note-2022-12-02"></a>
 
@@ -416,16 +438,6 @@ The ODBC 1\.1\.15 driver includes the following changes:
 For more information about these changes, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 ## Athena release notes for 2021<a name="release-notes-2021"></a>
-
-### November 30, 2021<a name="release-note-2021-11-30"></a>
-
-Published on 2021\-11\-30
-
-Amazon Athena users can now use AWS Lake Formation to configure fine\-grained access permissions and read from ACID\-compliant tables\. Amazon Athena makes it simple to analyze data in Amazon S3 based data lakes to help ensure that users only have access to data to which they're authorized\. The ACID features help ensure that their queries are reliable in the face of complex changes to the underlying data\.
-
-Use [Lake Formation data filtering ](https://docs.aws.amazon.com/lake-formation/latest/dg/data-filtering-overview.html) to secure the tables in your Amazon S3 data lake by granting permissions at the column, row, and cell levels\. These permissions are enforced when Athena users query your data\. This fine level of control means that you can grant users access to sensitive information without using course\-grained masking that would otherwise impede their analyses\. Furthermore, with Lake Formation governed tables, Athena users can query data while multiple users simultaneously add and delete the table's Amazon S3 data objects\.
-
-For more information, see [Using Athena ACID transactions](acid-transactions.md) and [Using governed tables](lf-governed-tables.md)\.
 
 ### November 26, 2021<a name="release-note-2021-11-26"></a>
 
@@ -1225,7 +1237,7 @@ If you have upgraded to the AWS Glue Data Catalog, there are two new features th
 + Encryption of the Data Catalog metadata\. If you choose to encrypt metadata in the Data Catalog, you must add specific policies to Athena\. For more information, see [Access to Encrypted Metadata in the AWS Glue Data Catalog](access-encrypted-data-glue-data-catalog.md)\.
 + Fine\-grained permissions to access resources in the AWS Glue Data Catalog\. You can now define identity\-based \(IAM\) policies that restrict or allow access to specific databases and tables from the Data Catalog used in Athena\. For more information, see [Fine\-grained access to databases and tables in the AWS Glue Data Catalog](fine-grained-access-to-glue-resources.md)\.
 **Note**  
-Data resides in the Amazon S3 buckets, and access to it is governed by the [Access to Amazon S3](s3-permissions.md)\. To access data in databases and tables, continue to use access control policies to Amazon S3 buckets that store the data\. 
+Data resides in the Amazon S3 buckets, and access to it is controlled by [Access to Amazon S3](s3-permissions.md)\. To access data in databases and tables, continue to use access control policies to Amazon S3 buckets that store the data\. 
 
 ### October 10, 2018<a name="release-note-2018-10-10"></a>
 

@@ -12,6 +12,8 @@ You can use the **Data Sources** page of the Athena console to manage the data s
 1. In the navigation pane, choose **Data sources**\.
 
 1. From the list of data sources, choose the name of the data source that you want to view\.
+**Note**  
+The items in the **Data source name** column correspond to the output of the [ListDataCatalogs](https://docs.aws.amazon.com/athena/latest/APIReference/API_ListDataCatalogs.html) API action and the [list\-data\-catalogs](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/athena/list-data-catalogs.html) CLI command\.
 
 **To edit a data source**
 
