@@ -55,7 +55,7 @@ The following procedure shows how to add a JAR file from Amazon S3 to your noteb
    }
    ```
 
-1. Build the Java `custom-UDF1.jar` file, and then upload it to your own location in Amazon S3 \(for example, `s3:\\DOC-EXAMPLE-BUCKET\custom-UDF1.jar`\)\.
+1. Build the Java `custom-UDF1.jar` file, and then upload it to your own location in Amazon S3 \(for example, `s3://DOC-EXAMPLE-BUCKET/custom-UDF1.jar`\)\.
 
 1. In your Athena for Spark notebook, run the following commands\. Make sure that you use the `s3a://` scheme for `add jar`\.
 
