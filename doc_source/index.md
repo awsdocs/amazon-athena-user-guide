@@ -83,7 +83,6 @@ Amazon's trademarks and trade dress may not be used in
          + [Configuring federated access to Amazon Athena for Microsoft AD FS users using an ODBC client](odbc-adfs-saml.md)
          + [Configuring SSO for ODBC using the Okta plugin and Okta Identity Provider](odbc-okta-plugin.md)
          + [Configuring single sign-on using ODBC, SAML 2.0, and the Okta Identity Provider](okta-saml-sso.md)
-         + [Configuring SSO for Azure AD Single-Account Access using ODBC](odbc-azure-saml-sso.md)
          + [Using the Amazon Athena Power BI connector](connect-with-odbc-and-power-bi.md)
    + [Creating databases and tables](work-with-data.md)
       + [Creating databases in Athena](creating-databases.md)

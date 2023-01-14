@@ -11,6 +11,9 @@ The Amazon Athena connector for [Amazon MSK](http://aws.amazon.com/msk/) enables
 + Any relevant Lambda limits\. For more information, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) in the *AWS Lambda Developer Guide*\.
 + Date and timestamp data types in filter conditions must be cast to appropriate data types\.
 + Date and timestamp data types are not supported for the CSV file type and are treated as varchar values\.
++ Mapping into nested JSON fields is not supported\. The connector maps top\-level fields only\.
++ The connector does not support complex types\. Complex types are interpreted as strings\.
++ To extract or work with complex JSON values, use the JSON\-related functions available in Athena\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\.
 
 ## Terms<a name="connectors-msk-terms"></a>
 + **Metadata handler** – A Lambda handler that retrieves metadata from your database instance\.

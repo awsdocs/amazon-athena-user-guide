@@ -102,7 +102,7 @@ Tags that are associated with a resource like a workgroup are referred to as res
 
 **Example 3\. policy block that restricts tag\-changing action requests to specified tags**  
 Tags that are passed in as parameters to operations that change tags \(for example, `TagResource`, `UntagResource`, or `CreateWorkGroup` with tags\) are referred to as request tags\. The following example policy block allows the `CreateWorkGroup` operation only if one of the tags passed has the key `costcenter` and the value `1`, `2`, or `3`\.  
-If you want to allow IAM users to pass in tags as part of a `CreateWorkGroup` operation, make sure that you give the users permissions to the `TagResource` and `CreateWorkGroup` actions\.
+If you want to allow an IAM role to pass in tags as part of a `CreateWorkGroup` operation, make sure that you give the role permissions to the `TagResource` and `CreateWorkGroup` actions\.
 
 ```
 {
@@ -232,7 +232,7 @@ You can use resource tags to write policy blocks that deny specific actions on d
 
 **Example 3\. policy block that restricts tag\-changing action requests to specified tags**  
 Tags that are passed in as parameters to operations that change tags \(for example, `TagResource`, `UntagResource`, or `CreateDataCatalog` with tags\) are referred to as request tags\. The following example policy block allows the `CreateDataCatalog` operation only if one of the tags passed has the key `costcenter` and the value `1`, `2`, or `3`\.  
-If you want to allow IAM users to pass in tags as part of a `CreateDataCatalog` operation, make sure that you give the users permissions to the `TagResource` and `CreateDataCatalog` actions\.
+If you want to allow an IAM role to pass in tags as part of a `CreateDataCatalog` operation, make sure that you give the role permissions to the `TagResource` and `CreateDataCatalog` actions\.
 
 ```
 {

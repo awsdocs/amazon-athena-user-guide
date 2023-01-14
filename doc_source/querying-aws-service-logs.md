@@ -6,7 +6,7 @@ The tasks in this section use the Athena console, but you can also use other too
 
 For information about using AWS CloudFormation to automatically create AWS service log tables, partitions, and example queries in Athena, see [Automating AWS service logs table creation and querying them with Amazon Athena](http://aws.amazon.com/blogs/big-data/automating-aws-service-logs-table-creation-and-querying-them-with-amazon-athena/) in the AWS Big Data Blog\. For information about using a Python library for AWS Glue to create a common framework for processing AWS service logs and querying them in Athena, see [Easily query AWS service logs using Amazon Athena](http://aws.amazon.com/blogs/big-data/easily-query-aws-service-logs-using-amazon-athena/)\.
 
-The topics in this section assume that you have set up both an IAM user with appropriate permissions to access Athena and the Amazon S3 bucket where the data to query should reside\. For more information, see [Setting up](setting-up.md) and [Getting started](getting-started.md)\.
+The topics in this section assume that you have configured appropriate permissions to access Athena and the Amazon S3 bucket where the data to query should reside\. For more information, see [Setting up](setting-up.md) and [Getting started](getting-started.md)\.
 
 **Topics**
 + [Application Load Balancer](application-load-balancer-logs.md)

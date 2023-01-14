@@ -43,9 +43,9 @@ To grant access to a particular user in an account, replace the `Principal` key 
 If you have an Amazon S3 bucket that is encrypted with a custom AWS Key Management Service \(AWS KMS\) key, you might need to grant access to it to users from another Amazon Web Services account\.
 
 Granting access to an AWS KMS\-encrypted bucket in Account A to a user in Account B requires the following permissions:
-+ The bucket policy in Account A must grant access to Account B\.
-+ The AWS KMS key policy in Account A must grant access to the user in Account B\.
-+ The AWS Identity and Access Management \(IAM\) user policy in Account B must grant the user access to both the bucket and the key in Account A\.
++ The bucket policy in Account A must grant access to the role assumed by Account B\.
++ The AWS KMS key policy in Account A must grant access to the role assumed by the user in Account B\.
++ The AWS Identity and Access Management \(IAM\) role assumed by Account B must grant access to both the bucket and the key in Account A\.
 
 The following procedures describe how to grant each of these permissions\.
 
@@ -78,14 +78,14 @@ The following procedures describe how to grant each of these permissions\.
 
 **To grant access to the user in account b from the AWS KMS key policy in account a**
 
-1. In the AWS KMS key policy for Account A, grant the user in Account B permissions to the following actions:
+1. In the AWS KMS key policy for Account A, grant the role assumed by Account B permissions to the following actions:
    +  `kms:Encrypt` 
    +  `kms:Decrypt` 
    +  `kms:ReEncrypt*` 
    +  `kms:GenerateDataKey*` 
    +  `kms:DescribeKey` 
 
-   The following example grants key access to only one IAM user or role\.
+   The following example grants key access to only one IAM role\.
 
    ```
    {
@@ -124,17 +124,17 @@ The following procedures describe how to grant each of these permissions\.
 
    1.  Add Account B's account ID as an external account with access to the key\.
 
-**To grant access to the bucket and the key in account a from the IAM user policy in account b**
+**To grant access to the bucket and the key in account a from the IAM role assumed by account b**
 
 1. From Account B, open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. Open the IAM user or role associated with the user in Account B\.
+1. Open the IAM role associated with the user in Account B\.
 
-1. Review the list of permissions policies applied to IAM user or role\.
+1. Review the list of permissions policies applied to IAM role\.
 
 1. Ensure that a policy is applied that grants access to the bucket\.
 
-   The following example statement grants the IAM user access to the `s3:GetObject` and `s3:PutObject` operations on the bucket `awsexamplebucket`:
+   The following example statement grants the IAM role access to the `s3:GetObject` and `s3:PutObject` operations on the bucket `awsexamplebucket`:
 
    ```
    {
@@ -155,9 +155,9 @@ The following procedures describe how to grant each of these permissions\.
 
 1. Ensure that a policy is applied that grants access to the key\.
 **Note**  
-If the IAM user or role in Account B already has [administrator access](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html), then you don't need to grant access to the key from the user's IAM policies\.
+If the IAM role assumed by Account B already has [administrator access](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html), then you don't need to grant access to the key from the user's IAM policies\.
 
-   The following example statement grants the IAM user access to use the key `arn:aws:kms:us-west-2:123456789098:key/111aa2bb-333c-4d44-5555-a111bb2c33dd`\.
+   The following example statement grants the IAM role access to use the key `arn:aws:kms:us-west-2:123456789098:key/111aa2bb-333c-4d44-5555-a111bb2c33dd`\.
 
    ```
    {
@@ -178,8 +178,6 @@ If the IAM user or role in Account B already has [administrator access](https://
      ]
    }
    ```
-
-For instructions on how to add or correct the IAM user's permissions, see [Changing permissions for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html)\.
 
 ## Cross\-account access to bucket objects<a name="cross-account-permissions-objects"></a>
 

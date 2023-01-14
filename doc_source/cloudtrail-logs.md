@@ -49,7 +49,7 @@ Using the highest level in the object hierarchy gives you the greatest flexibili
 
 ## Using the CloudTrail console to create an Athena table for CloudTrail logs<a name="create-cloudtrail-table-ct"></a>
 
-You can create a non\-partitioned Athena table for querying CloudTrail logs directly from the CloudTrail console\. Creating an Athena table from the CloudTrail console requires that you be logged in with an IAM user or role that has sufficient permissions to create tables in Athena\.
+You can create a non\-partitioned Athena table for querying CloudTrail logs directly from the CloudTrail console\. Creating an Athena table from the CloudTrail console requires that you be logged in with a role that has sufficient permissions to create tables in Athena\.
 
 **Note**  
 You cannot use the CloudTrail console to create an Athena table for organization trail logs\. Instead, create the table manually using the Athena console so that you can specify the correct storage location\. For information about organization trails, see [Creating a trail for an organization](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html) in the *AWS CloudTrail User Guide*\.
@@ -379,7 +379,7 @@ To explore the CloudTrail logs data, use these tips:
   If your query includes fields in JSON formats, such as `STRUCT`, extract data from JSON\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\. 
 
   Some suggestions for issuing queries against your CloudTrail table:
-+ Start by looking at which IAM users called which API operations and from which source IP addresses\.
++ Start by looking at which users called which API operations and from which source IP addresses\.
 + Use the following basic SQL query as your template\. Paste the query to the Athena console and run it\.
 
   ```

@@ -30,7 +30,7 @@ In the following procedure, Steps 1a and 1b show how to give the Borrower accoun
 
 ### Step 1a: Create an owner policy to grant AWS Glue access to the borrower<a name="security-iam-cross-account-glue-catalog-access-step-1a"></a>
 
-To grant AWS Glue access from the Owner account \(999999999999\) to the Borrower's user or role, you can use the AWS Glue console or the AWS Glue [PutResourcePolicy](https://docs.aws.amazon.com/glue/latest/webapi/API_PutResourcePolicy.html) API operation\. The following procedure uses the AWS Glue console\.
+To grant AWS Glue access from the Owner account \(999999999999\) to the Borrower's role, you can use the AWS Glue console or the AWS Glue [PutResourcePolicy](https://docs.aws.amazon.com/glue/latest/webapi/API_PutResourcePolicy.html) API operation\. The following procedure uses the AWS Glue console\.
 
 **To grant AWS Glue access to the borrower account from the owner**
 
@@ -63,21 +63,19 @@ To grant AWS Glue access from the Owner account \(999999999999\) to the Borrower
    }
    ```
 
-### Step 1b: Create a borrower role or user policy with access to the owner's AWS Glue resources<a name="security-iam-cross-account-glue-catalog-access-step-1b"></a>
+### Step 1b: Create a borrower role with access to the owner's AWS Glue resources<a name="security-iam-cross-account-glue-catalog-access-step-1b"></a>
 
-To give the Borrower account role or user access to the Owner account's AWS Glue resources, you can use the AWS Identity and Access Management \(IAM\) console or the [IAM API](https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html)\. The following procedures use the IAM console\.
+To give the Borrower account role access to the Owner account's AWS Glue resources, you can use the AWS Identity and Access Management \(IAM\) console or the [IAM API](https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html)\. The following procedures use the IAM console\.
 
-**To grant a borrower role or user access to the owner account's AWS Glue resources**
+**To grant a borrower role access to the owner account's AWS Glue resources**
 
 1. Sign in to the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/) from the Borrower account\.
 
-1. In the navigation pane, choose **Roles** or **Users**\.
+1. In the navigation pane, choose **Roles**\.
 
-1. Choose the role or user that you want to change\.
+1. Choose the role that you want to change\.
 
-1. Do one of the following:
-   + If you are changing a role, choose **Attach policies**\.
-   + If you are changing a user, choose **Add permissions**, and then choose **Attach existing policies directly**\.
+1. Choose **Attach policies**\.
 
 1. Choose **Create policy**\.
 
@@ -158,7 +156,7 @@ Instead of using the fully qualified syntax, the Borrower can also specify the c
 
 ## Additional Amazon S3 permissions<a name="security-iam-cross-account-glue-catalog-access-additional-s3-permissions"></a>
 + If the Borrower account uses an Athena query to write new data to a table in the Owner account, the Owner will not automatically have access to this data in Amazon S3, even though the table exists in the Owner's account\. This is because the Borrower is the object owner of the information in Amazon S3 unless otherwise configured\. To grant the Owner access to the data, set the permissions on the objects accordingly as an additional step\.
-+ Certain cross\-account DDL operations like [MSCK REPAIR TABLE](msck-repair-table.md) require Amazon S3 permissions\. For example, if the Borrower account is performing a cross\-account `MSCK REPAIR` operation against a table in the Owner account that has its data in an Owner account S3 bucket, that bucket must grant permissions to the Borrower for the query to succeed\.
++ Certain cross\-account DDL operations like [MSCK REPAIR TABLE](msck-repair-table.md) require Amazon S3 permissions\. For example, if the Borrower account is performing a cross\-account `MSCK REPAIR` operation against a table in the Owner account that has its data in an Owner account S3 bucket, that bucket must grant permissions to the role assumed by the Borrower for the query to succeed\.
 
 For information about granting bucket permissions, see [How do I set ACL bucket permissions?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/set-bucket-permissions.html) in the *Amazon Simple Storage Service User Guide*\.
 

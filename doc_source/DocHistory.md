@@ -1,6 +1,6 @@
 # Document history<a name="DocHistory"></a>
 
-**Latest documentation update: January 6, 2023\.**  
+**Latest documentation update: January 10, 2023\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
@@ -12,7 +12,6 @@ We update the documentation frequently to address your feedback\. The following 
 | Updated documentation for CloudTrail logs\. | The CREATE TABLE DDL for querying CloudTrail logs has been updated to use the JSON SerDe instead of the CloudTrail SerDe\. For more information, see [Querying AWS CloudTrail logs](cloudtrail-logs.md)\. | November 3, 2022 | 
 | Added documentation for Athena engine version 3\. | For more information about Athena engine version 3, see [Athena engine version 3](engine-versions-reference-0003.md)\. | October 13, 2022 | 
 | Added tutorial on configuring SSO for ODBC using the Okta plugin\. |  Configure the Amazon Athena ODBC driver and the Okta plugin for single sign\-on \(SSO\) capability using the Okta identity provider\. For more information, see [Configuring SSO for ODBC using the Okta plugin and Okta Identity Provider](odbc-okta-plugin.md)\.  | August 23, 2022 | 
-| Added tutorial on configuring SSO for Azure AD single\-account access using ODBC\. | Configure Azure Active Directory and ODBC for single sign\-on to Athena with and without MFA support\. AWS single\-account access enables you to federate Azure AD to a single AWS account and use Azure AD to manage access to AWS IAM roles\. For each AWS account, Azure AD administrators federate to AWS IAM, assign users or groups to the account, and configure Azure AD to authorize role access\. For more information, see [Configuring SSO for Azure AD Single\-Account Access using ODBC](odbc-azure-saml-sso.md)\. | August 16, 2022 | 
 | Added documentation for viewing query plans and statistics in the Athena console\. | You can use the Athena query editor to see graphical representations of how your queries will be run and graphs, details, and statistics of how completed queries ran\. For more information, see [Viewing execution plans for SQL queries](query-plans.md) and [Viewing statistics and execution details for completed queries](query-stats.md)\. | July 21, 2022 | 
 | Added documentation for querying Apache Hive views in external Hive metastores\. | You can use Athena to query Apache views created in external Hive metastores\. Some Hive functions are not supported or require special handling\. For more information, see [Working with Hive views](hive-views.md)\. | April 22, 2022 | 
 | Added documentation for saved queries\. | You can use the saved queries feature in Athena to save, recall, edit, and rename your queries\. For more information, see [Using saved queries](saved-queries.md) in this guide and [UpdateNamedQuery](https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdateNamedQuery.html) in the Amazon Athena API Reference\. | February 28, 2022 | 

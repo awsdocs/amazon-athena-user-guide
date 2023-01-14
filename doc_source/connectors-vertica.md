@@ -99,7 +99,7 @@ You can use the following single connection metadata and record handlers to conn
 
 | Parameter | Description | 
 | --- | --- | 
-| default | Required\. The default connection string\. This string is used when a catalog is not recognized\. | 
+| default | Required\. The default connection string\. | 
 
 The single connection handlers support one database instance and must provide a `default` connection string parameter\. All other connection strings are ignored\.
 

@@ -8,7 +8,6 @@ To explore and visualize your data with business intelligence tools, download, i
 + [Configuring AD FS access using ODBC](odbc-adfs-saml.md)
 + [Configuring SSO for ODBC and the Okta plugin](odbc-okta-plugin.md)
 + [Configuring SSO using ODBC, SAML 2\.0, and Okta](okta-saml-sso.md)
-+ [Configuring SSO for Azure AD using ODBC](odbc-azure-saml-sso.md)
 + [Power BI connector](connect-with-odbc-and-power-bi.md)
 
 See also the following AWS Knowledge Center and AWS Big Data Blog topics:

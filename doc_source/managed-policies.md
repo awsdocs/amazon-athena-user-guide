@@ -18,7 +18,7 @@ Managed policies are easy to use and are updated automatically with the required
 
 ## AWS managed policy: AmazonAthenaFullAccess<a name="amazonathenafullaccess-managed-policy"></a>
 
-The `AmazonAthenaFullAccess` managed policy grants full access to Athena\. Attach it to IAM users and other principals who need full access to Athena\. You can attach the `AmazonAthenaFullAccess` policy to your IAM identities\.
+The `AmazonAthenaFullAccess` managed policy grants full access to Athena\.
 
 ### Permissions groupings<a name="amazonathenafullaccess-managed-policy-groupings"></a>
 

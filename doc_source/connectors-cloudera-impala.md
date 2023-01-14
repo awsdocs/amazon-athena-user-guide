@@ -30,7 +30,7 @@ Use the Lambda environment variables in this section to configure the Cloudera I
 
 ### Connection string<a name="connectors-cloudera-impala-connection-string"></a>
 
-Use a JDBC connection string in the following format to connect to a database instance\.
+Use a JDBC connection string in the following format to connect to an Impala cluster\.
 
 ```
 impala://${jdbc_connection_string}
@@ -56,7 +56,7 @@ You can use a multiplexer to connect to multiple database instances with a singl
 
 | Parameter | Description | 
 | --- | --- | 
-| $catalog\_connection\_string | Required\. A database instance connection string\. Prefix the string with the name of the catalog used in Athena\. For example, if the catalog registered with Athena is myimpalacatalog, then the environment variable name is myimpalacatalog\_connection\_string\. | 
+| $catalog\_connection\_string | Required\. An Impala cluster connection string for an Athena catalog\. Prefix the environment variable with the name of the catalog used in Athena\. For example, if the catalog registered with Athena is myimpalacatalog, then the environment variable name is myimpalacatalog\_connection\_string\. | 
 | default | Required\. The default connection string\. This string is used when the catalog is lambda:$\{AWS\_LAMBDA\_FUNCTION\_NAME\}\. | 
 
 The following example properties are for a Impala MUX Lambda function that supports two database instances: `impala1` \(the default\), and `impala2`\.
@@ -66,9 +66,9 @@ The following example properties are for a Impala MUX Lambda function that suppo
 
 | Property | Value | 
 | --- | --- | 
-| default | impala://jdbc:impala2://impala1:10000/default?$\{Test/RDS/impala1\} | 
-| impala\_catalog1\_connection\_string | impala://jdbc:impala2://impala1:10000/default?$\{Test/RDS/impala1\} | 
-| impala\_catalog2\_connection\_string | impala://jdbc:impala2://impala2:10000/default?UID=sample&PWD=sample | 
+| default | impala://jdbc:impala://some\.impala\.host\.name:21050/?$\{Test/impala1\} | 
+| impala\_catalog1\_connection\_string | impala://jdbc:impala://someother\.impala\.host\.name:21050/?$\{Test/impala1\} | 
+| impala\_catalog2\_connection\_string | impala://jdbc:impala://another\.impala\.host\.name:21050/?UID=sample&PWD=sample | 
 
 #### Providing credentials<a name="connectors-cloudera-impala-providing-credentials"></a>
 
@@ -85,16 +85,16 @@ To provide a user name and password for your database in your JDBC connection st
   ```
 
 **Example connection string with secret name**  
-The following string has the secret name `${Test/RDS/Impala1host}`\.
+The following string has the secret name `${Test/impala1host}`\.
 
 ```
-impala://jdbc:impala2://Impala1host:10000/default?...&${Test/RDS/Impala1host}&...
+impala://jdbc:impala://Impala1host:21050/?...&${Test/impala1host}&...
 ```
 
 The connector uses the secret name to retrieve secrets and provide the user name and password, as in the following example\.
 
 ```
-impala://jdbc:impala2://Impala1host:10000/default?...&UID=sample2&PWD=sample2&...
+impala://jdbc:impala://Impala1host:21050/?...&UID=sample2&PWD=sample2&...
 ```
 
 Currently, Cloudera Impala recognizes the `UID` and `PWD` JDBC properties\.
@@ -119,7 +119,7 @@ You can use the following single connection metadata and record handlers to conn
 
 | Parameter | Description | 
 | --- | --- | 
-| default | Required\. The default connection string\. This string is used when a catalog is not recognized\. | 
+| default | Required\. The default connection string\. | 
 
 The single connection handlers support one database instance and must provide a `default` connection string parameter\. All other connection strings are ignored\.
 
@@ -130,7 +130,7 @@ The following example property is for a single Cloudera Impala instance supporte
 
 | Property | Value | 
 | --- | --- | 
-| default | impala://jdbc:impala://Impala1host:10000/default?secret=$\{Test/RDS/impala1host\} | 
+| default | impala://jdbc:impala://Impala1host:21050/?secret=$\{Test/impala1host\} | 
 
 ### Spill parameters<a name="connectors-cloudera-impala-spill-parameters"></a>
 

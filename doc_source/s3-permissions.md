@@ -5,7 +5,7 @@ You can grant access to Amazon S3 locations using identity\-based policies, buck
 Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 **Note**  
-Athena does not support restricting or allowing access to Amazon S3 resources based on the `aws:SourceIp`, `aws:SourceVpc`, or `aws:SourceVpce` condition keys\.
+You cannot restrict or allow access to Amazon S3 resources based on the `aws:SourceIp`, `aws:SourceVpc`, or `aws:SourceVpce` condition keys\. However, because Athena uses `aws:SourceIp` to access Amazon S3 on your behalf, entries for the related access requests can appear in your Amazon S3 access logs\.
 
 ## Amazon S3 access points and access point aliases<a name="s3-permissions-aliases"></a>
 

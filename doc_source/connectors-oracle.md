@@ -56,7 +56,7 @@ You can use a multiplexer to connect to multiple database instances with a singl
 
 | Parameter | Description | 
 | --- | --- | 
-| $catalog\_connection\_string | Required\. A database instance connection string\. Prefix the string with the name of the catalog used in Athena\. For example, if the catalog registered with Athena is myoraclecatalog, then the environment variable name is myoraclecatalog\_connection\_string\. | 
+| $catalog\_connection\_string | Required\. A database instance connection string\. Prefix the environment variable with the name of the catalog used in Athena\. For example, if the catalog registered with Athena is myoraclecatalog, then the environment variable name is myoraclecatalog\_connection\_string\. | 
 | default | Required\. The default connection string\. This string is used when the catalog is lambda:$\{AWS\_LAMBDA\_FUNCTION\_NAME\}\. | 
 
 The following example properties are for a Oracle MUX Lambda function that supports two database instances: `oracle1` \(the default\), and `oracle2`\.
@@ -119,7 +119,7 @@ You can use the following single connection metadata and record handlers to conn
 
 | Parameter | Description | 
 | --- | --- | 
-| default | Required\. The default connection string\. This string is used when a catalog is not recognized\. | 
+| default | Required\. The default connection string\. | 
 
 The single connection handlers support one database instance and must provide a `default` connection string parameter\. All other connection strings are ignored\.
 
