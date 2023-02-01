@@ -20,7 +20,7 @@ If your workgroup has the **Override client\-side settings** field selected, the
 1. Choose **Encrypt query results**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/athena/latest/ug/images/encrypt-query-results.png)
 
-1. For **Encryption type**, choose **CSE\-KMS**, **SSE\-KMS**, or **SSE\-S3**\.
+1. For **Encryption type**, choose **CSE\-KMS**, **SSE\-KMS**, or **SSE\-S3**\. Of these three, **CSE\-KMS** offers the highest level of encryption and **SSE\-S3** the lowest\.
 
 1. If you chose **SSE\-KMS** or **CSE\-KMS**, specify an AWS KMS key\.
    + For **Choose an AWS KMS key**, if your account has access to an existing AWS KMS customer managed key \(CMK\), choose its alias or enter an AWS KMS key ARN\.

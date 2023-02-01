@@ -36,8 +36,8 @@ The Athena AWS CMDB connector makes the following databases and tables available
 
 ## Required Permissions<a name="connectors-cmdb-required-permissions"></a>
 
-Review the `Policies` section of the [athena\-aws\-cmdb\.yaml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-aws-cmdb/athena-aws-cmdb.yaml) file for full details on the IAM policies that this connector requires\. The following is a brief summary\.
-+ **Amazon S3 write access** – To successfully handle large queries, the connector requires write access to a location in Amazon S3\.
+For full details on the IAM policies that this connector requires, review the `Policies` section of the [athena\-aws\-cmdb\.yaml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-aws-cmdb/athena-aws-cmdb.yaml) file\. The following list summarizes the required permissions\.
++ **Amazon S3 write access** – The connector requires write access to a location in Amazon S3 in order to spill results from large queries\.
 + **Athena GetQueryExecution** – The connector uses this permission to fast\-fail when the upstream Athena query has terminated\.
 + **S3 List** – The connector uses this permission to list your Amazon S3 buckets and objects\.
 + **EC2 Describe** – The connector uses this permission to describe resources such as your Amazon EC2 instances, security groups, VPCs, and Amazon EBS volumes\.

@@ -9,9 +9,9 @@ Use CTAS queries to:
 + Create copies of existing tables that contain only the data you need\.
 
 **Topics**
-+ [Considerations and limitations for CTAS queries](considerations-ctas.md)
++ [Considerations and limitations for CTAS queries](ctas-considerations-limitations.md)
 + [Running CTAS queries in the console](ctas-console.md)
-+ [Bucketing vs partitioning](bucketing-vs-partitioning.md)
++ [Bucketing vs partitioning](ctas-bucketing-vs-partitioning.md)
 + [Examples of CTAS queries](ctas-examples.md)
 + [Using CTAS and INSERT INTO for ETL](ctas-insert-into-etl.md)
 + [Creating a table with more than 100 partitions](ctas-insert-into.md)

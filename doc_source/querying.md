@@ -19,7 +19,7 @@ The query result location that Athena uses is determined by a combination of wor
 **Important**  
 When you run a query using the API or using the ODBC or JDBC driver, the console setting does not apply\. 
 
-Each workgroup configuration has an **Override client\-side settings** option that can be enabled\. When this option is enabled, the workgroup settings take precedence over the applicable client\-side settings when an IAM principal associated with that workgroup runs the query\.
+Each workgroup configuration has an [Override client\-side settings](https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html) option that can be enabled\. When this option is enabled, the workgroup settings take precedence over the applicable client\-side settings when an IAM principal associated with that workgroup runs the query\.
 
 ### Specifying a query result location using the Athena console<a name="query-results-specify-location-console"></a>
 
@@ -38,6 +38,8 @@ Before you can run a query, a query result bucket location in Amazon S3 must be 
    + Choose **Browse S3**, choose the Amazon S3 bucket that you created for your current Region, and then choose **Choose**\.
 **Note**  
 If you are using a workgroup that specifies a query result location for all users of the workgroup, the option to change the query result location is unavailable\.
+
+1. \(Optional\) Choose **View lifecycle configuration** to view and configure the [Amazon S3 lifecycle rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html) on your query results bucket\. The Amazon S3 lifecycle rules that you create can be either expiration rules or transition rules\. Expiration rules automatically delete query results after a certain amount of time\. Transition rules move them to another Amazon S3 storage tier\. For more information, see [Setting lifecycle configuration on a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html) in the Amazon Simple Storage Service User Guide\.
 
 1. \(Optional\) For **Expected bucket owner**, enter the ID of the AWS account that you expect to be the owner of the output location bucket\. This is an added security measure\. If the account ID of the bucket owner does not match the ID that you specify here, attempts to output to the bucket will fail\. For in\-depth information, see [Verifying bucket ownership with bucket owner condition](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-owner-condition.html) in the *Amazon S3 User Guide*\.
 **Note**  
@@ -113,7 +115,9 @@ Athena query result files are data files that contain information that can be co
 1. Choose **Recent queries**\.  
 ![\[Choose Recent queries to view previous queries.\]](http://docs.aws.amazon.com/athena/latest/ug/images/getting-started-recent-queries.png)
 
-1. Use the search box to find the query, select the query, and then choose **Download results**\. Queries are retained for 45 days\.  
+1. Use the search box to find the query, select the query, and then choose **Download results**\.
+**Note**  
+You cannot use the **Download results** option to retrieve query results that have been deleted manually, or retrieve query results that have been deleted or moved to another location by Amazon S3 [lifecycle rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html)\.  
 ![\[Choose Recent queries to find and download previous query results.\]](http://docs.aws.amazon.com/athena/latest/ug/images/querying-recent-queries-tab-download.png)
 
 ## Viewing recent queries<a name="queries-viewing-history"></a>

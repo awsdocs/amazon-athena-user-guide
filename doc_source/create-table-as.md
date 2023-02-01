@@ -80,26 +80,14 @@ Example:
 ```
 WITH (location ='s3://DOC-EXAMPLE-BUCKET/tables/iceberg_table/')
 ```  
+ `field_delimiter = [delimiter]`   
+Optional and specific to text\-based data storage formats\. The single\-character field delimiter for files in CSV, TSV, and text files\. For example, `WITH (field_delimiter = ',')`\. Currently, multicharacter field delimiters are not supported for CTAS queries\. If you don't specify a field delimiter, `\001` is used by default\.  
  `format = [storage_format]`   
 The storage format for the CTAS query results, such as `ORC`, `PARQUET`, `AVRO`, `JSON`, `ION`, or `TEXTFILE`\. For Iceberg tables, the allowed formats are `ORC`, `PARQUET`, and `AVRO`\. If omitted, `PARQUET` is used by default\. The name of this parameter, `format`, must be listed in lowercase, or your CTAS query will fail\.   
 Example:  
 
 ```
 WITH (format = 'PARQUET')
-```  
- `partitioned_by = ARRAY[ col_name[,…] ]`   
-This property does not apply to Iceberg tables\. To use partition transforms for Iceberg tables, use the `partitioning` property described later in this section\.
-Optional\. An array list of columns by which the CTAS table will be partitioned\. Verify that the names of partitioned columns are listed last in the list of columns in the `SELECT` statement\.   
- `partitioning = ARRAY[partition_transform, ...]`   
-Optional\. Specifies the partitioning of the Iceberg table to be created\. Iceberg supports a wide variety of partition transforms and partition evolution\. Partition transforms are summarized in the following table\.    
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/create-table-as.html)
-Example:  
-
-```
- WITH (partitioning = ARRAY['month(order_date)', 
-                            'bucket(account_number, 10)', 
-                            'country']))
 ```  
  `bucketed_by = ARRAY[ column_name[,…], bucket_count = [int] ]`   
 This property does not apply to Iceberg tables\. For Iceberg tables, use partitioning with bucket transform\.
@@ -118,6 +106,20 @@ SELECT
   * 
 FROM 
   table_name
+```  
+ `partitioned_by = ARRAY[ col_name[,…] ]`   
+This property does not apply to Iceberg tables\. To use partition transforms for Iceberg tables, use the `partitioning` property described later in this section\.
+Optional\. An array list of columns by which the CTAS table will be partitioned\. Verify that the names of partitioned columns are listed last in the list of columns in the `SELECT` statement\.   
+ `partitioning = ARRAY[partition_transform, ...]`   
+Optional\. Specifies the partitioning of the Iceberg table to be created\. Iceberg supports a wide variety of partition transforms and partition evolution\. Partition transforms are summarized in the following table\.    
+****    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/create-table-as.html)
+Example:  
+
+```
+ WITH (partitioning = ARRAY['month(order_date)', 
+                            'bucket(account_number, 10)', 
+                            'country']))
 ```  
  `write_target_data_file_size_bytes = [long]`   
 Optional\. Specifies the target size in bytes of the files produced by Athena\. Defaults to 512 MB\.  
@@ -181,8 +183,8 @@ For consistency, we recommend that you use the `write_compression` property inst
  `parquet_compression = [compression_format]`   
 The compression type to use for the Parquet file format when Parquet data is written to the table\. For example, `WITH (parquet_compression = 'SNAPPY')`\. This compression is applied to column chunks within the Parquet files\. If omitted, GZIP compression is used by default for Parquet\.  
 For consistency, we recommend that you use the `write_compression` property instead of `parquet_compression`\. Use the `format` property to specify the storage format as `PARQUET`, and then use the `write_compression` property to specify the compression format that `PARQUET` will use\.   
- `field_delimiter = [delimiter]`   
-Optional and specific to text\-based data storage formats\. The single\-character field delimiter for files in CSV, TSV, and text files\. For example, `WITH (field_delimiter = ',')`\. Currently, multicharacter field delimiters are not supported for CTAS queries\. If you don't specify a field delimiter, `\001` is used by default\.
+ `compression_level = [compression_level]`   
+The compression level to use\. This property applies only to ZSTD compression\. Possible values are from 1 to 22\. The default value is 3\. For more information, see [Using ZSTD compression levels in Athena](compression-support-zstd-levels.md)\.
 
 ## Examples<a name="ctas-table-examples"></a>
 

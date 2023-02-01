@@ -26,7 +26,7 @@ You can run an `INSERT` query on tables created from data with the following for
 
 ### Bucketed tables not supported<a name="insert-into-bucketed-tables-not-supported"></a>
 
-`INSERT INTO` is not supported on bucketed tables\. For more information, see [Bucketing vs partitioning](bucketing-vs-partitioning.md)\.
+`INSERT INTO` is not supported on bucketed tables\. For more information, see [Bucketing vs partitioning](ctas-bucketing-vs-partitioning.md)\.
 
 ### Federated queries not supported<a name="insert-into-federated-queries-not-supported"></a>
 

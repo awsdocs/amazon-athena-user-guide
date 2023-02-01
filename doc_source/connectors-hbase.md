@@ -108,8 +108,8 @@ If you do not use AWS Glue to supplement your metadata, the connector's schema i
 
 ## Required Permissions<a name="connectors-hbase-required-permissions"></a>
 
-Review the `Policies` section of the [athena\-hbase\.yaml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-hbase/athena-hbase.yaml) file for full details on the IAM policies that this connector requires\. The following is a brief summary\.
-+ **Amazon S3 write access** – To successfully handle large queries, the connector requires write access to a location in Amazon S3\.
+For full details on the IAM policies that this connector requires, review the `Policies` section of the [athena\-hbase\.yaml](https://github.com/awslabs/aws-athena-query-federation/blob/master/athena-hbase/athena-hbase.yaml) file\. The following list summarizes the required permissions\.
++ **Amazon S3 write access** – The connector requires write access to a location in Amazon S3 in order to spill results from large queries\.
 + **Athena GetQueryExecution** – The connector uses this permission to fast\-fail when the upstream Athena query has terminated\.
 + **AWS Glue Data Catalog** – The HBase connector requires read only access to the AWS Glue Data Catalog to obtain schema information\.
 + **CloudWatch Logs** – The connector requires access to CloudWatch Logs for storing logs\.

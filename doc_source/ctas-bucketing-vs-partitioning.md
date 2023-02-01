@@ -1,4 +1,4 @@
-# Bucketing vs partitioning<a name="bucketing-vs-partitioning"></a>
+# Bucketing vs partitioning<a name="ctas-bucketing-vs-partitioning"></a>
 
 You can specify partitioning and bucketing, for storing data from CTAS query results in Amazon S3\. For information about CTAS queries, see [CREATE TABLE AS SELECT \(CTAS\)](ctas.md)\.
 

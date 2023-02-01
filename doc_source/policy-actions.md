@@ -12,7 +12,7 @@ The Athena JDBC and ODBC drivers support SAML 2\.0\-based authentication, includ
 + Okta 
 + PingFederate
 
-For more information, see the installation and configuration guides for the respective drivers, downloable in PDF format from the [JDBC](connect-with-jdbc.md) and [ODBC](connect-with-odbc.md) driver pages\. For additional related information, see the following:
+For more information, see the installation and configuration guides for the respective drivers, downloadable in PDF format from the [JDBC](connect-with-jdbc.md) and [ODBC](connect-with-odbc.md) driver pages\. For additional related information, see the following:
 + [Enabling federated access to the Athena API](access-federation-saml.md)
 + [Using Lake Formation and the Athena JDBC and ODBC drivers for federated access to Athena](security-athena-lake-formation-jdbc.md)
 +  [Configuring single sign\-on using ODBC, SAML 2\.0, and the Okta Identity Provider](okta-saml-sso.md)

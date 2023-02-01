@@ -3,8 +3,8 @@
 The Amazon Athena connector for [Amazon MSK](http://aws.amazon.com/msk/) enables Amazon Athena to run SQL queries on your Apache Kafka topics\. Use this connector to view [Apache Kafka](https://kafka.apache.org/) topics as tables and messages as rows in Athena\. For additional information, see [Analyze real\-time streaming data in Amazon MSK with Amazon Athena](http://aws.amazon.com/blogs/big-data/analyze-real-time-streaming-data-in-amazon-msk-with-amazon-athena/) in the AWS Big Data Blog\.
 
 ## Prerequisites<a name="connectors-msk-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
-+ Set up a VPC and a security group before you use this connector\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.
+
+Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 
 ## Limitations<a name="connectors-msk-limitations"></a>
 + Write DDL operations are not supported\.
@@ -14,6 +14,7 @@ The Amazon Athena connector for [Amazon MSK](http://aws.amazon.com/msk/) enables
 + Mapping into nested JSON fields is not supported\. The connector maps top\-level fields only\.
 + The connector does not support complex types\. Complex types are interpreted as strings\.
 + To extract or work with complex JSON values, use the JSON\-related functions available in Athena\. For more information, see [Extracting data from JSON](extracting-data-from-JSON.md)\.
++ The connector does not support access to Kafka message metadata\.
 
 ## Terms<a name="connectors-msk-terms"></a>
 + **Metadata handler** – A Lambda handler that retrieves metadata from your database instance\.
@@ -111,6 +112,9 @@ WHERE timestampcol >= TIMESTAMP '2018-03-25 07:30:58.878'
 ## Setting up the MSK connector<a name="connectors-msk-setup"></a>
 
 Before you can use the connector, you must set up your Amazon MSK cluster, use the [AWS Glue Schema Registry](https://docs.aws.amazon.com/glue/latest/dg/schema-registry.html) to define your schema, and configure authentication for the connector\.
+
+**Note**  
+If you deploy the connector into a VPC in order to access private resources and also want to connect to a publicly accessible service like Confluent, you must associate the connector with a private subnet that has a NAT Gateway\. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the Amazon VPC User Guide\.
 
 When working with the AWS Glue Schema Registry, note the following points:
 + Make sure that the text in **Description** field of the AWS Glue Schema Registry includes the string `{AthenaFederationMSK}`\. This marker string is required for AWS Glue Registries that you use with the Amazon Athena MSK connector\.

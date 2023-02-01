@@ -29,6 +29,7 @@ The `AmazonAthenaFullAccess` policy is grouped into the following sets of permis
 + **`sns`** – Allows principals to list Amazon SNS topics and get topic attributes\. This enables principals to use Amazon SNS topics with Athena for monitoring and alert purposes\.
 + **`cloudwatch`** – Allows principals to create, read, and delete CloudWatch alarms\. For more information, see [Controlling costs and monitoring queries with CloudWatch metrics and events](control-limits.md)\.
 + **`lakeformation`** – Allows principals to request temporary credentials to access data in a data lake location that is registered with Lake Formation\. For more information, see [Underlying data access control](https://docs.aws.amazon.com/lake-formation/latest/dg/access-control-underlying-data.html) in the *AWS Lake Formation Developer Guide*\.
++ **`pricing`** – Provides access to AWS Billing and Cost Management\. For more information, see [GetProducts](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetProducts.html) in the *AWS Billing and Cost Management API Reference*\.
 
 ```
 {
@@ -134,6 +135,15 @@ The `AmazonAthenaFullAccess` policy is grouped into the following sets of permis
             "Effect": "Allow",
             "Action": [
                 "lakeformation:GetDataAccess"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "pricing:GetProducts"
             ],
             "Resource": [
                 "*"
@@ -247,6 +257,7 @@ View details about updates to AWS managed policies for Athena since this service
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  [AmazonAthenaFullAccess](#amazonathenafullaccess-managed-policy) – Update to existing policy  |  Athena added `pricing:GetProducts` to provide access to AWS Billing and Cost Management\. For more information, see [GetProducts](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetProducts.html) in the *AWS Billing and Cost Management API Reference*\.  | January 25, 2023 | 
 |  [AmazonAthenaFullAccess](#amazonathenafullaccess-managed-policy) – Update to existing policy  |  Athena added `cloudwatch:GetMetricData` to retrieve CloudWatch metric values\. For more information, see [GetMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html) in the *Amazon CloudWatch API Reference*\.  | November 14, 2022 | 
 |  [AmazonAthenaFullAccess](#amazonathenafullaccess-managed-policy) and [AWSQuicksightAthenaAccess](#awsquicksightathenaaccess-managed-policy) – Updates to existing policies  |  Athena added `s3:PutBucketPublicAccessBlock` to enable the blocking of public access on the buckets created by Athena\.  | July 7, 2021 | 
 |  Athena started tracking changes  |  Athena started tracking changes for its AWS managed policies\.  | July 7, 2021 | 

@@ -9,7 +9,7 @@ Hudi datasets are suitable for the following use cases:
 + Working with streaming data from sensors and other Internet of Things \(IoT\) devices that require specific data insertion and update events\.
 + Implementing a [change data capture \(CDC\) system](https://en.wikipedia.org/wiki/Change_data_capture)\.
 
-Data sets managed by Hudi are stored in S3 using open storage formats\. Currently, Athena can read compacted Hudi datasets but not write Hudi data\. Athena uses Apache Hudi version 0\.8\.0, subject to change\. For more information about this Hudi version, see [Release 0\.8\.0 \(docs\)](https://hudi.apache.org/releases/release-0.8.0) on the Apache website\.
+Data sets managed by Hudi are stored in Amazon S3 using open storage formats\. Currently, Athena can read compacted Hudi datasets but not write Hudi data\. Athena supports up to Hudi version 0\.8\.0 with Athena engine version 2, and Hudi version 0\.10\.1 with Athena engine version 3\. This is subject to change\. Athena cannot guarantee read compatibility with tables that are created with later versions of Hudi\. For information about Athena engine versioning, see [Athena engine versioning](engine-versions.md)\. For more information about Hudi features and versioning, see the [Hudi documentation](https://hudi.apache.org/docs/overview) on the Apache website\.
 
 ## Hudi dataset table types<a name="querying-hudi-hudi-dataset-table-types"></a>
 

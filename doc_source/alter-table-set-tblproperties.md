@@ -18,9 +18,18 @@ The following predefined table properties have special uses\.
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/alter-table-set-tblproperties.html)
 
-## Example<a name="examples"></a>
+## Examples<a name="examples"></a>
+
+The following example adds a comment note to table properties\.
 
 ```
 ALTER TABLE orders 
 SET TBLPROPERTIES ('notes'="Please don't drop this table.");
+```
+
+The following example modifies the table `existing_table` to use Parquet file format with ZSTD compression and ZSTD compression level 4\.
+
+```
+ALTER TABLE existing_table 
+SET TBLPROPERTIES ('parquet.compression' = 'ZSTD', 'compression_level' = 4)
 ```

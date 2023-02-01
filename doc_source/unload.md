@@ -40,6 +40,9 @@ Required\. Specifies the file format of the output\. Possible values for *file\_
 Optional\. This option is specific to the ORC and Parquet formats\. For ORC, possible values are `lz4`, `snappy`, `zlib`, or `zstd`\. For Parquet, possible values are `gzip` or `snappy`\. For ORC, the default is `zlib`, and for Parquet, the default is `gzip`\.  
 This option does not apply to the `AVRO` format\. Athena uses `gzip` for the `JSON` and `TEXTFILE` formats\.
 
+**compression\_level = *compression\_level* **  
+The compression level to use\. This property applies only to ZSTD compression\. Possible values are from 1 to 22\. The default value is 3\. For more information, see [Using ZSTD compression levels in Athena](compression-support-zstd-levels.md)\.
+
 ** field\_delimiter = '*delimiter*' **  
 Optional\. Specifies a single\-character field delimiter for files in CSV, TSV, and other text formats\. The following example specifies a comma delimiter\.  
 
@@ -76,4 +79,12 @@ The following example writes four columns in text format, with the output partit
 UNLOAD (SELECT name1, address1, comment1, key1 FROM table1) 
 TO 's3://DOC-EXAMPLE-BUCKET/ partitioned/' 
 WITH (format = 'TEXTFILE', partitioned_by = ARRAY['key1'])
+```
+
+The following example unloads the query results to the specified location using the Parquet file format, ZSTD compression, and ZSTD compression level 4\.
+
+```
+UNLOAD (SELECT * FROM old_table) 
+TO 's3://DOC-EXAMPLE-BUCKET/' 
+WITH (format = 'PARQUET', compression = 'ZSTD', compression_level = 4)
 ```

@@ -4,6 +4,9 @@ When you re\-run a query in Athena, you can optionally choose to reuse the last 
 
 You can specify a maximum age for reusing query results\. Athena uses the stored result as long as it is not older than the age that you specify\.
 
+**Note**  
+The query result reuse feature requires Athena engine version 3\. For information about changing engine versions, see [Changing Athena engine versions](engine-versions-changing.md)\.
+
 ## Key features<a name="reusing-query-results-key-features"></a>
 + Reusing query results is a per\-query, opt\-in feature\. You can enable query result reuse on a per query basis\.
 + The maximum age for reusing query results can be specified in minutes, hours, or days\. The maximum age specifiable is the equivalent of 7 days regardless of the time unit used\. The default is 60 minutes\.

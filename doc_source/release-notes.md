@@ -13,6 +13,14 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2023<a name="release-notes-2023"></a>
 
+### January 31, 2023<a name="release-note-2023-01-31"></a>
+
+Published on 2023\-01\-31
+
+You can now use Amazon Athena to query data in Google Cloud Storage\. Like Amazon S3, Google Cloud Storage is a managed service that stores data in buckets\. Use the Athena connector for Google Cloud Storage to run interactive federated queries on your external data\.
+
+For more information, see [Amazon Athena Google Cloud Storage connector](connectors-gcs.md)\.
+
 ### January 3, 2023<a name="release-note-2023-01-03"></a>
 
 Published on 2023\-01\-03
@@ -1169,7 +1177,7 @@ If you use the JDBC driver or the AWS SDK, upgrade to the latest version of the 
 
 Published on *2019\-02\-22*
 
-Added tag support for workgroups in Amazon Athena\. A tag consists of a key and a value, both of which you define\. When you tag a workgroup, you assign custom metadata to it\. You can add tags to workgroups to help categorize them, using [AWS tagging best practices](https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)\. You can use tags to restrict access to workgroups, and to track costs\. For example, create a workgroup for each cost center\. Then, by adding tags to these workgroups, you can track your Athena spending for each cost center\. For more information, see [Using Tags for Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+Added tag support for workgroups in Amazon Athena\. A tag consists of a key and a value, both of which you define\. When you tag a workgroup, you assign custom metadata to it\. You can add tags to workgroups to help categorize them, using AWS [tagging best practices](https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html)\. You can use tags to restrict access to workgroups, and to track costs\. For example, create a workgroup for each cost center\. Then, by adding tags to these workgroups, you can track your Athena spending for each cost center\. For more information, see [Using Tags for Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
 You can work with tags by using the Athena console or the API operations\. For more information, see [Tagging Athena resources](tags.md)\.
 
@@ -1245,12 +1253,12 @@ Published on *2018\-10\-10*
 
 Athena supports `CREATE TABLE AS SELECT`, which creates a table from the result of a `SELECT` query statement\. For details, see [Creating a Table from Query Results \(CTAS\)](https://docs.aws.amazon.com/athena/latest/ug/ctas.html)\.
 
-Before you create CTAS queries, it is important to learn about their behavior in the Athena documentation\. It contains information about the location for saving query results in Amazon S3, the list of supported formats for storing CTAS query results, the number of partitions you can create, and supported compression formats\. For more information, see [Considerations and limitations for CTAS queries](considerations-ctas.md)\.
+Before you create CTAS queries, it is important to learn about their behavior in the Athena documentation\. It contains information about the location for saving query results in Amazon S3, the list of supported formats for storing CTAS query results, the number of partitions you can create, and supported compression formats\. For more information, see [Considerations and limitations for CTAS queries](ctas-considerations-limitations.md)\.
 
 Use CTAS queries to:
 + [Create a table from query results](ctas.md) in one step\.
 + [Create CTAS queries in the Athena console](ctas-console.md), using [Examples](ctas-examples.md)\. For information about syntax, see [CREATE TABLE AS](create-table-as.md)\.
-+  Transform query results into other storage formats, such as PARQUET, ORC, AVRO, JSON, and TEXTFILE\. For more information, see [Considerations and limitations for CTAS queries](considerations-ctas.md) and [Columnar storage formats](columnar-storage.md)\.
++  Transform query results into other storage formats, such as PARQUET, ORC, AVRO, JSON, and TEXTFILE\. For more information, see [Considerations and limitations for CTAS queries](ctas-considerations-limitations.md) and [Columnar storage formats](columnar-storage.md)\.
 
 ### September 6, 2018<a name="release-note-2018-09-06"></a>
 

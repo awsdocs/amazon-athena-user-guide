@@ -55,7 +55,7 @@ The following procedure shows you how to use the Athena console to add a table u
    + To remove a SerDe property, choose **Remove**\.
 
 1. For **Table properties**, choose or edit the table properties according to your requirements\.
-   + For **Write compression**, choose a compression option\. The availability of the write compression option and of the compression options available depends on the data format\. For more information, see [Compression support in Athena by file format](compression-formats.md#compression-support-by-file-format)\.
+   + For **Write compression**, choose a compression option\. The availability of the write compression option and of the compression options available depends on the data format\. For more information, see [Athena compression support](compression-formats.md)\.
    + For **Encryption**, select **Encrypted data set** if the underlying data is encrypted in Amazon S3\. This option sets the `has_encrypted_data` table property to true in the `CREATE TABLE` statement\.
 
 1. For **Column details**, enter the names and data types of the columns that you want to add to the table\.

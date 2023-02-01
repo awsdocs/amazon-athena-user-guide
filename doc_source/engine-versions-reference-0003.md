@@ -262,14 +262,6 @@ When you migrate from Athena engine version 2 to Athena engine version 3, certai
 
 ### Query syntax changes<a name="engine-versions-reference-0003-syntax-changes"></a>
 
-#### Minute\(\) function does not support interval year to month<a name="engine-versions-reference-0003-minute-function"></a>
-
-**Error message**: Unexpected parameters \(interval year to month\) for function minute\. Expected: minute\(timestamp with time zone\) , minute\(time with time zone\) , minute\(timestamp\) , minute\(time\) , minute\(interval day to second\)\.
-
-**Cause**: In Athena engine version 3, type checks have been made more precise for `EXTRACT` in accordance with the ANSI SQL specification\.
-
-**Suggested solution**: Update the queries to make sure types are matched with the suggested function signatures\.
-
 #### BOOL\_OR\(\) and BOOL\_AND\(\) cannot be used together with null treatment<a name="engine-versions-reference-0003-remove-ignore-nulls-for-bool_or"></a>
 
 **Error message**: Cannot specify null treatment clause for `bool_or` function\.
@@ -278,13 +270,21 @@ When you migrate from Athena engine version 2 to Athena engine version 3, certai
 
 **Suggested solution**: Remove ignore nulls from the query strings\.
 
-#### ORDER BY expressions must appear in SELECT list<a name="engine-versions-reference-0003-order-by-expressions-must-appear-in-select-list"></a>
+#### Columns in a SELECT clause must exist<a name="engine-versions-reference-0003-columns-in-a-select-clause-must-exist"></a>
 
-**Error message**: For SELECT DISTINCT, ORDER BY expressions must appear in SELECT list
+**Error message**: Mismatched input XXX\. Expecting: YYY
 
-**Cause**: Incorrect table aliasing is used in a `SELECT` clause\.
+**Cause**: The column projected does not exist in any of the subqueries\.
 
-**Suggested solution**: Double check that all columns in the `ORDER BY` expression have proper references in the `SELECT DISTINCT` clause\.
+**Suggested solution**: Update the query to remove the nonexistent columns\.
+
+#### CONCAT function must have two or more arguments<a name="engine-versions-reference-0003-concat-str-minimum-two-args"></a>
+
+**Error Message**: INVALID\_FUNCTION\_ARGUMENT: There must be two or more concatenation arguments
+
+**Cause**: Previously, the `CONCAT` string function accepted a single argument\. In Athena engine version 3, the `CONCAT` function requires a minimum of two arguments\.
+
+**Suggested solution**: Change occurrences of `CONCAT(str)` to `CONCAT(str, '')`\.
 
 #### Geospatial function does not support varbinary input<a name="engine-versions-reference-0003-geo-spatial-function-does-not-support-varbinary-input"></a>
 
@@ -294,21 +294,27 @@ When you migrate from Athena engine version 2 to Athena engine version 3, certai
 
 **Suggested solution**: Use geospatial functions to convert the input types to types that are supported\. Supported input types are indicated in the error message\.
 
-#### Zero\-length delimited identifier not allowed<a name="engine-versions-reference-0003-zero-length-delimited-identifier"></a>
+#### Minute\(\) function does not support interval year to month<a name="engine-versions-reference-0003-minute-function"></a>
 
-**Error message**: Zero\-length delimited identifier not allowed\.
+**Error message**: Unexpected parameters \(interval year to month\) for function minute\. Expected: minute\(timestamp with time zone\) , minute\(time with time zone\) , minute\(timestamp\) , minute\(time\) , minute\(interval day to second\)\.
 
-**Cause**: A query used an empty string as a column alias\.
+**Cause**: In Athena engine version 3, type checks have been made more precise for `EXTRACT` in accordance with the ANSI SQL specification\.
 
-**Suggested solution**: Update the query to use a non\-empty alias for the column\.
+**Suggested solution**: Update the queries to make sure types are matched with the suggested function signatures\.
 
-#### Columns in a SELECT clause must exist<a name="engine-versions-reference-0003-columns-in-a-select-clause-must-exist"></a>
+#### ORDER BY expressions must appear in SELECT list<a name="engine-versions-reference-0003-order-by-expressions-must-appear-in-select-list"></a>
 
-**Error message**: Mismatched input XXX\. Expecting: YYY
+**Error message**: For SELECT DISTINCT, ORDER BY expressions must appear in SELECT list
 
-**Cause**: The column projected does not exist in any of the subqueries\.
+**Cause**: Incorrect table aliasing is used in a `SELECT` clause\.
 
-**Suggested solution**: Update the query to remove the nonexistent columns\.
+**Suggested solution**: Double check that all columns in the `ORDER BY` expression have proper references in the `SELECT DISTINCT` clause\.
+
+#### SKIP is a reserved word for DML queries<a name="engine-versions-reference-0003-skip-is-a-reserved-word-for-dml"></a>
+
+The word `SKIP` is now a reserved word for DML queries like `SELECT`\. To use `SKIP` as an identifier in a DML query, enclose it in double quotes\.
+
+For more information about reserved words in Athena, see [Reserved keywords](reserved-words.md)\.
 
 #### SYSTEM\_TIME and SYSTEM\_VERSION clauses deprecated for time travel<a name="engine-versions-reference-0003-time-travel-syntax"></a>
 
@@ -330,29 +336,27 @@ SELECT * FROM TABLE FOR TIMESTAMP AS OF (current_timestamp - interval '1' day)
 SELECT * FROM TABLE FOR VERSION AS OF 949530903748831860
 ```
 
-#### The CONCAT function must have two or more arguments<a name="engine-versions-reference-0003-concat-str-minimum-two-args"></a>
+#### Zero\-length delimited identifier not allowed<a name="engine-versions-reference-0003-zero-length-delimited-identifier"></a>
 
-**Error Message**: INVALID\_FUNCTION\_ARGUMENT: There must be two or more concatenation arguments
+**Error message**: Zero\-length delimited identifier not allowed\.
 
-**Cause**: Previously, the `CONCAT` string function accepted a single argument\. In Athena engine version 3, the `CONCAT` function requires a minimum of two arguments\.
+**Cause**: A query used an empty string as a column alias\.
 
-**Suggested solution**: Change occurrences of `CONCAT(str)` to `CONCAT(str, '')`\.
+**Suggested solution**: Update the query to use a non\-empty alias for the column\.
 
 ### Data processing changes<a name="engine-versions-reference-0003-data-processing-changes"></a>
 
-#### Unsupported decimal column type coercion<a name="engine-versions-reference-0003-unsupported-column-type"></a>
+#### Casting a struct to JSON now returns field names<a name="engine-versions-reference-0003-cast-struct-to-json"></a>
 
-**Error message**: Unsupported column type \(varchar\) for Parquet column \(\[XXX\] optional binary column
+When you cast a `struct` to JSON in a `SELECT` query in Athena engine version 3, the cast now returns both the field names and the values \(for example "`useragent":null` instead of just the values \(for example, `null`\)\.
 
-**Cause**: When doing conversions, Athena engine version 2 read values at the byte level\. Athena engine version 3 introduces type validation and checks that the type is compatible before trying to read the value\.
+#### Iceberg table column level security enforcement change<a name="engine-versions-reference-0003-iceberg-column-security"></a>
 
-**Suggested Solution**: Update your AWS Glue schema and make sure that decimal type columns in Parquet files are not defined as `VARCHAR` in AWS Glue\.
+**Error Message**: Access Denied: Cannot select from columns
 
-#### Substrings from character arrays no longer contain padded spaces<a name="engine-versions-reference-0003-substring-no-padded-spaces"></a>
+**Cause**: The Iceberg table was created outside Athena and uses an [Apache Iceberg SDK](https://iceberg.apache.org/releases/) version earlier than 0\.13\.0\. Because earlier SDK versions do not populate columns in AWS Glue, Lake Formation could not determine the columns authorized for access\.
 
-**Error message**: No error is thrown, but the string returned no longer contains padded spaces\. For example, `substr(char[20],1,100)` now returns a string with length 20 instead of 100\.
-
-**Suggested solution**: No action is required\.
+**Suggested solution**: Perform an update using the Athena [ALTER TABLE SET PROPERTIES](querying-iceberg-managing-tables.md#querying-iceberg-alter-table-set-properties) statement or use the latest Iceberg SDK to fix the table and update the column information in AWS Glue\.
 
 #### Nulls in List data types are now propagated to UDFs<a name="engine-versions-reference-0003-nulls-in-list-datatypes-for-udfs"></a>
 
@@ -370,15 +374,31 @@ For example, if you have the data `[null, 1, null, 2, 3, 4]` in an originating d
 
 **Suggested solution**: Ensure that your user\-defined Lambda function handles null elements in list data types\.
 
-#### Iceberg table column level security enforcement change<a name="engine-versions-reference-0003-iceberg-column-security"></a>
+#### Substrings from character arrays no longer contain padded spaces<a name="engine-versions-reference-0003-substring-no-padded-spaces"></a>
 
-**Error Message**: Access Denied: Cannot select from columns
+**Error message**: No error is thrown, but the string returned no longer contains padded spaces\. For example, `substr(char[20],1,100)` now returns a string with length 20 instead of 100\.
 
-**Cause**: The Iceberg table was created outside Athena and uses an [Apache Iceberg SDK](https://iceberg.apache.org/releases/) version earlier than 0\.13\.0\. Because earlier SDK versions do not populate columns in AWS Glue, Lake Formation could not determine the columns authorized for access\.
+**Suggested solution**: No action is required\.
 
-**Suggested solution**: Perform an update using the Athena [ALTER TABLE SET PROPERTIES](querying-iceberg-managing-tables.md#querying-iceberg-alter-table-set-properties) statement or use the latest Iceberg SDK to fix the table and update the column information in AWS Glue\.
+#### Unsupported decimal column type coercion<a name="engine-versions-reference-0003-unsupported-column-type"></a>
+
+**Error message**: Unsupported column type \(varchar\) for Parquet column \(\[XXX\] optional binary column
+
+**Cause**: When doing conversions, Athena engine version 2 read values at the byte level\. Athena engine version 3 introduces type validation and checks that the type is compatible before trying to read the value\.
+
+**Suggested Solution**: Update your AWS Glue schema and make sure that decimal type columns in Parquet files are not defined as `VARCHAR` in AWS Glue\.
 
 ### Timestamp changes<a name="engine-versions-reference-0003-timestamp-changes"></a>
+
+#### Casting a Timestamp with time zone to varchar behavior change<a name="engine-versions-reference-0003-timestamp-with-time-zone-to-varchar"></a>
+
+In Athena engine version 2, casting a `Timestamp` with time zone to `varchar` caused some time zone literals to change \(for example, `US/Eastern` changed to `America/New_York`\)\. This behavior does not occur in Athena engine version 3\.
+
+#### Casting from TimestampTZ to Timestamp is not supported<a name="engine-versions-reference-0003-timestamp-casting"></a>
+
+**Error message**: Casting a Timestamp with Time Zone to Timestamp is not supported\.
+
+**Suggested solution**: Any explicit or implicit cast from TimestampTZ to Timestamp throws the exception\. If possible, remove the cast and use a different data type\.
 
 #### Date timestamp overflow throws error<a name="engine-versions-reference-0003-date-timestamp-overflow"></a>
 
@@ -387,36 +407,6 @@ For example, if you have the data `[null, 1, null, 2, 3, 4]` in an originating d
 **Cause**: Because ISO 8601 dates were not checked for overflow in Athena engine version 2, some dates produced a negative timestamp\. Athena engine version 3 checks for this overflow and throws an exception\.
 
 **Suggested Solution**: Make sure the timestamp is within range\.
-
-#### Timestamp overflow for int96 Parquet format<a name="engine-versions-reference-0003-timestamp-overflow-for-int96-parquet-format"></a>
-
-**Error message**: Invalid timeOfDayNanos
-
-**Cause**: A timestamp overflow for the `int96` Parquet format\.
-
-**Suggested solution**: Identify the specific files that have the issue\. Then generate the data file again with an up\-to\-date, well known Parquet library, or use Athena CTAS\. If the issue persists, contact Athena support and let us know how the data files are generated\.
-
-#### Casting from TimestampTZ to Timestamp is not supported<a name="engine-versions-reference-0003-timestamp-casting"></a>
-
-**Error message**: Casting a Timestamp with Time Zone to Timestamp is not supported\.
-
-**Suggested solution**: Any explicit or implicit cast from TimestampTZ to Timestamp throws the exception\. If possible, remove the cast and use a different data type\.
-
-#### Precision mismatch in Timestamp columns causes serialization error<a name="engine-versions-reference-0003-timestamp-precision-serialization-error"></a>
-
-**Error message**: SERIALIZATION\_ERROR: Could not serialize column '*COLUMNZ*' of type 'timestamp\(3\)' at position *X*:*Y*
-
-*COLUMNZ* is the output name of the column that causes the issue\. The numbers *X*:*Y* indicate the position of the column in the output\.
-
-**Cause**: Athena engine version 3 checks to make sure that the precision of timestamps in the data is the same as the precision specified for the column data type in the table specification\. Currently, this precision is always 3\. If the data has a precision greater than this, queries fail with the error noted\.
-
-**Suggested solution**: Check your data to make sure that your timestamps have millisecond precision\.
-
-#### Timestamp values with precision greater than 3 are rounded<a name="engine-versions-reference-0003-timestamp-values-rounded"></a>
-
-**Error message**: There is no error message, but values that were trimmed in Athena engine version 2 are rounded in Athena engine version 3\.
-
-**Suggested solution**: Exercise care when using `Timestamp` values with a precision greater than 3\.
 
 #### Implicit type conversion from Timestamp type to the Int or BigInt type is not supported<a name="engine-versions-reference-0003-timestamp-type-conversion"></a>
 
@@ -434,15 +424,15 @@ For example, if you have the data `[null, 1, null, 2, 3, 4]` in an originating d
 
 **Suggested solution**: Avoid using political time zones with `TIME`\.
 
-#### Time and interval year to month not supported<a name="engine-versions-reference-0003-time-and-interval-year-to-month"></a>
+#### Precision mismatch in Timestamp columns causes serialization error<a name="engine-versions-reference-0003-timestamp-precision-serialization-error"></a>
 
-**Error message**: TYPE MISMATCH
+**Error message**: SERIALIZATION\_ERROR: Could not serialize column '*COLUMNZ*' of type 'timestamp\(3\)' at position *X*:*Y*
 
-**Cause**: Athena engine version 3 does not support time and interval year to month \(for example, `SELECT TIME '01:00' + INTERVAL '3' MONTH`\)\.
+*COLUMNZ* is the output name of the column that causes the issue\. The numbers *X*:*Y* indicate the position of the column in the output\.
 
-#### Casting a Timestamp with time zone to varchar behavior change<a name="engine-versions-reference-0003-timestamp-with-time-zone-to-varchar"></a>
+**Cause**: Athena engine version 3 checks to make sure that the precision of timestamps in the data is the same as the precision specified for the column data type in the table specification\. Currently, this precision is always 3\. If the data has a precision greater than this, queries fail with the error noted\.
 
-In Athena engine version 2, casting a `Timestamp` with time zone to `varchar` caused some time zone literals to change \(for example, `US/Eastern` changed to `America/New_York`\)\. This behavior does not occur in Athena engine version 3\.
+**Suggested solution**: Check your data to make sure that your timestamps have millisecond precision\.
 
 #### Reading the Long type as Timestamp in ORC files now causes a malformed ORC file error<a name="engine-versions-reference-0003-orc-no-implicit-long-to-timestamp-coercion"></a>
 
@@ -451,3 +441,23 @@ In Athena engine version 2, casting a `Timestamp` with time zone to `varchar` ca
 **Cause**: Athena engine version 3 now rejects implicit coercion from the `Long` data type to `Timestamp`\. Previously, `Long` values were implicitly converted into timestamp as if they were epoch milliseconds\.
 
 **Suggested solution**: Use the `from_unixtime` function to explicitly cast the column, or use the `from_unixtime` function to create an additional column for future queries\.
+
+#### Time and interval year to month not supported<a name="engine-versions-reference-0003-time-and-interval-year-to-month"></a>
+
+**Error message**: TYPE MISMATCH
+
+**Cause**: Athena engine version 3 does not support time and interval year to month \(for example, `SELECT TIME '01:00' + INTERVAL '3' MONTH`\)\.
+
+#### Timestamp overflow for int96 Parquet format<a name="engine-versions-reference-0003-timestamp-overflow-for-int96-parquet-format"></a>
+
+**Error message**: Invalid timeOfDayNanos
+
+**Cause**: A timestamp overflow for the `int96` Parquet format\.
+
+**Suggested solution**: Identify the specific files that have the issue\. Then generate the data file again with an up\-to\-date, well known Parquet library, or use Athena CTAS\. If the issue persists, contact Athena support and let us know how the data files are generated\.
+
+#### Timestamp values with precision greater than 3 are rounded<a name="engine-versions-reference-0003-timestamp-values-rounded"></a>
+
+**Error message**: There is no error message, but values that were trimmed in Athena engine version 2 are rounded in Athena engine version 3\.
+
+**Suggested solution**: Exercise care when using `Timestamp` values with a precision greater than 3\.
