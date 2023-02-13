@@ -5,7 +5,7 @@ Shows the list of columns for the named view\. This allows you to examine the at
 ## Synopsis<a name="synopsis"></a>
 
 ```
-DESCRIBE [view_name]
+DESCRIBE [db_name.]view_name
 ```
 
 ## Example<a name="examples"></a>
