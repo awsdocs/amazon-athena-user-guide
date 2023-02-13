@@ -62,8 +62,6 @@ The workflow for using external Hive metastores from Athena includes the followi
 When you use Athena Data Connector for External Hive Metastore, consider the following points:
 + You can use CTAS to create a table on an external Hive metastore\.
 + You can use INSERT INTO to insert data into an external Hive metastore\.
-**Note**  
-Currently, INSERT INTO for external Hive metastores is supported only in Athena engine version 3\.
 + DDL support for external Hive metastore is limited to the following statements\.
   + ALTER DATABASE SET DBPROPERTIES
   + ALTER TABLE ADD COLUMNS
@@ -87,7 +85,7 @@ Currently, INSERT INTO for external Hive metastores is supported only in Athena 
   + SHOW TBLPROPERTIES
 + The maximum number of registered catalogs that you can have is 1,000\.
 + Kerberos authentication for Hive metastore is not supported\.
-+ To use the JDBC driver with an external Hive metastore or [federated queries](connect-to-a-data-source.md), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. For information about the JDBC driver, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
++ To use the JDBC driver with an external Hive metastore or [federated queries](connect-to-a-data-source.md), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. For information about the JDBC driver, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 + The Hive hidden columns `$path`, `$bucket`, `$file_size`, `$file_modified_time`, `$partition`, `$row_id` cannot be used for fine\-grained access control filtering\. 
 + Hive hidden system tables like `example_table$partitions` or `example_table$properties` are not supported by fine\-grained access control\.
 

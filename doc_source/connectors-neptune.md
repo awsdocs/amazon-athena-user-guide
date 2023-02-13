@@ -4,6 +4,8 @@ Amazon Neptune is a fast, reliable, fully managed graph database service that ma
 
 The Amazon Athena Neptune Connector enables Athena to communicate with your Neptune graph database instance, making your Neptune graph data accessible by SQL queries\.
 
+If you have Lake Formation enabled in your account, the IAM role for your Athena federated Lambda connector that you deployed in the AWS Serverless Application Repository must have read access in Lake Formation to the AWS Glue Data Catalog\.
+
 ## Prerequisites<a name="connectors-neptune-prerequisites"></a>
 
 Using the Neptune connector requires the following three steps\.

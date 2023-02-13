@@ -79,7 +79,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Data Catalog example policies](datacatalogs-example-policies.md)
       + [Managing data sources](data-sources-managing.md)
       + [Connecting to Amazon Athena with ODBC and JDBC drivers](athena-bi-tools-jdbc-odbc.md)
-         + [Using Athena with the JDBC driver](connect-with-jdbc.md)
+         + [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)
          + [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)
          + [Configuring federated access to Amazon Athena for Microsoft AD FS users using an ODBC client](odbc-adfs-saml.md)
          + [Configuring SSO for ODBC using the Okta plugin and Okta Identity Provider](odbc-okta-plugin.md)

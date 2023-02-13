@@ -193,7 +193,7 @@ FROM table1;
 ```
 
 **Example: Creating an Iceberg table with Parquet data**  
-The following example creates an Iceberg table with Parquet data files\. The files are partitioned by a month transform on the `dt` column in `table1`\. The example updates the retention properties on the table so that 10 snapshots are retained by default on every branch in the table\. Snapshots within the past 30 days are also retained\.  
+The following example creates an Iceberg table with Parquet data files\. The files are partitioned by month using the `dt` column in `table1`\. The example updates the retention properties on the table so that 10 snapshots are retained by default on every branch in the table\. Snapshots within the past 30 days are also retained\.  
   
 
 ```

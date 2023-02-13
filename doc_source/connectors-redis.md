@@ -6,6 +6,8 @@ Unlike traditional relational data stores, Redis does not have the concept of a 
 
 You can use the AWS Glue Data Catalog to create schema and configure virtual tables\. Special table properties tell the Athena Redis connector how to map your Redis keys and values into a table\. For more information, see [Setting up databases and tables in AWS Glue](#connectors-redis-setting-up-databases-and-tables-in-glue) later in this document\.
 
+If you have Lake Formation enabled in your account, the IAM role for your Athena federated Lambda connector that you deployed in the AWS Serverless Application Repository must have read access in Lake Formation to the AWS Glue Data Catalog\.
+
 ## Prerequisites<a name="connectors-redis-prerequisites"></a>
 + Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 + Set up a VPC and a security group before you use this connector\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.

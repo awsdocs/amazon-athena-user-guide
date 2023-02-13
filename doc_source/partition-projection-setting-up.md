@@ -22,10 +22,9 @@ This section shows how to set the table properties for AWS Glue\. To set them, y
 1. In the list of tables, choose the link for the table that you want to edit\.  
 ![\[In the AWS Glue console, choose a table to edit.\]](http://docs.aws.amazon.com/athena/latest/ug/images/partition-projection-1.png)
 
-1. Choose **Edit table**\.  
-![\[Choose Edit table in the AWS Glue console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/partition-projection-2.png)
+1. Choose **Actions**, **Edit table**\.
 
-1. In the **Edit table details** dialog box, in the **Table properties** section, for each partitioned column, add the following key\-value pair:
+1. On the **Edit table** page, in the **Table properties** section, for each partitioned column, add the following key\-value pair:
 
    1. For **Key**, add `projection.columnName.type`\.
 
@@ -36,12 +35,11 @@ This section shows how to set the table properties for AWS Glue\. To set them, y
    The following example table configuration configures the `year` column for partition projection, restricting the values that can be returned to a range from 2010 through 2016\.  
 ![\[Configuring partition projection for a partition column in the AWS Glue console table properties.\]](http://docs.aws.amazon.com/athena/latest/ug/images/partition-projection-3.png)
 
-1. Add a key\-value pair to enable partition projection\. For **Key**, enter `projection.enabled`, and for its **Value**, enter `true`\.  
-![\[Enabling partition projection in the properties for a table in the AWS Glue console.\]](http://docs.aws.amazon.com/athena/latest/ug/images/partition-projection-4.png)
+1. Add a key\-value pair to enable partition projection\. For **Key**, enter `projection.enabled`, and for its **Value**, enter `true`\.
 **Note**  
 You can disable partition projection on this table at any time by setting `projection.enabled` to `false`\.
 
-1. When you are finished, choose **Apply**\.
+1. When you are finished, choose **Save**\.
 
 1. In the Athena Query Editor, test query the columns that you configured for the table\.
 

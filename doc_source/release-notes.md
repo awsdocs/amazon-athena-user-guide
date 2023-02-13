@@ -21,14 +21,20 @@ You can now use Amazon Athena to query data in Google Cloud Storage\. Like Amazo
 
 For more information, see [Amazon Athena Google Cloud Storage connector](connectors-gcs.md)\.
 
+### January 20, 2023<a name="release-note-2023-01-20"></a>
+
+Published on 2023\-01\-20
+
+You can now see expanded documentation for Athena compression support\. Individual topics have been added for [Hive table compression](compression-support-hive.md), [Iceberg table compression](compression-support-iceberg.md), and [ZSTD compression levels](compression-support-zstd-levels.md)\. 
+
+For more information, see [Athena compression support](compression-formats.md)\.
+
 ### January 3, 2023<a name="release-note-2023-01-03"></a>
 
 Published on 2023\-01\-03
 
 Athena announces the following updates:
 + **Additional commands for Hive metastores** – You can use Athena to connect to your self\-managed Apache Hive Metastore as a metadata catalog and query data stored in Amazon S3\. With this release, you can use `CREATE TABLE AS` \(CTAS\), `INSERT INTO`, and 12 additional Data Definition Language \(DDL\) commands to interact with the Apache Hive Metastore\. You can manage your Hive Metastore schemas directly from Athena using this expanded set of SQL capabilities\.
-**Note**  
-Currently, `INSERT INTO` for external Hive metastores requires Athena engine version 3\.
 
   For more information, see [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)\.
 + **JDBC driver version 2\.0\.35** – Athena releases JDBC driver version 2\.0\.35\. The JDBC 2\.0\.35 driver contains the following updates:
@@ -38,7 +44,7 @@ Currently, `INSERT INTO` for external Hive metastores requires Athena engine ver
     + jackson\-databind 2\.14\.0 \(previously 2\.13\.2\.2\)
   +  Support for JDBC version 4\.1 has been discontinued\. 
 
-  For more information, and to download the new driver, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+  For more information, and to download the new driver, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ## Athena release notes for 2022<a name="release-notes-2022"></a>
 
@@ -62,7 +68,7 @@ Athena releases JDBC driver version 2\.0\.34\. The JDBC 2\.0\.34 driver includes
 + **Character\-based exception fix** – Fixed an exception that occurred with queries containing certain language characters\.
 + **Vulnerability fix** – Corrected a vulnerability related to AWS dependencies packaged with the connector\. 
 
-For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+For more information, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### November 30, 2022<a name="release-note-2022-11-30"></a>
 
@@ -153,7 +159,7 @@ Athena releases JDBC driver version 2\.0\.33\. The JDBC 2\.0\.33 driver includes
 + Error messages were corrected and necessary information added\.
 + Prepared statements are now deallocated if the connection is closed or the Athena prepared statement execution fails\.
 
-For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+For more information, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### September 23, 2022<a name="release-note-2022-09-23"></a>
 
@@ -201,7 +207,7 @@ Athena releases JDBC driver version 2\.0\.32\. The JDBC 2\.0\.32 driver includes
 +  Fixed an issue with `login_url` parsing in the BrowserSaml authentication plugin\. 
 +  Fixed a proxy host issue that occurred when the `UseProxyforIdp` parameter was set to `true`\. 
 
-For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+For more information, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### August 1, 2022<a name="release-note-2022-08-01"></a>
 
@@ -257,7 +263,7 @@ Published on 2022\-06\-06
 Athena releases JDBC driver version 2\.0\.31\. The JDBC 2\.0\.31 driver includes the following changes:
 + **log4j dependency issue** – Resolved a Cannot find driver class error message caused by a log4j dependency\.
 
-For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+For more information, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### May 25, 2022<a name="release-note-2022-05-25"></a>
 
@@ -275,7 +281,7 @@ Athena announces the following fixes and improvements\.
   + Fixes a data race issue that affected parameterized prepared statements\.
   + Fixes an application start up issue that occurred in Gradle build environments\.
 
-  To download the JDBC 2\.0\.30 driver, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+  To download the JDBC 2\.0\.30 driver, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### May 6, 2022<a name="release-note-2022-05-06"></a>
 
@@ -286,7 +292,7 @@ Released the JDBC 2\.0\.29 and ODBC 1\.1\.17 drivers for Athena\.
 These drivers include the following changes:
 + Updated the SAML plugin browser launch process\.
 
-For more information about these changes, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+For more information about these changes, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 ### April 22, 2022<a name="release-note-2022-04-22"></a>
 
@@ -335,7 +341,7 @@ Athena releases JDBC driver version 2\.0\.28\. The JDBC 2\.0\.28 driver includes
   + Athena JDBC SAML federation is now functional for the China Regions\.
   + Additional minor improvements\.
 
-For more information, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+For more information, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### March 30, 2022<a name="release-note-2022-03-30"></a>
 
@@ -443,7 +449,7 @@ The JDBC 2\.0\.27 driver includes the following changes:
 The ODBC 1\.1\.15 driver includes the following changes:
 + Corrects an issue with second calls to `SQLParamData()`\.
 
-For more information about these changes, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+For more information about these changes, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 ## Athena release notes for 2021<a name="release-notes-2021"></a>
 
@@ -560,7 +566,7 @@ The ODBC 1\.1\.13 driver includes the following changes:
 + Support for browser SAML authentication\. The driver includes a browser SAML plugin which can be configured to work with any SAML 2\.0 provider\. For an example of how to use the browser SAML plugin with the ODBC driver, see [Configuring single sign\-on using ODBC, SAML 2\.0, and the Okta Identity Provider](okta-saml-sso.md)\.
 + You can now configure the role session duration when you use ADFS, Azure AD, or Browser Azure AD for authentication\.
 
-For more information about these and other changes, and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+For more information about these and other changes, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 #### Features and Improvements<a name="release-note-2021-10-29-features-improvements"></a>
 
@@ -616,7 +622,7 @@ Athena announces availability of JDBC driver version 2\.0\.24 for Athena\. This 
 
 As a convenience, this release includes downloads of the JDBC driver both with and without the AWS SDK\. This JDBC driver version allows you to have both the AWS\-SDK and the Athena JDBC driver embedded in project\.
 
-For more information and to download the new driver, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+For more information and to download the new driver, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### August 31, 2021<a name="release-note-2021-08-31"></a>
 
@@ -715,7 +721,7 @@ Released JDBC 2\.0\.23 and ODBC 1\.1\.10 drivers for Athena\. Both drivers offer
 
 The JDBC release also adds support for Active Directory Federation Services 2019 and a custom endpoint override option for AWS STS\. The ODBC release fixes an issue with IAM profile credentials\. 
 
-For more information and to download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+For more information and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 ### May 12, 2021<a name="release-note-2021-05-12"></a>
 
@@ -751,7 +757,7 @@ Published on 2021\-04\-30
 
 Released drivers JDBC 2\.0\.21 and ODBC 1\.1\.9 for Athena\. Both releases support SAML authentication with Azure Active Directory \(AD\) and SAML authentication with PingFederate\. The JDBC release also supports parameterized queries\. For information about parameterized queries in Athena, see [Using parameterized queries](querying-with-prepared-statements.md)\. 
 
-To download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+To download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 ### April 29, 2021<a name="release-note-2021-04-29"></a>
 
@@ -855,7 +861,7 @@ Published on 2020\-11\-24
 
 Released drivers JDBC 2\.0\.16 and ODBC 1\.1\.6 for Athena\. These releases support, at the account level, Okta Verify multifactor authentication \(MFA\)\. You can also use Okta MFA to configure SMS authentication and Google Authenticator authentication as factors\.
 
-To download the new drivers, release notes, and documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+To download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 ### November 11, 2020<a name="release-note-2020-11-11"></a>
 
@@ -922,7 +928,7 @@ Published on 2020\-07\-29
 
 Released JDBC driver version 2\.0\.13\. This release supports using multiple [data catalogs registered with Athena](connect-to-a-data-source-lambda.md), Okta service for authentication, and connections to VPC endpoints\.
 
-To download and use the new version of the driver, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+To download and use the new version of the driver, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### July 9, 2020<a name="release-note-2020-07-09"></a>
 
@@ -1171,7 +1177,7 @@ For more information, see:
 + [Using workgroups for running queries](workgroups.md) and [Workgroup example policies](example-policies-workgroup.md)\.
 + [Tagging Athena resources](tags.md) and [Tag\-based IAM access control policies](tags-access-control.md)\.
 
-If you use the JDBC driver or the AWS SDK, upgrade to the latest version of the driver and SDK, both of which already include support for workgroups and tags in Athena\. For more information, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+If you use the JDBC driver or the AWS SDK, upgrade to the latest version of the driver and SDK, both of which already include support for workgroups and tags in Athena\. For more information, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### February 22, 2019<a name="release-note-2019-02-22"></a>
 
@@ -1185,7 +1191,7 @@ In the Athena console, you can add one or more tags to each of your workgroups, 
 
 To allow users to add tags when creating workgroups, ensure that you give each user IAM permissions to both the `TagResource` and `CreateWorkGroup` API actions\. For more information and examples, see [Tag\-based IAM access control policies](tags-access-control.md)\. 
 
-There are no changes to the JDBC driver when you use tags on workgroups\. If you create new workgroups and use the JDBC driver or the AWS SDK, upgrade to the latest version of the driver and SDK\. For information, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+There are no changes to the JDBC driver when you use tags on workgroups\. If you create new workgroups and use the JDBC driver or the AWS SDK, upgrade to the latest version of the driver and SDK\. For information, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 ### February 18, 2019<a name="release-note-2019-02-18"></a>
 
@@ -1198,7 +1204,7 @@ Made the following changes:
 
   Workgroups are an IAM resource\. For a full list of workgroup\-related actions, resources, and conditions in IAM, see [Actions, Resources, and Condition Keys for Amazon Athena](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonathena.html) in the *Service Authorization Reference*\. Before you create new workgroups, make sure that you use [workgroup IAM policies](workgroups-iam-policy.md), and the [AWS managed policy: AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy)\. 
 
-  You can start using workgroups in the console, with the [workgroup API operations](workgroups-api-list.md), or with the JDBC driver\. For a high\-level procedure, see [Setting up workgroups](workgroups-procedure.md)\. To download the JDBC driver with workgroup support, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+  You can start using workgroups in the console, with the [workgroup API operations](workgroups-api-list.md), or with the JDBC driver\. For a high\-level procedure, see [Setting up workgroups](workgroups-procedure.md)\. To download the JDBC driver with workgroup support, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
   If you use workgroups with the JDBC driver, you must set the workgroup name in the connection string using the `Workgroup` configuration parameter as in the following example:
 
@@ -1231,7 +1237,7 @@ Released the new versions of the JDBC and ODBC driver with support for federated
 
 With this release, federated access to Athena is supported for the Active Directory Federation Service \(AD FS 3\.0\)\. Access is established through the versions of JDBC or ODBC drivers that support SAML 2\.0\. For information about configuring federated access to the Athena API, see [Enabling federated access to the Athena API](access-federation-saml.md)\.
 
-To download the JDBC driver version 2\.0\.6 and its documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\. For information about this version, see [JDBC Driver Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.6/docs/release-notes.txt)\.
+To download the JDBC driver version 2\.0\.6 and its documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\. For information about this version, see [JDBC Driver Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.6/docs/release-notes.txt)\.
 
 To download the ODBC driver version 1\.0\.4 and its documentation, see [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\. For information about this version, [ODBC Driver Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/ODBC/SimbaAthenaODBC_1.0.4/release-notes.txt)\. 
 
@@ -1303,7 +1309,7 @@ Released the JDBC driver version 2\.0\.5\. The new version of the JDBC driver st
 
 The streaming results feature is available only with the JDBC driver\. It is not available with the ODBC driver\. You cannot use it with the Athena API\. For information about streaming results, see the [ JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Install+and+Configuration+Guide.pdf), and search for **UseResultsetStreaming**\.
 
-For downloading the JDBC driver version 2\.0\.5 and its documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\. 
+For downloading the JDBC driver version 2\.0\.5 and its documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\. 
 
 The JDBC driver version 2\.0\.5 is a drop\-in replacement for the previous version of the driver \(2\.0\.2\)\. To ensure that you can use the JDBC driver version 2\.0\.5, add the `athena:GetQueryResultsStream` policy action to the list of policies for Athena\. This policy action is not exposed directly with the API and is only used with the JDBC driver, as part of streaming results support\. For an example policy, see [AWS managed policy: AWSQuicksightAthenaAccess](managed-policies.md#awsquicksightathenaaccess-managed-policy)\. For more information about migrating from version 2\.0\.2 to version 2\.0\.5 of the driver, see the [JDBC Driver Migration Guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.5/docs/Simba+Athena+JDBC+Driver+Migration+Guide.pdf)\. 
 
@@ -1361,7 +1367,7 @@ Published on *2018\-04\-19*
 
 Released the new version of the JDBC driver \(version 2\.0\.2\) with support for returning the `ResultSet` data as an Array data type, improvements, and bug fixes\. For details, see the [Release Notes](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC_2.0.2/docs/release-notes.txt) for the driver\.
 
-For information about downloading the new JDBC driver version 2\.0\.2 and its documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+For information about downloading the new JDBC driver version 2\.0\.2 and its documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 The latest version of the JDBC driver is 2\.0\.2\. If you are migrating from a 1\.x driver to a 2\.x driver, you will need to migrate your existing configurations to the new configuration\. We highly recommend that you migrate to the current driver\. 
 
@@ -1477,7 +1483,7 @@ Published on *2017\-05\-19*
 Added an Amazon Athena API and AWS CLI support for Athena; updated JDBC driver to version 1\.1\.0; fixed various issues\.
 + Amazon Athena enables application programming for Athena\. For more information, see [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. The latest AWS SDKs include support for the Athena API\. For links to documentation and downloads, see the *SDKs* section in [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\. 
 +  The AWS CLI includes new commands for Athena\. For more information, see the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\. 
-+  A new JDBC driver 1\.1\.0 is available, which supports the new Athena API as well as the latest features and bug fixes\. Download the driver at [ https://s3\.amazonaws\.com/athena\-downloads/drivers/AthenaJDBC41\-1\.1\.0\.jar](https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar)\. We recommend upgrading to the latest Athena JDBC driver; however, you may still use the earlier driver version\. Earlier driver versions do not support the Athena API\. For more information, see [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
++  A new JDBC driver 1\.1\.0 is available, which supports the new Athena API as well as the latest features and bug fixes\. Download the driver at [ https://s3\.amazonaws\.com/athena\-downloads/drivers/AthenaJDBC41\-1\.1\.0\.jar](https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar)\. We recommend upgrading to the latest Athena JDBC driver; however, you may still use the earlier driver version\. Earlier driver versions do not support the Athena API\. For more information, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 + Actions specific to policy statements in earlier versions of Athena have been deprecated\. If you upgrade to JDBC driver version 1\.1\.0 and have customer\-managed or inline IAM policies attached to JDBC users, you must update the IAM policies\. In contrast, earlier versions of the JDBC driver do not support the Athena API, so you can specify only deprecated actions in policies attached to earlier version JDBC users\. For this reason, you shouldn't need to update customer\-managed or inline IAM policies\.
 + These policy\-specific actions were used in Athena before the release of the Athena API\. Use these deprecated actions in policies **only** with JDBC drivers earlier than version 1\.1\.0\. If you are upgrading the JDBC driver, replace policy statements that allow or deny deprecated actions with the appropriate API actions as listed or errors will occur:
 
@@ -1517,7 +1523,7 @@ For more information, see [Encryption at rest](encryption.md)\.
 #### Improvements<a name="release-note-2017-04-04-improvements"></a>
 + Better JDBC query performance with page\-size improvements, returning 1,000 rows instead of 100\.
 + Added ability to cancel a query using the JDBC driver interface\.
-+ Added ability to specify JDBC options in the JDBC connection URL\. See [Using Athena with the JDBC driver](connect-with-jdbc.md) for the most current JDBC driver\.
++ Added ability to specify JDBC options in the JDBC connection URL\. See [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) for the most current JDBC driver\.
 + Added PROXY setting in the driver, which can now be set using [ClientConfiguration](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/ClientConfiguration.html) in the AWS SDK for Java\.
 
 #### Bug Fixes<a name="release-note-2017-04-04-bug-fixes"></a>

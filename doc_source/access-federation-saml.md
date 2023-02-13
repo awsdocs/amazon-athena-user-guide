@@ -7,7 +7,7 @@ To authenticate users in this scenario, use the JDBC or ODBC driver with SAML\.2
 For more information about SAML 2\.0 support on AWS, see [About SAML 2\.0 federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html) in the *IAM User Guide*\. 
 
 **Note**  
-Federated access to the Athena API is supported for a particular type of identity provider \(IdP\), the Active Directory Federation Service \(ADFS 3\.0\), which is part of Windows Server\. Access is established through the versions of JDBC or ODBC drivers that support SAML 2\.0\. For information, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+Federated access to the Athena API is supported for a particular type of identity provider \(IdP\), the Active Directory Federation Service \(ADFS 3\.0\), which is part of Windows Server\. Access is established through the versions of JDBC or ODBC drivers that support SAML 2\.0\. For information, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 **Topics**
 + [Before you begin](#access-federation-before-you-begin)
@@ -18,7 +18,7 @@ Federated access to the Athena API is supported for a particular type of identit
 
  Before you begin, complete the following prerequisites: 
 + Inside your organization, install and configure the ADFS 3\.0 as your IdP\.
-+ Install and configure the latest available versions of JDBC or ODBC drivers on clients that are used to access Athena\. The driver must include support for federated access compatible with SAML 2\.0\. For information, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
++ Install and configure the latest available versions of JDBC or ODBC drivers on clients that are used to access Athena\. The driver must include support for federated access compatible with SAML 2\.0\. For information, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
 ## Architecture diagram<a name="access-federation-diagram"></a>
 
@@ -71,9 +71,9 @@ This procedure establishes trust between your organization's IdP and your AWS ac
 
    For information about configuring the mapping in ADFS, see the blog post: [Enabling federation to AWS using Windows Active Directory, ADFS, and SAML 2\.0](http://aws.amazon.com/blogs/security/enabling-federation-to-aws-using-windows-active-directory-adfs-and-saml-2-0/)\.
 
-1. Install and configure the JDBC or ODBC driver with SAML 2\.0 support\. For information, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+1. Install and configure the JDBC or ODBC driver with SAML 2\.0 support\. For information, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 
-1. Specify the connection string from your application to the JDBC or ODBC driver\. For information about the connection string that your application should use, see the topic *"Using the Active Directory Federation Services \(ADFS\) Credentials Provider"* in the *JDBC Driver Installation and Configuration Guide*, or a similar topic in the *ODBC Driver Installation and Configuration Guide* available as PDF downloads from the [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md) topics\.
+1. Specify the connection string from your application to the JDBC or ODBC driver\. For information about the connection string that your application should use, see the topic *"Using the Active Directory Federation Services \(ADFS\) Credentials Provider"* in the *JDBC Driver Installation and Configuration Guide*, or a similar topic in the *ODBC Driver Installation and Configuration Guide* available as PDF downloads from the [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md) topics\.
 
    Following is a high\-level summary of configuring the connection string to the drivers:
 

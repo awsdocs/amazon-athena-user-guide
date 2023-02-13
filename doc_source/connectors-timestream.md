@@ -4,6 +4,8 @@ The Amazon Athena Timestream connector enables Amazon Athena to communicate with
 
 Amazon Timestream is a fast, scalable, fully managed, purpose\-built time series database that makes it easy to store and analyze trillions of time series data points per day\. Timestream saves you time and cost in managing the lifecycle of time series data by keeping recent data in memory and moving historical data to a cost optimized storage tier based upon user defined policies\.
 
+If you have Lake Formation enabled in your account, the IAM role for your Athena federated Lambda connector that you deployed in the AWS Serverless Application Repository must have read access in Lake Formation to the AWS Glue Data Catalog\.
+
 ## Prerequisites<a name="connectors-timestream-prerequisites"></a>
 + Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 

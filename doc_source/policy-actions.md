@@ -17,4 +17,4 @@ For more information, see the installation and configuration guides for the resp
 + [Using Lake Formation and the Athena JDBC and ODBC drivers for federated access to Athena](security-athena-lake-formation-jdbc.md)
 +  [Configuring single sign\-on using ODBC, SAML 2\.0, and the Okta Identity Provider](okta-saml-sso.md)
 
-For information about the latest versions of the JDBC and ODBC drivers and their documentation, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
+For information about the latest versions of the JDBC and ODBC drivers and their documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.

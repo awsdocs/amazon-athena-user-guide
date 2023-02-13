@@ -18,4 +18,6 @@ Amazon Athena offers the following features:
 + AWS Lake Formation is not supported\.
 + Cross\-engine view queries are not supported\. Views created by Athena SQL are not queryable by Athena for Spark\. Because views for the two engines are implemented differently, they are not compatible for cross\-engine use\.
 + MLlib \(Apache Spark machine learning library\) is not supported\. For a list of supported Python libraries, see the [List of preinstalled Python libraries](notebooks-spark-preinstalled-python-libraries.md)\.
++  Only one active session per notebook is allowed\. 
++ When multiple users use the console to open an existing session in a workgroup, they access the same notebook\. To avoid confusion, only open sessions that you create yourself\.
 + For information on troubleshooting Spark notebooks, sessions, and workgroups in Athena, see [Troubleshooting Athena for Spark](notebooks-spark-troubleshooting.md)\.

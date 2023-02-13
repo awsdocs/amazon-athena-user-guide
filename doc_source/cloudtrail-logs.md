@@ -170,7 +170,7 @@ To create a table for organization wide CloudTrail log files in Athena, follow t
 1. In the `CREATE TABLE` statement, modify the `LOCATION` clause to include the organization ID, as in the following example:
 
    ```
-   LOCATION 's3://cloudtrail_bucket_name/organization_id/AWSLogs/organization_id/Account_ID/CloudTrail/'
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/Account_ID/CloudTrail/'
    ```
 
 1. In the `PARTITIONED BY` clause, add an entry for the account ID as a string, as in the following example:
@@ -188,7 +188,7 @@ To create a table for organization wide CloudTrail log files in Athena, follow t
    ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
    STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-   LOCATION 's3://cloudtrail_bucket_name/organization_id/AWSLogs/organization_id/Account_ID/CloudTrail/'
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/Account_ID/CloudTrail/'
    ```
 
 1. In the `ALTER TABLE` statement `ADD PARTITION` clause, include the account ID, as in the following example:
@@ -205,7 +205,7 @@ To create a table for organization wide CloudTrail log files in Athena, follow t
 1. In the `ALTER TABLE` statement `LOCATION` clause, include the organization ID, the account ID, and the partition that you want to add, as in the following example:
 
    ```
-   LOCATION 's3://cloudtrail_bucket_name/organization_id/AWSLogs/organization_id/Account_ID/CloudTrail/us-east-1/2022/08/08/'
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/Account_ID/CloudTrail/us-east-1/2022/08/08/'
    ```
 
    The following example `ALTER TABLE` statement shows the combined result:
@@ -217,7 +217,7 @@ To create a table for organization wide CloudTrail log files in Athena, follow t
    year='2022',
    month='08',
    day='08')
-   LOCATION 's3://cloudtrail_bucket_name/organization_id/AWSLogs/organization_id/111122223333/CloudTrail/us-east-1/2022/08/08/'
+   LOCATION 's3://cloudtrail_bucket_name/AWSLogs/organization_id/111122223333/CloudTrail/us-east-1/2022/08/08/'
    ```
 
 ## Creating the table for CloudTrail logs in Athena using partition projection<a name="create-cloudtrail-table-partition-projection"></a>

@@ -3,7 +3,7 @@
 You can access Athena using the AWS Management Console, a JDBC or ODBC connection, the Athena API, the Athena CLI, the AWS SDK, or AWS Tools for Windows PowerShell\.
 + To get started using Athena SQL with the console, see [Getting started](getting-started.md)\.
 + To get started interactively creating Jupyter compatible notebooks and Apache Spark applications that use Python, see [Using Apache Spark in Amazon Athena](notebooks-spark.md)\.
-+ To learn how to use JDBC or ODBC drivers, see [Using Athena with the JDBC driver](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
++ To learn how to use JDBC or ODBC drivers, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md) and [Connecting to Amazon Athena with ODBC](connect-with-odbc.md)\.
 + To use the Athena API, see the [Amazon Athena API Reference](https://docs.aws.amazon.com/athena/latest/APIReference/)\.
 + To use the CLI, [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) and then type `aws athena help` from the command line to see available commands\. For information about available commands, see the [Amazon Athena command line reference](https://docs.aws.amazon.com/cli/latest/reference/athena/)\.
 + To use the AWS SDK for Java 2\.x, see the Athena section of the [AWS SDK for Java 2\.x API Reference](https://docs.aws.amazon.com/sdk-for-java/latest/reference/), the [Athena Java V2 examples](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/java/example_code/athena) on GitHub\.com, and the [AWS SDK for Java 2\.x Developer Guide](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/)\.

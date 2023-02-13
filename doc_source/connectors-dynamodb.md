@@ -2,6 +2,8 @@
 
 The Amazon Athena DynamoDB connector enables Amazon Athena to communicate with DynamoDB so that you can query your tables with SQL\. Write operations like [INSERT INTO](insert-into.md) are not supported\.
 
+If you have Lake Formation enabled in your account, the IAM role for your Athena federated Lambda connector that you deployed in the AWS Serverless Application Repository must have read access in Lake Formation to the AWS Glue Data Catalog\.
+
 ## Prerequisites<a name="connectors-dynamodb-prerequisites"></a>
 + Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 
@@ -27,16 +29,36 @@ Use the Lambda environment variables in this section to configure the DynamoDB c
 
 ## Setting up databases and tables in AWS Glue<a name="connectors-dynamodb-setting-up-databases-and-tables-in-aws-glue"></a>
 
-Because the connector's built\-in schema inference capability is limited, you might want to use AWS Glue for metadata\. To enable an AWS Glue table for use with DynamoDB, you must have an AWS Glue table for the DynamoDB table that you want to supply supplemental metadata for\.
+Because the connector's built\-in schema inference capability is limited, you might want to use AWS Glue for metadata\. To do this, you must have a database and table in AWS Glue\. To enable them for use with DynamoDB, you must edit their properties\.
 
-**To use an AWS Glue table for supplemental metadata**
+**To edit database properties in the AWS Glue console**
 
-1. When you edit the table and database in the AWS Glue console, add the following table properties as required\. If you use the AWS Glue DynamoDB crawler, these properties are automatically set\.
-   + **dynamodb** – String that indicates to the Athena DynamoDB connector that the table can be used for supplemental metadata\. You can enter the `dynamodb` string in any one of the following places:
-     + In the table properties under a field called **classification** \(exact match\)\.
-     + In the table storage descriptor **location** field \(sub\-string match\)\.
-     + In the table storage descriptor parameters under a field called **classification** \(exact match\)\.
-   + **dynamo\-db\-flag** – String that indicates that the database contains tables that the Athena DynamoDB connector is using for supplemental metadata\. This is required for AWS Glue databases other than `default`\. The `dynamo-db-flag` property is useful for filtering out irrelevant databases in accounts that have many of them\. This string should be in the **Location URI** of the AWS Glue database \(sub\-string match\)\.
+1. Sign in to the AWS Management Console and open the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/)\.
+
+1. Choose the **Databases** tab\.
+
+   On the **Databases** page, you can edit an existing database, or choose **Add database** to create one\.
+
+1. In the list of databases, choose the link for the database that you want to edit\.
+
+1. Choose **Edit**\.
+
+1. On the **Update a database** page, for **Location**, add the string **dynamo\-db\-flag**\. This keyword indicates that the database contains tables that the Athena DynamoDB connector is using for supplemental metadata and is required for AWS Glue databases other than `default`\. The `dynamo-db-flag` property is useful for filtering out databases in accounts with many databases\.
+
+**To edit table properties in the AWS Glue console**
+
+1. Sign in to the AWS Management Console and open the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/)\.
+
+1. Choose the **Tables** tab\.
+
+   On the **Tables** tab, you can edit an existing table, or choose **Add table** to create one\. For information about adding tables manually or with a crawler, see [Working with tables on the AWS Glue console](https://docs.aws.amazon.com/glue/latest/dg/console-tables.html) in the *AWS Glue Developer Guide*\.
+
+1. In the list of tables, choose the link for the table that you want to edit\.
+
+1. Choose **Actions**, **Edit table**\.
+
+1. On the **Edit table** page, in the **Table properties** section, add the following table properties as required\. If you use the AWS Glue DynamoDB crawler, these properties are automatically set\.
+   + **dynamodb** – String that indicates to the Athena DynamoDB connector that the table can be used for supplemental metadata\. Enter the `dynamodb` string in the table properties under a field called **classification** \(exact match\)\.
    + **sourceTable** – Optional table property that defines the source table name in DynamoDB\. Use this if AWS Glue table naming rules prevent you from creating a AWS Glue table with the same name as your DynamoDB table\. For example, capital letters are not permitted in AWS Glue table names, but they are permitted in DynamoDB table names\.
    + **columnMapping** – Optional table property that defines column name mappings\. Use this if AWS Glue column naming rules prevent you from creating a AWS Glue table with the same column names as your DynamoDB table\. For example, capital letters are not permitted in AWS Glue column names but are permitted in DynamoDB column names\. The property value is expected to be in the format col1=Col1,col2=Col2\. Note that column mapping applies only to top level column names and not to nested fields\.
    + **defaultTimeZone** – Optional table property that is applied to `date` or `datetime` values that do not have an explicit time zone\. Setting this value is a good practice to avoid discrepancies between the data source default time zone and the Athena session time zone\.

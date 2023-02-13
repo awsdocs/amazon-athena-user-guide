@@ -66,7 +66,7 @@ The following descriptions explain the numbered items in the diagram\.
 
 1. CloudWatch Logs to house the order processor's log events
 
-1. A write\-once\-read\-many data warehouse on Amazon RDS
+1. A write\-once\-read\-many data warehouse on Amazon Redshift
 
 1. DynamoDB to store shipment tracking data
 

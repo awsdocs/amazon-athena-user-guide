@@ -153,14 +153,6 @@ WHERE SOUNDEX(name) = SOUNDEX('CHYNA'); -- CHINA
 SELECT concat_ws(',', 'def', 'pqr', 'mno');
 ```
 
-#### System functions<a name="engine-versions-reference-0003-system-functions"></a>
-
-**version\(\)** – Returns the server version\.
-
-```
-SELECT version();
-```
-
 #### Window functions<a name="engine-versions-reference-0003-window-functions"></a>
 
 **GROUPS** – Adds support for window frames based on groups\.
@@ -269,14 +261,6 @@ When you migrate from Athena engine version 2 to Athena engine version 3, certai
 **Cause**: Ignore nulls cannot be added for the `BOOL_OR ()` function\. This change was made to conform to the ANSI SQL specification\.
 
 **Suggested solution**: Remove ignore nulls from the query strings\.
-
-#### Columns in a SELECT clause must exist<a name="engine-versions-reference-0003-columns-in-a-select-clause-must-exist"></a>
-
-**Error message**: Mismatched input XXX\. Expecting: YYY
-
-**Cause**: The column projected does not exist in any of the subqueries\.
-
-**Suggested solution**: Update the query to remove the nonexistent columns\.
 
 #### CONCAT function must have two or more arguments<a name="engine-versions-reference-0003-concat-str-minimum-two-args"></a>
 
@@ -394,12 +378,6 @@ For example, if you have the data `[null, 1, null, 2, 3, 4]` in an originating d
 
 In Athena engine version 2, casting a `Timestamp` with time zone to `varchar` caused some time zone literals to change \(for example, `US/Eastern` changed to `America/New_York`\)\. This behavior does not occur in Athena engine version 3\.
 
-#### Casting from TimestampTZ to Timestamp is not supported<a name="engine-versions-reference-0003-timestamp-casting"></a>
-
-**Error message**: Casting a Timestamp with Time Zone to Timestamp is not supported\.
-
-**Suggested solution**: Any explicit or implicit cast from TimestampTZ to Timestamp throws the exception\. If possible, remove the cast and use a different data type\.
-
 #### Date timestamp overflow throws error<a name="engine-versions-reference-0003-date-timestamp-overflow"></a>
 
 **Error message**: Millis overflow: XXX
@@ -408,11 +386,11 @@ In Athena engine version 2, casting a `Timestamp` with time zone to `varchar` ca
 
 **Suggested Solution**: Make sure the timestamp is within range\.
 
-#### Implicit type conversion from Timestamp type to the Int or BigInt type is not supported<a name="engine-versions-reference-0003-timestamp-type-conversion"></a>
+#### Implicit type conversion from Int or BigInt type to the Timestamp type is not supported<a name="engine-versions-reference-0003-timestamp-type-conversion"></a>
 
-**Error message**: GENERIC\_INTERNAL\_ERROR: class io\.trino\.spi\.type\.BigIntType cannot be cast to class io\.trino\.spi\.type\.TimestampType
+**Error message**: SERIALIZATION\_ERROR: Could not serialize column '*column\_name*' of type 'timestamp\(3\)' at position *n*:*n*
 
-**Cause**: A type mismatch between a Parquet column type \(`Timestamp`\) and a schema column type \(`Int` or BigInt\)\.
+**Cause**: A type mismatch between a Parquet column type \(`Int` or BigInt\) and a schema column type \(`Timestamp`\)\.
 
 **Suggested solution**: Change a Parquet column type or a schema column type to have the same date type\. Because changing a Parquet column type requires a data update, changing a schema column type is preferable\.
 

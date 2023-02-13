@@ -10,6 +10,8 @@ Schema inference is the default\. This option scans a small number of documents 
 
 For collections with a greater variety of data types, the connector supports retrieving metadata from the AWS Glue Data Catalog\. If the connector sees an AWS Glue database and table that match your HBase namespace and collection names, it gets its schema information from the corresponding AWS Glue table\. When you create your AWS Glue table, we recommend that you make it a superset of all fields that you might want to access from your HBase collection\.
 
+If you have Lake Formation enabled in your account, the IAM role for your Athena federated Lambda connector that you deployed in the AWS Serverless Application Repository must have read access in Lake Formation to the AWS Glue Data Catalog\. 
+
 ## Prerequisites<a name="connectors-hbase-prerequisites"></a>
 + Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 

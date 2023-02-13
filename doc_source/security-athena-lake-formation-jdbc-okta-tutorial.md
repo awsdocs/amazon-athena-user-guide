@@ -467,7 +467,7 @@ In this section, you perform the following tasks:
 
 **To prepare the test client**
 
-1. Download and extract the Lake Formation compatible Athena JDBC driver \(2\.0\.14 or later version\) from [Using Athena with the JDBC driver](connect-with-jdbc.md)\.
+1. Download and extract the Lake Formation compatible Athena JDBC driver \(2\.0\.14 or later version\) from [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
 
 1. Download and install the free [SQL Workbench/J](https://www.sql-workbench.eu/index.html) SQL query tool, available under a modified Apache 2\.0 license\.
 
@@ -669,7 +669,7 @@ In this tutorial you configured Athena integration with AWS Lake Formation using
 ## Related resources<a name="security-athena-lake-formation-jdbc-okta-tutorial-related-resources"></a>
 
 For related information, see the following resources\.
-+ [Using Athena with the JDBC driver](connect-with-jdbc.md)
++ [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)
 + [Enabling federated access to the Athena API](access-federation-saml.md)
 + [AWS Lake Formation Developer Guide](https://docs.aws.amazon.com/lake-formation/latest/dg/)
 + [Granting and revoking Data Catalog permissions](https://docs.aws.amazon.com/lake-formation/latest/dg/granting-catalog-permissions.html) in the *AWS Lake Formation Developer Guide*\.
