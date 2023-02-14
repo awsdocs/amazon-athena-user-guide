@@ -5,7 +5,7 @@ Creates one or more properties for a database\. The use of `DATABASE` and `SCHEM
 ## Synopsis<a name="synopsis"></a>
 
 ```
-ALTER {DATABASE | SCHEMA} database_name
+ALTER {DATABASE|SCHEMA} database_name
   SET DBPROPERTIES ('property_name'='property_value' [, ...] )
 ```
 

@@ -16,7 +16,7 @@ SHOW VIEWS [IN database_name] [LIKE 'regular_expression']
 Specifies the `database_name` from which views will be listed\. If omitted, the database from the current context is assumed\.
 
 **\[LIKE 'regular\_expression'\]**  
-Filters the list of views to those that match the `regular_expression` you specify\. Only the wildcard `*`, which indicates any character, or `|`, which indicates a choice between characters, can be used\.
+Filters the list of views to those that match the `regular_expression` you specify\. Only the wild card character `*`, which indicates any character, or `|`, which indicates a choice between characters, can be used\.
 
 ## Examples<a name="examples"></a>
 
@@ -25,7 +25,7 @@ SHOW VIEWS;
 ```
 
 ```
-SHOW VIEWS IN marketing_analytics LIKE 'orders*';
+SHOW VIEWS IN marketing_analytics LIKE 'orders*'
 ```
 
 See also [SHOW COLUMNS](show-columns.md), [SHOW CREATE VIEW](show-create-view.md), [DESCRIBE VIEW](describe-view.md), and [DROP VIEW](drop-view.md)\.
