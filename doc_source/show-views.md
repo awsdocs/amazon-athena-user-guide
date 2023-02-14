@@ -7,7 +7,7 @@ Athena returns a list of `STRING` type values where each value is a view name\.
 ## Synopsis<a name="synopsis"></a>
 
 ```
-SHOW VIEWS [IN database_name] LIKE ['regular_expression']
+SHOW VIEWS [IN database_name] [LIKE 'regular_expression']
 ```
 
 ### Parameters<a name="parameters"></a>

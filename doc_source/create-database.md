@@ -8,7 +8,7 @@ For an example of creating a database, creating a table, and running a `SELECT` 
 ## Synopsis<a name="synopsis"></a>
 
 ```
-CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] database_name
+CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] database_name
   [COMMENT 'database_comment']
   [LOCATION 'S3_loc']
   [WITH DBPROPERTIES ('property_name' = 'property_value') [, ...]]
