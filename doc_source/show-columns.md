@@ -5,11 +5,11 @@ Shows the column names for a specified table or view\. To view additional column
 ## Synopsis<a name="synopsis"></a>
 
 ```
-SHOW COLUMNS (FROM|IN) database_name.table_name
+SHOW COLUMNS {FROM | IN} database_name.table_name
 ```
 
 ```
-SHOW COLUMNS (FROM|IN) table_name [(FROM|IN) database_name]
+SHOW COLUMNS {FROM | IN} table_name [{FROM | IN} database_name]
 ```
 
 The `FROM` and `IN` keywords can be used interchangeably\. If *table\_name* or *database\_name* has special characters like hyphens, surround the name with backquotes \(for example, ``my-database`.`my-table``\)\. Do not surround the *table\_name* or *database\_name* with single or double quotes\. Currently, the use of `LIKE` and pattern matching expressions is not supported\.
