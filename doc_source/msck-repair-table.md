@@ -64,12 +64,26 @@ s3://bucket/path/userId=2/
 s3://bucket/path/userId=3/
 ```
 
-To resolve this issue, use flat case instead of camel case:
+To resolve this issue, one of the following can be done: -
 
-```
-s3://bucket/path/userid=1/
+1. Use flat case instead of camel case:
 
-s3://bucket/path/userid=2/
+    ```
+    s3://bucket/path/userid=1/
 
-s3://bucket/path/userid=3/
-```
+    s3://bucket/path/userid=2/
+
+    s3://bucket/path/userid=3/
+    ```
+    
+2. Use [ALTER TABLE ADD PARTITION](https://docs.aws.amazon.com/athena/latest/ug/alter-table-add-partition.html) and specify the location:
+    
+    ```
+    ALTER TABLE table_name ADD [IF NOT EXISTS]
+    PARTITION (userId=1)
+    LOCATION 's3://bucket/path/userId=1/'
+    PARTITION (userId=2)
+    LOCATION 's3://bucket/path/userId=2/'
+    PARTITION (userId=3)
+    LOCATION 's3://bucket/path/userId=3/'
+    ```
