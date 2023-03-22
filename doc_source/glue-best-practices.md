@@ -212,7 +212,7 @@ AWS Glue does not natively support Well\-known Text \(WKT\), Well\-Known Binary 
 
 ## Using AWS Glue jobs for ETL with Athena<a name="schema-classifier"></a>
 
-AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extracts data from sources, transforms the data, and loads it into targets\. For more information, see [Authoring Jobs in AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/author-job.html) in the *AWS Glue Developer Guide*\.
+AWS Glue jobs perform ETL operations\. An AWS Glue job runs a script that extracts data from sources, transforms the data, and loads it into targets\. For more information, see [Authoring Jobs in AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/author-job-glue.html) in the *AWS Glue Developer Guide*\.
 
 ### Creating tables using Athena for AWS Glue ETL jobs<a name="schema-etl-tables"></a>
 
