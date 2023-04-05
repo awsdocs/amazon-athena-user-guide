@@ -47,7 +47,7 @@ SELECT
 FROM
   table
 WHERE
-  device_id = "b6319dc2-48c1-4cd5-a0a3-a1969f7b48f7"
+  device_id = 'b6319dc2-48c1-4cd5-a0a3-a1969f7b48f7'
   AND (
     col1 > 0
     or col2 < 10

@@ -26,7 +26,7 @@ You can run an `INSERT` query on tables created from data with the following for
 
 ### Bucketed tables not supported<a name="insert-into-bucketed-tables-not-supported"></a>
 
-`INSERT INTO` is not supported on bucketed tables\. For more information, see [Bucketing vs partitioning](ctas-bucketing-vs-partitioning.md)\.
+`INSERT INTO` is not supported on bucketed tables\. For more information, see [Partitioning and bucketing in Athena](ctas-partitioning-and-bucketing.md)\.
 
 ### Federated queries not supported<a name="insert-into-federated-queries-not-supported"></a>
 
@@ -40,7 +40,7 @@ Consider the points in this section when using partitioning with `INSERT INTO` o
 
 The `INSERT INTO` statement supports writing a maximum of 100 partitions to the destination table\. If you run the `SELECT` clause on a table with more than 100 partitions, the query fails unless the `SELECT` query is limited to 100 partitions or fewer\.
 
-For information about working around this limitation, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
+For information about working around this limitation, see [Using CTAS and INSERT INTO to work around the 100 partition limit](ctas-insert-into.md)\.
 
 #### Column ordering<a name="insert-into-partition-detection"></a>
 
@@ -51,7 +51,7 @@ If the source table is non\-partitioned, or partitioned on different columns com
 #### Resources<a name="insert-into-partition-resources"></a>
 
 For more information about using `INSERT INTO` with partitioning, see the following resources\.
-+ For inserting partitioned data into a partitioned table, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
++ For inserting partitioned data into a partitioned table, see [Using CTAS and INSERT INTO to work around the 100 partition limit](ctas-insert-into.md)\.
 + For inserting unpartitioned data into a partitioned table, see [Using CTAS and INSERT INTO for ETL and data analysis](ctas-insert-into-etl.md)\. 
 
 ### Files written to Amazon S3<a name="insert-into-files-written-to-s3"></a>

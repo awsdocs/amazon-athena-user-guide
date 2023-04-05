@@ -165,3 +165,52 @@ To specify a workgroup to use, you must have permissions to the workgroup\.
      ```
 
      For more information, search for "Workgroup" in the driver documentation link included in [JDBC driver documentation](connect-with-jdbc.md#documentation-jdbc)\.
+
+## Configuring minimum encryption for a workgroup<a name="minimum-encryption"></a>
+
+As an administrator of an Athena SQL workgroup, you can enforce a minimal level of encryption in Amazon S3 for all query results from the workgroup\. You can use this feature to ensure that query results are never stored in an Amazon S3 bucket in an unencrypted state\.
+
+When users in a workgroup with minimum encryption enabled submit a query, they can only set the encryption to the minimum level that you configure, or to a higher level if one is available\. Athena encrypts query results at either the level specified when the user runs the query or at the level set in the workgroup\.
+
+The following levels are available:
++ **Basic** – Amazon S3 server side encryption with Amazon S3 managed keys \(**SSE\_S3**\)\.
++ **Intermediate** – Server Side encryption with KMS managed keys \(**SSE\_KMS**\)\.
++ **Advanced** – Client side encryption with KMS managed keys \(**CSE\_KMS**\)\.
+
+### Considerations and limitations<a name="minimum-encryption-considerations-and-limitations"></a>
++ The minimum encryption feature is not available for Apache Spark enabled workgroups\.
++ The minimum encryption feature is functional only when the workgroup does not enable the **[Override client\-side settings](https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html)** option\.
++ If the workgroup has the **Override client\-side settings** option enabled, the workgroup encryption setting prevails, and the minimum encryption setting has no effect\.
++ There is no cost to enable this feature\.
+
+### Enabling minimum encryption for a workgroup<a name="minimum-encryption-enabling"></a>
+
+You can enable a minimum encryption level for the query results from your Athena SQL workgroup when you create or update the workgroup\. To do this, you can use the Athena console, Athena API, or AWS CLI\.
+
+#### Using the Athena console to enable minimum encryption<a name="minimum-encryption-enabling-using-the-athena-console"></a>
+
+To get started creating or editing your workgroup using the Athena console, see [Create a workgroup](https://docs.aws.amazon.com/athena/latest/ug/workgroups-create-update-delete.html#creating-workgroups) or [Edit a workgroup](https://docs.aws.amazon.com/athena/latest/ug/workgroups-create-update-delete.html#editing-workgroups)\. When configuring your workgroup, use the following steps to enable minimum encryption\.
+
+**To configure the minimum encryption level for workgroup query results**
+
+1. In the **Additional configurations** section, expand **Settings**\.
+
+1. Clear the **Override client\-side settings** option, or verify that it is not selected\.
+
+1. In the **Additional configurations** section, expand **Query result configuration**\.
+
+1. Select the **Encrypt query results** option\.
+
+1. For **Encryption type**, select the encryption method that you want Athena to use for your workgroup's query results \(**SSE\_S3**, **SSE\_KMS**, or **CSE\_KMS**\)\. These encryption types correspond to basic, intermediate, and advanced security levels\.
+
+1. To enforce the encryption method that you chose as the minimum level of encryption for all users, select **Set *encryption\_method* as minimum encryption**\.
+
+   When you select this option, a table shows the encryption hierarchy and encryption levels that users will be allowed when the encryption type that you choose becomes the minimum\.
+
+1. After you create your workgroup or update your workgroup configuration, choose **Create workgroup** or **Save changes**\.
+
+#### Using the Athena API or AWS CLI to enable minimum encryption<a name="minimum-encryption-enabling-using-the-athena-api-or-cli"></a>
+
+When you use the [CreateWorkGroup](https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateWorkGroup.html) or [UpdateWorkGroup](https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdateWorkGroup.html) API to create or update an Athena SQL workgroup, set [EnforceWorkGroupConfiguration](https://docs.aws.amazon.com/athena/latest/APIReference/API_WorkGroupConfiguration.html#athena-Type-WorkGroupConfiguration-EnforceWorkGroupConfiguration) to `false`, [EnableMinimumEncryptionConfiguration](https://docs.aws.amazon.com/athena/latest/APIReference/API_WorkGroupConfiguration.html#athena-Type-WorkGroupConfiguration-EnableMinimumEncryptionConfiguration) to `true`, and use the [EncryptionOption](https://docs.aws.amazon.com/athena/latest/APIReference/API_EncryptionConfiguration.html#athena-Type-EncryptionConfiguration-EncryptionOption) to specify the type of encryption\.
+
+In the AWS CLI, use the [https://awscli.amazonaws.com/v2/documentation/api/latest/reference/athena/create-work-group.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/athena/create-work-group.html) or [https://awscli.amazonaws.com/v2/documentation/api/latest/reference/athena/update-work-group.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/athena/update-work-group.html) command with the `--configuration` or `--configuration-updates` parameters and specify the options corresponding to those for the API\.

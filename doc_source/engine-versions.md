@@ -1,6 +1,6 @@
 # Athena engine versioning<a name="engine-versions"></a>
 
-Athena occasionally releases a new engine version to provide improved performance, functionality, and code fixes\. When a new engine version is available, Athena notifies you through the Athena console and your [AWS Personal Health Dashboard](https://aws.amazon.com/premiumsupport/technology/personal-health-dashboard/)\. Your AWS Personal Health Dashboard notifies you about events that can affect your AWS services or account\. For more information about AWS Personal Health Dashboard, see [Getting started with the AWS Personal Health Dashboard](https://docs.aws.amazon.com/health/latest/ug/getting-started-phd.html)\.
+Athena occasionally releases a new engine version to provide improved performance, functionality, and code fixes\. When a new engine version is available, Athena notifies you through the Athena console and your [AWS Health Dashboard](https://aws.amazon.com/premiumsupport/technology/personal-health-dashboard/)\. Your AWS Health Dashboard notifies you about events that can affect your AWS services or account\. For more information about AWS Health Dashboard, see [Getting started with the AWS Health Dashboard](https://docs.aws.amazon.com/health/latest/ug/getting-started-phd.html)\.
 
 Engine versioning is configured per [workgroup](manage-queries-control-costs-with-workgroups.md)\. You can use workgroups to control which query engine your queries use\. The query engine that is in use is shown in the query editor, on the details page for the workgroup, and by the Athena APIs\.
 

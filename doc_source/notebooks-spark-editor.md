@@ -78,17 +78,4 @@ The notebook editor has an option to customize command mode keyboard shortcuts\.
 
    To see instructions for editing command mode shortcuts, scroll to the bottom of the **Edit command mode shortcuts** screen\.
 
-## Using magic commands<a name="notebooks-spark-using-magic-commands"></a>
-
-Magic commands, or magics, are special commands that you can run in a notebook cell\. For example, `%env` shows the environment variables in a notebook session\. Magics that are on a single line are preceded by a percent sign \(`%`\) and are called line magic functions or line magics\. Magics that are written on several lines are preceded by a double percent sign \(`%%`\) and are called cell magic functions or cell magics\. Athena supports the magic functions in IPython 6\.0\.3\. To see a list of these built\-in commands in Athena, run the command **%lsmagic** in a notebook cell\.
-
-**Note**  
-Currently, the `%pip` command fails when executed\. This is a known issue\. 
-
-For additional information about the built\-in magic commands, see [Built\-in magic commands](https://ipython.readthedocs.io/en/stable/interactive/magics.html) in the IPython documentation\.
-
-### Athena\-specific line and cell magics<a name="notebooks-spark-athena-line-and-cell-magics"></a>
-
-In addition to the built\-in IPython magics, Athena also supports the following line and cell magics:
-+ **%session\_id** – Returns the session ID for the current session\.
-+ **%%sql** – Runs an Apache Spark SQL statement\.
+For information about using magic commands in Athena for Apache Spark, see [Using magic commands](notebooks-spark-magics.md)\.

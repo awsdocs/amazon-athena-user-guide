@@ -33,11 +33,11 @@ MSCK REPAIR TABLE orders;
 ## Troubleshooting<a name="msck-repair-table-troubleshooting"></a>
 
 After you run `MSCK REPAIR TABLE`, if Athena does not add the partitions to the table in the AWS Glue Data Catalog, check the following:
-+ Make sure that the AWS Identity and Access Management \(IAM\) role has a policy that allows the `glue:BatchCreatePartition` action\.
-+ Make sure that the role has a policy with sufficient permissions to access Amazon S3, including the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html) action\. For an example of which Amazon S3 actions to allow, see the example bucket policy in [Cross\-account access in Athena to Amazon S3 buckets](cross-account-permissions.md)\.
-+ Make sure that the Amazon S3 path is in lower case instead of camel case \(for example, `userid` instead of `userId`\)\.
++ **AWS Glue access** – Make sure that the AWS Identity and Access Management \(IAM\) role has a policy that allows the `glue:BatchCreatePartition` action\. For more information, see [Allow glue:BatchCreatePartition in the IAM policy](#msck-repair-table-troubleshooting-allow-gluebatchcreatepartition-in-the-policy) later in this document\.
++ **Amazon S3 access** – Make sure that the role has a policy with sufficient permissions to access Amazon S3, including the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html) action\. For an example of which Amazon S3 actions to allow, see the example bucket policy in [Cross\-account access in Athena to Amazon S3 buckets](cross-account-permissions.md)\.
++ **Amazon S3 object key casing** – Make sure that the Amazon S3 path is in lower case instead of camel case \(for example, `userid` instead of `userId`\), or use `ALTER TABLE ADD PARTITION` to specify the object key names\. For more information, see [Change or redefine the Amazon S3 path](#msck-repair-table-troubleshooting-change-or-redefine-the-amazon-s3-path) later in this document\.
 + **Query timeouts** – `MSCK REPAIR TABLE` is best used when creating a table for the first time or when there is uncertainty about parity between data and partition metadata\. If you use `MSCK REPAIR TABLE` to add new partitions frequently \(for example, on a daily basis\) and are experiencing query timeouts, consider using [ALTER TABLE ADD PARTITION](alter-table-add-partition.md)\.
-+ **Partitions missing from filesystem** – If you delete a partition manually in Amazon S3 and then run `MSCK REPAIR TABLE`, you may receive the error message Partitions missing from filesystem\. This occurs because `MSCK REPAIR TABLE` doesn't remove stale partitions from table metadata\. To remove the deleted partitions from table metadata, run [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md) instead\. Note that [SHOW PARTITIONS](show-partitions.md) similarly lists only the partitions in metadata, not the partitions in the file system\.
++ **Partitions missing from file system** – If you delete a partition manually in Amazon S3 and then run `MSCK REPAIR TABLE`, you may receive the error message Partitions missing from filesystem\. This occurs because `MSCK REPAIR TABLE` doesn't remove stale partitions from table metadata\. To remove the deleted partitions from table metadata, run [ALTER TABLE DROP PARTITION](alter-table-drop-partition.md) instead\. Note that [SHOW PARTITIONS](show-partitions.md) similarly lists only the partitions in metadata, not the partitions in the file system\.
 + **"NullPointerException name is null" error**
 
   If you use the AWS Glue [CreateTable](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateTable.html) API operation or the AWS CloudFormation [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) template to create a table for use in Athena without specifying the `TableType` property and then run a DDL query like `SHOW CREATE TABLE` or `MSCK REPAIR TABLE`, you can receive the error message FAILED: NullPointerException Name is null\. 
@@ -52,38 +52,38 @@ The following sections provide some additional detail\.
 
 Review the IAM policies attached to the role that you're using to run `MSCK REPAIR TABLE`\. When you [use the AWS Glue Data Catalog with Athena](glue-athena.md), the IAM policy must allow the `glue:BatchCreatePartition` action\. For an example of an IAM policy that allows the `glue:BatchCreatePartition` action, see [AWS managed policy: AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy)\.
 
-### Change the Amazon S3 path to lower case<a name="msck-repair-table-troubleshooting-change-the-amazon-s3-path-to-flat-case"></a>
+### Change or redefine the Amazon S3 path<a name="msck-repair-table-troubleshooting-change-or-redefine-the-amazon-s3-path"></a>
 
-The Amazon S3 path must be in lower case\. If the S3 path is in camel case, `MSCK REPAIR TABLE` doesn't add the partitions to the AWS Glue Data Catalog\. For example, if your S3 path is `userId`, the following partitions aren't added to the AWS Glue Data Catalog:
+If one or more object keys in the Amazon S3 path are in camel case instead of lower case, `MSCK REPAIR TABLE` might not add the partitions to the AWS Glue Data Catalog\. For example, if your Amazon S3 path includes the object key name `userId`, the following partitions might not be added to the AWS Glue Data Catalog:
 
 ```
-s3://bucket/path/userId=1/
+s3://DOC-EXAMPLE-BUCKET/path/userId=1/
 
-s3://bucket/path/userId=2/
+s3://DOC-EXAMPLE-BUCKET/path/userId=2/
 
-s3://bucket/path/userId=3/
+s3://DOC-EXAMPLE-BUCKET/path/userId=3/
 ```
 
-To resolve this issue, one of the following can be done: -
+To resolve this issue, do one of the following:
++ Use lower case instead of camel case when you create your Amazon S3 object keys:
 
-1. Use flat case instead of camel case:
+  ```
+  s3://DOC-EXAMPLE-BUCKET/path/userid=1/
+  
+  s3://DOC-EXAMPLE-BUCKET/path/userid=2/
+  
+  s3://DOC-EXAMPLE-BUCKET/path/userid=3/
+  ```
++ Use [ALTER TABLE ADD PARTITION](alter-table-add-partition.md) to redefine the location, as in the following example:
 
-    ```
-    s3://bucket/path/userid=1/
+  ```
+  ALTER TABLE table_name ADD [IF NOT EXISTS]
+  PARTITION (userId=1)
+  LOCATION 's3://DOC-EXAMPLE-BUCKET/path/userId=1/'
+  PARTITION (userId=2)
+  LOCATION 's3://DOC-EXAMPLE-BUCKET/path/userId=2/'
+  PARTITION (userId=3)
+  LOCATION 's3://DOC-EXAMPLE-BUCKET/path/userId=3/'
+  ```
 
-    s3://bucket/path/userid=2/
-
-    s3://bucket/path/userid=3/
-    ```
-    
-2. Use [ALTER TABLE ADD PARTITION](https://docs.aws.amazon.com/athena/latest/ug/alter-table-add-partition.html) and specify the location:
-    
-    ```
-    ALTER TABLE table_name ADD [IF NOT EXISTS]
-    PARTITION (userId=1)
-    LOCATION 's3://bucket/path/userId=1/'
-    PARTITION (userId=2)
-    LOCATION 's3://bucket/path/userId=2/'
-    PARTITION (userId=3)
-    LOCATION 's3://bucket/path/userId=3/'
-    ```
+Note that although Amazon S3 object key names can use upper case, Amazon S3 bucket names themselves must always be in lower case\. For more information, see [Object key naming guidelines](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines) and [Bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html) in the *Amazon S3 User Guide*\.

@@ -4,9 +4,6 @@ To deploy a data source connector, you can use the [AWS Serverless Application R
 
 ## Deploying the connector to Your Account<a name="connect-data-source-serverless-app-repo-deploying"></a>
 
-**Note**  
-To use the Amazon Athena Federated Query feature, set your workgroup to Athena engine version 2\. For steps, see [Changing Athena engine versions](engine-versions-changing.md)\.
-
 **To use the AWS Serverless Application Repository to deploy a data source connector to your account**
 
 1. Sign in to the AWS Management Console and open the **Serverless App Repository**\.
@@ -15,7 +12,7 @@ To use the Amazon Athena Federated Query feature, set your workgroup to Athena e
 
 1. Select the option **Show apps that create custom IAM roles or resource policies**\.
 
-1. In the search box, type the name of the connector\. For a list of prebuilt Athena data connectors, see [Using Athena data source connectors](connectors-prebuilt.md)\.
+1. In the search box, type the name of the connector\. For a list of prebuilt Athena data connectors, see [Available data source connectors](connectors-available.md)\.
 
 1. Choose the name of the connector\. Choosing a connector opens the Lambda function's **Application details** page in the AWS Lambda console\.
 
@@ -58,4 +55,4 @@ Now you are ready to use the Athena console to make the data source connector av
 
 1. The **Data source details** section of the page for your data source shows information about your new connector\. You can now use the connector in your Athena queries\. 
 
-   For information about writing queries with data connectors, see [Writing federated queries](writing-federated-queries.md)\.
+   For information about using data connectors in queries, see [Running federated queries](running-federated-queries.md)\.

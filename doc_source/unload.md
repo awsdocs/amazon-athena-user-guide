@@ -37,11 +37,11 @@ Possible values for *property\_name* are as follows\.
 Required\. Specifies the file format of the output\. Possible values for *file\_format* are `ORC`, `PARQUET`, `AVRO`, `JSON`, or `TEXTFILE`\.
 
 ** compression = '*compression\_format*' **  
-Optional\. This option is specific to the ORC and Parquet formats\. For ORC, possible values are `lz4`, `snappy`, `zlib`, or `zstd`\. For Parquet, possible values are `gzip` or `snappy`\. For ORC, the default is `zlib`, and for Parquet, the default is `gzip`\.  
+Optional\. This option is specific to the ORC and Parquet formats\. For ORC, the default is `zlib`, and for Parquet, the default is `gzip`\. For information about supported compression formats, see [Athena compression support](https://docs.aws.amazon.com/athena/latest/ug/compression-formats.html)\.   
 This option does not apply to the `AVRO` format\. Athena uses `gzip` for the `JSON` and `TEXTFILE` formats\.
 
 **compression\_level = *compression\_level* **  
-The compression level to use\. This property applies only to ZSTD compression\. Possible values are from 1 to 22\. The default value is 3\. For more information, see [Using ZSTD compression levels in Athena](compression-support-zstd-levels.md)\.
+The compression level to use\. This property applies only to ZSTD compression\. For more information, see [Using ZSTD compression levels in Athena](compression-support-zstd-levels.md)\.
 
 ** field\_delimiter = '*delimiter*' **  
 Optional\. Specifies a single\-character field delimiter for files in CSV, TSV, and other text formats\. The following example specifies a comma delimiter\.  
@@ -53,7 +53,7 @@ Currently, multicharacter field delimiters are not supported\. If you do not spe
 
 ** partitioned\_by = ARRAY\[ *col\_name*\[,\.\.\.\] \] **  
 Optional\. An array list of columns by which the output is partitioned\.  
- In your `SELECT` statement, make sure that the names of the partitioned columns are last in your list of columns\. 
+In your `SELECT` statement, make sure that the names of the partitioned columns are last in your list of columns\. 
 
 ## Examples<a name="unload-examples"></a>
 

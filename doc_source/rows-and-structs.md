@@ -2,10 +2,10 @@
 
 Your source data often contains arrays with complex data types and nested structures\. Examples in this section show how to change element's data type, locate elements within arrays, and find keywords using Athena queries\.
 + [Creating a `ROW`](#creating-row)
-+ [Changing field names in arrays using `CAST` ](#changing-row-arrays-with-cast)
++ [Changing field names in arrays using `CAST`](#changing-row-arrays-with-cast)
 + [Filtering arrays using the `.` notation](#filtering-with-dot)
 + [Filtering arrays with nested values](#filtering-nested-with-dot)
-+ [Filtering arrays using `UNNEST` ](#filtering-with-unnest)
++ [Filtering arrays using `UNNEST`](#filtering-with-unnest)
 + [Finding keywords in arrays using `regexp_like`](#filtering-with-regexp)
 
 ## Creating a `ROW`<a name="creating-row"></a>

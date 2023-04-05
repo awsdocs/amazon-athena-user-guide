@@ -1,20 +1,20 @@
-# Using Athena data source connectors<a name="connectors-prebuilt"></a>
+# Available data source connectors<a name="connectors-available"></a>
 
 This section lists prebuilt Athena data source connectors that you can use to query a variety of data sources external to Amazon S3\. To use a connector in your Athena queries, configure it and deploy it to your account\. 
 
-## Considerations and limitations<a name="connectors-prebuilt-considerations"></a>
+## Considerations and limitations<a name="connectors-available-considerations"></a>
 +  Some prebuilt connectors require that you create a VPC and a security group before you can use the connector\. For information about creating VPCs, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\. 
 +  To use the Athena Federated Query feature with AWS Secrets Manager, you must configure an Amazon VPC private endpoint for Secrets Manager\. For more information, see [Create a Secrets Manager VPC private endpoint](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html#vpc-endpoint-create) in the *AWS Secrets Manager User Guide*\. 
 + Queries that include a predicate take significantly longer to execute\. For small datasets, very little data is scanned, and queries take an average of about 2 minutes\. However, for large datasets, many queries can time out\.
 
-## Additional information<a name="connectors-prebuilt-see-also"></a>
-+ For information about deploying an Athena data source connector, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md)\. 
-+ For information about writing queries that use Athena data source connectors, see [Writing federated queries](writing-federated-queries.md)\.
+## Additional information<a name="connectors-available-see-also"></a>
++ For information about deploying an Athena data source connector, see [Deploying a data source connector](connect-to-a-data-source-lambda.md)\. 
++ For information about queries that use Athena data source connectors, see [Running federated queries](running-federated-queries.md)\.
 + For in\-depth information about the Athena data source connectors, see [Available connectors](https://github.com/awslabs/aws-athena-query-federation/wiki/Available-Connectors) on GitHub\. 
 
 **Topics**
-+ [Considerations and limitations](#connectors-prebuilt-considerations)
-+ [Additional information](#connectors-prebuilt-see-also)
++ [Considerations and limitations](#connectors-available-considerations)
++ [Additional information](#connectors-available-see-also)
 + [Azure Data Lake Storage](connectors-adls-gen2.md)
 + [Azure Synapse](connectors-azure-synapse.md)
 + [Cloudera Hive](connectors-cloudera-hive.md)
@@ -29,6 +29,7 @@ This section lists prebuilt Athena data source connectors that you can use to qu
 + [Google Cloud Storage](connectors-gcs.md)
 + [HBase](connectors-hbase.md)
 + [Hortonworks](connectors-hortonworks.md)
++ [Kafka](connectors-kafka.md)
 + [MSK](connectors-msk.md)
 + [MySQL](connectors-mysql.md)
 + [Neptune](connectors-neptune.md)

@@ -7,6 +7,8 @@ As a data administrator, you can enable cross\-account federated queries by shar
 ## Considerations and limitations<a name="xacct-fed-query-enable-considerations-and-limitations"></a>
 + The cross\-account federated query feature is available for non\-Hive metastore data connectors that use a Lambda\-based data source\.
 + The feature is not available for the AWS Glue Data Catalog data source type\. For information about cross\-account access to AWS Glue Data Catalogs, see [Cross\-account access to AWS Glue data catalogs](security-iam-cross-account-glue-catalog-access.md)\.
++ If the response from your connector's Lambda function exceeds the Lambda response size limit of 6MB, Athena automatically encrypts, batches, and spills the response to an Amazon S3 bucket that you configure\. The entity running the Athena query must have access to the spill location in order for Athena to read the spilled data\. We recommend that you set an Amazon S3 lifecycle policy to delete objects from the spill location since the data is not needed after the query completes\. 
++ Using federated queries across AWS Regions is not supported\. 
 
 ## Required permissions<a name="xacct-fed-query-enable-required-permissions"></a>
 + For data administrator Account A to share a Lambda function with data analyst Account B, Account B requires Lambda invoke function and spill bucket access\. Accordingly, Account A should add a [ resource\-based policy](https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html) to the Lambda function and [principal](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html) access to its spill bucket in Amazon S3\.

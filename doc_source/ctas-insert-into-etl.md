@@ -216,7 +216,7 @@ In Step 2, you used CTAS to create a table with partitions for the years 2015 to
    WHERE cast(substr("date",1,4) AS bigint) = 2020
    ```
 **Note**  
-The INSERT INTO statement supports writing a maximum of 100 partitions to the destination table\. However, to add more than 100 partitions, you can run multiple INSERT INTO statements\. For more information, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
+The INSERT INTO statement supports writing a maximum of 100 partitions to the destination table\. However, to add more than 100 partitions, you can run multiple INSERT INTO statements\. For more information, see [Using CTAS and INSERT INTO to work around the 100 partition limit](ctas-insert-into.md)\.
 
 ## Step 4: Measure performance and cost differences<a name="ctas-insert-into-etl-step-4-measure-performance-and-cost-differences"></a>
 

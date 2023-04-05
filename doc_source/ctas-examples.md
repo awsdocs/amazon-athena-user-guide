@@ -1,16 +1,16 @@
 # Examples of CTAS queries<a name="ctas-examples"></a>
 
-Use the following examples to create CTAS queries\. For information about the CTAS syntax, see [ CREATE TABLE AS ](create-table-as.md)\.
+Use the following examples to create CTAS queries\. For information about the CTAS syntax, see [CREATE TABLE AS](create-table-as.md)\.
 
 In this section: 
-+  [Example: Duplicating a Table by Selecting All Columns](#ctas-example-dupe-table) 
-+  [Example: Selecting Specific Columns From One or More Tables](#ctas-example-specify-columns) 
-+  [Example: Creating an Empty Copy of an Existing Table](#ctas-example-empty-table) 
-+  [Example: Specifying Data Storage and Compression Formats](#ctas-example-compression) 
-+  [Example: Writing Query Results to a Different Format](#ctas-example-format) 
-+  [Example: Creating Unpartitioned Tables](#ctas-example-unpartitioned) 
-+  [Example: Creating Partitioned Tables](#ctas-example-partitioned) 
-+  [Example: Creating Bucketed and Partitioned Tables](#ctas-example-bucketed) 
++  [Example: Duplicating a table by selecting all columns](#ctas-example-dupe-table) 
++  [Example: Selecting specific columns from one or more tables](#ctas-example-specify-columns) 
++  [Example: Creating an empty copy of an existing table](#ctas-example-empty-table) 
++  [Example: Specifying data storage and compression formats](#ctas-example-compression) 
++  [Example: Writing query results to a different format](#ctas-example-format) 
++  [Example: Creating unpartitioned tables](#ctas-example-unpartitioned) 
++  [Example: Creating partitioned tables](#ctas-example-partitioned) 
++  [Example: Creating bucketed and partitioned tables](#ctas-example-bucketed) 
 +  [Example: Creating an Iceberg table with Parquet data](#ctas-example-iceberg-parquet) 
 +  [Example: Creating an Iceberg table with Avro data](#ctas-example-iceberg-avro) 
 
@@ -153,7 +153,7 @@ FROM table1;
 ```
 
 **Example: Creating partitioned tables**  
-The following examples show `CREATE TABLE AS SELECT` queries for partitioned tables in different storage formats, using `partitioned_by`, and other properties in the `WITH` clause\. For syntax, see [CTAS table properties](create-table-as.md#ctas-table-properties)\. For more information about choosing the columns for partitioning, see [Bucketing vs partitioning](ctas-bucketing-vs-partitioning.md)\.  
+The following examples show `CREATE TABLE AS SELECT` queries for partitioned tables in different storage formats, using `partitioned_by`, and other properties in the `WITH` clause\. For syntax, see [CTAS table properties](create-table-as.md#ctas-table-properties)\. For more information about choosing the columns for partitioning, see [Partitioning and bucketing in Athena](ctas-partitioning-and-bucketing.md)\.  
 List partition columns at the end of the list of columns in the `SELECT` statement\. You can partition by more than one column, and have up to 100 unique partition and bucket combinations\. For example, you can have 100 partitions if no buckets are specified\.
 
 ```
@@ -178,7 +178,7 @@ FROM table1;
 
 **Example: Creating bucketed and partitioned tables**  
 The following example shows a `CREATE TABLE AS SELECT` query that uses both partitioning and bucketing for storing query results in Amazon S3\. The table results are partitioned and bucketed by different columns\. Athena supports a maximum of 100 unique bucket and partition combinations\. For example, if you create a table with five buckets, 20 partitions with five buckets each are supported\. For syntax, see [CTAS table properties](create-table-as.md#ctas-table-properties)\.  
-For information about choosing the columns for bucketing, see [Bucketing vs partitioning](ctas-bucketing-vs-partitioning.md)\.  
+For information about choosing the columns for bucketing, see [Partitioning and bucketing in Athena](ctas-partitioning-and-bucketing.md)\.  
 
 ```
 CREATE TABLE ctas_avro_bucketed 

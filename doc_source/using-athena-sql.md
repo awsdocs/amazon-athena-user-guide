@@ -1,6 +1,6 @@
 # Using Athena SQL<a name="using-athena-sql"></a>
 
-You can use Athena SQL to query your data in\-place in Amazon S3 using the [AWS Glue Data Catalog](glue-athena.md), [an external Hive metastore](connect-to-data-source-hive.md), or [federated queries](connect-to-a-data-source.md) using a variety of [prebuilt connectors](connectors-prebuilt.md) to other data sources\.
+You can use Athena SQL to query your data in\-place in Amazon S3 using the [AWS Glue Data Catalog](glue-athena.md), [an external Hive metastore](connect-to-data-source-hive.md), or [federated queries](connect-to-a-data-source.md) using a variety of [prebuilt connectors](connectors-available.md) to other data sources\.
 
 You can also:
 + Connect to business intelligence tools and other applications using [Athena's JDBC and ODBC drivers](https://docs.aws.amazon.com/athena/latest/ug/athena-bi-tools-jdbc-odbc.html)\. 

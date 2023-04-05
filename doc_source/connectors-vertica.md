@@ -3,7 +3,7 @@
 Vertica is a columnar database platform that can be deployed in the cloud or on premises that supports exabyte scale data warehouses\. You can use the Amazon Athena Vertica connector in federated queries to query Vertica data sources from Athena\. For example, you can run analytical queries over a data warehouse on Vertica and a data lake in Amazon S3\.
 
 ## Prerequisites<a name="connectors-vertica-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 + Set up a VPC and a security group before you use this connector\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.
 
 ## Limitations<a name="connectors-vertica-limitations"></a>

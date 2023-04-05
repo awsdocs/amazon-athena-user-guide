@@ -79,7 +79,7 @@ TBLPROPERTIES ("write.compression" = "ZSTD", "compression_level" = 4)
 
 ### CREATE TABLE AS \(CTAS\)<a name="compression-support-zstd-levels-ctas"></a>
 
-In the [ CREATE TABLE AS ](create-table-as.md) statement `WITH` clause, specify `write_compression = 'ZSTD'`, or `parquet_compression = 'ZSTD'`, and then use `compression_level = compression_level` and specify a value from 1 to 22\. If the `compression_level` property is not specified, the default compression level is 3\.
+In the [CREATE TABLE AS](create-table-as.md) statement `WITH` clause, specify `write_compression = 'ZSTD'`, or `parquet_compression = 'ZSTD'`, and then use `compression_level = compression_level` and specify a value from 1 to 22\. If the `compression_level` property is not specified, the default compression level is 3\.
 
 #### Example<a name="compression-support-zstd-levels-ctas-example"></a>
 

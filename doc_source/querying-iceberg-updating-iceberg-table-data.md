@@ -50,6 +50,9 @@ UPDATE iceberg_table SET category='c2' WHERE category='c1'
 
 Conditionally updates, deletes, or inserts rows into an Iceberg table\. A single statement can combine update, delete, and insert actions\. For syntax, see [MERGE INTO](merge-into-statement.md)\.
 
+**Note**  
+`MERGE INTO` is transactional and is supported only for Apache Iceberg tables in Athena engine version 3\.
+
 The following example deletes all customers from table `t` that are in the source table `s`\.
 
 ```

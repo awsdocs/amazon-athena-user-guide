@@ -3,7 +3,7 @@
 This page describes the terminology used and lifecycle management followed for the runtimes, libraries, and packages used in Amazon Athena for Apache Spark\.
 
 ## Definitions<a name="notebooks-spark-python-library-support-definitions"></a>
-+ **Amazon Athena for Apache Spark** is a customized version of open source Apache Spark\.
++ **Amazon Athena for Apache Spark** is a customized version of open source Apache Spark\. To see the current version, run the command `print(f'{spark.version}')` in a notebook cell\. 
 + The **Athena runtime** is the environment in which your code runs\. The environment includes a Python interpreter and PySpark libraries\.
 + An **external library or package** is a Java or Scala JAR or Python library that is not part of the Athena runtime but can be included in Athena for Spark jobs\. External packages can be built by Amazon or by you\.
 + A **convenience package** is a collection of external packages selected by Athena that you can choose to include in your Spark applications\.

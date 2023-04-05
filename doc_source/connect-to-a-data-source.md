@@ -11,13 +11,13 @@ To write your own data source connector, you can use the Athena Query Federation
 **Note**  
 Third party developers may have used the Athena Query Federation SDK to write data source connectors\. For support or licensing issues with these data source connectors, please work with your connector provider\. These connectors are not tested or supported by AWS\. 
 
-For a list of data source connectors written and tested by Athena, see [Using Athena data source connectors](connectors-prebuilt.md)\.
+For a list of data source connectors written and tested by Athena, see [Available data source connectors](connectors-available.md)\.
 
 For information about writing your own data source connector, see [Example Athena connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-example) on GitHub\.
 
 ## Considerations and limitations<a name="connect-to-a-data-source-considerations"></a>
 + **Engine versions** – Athena Federated Query is supported only on Athena engine version 2 and later versions\. For information about Athena engine versions, see [Athena engine versioning](engine-versions.md)\.
-+ **Views** – You cannot use views with federated data sources\.
++ **Views** – You can create and query views on federated data sources\. Federated views are stored in AWS Glue, not the underlying data source\. For more information, see [Querying federated views](running-federated-queries.md#running-federated-queries-federated-views)\.
 + **Write operations** – Write operations like [INSERT INTO](insert-into.md) are not supported\. Attempting to do so may result in the error message This operation is currently not supported for external catalogs\.
 +  **Pricing** – For pricing information, see [Amazon Athena pricing](http://aws.amazon.com/athena/pricing/)\.
 
@@ -28,8 +28,6 @@ Data source connectors might require access to the following resources to functi
 + **Amazon S3** – In addition to writing query results to the Athena query results location in Amazon S3, data connectors also write to a spill bucket in Amazon S3\. Connectivity and permissions to this Amazon S3 location are required\.
 + **Athena** – Data sources need connectivity to Athena and vice versa for checking query status and preventing overscan\.
 + **AWS Glue Data Catalog** – Connectivity and permissions are required if your connector uses Data Catalog for supplemental or primary metadata\.
-
-For the most up\-to\-date information about known issues and limitations, see [Limitations and issues](https://github.com/awslabs/aws-athena-query-federation/wiki/Limitations_And_Issues) in the aws\-athena\-query\-federation GitHub repository\.
 
 ## Videos<a name="connect-to-a-data-source-videos"></a>
 

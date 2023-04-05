@@ -30,7 +30,7 @@ WHEN MATCHED [ AND condition ]
 
 ```
 WHEN NOT MATCHED [ AND condition ]
-    THEN INSERT [ column_list ] VALUES (expression, ...)
+    THEN INSERT (column_name[, column_name ...]) VALUES (expression, ...)
 ```
 
 `MERGE` supports an arbitrary number of `WHEN` clauses with different `MATCHED` conditions\. The condition clauses execute the `DELETE`, `UPDATE` or `INSERT` operation in the first `WHEN` clause selected by the `MATCHED` state and the match condition\.
@@ -41,4 +41,16 @@ If a source row is not matched by any `WHEN` clause and there is no `WHEN NOT MA
 
 In `WHEN` clauses that have `UPDATE` operations, the column value expressions can refer to any field of the target or the source\. In the `NOT MATCHED` case, the `INSERT` expressions can refer to any field of the source\.
 
-For examples, see [Updating Iceberg table data](querying-iceberg-updating-iceberg-table-data.md)\.
+**Example**  
+The following example merges rows from the second table into the first table if the rows don't exist in the first table\. Note that the columns listed in the `VALUES` clause must be prefixed by the source table alias\. The target columns listed in the `INSERT` clause must *not* be so prefixed\.
+
+```
+MERGE INTO iceberg_table_sample as ice1
+USING iceberg2_table_sample as ice2
+ON ice1.col1 = ice2.col1
+WHEN NOT MATCHED 
+THEN INSERT (col1)
+      VALUES (ice2.col1)
+```
+
+For more `MERGE INTO` examples, see [Updating Iceberg table data](querying-iceberg-updating-iceberg-table-data.md)\.

@@ -69,7 +69,7 @@ The following considerations apply to creating and using views in Athena:
 ## Limitations for views<a name="limitations-views"></a>
 + Athena view names cannot contain special characters, other than underscore `(_)`\. For more information, see [Names for tables, databases, and columns](tables-databases-columns-names.md)\.
 + Avoid using reserved keywords for naming views\. If you use reserved keywords, use double quotes to enclose reserved keywords in your queries on views\. See [Reserved keywords](reserved-words.md)\.
-+ You cannot use views created in Athena with federated data sources, external Hive metastores, or UDFs\. For information about working with views created externally in Hive, see [Working with Hive views](hive-views.md)\.
++ You cannot use views created in Athena with external Hive metastores or UDFs\. For information about working with views created externally in Hive, see [Working with Hive views](hive-views.md)\.
 + You cannot use views with geospatial functions\.
 + You cannot use views to manage access control on data in Amazon S3\. To query a view, you need permissions to access the data stored in Amazon S3\. For more information, see [Access to Amazon S3](s3-permissions.md)\.
 + You cannot use views with cross\-account data catalogs\. For information about cross\-account data catalog access, see [Cross\-account access to AWS Glue data catalogs](security-iam-cross-account-glue-catalog-access.md)\.
@@ -164,3 +164,5 @@ FROM table1
 JOIN table2 
 ON table1.a = table2.a;
 ```
+
+For information about querying federated views, see [Querying federated views](running-federated-queries.md#running-federated-queries-federated-views)\.

@@ -9,8 +9,7 @@ You have two options for deploying a Lambda function for Athena UDFs\. You can d
 For an example that uses UDFs with Athena to translate and analyze text, see the AWS Machine Learning Blog article [Translate and analyze text using SQL functions with Amazon Athena, Amazon Translate, and Amazon Comprehend](http://aws.amazon.com/blogs/machine-learning/translate-and-analyze-text-using-sql-functions-with-amazon-athena-amazon-translate-and-amazon-comprehend/), or watch the [video](#udf-videos-xlate)\.
 
 ## Considerations and limitations<a name="udf-considerations-limitations"></a>
-+ **Available Regions** – The Athena UDF feature is available in the AWS Regions where Athena engine version 2 or later is supported\. For a list of AWS Regions that support Athena engine version 2, see [Athena engine version 2](engine-versions-reference-0002.md)\.
-+ **Built\-in Athena functions** – Built\-in Presto functions in Athena are designed to be highly performant\. We recommend that you use built\-in functions over UDFs when possible\. For more information about built\-in functions, see [Functions in Amazon Athena](functions.md)\.
++ **Built\-in Athena functions** – Built\-in functions in Athena are designed to be highly performant\. We recommend that you use built\-in functions over UDFs when possible\. For more information about built\-in functions, see [Functions in Amazon Athena](functions.md)\.
 + **Scalar UDFs only** – Athena only supports scalar UDFs, which process one row at a time and return a single column value\. Athena passes a batch of rows, potentially in parallel, to the UDF each time it invokes Lambda\. When designing UDFs and queries, be mindful of the potential impact to network traffic of this processing\.
 + **UDF handler functions use abbreviated format** – Use abbreviated format \(not full format\), for your UDF functions \(for example, `package.Class` instead of `package.Class::method`\)\. 
 + **UDF methods must be lowercase** – UDF methods must be in lowercase; camel case is not permitted\. 
@@ -28,7 +27,7 @@ Watch the following videos to learn more about using UDFs in Athena\.
 The following video shows how you can use UDFs in Amazon Athena to redact sensitive information\.
 
 **Note**  
-The syntax in this video is prerelease, but the concepts are the same\. Use Athena engine version 2 without the `AmazonAthenaPreviewFunctionality` workgroup\. 
+The syntax in this video is prerelease, but the concepts are the same\. Use Athena without the `AmazonAthenaPreviewFunctionality` workgroup\. 
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/AxJ6jP4Pfmo/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/AxJ6jP4Pfmo)
 

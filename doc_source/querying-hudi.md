@@ -101,7 +101,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT
   'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
 LOCATION
-  's3://bucket/folder/non_partition_cow'
+  's3://bucket/folder/non_partition_cow/'
 ```
 
 #### Partitioned CoW table<a name="querying-hudi-partitioned-cow-table"></a>
@@ -128,7 +128,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat' 
 LOCATION
-  's3://bucket/folder/partition_cow'
+  's3://bucket/folder/partition_cow/'
 ```
 
 The following `ALTER TABLE ADD PARTITION` example adds two partitions to the example `partition_cow` table\.
@@ -166,7 +166,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat' 
 LOCATION
-  's3://bucket/folder/nonpartition_mor'
+  's3://bucket/folder/nonpartition_mor/'
 ```
 
 The following example creates a nonpartitioned MoR table in Athena for snapshot queries\. For snapshot queries, use the input format `HoodieParquetRealtimeInputFormat`\.
@@ -190,7 +190,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat' 
 LOCATION
-  's3://bucket/folder/nonpartition_mor'
+  's3://bucket/folder/nonpartition_mor/'
 ```
 
 #### Partitioned merge on read \(MoR\) table<a name="querying-hudi-partitioned-merge-on-read-table"></a>
@@ -217,7 +217,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
 LOCATION
-  's3://bucket/folder/partition_mor'
+  's3://bucket/folder/partition_mor/'
 ```
 
 The following `ALTER TABLE ADD PARTITION` example adds two partitions to the example `partition_mor` table\.
@@ -250,7 +250,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
 LOCATION
-  's3://bucket/folder/partition_mor'
+  's3://bucket/folder/partition_mor/'
 ```
 
 Similarly, the following `ALTER TABLE ADD PARTITION` example adds two partitions to the example `partition_mor_rt` table\.

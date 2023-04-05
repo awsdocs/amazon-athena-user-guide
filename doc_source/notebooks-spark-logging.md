@@ -52,7 +52,7 @@ In an Athena for Spark session, you can use the following two global standard lo
 **Note**  
 For your privacy, your calculation code and results are not shared with AWS\. Make sure that your calls to `athena_shared_logger` write only the information that you want to make visible to AWS Support\.
 
-The provided loggers write events through [Apache Log4j](https://logging.apache.org/log4j/) and inherit the logging levels of this interface\. Possible log level values are `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR` and `FATAL`\. You can use the corresponding named function on the logger to produce these values\.
+The provided loggers write events through [Apache Log4j](https://logging.apache.org/log4j/) and inherit the logging levels of this interface\. Possible log level values are `DEBUG`, `ERROR`, `FATAL`, `INFO`, and `WARN` or `WARNING`\. You can use the corresponding named function on the logger to produce these values\.
 
 **Note**  
 Do not rebind the names `athena_user_logger` or `athena_shared_logger`\. Doing so makes the logging objects unable to write to CloudWatch for the remainder of the session\.
@@ -77,7 +77,7 @@ The following procedure shows how to log Athena notebook events to Amazon CloudW
 
 1. Retrieve the current session ID by doing one of the following:
    + View the cell output \(for example, `... session=72c24e73-2c24-8b22-14bd-443bdcd72de4`\)\.
-   + In a new cell, run the [magic](notebooks-spark-editor.md#notebooks-spark-using-magic-commands) command `%session_id`\.
+   + In a new cell, run the [magic](notebooks-spark-magics.md) command `%session_id`\.
 
 1. Save the session ID\.
 

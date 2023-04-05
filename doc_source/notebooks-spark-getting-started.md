@@ -9,6 +9,9 @@ Make sure that you create a Spark enabled workgroup before you attempt to create
 
 You can use [workgroups](manage-queries-control-costs-with-workgroups.md) in Athena to group users, teams, applications, or workloads, and to track costs\. To use Apache Spark in Amazon Athena, you create an Amazon Athena workgroup that uses a Spark engine\.
 
+**Note**  
+Apache Spark enabled workgroups can use the Athena notebook editor, but not the Athena query editor\. Only Athena SQL workgroups can use the Athena query editor\.
+
 **To create a Spark enabled workgroup in Athena**
 
 1. Open the Athena console at [https://console\.aws\.amazon\.com/athena/](https://console.aws.amazon.com/athena/home)

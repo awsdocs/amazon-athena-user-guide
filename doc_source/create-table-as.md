@@ -192,4 +192,4 @@ For examples of CTAS queries, consult the following resources\.
 +  [Examples of CTAS queries](ctas-examples.md) 
 +  [Using CTAS and INSERT INTO for ETL and data analysis](ctas-insert-into-etl.md) 
 +  [Use CTAS statements with Amazon Athena to reduce cost and improve performance](http://aws.amazon.com/blogs/big-data/using-ctas-statements-with-amazon-athena-to-reduce-cost-and-improve-performance/) 
-+  [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md) 
++  [Using CTAS and INSERT INTO to work around the 100 partition limit](ctas-insert-into.md) 

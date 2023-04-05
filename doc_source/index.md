@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -27,6 +27,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Using AWS Glue to connect to data sources in Amazon S3](data-sources-glue.md)
          + [Registering an AWS Glue Data Catalog from another account](data-sources-glue-cross-account.md)
          + [Best practices when using Athena with AWS Glue](glue-best-practices.md)
+         + [Using the AWS CLI to recreate an AWS Glue database and its tables](glue-recreate-db-and-tables-cli.md)
          + [Upgrading to the AWS Glue Data Catalog step-by-step](glue-upgrade.md)
          + [FAQ: Upgrading to the AWS Glue Data Catalog](glue-faq.md)
       + [Using Athena Data Connector for External Hive Metastore](connect-to-data-source-hive.md)
@@ -39,10 +40,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Using the AWS CLI with Hive metastores](datastores-hive-cli.md)
          + [Reference implementation](datastores-hive-reference-implementation.md)
       + [Using Amazon Athena Federated Query](connect-to-a-data-source.md)
-         + [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md)
-         + [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)
-         + [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)
-         + [Using Athena data source connectors](connectors-prebuilt.md)
+         + [Available data source connectors](connectors-available.md)
             + [Amazon Athena Azure Data Lake Storage (ADLS) Gen2 connector](connectors-adls-gen2.md)
             + [Amazon Athena Azure Synapse connector](connectors-azure-synapse.md)
             + [Amazon Athena Cloudera Hive connector](connectors-cloudera-hive.md)
@@ -57,6 +55,7 @@ Amazon's trademarks and trade dress may not be used in
             + [Amazon Athena Google Cloud Storage connector](connectors-gcs.md)
             + [Amazon Athena HBase connector](connectors-hbase.md)
             + [Amazon Athena Hortonworks connector](connectors-hortonworks.md)
+            + [Amazon Athena Apache Kafka connector](connectors-kafka.md)
             + [Amazon Athena MSK connector](connectors-msk.md)
             + [Amazon Athena MySQL connector](connectors-mysql.md)
             + [Amazon Athena Neptune connector](connectors-neptune.md)
@@ -72,9 +71,14 @@ Amazon's trademarks and trade dress may not be used in
             + [Amazon Athena Timestream connector](connectors-timestream.md)
             + [Amazon Athena TPC benchmark DS (TPC-DS) connector](connectors-tpcds.md)
             + [Amazon Athena Vertica connector](connectors-vertica.md)
-         + [Writing federated queries](writing-federated-queries.md)
-         + [Enabling cross-account federated queries](xacct-fed-query-enable.md)
-         + [Writing a data source connector using the Athena Query Federation SDK](connect-data-source-federation-sdk.md)
+         + [Deploying a data source connector](connect-to-a-data-source-lambda.md)
+            + [Using the Athena console](connect-to-a-data-source-lambda-deploying.md)
+            + [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)
+            + [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)
+            + [Enabling cross-account federated queries](xacct-fed-query-enable.md)
+            + [Updating a data source connector](connectors-updating.md)
+         + [Running federated queries](running-federated-queries.md)
+         + [Developing a data source connector using the Athena Query Federation SDK](connect-data-source-federation-sdk.md)
       + [IAM policies for accessing data catalogs](datacatalogs-iam-policy.md)
          + [Data Catalog example policies](datacatalogs-example-policies.md)
       + [Managing data sources](data-sources-managing.md)
@@ -102,10 +106,10 @@ Amazon's trademarks and trade dress may not be used in
    + [Creating a table from query results (CTAS)](ctas.md)
       + [Considerations and limitations for CTAS queries](ctas-considerations-limitations.md)
       + [Running CTAS queries in the console](ctas-console.md)
-      + [Bucketing vs partitioning](ctas-bucketing-vs-partitioning.md)
+      + [Partitioning and bucketing in Athena](ctas-partitioning-and-bucketing.md)
       + [Examples of CTAS queries](ctas-examples.md)
       + [Using CTAS and INSERT INTO for ETL and data analysis](ctas-insert-into-etl.md)
-      + [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)
+      + [Using CTAS and INSERT INTO to work around the 100 partition limit](ctas-insert-into.md)
    + [Athena compression support](compression-formats.md)
       + [Hive table compression support by file format](compression-support-hive.md)
       + [Iceberg table compression support by file format](compression-support-iceberg.md)
@@ -194,6 +198,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Using Iceberg tables](querying-iceberg.md)
          + [Creating Iceberg tables](querying-iceberg-creating-tables.md)
          + [Managing Iceberg tables](querying-iceberg-managing-tables.md)
+         + [Querying Iceberg table metadata](querying-iceberg-table-metadata.md)
          + [Evolving Iceberg table schema](querying-iceberg-evolving-table-schema.md)
          + [Querying Iceberg table data and performing time travel](querying-iceberg-table-data.md)
          + [Updating Iceberg table data](querying-iceberg-updating-iceberg-table-data.md)
@@ -316,12 +321,14 @@ Amazon's trademarks and trade dress may not be used in
    + [Troubleshooting in Athena](troubleshooting-athena.md)
       + [Athena error catalog](error-reference.md)
    + [Performance tuning in Athena](performance-tuning.md)
+      + [Preventing Amazon S3 throttling](performance-tuning-s3-throttling.md)
    + [Service Quotas](service-limits.md)
    + [Code samples](code-samples.md)
 + [Using Apache Spark in Amazon Athena](notebooks-spark.md)
    + [Getting started with Apache Spark on Amazon Athena](notebooks-spark-getting-started.md)
    + [Working with notebooks](notebooks-spark-working-with-notebooks.md)
       + [Using the Athena notebook editor](notebooks-spark-editor.md)
+      + [Using magic commands](notebooks-spark-magics.md)
       + [Managing notebook files](notebooks-spark-managing.md)
    + [Python library support in Amazon Athena for Apache Spark](notebooks-spark-python-library-support.md)
       + [List of preinstalled Python libraries](notebooks-spark-preinstalled-python-libraries.md)

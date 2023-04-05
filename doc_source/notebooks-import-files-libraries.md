@@ -172,6 +172,9 @@ The following example shows how to add Python files from Amazon S3 to your noteb
 
 You can use the Python `addPyFile` and `import` methods to import a Python \.zip file to your notebook\.
 
+**Note**  
+The `.zip` files that you import to Athena Spark may include only Python packages\. For example, including packages with C\-based files is not supported\.
+
 **To import a Python `.zip` file to your notebook**
 
 1. On your local computer, in a desktop directory such as `\tmp`, create a directory called `moduletest`\.

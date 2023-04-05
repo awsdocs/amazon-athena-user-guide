@@ -13,8 +13,8 @@ Athena publishes the following metrics to the CloudWatch console:
 + `TotalExecutionTime` – in milliseconds, for DDL and DML queries
 
 These metrics have the following dimensions:
-+ `QueryState` – `QUEUED`, `RUNNING`, `SUCCEEDED`, `FAILED`, or `CANCELED`
-+ `QueryType` – `DML` or `DDL`
++ `QueryState` – `SUCCEEDED`, `FAILED`, or `CANCELED`
++ `QueryType` – `DML`, `DDL`, or `UTILITY`
 + `WorkGroup` – name of the workgroup
 
 Athena publishes the following metric to the CloudWatch console under the `AmazonAthenaForApacheSpark` namespace:
@@ -90,6 +90,6 @@ These metrics for Athena have the following dimensions\.
 
 | Dimension | Description | 
 | --- | --- | 
-| QueryState |  The query state\. Valid statistics: QUEUED, RUNNING, SUCCEEDED, FAILED, or CANCELED\.  Athena automatically retries your queries in cases of certain transient errors\. As a result, you may see the query state transition from RUNNING or FAILED to QUEUED\.   | 
-| QueryType |  The query type\. Valid statistics: `DDL` or `DML`\.  | 
+| QueryState |  The query state\. Valid statistics: SUCCEEDED, FAILED, or CANCELED\.  | 
+| QueryType |  The query type\. Valid statistics: `DDL`, `DML`, or `UTILITY`\. The type of query statement that was run\. `DDL` indicates DDL \(Data Definition Language\) query statements\. `DML` indicates DML \(Data Manipulation Language\) query statements, such as `CREATE TABLE AS SELECT`\. `UTILITY` indicates query statements other than DDL and DML, such as `SHOW CREATE TABLE`, or `DESCRIBE TABLE`\.  | 
 | WorkGroup |  The name of the workgroup\.  | 

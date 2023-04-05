@@ -1,11 +1,13 @@
 # Document history<a name="DocHistory"></a>
 
-**Latest documentation update: February 13, 2023\.**  
+**Latest documentation update: April 4, 2023\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release date | 
 | --- | --- | --- | 
+| Added documentation for querying federated views\. | You can now create and query views on federated data sources in Athena\. For more information, see [Querying federated views](running-federated-queries.md#running-federated-queries-federated-views)\. | April 4, 2023 | 
+| Added documentation on preventing throttling in Amazon S3\. | For more information, see [Preventing Amazon S3 throttling](performance-tuning-s3-throttling.md)\. | March 24, 2023 | 
 | Updated AmazonAthenaFullAccess managed policy | Added pricing:GetProducts to the [AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy) managed policy\. The added action provides access to AWS Billing and Cost Management\. For more information, see [GetProducts](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetProducts.html) in the AWS Billing and Cost Management API Reference\. | January 25, 2023 | 
 | Expanded documentation for Athena compression support\. | Individual topics added for [Hive table compression](compression-support-hive.md), [Iceberg table compression](compression-support-iceberg.md), and [ZSTD compression levels](compression-support-zstd-levels.md)\. For more information, see [Athena compression support](compression-formats.md)\. | January 20, 2023 | 
 | Added documentation for Amazon Athena for Apache Spark\. | You can now interactively create and run Apache Spark applications and Jupyter compatible notebooks on Amazon Athena\. For more information, see [Using Apache Spark in Amazon Athena](notebooks-spark.md)\. | November 30, 2022 | 
@@ -36,7 +38,7 @@ We update the documentation frequently to address your feedback\. The following 
 | Added a topic on using CloudWatch Events to monitor Athena query state transitions\. | For more information, see [Monitoring Athena queries with CloudWatch events](athena-cloudwatch-events.md)\. | March 11, 2020 | 
 | Added a topic on querying AWS Global Accelerator flow logs with Athena\. | For more information, see [Querying AWS Global Accelerator flow logs](querying-global-accelerator-flow-logs.md)\. | February 6, 2020 | 
 |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/DocHistory.html)  |  Documentation updates include, but are not limited to, the following topics: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/DocHistory.html)  | February 4, 2020 | 
-| Added documentation on using CTAS with INSERT INTO to add data from a partitioned source to a partitioned destination\. | For more information, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\. | January 22, 2020 | 
+| Added documentation on using CTAS with INSERT INTO to add data from a partitioned source to a partitioned destination\. | For more information, see [Using CTAS and INSERT INTO to work around the 100 partition limit](ctas-insert-into.md)\. | January 22, 2020 | 
 | Query results location information updated\. | Athena no longer creates a 'default' query results location\. For more information, see [Specifying a query result location](querying.md#query-results-specify-location)\. | January 20, 2020 | 
 | Added topic on querying the AWS Glue Data Catalog\. Updated information about service quotas \(formerly "service limits"\) in Athena\. | For more information, see the following topics: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/athena/latest/ug/DocHistory.html)  | January 17, 2020 | 
 | Corrected topic on OpenCSVSerDe to note that the TIMESTAMP type should be specified in the UNIX numeric format\. | For more information, see [OpenCSVSerDe for processing CSV](csv-serde.md)\. | January 15, 2020 | 

@@ -13,6 +13,79 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2023<a name="release-notes-2023"></a>
 
+### April 4, 2023<a name="release-note-2023-04-04"></a>
+
+Published on 2023\-04\-04
+
+You can now use Amazon Athena to create and query views on federated data sources\. Use a single federated view to query multiple external tables or subsets of data\. This simplifies the SQL required and gives you the flexibility of obfuscating sources of data from end users who must use SQL to query the data\.
+
+For more information, see [Working with views](views.md) and [Running federated queries](running-federated-queries.md)\.
+
+### March 30, 2023<a name="release-note-2023-03-30"></a>
+
+Published on 2023\-03\-30
+
+Amazon Athena announces the availability of Amazon Athena for Apache Spark in additional AWS Regions\.
+
+This release expands the availability of Amazon Athena for Apache Spark to include Asia Pacific \(Mumbai\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), and Europe \(Frankfurt\)\.
+
+For more information about Amazon Athena for Apache Spark, see [Using Apache Spark in Amazon Athena](notebooks-spark.md)\.
+
+### March 28, 2023<a name="release-note-2023-03-28"></a>
+
+Published on 2023\-03\-28
+
+Athena announces the following fixes and improvements\.
++ In the responses to the `GetQueryExecution` and `BatchGetQueryExecution` Athena API actions, the new `subStatementType` field shows the type of query that ran \(for example, `SELECT`, `INSERT`, `UNLOAD`, `CREATE_TABLE`, or `CREATE_TABLE_AS_SELECT`\)\.
++ Fixed a bug in which manifest files were not encrypted correctly for Apache Hive write operations\.
++ Athena engine version 3 now correctly handles `NaN` and `Infinity` values in the `approx_percentile` function\. The `approx_percentile` function returns the approximate percentile for a dataset at the given percentage\.
+
+  Athena engine version 2 incorrectly treats `NaN` as a value greater than `Infinity`\. Athena engine version 3 now handles `NaN` and `Infinity` in accordance with the treatment of these values in other analytic and statistical functions\. The following points describe the new behavior in greater detail\.
+  + If `NaN` is present in the dataset, Athena returns `NaN`\.
+  + If `NaN` is not present, but `Infinity` is present, Athena treats `Infinity` as a very large number\.
+  + If multiple `Infinity` values are present, Athena treats them as the same very large number\. If necessary, Athena outputs `Infinity`\.
+  + If a single dataset has both \-`Infinity` and `-Double.MAX_VALUE`, and a percentile result is `-Double.MAX_VALUE`, Athena returns `-Infinity`\.
+  + If a single dataset has both `Infinity` and `Double.MAX_VALUE`, and a percentile result is `Double.MAX_VALUE`, Athena returns `Infinity`\.
+  + To exclude `Infinity` and `NaN` from a calculation, use the `is_finite()` function, as in the following example\.
+
+    ```
+    approx_percentile(x, 0.5) FILTER (WHERE is_finite(x))     
+    ```
+
+### March 27, 2023<a name="release-note-2023-03-27"></a>
+
+Published on 2023\-03\-27
+
+You can now specify a minimum level of encryption for Athena SQL workgroups in Amazon Athena\. This feature ensures that the results from all queries in the Athena SQL workgroup are encrypted at or above the level of encryption that you specify\. You can choose among several levels of encryption strength to safeguard your data\. To configure the minimum level of encryption that you want, you can use the Athena console, AWS CLI, API, or SDK\.
+
+The minimum encryption feature is not available for Apache Spark enabled workgroups\. For more information, see [Configuring minimum encryption for a workgroup](workgroups-create-update-delete.md#minimum-encryption)\.
+
+### March 17, 2023<a name="release-note-2023-03-17"></a>
+
+Published on 2023\-03\-17
+
+Athena announces the following fixes and improvements\.
++ Fixed an issue with the Amazon Athena DynamoDB connector that caused queries to fail with the error message KeyConditionExpressions must only contain one condition per key\.
+
+  This issue occurs because Athena engine version 3 recognizes the opportunity to push down more kinds of predicates than Athena engine version 2\. In Athena engine version 3, clauses like `some_column LIKE 'someprefix%` are pushed down as filter predicates that apply a lower and upper bound on a given column\. Athena engine version 2 did not push these predicates down\. In Athena engine version 3, when `some_column` is a sort key column, the engine pushes the filter predicate down to the DynamoDB connector\. The filter predicate then gets further pushed down to the DynamoDB service\. Because DynamoDB does not support more than one filter condition on a sort key, DynamoDB returns the error\.
+
+  To correct this issue, update your Amazon Athena DynamoDB connector to version 2023\.11\.1\. For instructions on updating the connector, see [Updating a data source connector](connectors-updating.md)\.
+
+### March 8, 2023<a name="release-note-2023-03-08"></a>
+
+Published on 2023\-03\-08
+
+Athena announces the following fixes and improvements\.
++ Fixed an issue with federated queries that caused timestamp predicate values to be sent as microseconds instead of milliseconds\.
+
+### February 15, 2023<a name="release-note-2023-02-15"></a>
+
+Published on 2023\-02\-15
+
+Athena announces the following fixes and improvements\.
++ You can now use [client\-side encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingClientSideEncryption.html) to encrypt data in Amazon S3 for Iceberg write operations\.
++ Fixed an issue that affected [server\-side encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/specifying-kms-encryption.html) in Amazon S3 for Iceberg write operations\. 
+
 ### January 31, 2023<a name="release-note-2023-01-31"></a>
 
 Published on 2023\-01\-31
@@ -95,7 +168,7 @@ Published on 2022\-11\-17
 Apache Iceberg support in Athena engine version 3 now offers the following enhanced ACID transaction features:
 + **ORC and Avro support** – Create Iceberg tables using the [Apache Avro](https://avro.apache.org/) and [Apache ORC](https://orc.apache.org/) row and column\-based file formats\. Support for these formats is in addition to the existing support for Parquet\. 
 + **MERGE INTO** – Use the `MERGE INTO` command to merge data at scale efficiently\. `MERGE INTO` combines the `INSERT`, `UPDATE`, and `DELETE` operations into one transaction\. This reduces the processing overhead in your data pipeline and takes less SQL to write\. For more information, see [Updating Iceberg table data](querying-iceberg-updating-iceberg-table-data.md) and [MERGE INTO](merge-into-statement.md)\.
-+ **CTAS and VIEW support** – Use the `CREATE TABLE AS SELECT` \(CTAS\) and `CREATE VIEW` statements with Iceberg tables\. For more information, see [ CREATE TABLE AS ](create-table-as.md) and [CREATE VIEW](create-view.md)\.
++ **CTAS and VIEW support** – Use the `CREATE TABLE AS SELECT` \(CTAS\) and `CREATE VIEW` statements with Iceberg tables\. For more information, see [CREATE TABLE AS](create-table-as.md) and [CREATE VIEW](create-view.md)\.
 + **VACUUM support** – You can use the `VACUUM` statement to optimize your data lake by deleting snapshots and data that are no longer required\. You can use this feature to improve read performance and meet regulatory requirements like [GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation)\. For more information, see [Optimizing Iceberg tables](querying-iceberg-data-optimization.md) and [VACUUM](vacuum-statement.md)\.
 
 These new features require Athena engine version 3 and are available in all Regions where Athena is supported\. You can use them with the [Athena console](https://console.aws.amazon.com/athena/home), [drivers](athena-bi-tools-jdbc-odbc.md), or [API](https://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html)\. 
@@ -320,11 +393,11 @@ You can now use Amazon Athena to run federated queries on new data sources, incl
 + [Snowflake](connectors-snowflake.md)
 + [Teradata](connectors-teradata.md)
 
-For a complete list of data sources supported by Athena, see [Using Athena data source connectors](connectors-prebuilt.md)\.
+For a complete list of data sources supported by Athena, see [Available data source connectors](connectors-available.md)\.
 
 To make it easier to browse the available sources and connect to your data, you can now search, sort, and filter the available connectors from an updated **Data Sources** screen in the Athena console\.
 
-To learn about querying federated sources, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Writing federated queries](writing-federated-queries.md)\.
+To learn about querying federated sources, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Running federated queries](running-federated-queries.md)\.
 
 ### April 13, 2022<a name="release-note-2022-04-13"></a>
 
@@ -537,7 +610,7 @@ You can now use Amazon Athena to run federated queries on data sources located i
 
 As a data administrator, you can enable cross\-account federated queries by sharing your data connector with a data analyst's account\. As a data analyst, you can add a data connector that a data administrator has shared with you to your account\. Configuration changes to the connector in the originating account apply automatically to the shared connector\.
 
-For information about enabling cross\-account federated queries, see [Enabling cross\-account federated queries](xacct-fed-query-enable.md)\. To learn about querying federated sources, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Writing federated queries](writing-federated-queries.md)\.
+For information about enabling cross\-account federated queries, see [Enabling cross\-account federated queries](xacct-fed-query-enable.md)\. To learn about querying federated sources, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md) and [Running federated queries](running-federated-queries.md)\.
 
 ### November 2, 2021<a name="release-note-2021-11-02"></a>
 

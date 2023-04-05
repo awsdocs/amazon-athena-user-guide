@@ -3,7 +3,7 @@
 The Amazon Athena connector for [Microsoft SQL Server](https://docs.microsoft.com/en-us/sql/?view=sql-server-ver15) enables Amazon Athena to run SQL queries on your data stored in Microsoft SQL Server using JDBC\.
 
 ## Prerequisites<a name="connectors-sqlserver-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 + Set up a VPC and a security group before you use this connector\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.
 
 ## Limitations<a name="connectors-microsoft-sql-server-limitations"></a>

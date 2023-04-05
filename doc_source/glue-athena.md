@@ -16,5 +16,6 @@ Separate charges apply to AWS Glue\. For more information, see [AWS Glue pricing
 + [Using AWS Glue to connect to data sources in Amazon S3](data-sources-glue.md)
 + [Registering an AWS Glue Data Catalog from another account](data-sources-glue-cross-account.md)
 + [Best practices when using Athena with AWS Glue](glue-best-practices.md)
++ [Recreating a database](glue-recreate-db-and-tables-cli.md)
 + [Upgrading to the AWS Glue Data Catalog step\-by\-step](glue-upgrade.md)
 + [FAQ: Upgrading to the AWS Glue Data Catalog](glue-faq.md)

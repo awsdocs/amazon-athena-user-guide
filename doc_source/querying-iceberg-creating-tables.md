@@ -17,6 +17,8 @@ CREATE TABLE
   TBLPROPERTIES ( 'table_type' ='ICEBERG' [, property_name=property_value] )
 ```
 
+For information about the data types that you can query in Iceberg tables, see [Supported data types](querying-iceberg-supported-data-types.md)\.
+
 ## Partitioning<a name="querying-iceberg-partitioning"></a>
 
 To create Iceberg tables with partitions, use `PARTITIONED BY` syntax\. Columns used for partitioning must be specified in the columns declarations first\. Within the `PARTITIONED BY` clause, the column type must not be included\. You can also define [partition transforms](https://iceberg.apache.org/spec/#partition-transforms) in `CREATE TABLE` syntax\. To specify multiple columns for partitioning, separate the columns with the comma \(`,`\) character, as in the following example\.
@@ -40,7 +42,7 @@ The following table shows the available partition transform functions\.
 | day\(ts\)  | Partition by day | date, timestamp | 
 | hour\(ts\) | Partition by hour | timestamp | 
 | bucket\(N, col\) | Partition by hashed value mod N buckets\. This is the same concept as hash bucketing for Hive tables\. | int, long, decimal, date, timestamp, string, binary  | 
-| truncate\(L, col\) | Partition by value truncated to L | int, long, decimal, string | 
+| truncate\(col, L\) | Partition by value truncated to L | int, long, decimal, string | 
 
 Athena supports Iceberg's hidden partitioning\. For more information, see [Iceberg's hidden partitioning](https://iceberg.apache.org/docs/latest/partitioning/#icebergs-hidden-partitioning) in the Apache Iceberg documentation\.
 
@@ -56,7 +58,7 @@ This section describes table properties that you can specify as key\-value pairs
 |  |  | 
 | --- |--- |
 | Description | File data format | 
-| Allowed property values | parquet | 
+| Allowed property values | Supported file format and compression combinations vary by Athena engine version\. For more information, see [Iceberg table compression support by file format](compression-support-iceberg.md)\. | 
 | Default value | parquet | 
 
 ***write\_compression***
@@ -67,8 +69,8 @@ This section describes table properties that you can specify as key\-value pairs
 |  |  | 
 | --- |--- |
 | Description | File compression codec | 
-| Allowed property values | gzip, snappy, zstd | 
-| Default value | gzip | 
+| Allowed property values | Supported file format and compression combinations vary by Athena engine version\. For more information, see [Iceberg table compression support by file format](compression-support-iceberg.md)\. | 
+| Default value |  Default write compression varies by Athena engine version\. For more information, see [Iceberg table compression support by file format](compression-support-iceberg.md)\.  | 
 
 ***write\_target\_data\_file\_size\_bytes***
 

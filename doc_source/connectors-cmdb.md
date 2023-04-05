@@ -3,7 +3,7 @@
 The Amazon Athena AWS CMDB connector enables Athena to communicate with various AWS services so that you can query them with SQL\.
 
 ## Prerequisites<a name="connectors-cmdb-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 
 ## Parameters<a name="connectors-cmdb-parameters"></a>
 

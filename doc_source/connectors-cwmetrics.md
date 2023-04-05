@@ -5,7 +5,7 @@ The Amazon Athena CloudWatch Metrics connector enables Amazon Athena to query Cl
 For information on publishing query metrics to CloudWatch from Athena itself, see [Controlling costs and monitoring queries with CloudWatch metrics and events](control-limits.md)\.
 
 ## Prerequisites<a name="connectors-cwmetrics-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 
 ## Parameters<a name="connectors-cwmetrics-parameters"></a>
 

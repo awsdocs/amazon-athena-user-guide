@@ -1,4 +1,4 @@
-# Using CTAS and INSERT INTO to create a table with more than 100 partitions<a name="ctas-insert-into"></a>
+# Using CTAS and INSERT INTO to work around the 100 partition limit<a name="ctas-insert-into"></a>
 
 You can create up to 100 partitions per query with a `CREATE TABLE AS SELECT` \([CTAS](ctas.md)\) query\. Similarly, you can add a maximum of 100 partitions to a destination table with an [INSERT INTO](https://docs.aws.amazon.com/athena/latest/ug/insert-into.html) statement\. 
 

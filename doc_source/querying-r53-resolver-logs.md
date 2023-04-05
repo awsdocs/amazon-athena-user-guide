@@ -42,7 +42,7 @@ You can use the Query Editor in the Athena console to create and query a table f
     )
         
    ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
-   LOCATION 's3://your_log_bucket/AWSLogs/{account_id}/vpcdnsquerylogs/{vpc-id}/YYYY/MM/dd/'
+   LOCATION 's3://your_log_bucket/AWSLogs/{account_id}/vpcdnsquerylogs/{vpc-id}/'
    ```
 
    Because Resolver query log data is in JSON format, the CREATE TABLE statement uses a [JSON SerDe library](json-serde.md) to analyze the data\.

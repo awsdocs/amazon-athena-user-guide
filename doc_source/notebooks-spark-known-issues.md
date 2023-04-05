@@ -51,3 +51,29 @@ To correct this, add a trailing slash to the location \(for example, `'s3:// DOC
 ## Database created in a workgroup location<a name="notebooks-spark-known-issues-database-created-in-a-workgroup-location"></a>
 
 If you use a command like `spark.sql('create database db')` to create a database and do not specify a location for the database, Athena creates a subdirectory in your workgroup location and uses that location for the newly created database\.
+
+## Issues with Hive managed tables in the AWS Glue default database<a name="notebooks-spark-known-issues-managed-tables"></a>
+
+If the `Location` property of your default database in AWS Glue is nonempty and specifies a valid location in Amazon S3, and you use Athena for Spark to create a Hive managed table in your AWS Glue default database, data are written to the Amazon S3 location specified in your Athena Spark workgroup instead of to the location specified by the AWS Glue database\.
+
+This issue occurs because of how Apache Hive handles its default database\. Apache Hive creates table data in the Hive warehouse root location, which can be different from the actual default database location\.
+
+When you use Athena for Spark to create a Hive managed table under the default database in AWS Glue, the AWS Glue table metadata can point to two different locations\. This can cause unexpected behavior when you attempt an `INSERT` or `DROP TABLE` operation\.
+
+The steps to reproduce the issue are the following:
+
+1. In Athena for Spark, you use one of the following methods to create or save a Hive managed table:
+   + A SQL statement like `CREATE TABLE $tableName`
+   + A PySpark command like `df.write.mode("overwrite").saveAsTable($tableName)` that does not specify the `path` option in the Dataframe API\.
+
+   At this point, the AWS Glue console may show an incorrect location in Amazon S3 for the table\.
+
+1. In Athena for Spark, you use the `DROP TABLE $table_name` statement to drop the table that you created\.
+
+1. After you run the `DROP TABLE` statement, you notice that the underlying files in Amazon S3 are still present\.
+
+To resolve this issue, do one of the following:
+
+**Solution A** – Use a different AWS Glue database when you create Hive managed tables\.
+
+**Solution B** – Specify an empty location for the default database in AWS Glue\. Then, create your managed tables in the default database\.

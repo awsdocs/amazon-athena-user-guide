@@ -36,9 +36,9 @@ To grant AWS Glue access from the Owner account \(999999999999\) to the Borrower
 
 1. Sign in to the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/) from the Owner account\.
 
-1. In the navigation pane, choose **Settings**\.
+1. In the navigation pane, expand **Data Catalog**, and then choose **Catalog settings**\.
 
-1. In the **Permissions** box, enter a policy like the following\. If you want to increase the permission scope, you can use the wildcard character `*` for both the database and table resource types\.
+1. In the **Permissions** box, enter a policy like the following\. If you want to increase the permission scope, you can use the wild card character `*` for both the database and table resource types\.
 
    ```
    {
@@ -71,15 +71,15 @@ To give the Borrower account role access to the Owner account's AWS Glue resourc
 
 1. Sign in to the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/) from the Borrower account\.
 
-1. In the navigation pane, choose **Roles**\.
+1. In the navigation pane, expand **Access management**, and then choose **Roles**\.
 
-1. Choose the role that you want to change\.
+1. Choose the link to the role that you want to change\.
 
-1. Choose **Attach policies**\.
+1. In the Permissions policies section, choose **Add permissions**, and then choose **Attach policies**\.
 
 1. Choose **Create policy**\.
 
-1. Choose **JSON**\.
+1. On the **Create policy** page, choose the **JSON** tab\.
 
 1. In the box, enter the following policy, and then modify it according to your requirements:
 
@@ -100,7 +100,9 @@ To give the Borrower account role access to the Owner account's AWS Glue resourc
    }
    ```
 
-1. Choose **Review policy**\.
+1. Choose **Next: Tags**\.
+
+1. Choose **Next: Review**\.
 
 1. For **Name**, enter a name for the policy\.
 
@@ -119,11 +121,11 @@ The following procedure shows you how to use the Athena console to configure the
 1. If the console navigation pane is not visible, choose the expansion menu on the left\.  
 ![\[Choose the expansion menu.\]](http://docs.aws.amazon.com/athena/latest/ug/images/polaris-nav-pane-expansion.png)
 
-1. Choose **Data sources**\.
+1. Expand **Administration**, and then choose **Data sources**\.
 
 1. On the upper right, choose **Create data source**\.
 
-1. On the **Choose a data source** page, for **Data sources**, choose **S3 \- AWS Glue Data Catalog**, and then choose **Next**\.
+1. On the **Choose a data source** page, for **Data sources**, select **S3 \- AWS Glue Data Catalog**, and then choose **Next**\.
 
 1. On the **Enter data source details** page, in the **AWS Glue Data Catalog** section, for **Choose an AWS Glue Data Catalog**, choose **AWS Glue Data Catalog in another account**\.
 
@@ -132,7 +134,7 @@ The following procedure shows you how to use the Athena console to configure the
    + **Description** – \(Optional\) Enter a description of the data catalog in the other account\.
    + **Catalog ID** – Enter the 12\-digit Amazon Web Services account ID of the account to which the data catalog belongs\. The Amazon Web Services account ID is the catalog ID\.
 
-1. \(Optional\) For **Tags**, enter key\-value pairs that you want to associate with the data source\. For more information about tags, see [Tagging Athena resources](tags.md)\.
+1. \(Optional\) Expand **Tags**, and then enter key\-value pairs that you want to associate with the data source\. For more information about tags, see [Tagging Athena resources](tags.md)\.
 
 1. Choose **Next**\.
 

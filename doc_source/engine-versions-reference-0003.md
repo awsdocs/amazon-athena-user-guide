@@ -247,6 +247,7 @@ Athena engine version 3 has the following limitations\.
 + **Query performance** – Many queries run faster on Athena engine version 3, but some query plans can differ from Athena engine version 2\. As a result, some queries can differ in latency or cost\.
 + **Trino and Presto connectors** – Neither [Trino](https://trino.io/docs/current/connector.html) nor [Presto](https://prestodb.io/docs/current/connector.html) connectors are supported\. Use Amazon Athena Federated Query to connect data sources\. For more information, see [Using Amazon Athena Federated Query](connect-to-a-data-source.md)\.
 + **Fault\-tolerant execution** – Trino [fault\-tolerant execution](https://trino.io/docs/current/admin/fault-tolerant-execution.html) \(Trino Tardigrade\) is not supported\.
++ **Function parameter limit** – Functions cannot take more than 127 parameters\. For more information, see [Too many arguments for function call](troubleshooting-athena.md#troubleshooting-athena-too-many-arguments)\.
 
 ## Breaking changes<a name="engine-versions-reference-0003-breaking-changes"></a>
 
@@ -270,6 +271,8 @@ When you migrate from Athena engine version 2 to Athena engine version 3, certai
 
 **Suggested solution**: Change occurrences of `CONCAT(str)` to `CONCAT(str, '')`\.
 
+In Athena engine version 3, functions can have no more than 127 arguments\. For more information, see [Too many arguments for function call](troubleshooting-athena.md#troubleshooting-athena-too-many-arguments)\.
+
 #### Geospatial function does not support varbinary input<a name="engine-versions-reference-0003-geo-spatial-function-does-not-support-varbinary-input"></a>
 
 **Error message**: FUNCTION\_NOT\_FOUND for st\_XXX
@@ -277,6 +280,24 @@ When you migrate from Athena engine version 2 to Athena engine version 3, certai
 **Cause**: A few geospatial functions no longer support the legacy `VARBINARY` input type or text related function signatures\.
 
 **Suggested solution**: Use geospatial functions to convert the input types to types that are supported\. Supported input types are indicated in the error message\.
+
+#### In GROUP BY clauses, nested columns must be double quoted<a name="engine-versions-reference-0003-group-by-nested-columns-require-double-quotes"></a>
+
+**Error message**:  "*column\_name*"\."*nested\_column*" must be an aggregate expression or appear in GROUP BY clause
+
+**Cause**: Athena engine version 3 requires that nested column names in `GROUP BY` clauses be double quoted\. For example, the following query produces the error because, in the `GROUP BY` clause, `user.name` is not double quoted \.
+
+```
+SELECT "user"."name" FROM dataset 
+GROUP BY user.name
+```
+
+**Suggested solution**: Place double quotes around nested column names in `GROUP BY` clauses, as in the following example\.
+
+```
+SELECT "user"."name" FROM dataset 
+GROUP BY "user"."name"
+```
 
 #### Minute\(\) function does not support interval year to month<a name="engine-versions-reference-0003-minute-function"></a>
 
@@ -439,3 +460,69 @@ In Athena engine version 2, casting a `Timestamp` with time zone to `varchar` ca
 **Error message**: There is no error message, but values that were trimmed in Athena engine version 2 are rounded in Athena engine version 3\.
 
 **Suggested solution**: Exercise care when using `Timestamp` values with a precision greater than 3\.
+
+#### Iceberg table timestamp precision now in microseconds<a name="engine-versions-reference-0003-timestamp-values-iceberg-microseconds"></a>
+
+In Athena engine version 3, timestamp values for Iceberg tables are now stored with microsecond precision\. In Athena engine version 2 timestamp values for Iceberg tables were stored with millisecond precision\.
+
+The following procedure illustrates this change\.
+
+**Example**
+
+1. Create an Iceberg table that has a column of the `timestamp` data type:
+
+   ```
+   CREATE TABLE iceberg_timestamp_sample (last_event_date timestamp) 
+   LOCATION 's3://DOC-EXAMPLE-BUCKET/' 
+   TBLPROPERTIES ('table_type'='ICEBERG')
+   ```
+
+1. Use `INSERT INTO` to insert a single row that has the current timestamp\.
+
+   ```
+   INSERT INTO iceberg_timestamp_sample SELECT current_timestamp 
+   ```
+
+1. In Athena engine version 2, perform the following query and observe the response\.
+
+   ```
+   SELECT * FROM iceberg_timestamp_sample
+   ```
+
+   Response:
+
+   ```
+   2023-01-20 21:16:56.937
+   ```
+
+1. In Athena engine version 3, perform the same query and observe the response\.
+
+   ```
+   SELECT * FROM iceberg_timestamp_sample
+   ```
+
+   Response:
+
+   ```
+   2023-01-20 21:16:56.937000
+   ```
+
+**Error message**: There is no error message, but you might have to convert timestamp values stored in Iceberg datasets to and from different precisions when you read and write data\.
+
+**Suggested solution**: Exercise care when using timestamp values\. See the Athena engine version 3 date and time [functions](functions.md) for information about handling timestamp values\.
+
+#### Space required between date and time values when casting from string to timestamp<a name="engine-versions-reference-0003-timestamp-cast-space"></a>
+
+**Error message**: INVALID\_CAST\_ARGUMENT: Value cannot be cast to timestamp\.
+
+**Cause**: Athena engine version 3 no longer accepts a hyphen as a valid separator between date and time values in the input string to `cast`\. For example, the following query works in Athena engine version 2 but not in Athena engine version 3:
+
+```
+SELECT CAST('2021-06-06-23:38:46' AS timestamp) AS this_time
+```
+
+**Suggested solution**: In Athena engine version 3, replace the hyphen between the date and the time with a space, as in the following example\.
+
+```
+SELECT CAST('2021-06-06 23:38:46' AS timestamp) AS this_time
+```

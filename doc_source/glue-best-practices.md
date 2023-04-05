@@ -2,7 +2,7 @@
 
 When using Athena with the AWS Glue Data Catalog, you can use AWS Glue to create databases and tables \(schema\) to be queried in Athena, or you can use Athena to create schema and then use them in AWS Glue and related services\. This topic provides considerations and best practices when using either method\.
 
-Under the hood, Athena uses Presto to process DML statements and Hive to process the DDL statements that create and modify schema\. With these technologies, there are a couple of conventions to follow so that Athena and AWS Glue work well together\.
+Under the hood, Athena uses Trino to process DML statements and Hive to process the DDL statements that create and modify schema\. With these technologies, there are a couple of conventions to follow so that Athena and AWS Glue work well together\.
 
  **In this topic** 
 +  **[Database, table, and column names](#schema-names)** 
@@ -38,7 +38,7 @@ For more information, see [Databases](https://docs.aws.amazon.com/glue/latest/dg
 **Note**  
 If you use an [AWS::Glue::Database](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html) AWS CloudFormation template to create an AWS Glue database and do not specify a database name, AWS Glue automatically generates a database name in the format *resource\_name–random\_string* that is not compatible with Athena\.
 
-You can use the AWS Glue Catalog Manager to rename columns, but not table names or database names\. To change a database name, you must create a new database and copy tables from the old database to it \(in other words, copy the metadata to a new entity\)\. You can follow a similar process for tables\. You can use the AWS Glue SDK or AWS CLI to do this\.
+You can use the AWS Glue Catalog Manager to rename columns, but not table names or database names\. To work around this limitation, you must use a definition of the old database to create a database with the new name\. Then you use definitions of the tables from the old database to re\-create the tables in the new database\. To do this, you can use the AWS CLI or AWS Glue SDK\. For steps, see [Using the AWS CLI to recreate an AWS Glue database and its tables](glue-recreate-db-and-tables-cli.md)\.
 
 ## Using AWS Glue crawlers<a name="schema-crawlers"></a>
 

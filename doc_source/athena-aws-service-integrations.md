@@ -60,7 +60,7 @@ You can use Amazon Athena to query Amazon S3 inventory using standard SQL\. You 
 
 **AWS Step Functions**  
 Reference topic: [Call Athena with Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/connect-athena.html) in the *AWS Step Functions Developer Guide*  
-Call Athena with AWS Step Functions\. AWS Step Functions can control select AWS services directly using the [Amazon States Language](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)\. You can use Step Functions with Athena to start and stop query execution, get query results, run ad\-hoc or scheduled data queries, and retrieve results from data lakes in Amazon S3\. For more information, see the [AWS Step Functions Developer Guide](https://docs.aws.amazon.com/step-functions/latest/dg/)\.   
+Call Athena with AWS Step Functions\. AWS Step Functions can control select AWS services directly using the [Amazon States Language](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)\. You can use Step Functions with Athena to start and stop query execution, get query results, run ad\-hoc or scheduled data queries, and retrieve results from data lakes in Amazon S3\. The Step Functions role must have permissions to use Athena\. For more information, see the [AWS Step Functions Developer Guide](https://docs.aws.amazon.com/step-functions/latest/dg/)\.   
 **Video: Orchestrate Amazon Athena Queries using AWS Step Functions**  
 The following video demonstrates how to use Amazon Athena and AWS Step Functions to run a regularly scheduled Athena query and generate a corresponding report\.
 

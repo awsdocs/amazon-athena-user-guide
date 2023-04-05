@@ -2,7 +2,7 @@
 
 When running queries in Athena, keep in mind the following considerations and limitations:
 + **Stored procedures** – Stored procedures are not supported\.
-+ **Maximum number of partitions** – The maximum number of partitions you can create with `CREATE TABLE AS SELECT` \(CTAS\) statements is 100\. For information, see [CREATE TABLE AS](create-table-as.md)\. For a workaround, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
++ **Maximum number of partitions** – The maximum number of partitions you can create with `CREATE TABLE AS SELECT` \(CTAS\) statements is 100\. For information, see [CREATE TABLE AS](create-table-as.md)\. For a workaround, see [Using CTAS and INSERT INTO to work around the 100 partition limit](ctas-insert-into.md)\.
 + **Unsupported statements** – The following statements are not supported:
   + `CREATE TABLE LIKE` is not supported\.
   + `DESCRIBE INPUT` and `DESCRIBE OUTPUT` is not supported\.

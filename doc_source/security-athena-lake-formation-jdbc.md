@@ -15,7 +15,7 @@ To use Amazon Athena and Lake Formation for federated access, you must meet the 
 ## Considerations and limitations<a name="security-athena-lake-formation-jdbc-considerations-and-limitations"></a>
 
 When using the Athena JDBC or ODBC driver and Lake Formation to configure federated access to Athena, keep in mind the following points:
-+ Currently, the Athena JDBC driver and ODBC drivers support the Okta and Microsoft Active Directory Federation Services \(AD FS\) identity providers\. Although the Athena JDBC driver has a generic SAML class that can be extended to use other identity providers, support for custom extensions that enable other identity providers \(IdPs\) for use with Athena may be limited\.
++ Currently, the Athena JDBC driver and ODBC drivers support the Okta, Microsoft Active Directory Federation Services \(AD FS\), and Azure AD identity providers\. Although the Athena JDBC driver has a generic SAML class that can be extended to use other identity providers, support for custom extensions that enable other identity providers \(IdPs\) for use with Athena may be limited\.
 + Currently, you cannot use the Athena console to configure support for IdP and SAML use with Athena\. To configure this support, you use the third\-party identity provider, the Lake Formation and IAM management consoles, and the JDBC or ODBC driver client\.
 + You should understand the [SAML 2\.0 specification](https://www.oasis-open.org/standards#samlv2.0) and how it works with your identity provider before you configure your identity provider and SAML for use with Lake Formation and Athena\.
 + SAML providers and the Athena JDBC and ODBC drivers are provided by third parties, so support through AWS for issues related to their use may be limited\.

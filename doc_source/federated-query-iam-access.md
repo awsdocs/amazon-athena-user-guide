@@ -3,7 +3,7 @@
 The permission policy examples in this topic demonstrate required allowed actions and the resources for which they are allowed\. Examine these policies carefully and modify them according to your requirements before attaching them to IAM identities\.
 
 For information about attaching policies to IAM identities, see [Adding and removing IAM identity permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
-+  [Example Policy to Allow an IAM Principal to Run and Return Results Using Athena Federated Query](#fed-using-iam) 
++  [Example policy to allow an IAM principal to run and return results using Athena Federated Query](#fed-using-iam) 
 +  [Example Policy to Allow an IAM Principal to Create a Data Source Connector](#fed-creating-iam) 
 
 **Example – Allow an IAM principal to run and return results using Athena Federated Query**  
@@ -26,6 +26,7 @@ The following identity\-based permissions policy allows actions that a user or o
                 "athena:StopQueryExecution",
                 "athena:GetQueryExecution",
                 "athena:GetQueryResults",
+                "athena:GetDataCatalog",
                 "s3:ListMultipartUploadParts"
             ],
             "Resource": [
@@ -60,7 +61,8 @@ The following identity\-based permissions policy allows actions that a user or o
 
 | Allowed actions | Explanation | 
 | --- | --- | 
-|  <pre> "athena:StartQueryExecution",<br /> "athena:GetQueryResults",<br /> "athena:GetWorkGroup",<br /> "athena:StopQueryExecution",<br /> "athena:GetQueryExecution",<br /></pre>  |  Athena permissions that are required to run federated queries\.  | 
+|  <pre> "athena:StartQueryExecution",<br /> "athena:GetQueryResults",<br /> "athena:GetWorkGroup",<br /> "athena:StopQueryExecution",<br /> "athena:GetQueryExecution" </pre>  |  Athena permissions that are required to run federated queries\.  | 
+|  <pre> "athena:StartQueryExecution",<br /> "athena:GetQueryResults",<br /> "athena:GetWorkGroup",<br /> "athena:StopQueryExecution",<br /> "athena:GetQueryExecution,"<br /> "athena:GetDataCatalog"</pre>  |  Athena permissions that are required to run federated view queries\.  | 
 |  <pre>"s3:PutObject",<br />"s3:GetObject",<br />"s3:AbortMultipartUpload"</pre>  |  `s3:PutObject` and `s3:AbortMultipartUpload` allow writing query results to all sub\-folders of the query results bucket as specified by the `arn:aws:s3:::MyQueryResultsBucket/*` resource identifier, where *MyQueryResultsBucket* is the Athena query results bucket\. For more information, see [Working with query results, recent queries, and output files](querying.md)\. `s3:GetObject` allows reading of query results and query history for the resource specified as `arn:aws:s3:::MyQueryResultsBucket`, where *MyQueryResultsBucket* is the Athena query results bucket\. `s3:GetObject` also allows reading from the resource specified as `"arn:aws:s3:::MyLambdaSpillBucket/MyLambdaSpillPrefix*"`, where *MyLambdaSpillPrefix* is specified in the configuration of the Lambda function or functions being invoked\.  | 
 |  <pre>"lambda:InvokeFunction"</pre>  | Allows queries to invoke the AWS Lambda functions for the AWS Lambda functions specified in the Resource block\. For example, arn:aws:lambda:\*:MyAWSAcctId:function:MyAthenaLambdaFunction, where MyAthenaLambdaFunction specifies the name of a Lambda function to be invoked\. Multiple functions can be specified as shown in the example\. | 
 

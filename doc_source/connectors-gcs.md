@@ -6,7 +6,7 @@ If you have Lake Formation enabled in your account, the IAM role for your Athena
 
 ## Prerequisites<a name="connectors-gcs-prerequisites"></a>
 + Set up an AWS Glue database and table that correspond to your bucket and folders in Google Cloud Storage\. For the steps, see [Setting up databases and tables in AWS Glue](#connectors-gcs-setting-up-databases-and-tables-in-glue) later in this document\.
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 
 ## Limitations<a name="connectors-gcs-limitations"></a>
 + Write DDL operations are not supported\.

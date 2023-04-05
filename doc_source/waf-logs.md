@@ -63,6 +63,7 @@ CREATE EXTERNAL TABLE `waf_logs`(
                                                               struct <
                                                                   ruleid: string,
                                                                   action: string,
+                                                                  overriddenaction: string,
                                                                   rulematchdetails: array <
                                                                                        struct <
                                                                                            conditiontype: string,
@@ -216,6 +217,7 @@ The SerDe expects each JSON document to be on a single line of text with no line
                                                                  struct <
                                                                      ruleid: string,
                                                                      action: string,
+                                                                     overriddenaction: string,
                                                                      rulematchdetails: array <
                                                                                           struct <
                                                                                               conditiontype: string,
@@ -313,14 +315,14 @@ WHERE LOWER(header.name)='referer' AND header.value LIKE '%amazon%'
 ```
 
 **Count all matched IP addresses in the last 10 days that have matched excluded rules**  
- The following query counts the number of times in the last 10 days that the IP address matched the excluded rule in the rule group\. 
+The following query counts the number of times in the last 10 days that the IP address matched the excluded rule in the rule group\. 
 
 ```
 WITH test_dataset AS 
   (SELECT * FROM waf_logs 
     CROSS JOIN UNNEST(rulegrouplist) AS t(allrulegroups))
-SELECT COUNT(*) AS
-  count, 
+SELECT 
+  COUNT(*) AS count, 
   "httprequest"."clientip", 
   "allrulegroups"."excludedrules",
   "allrulegroups"."ruleGroupId"
@@ -329,6 +331,44 @@ WHERE allrulegroups.excludedrules IS NOT NULL AND from_unixtime(timestamp/1000) 
 GROUP BY "httprequest"."clientip", "allrulegroups"."ruleGroupId", "allrulegroups"."excludedrules"
 ORDER BY count DESC
 ```
+
+**Group all counted managed rules by the number of times matched**  
+If you set rule group rule actions to Count in your web ACL configuration before October 27, 2022, AWS WAF saved your overrides in the web ACL JSON as `excludedRules`\. Now, the JSON setting for overriding a rule to Count is in the `ruleActionOverrides` settings\. For more information, see [Action overrides in rule groups](https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-rule-group-override-options.html) in the *AWS WAF Developer Guide*\. To extract managed rules in Count mode from the new log structure, query the `nonTerminatingMatchingRules` in the `ruleGroupList` section instead of the `excludedRules` field, as in the following example\.
+
+```
+SELECT
+ count(*) AS count,
+ httpsourceid,
+ httprequest.clientip,
+ t.rulegroupid, 
+ t.nonTerminatingMatchingRules
+FROM "waf_logs" 
+CROSS JOIN UNNEST(rulegrouplist) AS t(t) 
+WHERE action <> 'BLOCK' AND cardinality(t.nonTerminatingMatchingRules) > 0 
+GROUP BY t.nonTerminatingMatchingRules, action, httpsourceid, httprequest.clientip, t.rulegroupid 
+ORDER BY "count" DESC 
+Limit 50
+```
+
+**Group all counted custom rules by number of times matched**  
+ The following query groups all counted custom rules by the number of times matched\.
+
+```
+SELECT
+  count(*) AS count,
+         httpsourceid,
+         httprequest.clientip,
+         t.ruleid,
+         t.action
+FROM "waf_logs" 
+CROSS JOIN UNNEST(nonterminatingmatchingrules) AS t(t) 
+WHERE action <> 'BLOCK' AND cardinality(nonTerminatingMatchingRules) > 0 
+GROUP BY t.ruleid, t.action, httpsourceid, httprequest.clientip 
+ORDER BY "count" DESC
+Limit 50
+```
+
+ For information about the log locations for custom rules and managed rule groups, see [Monitoring and tuning](https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-testing-activities.html) in the *AWS WAF Developer Guide*\.
 
 ### Working with date and time<a name="query-examples-waf-logs-date-time"></a>
 
@@ -420,8 +460,9 @@ LIMIT 100
 The following query counts the number of times the request has arrived from an IP address that belongs to Ireland \(IE\) and has been blocked by the `RATE_BASED` terminating rule\.
 
 ```
-SELECT COUNT(httpRequest.country) as count,
-httpRequest.country
+SELECT 
+  COUNT(httpRequest.country) as count, 
+  httpRequest.country 
 FROM waf_logs
 WHERE 
   terminatingruletype='RATE_BASED' AND 
@@ -435,8 +476,8 @@ LIMIT 100;
 The following query counts the number of times the request has been blocked, with results grouped by WebACL, RuleId, ClientIP, and HTTP Request URI\.
 
 ```
-SELECT COUNT(*) AS
-  count,
+SELECT 
+  COUNT(*) AS count,
   webaclid,
   terminatingruleid,
   httprequest.clientip,
@@ -452,8 +493,8 @@ LIMIT 100;
 The following query counts the number of times a specific terminating rule ID has been matched \(`WHERE terminatingruleid='e9dd190d-7a43-4c06-bcea-409613d9506e'`\)\. The query then groups the results by WebACL, Action, ClientIP, and HTTP Request URI\.
 
 ```
-SELECT COUNT(*) AS
-  count,
+SELECT 
+  COUNT(*) AS count,
   webaclid,
   action,
   httprequest.clientip,

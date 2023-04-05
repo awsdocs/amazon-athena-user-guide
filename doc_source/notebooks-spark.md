@@ -10,14 +10,23 @@ Amazon Athena offers the following features:
 
 ## Considerations and limitations<a name="notebooks-spark-considerations-and-limitations"></a>
 + Currently, Amazon Athena for Apache Spark is available in the following AWS Regions:
+  + Asia Pacific \(Mumbai\)
+  + Asia Pacific \(Singapore\)
+  + Asia Pacific \(Sydney\)
   + Asia Pacific \(Tokyo\)
+  + Europe \(Frankfurt\)
   + Europe \(Ireland\)
   + US East \(N\. Virginia\)
   + US East \(Ohio\)
   + US West \(Oregon\)
 + AWS Lake Formation is not supported\.
++ Apache Iceberg is not supported\. 
++ Apache Hudi is not supported\.
++ Delta Lake is not supported\.
++ Apache Spark enabled workgroups can use the Athena notebook editor, but not the Athena query editor\. Only Athena SQL workgroups can use the Athena query editor\.
 + Cross\-engine view queries are not supported\. Views created by Athena SQL are not queryable by Athena for Spark\. Because views for the two engines are implemented differently, they are not compatible for cross\-engine use\.
 + MLlib \(Apache Spark machine learning library\) is not supported\. For a list of supported Python libraries, see the [List of preinstalled Python libraries](notebooks-spark-preinstalled-python-libraries.md)\.
 +  Only one active session per notebook is allowed\. 
 + When multiple users use the console to open an existing session in a workgroup, they access the same notebook\. To avoid confusion, only open sessions that you create yourself\.
++ Importing `.jar` files for database connectors is not supported\.
 + For information on troubleshooting Spark notebooks, sessions, and workgroups in Athena, see [Troubleshooting Athena for Spark](notebooks-spark-troubleshooting.md)\.

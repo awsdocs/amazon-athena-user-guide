@@ -5,7 +5,7 @@ The Amazon Athena DynamoDB connector enables Amazon Athena to communicate with D
 If you have Lake Formation enabled in your account, the IAM role for your Athena federated Lambda connector that you deployed in the AWS Serverless Application Repository must have read access in Lake Formation to the AWS Glue Data Catalog\.
 
 ## Prerequisites<a name="connectors-dynamodb-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 
 ## Parameters<a name="connectors-dynamodb-parameters"></a>
 
@@ -91,6 +91,16 @@ The Athena DynamoDB connector supports parallel scans and attempts to push down 
 The Lambda function performs predicate pushdown to decrease the data scanned by the query\. However, selecting a subset of columns sometimes results in a longer query execution runtime\. `LIMIT` clauses reduce the amount of data scanned, but if you do not provide a predicate, you should expect `SELECT` queries with a `LIMIT` clause to scan at least 16 MB of data\.
 
 The DynamoDB connector scans more data for larger datasets than for smaller datasets regardless of the `LIMIT` clause applied\. For example, the query `SELECT * LIMIT 10000` scans more data for a larger underlying dataset than a smaller underlying dataset\.
+
+## Troubleshooting<a name="connectors-dynamodb-troubleshooting"></a>
+
+### Multiple filters on a sort key column<a name="connectors-dynamodb-troubleshooting-sort-key-filters"></a>
+
+**Error message**: KeyConditionExpressions must only contain one condition per key
+
+**Cause**: This issue can occur in Athena engine version 3 in queries that have both a lower and upper bounded filter on a DynamoDB sort key column\. Because DynamoDB does not support more than one filter condition on a sort key, an error is thrown when the connector attempts to push down a query that has both conditions applied\.
+
+**Solution**: Update the connector to version 2023\.11\.1 or later\. For instructions on updating a connector, see [Updating a data source connector](connectors-updating.md)\.
 
 ## Costs<a name="connectors-dynamodb-costs"></a>
 

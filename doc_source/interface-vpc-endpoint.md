@@ -24,38 +24,74 @@ Athena supports making calls to all of its [API actions](https://docs.aws.amazon
 
 ## Create a VPC endpoint policy for Athena<a name="api-private-link-policy"></a>
 
-You can create a policy for Amazon VPC endpoints for Athena to specify the following:
-+ The principal that can perform actions\.
-+ The actions that can be performed\.
-+ The resources on which actions can be performed\.
+You can create a policy for Amazon VPC endpoints for Athena to specify restrictions like the following:
++ **Principal** – The principal that can perform actions\.
++ **Actions** – The actions that can be performed\.
++ **Resources** – The resources on which actions can be performed\.
++ **Only trusted identities** – Use the `aws:PrincipalOrgId` condition to restrict access to only credentials that are part of your AWS organization\. This can help prevent access by unintended principals\. 
++ **Only trusted resources** – Use the `aws:ResourceOrgId` condition to prevent access to unintended resources\. 
++ **Only trusted identities and resources** – Create a combined policy for a VPC endpoint that helps prevent access to unintended principals and resources\. 
 
-For more information, see [Controlling access to services with VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *Amazon VPC User Guide*\.
-
-Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+For more information, see [Controlling access to services with VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *Amazon VPC User Guide* and [Appendix 2 – VPC endpoint policy examples](https://docs.aws.amazon.com/whitepapers/latest/building-a-data-perimeter-on-aws/appendix-2-vpc-endpoint-policy-examples.html) in the AWS Whitepaper *Building a data perimeter on AWS*\.
 
 **Example – VPC endpoint policy for Athena actions**  
-The endpoint to which this policy is attached grants access to the listed `athena` actions to all principals in `workgroupA`\.  
+The following example allows requests by organization identities to organization resources, allows requests by AWS service principals, and grants access to the listed `athena` actions to all principals in `workgroupA`\.  
 
 ```
 {
-  "Statement": [{
-    "Principal": "*",
-    "Effect": "Allow",
-    "Action": [
-      "athena:StartQueryExecution",
-      "athena:RunQuery",
-      "athena:GetQueryExecution",
-      "athena:GetQueryResults",
-      "athena:StopQueryExecution",
-      "athena:ListWorkGroups",
-      "athena:GetWorkGroup",
-      "athena:TagResource"
-    ],
-    "Resource": [
-      "arn:aws:athena:us-west-1:AWSAccountId:workgroup/workgroupA"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowRequestsByOrgsIdentitiesToOrgsResources",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "*",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:PrincipalOrgID": "my-org-id",
+                    "aws:ResourceOrgID": "my-org-id"
+                }
+            }
+        },
+        {
+            "Sid": "AllowRequestsByAWSServicePrincipals",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "*",
+            "Resource": "*",
+            "Condition": {
+                "Bool": {
+                    "aws:PrincipalIsAWSService": "true"
+                }
+            }
+        },
+        {
+            "Sid": "PermitAccessToSpecificWorkgroup",
+            "Principal": "*",
+            "Effect": "Allow",
+            "Action": [
+                "athena:StartQueryExecution",
+                "athena:RunQuery",
+                "athena:GetQueryExecution",
+                "athena:GetQueryResults",
+                "athena:StopQueryExecution",
+                "athena:ListWorkGroups",
+                "athena:GetWorkGroup",
+                "athena:TagResource"
+            ],
+            "Resource": [
+                "arn:${AWS::Partition}:athena:${AWS::Region}:AWSAccountId:workgroup/workgroupA"
+            ]
+        }
     ]
-  }]
 }
 ```
+
+Whenever you use IAM policies, make sure that you follow IAM best practices\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 ## <a name="notebook-private-link-vpn"></a>

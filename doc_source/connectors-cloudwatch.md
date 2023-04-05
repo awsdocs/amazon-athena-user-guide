@@ -5,7 +5,7 @@ The Amazon Athena CloudWatch connector enables Amazon Athena to communicate with
 The connector maps your LogGroups as schemas and each LogStream as a table\. The connector also maps a special `all_log_streams` view that contains all LogStreams in the LogGroup\. This view enables you to query all the logs in a LogGroup at once instead of searching through each LogStream individually\.
 
 ## Prerequisites<a name="connectors-cloudwatch-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 
 ## Parameters<a name="connectors-cloudwatch-parameters"></a>
 

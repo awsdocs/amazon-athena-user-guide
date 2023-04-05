@@ -27,9 +27,9 @@ In the Athena console, you can create a CTAS query from another query\.<a name="
       + **File format** – Choose among options like CSV, TSV, JSON, Parquet, or ORC\. For information about the Parquet and ORC formats, see [Columnar storage formats](columnar-storage.md)\.
       + **Write compression** – \(Optional\) Choose a compression format\. Athena supports a variety of compression formats for reading and writing data, including reading from a table that uses multiple compression formats\. For example, Athena can successfully read the data in a table that uses Parquet file format when some Parquet files are compressed with Snappy and other Parquet files are compressed with GZIP\. The same principle applies for ORC, text file, and JSON storage formats\. For more information, see [Athena compression support](compression-formats.md)\.
       + **Partitions** – \(Optional\) Select the columns that you want to partition\. Partitioning your data restricts the amount of data scanned by each query, thus improving performance and reducing cost\. You can partition your data by any key\. For more information, see [Partitioning data in Athena](partitions.md)\.
-      + **Buckets** – \(Optional\) Select the columns that you want to bucket\. Bucketing is a technique that groups data based on specific columns together within a single partition\. These columns are known as *bucket keys*\. By grouping related data into a single bucket \(a file within a partition\), you significantly reduce the amount of data scanned by Athena, thus improving query performance and reducing cost\. For more information, see [Bucketing vs partitioning](ctas-bucketing-vs-partitioning.md)\.
+      + **Buckets** – \(Optional\) Select the columns that you want to bucket\. Bucketing is a technique that groups data based on specific columns together within a single partition\. These columns are known as *bucket keys*\. By grouping related data into a single bucket \(a file within a partition\), you significantly reduce the amount of data scanned by Athena, thus improving query performance and reducing cost\. For more information, see [Partitioning and bucketing in Athena](ctas-partitioning-and-bucketing.md)\.
 
-   1. For **Preview table query**, review your query\. For query syntax, see [ CREATE TABLE AS ](create-table-as.md)\.
+   1. For **Preview table query**, review your query\. For query syntax, see [CREATE TABLE AS](create-table-as.md)\.
 
    1. Choose **Create table**\.<a name="ctas-create-new"></a>
 
@@ -39,7 +39,7 @@ Use the `CREATE TABLE AS SELECT` template to create a CTAS query in the query ed
 
 1. In the Athena console, next to **Tables and views**, choose **Create table**, and then choose **CREATE TABLE AS SELECT**\. This populates the query editor with a CTAS query with placeholder values\.
 
-1. In the query editor, edit the query as needed\. For query syntax, see [ CREATE TABLE AS ](create-table-as.md)\.
+1. In the query editor, edit the query as needed\. For query syntax, see [CREATE TABLE AS](create-table-as.md)\.
 
 1. Choose **Run**\.
 

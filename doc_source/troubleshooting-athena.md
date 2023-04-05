@@ -26,7 +26,7 @@ Athena does not maintain concurrent validation for CTAS\. Make sure that there i
 
 ### HIVE\_TOO\_MANY\_OPEN\_PARTITIONS<a name="troubleshooting-athena-ctas-hive-too-many-open-partitions"></a>
 
-When you use a CTAS statement to create a table with more than 100 partitions, you may receive the error HIVE\_TOO\_MANY\_OPEN\_PARTITIONS: Exceeded limit of 100 open writers for partitions/buckets\. To work around this limitation, you can use a CTAS statement and a series of `INSERT INTO` statements that create or insert up to 100 partitions each\. For more information, see [Using CTAS and INSERT INTO to create a table with more than 100 partitions](ctas-insert-into.md)\.
+When you use a CTAS statement to create a table with more than 100 partitions, you may receive the error HIVE\_TOO\_MANY\_OPEN\_PARTITIONS: Exceeded limit of 100 open writers for partitions/buckets\. To work around this limitation, you can use a CTAS statement and a series of `INSERT INTO` statements that create or insert up to 100 partitions each\. For more information, see [Using CTAS and INSERT INTO to work around the 100 partition limit](ctas-insert-into.md)\.
 
 ## Data file issues<a name="troubleshooting-athena-data-file-issues"></a>
 
@@ -36,7 +36,7 @@ Athena treats sources files that start with an underscore \(\_\) or a dot \(\.\)
 
 ### Athena cannot read files stored in Amazon S3 Glacier<a name="troubleshooting-athena-athena-cannot-read-files-stored-in-the-glacier-storage-class"></a>
 
-Athena does not support querying the data in the [S3 Glacier flexible retrieval](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier) or S3 Glacier Deep Archive storage classes\. Objects in the S3 Glacier and S3 Glacier Deep Archive storage classes are ignored\. Data that is moved or transitioned to one of these classes are no longer readable or queryable by Athena even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class, or use the Amazon S3 Glacier Instant Retrieval storage class instead, which is queryable by Athena\. For more information, see [Amazon S3 Glacier instant retrieval storage class](http://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/)\.
+Athena does not support querying the data in the [S3 Glacier flexible retrieval](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-glacier) or S3 Glacier Deep Archive storage classes\. Objects in the S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive storage classes are ignored\. Data that is moved or transitioned to one of these classes are no longer readable or queryable by Athena even after storage class objects are restored\. To make the restored objects that you want to query readable by Athena, copy the restored objects back into Amazon S3 to change their storage class, or use the Amazon S3 Glacier Instant Retrieval storage class instead, which is queryable by Athena\. For more information, see [Amazon S3 Glacier instant retrieval storage class](http://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/)\.
 
 ### Athena reads files that I excluded from the AWS Glue crawler<a name="troubleshooting-athena-athena-reads-files-that-i-excluded-from-the-glue-crawler"></a>
 
@@ -83,7 +83,7 @@ Make sure that you have specified a valid S3 location for your query results\. F
 
 ## Federated queries<a name="troubleshooting-athena-federated-queries"></a>
 
-For information about troubleshooting federated queries, see [Common\_Problems](https://github.com/awslabs/aws-athena-query-federation/wiki/Common_Problems) in the awslabs/aws\-athena\-query\-federation section of GitHub\.
+For information about troubleshooting federated queries, see [Common\_Problems](https://github.com/awslabs/aws-athena-query-federation/wiki/Common_Problems) in the awslabs/aws\-athena\-query\-federation section of GitHub, or see the documentation for the individual [Athena data source connectors](connectors-available.md)\.
 
 ## JSON related errors<a name="troubleshooting-athena-json-related-errors"></a>
 
@@ -288,6 +288,14 @@ The maximum query string length in Athena \(262,144 bytes\) is not an adjustable
 
 This error can occur when you query a table created by an AWS Glue crawler from a UTF\-8 encoded CSV file that has a byte order mark \(BOM\)\. AWS Glue doesn't recognize the BOMs and changes them to question marks, which Amazon Athena doesn't recognize\. The solution is to remove the question mark in Athena or in AWS Glue\.
 
+### Too many arguments for function call<a name="troubleshooting-athena-too-many-arguments"></a>
+
+In Athena engine version 3, functions cannot take more than 127 arguments\. This limitation is by design\. If you use a function with more than 127 parameters, an error message like the following occurs:
+
+TOO\_MANY\_ARGUMENTS: line *nnn*:*nn*: Too many arguments for function call *function\_name*\(\)\.
+
+To resolve this issue, use fewer parameters per function call\.
+
 ## Throttling issues<a name="troubleshooting-athena-throttling-issues"></a>
 
 If your queries exceed the limits of dependent services such as Amazon S3, AWS KMS, AWS Glue, or AWS Lambda, the following messages can be expected\. To resolve these issues, reduce the number of concurrent calls that originate from the same account\.
@@ -301,6 +309,8 @@ If your queries exceed the limits of dependent services such as Amazon S3, AWS K
 | AWS KMS | You have exceeded the rate at which you may call KMS\. Reduce the frequency of your calls\. | 
 | AWS Lambda |  Rate exceeded TooManyRequestsException  | 
 | Amazon S3 | AmazonS3Exception: Please reduce your request rate\. | 
+
+For information about ways to prevent Amazon S3 throttling when you use Athena, see [Preventing Amazon S3 throttling](performance-tuning-s3-throttling.md)\.
 
 ## Views<a name="troubleshooting-athena-views"></a>
 

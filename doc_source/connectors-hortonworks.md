@@ -3,7 +3,7 @@
 The Amazon Athena connector for Hortonworks enables Amazon Athena to run SQL queries on the Cloudera [Hortonworks](https://www.cloudera.com/products/hdp.html) data platform\. The connector transforms your Athena SQL queries to their equivalent HiveQL syntax\.
 
 ## Prerequisites<a name="connectors-hive-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 + Set up a VPC and a security group before you use this connector\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.
 
 ## Limitations<a name="connectors-hortonworks-limitations"></a>

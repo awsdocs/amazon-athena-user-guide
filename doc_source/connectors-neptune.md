@@ -11,7 +11,7 @@ If you have Lake Formation enabled in your account, the IAM role for your Athena
 Using the Neptune connector requires the following three steps\.
 + Setting up a Neptune cluster
 + Setting up an AWS Glue Data Catalog
-+ Deploying the connector to your AWS account\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\. For additional details specific to deploying the Neptune connector, see [Deploy the Amazon Athena Neptune Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-neptune/docs/neptune-connector-setup) on GitHub\.com\.
++ Deploying the connector to your AWS account\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\. For additional details specific to deploying the Neptune connector, see [Deploy the Amazon Athena Neptune Connector](https://github.com/awslabs/aws-athena-query-federation/tree/master/athena-neptune/docs/neptune-connector-setup) on GitHub\.com\.
 
 ## Limitations<a name="connectors-neptune-limitations"></a>
 

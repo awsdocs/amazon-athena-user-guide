@@ -3,7 +3,7 @@
 The Amazon Athena connector for Oracle enables Amazon Athena to run SQL queries on data stored in Oracle running on\-premises or on Amazon EC2 or Amazon RDS\. You can also use the connector to query data on [Oracle exadata](https://www.oracle.com/engineered-systems/exadata/)\.
 
 ## Prerequisites<a name="connectors-oracle-prerequisites"></a>
-+ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a connector and connecting to a data source](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
++ Deploy the connector to your AWS account using the Athena console or the AWS Serverless Application Repository\. For more information, see [Deploying a data source connector](connect-to-a-data-source-lambda.md) or [Using the AWS Serverless Application Repository to deploy a data source connector](connect-data-source-serverless-app-repo.md)\.
 + Set up a VPC and a security group before you use this connector\. For more information, see [Creating a VPC for a data source connector](athena-connectors-vpc-creation.md)\.
 
 ## Limitations<a name="connectors-oracle-limitations"></a>

@@ -10,11 +10,11 @@ To query your Amazon VPC flow logs, you have two options:
   For information about this approach, see [Query flow logs using Amazon Athena](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-athena.html) in the *Amazon VPC User Guide*\.
 + **Amazon Athena console** – Create your tables and queries directly in the Athena console\. For more information, continue reading this page\.
 
-## Creating and querying tables for VPC flow logs<a name="create-vpc-logs-table"></a>
+## Creating and querying tables for custom VPC flow logs<a name="create-vpc-logs-table"></a>
 
 Before you begin querying the logs in Athena, [enable VPC flow logs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html), and configure them to be saved to your Amazon S3 bucket\. After you create the logs, let them run for a few minutes to collect some data\. The logs are created in a GZIP compression format that Athena lets you query directly\. 
 
-When you create a VPC flow log, you can use the default format or specify a custom format\. Use a custom format when you want to specify the fields to return in the flow log and the order in which the fields appear\. For more information, see [Flow log records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in the *Amazon VPC User Guide*\.
+When you create a VPC flow log, you can use a custom format when you want to specify the fields to return in the flow log and the order in which the fields appear\. For more information about flow log records, see [Flow log records](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records) in the *Amazon VPC User Guide*\.
 
 ### Common considerations<a name="vpc-flow-logs-common-considerations"></a>
 
@@ -27,7 +27,7 @@ When you create tables in Athena for Amazon VPC flow logs, remember the followin
 
 ### CREATE TABLE statement for Amazon VPC flow logs<a name="vpc-flow-logs-create-table-statement"></a>
 
-The following procedure creates an Amazon VPC table for Amazon VPC flow logs\. If you create a flow log with a custom format, you must create a table with fields that match the fields that you specified when you created the flow log in the same order that you specified them\.
+The following procedure creates an Amazon VPC table for Amazon VPC flow logs\. When you create a flow log with a custom format, you create a table with fields that match the fields that you specified when you created the flow log in the same order that you specified them\.
 
 **To create an Athena table for Amazon VPC flow logs**
 
@@ -35,35 +35,35 @@ The following procedure creates an Amazon VPC table for Amazon VPC flow logs\. I
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS `vpc_flow_logs` (
-     `version` int, 
-     `account_id` string, 
-     `interface_id` string, 
-     `srcaddr` string, 
-     `dstaddr` string, 
-     `srcport` int, 
-     `dstport` int, 
-     `protocol` bigint, 
-     `packets` bigint, 
-     `bytes` bigint, 
-     `start` bigint, 
-     `end` bigint, 
-     `action` string, 
-     `log_status` string, 
-     `vpc_id` string, 
-     `subnet_id` string, 
-     `instance_id` string, 
-     `tcp_flags` int, 
-     `type` string, 
-     `pkt_srcaddr` string, 
-     `pkt_dstaddr` string, 
-     `region` string, 
-     `az_id` string, 
-     `sublocation_type` string, 
-     `sublocation_id` string, 
-     `pkt_src_aws_service` string, 
-     `pkt_dst_aws_service` string, 
-     `flow_direction` string, 
-     `traffic_path` int 
+     version int,
+     account_id string,
+     interface_id string,
+     srcaddr string,
+     dstaddr string,
+     srcport int,
+     dstport int,
+     protocol bigint,
+     packets bigint,
+     bytes bigint,
+     start bigint,
+     `end` bigint,
+     action string,
+     log_status string,
+     vpc_id string,
+     subnet_id string,
+     instance_id string,
+     tcp_flags int,
+     type string,
+     pkt_srcaddr string,
+     pkt_dstaddr string,
+     region string,
+     az_id string,
+     sublocation_type string,
+     sublocation_id string,
+     pkt_src_aws_service string,
+     pkt_dst_aws_service string,
+     flow_direction string,
+     traffic_path int
    )
    PARTITIONED BY (`date` date)
    ROW FORMAT DELIMITED
@@ -76,8 +76,8 @@ The following procedure creates an Amazon VPC table for Amazon VPC flow logs\. I
    + The query specifies `ROW FORMAT DELIMITED` and omits specifying a SerDe\. This means that the query uses the [LazySimpleSerDe for CSV, TSV, and custom\-delimited files](lazy-simple-serde.md)\. In this query, fields are terminated by a space\.
    + The `PARTITIONED BY` clause uses the `date` type\. This makes it possible to use mathematical operators in queries to select what's older or newer than a certain date\.
 **Note**  
-Because `date` is a reserved keyword in DDL statements, it is escaped by backtick characters\. For more information, see [Reserved keywords](reserved-words.md)\.
-   + For a VPC flow log with a custom format, modify the fields to match the fields that you specified when you created the flow log\.
+Because `date` is a reserved keyword in DDL statements, it is escaped by back tick characters\. For more information, see [Reserved keywords](reserved-words.md)\.
+   + For a VPC flow log with a different custom format, modify the fields to match the fields that you specified when you created the flow log\.
 
 1. Modify the `LOCATION 's3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/{account_id}/vpcflowlogs/{region_code}/'` to point to the Amazon S3 bucket that contains your log data\.
 
@@ -144,35 +144,35 @@ The following procedure creates an Amazon VPC table for Amazon VPC flow logs in 
 
    ```
    CREATE EXTERNAL TABLE IF NOT EXISTS vpc_flow_logs_parquet (
-     `version` int, 
-     `account_id` string, 
-     `interface_id` string, 
-     `srcaddr` string, 
-     `dstaddr` string, 
-     `srcport` int, 
-     `dstport` int, 
-     `protocol` bigint, 
-     `packets` bigint, 
-     `bytes` bigint, 
-     `start` bigint, 
-     `end` bigint, 
-     `action` string, 
-     `log_status` string, 
-     `vpc_id` string, 
-     `subnet_id` string, 
-     `instance_id` string, 
-     `tcp_flags` int, 
-     `type` string, 
-     `pkt_srcaddr` string, 
-     `pkt_dstaddr` string, 
-     `region` string, 
-     `az_id` string, 
-     `sublocation_type` string, 
-     `sublocation_id` string, 
-     `pkt_src_aws_service` string, 
-     `pkt_dst_aws_service` string, 
-     `flow_direction` string, 
-     `traffic_path` int
+     version int,
+     account_id string,
+     interface_id string,
+     srcaddr string,
+     dstaddr string,
+     srcport int,
+     dstport int,
+     protocol bigint,
+     packets bigint,
+     bytes bigint,
+     start bigint,
+     `end` bigint,
+     action string,
+     log_status string,
+     vpc_id string,
+     subnet_id string,
+     instance_id string,
+     tcp_flags int,
+     type string,
+     pkt_srcaddr string,
+     pkt_dstaddr string,
+     region string,
+     az_id string,
+     sublocation_type string,
+     sublocation_id string,
+     pkt_src_aws_service string,
+     pkt_dst_aws_service string,
+     flow_direction string,
+     traffic_path int
    )
    PARTITIONED BY (
      `aws-account-id` string,
@@ -219,34 +219,34 @@ The following `CREATE TABLE` statement is for VPC flow logs delivered in non\-Hi
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS test_table_vpclogs (
-`version` int,
-`account_id` string,
-`interface_id` string,
-`srcaddr` string,
-`dstaddr` string,
-`srcport` int,
-`dstport` int,
-`protocol` bigint,
-`packets` bigint,
-`bytes` bigint,
-`start` bigint,
-`end` bigint,
-`action` string,
-`log_status` string,
-`vpc_id` string,
-`subnet_id` string,
-`instance_id` string,
-`tcp_flags` int,
-`type` string,
-`pkt_srcaddr` string,
-`pkt_dstaddr` string,
-`az_id` string,
-`sublocation_type` string,
-`sublocation_id` string,
-`pkt_src_aws_service` string,
-`pkt_dst_aws_service` string,
-`flow_direction` string,
-`traffic_path` int
+  version int,
+  account_id string,
+  interface_id string,
+  srcaddr string,
+  dstaddr string,
+  srcport int,
+  dstport int,
+  protocol bigint,
+  packets bigint,
+  bytes bigint,
+  start bigint,
+  `end` bigint,
+  action string,
+  log_status string,
+  vpc_id string,
+  subnet_id string,
+  instance_id string,
+  tcp_flags int,
+  type string,
+  pkt_srcaddr string,
+  pkt_dstaddr string,
+  az_id string,
+  sublocation_type string,
+  sublocation_id string,
+  pkt_src_aws_service string,
+  pkt_dst_aws_service string,
+  flow_direction string,
+  traffic_path int
 )
 PARTITIONED BY (region string, day string)
 ROW FORMAT DELIMITED
