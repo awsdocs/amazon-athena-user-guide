@@ -129,4 +129,5 @@ The following table lists the Athena error type values and their meanings\.
 | 1406 | Query failed due to Amazon Athena throttling | 
 | 1500 | Permission error | 
 | 1501 | Amazon S3 permission error | 
+| 1602 |  Exceeded reserved capacity limit\. Insufficient capacity to execute this query\.  | 
 | 9999 | Internal service error | 

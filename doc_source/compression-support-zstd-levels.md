@@ -52,11 +52,11 @@ In the [ALTER TABLE SET TBLPROPERTIES](alter-table-set-tblproperties.md) stateme
 
 #### Example<a name="compression-support-zstd-levels-alter-table-example"></a>
 
-The following example modifies the table `existing_table` to use Parquet file format with ZSTD compression and ZSTD compression level 4\.
+The following example modifies the table `existing_table` to use Parquet file format with ZSTD compression and ZSTD compression level 4\. Note that the compression level value must be entered as a string rather an integer\.
 
 ```
 ALTER TABLE existing_table 
-SET TBLPROPERTIES ('parquet.compression' = 'ZSTD', 'compression_level' = 4)
+SET TBLPROPERTIES ('parquet.compression' = 'ZSTD', 'compression_level' = '4')
 ```
 
 ### CREATE TABLE<a name="compression-support-zstd-levels-create-table"></a>
@@ -74,7 +74,7 @@ CREATE EXTERNAL TABLE new_table (
 ) 
 STORED AS PARQUET 
 LOCATION 's3://DOC-EXAMPLE-BUCKET/' 
-TBLPROPERTIES ("write.compression" = "ZSTD", "compression_level" = 4)
+TBLPROPERTIES ("write.compression" = "ZSTD", "compression_level" = "4")
 ```
 
 ### CREATE TABLE AS \(CTAS\)<a name="compression-support-zstd-levels-ctas"></a>
@@ -87,7 +87,7 @@ The following CTAS example specifies Parquet as the file format using ZSTD compr
 
 ```
 CREATE TABLE new_table  
-WITH ( format = 'PARQUET', write_compression = 'ZSTD', compression_level = 4)  
+WITH ( format = 'PARQUET', write_compression = 'ZSTD', compression_level = '4')  
 AS SELECT * FROM old_table
 ```
 
@@ -102,5 +102,5 @@ The following example unloads the query results to the specified location using 
 ```
 UNLOAD (SELECT * FROM old_table) 
 TO 's3://DOC-EXAMPLE-BUCKET/' 
-WITH (format = 'PARQUET', compression = 'ZSTD', compression_level = 4)
+WITH (format = 'PARQUET', compression = 'ZSTD', compression_level = '4')
 ```

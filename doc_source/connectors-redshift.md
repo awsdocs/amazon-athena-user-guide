@@ -99,39 +99,6 @@ redshift://jdbc:redshift://redshift1.host:3306/default?...&user=sample2&password
 
 Currently, the Redshift connector recognizes the `user` and `password` JDBC properties\.
 
-### Using a single connection handler<a name="connectors-redshift-using-a-single-connection-handler"></a>
-
-You can use the following single connection metadata and record handlers to connect to a single Redshift instance\.
-
-
-****  
-
-| Handler type | Class | 
-| --- | --- | 
-| Composite handler | RedshiftCompositeHandler | 
-| Metadata handler | RedshiftMetadataHandler | 
-| Record handler | RedshiftRecordHandler | 
-
-#### Single connection handler parameters<a name="connectors-redshift-single-connection-handler-parameters"></a>
-
-
-****  
-
-| Parameter | Description | 
-| --- | --- | 
-| default | Required\. The default connection string\. | 
-
-The single connection handlers support one database instance and must provide a `default` connection string parameter\. All other connection strings are ignored\.
-
-The following example property is for a single Redshift instance supported by a Lambda function\.
-
-
-****  
-
-| Property | Value | 
-| --- | --- | 
-| default | redshift://redshift1\.host:3306/default?secret=Test/RDS/Redshift1 | 
-
 ### Spill parameters<a name="connectors-redshift-spill-parameters"></a>
 
 The Lambda SDK can spill data to Amazon S3\. All database instances accessed by the same Lambda function spill to the same location\.

@@ -77,3 +77,29 @@ To resolve this issue, do one of the following:
 **Solution A** – Use a different AWS Glue database when you create Hive managed tables\.
 
 **Solution B** – Specify an empty location for the default database in AWS Glue\. Then, create your managed tables in the default database\.
+
+## CSV and JSON file format incompatibility between Athena for Spark and Athena SQL<a name="notebooks-spark-known-issues-csv-and-json-file-format-incompatibility"></a>
+
+Due to a known issue with open source Spark, when you create a table in Athena for Spark on CSV or JSON data, the table might not be readable from Athena SQL, and vice versa\. 
+
+For example, you might create a table in Athena for Spark in one of the following ways: 
++ With the following `USING csv` syntax: 
+
+  ```
+  spark.sql('''CREATE EXTERNAL TABLE $tableName ( 
+  $colName1 $colType1, 
+  $colName2 $colType2, 
+  $colName3 $colType3) 
+  USING csv 
+  PARTITIONED BY ($colName1) 
+  LOCATION $s3_location''')
+  ```
++  With the following [DataFrame](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/dataframe.html) API syntax: 
+
+  ```
+  df.write.format('csv').saveAsTable($table_name)
+  ```
+
+Due to the known issue with open source Spark, queries from Athena SQL on the resulting tables might not succeed\. 
+
+**Suggested solution** – Try creating the table in Athena for Spark using Apache Hive syntax\. For more information, see [CREATE HIVEFORMAT TABLE](https://spark.apache.org/docs/3.2.1/sql-ref-syntax-ddl-create-table-hiveformat.html) in the Apache Spark documentation\. 

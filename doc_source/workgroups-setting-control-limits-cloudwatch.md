@@ -14,7 +14,7 @@ The per\-query and per\-workgroup limits are independent of each other\. A speci
 
 **To create a per\-query data usage control**
 
-The per\-query control limit specifies the total amount of data scanned per query\. If any query that runs in the workgroup exceeds the limit, it is canceled\. Canceled queries are charged according to [Amazon Athena pricing](https://aws.amazon.com/athena/pricing/)\.
+The per\-query control limit specifies the total amount of data scanned per query\. If any query that runs in the workgroup exceeds the limit, it is canceled\. Canceled queries are charged according to [Amazon Athena pricing](http://aws.amazon.com/athena/pricing/)\.
 **Note**  
 In the case of canceled or failed queries, Athena may have already written partial results to Amazon S3\. In such cases, Athena does not delete partial results from the Amazon S3 prefix where results are stored\. You must remove the Amazon S3 prefix with partial results\. Athena uses Amazon S3 multipart uploads to write data Amazon S3\. We recommend that you set the bucket lifecycle policy to end multipart uploads in cases when queries fail\. For more information, see [Aborting incomplete multipart uploads using a bucket lifecycle policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) in the *Amazon Simple Storage Service User Guide*\.
 

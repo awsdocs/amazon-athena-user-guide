@@ -15,7 +15,7 @@ First, use the Okta dashboard to create and configure a SAML 2\.0 app for single
 
 **To create an app integration in Okta**
 
-1. Log in to the Okta admin page at [https://admin\.okta\.com/admin/apps/active](https://admin.okta.com/admin/apps/active)
+1. Log in to the admin page for your account on [Okta\.com](https://www.okta.com/)\.
 
 1. In the navigation panel, choose **Applications**, **Applications\.**
 

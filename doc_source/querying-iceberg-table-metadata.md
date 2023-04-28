@@ -5,6 +5,8 @@ In a `SELECT` query, you can use the following properties after *table\_name*to 
 + **$manifests** – Shows a table's current file manifests\.
 + **$history** – Shows a table's history\.
 + **$partitions** – Shows a table's current partitions\.
++ **$snapshots** – Shows a table's snapshots\.
++ **$refs** – Shows a table's references\.
 
 ## Syntax<a name="querying-iceberg-table-metadata-syntax"></a>
 
@@ -30,4 +32,16 @@ The following example shows the partitions for an Iceberg table\.
 
 ```
 SELECT * FROM "dbname"."tablename$partitions" 
+```
+
+The following example lists the snapshots for an Iceberg table\.
+
+```
+SELECT * FROM "dbname"."tablename$snapshots" 
+```
+
+The following example shows the references for an Iceberg table\.
+
+```
+SELECT * FROM "dbname"."tablename$refs" 
 ```

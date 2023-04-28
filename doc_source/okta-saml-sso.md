@@ -15,7 +15,7 @@ First, use the Okta dashboard to create and configure a SAML 2\.0 app for single
 
 **To use the Okta dashboard to set up single sign\-on for Athena**
 
-1. Login to the Okta admin page at [https://admin.okta.com/admin/apps/active](https://admin.okta.com/admin/apps/active)\.
+1. Login to the Okta admin page on `okta.com`\.
 
 1. In the navigation pane, choose **Applications**, **Applications**\.
 

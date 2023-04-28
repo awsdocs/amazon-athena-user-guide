@@ -1,6 +1,6 @@
 # Types of updates<a name="types-of-updates"></a>
 
-Here are the types of updates that a table's schema can have\. We review each type of schema update and specify which data formats allow you to have them in Athena\.
+This topic describes some of the changes that you can make to the schema in `CREATE TABLE` statements without actually altering your data\. We review each type of schema update and specify which data formats allow them in Athena\. To update a schema, you can in some cases use an `ALTER TABLE` command, but in other cases you do not actually modify an existing table\. Instead, you create a table with a new name that modifies the schema that you used in your original `CREATE TABLE` statement\.
 + [Adding columns at the beginning or in the middle of the table](#updates-add-columns-beginning-middle-of-table)
 + [Adding columns at the end of the table](#updates-add-columns-end-of-table)
 + [Removing columns](#updates-removing-columns)
@@ -10,7 +10,7 @@ Here are the types of updates that a table's schema can have\. We review each ty
 
 Depending on how you expect your schemas to evolve, to continue using Athena queries, choose a compatible data format\. 
 
-Let's consider an application that reads orders information from an `orders` table that exists in two formats: CSV and Parquet\. 
+Consider an application that reads orders information from an `orders` table that exists in two formats: CSV and Parquet\. 
 
 The following example creates a table in Parquet:
 
@@ -24,7 +24,7 @@ CREATE EXTERNAL TABLE orders_parquet (
    `clerk` string, 
    `shippriority` int
 ) STORED AS PARQUET
-LOCATION 's3://schema_updates/orders_ parquet/';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/orders_ parquet/';
 ```
 
 The following example creates the same table in CSV:
@@ -40,7 +40,7 @@ CREATE EXTERNAL TABLE orders_csv (
    `shippriority` int
 ) 
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
-LOCATION 's3://schema_updates/orders_csv/';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/orders_csv/';
 ```
 
 In the following sections, we review how updates to these tables affect Athena queries\.
@@ -53,7 +53,7 @@ To add columns at the beginning or in the middle of the table, and continue runn
 
 Do not add columns at the beginning or in the middle of the table in CSV and TSV, as these formats depend on ordering\. Adding a column in such cases will lead to schema mismatch errors when the schema of partitions changes\.
 
- The following example shows adding a column to a JSON table in the middle of the table:
+ The following example creates a new table that adds an `o_comment` column in the middle of a table based on JSON data\.
 
 ```
 CREATE EXTERNAL TABLE orders_json_column_addition (
@@ -68,7 +68,7 @@ CREATE EXTERNAL TABLE orders_json_column_addition (
    `o_shippriority` int, 
 ) 
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
-LOCATION 's3://schema_updates/orders_json/';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/orders_json/';
 ```
 
 ## Adding columns at the end of the table<a name="updates-add-columns-end-of-table"></a>
@@ -104,7 +104,7 @@ CREATE EXTERNAL TABLE orders_parquet_column_removed (
    `o_comment` string
 ) 
 STORED AS PARQUET
-LOCATION 's3://schema_updates/orders_parquet/';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/orders_parquet/';
 ```
 
 ## Renaming columns<a name="updates-renaming-columns"></a>
@@ -130,7 +130,7 @@ CREATE EXTERNAL TABLE orders_parquet_column_renamed (
    `o_comment` string
 ) 
 STORED AS PARQUET
-LOCATION 's3://schema_updates/orders_parquet/';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/orders_parquet/';
 ```
 
 In the Parquet table case, the following query runs, but the renamed column does not show data because the column was being accessed by name \(a default in Parquet\) rather than by index:
@@ -155,7 +155,7 @@ CREATE EXTERNAL TABLE orders_csv_column_renamed (
    `o_comment` string
 ) 
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
-LOCATION 's3://schema_updates/orders_csv/';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/orders_csv/';
 ```
 
 In the CSV table case, the following query runs and the data displays in all columns, including the one that was renamed:
@@ -169,7 +169,7 @@ FROM orders_csv_column_renamed;
 
 You can reorder columns only for tables with data in formats that read by name, such as JSON or Parquet, which reads by name by default\. You can also make ORC read by name, if needed\. For information, see [Index access in ORC and parquet](handling-schema-updates-chapter.md#index-access)\.
 
-The following example illustrates reordering of columns:
+The following example creates a new table with the columns in a different order:
 
 ```
 CREATE EXTERNAL TABLE orders_parquet_columns_reordered (
@@ -183,21 +183,21 @@ CREATE EXTERNAL TABLE orders_parquet_columns_reordered (
    `o_orderdate` string
 ) 
 STORED AS PARQUET
-LOCATION 's3://schema_updates/orders_parquet/';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/orders_parquet/';
 ```
 
 ## Changing a column's data type<a name="updates-changing-column-type"></a>
 
-You change column types because a column's data type can no longer hold the amount of information, for example, when an ID column exceeds the size of an `INT` data type and has to change to a `BIGINT` data type\. 
+You might want to use a different column type when the existing type can no longer hold the amount of information required\. For example, an ID column's values might exceed the size of the `INT` data type and require the use of the `BIGINT` data type\. 
 
-Changing a column's data type has these limitations:
+Using a new column data type has these limitations:
 + Only certain data types can be converted to other data types\. See the table in this section for data types that can change\.
 + For data in Parquet and ORC, you cannot change a column's data type if the table is not partitioned\. 
 
   For partitioned tables in Parquet and ORC, a partition's column type can be different from another partition's column type, and Athena will `CAST` to the desired type, if possible\. For information, see [Avoiding schema mismatch errors for tables with partitions](updates-and-partitions.md#partitions-dealing-with-schema-mismatch-errors)\.
 
 **Important**  
-We strongly suggest that you test and verify your queries before performing data type translations\. If Athena cannot convert the data type from the original data type to the target data type, the `CREATE TABLE` query may fail\. 
+We strongly suggest that you test and verify your queries before performing data type translations\. If Athena cannot use the target data type, the `CREATE TABLE` query may fail\. 
 
 The following table lists data types that you can change:
 
@@ -213,10 +213,10 @@ The following table lists data types that you can change:
 | INT | BIGINT | 
 | FLOAT | DOUBLE | 
 
-In the following example of the `orders_json` table, change the data type for the column ``o_shippriority`` to `BIGINT`:
+The following example uses the `CREATE TABLE` statement for the original `orders_json` table to create a new table called `orders_json_bigint`\. The new table uses `BIGINT` instead of `INT` as the data type for the ``o_shippriority`` column\. 
 
 ```
-CREATE EXTERNAL TABLE orders_json (
+CREATE EXTERNAL TABLE orders_json_bigint (
    `o_orderkey` int, 
    `o_custkey` int, 
    `o_orderstatus` string, 
@@ -227,7 +227,7 @@ CREATE EXTERNAL TABLE orders_json (
    `o_shippriority` BIGINT
 ) 
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
-LOCATION 's3://schema_updates/orders_json';
+LOCATION 's3://DOC-EXAMPLE-BUCKET/orders_json';
 ```
 
 The following query runs successfully, similar to the original `SELECT` query, before the data type change:

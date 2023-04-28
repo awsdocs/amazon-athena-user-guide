@@ -10,10 +10,12 @@ SELECT 'This' || ' is' || ' a' || ' test.' AS Concatenated_String
 
 This query returns:
 
-```
-Concatenated_String
-This is a test.
-```
+
+****  
+
+| \# | Concatenated\_String | 
+| --- | --- | 
+| 1 |  `This is a test.`  | 
 
 You can use the `concat()` function to achieve the same result\.
 
@@ -23,10 +25,27 @@ SELECT concat('This', ' is', ' a', ' test.') AS Concatenated_String
 
 This query returns:
 
+
+****  
+
+| \# | Concatenated\_String | 
+| --- | --- | 
+| 1 |  `This is a test.`  | 
+
+You can use the `concat_ws()` function to concatenate strings with the separator specified in the first argument\.
+
 ```
-Concatenated_String
-This is a test.
+SELECT concat_ws(' ', 'This', 'is', 'a', 'test.') as Concatenated_String
 ```
+
+This query returns:
+
+
+****  
+
+| \# | Concatenated\_String | 
+| --- | --- | 
+| 1 |  `This is a test.`  | 
 
 ## Concatenating arrays<a name="concatenating-arrays"></a>
 
@@ -40,10 +59,12 @@ SELECT ARRAY [4,5] || ARRAY[ ARRAY[1,2], ARRAY[3,4] ] AS items
 
 This query returns:
 
-```
-items
-[[4, 5], [1, 2], [3, 4]]
-```
+
+****  
+
+| \# | items | 
+| --- | --- | 
+| 1 |  `[[4, 5], [1, 2], [3, 4]]`  | 
 
 To combine multiple arrays into a single array, use the double pipe operator or the `concat()` function\.
 
@@ -60,9 +81,11 @@ FROM dataset
 
 This query returns:
 
-```
-welcome_msg
-[Hello, Amazon, Athena, Hi, Alexa]
-```
+
+****  
+
+| \# | welcome\_msg | 
+| --- | --- | 
+| 1 |  `[Hello, Amazon, Athena, Hi, Alexa]`  | 
 
 For more information about `concat()` other string functions, see [String functions and operators](https://trino.io/docs/current/functions/string.html) in the Trino documentation\.

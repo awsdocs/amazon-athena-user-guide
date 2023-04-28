@@ -261,7 +261,7 @@ TBLPROPERTIES
 "projection.day.type" = "date",
 "projection.day.range" = "2021/01/01,NOW",
 "projection.day.format" = "yyyy/MM/dd",
-"storage.location.template" = "s3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/{account_id}/vpcflowlogs/${region}/${day}"
+"storage.location.template" = "s3://DOC-EXAMPLE-BUCKET/prefix/AWSLogs/${account_id}/vpcflowlogs/${region}/${day}"
 )
 ```
 

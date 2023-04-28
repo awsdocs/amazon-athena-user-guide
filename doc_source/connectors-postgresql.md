@@ -98,6 +98,27 @@ postgres://jdbc:postgresql://postgres1.host:3306/default?...&user=sample2&passwo
 
 Currently, the PostgreSQL connector recognizes the `user` and `password` JDBC properties\.
 
+#### Enabling SSL<a name="connectors-postgresql-ssl"></a>
+
+To support SSL in your PostgreSQL connection, append the following to your connection string:
+
+```
+&sslmode=verify-ca&sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory
+```
+
+**Example**  
+The following example connection string does not use SSL\.
+
+```
+postgres://jdbc:postgresql://example-asdf-aurora-postgres-endpoint:5432/asdf?user=someuser&password=somepassword
+```
+
+To enable SSL, modify the string as follows\.
+
+```
+postgres://jdbc:postgresql://example-asdf-aurora-postgres-endpoint:5432/asdf?user=someuser&password=somepassword&sslmode=verify-ca&sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory
+```
+
 ### Using a single connection handler<a name="connectors-postgresql-using-a-single-connection-handler"></a>
 
 You can use the following single connection metadata and record handlers to connect to a single PostgreSQL instance\.

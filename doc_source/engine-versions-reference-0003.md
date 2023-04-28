@@ -393,6 +393,26 @@ For example, if you have the data `[null, 1, null, 2, 3, 4]` in an originating d
 
 **Suggested Solution**: Update your AWS Glue schema and make sure that decimal type columns in Parquet files are not defined as `VARCHAR` in AWS Glue\.
 
+#### uuid\(\) function return type change<a name="engine-versions-reference-0003-uuid-function-return-type-change"></a>
+
+**Error message**: NOT\_SUPPORTED: Unsupported Hive type: uuid\.
+
+**Cause**: In Athena engine version 2, the `uuid()` function returned a string, but in Athena engine version 3, it returns a pseudo randomly generated UUID \(type 4\)\. Because the UUID column data type is not supported in Athena, the `uuid()` function can no longer be used directly in CTAS queries to generate UUID columns in Athena engine version 3\.
+
+For example, the following query completes successfully in Athena engine version 2 but returns the error mentioned in Athena engine version 3:
+
+```
+CREATE TABLE uuid_test AS 
+   SELECT uuid() AS myuuid
+```
+
+**Suggested Solution**: Use the `cast()` function to convert the output of `uuid()` to a `varchar`, as in the following example:
+
+```
+CREATE TABLE uuid_testv3 AS
+   SELECT cast(uuid() AS varchar) as myuuid;
+```
+
 ### Timestamp changes<a name="engine-versions-reference-0003-timestamp-changes"></a>
 
 #### Casting a Timestamp with time zone to varchar behavior change<a name="engine-versions-reference-0003-timestamp-with-time-zone-to-varchar"></a>
@@ -406,14 +426,6 @@ In Athena engine version 2, casting a `Timestamp` with time zone to `varchar` ca
 **Cause**: Because ISO 8601 dates were not checked for overflow in Athena engine version 2, some dates produced a negative timestamp\. Athena engine version 3 checks for this overflow and throws an exception\.
 
 **Suggested Solution**: Make sure the timestamp is within range\.
-
-#### Implicit type conversion from Int or BigInt type to the Timestamp type is not supported<a name="engine-versions-reference-0003-timestamp-type-conversion"></a>
-
-**Error message**: SERIALIZATION\_ERROR: Could not serialize column '*column\_name*' of type 'timestamp\(3\)' at position *n*:*n*
-
-**Cause**: A type mismatch between a Parquet column type \(`Int` or BigInt\) and a schema column type \(`Timestamp`\)\.
-
-**Suggested solution**: Change a Parquet column type or a schema column type to have the same date type\. Because changing a Parquet column type requires a data update, changing a schema column type is preferable\.
 
 #### Political time zones with TIME not supported<a name="engine-versions-reference-0003-political-time-zones"></a>
 
@@ -461,56 +473,6 @@ In Athena engine version 2, casting a `Timestamp` with time zone to `varchar` ca
 
 **Suggested solution**: Exercise care when using `Timestamp` values with a precision greater than 3\.
 
-#### Iceberg table timestamp precision now in microseconds<a name="engine-versions-reference-0003-timestamp-values-iceberg-microseconds"></a>
-
-In Athena engine version 3, timestamp values for Iceberg tables are now stored with microsecond precision\. In Athena engine version 2 timestamp values for Iceberg tables were stored with millisecond precision\.
-
-The following procedure illustrates this change\.
-
-**Example**
-
-1. Create an Iceberg table that has a column of the `timestamp` data type:
-
-   ```
-   CREATE TABLE iceberg_timestamp_sample (last_event_date timestamp) 
-   LOCATION 's3://DOC-EXAMPLE-BUCKET/' 
-   TBLPROPERTIES ('table_type'='ICEBERG')
-   ```
-
-1. Use `INSERT INTO` to insert a single row that has the current timestamp\.
-
-   ```
-   INSERT INTO iceberg_timestamp_sample SELECT current_timestamp 
-   ```
-
-1. In Athena engine version 2, perform the following query and observe the response\.
-
-   ```
-   SELECT * FROM iceberg_timestamp_sample
-   ```
-
-   Response:
-
-   ```
-   2023-01-20 21:16:56.937
-   ```
-
-1. In Athena engine version 3, perform the same query and observe the response\.
-
-   ```
-   SELECT * FROM iceberg_timestamp_sample
-   ```
-
-   Response:
-
-   ```
-   2023-01-20 21:16:56.937000
-   ```
-
-**Error message**: There is no error message, but you might have to convert timestamp values stored in Iceberg datasets to and from different precisions when you read and write data\.
-
-**Suggested solution**: Exercise care when using timestamp values\. See the Athena engine version 3 date and time [functions](functions.md) for information about handling timestamp values\.
-
 #### Space required between date and time values when casting from string to timestamp<a name="engine-versions-reference-0003-timestamp-cast-space"></a>
 
 **Error message**: INVALID\_CAST\_ARGUMENT: Value cannot be cast to timestamp\.
@@ -526,3 +488,56 @@ SELECT CAST('2021-06-06-23:38:46' AS timestamp) AS this_time
 ```
 SELECT CAST('2021-06-06 23:38:46' AS timestamp) AS this_time
 ```
+
+#### to\_iso8601\(\) timestamp return value change<a name="engine-versions-reference-0003-to-iso8601-function"></a>
+
+**Error message**: None
+
+**Cause**: In Athena engine version 2, the `to_iso8601` function returns a timestamp with time zone even if the value passed to the function does not include the time zone\. In Athena engine version 3, the `to_iso8601` function returns a timestamp with time zone only when the argument passed includes the time zone\.
+
+For example, the following query passes the current date to the `to_iso8601` function twice: first as a timestamp with time zone, and then as a timestamp\.
+
+```
+SELECT TO_ISO8601(CAST(CURRENT_DATE AS TIMESTAMP WITH TIME ZONE)), TO_ISO8601(CAST(CURRENT_DATE AS TIMESTAMP))
+```
+
+The following output shows the result of the query in each engine\.
+
+Athena engine version 2:
+
+
+****  
+
+| \# | \_col0 | \_col1 | 
+| --- | --- | --- | 
+| 1 |  `2023-02-24T00:00:00.000Z `  |  `2023-02-24T00:00:00.000Z`  | 
+
+Athena engine version 3:
+
+
+****  
+
+| \# | \_col0 | \_col1 | 
+| --- | --- | --- | 
+| 1 |  `2023-02-24T00:00:00.000Z`  |  `2023-02-24T00:00:00.000`  | 
+
+**Suggested solution**: To replicate the previous behaviour, you can pass the timestamp value to the `with_timezone` function before passing it to `to_iso8601`, as in the following example: 
+
+```
+SELECT to_iso8601(with_timezone(TIMESTAMP '2023-01-01 00:00:00.000', 'UTC'))
+```
+
+Result
+
+
+****  
+
+| \# | \_col0 | 
+| --- | --- | 
+| 1 |  2023\-01\-01T00:00:00\.000Z  | 
+
+#### at\_timezone\(\) first parameter must specify a date<a name="engine-versions-reference-at-timezone-function"></a>
+
+**Issue**: In Athena engine version 3, the `at_timezone` function cannot take a `time_with_timezone` value as the first parameter\.
+
+**Cause**: Without date information, it cannot be determined whether the value passed is daylight time or standard time\. For example, `at_timezone('12:00:00 UTC', 'America/Los_Angeles')` is ambiguous since there is no way to determine whether the value passed is Pacific Daylight Time \(PDT\) or Pacific Standard Time \(PST\)\.

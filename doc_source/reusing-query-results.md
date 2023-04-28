@@ -25,17 +25,19 @@ If any of these conditions are not met, Athena runs the query without using the 
 
 When using the query result reuse feature, keep in mind the following points:
 + Athena reuses query results only within the same workgroup\.
-+ Tables with row and column permissions are not supported\.
-+ Queries that reference federated catalogs or an external Hive metastore are not supported\.
 + The reuse query results feature respects workgroup configurations\. If you override the result configuration for a query, the feature is disabled\.
++ Only Apache Hive and Apache Hudi tables registered with AWS Glue are supported\. External Hive metastores are not supported\.
++ Queries that reference federated catalogs or an external Hive metastore are not supported\.
++ Query result reuse is not supported for Lake Formation governed tables\.
++ Tables with row and column permissions are not supported\.
++ Tables that have fine grained access control \(for example, column or row filtering\) are not supported\.
++ Any query that references an unsupported table is not eligible for query result reuse\.
 + Athena requires that you have Amazon S3 read permissions for the previously generated output file to be reused\.
 + The reuse query results feature assumes that content of previous result has not been modified\. Athena does not check the integrity of a previous result before using it\.
 + Potentially stale results can be returned\. Athena does not check for changes in source data until the maximum reuse age that you specify has been reached\.
 + If multiple results are available for reuse, Athena uses the latest result\.
 + Queries that use non\-deterministic operators or functions like `rand()` or `shuffle()` do not used cached results\. For example, `LIMIT` without `ORDER BY` is non\-deterministic and not cached, but `LIMIT` with `ORDER BY` is deterministic and is cached\.
-+ You cannot reuse query results with Apache Iceberg tables\.
 + Query result reuse is supported in the Athena console, in the Athena API, and in the JDBC driver\. Currently, ODBC driver support for query result reuse is available only for Windows\.
-+ Query result reuse is not supported for Lake Formation registered tables\.
 + To use the query result reuse feature with JDBC, the minimum required driver version is 2\.0\.34\.1000\. For ODBC, the minimum required driver version is 1\.1\.19\.1002\. For driver download information, see [Connecting to Amazon Athena with ODBC and JDBC drivers](athena-bi-tools-jdbc-odbc.md)\.
 
 ## Reusing query results in the Athena console<a name="reusing-query-results-athena-console"></a>

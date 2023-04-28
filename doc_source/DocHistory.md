@@ -1,11 +1,12 @@
 # Document history<a name="DocHistory"></a>
 
-**Latest documentation update: April 4, 2023\.**  
+**Latest documentation update: April 28, 2023\.**  
 We update the documentation frequently to address your feedback\. The following table describes important additions to the Amazon Athena documentation\. Not all updates are represented\. 
 
 
 | Change | Description | Release date | 
 | --- | --- | --- | 
+| Added documentation for capacity reservations\. | You can now use capacity reservations on Amazon Athena to run SQL queries on fully\-managed compute capacity\. For more information, see [Managing query processing capacity](capacity-management.md)\. | April 28, 2023 | 
 | Added documentation for querying federated views\. | You can now create and query views on federated data sources in Athena\. For more information, see [Querying federated views](running-federated-queries.md#running-federated-queries-federated-views)\. | April 4, 2023 | 
 | Added documentation on preventing throttling in Amazon S3\. | For more information, see [Preventing Amazon S3 throttling](performance-tuning-s3-throttling.md)\. | March 24, 2023 | 
 | Updated AmazonAthenaFullAccess managed policy | Added pricing:GetProducts to the [AmazonAthenaFullAccess](managed-policies.md#amazonathenafullaccess-managed-policy) managed policy\. The added action provides access to AWS Billing and Cost Management\. For more information, see [GetProducts](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetProducts.html) in the AWS Billing and Cost Management API Reference\. | January 25, 2023 | 

@@ -55,7 +55,7 @@ The `FOR SYSTEM_TIME AS OF` and `FOR SYSTEM_VERSION AS OF` clauses in Athena eng
 
 #### Retrieving the snapshot ID<a name="querying-iceberg-table-snapshot-id"></a>
 
-You can use the SDKs provided by Iceberg in [Java](https://iceberg.apache.org/docs/latest/java-api-quickstart/) and [Python](https://iceberg.apache.org/docs/latest/python-quickstart/) to retrieve the Iceberg snapshot ID\. The following example is in Java\.
+You can use the SDKs provided by Iceberg in [Java](https://iceberg.apache.org/docs/latest/java-api-quickstart/) and [Python](https://iceberg.apache.org/docs/0.13.1/python-api-intro/#tables) to retrieve the Iceberg snapshot ID\. The following example is in Java\.
 
 ```
 import org.apache.iceberg.Table;

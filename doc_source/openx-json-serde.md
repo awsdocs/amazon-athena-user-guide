@@ -79,7 +79,6 @@ CREATE EXTERNAL TABLE impressions (
     sessionid string
 )   PARTITIONED BY (dt string)
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
-with serdeproperties ( 'paths'='requestbegintime, adid, impressionid, referrer, useragent, usercookie, ip' )
 LOCATION 's3://myregion.elasticmapreduce/samples/hive-ads/tables/impressions';
 ```
 

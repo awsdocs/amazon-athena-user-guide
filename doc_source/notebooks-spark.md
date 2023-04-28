@@ -23,6 +23,7 @@ Amazon Athena offers the following features:
 + Apache Iceberg is not supported\. 
 + Apache Hudi is not supported\.
 + Delta Lake is not supported\.
++ Tables that use partition projection are not supported\.
 + Apache Spark enabled workgroups can use the Athena notebook editor, but not the Athena query editor\. Only Athena SQL workgroups can use the Athena query editor\.
 + Cross\-engine view queries are not supported\. Views created by Athena SQL are not queryable by Athena for Spark\. Because views for the two engines are implemented differently, they are not compatible for cross\-engine use\.
 + MLlib \(Apache Spark machine learning library\) is not supported\. For a list of supported Python libraries, see the [List of preinstalled Python libraries](notebooks-spark-preinstalled-python-libraries.md)\.

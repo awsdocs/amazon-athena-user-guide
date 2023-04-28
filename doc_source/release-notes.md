@@ -13,6 +13,39 @@ Describes Amazon Athena features, improvements, and bug fixes by release date\.
 
 ## Athena release notes for 2023<a name="release-notes-2023"></a>
 
+### April 28, 2023<a name="release-note-2023-04-28"></a>
+
+Published on 2023\-04\-28
+
+You can now use capacity reservations on Amazon Athena to run SQL queries on fully\-managed compute capacity\.
+
+Provisioned capacity provides workload management capabilities that help you prioritize, control, and scale your most important interactive workloads\. You can add capacity at any time to increase the number of queries that you run concurrently, control which workloads use the capacity, and share capacity among workloads\.
+
+For more information, see [Managing query processing capacity](capacity-management.md)\. For pricing information, visit the [Amazon Athena pricing](http://aws.amazon.com/athena/pricing/) page\.
+
+### April 17, 2023<a name="release-note-2023-04-17"></a>
+
+Published on 2023\-04\-17
+
+Athena releases JDBC driver version 2\.0\.36\. The driver includes new features and resolved an issue\.
+
+#### New features<a name="release-note-2023-04-17-new-features"></a>
++ You can now use customizable relying party identifiers with AD FS authentication\.
++ You can now add the name of the application that is using the connector to the user agent string\. 
+
+#### Resolved issues<a name="release-note-2023-04-17-resolved-issues"></a>
++ Fixed an error that occurred when `getSchema()` was used to retrieve a non\-existent schema\. 
+
+For more information, and to download the new drivers, release notes, and documentation, see [Connecting to Amazon Athena with JDBC](connect-with-jdbc.md)\.
+
+### April 14, 2023<a name="release-note-2023-04-14"></a>
+
+Published on 2023\-04\-14
+
+Athena announces the following fixes and improvements\.
++ When you cast a string to timestamp, a space is required between the day and time or timezone\. For more information, see [Space required between date and time values when casting from string to timestamp](engine-versions-reference-0003.md#engine-versions-reference-0003-timestamp-cast-space)\.
++ Removed a breaking change in the way timestamp precision was handled\. To maintain consistency between Athena engine version 2 and Athena engine version 3, timestamp precision now defaults to milliseconds rather than microseconds\.
+
 ### April 4, 2023<a name="release-note-2023-04-04"></a>
 
 Published on 2023\-04\-04
