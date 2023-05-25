@@ -3,11 +3,40 @@
 You can use a JDBC connection to connect Athena to business intelligence tools and other applications, such as [SQL workbench](http://www.sql-workbench.eu/downloads.html)\. To do this, use the Amazon S3 links on this page to download, install, and configure the Athena JDBC driver\. For information about building the JDBC connection URL, see the downloadable [JDBC driver installation and configuration guide](https://s3.amazonaws.com/athena-downloads/drivers/JDBC/SimbaAthenaJDBC-2.0.36.1000/docs/Simba+Amazon+Athena+JDBC+Connector+Install+and+Configuration+Guide.pdf)\. For permissions information, see [Access through JDBC and ODBC connections](policy-actions.md)\. To submit feedback regarding the JDBC driver, email [athena\-feedback@amazon\.com](mailto:athena-feedback@amazon.com)\. Starting with version 2\.0\.24, two versions of the driver are available: one that includes the AWS SDK, and one that does not\.
 
 **Important**  
-When you use the JDBC driver, be sure to note the following requirements:  
-**Open port 444** – Keep port 444, which Athena uses to stream query results, open to outbound traffic\. When you use a PrivateLink endpoint to connect to Athena, ensure that the security group attached to the PrivateLink endpoint is open to inbound traffic on port 444\. If port 444 is blocked, you may receive the error message \[Simba\]\[AthenaJDBC\]\(100123\) An error has occurred\. Exception during column initialization\. 
+When you use the JDBC driver, be sure to note the following requirements:
+[**Open port**](#open-port)\.
 **athena:GetQueryResultsStream policy** – Add the `athena:GetQueryResultsStream` policy action to the IAM principals that use the JDBC driver\. This policy action is not exposed directly with the API\. It is used only with the ODBC and JDBC drivers as part of streaming results support\. For an example policy, see [AWS managed policy: AWSQuicksightAthenaAccess](managed-policies.md#awsquicksightathenaaccess-managed-policy)\. 
 **Using the JDBC driver for multiple data catalogs** – To use the JDBC driver for multiple data catalogs with Athena \(for example, when using an [external Hive metastore](connect-to-data-source-hive.md) or [federated queries](connect-to-a-data-source.md)\), include `MetadataRetrievalMethod=ProxyAPI` in your JDBC connection string\. 
-**4\.1 drivers** – Starting in 2023, driver support for JDBC version 4\.1 is discontinued\. No further updates will be released\. If you are using a JDBC 4\.1 driver, migration to the 4\.2 driver is highly recommended\. 
+**4\.1 drivers** – Starting in 2023, driver support for JDBC version 4\.1 is discontinued\. No further updates will be released\. If you are using a JDBC 4\.1 driver, migration to the 4\.2 driver is highly recommended\.
+
+## Open port (443, 444)<a name="open-port"></a>
+> **Open port 444** – Keep port 444, which Athena uses to stream query results, open to outbound traffic\. When you use a PrivateLink endpoint to connect to Athena, ensure that the security group attached to the PrivateLink endpoint is open to inbound traffic on port 444\. If port 444 is blocked, you may receive the error message \[Simba\]\[AthenaJDBC\]\(100123\) An error has occurred\. Exception during column initialization\.
+- athena: 443, 444 
+  ```
+  # template
+  athena.[region].amazonaws.com:443
+  athena.[region].amazonaws.com:444
+  
+  # example
+  athena.ap-northeast-2.amazonaws.com:443
+  athena.ap-northeast-2.amazonaws.com:444
+  ```
+- glue: 443
+  ```
+  # template
+  glue.[region].amazonaws.com:443
+  
+  # example
+  glue.ap-northeast-2.amazonaws.com:443
+  ```
+- sts: 443
+  ```
+  # template
+  sts.[region].amazonaws.com:443
+  
+  # example
+  sts.ap-northeast-2.amazonaws.com:443
+  ```
 
 ## JDBC driver with AWS SDK<a name="download-the-jdbc-driver"></a>
 

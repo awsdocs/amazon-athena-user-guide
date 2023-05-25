@@ -4,8 +4,37 @@ Use the links on this page to download the Amazon Athena ODBC driver License Agr
 
 **Important**  
 When you use the ODBC driver, be sure to note the following requirements:  
-**Open port 444** – Keep port 444, which Athena uses to stream query results, open to outbound traffic\. When you use a PrivateLink endpoint to connect to Athena, ensure that the security group attached to the PrivateLink endpoint is open to inbound traffic on port 444\. 
+[**Open port**](#open-port)\.
 **athena:GetQueryResultsStream policy** – Add the `athena:GetQueryResultsStream` policy action to the IAM principals that use the ODBC driver\. This policy action is not exposed directly with the API\. It is used only with the ODBC and JDBC drivers as part of streaming results support\. For an example policy, see [AWS managed policy: AWSQuicksightAthenaAccess](managed-policies.md#awsquicksightathenaaccess-managed-policy)\. 
+
+## Open port (443, 444)<a name="open-port"></a>
+> **Open port 444** – Keep port 444, which Athena uses to stream query results, open to outbound traffic\. When you use a PrivateLink endpoint to connect to Athena, ensure that the security group attached to the PrivateLink endpoint is open to inbound traffic on port 444\. If port 444 is blocked, you may receive the error message \[Simba\]\[AthenaJDBC\]\(100123\) An error has occurred\. Exception during column initialization\.
+- athena: 443, 444
+  ```
+  # template
+  athena.[region].amazonaws.com:443
+  athena.[region].amazonaws.com:444
+  
+  # example
+  athena.ap-northeast-2.amazonaws.com:443
+  athena.ap-northeast-2.amazonaws.com:444
+  ```
+- glue: 443
+  ```
+  # template
+  glue.[region].amazonaws.com:443
+  
+  # example
+  glue.ap-northeast-2.amazonaws.com:443
+  ```
+- sts: 443
+  ```
+  # template
+  sts.[region].amazonaws.com:443
+  
+  # example
+  sts.ap-northeast-2.amazonaws.com:443
+  ```
 
 ## ODBC driver download links<a name="connect-with-odbc-driver-and-documentation-download-links"></a>
 
